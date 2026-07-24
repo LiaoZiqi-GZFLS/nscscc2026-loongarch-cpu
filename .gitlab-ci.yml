@@ -1,4 +1,4 @@
 include:
-  - project: '2026nscsccteam/ci-template-sync-lab-20260721/ci-template'
-    ref: 'master'
+  - project: 'zhangxi/ci-template'
+    ref: 'zhangxi'
     file: '/parent.yml'
