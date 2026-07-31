@@ -4,7 +4,7 @@
 // 内部例化 cpu_core（主 agent 负责），AXI/debug 直连；观测口不用，置零。
 // ============================================================================
 
-module mycpu_top(
+module core_top(
   input  [7:0]  intrpt,
   input         aclk,
   input         aresetn,
