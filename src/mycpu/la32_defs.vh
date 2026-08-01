@@ -55,6 +55,7 @@
 `define AOP_BREAK    6'd41
 `define AOP_ERTN     6'd42
 `define AOP_NOP      6'd43
+`define AOP_CPUCFG   6'd44   // cpucfg rd, rj —— 恒返回 0（上报无 cache）
 
 // ---------------- 分支类型 (4bit) ----------------
 `define BR_NONE   4'd0

@@ -171,6 +171,15 @@ module la32_decoder(
                   10'b0000001111: begin      // xori（零扩展）
                     aluop = `AOP_XOR;  imm = imm_ui12; rd_wen = 1'b1; use_rj = 1'b1;
                   end
+                  // ---------------- 缓存维护（简化为串行 NOP） ----------------
+                  // perf start.S 的 cacop cache 初始化循环由 cpucfg 返回值
+                  // 跳过（AOP_CPUCFG 上报无 cache）；此处兜底译码为串行 NOP，
+                  // 避免偶发执行时落 INE 挂死（INE 时 EENTRY 尚未初始化→跳
+                  // 0x0→板上全死，perf 0/20 实证）。dbar/ibar 在下方
+                  // inst[31:15] 段同理处理。serial=等 ROB 排空，自带屏障语义。
+                  10'b0000011000: begin      // cacop code, rj, si12
+                    serial = 1'b1;
+                  end
                   // ---------------- 访存 si12 ----------------
                   10'b0010100000: begin      // ld.b
                     fu = `FU_LSU; aluop = `AOP_LDB;  imm = imm_si12;
@@ -236,6 +245,10 @@ module la32_decoder(
                       17'b0000000001010110: begin // syscall code
                         fu=`FU_CSR; aluop=`AOP_SYSCALL; imm=imm_code; serial=1'b1;
                       end
+                      // 内存屏障 dbar / 指令屏障 ibar —— 简化为串行 NOP
+                      // （单发射回退点；write-through dcache 无需额外动作）
+                      17'b00111000011100100: serial = 1'b1;   // dbar hint
+                      17'b00111000011100101: serial = 1'b1;   // ibar hint
                       default: begin
                         if (inst == 32'h06483800) begin // ertn
                           fu=`FU_CSR; aluop=`AOP_ERTN; serial=1'b1;
@@ -253,6 +266,12 @@ module la32_decoder(
                           rd = inst[9:5];                 // 目的在 rj 字段
                         end else if (inst[31:10] == 22'h000019 && inst[9:5] == 5'd0) begin
                           fu=`FU_CSR; aluop=`AOP_RDCNTVH; rd_wen=1; serial=1; // rdcntvh.w rd
+                        end else if (inst[31:10] == 22'h00001b) begin
+                          // cpucfg rd, rj —— perf start.S 首条即执行（板上 EENTRY
+                          // 尚未初始化，落 INE 会跳 0x0 全死，perf 0/20 实证）。
+                          // 恒返回 0：上报无 I/D/L2 cache → start.S 跳过全部
+                          // cacop 初始化循环。
+                          fu=`FU_CSR; aluop=`AOP_CPUCFG; rd_wen=1; use_rj=1; serial=1;
                         end else begin
                           // 非法指令
                           fu    = `FU_ALU;

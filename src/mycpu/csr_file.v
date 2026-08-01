@@ -97,6 +97,9 @@ module csr_file(
       `AOP_RDCNTVL: csr_rdata = cnt[31:0];
       `AOP_RDCNTVH: csr_rdata = cnt[63:32];
       `AOP_RDCNTID: csr_rdata = tid;
+      // cpucfg：恒返回 0 —— 上报无 I/D/L2 cache，perf start.S 据此跳过全部
+      // cacop cache 初始化循环；其余配置字（PRID 等）本设计不使用，读 0 安全。
+      `AOP_CPUCFG:  csr_rdata = 32'b0;
       default: begin
         case (csr_addr)
           `CSR_CRMD:   csr_rdata = crmd;
