@@ -29,6 +29,7 @@ module issue_queue(
   input lsu_struct,                              // LSU 结构冒险（store 用，含 sb 满）
   input lsu_struct_ld,                           // LSU 结构冒险（load 用，不含 sb 满）
   input [3:0]  sb_v,                             // C6 精确化：store buffer 有效位
+  input [3:0]  sb_g,                             // C6 补洞：store buffer 各项已提交授权位
   input [19:0] sb_tags,                          // C6 精确化：store buffer 各项 ROB 标签（拍平）
   input rob_empty,                               // C4 串行点解锁信号
   input [4:0] rob_head_tag,                      // C4：serial 项须位于 ROB 头
@@ -124,12 +125,19 @@ module issue_queue(
         // cnt 必须用真实 ROB 占用数：ROB 满时 tail==head，5bit 环形差得 0，
         // 会把所有 sb store 误判为"更老" → 头 load 被年轻投机 store 永久
         // 阻塞 → 死锁（n41 实证：ROB=32 满 + sb 满 4 项投机 store）。
+        // 已提交（granted）store 必须无条件阻塞一切 load：提交按序，已提交
+        // store 必然比 ROB 内任何 load 老；且 ROB 满时 cnt=32，刚提交的 store
+        // 槽位 pos_sb=(tag-head) mod 32 可大至 31 < 32=cnt，会被误判为"ROB 内
+        // 年轻 store"而放行 → load 先于更老 store 的 drain/invalidate 读 dcache
+        // → 命中陈旧行/refill 抢在 W 前读到旧数据（板上 func 43/44 实证：
+        // ld.bu 在 SB=1111 时被接受，与 st.w 的 W 握手 invalidate 同拍抢 tag）。
         for (i_sb = 0; i_sb < 4; i_sb = i_sb + 1)
           if (sb_v[i_sb] &&
-              !(((entry_uop[i_elig][`UOP_ROB] - rob_head_tag)
-                   < (sb_tags[i_sb*5 +: 5] - rob_head_tag)) &&
-                ({1'b0, (sb_tags[i_sb*5 +: 5] - rob_head_tag)}
-                   < (rob_full ? 6'd32 : {1'b0, (rob_tail_cur - rob_head_tag)}))))
+              (sb_g[i_sb] ||
+               !(((entry_uop[i_elig][`UOP_ROB] - rob_head_tag)
+                    < (sb_tags[i_sb*5 +: 5] - rob_head_tag)) &&
+                 ({1'b0, (sb_tags[i_sb*5 +: 5] - rob_head_tag)}
+                    < (rob_full ? 6'd32 : {1'b0, (rob_tail_cur - rob_head_tag)})))))
             elig0[i_elig] = 1'b0;
       end
       // C4: 串行点须自身为 IQ 最老且位于 ROB 头（之前指令全提交）

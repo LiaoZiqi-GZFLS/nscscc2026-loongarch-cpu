@@ -44,6 +44,7 @@ module lsu(
   output noaccept_ld,                      // 结构冒险(load)：仅主 FSM 忙（load 不占 sb）
   output [`SB_DEPTH-1:0]  sb_v_o,          // store buffer 有效位（C6 精确化）
   output [`SB_DEPTH*5-1:0] sb_rob_o,       // store buffer 各项 ROB 标签
+  output [`SB_DEPTH-1:0]  sb_g_o,          // store buffer 各项已提交授权（C6 补洞：已提交 store 必阻塞一切 load）
   // LLbit 交互（csr_file）
   output reg ll_set, output reg sc_clear, input ll_bit,
   // 完成输出
@@ -410,6 +411,7 @@ module lsu(
   // load 与更老在 sb store 的序由 IQ 侧 C6 独立保证。
   assign noaccept_ld = (m_state != S_IDLE);
   assign sb_v_o   = sb_valid;
+  assign sb_g_o   = sb_granted;
   // 拍平各项 ROB 标签供 IQ 做年龄比较
   genvar g_sb;
   generate

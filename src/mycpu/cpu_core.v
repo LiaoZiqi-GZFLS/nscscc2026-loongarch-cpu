@@ -117,6 +117,7 @@ wire [5:0]  lsu_excpt;
 wire [31:0] lsu_badv;
 wire        mdu_busy, lsu_busy, lsu_block_load, lsu_noaccept, lsu_noaccept_ld;
 wire [3:0]  lsu_sb_v;
+wire [3:0]  lsu_sb_g;
 wire [19:0] lsu_sb_tags;
 
 // PRF 写仲裁 + skid
@@ -317,7 +318,7 @@ issue_queue u_iq(
   .issue1_valid(issue1_valid), .issue1_uop(issue1_uop),
   .mdu_busy(mdu_struct), .lsu_block_load(lsu_block_load),
   .lsu_struct(lsu_struct), .lsu_struct_ld(lsu_struct_ld),
-  .sb_v(lsu_sb_v), .sb_tags(lsu_sb_tags),
+  .sb_v(lsu_sb_v), .sb_tags(lsu_sb_tags), .sb_g(lsu_sb_g),
   .rob_empty(rob_empty_rob), .rob_head_tag(rob_head_tag),
   .bru_flush(bru_flush), .bru_rob(bru_rob_tag), .rob_tail_cur(rob_tail_cur),
   .rob_full(rob_full),
@@ -380,7 +381,7 @@ lsu u_lsu(
   .clk(clk), .rst_n(rst_n),
   .req(lsu_req), .uop(issue0_uop), .src_j(ex0_srcj), .src_k(ex0_srck),
   .busy(lsu_busy), .noaccept(lsu_noaccept), .noaccept_ld(lsu_noaccept_ld),
-  .sb_v_o(lsu_sb_v), .sb_rob_o(lsu_sb_tags),
+  .sb_v_o(lsu_sb_v), .sb_rob_o(lsu_sb_tags), .sb_g_o(lsu_sb_g),
   .ls_arvalid(ls_arvalid), .ls_arready(ls_arready), .ls_araddr(ls_araddr),
   .ls_rvalid(ls_rvalid), .ls_rdata(ls_rdata),
   .ls_awvalid(ls_awvalid), .ls_awready(ls_awready), .ls_awaddr(ls_awaddr),
