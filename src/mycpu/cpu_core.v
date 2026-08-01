@@ -209,7 +209,8 @@ rename u_rename(
   .iq_almost(iq_almost),
   .cmt0_valid(cmt0_valid), .cmt0_wen(cmt0_wen), .cmt0_rd(cmt0_rd), .cmt0_pdnew(cmt0_pdnew),
   .cmt1_valid(cmt1_valid), .cmt1_wen(cmt1_wen), .cmt1_rd(cmt1_rd), .cmt1_pdnew(cmt1_pdnew),
-  .bru_flush(bru_flush), .bru_ckpt(bru_ckpt),
+  .bru_flush(bru_flush), .bru_ckpt(bru_ckpt), .bru_rob(bru_rob_tag),
+  .rob_tail_cur(rob_tail_cur),
   .bru_done(bru_done), .bru_done_ckpt(bru_done_ckpt),
   .ckpt_full(ckpt_full),
   .exc_flush(exc_flush),
@@ -364,10 +365,19 @@ ex_mdu u_mdu(
 );
 
 wire lsu_req = issue0_valid & (issue0_uop[`UOP_FU] == `FU_LSU) & ~redirect;
-assign lsu_struct    = lsu_noaccept    | lsu_issued_r | lsu_req;
+// Bug#6 修复：skid 挂起期间禁止再发 LSU/MDU 操作。
+// 根因：1 深 skid 缓冲，若 lsu_done/mdu_done 与 skid_v 同拍（前次完成落选
+// 未排空、本次完成又到达），旧 skid 项被覆写或新结果被丢弃，丢失的写回
+// 永不置 prf_rdy（该指令 ROB 已 done 可正常提交）→ 消费者永久等待 → 全核死锁。
+// CDC/DDR 拉长访存延迟后完成时刻随机化，必然撞上该窗口（板上 perf 全灭）。
+// 门控后：skid_v=1 时 FU 内必无在途操作（见 lsu.v：S_DN 拍 FSM 忙 noaccept=1，
+// skid_v 生效拍 FSM 才回 IDLE，二者无交集），lsu_done/mdu_done 与 skid_v 永不
+// 同拍，1 深 skid 即完备。skid 排空无需新增气泡保证：in-order dispatch 下
+// 被阻塞的消费者会截断后续派遣，exwb 写口必出现空拍。
+assign lsu_struct    = lsu_noaccept    | lsu_issued_r | lsu_req | lsu_skid_v;
 // load 专用：不被 sb 满阻塞（noaccept_ld 只含 FSM 忙；sb 满只挡 store）
-assign lsu_struct_ld = lsu_noaccept_ld | lsu_issued_r | lsu_req;
-assign mdu_struct = mdu_busy | mdu_issued_r | mdu_req;
+assign lsu_struct_ld = lsu_noaccept_ld | lsu_issued_r | lsu_req | lsu_skid_v;
+assign mdu_struct = mdu_busy | mdu_issued_r | mdu_req | mdu_skid_v;
 // 发射历史寄存器（redirect 拍已用 ~redirect 门控 req，直接锁存即可）
 always @(posedge clk or negedge rst_n) begin
   if (!rst_n) begin
@@ -495,14 +505,24 @@ always @(posedge clk or negedge rst_n) begin
   if (!rst_n) begin
     mdu_skid_v <= 1'b0; lsu_skid_v <= 1'b0;
   end else begin
-    if (mdu_done & ~mdu_granted & (mdu_pd != 6'd0)) begin
+    // ~mdu_skid_v / ~lsu_skid_v：门控修复后不可达的防覆写保护（双保险）
+    if (mdu_done & ~mdu_granted & (mdu_pd != 6'd0) & ~mdu_skid_v) begin
       mdu_skid_v <= 1'b1; mdu_skid_pd <= mdu_pd;
       mdu_skid_data <= mdu_result; mdu_skid_rob <= mdu_rob;
     end else if (mdu_skid_v & mdu_granted) mdu_skid_v <= 1'b0;
-    if (lsu_done & ~lsu_granted & (lsu_pd != 6'd0)) begin
+    if (lsu_done & ~lsu_granted & (lsu_pd != 6'd0) & ~lsu_skid_v) begin
       lsu_skid_v <= 1'b1; lsu_skid_pd <= lsu_pd;
       lsu_skid_data <= lsu_result; lsu_skid_rob <= lsu_rob;
     end else if (lsu_skid_v & lsu_granted) lsu_skid_v <= 1'b0;
+`ifdef VERILATOR
+    // 仿真哨兵：门控修复若被绕过（done 与 skid_v 同拍）立刻暴露
+    if (lsu_done & lsu_skid_v) begin
+      $display("FATAL: lsu skid collision @%0t", $time); $fatal;
+    end
+    if (mdu_done & mdu_skid_v) begin
+      $display("FATAL: mdu skid collision @%0t", $time); $fatal;
+    end
+`endif
   end
 end
 

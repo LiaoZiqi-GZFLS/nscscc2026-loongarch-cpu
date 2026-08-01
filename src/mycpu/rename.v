@@ -62,6 +62,8 @@ module rename(
   // 分支 checkpoint
   input        bru_flush,
   input  [2:0] bru_ckpt,
+  input  [4:0] bru_rob,           // Bug#7：ROB 环判龄用（冲刷分支的 ROB 标签）
+  input  [4:0] rob_tail_cur,      // Bug#7：冲刷拍 ROB 当前尾（未回滚）
   input        bru_done,          // 分支预测正确，释放槽
   input  [2:0] bru_done_ckpt,
   output       ckpt_full,
@@ -171,15 +173,24 @@ module rename(
   end
   assign ckpt_full = &ck_valid;
 
-  // 判龄：seq 差（mod 16）落在 1..8 为更年轻（最多 8 槽有效，无歧义）
+  // 判龄（Bug#7 修复）：改用 ROB 环形区间判龄。
+  // 原 seq(mod 16) 判龄依赖"活槽 seq 连续且 ≤8"的假设，但分支乱序解决后
+  // 活槽 seq 出现空洞，跨度可达 8 甚至回绕：diff==8（mod 16）被误判为
+  // "更年轻" → 冲刷时误释放更老分支的 checkpoint 槽；槽被复用后，老分支
+  // 一旦误预测就会恢复他人快照 → 幽灵 fRAT 映射指向已死生产者 → prf_rdy
+  // 永不置位 → 消费者永久等待 → 全核死锁。load-to-branch 延迟被 CDC/DDR
+  // 拉长后旧分支长期未解决，必然触发（板上 perf 全灭根因，本地 CDC 复现）。
+  // ROB 标签环 count≤31 保证 tail≠head，冲刷拍 tail 未回滚，
+  // 开区间 (bru_rob, rob_tail_cur) 判龄无歧义（与 lsu/rob 的 in_range 同构）。
   integer yi;
   reg [7:0] younger_mask;
-  reg [3:0] seq_diff;
+  reg [4:0] yd1, yd2;
   always @* begin
     for (yi = 0; yi < 8; yi = yi + 1) begin
-      seq_diff = ck_seq[yi] - ck_seq[bru_ckpt];
-      younger_mask[yi] = ck_valid[yi] && (seq_diff != 4'd0) &&
-                         (seq_diff <= 4'd8);
+      yd1 = ck_rob[yi] - bru_rob;
+      yd2 = rob_tail_cur - bru_rob;
+      younger_mask[yi] = ck_valid[yi] && (yd2 != 5'd0) && (yd1 != 5'd0) &&
+                         (yd1 < yd2);
     end
   end
 
