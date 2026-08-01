@@ -90,8 +90,15 @@ module dcache(
   localparam S_RUN    = 2'd0;
   localparam S_REFILL = 2'd1;
   localparam S_UC     = 2'd2;
+  localparam S_INIT   = 2'd3;   // 【板上复位修复】复位后 512 拍逐行清 valid
 
+  // FPGA 的 initial 只在配置后生效一次；板级流程"上电自由跑 → JTAG 复位 →
+  // 重启"会让 tag_ram 残留自由跑期间的旧数据行（自由跑与正式程序同在 DDR
+  // 0x0 区域，同 index 同 tag 残留几乎必然 → load 读到旧数据 → 乱跑/全死）。
+  // 复位后必须 S_INIT 512 拍清完全部 valid 再进 S_RUN；期间 s_arready=0
+  // （state!=S_RUN）天然挡住 LSU。
   reg [1:0]  state;
+  reg [8:0]  init_idx;          // S_INIT 逐行清零计数
   reg        pend;          // AR 已握手，次拍判定 hit/miss/uc 中
   reg [31:0] s_addr_r;
   reg        cached_r;
@@ -145,8 +152,11 @@ module dcache(
       data_d <= data_ram[rd_idx];
       tag_d  <= tag_ram[rd_idx];
     end
-    // 写口优先级：① inv_pend 补写 ② refill 末 beat ③ inv 当拍
-    if (inv_pend) begin
+    // 写口优先级：⓪ S_INIT 逐行清 valid（复位刚释放时无 refill/inv）
+    //             ① inv_pend 补写 ② refill 末 beat ③ inv 当拍
+    if (state == S_INIT) begin
+      tag_ram[init_idx] <= 20'b0;
+    end else if (inv_pend) begin
       tag_ram[inv_idx_r] <= 20'b0;                // valid=0 即可，tag 无所谓
     end else if (refill_last) begin
       data_ram[wr_idx] <= fill_line;
@@ -160,7 +170,8 @@ module dcache(
   // ---------------- 主时序 ----------------
   always @(posedge clk or negedge rst_n) begin
     if (!rst_n) begin
-      state          <= S_RUN;
+      state          <= S_INIT;
+      init_idx       <= 9'd0;
       pend           <= 1'b0;
       s_addr_r       <= 32'b0;
       cached_r       <= 1'b0;
@@ -174,6 +185,16 @@ module dcache(
       inv_pend       <= 1'b0;
       inv_idx_r      <= 9'b0;
     end else begin
+      // ---- S_INIT：复位后 512 拍逐行清 valid，完成才进 S_RUN ----
+      if (state == S_INIT) begin
+        if (init_idx == 9'd511) begin
+          state    <= S_RUN;
+          init_idx <= 9'd0;
+        end else begin
+          init_idx <= init_idx + 9'd1;
+        end
+      end
+
       // ---- AR 握手接收（S_RUN） ----
       if (s_hs) begin
         pend     <= 1'b1;

@@ -275,6 +275,7 @@ rob u_rob(
 // ============================ PRF ============================
 prf u_prf(
   .clk(clk),
+  .rst_n(rst_n),
   .ra0(issue0_uop[`UOP_PJ]), .rb0(issue0_uop[`UOP_PK]),
   .ra1(issue1_uop[`UOP_PJ]), .rb1(issue1_uop[`UOP_PK]),
   .rd0a(prf_rd0a), .rd0b(prf_rd0b), .rd1a(prf_rd1a), .rd1b(prf_rd1b),

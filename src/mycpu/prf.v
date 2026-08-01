@@ -10,6 +10,7 @@
 
 module prf(
   input        clk,
+  input        rst_n,
   // 4 读（lane0: ra0/rb0, lane1: ra1/rb1）
   input  [5:0] ra0,
   input  [5:0] rb0,
@@ -76,13 +77,22 @@ module prf(
 
   // ready 位：clr 优先于 set（同一物理号在被重命名复用前不可能有在途写回，
   // 此处为防御性约定）
-  always @(posedge clk) begin
-    if (set_rdy0) ready_r[rdy_addr0] <= 1'b1;
-    if (set_rdy1) ready_r[rdy_addr1] <= 1'b1;
-    if (set_rdy2) ready_r[rdy_addr2] <= 1'b1;
-    if (set_rdy3) ready_r[rdy_addr3] <= 1'b1;
-    if (clr_rdy0) ready_r[clr_addr0] <= 1'b0;
-    if (clr_rdy1) ready_r[clr_addr1] <= 1'b0;
+  // 【板上复位修复】ready_r 必须随 rst_n 回全 1：FPGA 的 initial 只在配置后
+  // 生效一次。板级启动流程是"上电自由跑 → JTAG 复位 → 重启"，复位瞬间若有
+  // 在途写回（ready_r[x]=0），复位后 rename 初始映射 arch i→phys i（0-31）
+  // 会继承 ready=0 的物理号 → 读该 arch 寄存器的指令永远等不到 ready →
+  // issue 死锁 → 板上 num_data 恒 0（本地单复位仿真永不复现）。
+  always @(posedge clk or negedge rst_n) begin
+    if (!rst_n)
+      ready_r <= 64'hffff_ffff_ffff_ffff;
+    else begin
+      if (set_rdy0) ready_r[rdy_addr0] <= 1'b1;
+      if (set_rdy1) ready_r[rdy_addr1] <= 1'b1;
+      if (set_rdy2) ready_r[rdy_addr2] <= 1'b1;
+      if (set_rdy3) ready_r[rdy_addr3] <= 1'b1;
+      if (clr_rdy0) ready_r[clr_addr0] <= 1'b0;
+      if (clr_rdy1) ready_r[clr_addr1] <= 1'b0;
+    end
   end
 
   assign ready_vec = {ready_r[63:1], 1'b1};   // 0 号恒 ready

@@ -71,12 +71,19 @@ module icache(
   reg victim [0:511];
 
   // ---------------- 状态 ----------------
-  localparam S_RUN    = 2'd0;   // 正常流水：每拍 req→resp（bg_fill 期间照常 hit）
-  localparam S_REFILL = 2'd1;   // 需求行 refill（cached 区，beat0-3）
-  localparam S_UC     = 2'd2;   // uncached 透传
-  localparam S_WAIT   = 2'd3;   // bg_fill 期间来了新 miss/uc：等 rlast 再发起
+  localparam S_RUN    = 3'd0;   // 正常流水：每拍 req→resp（bg_fill 期间照常 hit）
+  localparam S_REFILL = 3'd1;   // 需求行 refill（cached 区，beat0-3）
+  localparam S_UC     = 3'd2;   // uncached 透传
+  localparam S_WAIT   = 3'd3;   // bg_fill 期间来了新 miss/uc：等 rlast 再发起
+  localparam S_INIT   = 3'd4;   // 【板上复位修复】复位后 512 拍逐行清 valid
 
-  reg [1:0]   state;
+  // FPGA 的 initial 只在配置后生效一次；板级流程"上电自由跑 → JTAG 复位 →
+  // 重启"会让 tag_ram 残留自由跑期间的旧行（复位向量 0x1c000000 与自由跑
+  // 取指区域相同，几乎必然命中旧行 → 执行旧 DDR 内容 → 全死）。复位后必须
+  // 用 S_INIT 512 拍把两路 valid 全部清 0，再进 S_RUN。期间 ic_busy=1
+  // （state!=S_RUN）天然挡住前端 req。
+  reg [2:0]   state;
+  reg [8:0]   init_idx;         // S_INIT 逐行清零计数
   reg [31:0]  miss_addr;        // 锁存的 miss 块基址（预取时为 pf_addr）
   reg         refill_way;       // miss/pf 锁存拍采样的 victim 路
   reg [2:0]   beat;             // 需求行收数计数 0..3（S_REFILL/S_UC）
@@ -142,7 +149,11 @@ module icache(
       tag0_d  <= tag_ram0[rd_idx];
       tag1_d  <= tag_ram1[rd_idx];
     end
-    if (wr_en) begin
+    // 写口优先级：S_INIT 逐行清 valid 最高（复位刚释放时无 refill/bg_fill）
+    if (state == S_INIT) begin
+      tag_ram0[init_idx] <= 20'd0;
+      tag_ram1[init_idx] <= 20'd0;
+    end else if (wr_en) begin
       if (refill_way == 1'b0) begin
         data_ram0[wr_idx] <= fill_line;
         tag_ram0[wr_idx]  <= {1'b1, miss_addr[31:13]};
@@ -226,7 +237,8 @@ module icache(
   // ---------------- 主状态机 ----------------
   always @(posedge clk or negedge rst_n) begin
     if (!rst_n) begin
-      state       <= S_RUN;
+      state       <= S_INIT;
+      init_idx    <= 9'd0;
       miss_addr   <= 32'd0;
       refill_way  <= 1'b0;
       beat        <= 3'd0;
@@ -270,6 +282,16 @@ module icache(
       if (bg_fill && mem_rvalid && mem_rlast) bg_fill <= 1'b0;
 
       case (state)
+        // -------- 复位后逐行清 valid（512 拍），完成才进 S_RUN --------
+        S_INIT: begin
+          if (init_idx == 9'd511) begin
+            state    <= S_RUN;
+            init_idx <= 9'd0;
+          end else begin
+            init_idx <= init_idx + 9'd1;
+          end
+        end
+
         // -------- 正常流水：resp 组合输出；miss 锁存进 refill --------
         //   优先级：需求 miss > 需求 uc > 预取（查 tag 通过且仍无需求才发）
         //   bg_fill 期间：hit/提前 resp 照服务；新 miss/uc 进 S_WAIT 等 rlast
