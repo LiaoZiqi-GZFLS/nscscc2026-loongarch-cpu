@@ -186,8 +186,16 @@ module rob(
   // ---------------- exc_wen_cnt（组合）/ flush_wen_cnt 保持寄存器 ----------------
   assign exc_pending = do_exc;
 
-  // 分支回滚后项数 = (bru_rob+1) - (head+cmt_cnt)，mod 32
-  wire [4:0] bru_cnt5 = bru_rob + 5'd1 - head - {3'd0, cmt_cnt};
+  // 分支回滚后项数 = (bru_rob+1) - (head+cmt_cnt)，mod 32。
+  // 【ROB 满修复】ROB 满（count=32）时 tail==head，5-bit 环形差
+  // (bru_rob+1-head) 得 0，会把满窗误判为空（perf bitcount 实测：
+  // count=32 head=tail=4，新分配的分支 bru_rob=3=tail-1，回滚应杀 0 条、
+  // 保持 32，旧公式得 0 → ROB 被清空但 32 槽 e_done/e_pc 全残留 →
+  // 鬼提交、状态错乱 → sb 幽灵项等不到授权 → 全机死锁）。
+  // 改用 6-bit 的 count - cmt_cnt - kill_n：kill_n=(tail-bru_rob-1) mod 32
+  // 是被杀项数，满窗时 kill_n=0 正确保持 32。
+  wire [4:0] bru_kill = tail - bru_rob - 5'd1;
+  wire [5:0] bru_cnt6 = count - {3'd0, cmt_cnt} - {1'b0, bru_kill};
 
   integer wi;
   reg [4:0] woff;
@@ -198,7 +206,7 @@ module rob(
   // 项再计一次 → 次拍 exc_flush 回滚过头，圈回已提交指令的现役映射
   // （4ddc 的 r27 pd 被圈回 → handler ld.w 分到并写 1d0000 → r27 腐化）。
   // 统计窗口取 min(count, bru 回滚后项数)。
-  wire [5:0] exc_win = bru_flush ? {1'b0, bru_cnt5} : count;
+  wire [5:0] exc_win = bru_flush ? bru_cnt6 : count;
   always @* begin
     exc_wen_cnt = 6'd0;
     for (wi = 0; wi < 32; wi = wi + 1) begin
@@ -335,7 +343,7 @@ module rob(
           // 误预测：老指令照常提交，tail 回滚到 bru_rob+1
           head  <= head + {3'd0, cmt_cnt};
           tail  <= bru_rob + 5'd1;
-          count <= {1'b0, bru_cnt5};
+          count <= bru_cnt6;
           // 集成修复（两阶段分配配套）：清回滚区槽位——这些槽立刻会被
           // 重新分配，内容写入有一拍延迟，旧 done/excpt 不能裸露
           // （同拍 WB 写回更年轻项也被此清掉，正确：误路径结果作废）

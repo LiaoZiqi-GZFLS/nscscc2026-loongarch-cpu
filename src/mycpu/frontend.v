@@ -86,10 +86,17 @@ module frontend #(
   // 此时 inflight 仍为 1，req_addr=cur_blk+16 会跳过新方向首块，而 take 仍按
   // cur_blk 打 pc 标签 → 数据/标签错位（v2.7 首版 INE@ertn 悬案根因）。
   // 8 深版靠紧余量（cnt+4≤4）意外免疫；加深后必须显式封堵。
+  // v4 修复（Bug#5：33310→33ac4 瞬移 INE 悬案）：严格单在途
+  //   (!inflight || resp_valid)——bq_*_r 单级打拍与 resp 对齐的前提是"一个 resp
+  //   到达前没有新 req 覆盖查询"。原假设"hit 固定 1 拍 + miss 时 ic_busy 冻结"
+  //   有洞：ic_busy 拉高前 miss 块的下一行 req 已发出，其查询覆盖 bq_*_r，
+  //   延迟 resp 用错块的 {off,cat,tgt} 截断重定向；截断点非分支时 EX 永不校验，
+  //   错径直接提交。封堵：在途且 resp 未回禁发；hit 背靠背（同拍收发）不受影响。
   wire [31:0] cur_blk  = {pc_reg[31:4], 4'b0000};
   assign req_addr = cur_blk + (inflight ? 32'd16 : 32'd0);
   assign req_valid = (fifo_cnt + (inflight ? 5'd4 : 5'd0) <= 5'd12)
-                   && !redirect && !ic_busy && !resp_kill;
+                   && !redirect && !ic_busy && !resp_kill
+                   && (!inflight || resp_valid);
 
   // ---------------- resp 接收 ----------------
   wire        take      = resp_valid && !resp_kill && !redirect;

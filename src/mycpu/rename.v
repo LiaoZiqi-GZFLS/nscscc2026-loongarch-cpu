@@ -89,7 +89,29 @@ module rename(
   /* verilator lint_on UNUSEDSIGNAL */
   reg [3:0]   ck_seq  [0:7];
   reg [7:0]   ck_valid;
-  reg [2:0]   ck_wptr;
+  // 【ckpt 槽分配修复】原设计 ck_wptr mod-8 循环递增分配，但槽的释放
+  // （bru_done 解析正确 / bru_flush 回收）与分配顺序无关——老分支若在 IQ
+  // 久等操作数（100+ 拍），期间 8 个年轻分支完成分配，wptr 绕圈回到老
+  // 分支仍占用的槽并直接覆盖快照（perf 实测：分支 tag=1 占槽 0 未解析，
+  // tag=19 分配覆盖槽 0 → tag=19 的 bru_done 误释放槽 0；tag=1 之后
+  // mispredict 用槽 0 恢复了被污染的快照 frat[r25]=23 → 幽灵映射 →
+  // 依赖者等 ready 死锁）。
+  // 修复：分配改为空闲优先编码，永不覆盖有效槽；ck_ok（nvalid<8/<7）
+  // 保证必有空槽。
+  reg [2:0]   ck_free0, ck_free1;
+  reg         ck_free0_v;
+  integer     fi;
+  always @* begin
+    ck_free0   = 3'd0;
+    ck_free1   = 3'd0;
+    ck_free0_v = 1'b0;
+    for (fi = 7; fi >= 0; fi = fi - 1)
+      if (!ck_valid[fi]) begin
+        ck_free1   = ck_free0;
+        ck_free0   = fi[2:0];
+        ck_free0_v = 1'b1;
+      end
+  end
   reg [3:0]   seq_ctr;
   reg         serial_pend;   // C4b：ROB 中有未完成 serial，封锁后续分派
 
@@ -187,8 +209,8 @@ module rename(
                                  : ck_head[bru_ckpt];
   end
 
-  // 第二分支槽号
-  wire [2:0] ck_slot1 = is_br0 ? (ck_wptr + 3'd1) : ck_wptr;
+  // 第二分支槽号（空闲优先编码：br0 取最低空槽，br1 取次低/最低）
+  wire [2:0] ck_slot1 = is_br0 ? ck_free1 : ck_free0;
 
   // ---------------- fRAT 快照（含本拍重命名） ----------------
   integer si;
@@ -237,7 +259,7 @@ module rename(
     uop0_c[`UOP_SERIAL]  = dec0[`DEC_SERIAL];
     uop0_c[`UOP_BR_TYPE] = dec0[`DEC_BRTYPE];
     uop0_c[`UOP_ROB]     = rob_tail0;
-    uop0_c[`UOP_CKPT]    = is_br0 ? ck_wptr : `CKPT_INVALID;
+    uop0_c[`UOP_CKPT]    = is_br0 ? ck_free0 : `CKPT_INVALID;
     uop0_c[`UOP_EXCPT]   = dec0[`DEC_EXCPT];
     uop0_c[`UOP_USE_IMM] = !d0_urk;
     uop0_c[`UOP_PRED_TAKEN]  = dec0[`DEC_PRED_TAKEN];
@@ -279,7 +301,6 @@ module rename(
         rrat[ri] <= ri[5:0];
       end
       ck_valid  <= 8'd0;
-      ck_wptr   <= 3'd0;
       seq_ctr   <= 4'd0;
       serial_pend <= 1'b0;
       rn_stall  <= 1'b0;
@@ -315,17 +336,17 @@ module rename(
         else if (!bru_flush && bru_done && (ri[2:0] == bru_done_ckpt))
           ck_valid[ri] <= 1'b0;
         else if (dispatch &&
-                 ((is_br0 && (ri[2:0] == ck_wptr)) ||
+                 ((is_br0 && (ri[2:0] == ck_free0)) ||
                   (is_br1 && (ri[2:0] == ck_slot1))))
           ck_valid[ri] <= 1'b1;
       end
 
       // ---- checkpoint 数据 + 分配指针 ----
       if (dispatch && is_br0) begin
-        ck_rat[ck_wptr]  <= rat_after0;
-        ck_head[ck_wptr] <= fl_head + {5'd0, need0}; // dec0 自身分配之后
-        ck_rob[ck_wptr]  <= rob_tail0;
-        ck_seq[ck_wptr]  <= seq_ctr;
+        ck_rat[ck_free0]  <= rat_after0;
+        ck_head[ck_free0] <= fl_head + {5'd0, need0}; // dec0 自身分配之后
+        ck_rob[ck_free0]  <= rob_tail0;
+        ck_seq[ck_free0]  <= seq_ctr;
       end
       if (dispatch && is_br1) begin
         ck_rat[ck_slot1]  <= rat_after1;
@@ -333,10 +354,8 @@ module rename(
         ck_rob[ck_slot1]  <= rob_tail1;
         ck_seq[ck_slot1]  <= seq_ctr + {3'd0, is_br0};
       end
-      if (dispatch && (br_cnt != 2'd0)) begin
-        ck_wptr <= ck_wptr + {1'd0, br_cnt};
+      if (dispatch && (br_cnt != 2'd0))
         seq_ctr <= seq_ctr + {2'd0, br_cnt};
-      end
 
       // ---- C4b serial 封锁锁存 ----
       // set 优先于 clear：ROB 排空拍恰好分派新 serial（例外返回后第一条），

@@ -86,6 +86,34 @@ module issue_queue(
                  < (rob_tail_cur - bru_rob - 5'd1));
   end
 
+  // ---------------- C7：store 严格年龄序发射 ----------------
+  // sb 是不带年龄信息的 FIFO（hp 顺序弹出，头项须最先获提交授权）。
+  // 乱序发射下若年轻 store 抢先填满 sb，而最老 store 被 noaccept（sb 满）
+  // 挡在 IQ —— 它往往正是 ROB 头：头不退 → 年轻 store 永不得授权 →
+  // sb 永不排空 → 头永远发不出，全机死锁（perf 实测：ROB 满 31 项，
+  // head=st.b 在 IQ 等发射；sb 4 项全是比它年轻的栈 st.w，hp 项未授权）。
+  // 因此 store 必须按年龄序发射：IQ 内存在更老 store 时，年轻 store 不 elig。
+  // load 不受此限（不占 sb；load-store 序由 C6 独立保证）。
+  reg [N-1:0] is_st;        // 各项为 store 类（STB/STH/STW/SC）
+  reg [N-1:0] older_st;     // IQ 内存在比本项更老的 store
+  integer i_st, j_st;
+  always @(*) begin
+    for (i_st = 0; i_st < N; i_st = i_st + 1)
+      is_st[i_st] = valid[i_st] && (entry_uop[i_st][`UOP_FU] == `FU_LSU) &&
+                    ((entry_uop[i_st][`UOP_ALUOP] == `AOP_STB) ||
+                     (entry_uop[i_st][`UOP_ALUOP] == `AOP_STH) ||
+                     (entry_uop[i_st][`UOP_ALUOP] == `AOP_STW) ||
+                     (entry_uop[i_st][`UOP_ALUOP] == `AOP_SC));
+    for (i_st = 0; i_st < N; i_st = i_st + 1) begin
+      older_st[i_st] = 1'b0;
+      for (j_st = 0; j_st < N; j_st = j_st + 1)
+        // age[j][i]==1 表示 j 比 i 老（注释见 age 声明：age[i][j] 即 i 老于 j）；
+        // 对角线恒 1，须排除自身
+        if (is_st[j_st] && age[j_st][i_st] && (j_st != i_st))
+          older_st[i_st] = 1'b1;
+    end
+  end
+
   // ---------------- 发射资格（slot0 候选） ----------------
   // load 类 ALUOP: LDB..LDHU(24-28), LL(32)
   reg serial_lock;                                 // C4 冻结（定义见 slot0 之后）
@@ -140,6 +168,9 @@ module issue_queue(
                     < (rob_full ? 6'd32 : {1'b0, (rob_tail_cur - rob_head_tag)})))))
             elig0[i_elig] = 1'b0;
       end
+      // C7: store 严格年龄序（防"sb 满是年轻 store ↔ ROB 头 store 发不出"死锁）
+      if (is_st[i_elig] && older_st[i_elig])
+        elig0[i_elig] = 1'b0;
       // C4: 串行点须自身为 IQ 最老且位于 ROB 头（之前指令全提交）
       if (entry_uop[i_elig][`UOP_SERIAL] &&
           !(oldest_valid[i_elig] && (entry_uop[i_elig][`UOP_ROB] == rob_head_tag)))
