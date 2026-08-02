@@ -2,18 +2,21 @@
 // core_top.v — chiplab (nscscc2026) 标准顶层壳
 //
 // 内部例化 NOP-Core（清华大学 NOP 队，NSCSCC 2023 决赛作品，MIT License，
-// https://github.com/NOP-Processor/NOP-Core ）。NOP 的 SpinalHDL 生成网表
-// 见同目录 mycpu_top.v（module mycpu_top，与 NOP-Misc final_submission
-// 一致），MIT 版权声明见 NOP_CORE_LICENSE。
+// https://github.com/NOP-Processor/NOP-Core ）。同目录 mycpu_top.v 为按
+// build.sbt（SpinalHDL 1.8.1, sbt "runMain NOP.Main"）从 NOP-Core 公开
+// 源码重新生成的网表，与 NOP-Misc final_submission 官方网表逐行等价
+// （仅自动命名/注释差异），另增加一条 CPUCFG 译码项（恒返回 0，用于
+// 通过 nscscc2026 perf start.S 的 cache 几何查询），改动见 git 历史。
+// MIT 版权声明见 NOP_CORE_LICENSE。
 //
 // 适配内容：
 //  1. chiplab soc_top 例化的是 core_top（AXI3 风格，arlen/awlen 4bit，
 //     arlock/awlock 2bit，带 wid），NOP 顶层是 AXI4 风格（len 8bit、
 //     lock 1bit）。NOP 最大突发为 cache 行 64B/4B=16 拍（len=15），
 //     高 4 位恒为 0，直接截断；lock 高位补 0。
-//  2. 中断口 intrpt -> ext_int。
-//  3. NOP 的 debug_wb_* 恒为 0（其功能测试依赖 CONFREG/UART 判分，
-//     与 chiplab mycpu_tb 的判分机制一致），映射到 debug0_wb_*；
+//  2. 中断口同名 intrpt 直连（官方网表为 ext_int）。
+//  3. NOP 的 debug0_wb_* 恒为 0（其功能测试依赖 CONFREG/UART 判分，
+//     与 chiplab mycpu_tb 的判分机制一致），直接映射；
 //     debug1_wb_* 置零（chiplab soc_top 不连接该组端口，仅为兼容保留）。
 //  4. NOP 其余观测输出（Dretire*/Difftest* 等）不连接。
 //  （本文件仅端口适配，不含逻辑；触发 CI 用。）
@@ -101,7 +104,7 @@ module core_top(
   mycpu_top u_nop_core (
     .aclk              (aclk),
     .aresetn           (aresetn),
-    .ext_int           (intrpt),
+    .intrpt            (intrpt),
 
     .arid              (arid),
     .araddr            (araddr),
@@ -150,10 +153,10 @@ module core_top(
     .ws_valid          (ws_valid),
     .rf_rdata          (rf_rdata),
 
-    .debug_wb_pc       (debug0_wb_pc),
-    .debug_wb_rf_we    (debug0_wb_rf_wen),
-    .debug_wb_rf_wnum  (debug0_wb_rf_wnum),
-    .debug_wb_rf_wdata (debug0_wb_rf_wdata)
+    .debug0_wb_pc      (debug0_wb_pc),
+    .debug0_wb_rf_wen  (debug0_wb_rf_wen),
+    .debug0_wb_rf_wnum (debug0_wb_rf_wnum),
+    .debug0_wb_rf_wdata(debug0_wb_rf_wdata)
   );
 
 endmodule
