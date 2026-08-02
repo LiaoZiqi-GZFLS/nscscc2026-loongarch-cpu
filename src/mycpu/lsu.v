@@ -12,6 +12,15 @@
 //   - done_hold（cpu_core 反压=lsu_skid_v）：skid 占用时 done 晚出，ROB 完成
 //     仅延迟，无害；skid 占用期 y 绝不发 done（lsu_done & lsu_skid_v 会丢结果）
 //
+// v5（LSU_V5_SPEC.md）：store→load 字节前递 + C6 放宽：
+//   - load 的存储序不再靠 IQ C6 sb 阻塞（已删），改由本单元前递保证：
+//     y 槽 load 等待期间每拍寄存化 y_fwd/y_fwd_mask（源=sb∪x/y 幻影全表
+//     字节 CAM，年龄谓词=C6 环形公式复用 rob_head_tag/rob_tail_cur/rob_full；
+//     多源 mux 链寄存化，rvalid→result 仅余一级 AND-OR 字节选择）
+//   - uncached/LL 不前递，且走 Y_AR 驻留门：无更老 store 才发 AR（MMIO 副作用序）
+//   - load AR 与 sb drain（W 事务）在 LSU 内互斥：drain 在途/将发不发 AR，
+//     AR 挂起/将发不进 drain（dcache readys 仲裁顶不住同拍双握手，func43/44 类）
+//
 // 要点（语义逐项保留自串行 FSM 版）：
 //  - 地址 = src_j + UOP_IMM；对齐检查，违例 -> done_excpt=EXC_ALE, 不发 AXI
 //  - load: AR->R，按 AOP 做字节/半字提取与符号/零扩展；LL 同 LDW 并 ll_set 一拍
@@ -62,7 +71,9 @@ module lsu(
   output reg [5:0] done_pd, output reg [4:0] done_rob,
   output reg [5:0] done_excpt, output reg [31:0] done_badv,
   input done_hold,                         // v3：skid 占用反压（y 驻留，done 晚出）
-  input exc_flush, input bru_flush, input [4:0] bru_rob, input [4:0] rob_tail_cur
+  input exc_flush, input bru_flush, input [4:0] bru_rob, input [4:0] rob_tail_cur,
+  input [4:0] rob_head_tag,                // v5：C6 环形年龄谓词（前递/驻留门）
+  input rob_full                           // v5：ROB 满（窗口=32 项）
 );
 
   // ---------------- y 微态（原 FSM 收缩） ----------------
@@ -82,6 +93,7 @@ module lsu(
   reg        x_push;     // 完成后需入 store buffer（store / SC 成功；ALE 除外）
   reg        x_ale;
   reg        x_ld;
+  reg        x_uc;       // v5：uncached（MMIO）访存，不前递 + Y_AR 驻留门
   reg [31:0] x_res;      // SC 结果预计算（accept 拍按 ll_bit 定）
 
   // ---------------- y 槽（后槽） ----------------
@@ -96,8 +108,11 @@ module lsu(
   reg        y_sc;
   reg        y_push;
   reg        y_ale;
+  reg        y_uc;
   reg [31:0] y_res;
   reg        y_killed;   // 在途 load 被 flush 杀死（等 R 丢弃）
+  reg [31:0] y_fwd;      // v5：寄存化前递字（多源 mux 链在寄存器前完成）
+  reg [3:0]  y_fwd_mask; // v5：前递覆盖字节掩码
 
   // ---------------- store buffer（4 深，环形） ----------------
   reg [31:0] sb_addr [0:`SB_DEPTH-1];
@@ -124,6 +139,22 @@ module lsu(
     input [4:0] tail;
     begin
       in_range = ((tag - from - 5'd1) < (tail - from - 5'd1));
+    end
+  endfunction
+
+  // v5：C6 同款环形年龄谓词——src 是否比 dst(load) 老
+  // （pos = tag-head 距头环形位置；老 = 位置更靠前：
+  //   src 老于 dst <=> pos_src < pos_dst 且 src 在 ROB 占用窗内。
+  //   与 IQ C6 同源：C6 放行例外"sb 年轻"= (pos_ld < pos_sb < cnt)，取反即老）
+  function age_older;
+    input [4:0] src;
+    input [4:0] dst;
+    input [4:0] head;
+    input [4:0] tail;
+    input       full;
+    begin
+      age_older = ((src - head) < (dst - head))
+               && ({1'b0, (src - head)} < (full ? 6'd32 : {1'b0, (tail - head)}));
     end
   endfunction
 
@@ -188,10 +219,83 @@ module lsu(
                  && (|a_addr[1:0]));
   // 本拍新来的请求若已被 flush 覆盖（与分支同拍执行的年幼指令），直接不接收
   wire a_kill = exc_flush || (bru_flush && in_range(uop[`UOP_ROB], bru_rob, rob_tail_cur));
+  // v5：uncached 判定（与 dcache 同源：程序区 0x1c / DDR 0x0 为 cached）
+  wire a_uc = !((a_addr[31:24] == 8'h1c) || (a_addr[31:28] == 4'h0));
 
   // ---------------- 槽位 kill 条件（in_range Bug#9 形式原样保留） ----------------
   wire x_kill = exc_flush || (bru_flush && in_range(x_rob, bru_rob, rob_tail_cur));
   wire y_kill = exc_flush || (bru_flush && in_range(y_rob, bru_rob, rob_tail_cur));
+
+  // ---------------- v5：AR 与 drain（W 事务）互斥（I6'，dcache 仲裁顶不住
+  //    同拍双握手，func43/44 类——规格 §4 允许的退路：AR 发出拍无 drain 中 W） ----------------
+  wire drain_req   = sb_valid[sb_hp] && sb_granted[sb_hp];   // drain 将发（组合）
+  wire ar_gate     = !wr_act && !drain_req;                  // 发 AR 前提：无 drain 在途/将发
+
+  // ---------------- v5：uc/LL Y_AR 驻留门——无更老 store（I13） ----------------
+  // sb 全表 + x/y 幻影做年龄过滤（granted 无条件更老）；x/y 幻影对 y 内 load
+  // 谓词自动为假（更年轻/自身），结构纳入防未来留洞
+  wire [3:0] uc_older_sb;
+  genvar g_uc;
+  generate
+    for (g_uc = 0; g_uc < `SB_DEPTH; g_uc = g_uc + 1) begin : g_uc_older
+      assign uc_older_sb[g_uc] = sb_valid[g_uc] &&
+             (sb_granted[g_uc] ||
+              age_older(sb_rob[g_uc], y_rob, rob_head_tag, rob_tail_cur, rob_full));
+    end
+  endgenerate
+  wire uc_older_any = (|uc_older_sb)
+                   || (x_valid && x_push &&
+                       age_older(x_rob, y_rob, rob_head_tag, rob_tail_cur, rob_full))
+                   || (y_valid && y_push &&
+                       age_older(y_rob, y_rob, rob_head_tag, rob_tail_cur, rob_full));
+
+  // ---------------- v5：store→load 字节前递 CAM（全表，年龄过滤） ----------------
+  // 源扫描序：sb 从 hp 起 cnt 项（年龄递增）→ y 幻影 → x 幻影（最年轻后盖）。
+  // 每字节：最老先盖、最年轻后盖。结果每拍寄存化进 y_fwd/y_fwd_mask，
+  // rvalid→result 仅余一级 AND-OR（多源 mux 链全部在寄存器前完成）。
+  wire y_is_load = y_valid &&
+      (((y_aop >= `AOP_LDB) && (y_aop <= `AOP_LDHU)) || (y_aop == `AOP_LL));
+  integer fi;
+  reg [31:0] fwd_word_c;
+  reg [3:0]  fwd_mask_c;
+  reg [1:0]  fidx;
+  reg [3:0]  x_strb_c, y_strb_c;
+  reg [31:0] x_data_c, y_data_c;
+  always @* begin
+    fwd_word_c = 32'b0;
+    fwd_mask_c = 4'b0;
+    x_strb_c = st_strb(x_aop, x_addr[1:0]);
+    y_strb_c = st_strb(y_aop, y_addr[1:0]);
+    x_data_c = st_data(x_aop, x_sk);
+    y_data_c = st_data(y_aop, y_sk);
+    for (fi = 0; fi < `SB_DEPTH; fi = fi + 1) begin
+      fidx = sb_hp + fi[1:0];
+      if ((fi < sb_cnt) && sb_valid[fidx] && (sb_addr[fidx][31:2] == y_addr[31:2]) &&
+          (sb_granted[fidx] ||
+           age_older(sb_rob[fidx], y_rob, rob_head_tag, rob_tail_cur, rob_full))) begin
+        if (sb_strb[fidx][0]) begin fwd_word_c[7:0]   = sb_data[fidx][7:0];   fwd_mask_c[0] = 1'b1; end
+        if (sb_strb[fidx][1]) begin fwd_word_c[15:8]  = sb_data[fidx][15:8];  fwd_mask_c[1] = 1'b1; end
+        if (sb_strb[fidx][2]) begin fwd_word_c[23:16] = sb_data[fidx][23:16]; fwd_mask_c[2] = 1'b1; end
+        if (sb_strb[fidx][3]) begin fwd_word_c[31:24] = sb_data[fidx][31:24]; fwd_mask_c[3] = 1'b1; end
+      end
+    end
+    // y 幻影（谓词对自身自动为假，结构纳入）
+    if (y_valid && y_push && (y_addr[31:2] == y_addr[31:2]) &&
+        age_older(y_rob, y_rob, rob_head_tag, rob_tail_cur, rob_full)) begin
+      if (y_strb_c[0]) begin fwd_word_c[7:0]   = y_data_c[7:0];   fwd_mask_c[0] = 1'b1; end
+      if (y_strb_c[1]) begin fwd_word_c[15:8]  = y_data_c[15:8];  fwd_mask_c[1] = 1'b1; end
+      if (y_strb_c[2]) begin fwd_word_c[23:16] = y_data_c[23:16]; fwd_mask_c[2] = 1'b1; end
+      if (y_strb_c[3]) begin fwd_word_c[31:24] = y_data_c[31:24]; fwd_mask_c[3] = 1'b1; end
+    end
+    // x 幻影（最年轻，最后盖；对 y 内 load 谓词自动为假，结构纳入）
+    if (x_valid && x_push && (x_addr[31:2] == y_addr[31:2]) &&
+        age_older(x_rob, y_rob, rob_head_tag, rob_tail_cur, rob_full)) begin
+      if (x_strb_c[0]) begin fwd_word_c[7:0]   = x_data_c[7:0];   fwd_mask_c[0] = 1'b1; end
+      if (x_strb_c[1]) begin fwd_word_c[15:8]  = x_data_c[15:8];  fwd_mask_c[1] = 1'b1; end
+      if (x_strb_c[2]) begin fwd_word_c[23:16] = x_data_c[23:16]; fwd_mask_c[2] = 1'b1; end
+      if (x_strb_c[3]) begin fwd_word_c[31:24] = x_data_c[31:24]; fwd_mask_c[3] = 1'b1; end
+    end
+  end
 
   // ---------------- 推进/驻留公式（规格 §2 严格） ----------------
   wire ar_hs = ls_arvalid && ls_arready;
@@ -213,6 +317,13 @@ module lsu(
   // store 入 buffer 脉冲（Y_DN 完成拍且未被杀；done_hold 时随 done 一起推迟）
   wire push = y_valid && (y_state == Y_DN) && !done_hold && !y_kill && y_push;
 
+  // v5：load 数据选择——cacheable 用"dcache 字 ⊕ 寄存化前递字节"，
+  // uncached/LL 维持 ls_rdata（不前递）；一级 AND-OR，mux 链已寄存化
+  wire [31:0] y_fwd_mask32 = {{8{y_fwd_mask[3]}}, {8{y_fwd_mask[2]}},
+                              {8{y_fwd_mask[1]}}, {8{y_fwd_mask[0]}}};
+  wire [31:0] y_ld_data = (y_uc || (y_aop == `AOP_LL)) ? ls_rdata
+                        : ((ls_rdata & ~y_fwd_mask32) | (y_fwd & y_fwd_mask32));
+
   // ---------------- x/y 流水 ----------------
   always @(posedge clk or negedge rst_n) begin
     if (!rst_n) begin
@@ -227,6 +338,7 @@ module lsu(
       x_push    <= 1'b0;
       x_ale     <= 1'b0;
       x_ld      <= 1'b0;
+      x_uc      <= 1'b0;
       x_res     <= 32'b0;
       y_valid   <= 1'b0;
       y_state   <= Y_AR;
@@ -239,8 +351,11 @@ module lsu(
       y_sc      <= 1'b0;
       y_push    <= 1'b0;
       y_ale     <= 1'b0;
+      y_uc      <= 1'b0;
       y_res     <= 32'b0;
       y_killed  <= 1'b0;
+      y_fwd     <= 32'b0;
+      y_fwd_mask <= 4'b0;
       ls_arvalid <= 1'b0;
       ls_araddr  <= 32'b0;
       done      <= 1'b0;
@@ -272,21 +387,38 @@ module lsu(
         x_push  <= (a_isst || (a_issc && ll_bit)) && !a_ale;
         x_ale   <= a_ale;
         x_ld    <= a_isld;
+        x_uc    <= a_uc;
         x_res   <= (a_issc && ll_bit) ? 32'd1 : 32'd0;
       end else if (x_adv)
         x_valid <= 1'b0;
+
+      // ---- v5：前递字每拍寄存化（y 内 load 等待期间；源全是本地寄存器，
+      //      rvalid→result 仅余一级 AND-OR 字节选择，mux 链全部寄存器前完成） ----
+      if (y_valid && y_is_load && !y_killed) begin
+        y_fwd      <= fwd_word_c;
+        y_fwd_mask <= fwd_mask_c;
+      end
 
       // ---- y 槽处理（完成/推进；与下方 x→y 装载可同拍，后者覆盖 y_* 字段） ----
       if (y_valid) begin
         case (y_state)
           Y_AR: begin
-            if (ar_hs) begin
-              ls_arvalid <= 1'b0;
-              y_state    <= Y_R;
-              y_killed   <= y_kill;      // 握手已完成，事务必须收 R，标记丢弃
-            end else if (y_kill) begin
-              ls_arvalid <= 1'b0;        // 未握手可直接撤回
-              y_valid    <= 1'b0;
+            if (ls_arvalid) begin
+              if (ar_hs) begin
+                ls_arvalid <= 1'b0;
+                y_state    <= Y_R;
+                y_killed   <= y_kill;    // 握手已完成，事务必须收 R，标记丢弃
+              end else if (y_kill) begin
+                ls_arvalid <= 1'b0;      // 未握手可直接撤回
+                y_valid    <= 1'b0;
+              end
+            end else begin
+              // AR 未发：uc/LL 驻留门（无更老 store，I13）或 drain 互斥等窗（I6'）
+              if (y_kill) begin
+                y_valid <= 1'b0;         // 无 AR 可撤，直接清
+              end else if (ar_gate &&
+                           (!(y_uc || (y_aop == `AOP_LL)) || !uc_older_any))
+                ls_arvalid <= 1'b1;
             end
           end
           Y_R: begin
@@ -297,11 +429,11 @@ module lsu(
                 y_killed <= 1'b0;
               end else if (done_hold) begin
                 // skid 占用：锁存结果转 Y_DN 等放行（ll_set 时序保持 rvalid 拍，I8）
-                y_res   <= ld_extract(y_aop, ls_rdata, y_addr[1:0]);
+                y_res   <= ld_extract(y_aop, y_ld_data, y_addr[1:0]);
                 y_state <= Y_DN;
                 if (y_aop == `AOP_LL) ll_set <= 1'b1;
               end else begin
-                result  <= ld_extract(y_aop, ls_rdata, y_addr[1:0]);
+                result  <= ld_extract(y_aop, y_ld_data, y_addr[1:0]);
                 done    <= 1'b1;
                 // store 无目的寄存器：pd 归 0，防 PRF 误写/误进 skid（I11）
                 done_pd <= y_rdwen ? y_pd : 6'd0;
@@ -343,12 +475,16 @@ module lsu(
         y_sc     <= x_sc;
         y_push   <= x_push;
         y_ale    <= x_ale;
+        y_uc     <= x_uc;
         y_res    <= x_res;
         y_killed <= 1'b0;
         if (x_ld && !x_ale) begin
           y_state    <= Y_AR;
-          ls_arvalid <= 1'b1;
           ls_araddr  <= {x_addr[31:2], 2'b00};   // AXI size=4B，按字对齐发
+          // cacheable load 立即发（须与 drain 互斥，I6'）；
+          // uc/LL 或 drain 占用窗则 Y_AR 驻留等门开
+          if (!(x_uc || (x_aop == `AOP_LL)) && ar_gate)
+            ls_arvalid <= 1'b1;
         end else begin
           y_state    <= Y_DN;                    // store/sc/ALE：下一拍出 done
         end
@@ -469,7 +605,10 @@ module lsu(
         sb_cnt <= sb_cnt + (push ? 3'd1 : 3'd0) - (pop ? 3'd1 : 3'd0);
 
         // 头项已授权且无在途写 -> 发 AW/W（同拍给出，单 outstanding）
-        if (!wr_act && sb_valid[sb_hp] && sb_granted[sb_hp]) begin
+        // v5：与 load AR 互斥（I6'）——AR 挂起或本拍有 load 入 y 则 drain 让路；
+        // 反向由 ar_gate 保证（drain 在途/将发不发 AR），两侧不可能同拍撞 dcache
+        if (!wr_act && sb_valid[sb_hp] && sb_granted[sb_hp] && !ls_arvalid
+            && !(x_adv && x_ld && !x_ale)) begin
           wr_act     <= 1'b1;
           ls_awvalid <= 1'b1;
           ls_awaddr  <= sb_addr[sb_hp];

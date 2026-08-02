@@ -159,14 +159,9 @@ module issue_queue(
         // 年轻 store"而放行 → load 先于更老 store 的 drain/invalidate 读 dcache
         // → 命中陈旧行/refill 抢在 W 前读到旧数据（板上 func 43/44 实证：
         // ld.bu 在 SB=1111 时被接受，与 st.w 的 W 握手 invalidate 同拍抢 tag）。
-        for (i_sb = 0; i_sb < 4; i_sb = i_sb + 1)
-          if (sb_v[i_sb] &&
-              (sb_g[i_sb] ||
-               !(((entry_uop[i_elig][`UOP_ROB] - rob_head_tag)
-                    < (sb_tags[i_sb*5 +: 5] - rob_head_tag)) &&
-                 ({1'b0, (sb_tags[i_sb*5 +: 5] - rob_head_tag)}
-                    < (rob_full ? 6'd32 : {1'b0, (rob_tail_cur - rob_head_tag)})))))
-            elig0[i_elig] = 1'b0;
+        // C6 sb 阻塞段（v5 已删，LSU_V5_SPEC.md）：load 的存储序改由 LSU
+        // store→load 字节前递保证（load 不再被 sb 阻塞）。sb_v/sb_tags/sb_g
+        // 端口保留，v5 起仅供断言/调试。
         // C6 补洞3（Bug#8）：IQ 内存在更老 store 时 load 不得发射——
         // 更老 store 尚未进 LSU/sb 期间（典型：等 store 数据寄存器就绪），
         // C6 的 sb 检查覆盖不到，load 会抢在 store 的 W/invalidate 前读

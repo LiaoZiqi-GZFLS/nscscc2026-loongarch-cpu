@@ -422,7 +422,8 @@ lsu u_lsu(
   .done_excpt(lsu_excpt), .done_badv(lsu_badv),
   .done_hold(lsu_done_hold),
   .exc_flush(exc_flush), .bru_flush(bru_flush),
-  .bru_rob(bru_rob_tag), .rob_tail_cur(rob_tail_cur)
+  .bru_rob(bru_rob_tag), .rob_tail_cur(rob_tail_cur),
+  .rob_head_tag(rob_head_tag), .rob_full(rob_full)
 );
 
 // ============================ CSR 串行点执行 ============================
