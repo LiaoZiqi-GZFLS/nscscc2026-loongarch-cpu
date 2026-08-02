@@ -124,6 +124,12 @@ wire [19:0] lsu_sb_tags;
 
 // PRF 写仲裁 + skid
 reg         mdu_skid_v, lsu_skid_v;
+// v3：skid 占用反压——lsu_done & lsu_skid_v 同拍会丢结果（PRF/ROB 口被 skid 吃掉），
+// skid 期间 LSU y 槽驻留、done 晚出（ROB 完成仅延迟无害）。
+// 注意还须覆盖"本拍 done 未获口、下拍将入 skid"的情形：否则本拍 y 再放行一笔
+// done，下拍它与新生 skid 同拍冲突（dhrystone/fireye_C0 的 FATAL 实证）。
+wire        lsu_done_hold = lsu_skid_v |
+                            (lsu_done & ~lsu_granted & (lsu_pd != 6'd0));
 reg  [5:0]  mdu_skid_pd, lsu_skid_pd;
 reg  [31:0] mdu_skid_data, lsu_skid_data;
 reg  [4:0]  mdu_skid_rob, lsu_skid_rob;
@@ -414,6 +420,7 @@ lsu u_lsu(
   .ll_set(ll_set), .sc_clear(sc_clear), .ll_bit(ll_bit),
   .done(lsu_done), .result(lsu_result), .done_pd(lsu_pd), .done_rob(lsu_rob),
   .done_excpt(lsu_excpt), .done_badv(lsu_badv),
+  .done_hold(lsu_done_hold),
   .exc_flush(exc_flush), .bru_flush(bru_flush),
   .bru_rob(bru_rob_tag), .rob_tail_cur(rob_tail_cur)
 );

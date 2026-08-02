@@ -1,21 +1,31 @@
 // ============================================================================
-// lsu.v — LA32R-2S 访存单元（lane0 专属）+ 4 深 store buffer
-// 见 SPEC.md §4.4 / §3-C6。纯 Verilog-2001。
+// lsu.v — LA32R-2S 访存单元（lane0 专属）+ 4 深 store buffer（x/y 双槽流水）
+// 见 LSU_V3_SPEC.md（单一事实源）。纯 Verilog-2001。
+// Pipeline structure refers to NOP-Core (MIT License). Copyright (c) 2023 NOP-Group.
+// （仅借鉴"流水段+halt"结构思想，全部代码自写）
 //
-// 要点：
+// 流水结构（两槽，严格按序推进）：
+//   accept(T) → x 槽(T+1：地址/ALE/kill/分类已寄存) → y 槽(T+2 起：访存/完成)
+//   - load：y 内 Y_AR（发 AR 等握手）→ Y_R（等 rvalid）→ 当拍出 done；
+//     done_hold 则锁存结果转 Y_DN 等放行。稳态 1 load/2 拍（打满 dcache pend 上限）
+//   - store/sc/ALE：y 内 Y_DN 单拍——push sb / done 同拍（done_hold 驻留等放行）
+//   - done_hold（cpu_core 反压=lsu_skid_v）：skid 占用时 done 晚出，ROB 完成
+//     仅延迟，无害；skid 占用期 y 绝不发 done（lsu_done & lsu_skid_v 会丢结果）
+//
+// 要点（语义逐项保留自串行 FSM 版）：
 //  - 地址 = src_j + UOP_IMM；对齐检查，违例 -> done_excpt=EXC_ALE, 不发 AXI
 //  - load: AR->R，按 AOP 做字节/半字提取与符号/零扩展；LL 同 LDW 并 ll_set 一拍
-//  - store: EX 拍算好 {addr,data,wstrb,rob_tag} 入 store buffer，
+//  - store: 算好 {addr,data,wstrb,rob_tag} 入 store buffer，
 //    等 sb_commit 授权（rob_tag 匹配）后按 buffer 顺序发 AW/W，B 后弹出
 //  - SC: 检查 ll_bit，成功走 store 流程且 result=1；失败不写内存 result=0；
-//    两种情况均 sc_clear 一拍
-//  - block_load = store buffer 非空（含即将入 buffer 的未完成 store，C6 保守）
+//    两种情况均 sc_clear 一拍（done 拍）
+//  - block_load = store buffer 非空 || x/y 槽内有将入 sb 的 store（C6 保守）
 //  - bru_flush: 丢弃 ROB tag 落在 (bru_rob, rob_tail_cur) 开区间的未授权项
 //    exc_flush: 丢弃全部未授权项（已授权项不受 flush 影响）
-//  - flush 同时杀死在途投机 load（AR 未握手直接撤，R 阶段等数据返回后丢弃）
-//  - AXI 单 outstanding
-//  - busy = 主 FSM 忙 | AXI 写在途 | 有已授权待发项 | store buffer 满
-//    （buffer 满纳入 busy 属于实现 safeguard：无 sb_full 端口，防溢出）
+//  - flush 杀伤逐段镜像：accept 拍 a_kill 不收 / x 杀清空 / y 杀
+//    （Y_AR 未握手撤 AR；Y_R 标记 killed 收数据丢弃；Y_DN 无 done 无 push）
+//  - AXI 单 outstanding（y 单槽天然保证至多 1 个 AR 在途，I10）
+//  - busy = x/y 占用 | AXI 写在途 | 有已授权待发项 | store buffer 满
 // ============================================================================
 `include "la32_defs.vh"
 
@@ -40,8 +50,8 @@ module lsu(
   input sb_commit0, input [4:0] sb_commit_rob0,
   input sb_commit1, input [4:0] sb_commit_rob1,
   output block_load,                       // C6：store buffer 有未完成项
-  output noaccept,                         // 结构冒险(store)：主 FSM 忙或 buffer 满，下拍不能 accept
-  output noaccept_ld,                      // 结构冒险(load)：仅主 FSM 忙（load 不占 sb）
+  output noaccept,                         // 结构冒险(store)：槽满/将满，下拍不能 accept
+  output noaccept_ld,                      // 结构冒险(load)：仅槽占用（不含 sb 状态，I2）
   output [`SB_DEPTH-1:0]  sb_v_o,          // store buffer 有效位（C6 精确化）
   output [`SB_DEPTH*5-1:0] sb_rob_o,       // store buffer 各项 ROB 标签
   output [`SB_DEPTH-1:0]  sb_g_o,          // store buffer 各项已提交授权（C6 补洞：已提交 store 必阻塞一切 load）
@@ -51,27 +61,43 @@ module lsu(
   output reg done, output reg [31:0] result,
   output reg [5:0] done_pd, output reg [4:0] done_rob,
   output reg [5:0] done_excpt, output reg [31:0] done_badv,
+  input done_hold,                         // v3：skid 占用反压（y 驻留，done 晚出）
   input exc_flush, input bru_flush, input [4:0] bru_rob, input [4:0] rob_tail_cur
 );
 
-  // ---------------- 主 FSM 状态 ----------------
-  localparam S_IDLE = 2'd0;
-  localparam S_AR   = 2'd1;
-  localparam S_R    = 2'd2;
-  localparam S_DN   = 2'd3;
+  // ---------------- y 微态（原 FSM 收缩） ----------------
+  localparam Y_AR = 2'd0;   // load：持 arvalid 等握手
+  localparam Y_R  = 2'd1;   // load：等 rvalid（killed 则收数据丢弃）
+  localparam Y_DN = 2'd2;   // store/sc/ALE 或 done_hold 驻留 load：出 done
 
-  reg [1:0]  m_state;
-  reg [5:0]  cur_aop;
-  reg [31:0] cur_addr;
-  reg [31:0] cur_sk;      // store 数据（SC 同）
-  reg        cur_rdwen;   // 集成修复：store 不写 PRF（done_pd 必须归零）
-  reg [5:0]  cur_pd;
-  reg [4:0]  cur_rob;
-  reg        cur_push;    // 本操作完成后需要入 store buffer
-  reg        cur_sc;
-  reg [31:0] cur_res;
-  reg [5:0]  cur_exc;
-  reg        killed;      // 在途 load 被 flush 杀死（等 R 丢弃）
+  // ---------------- x 槽（前槽） ----------------
+  reg        x_valid;
+  reg [5:0]  x_aop;
+  reg [31:0] x_addr;
+  reg [31:0] x_sk;
+  reg [5:0]  x_pd;
+  reg        x_rdwen;
+  reg [4:0]  x_rob;
+  reg        x_sc;
+  reg        x_push;     // 完成后需入 store buffer（store / SC 成功；ALE 除外）
+  reg        x_ale;
+  reg        x_ld;
+  reg [31:0] x_res;      // SC 结果预计算（accept 拍按 ll_bit 定）
+
+  // ---------------- y 槽（后槽） ----------------
+  reg        y_valid;
+  reg [1:0]  y_state;
+  reg [5:0]  y_aop;
+  reg [31:0] y_addr;
+  reg [31:0] y_sk;
+  reg [5:0]  y_pd;
+  reg        y_rdwen;
+  reg [4:0]  y_rob;
+  reg        y_sc;
+  reg        y_push;
+  reg        y_ale;
+  reg [31:0] y_res;
+  reg        y_killed;   // 在途 load 被 flush 杀死（等 R 丢弃）
 
   // ---------------- store buffer（4 深，环形） ----------------
   reg [31:0] sb_addr [0:`SB_DEPTH-1];
@@ -151,7 +177,7 @@ module lsu(
     end
   endfunction
 
-  // ---------------- 接收拍组合译码 ----------------
+  // ---------------- 接收拍组合译码（原样保留） ----------------
   wire [5:0]  a_aop   = uop[`UOP_ALUOP];
   wire [31:0] a_addr  = src_j + uop[`UOP_IMM];
   wire a_isld = ((a_aop >= `AOP_LDB) && (a_aop <= `AOP_LDHU)) || (a_aop == `AOP_LL);
@@ -162,29 +188,59 @@ module lsu(
                  && (|a_addr[1:0]));
   // 本拍新来的请求若已被 flush 覆盖（与分支同拍执行的年幼指令），直接不接收
   wire a_kill = exc_flush || (bru_flush && in_range(uop[`UOP_ROB], bru_rob, rob_tail_cur));
-  wire accept = req && (m_state == S_IDLE) && !a_kill;
 
-  // 在途操作的 kill 条件
-  wire kill_cond = exc_flush || (bru_flush && in_range(cur_rob, bru_rob, rob_tail_cur));
+  // ---------------- 槽位 kill 条件（in_range Bug#9 形式原样保留） ----------------
+  wire x_kill = exc_flush || (bru_flush && in_range(x_rob, bru_rob, rob_tail_cur));
+  wire y_kill = exc_flush || (bru_flush && in_range(y_rob, bru_rob, rob_tail_cur));
 
-  // store 入 buffer 脉冲（DN 拍且未被杀）
-  wire push = (m_state == S_DN) && cur_push && !killed && !kill_cond;
+  // ---------------- 推进/驻留公式（规格 §2 严格） ----------------
+  wire ar_hs = ls_arvalid && ls_arready;
+  // I1（sb 不溢出）：store/sc 的 x→y 须保证其 push 拍 sb 必有槽（保守公式）
+  wire y_store_pend = y_valid && y_push;                  // y 内有未 push store
+  wire store_gate = !(&sb_valid)
+                 && !((sb_cnt >= (`SB_DEPTH-1)) && y_store_pend);
+  // y_leaving：本拍末 y 空出（被杀 load 收完 R 直接空出无 done；done_hold 驻留）
+  wire y_leaving = y_valid && (
+         (y_state == Y_AR && y_kill && !ar_hs)                       // 未握手撤 AR
+      || (y_state == Y_R  && ls_rvalid && (y_killed || y_kill || !done_hold))
+      || (y_state == Y_DN && (y_kill || !done_hold)));
+  // x→y 推进：x 有效未杀 && y 将空 && store/sc 过 I1 门控
+  wire x_adv = x_valid && !x_kill && (!y_valid || y_leaving)
+            && (!x_push || store_gate);
+  // accept：x 空或将推进
+  wire accept = req && (!x_valid || x_adv) && !a_kill;
 
-  // ---------------- 主 FSM ----------------
+  // store 入 buffer 脉冲（Y_DN 完成拍且未被杀；done_hold 时随 done 一起推迟）
+  wire push = y_valid && (y_state == Y_DN) && !done_hold && !y_kill && y_push;
+
+  // ---------------- x/y 流水 ----------------
   always @(posedge clk or negedge rst_n) begin
     if (!rst_n) begin
-      m_state   <= S_IDLE;
-      cur_aop   <= 6'b0;
-      cur_addr  <= 32'b0;
-      cur_sk    <= 32'b0;
-      cur_pd    <= 6'b0;
-      cur_rdwen <= 1'b0;
-      cur_rob   <= 5'b0;
-      cur_push  <= 1'b0;
-      cur_sc    <= 1'b0;
-      cur_res   <= 32'b0;
-      cur_exc   <= `EXC_NONE;
-      killed    <= 1'b0;
+      x_valid   <= 1'b0;
+      x_aop     <= 6'b0;
+      x_addr    <= 32'b0;
+      x_sk      <= 32'b0;
+      x_pd      <= 6'b0;
+      x_rdwen   <= 1'b0;
+      x_rob     <= 5'b0;
+      x_sc      <= 1'b0;
+      x_push    <= 1'b0;
+      x_ale     <= 1'b0;
+      x_ld      <= 1'b0;
+      x_res     <= 32'b0;
+      y_valid   <= 1'b0;
+      y_state   <= Y_AR;
+      y_aop     <= 6'b0;
+      y_addr    <= 32'b0;
+      y_sk      <= 32'b0;
+      y_pd      <= 6'b0;
+      y_rdwen   <= 1'b0;
+      y_rob     <= 5'b0;
+      y_sc      <= 1'b0;
+      y_push    <= 1'b0;
+      y_ale     <= 1'b0;
+      y_res     <= 32'b0;
+      y_killed  <= 1'b0;
       ls_arvalid <= 1'b0;
       ls_araddr  <= 32'b0;
       done      <= 1'b0;
@@ -201,78 +257,102 @@ module lsu(
       ll_set   <= 1'b0;
       sc_clear <= 1'b0;
 
-      case (m_state)
-        S_IDLE: begin
-          if (accept) begin
-            cur_aop  <= a_aop;
-            cur_addr <= a_addr;
-            cur_sk   <= src_k;
-            cur_pd   <= uop[`UOP_PD];
-            cur_rdwen<= uop[`UOP_RD_WEN];
-            cur_rob  <= uop[`UOP_ROB];
-            cur_sc   <= a_issc;
-            cur_push <= (a_isst || (a_issc && ll_bit)) && !a_ale;
-            killed   <= 1'b0;
-            cur_exc  <= `EXC_NONE;
-            if (a_ale) begin
-              // 对齐错：不发 AXI，直接完成并报 ALE
-              cur_exc <= `EXC_ALE;
-              cur_res <= 32'b0;
-              m_state <= S_DN;
-            end else if (a_isld) begin
-              ls_arvalid <= 1'b1;
-              ls_araddr  <= {a_addr[31:2], 2'b00};   // AXI size=4B，按字对齐发
-              m_state    <= S_AR;
-            end else begin
-              // store / sc：EX 拍算好，DN 拍入 buffer（SC 失败 cur_push=0）
-              cur_res <= (a_issc && ll_bit) ? 32'd1 : 32'd0;
-              m_state <= S_DN;
+      // ---- x 槽：杀 > 收 > 推（accept 与 x_kill 互斥：accept 蕴含 x_adv 蕴含 !x_kill） ----
+      if (x_valid && x_kill)
+        x_valid <= 1'b0;
+      else if (accept) begin
+        x_valid <= 1'b1;
+        x_aop   <= a_aop;
+        x_addr  <= a_addr;
+        x_sk    <= src_k;
+        x_pd    <= uop[`UOP_PD];
+        x_rdwen <= uop[`UOP_RD_WEN];
+        x_rob   <= uop[`UOP_ROB];
+        x_sc    <= a_issc;
+        x_push  <= (a_isst || (a_issc && ll_bit)) && !a_ale;
+        x_ale   <= a_ale;
+        x_ld    <= a_isld;
+        x_res   <= (a_issc && ll_bit) ? 32'd1 : 32'd0;
+      end else if (x_adv)
+        x_valid <= 1'b0;
+
+      // ---- y 槽处理（完成/推进；与下方 x→y 装载可同拍，后者覆盖 y_* 字段） ----
+      if (y_valid) begin
+        case (y_state)
+          Y_AR: begin
+            if (ar_hs) begin
+              ls_arvalid <= 1'b0;
+              y_state    <= Y_R;
+              y_killed   <= y_kill;      // 握手已完成，事务必须收 R，标记丢弃
+            end else if (y_kill) begin
+              ls_arvalid <= 1'b0;        // 未握手可直接撤回
+              y_valid    <= 1'b0;
             end
           end
-        end
-
-        S_AR: begin
-          if (ls_arready) begin
-            ls_arvalid <= 1'b0;
-            m_state    <= S_R;
-            killed     <= kill_cond;    // 握手已完成，事务必须收 R，标记丢弃
-          end else if (kill_cond) begin
-            ls_arvalid <= 1'b0;         // 未握手可直接撤回
-            m_state    <= S_IDLE;
-          end
-        end
-
-        S_R: begin
-          if (kill_cond) killed <= 1'b1;
-          if (ls_rvalid) begin
-            if (killed || kill_cond) begin
-              m_state <= S_IDLE;        // 丢弃投机数据
-              killed  <= 1'b0;
-            end else begin
-              cur_res <= ld_extract(cur_aop, ls_rdata, cur_addr[1:0]);
-              if (cur_aop == `AOP_LL) ll_set <= 1'b1;
-              m_state <= S_DN;
+          Y_R: begin
+            if (y_kill) y_killed <= 1'b1;
+            if (ls_rvalid) begin
+              if (y_killed || y_kill) begin
+                y_valid  <= 1'b0;        // 丢弃投机数据
+                y_killed <= 1'b0;
+              end else if (done_hold) begin
+                // skid 占用：锁存结果转 Y_DN 等放行（ll_set 时序保持 rvalid 拍，I8）
+                y_res   <= ld_extract(y_aop, ls_rdata, y_addr[1:0]);
+                y_state <= Y_DN;
+                if (y_aop == `AOP_LL) ll_set <= 1'b1;
+              end else begin
+                result  <= ld_extract(y_aop, ls_rdata, y_addr[1:0]);
+                done    <= 1'b1;
+                // store 无目的寄存器：pd 归 0，防 PRF 误写/误进 skid（I11）
+                done_pd <= y_rdwen ? y_pd : 6'd0;
+                done_rob <= y_rob;
+                done_excpt <= `EXC_NONE;
+                done_badv  <= 32'b0;
+                if (y_aop == `AOP_LL) ll_set <= 1'b1;
+                y_valid <= 1'b0;
+              end
             end
           end
-        end
-
-        S_DN: begin
-          m_state <= S_IDLE;
-          killed  <= 1'b0;
-          if (!killed && !kill_cond) begin
-            done      <= 1'b1;
-            result    <= cur_res;
-            // store 无目的寄存器：pd 归 0，防 PRF 误写/误进 skid
-            done_pd   <= cur_rdwen ? cur_pd : 6'd0;
-            done_rob  <= cur_rob;
-            done_excpt <= cur_exc;
-            done_badv <= (cur_exc == `EXC_ALE) ? cur_addr : 32'b0;
-            if (cur_sc) sc_clear <= 1'b1;
+          Y_DN: begin
+            if (y_kill) begin
+              y_valid <= 1'b0;           // 被杀：无 done 无 push
+            end else if (!done_hold) begin
+              done      <= 1'b1;
+              result    <= y_res;
+              done_pd   <= y_rdwen ? y_pd : 6'd0;   // I11
+              done_rob  <= y_rob;
+              done_excpt <= y_ale ? `EXC_ALE : `EXC_NONE;
+              done_badv  <= y_ale ? y_addr : 32'b0;
+              if (y_sc) sc_clear <= 1'b1;           // sc_clear 仅 sc 的 done 拍（I8）
+              y_valid <= 1'b0;
+            end
           end
-        end
+          default: y_state <= Y_AR;
+        endcase
+      end
 
-        default: m_state <= S_IDLE;
-      endcase
+      // ---- x→y 装载（y 完成让位同拍填入；字段覆盖安全，done 脉冲不受影响） ----
+      if (x_adv) begin
+        y_valid  <= 1'b1;
+        y_aop    <= x_aop;
+        y_addr   <= x_addr;
+        y_sk     <= x_sk;
+        y_pd     <= x_pd;
+        y_rdwen  <= x_rdwen;
+        y_rob    <= x_rob;
+        y_sc     <= x_sc;
+        y_push   <= x_push;
+        y_ale    <= x_ale;
+        y_res    <= x_res;
+        y_killed <= 1'b0;
+        if (x_ld && !x_ale) begin
+          y_state    <= Y_AR;
+          ls_arvalid <= 1'b1;
+          ls_araddr  <= {x_addr[31:2], 2'b00};   // AXI size=4B，按字对齐发
+        end else begin
+          y_state    <= Y_DN;                    // store/sc/ALE：下一拍出 done
+        end
+      end
     end
   end
 
@@ -342,15 +422,15 @@ module lsu(
             sb_granted[idx] <= 1'b0;
           end
         end
-        // push 追加在压缩后尾部（push 与被杀互斥，见主 FSM）
+        // push 追加在压缩后尾部（push 与被杀互斥，见 y 槽 Y_DN）
         if (push) begin
           idx = sb_hp + j[1:0];
           sb_valid[idx]   <= 1'b1;
           sb_granted[idx] <= 1'b0;
-          sb_addr[idx]    <= cur_addr;
-          sb_data[idx]    <= st_data(cur_aop, cur_sk);
-          sb_strb[idx]    <= st_strb(cur_aop, cur_addr[1:0]);
-          sb_rob[idx]     <= cur_rob;
+          sb_addr[idx]    <= y_addr;
+          sb_data[idx]    <= st_data(y_aop, y_sk);
+          sb_strb[idx]    <= st_strb(y_aop, y_addr[1:0]);
+          sb_rob[idx]     <= y_rob;
           sb_cnt <= j[2:0] + 3'd1;
         end else begin
           sb_cnt <= j[2:0];
@@ -381,10 +461,10 @@ module lsu(
           /* verilator lint_on BLKSEQ */
           sb_valid[idx]   <= 1'b1;
           sb_granted[idx] <= 1'b0;
-          sb_addr[idx]    <= cur_addr;
-          sb_data[idx]    <= st_data(cur_aop, cur_sk);
-          sb_strb[idx]    <= st_strb(cur_aop, cur_addr[1:0]);
-          sb_rob[idx]     <= cur_rob;
+          sb_addr[idx]    <= y_addr;
+          sb_data[idx]    <= st_data(y_aop, y_sk);
+          sb_strb[idx]    <= st_strb(y_aop, y_addr[1:0]);
+          sb_rob[idx]     <= y_rob;
         end
         sb_cnt <= sb_cnt + (push ? 3'd1 : 3'd0) - (pop ? 3'd1 : 3'd0);
 
@@ -402,25 +482,49 @@ module lsu(
   end
 
   // ---------------- 输出 ----------------
-  // block_load：buffer 非空，或主 FSM 中尚有将入 buffer 的 store（C6 保守）
-  assign block_load = (|sb_valid) || ((m_state != S_IDLE) && cur_push);
-  // noaccept：accept 条件为 (m_state==S_IDLE)，buffer 满时 store 入不了
-  // → IQ 须在上拍结构门控（发射寄存器化有一拍延迟，busy 来不及）
-  assign noaccept = (m_state != S_IDLE) || (&sb_valid);
-  // noaccept_ld：load 不占用 store buffer，sb 满不应阻塞 load——
+  // I3：block_load = buffer 非空 || x/y 槽内有将入 buffer 的 store（C6 保守）
+  assign block_load = (|sb_valid) || (x_valid && x_push) || (y_valid && y_push);
+  // I9：noaccept = 槽占用且不推进 || store 门控无余量（IQ 上拍结构门控，
+  // 下拍 accept 的一拍提前语义，与 issue_queue.v 注释一致）
+  assign noaccept    = (x_valid && !x_adv) || !store_gate;
+  // I2：noaccept_ld 只反映 x/y 槽占用，不含 sb 状态——
   // 否则"sb 满（未提交投机 store）+ ROB 头是 load"构成死锁（n13 实证）：
   // load 发不出 → store 无法提交授权 → sb 永不排空。
   // load 与更老在 sb store 的序由 IQ 侧 C6 独立保证。
-  assign noaccept_ld = (m_state != S_IDLE);
-  assign sb_v_o   = sb_valid;
-  assign sb_g_o   = sb_granted;
-  // 拍平各项 ROB 标签供 IQ 做年龄比较
+  assign noaccept_ld = (x_valid && !x_adv);
+  // ---- C6 幻影项（v3 修补）：store 离 IQ（older_st 失效）到入 sb（C6 接管）
+  // 之间隔了 x→y 两拍，期间 C6 的 sb 检查看不见它——更老 store 未 drain 时
+  // 年轻 load 会抢到 AR 读陈旧行（coremark strchr st.b/ld.bu 实证）。
+  // 把 x/y 中最老的将入 sb 的 store 以"未授权幻影项"注入第一个空槽的观测口：
+  // IQ 的 C6 年龄逻辑原样适用（g=0，tag 真实）。被遮的 x store 比 y 幻影年轻，
+  // 任何比它年轻的 load 必然也被 y 幻影挡住；sb 满时不注入——此时能被 C6 放行的
+  // load 必老于全部 sb store，而 x/y store 更年轻（C7 保序），无需幻影。
+  wire        ph_v   = (x_valid && x_push) || (y_valid && y_push);
+  wire [4:0]  ph_rob = (y_valid && y_push) ? y_rob : x_rob;
+  wire [`SB_DEPTH-1:0] ph_inv  = ~sb_valid;
+  wire [`SB_DEPTH-1:0] ph_mask = ph_v ? (ph_inv & (~ph_inv + {{`SB_DEPTH-1{1'b0}}, 1'b1}))
+                                      : {`SB_DEPTH{1'b0}};
+  assign sb_v_o   = sb_valid | ph_mask;
+  assign sb_g_o   = sb_granted;          // 幻影项 g=0（未授权，走 C6 年龄逻辑）
+  // 拍平各项 ROB 标签供 IQ 做年龄比较（幻影槽位注入幻影 tag）
   genvar g_sb;
   generate
     for (g_sb = 0; g_sb < `SB_DEPTH; g_sb = g_sb + 1) begin : g_sb_rob
-      assign sb_rob_o[g_sb*5 +: 5] = sb_rob[g_sb];
+      assign sb_rob_o[g_sb*5 +: 5] = ph_mask[g_sb] ? ph_rob : sb_rob[g_sb];
     end
   endgenerate
-  assign busy = (m_state != S_IDLE) || wr_act || (|(sb_valid & sb_granted)) || (&sb_valid);
+  // I9：busy = x/y 占用 | AXI 写在途 | 有已授权待发项 | store buffer 满
+  assign busy = x_valid || y_valid || wr_act || (|(sb_valid & sb_granted)) || (&sb_valid);
+
+  // ---- tb_r.v 层次化探针兼容别名（旧串行 FSM 命名 → y 槽，仅供仿真探针） ----
+  /* verilator lint_off UNUSEDSIGNAL */
+  wire [31:0] cur_addr  = y_addr;
+  wire [5:0]  cur_aop   = y_aop;
+  wire [4:0]  cur_rob   = y_rob;
+  wire [31:0] cur_sk    = y_sk;
+  wire        killed    = y_killed;
+  wire        kill_cond = y_kill;
+  wire [1:0]  m_state   = y_state;
+  /* verilator lint_on UNUSEDSIGNAL */
 
 endmodule
