@@ -29,15 +29,13 @@ module ex_mdu(
 );
 
   // ROB 环形区间判断：tag ∈ (from, tail) 开区间（与 lsu 同一语义）
+  // Bug#9：通用 -1 形式（ROB 满时旧式全假杀不到投机项 → 死锁），见 lsu.v 注释
   function in_range;
     input [4:0] tag;
     input [4:0] from;
     input [4:0] tail;
-    reg [4:0] d1, d2;
     begin
-      d1 = tag - from;
-      d2 = tail - from;
-      in_range = (d2 != 5'd0) && (d1 != 5'd0) && (d1 < d2);
+      in_range = ((tag - from - 5'd1) < (tail - from - 5'd1));
     end
   endfunction
 

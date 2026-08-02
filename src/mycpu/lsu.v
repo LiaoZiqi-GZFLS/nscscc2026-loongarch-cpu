@@ -87,15 +87,17 @@ module lsu(
   reg wr_act;             // 有一笔在途写（AW/W 进行中或等 B）
 
   // ---------------- ROB 环形区间判断：tag ∈ (from, tail) 开区间 ----------------
+  // Bug#9：ROB 满（count=32, tail==head）时旧式 (d2!=0)&&(d1!=0)&&(d1<d2)
+  // 对所有项返回假 → 满 ROB 上的分支 flush 杀不到任何投机项（sb 残留投机
+  // store → granted 项卡 hp 后 → C6 全堵 load → 全局死锁，dhrystone 实证）。
+  // 通用 -1 形式：tag ∈ (from, tail) 开区间 <=> (tag-from-1) < (tail-from-1)
+  // （mod 32），满 ROB（区间=31 项）亦正确；非满情形与旧式逐值等价已验证。
   function in_range;
     input [4:0] tag;
     input [4:0] from;
     input [4:0] tail;
-    reg [4:0] d1, d2;
     begin
-      d1 = tag - from;
-      d2 = tail - from;
-      in_range = (d2 != 5'd0) && (d1 != 5'd0) && (d1 < d2);
+      in_range = ((tag - from - 5'd1) < (tail - from - 5'd1));
     end
   endfunction
 

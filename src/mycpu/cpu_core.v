@@ -374,10 +374,15 @@ wire lsu_req = issue0_valid & (issue0_uop[`UOP_FU] == `FU_LSU) & ~redirect;
 // skid_v 生效拍 FSM 才回 IDLE，二者无交集），lsu_done/mdu_done 与 skid_v 永不
 // 同拍，1 深 skid 即完备。skid 排空无需新增气泡保证：in-order dispatch 下
 // 被阻塞的消费者会截断后续派遣，exwb 写口必出现空拍。
-assign lsu_struct    = lsu_noaccept    | lsu_issued_r | lsu_req | lsu_skid_v;
+// Bug#10：lsu_done/mdu_done 当拍必须入结构门控——done 拍 skid_v 尚未置位、
+// FSM 已回 IDLE（noaccept=0），若同拍放行新 LSU/MDU 发射，其完成将与一拍后
+// 才出现的 pending skid 碰撞（load：skid 占位致结果捕获被吞 → ROB 永不 done
+// 死锁；fireye_B2/C0 实证 FATAL: lsu skid collision，done rob=31 与 skid
+// rob=28 相撞）。
+assign lsu_struct    = lsu_noaccept    | lsu_issued_r | lsu_req | lsu_skid_v | lsu_done;
 // load 专用：不被 sb 满阻塞（noaccept_ld 只含 FSM 忙；sb 满只挡 store）
-assign lsu_struct_ld = lsu_noaccept_ld | lsu_issued_r | lsu_req | lsu_skid_v;
-assign mdu_struct = mdu_busy | mdu_issued_r | mdu_req | mdu_skid_v;
+assign lsu_struct_ld = lsu_noaccept_ld | lsu_issued_r | lsu_req | lsu_skid_v | lsu_done;
+assign mdu_struct = mdu_busy | mdu_issued_r | mdu_req | mdu_skid_v | mdu_done;
 // 发射历史寄存器（redirect 拍已用 ~redirect 门控 req，直接锁存即可）
 always @(posedge clk or negedge rst_n) begin
   if (!rst_n) begin

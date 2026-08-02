@@ -167,6 +167,15 @@ module issue_queue(
                  ({1'b0, (sb_tags[i_sb*5 +: 5] - rob_head_tag)}
                     < (rob_full ? 6'd32 : {1'b0, (rob_tail_cur - rob_head_tag)})))))
             elig0[i_elig] = 1'b0;
+        // C6 补洞3（Bug#8）：IQ 内存在更老 store 时 load 不得发射——
+        // 更老 store 尚未进 LSU/sb 期间（典型：等 store 数据寄存器就绪），
+        // C6 的 sb 检查覆盖不到，load 会抢在 store 的 W/invalidate 前读
+        // dcache/内存拿到陈旧值（bubble_sort 实证：i=3 st fb0 等 t 数据，
+        // i=4 ld fb0 发射读到交换前旧值 22618 → 元素复制/丢失）。
+        // store 一旦发射进 LSU：FSM 占用期由 lsu_struct_ld 结构门控，
+        // 入 sb 后由上方 C6 sb 检查接管，无空窗。
+        if (older_st[i_elig])
+          elig0[i_elig] = 1'b0;
       end
       // C7: store 严格年龄序（防"sb 满是年轻 store ↔ ROB 头 store 发不出"死锁）
       if (is_st[i_elig] && older_st[i_elig])
@@ -199,13 +208,27 @@ module issue_queue(
       if (slot0_oh[i_s0u]) slot0_uop = slot0_uop | entry_uop[i_s0u];
   end
 
-  // serial_lock：serial 项发射后置位，其提交（ROB 排空）后解除
+  // serial_lock：serial 项发射后置位，其提交后解除（Bug#11）。
+  // 旧解锁条件 rob_empty 在深 OoO 窗口下不可达：serial（典型：定时器中断
+  // 后的 ertn/CSR 序列）发射时锁队列，ROB 随后重新填满投机项，rob_empty
+  // 永不脉冲 → 全队列永久冻结（stringsearch 实证：ROB 18 项滴水不进）。
+  // serial 发射时必位于 ROB 头（C4），其提交使 head 前移——head 离开
+  // serial_tag 即解锁，等价于"serial 指令自身提交"这一真正的串行化点；
+  // ertn/例外走 flush 清锁不变。
+  reg [4:0] serial_tag;
   always @(posedge clk or negedge rst_n) begin
-    if (!rst_n)            serial_lock <= 1'b0;
+    if (!rst_n) begin
+      serial_lock <= 1'b0;
+      serial_tag  <= 5'd0;
+    end
     else if (exc_flush)    serial_lock <= 1'b0;
     else if (rob_empty)    serial_lock <= 1'b0;
-    else if (slot0_fire && slot0_uop[`UOP_SERIAL] && !bru_flush)
-                           serial_lock <= 1'b1;
+    else if (slot0_fire && slot0_uop[`UOP_SERIAL] && !bru_flush) begin
+      serial_lock <= 1'b1;
+      serial_tag  <= slot0_uop[`UOP_ROB];
+    end
+    else if (serial_lock && (rob_head_tag != serial_tag))
+                           serial_lock <= 1'b0;
   end
 
   // ---------------- slot1 候选：次老 ready 且 FU==FU_ALU，排除 slot0 ----------------

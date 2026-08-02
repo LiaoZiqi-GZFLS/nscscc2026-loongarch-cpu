@@ -187,10 +187,11 @@ module rename(
   reg [4:0] yd1, yd2;
   always @* begin
     for (yi = 0; yi < 8; yi = yi + 1) begin
-      yd1 = ck_rob[yi] - bru_rob;
-      yd2 = rob_tail_cur - bru_rob;
-      younger_mask[yi] = ck_valid[yi] && (yd2 != 5'd0) && (yd1 != 5'd0) &&
-                         (yd1 < yd2);
+      // Bug#9：通用 -1 形式（ROB 满时旧式 (yd2!=0) 全假 → 检查点不回滚
+      // 被杀项 → rename 状态污染），与 lsu/rob 的 in_range 同构
+      yd1 = ck_rob[yi] - bru_rob - 5'd1;
+      yd2 = rob_tail_cur - bru_rob - 5'd1;
+      younger_mask[yi] = ck_valid[yi] && (yd1 < yd2);
     end
   end
 
