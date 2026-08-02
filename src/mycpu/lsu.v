@@ -667,3 +667,5 @@ module lsu(
   /* verilator lint_on UNUSEDSIGNAL */
 
 endmodule
+
+// v5 CI trigger note: t26-fix branch verification build.
