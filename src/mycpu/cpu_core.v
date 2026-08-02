@@ -312,6 +312,7 @@ assign alloc_gated = rn_rob_alloc & {2{~redirect}};
 // 与"上拍呈现的 req"两个来源
 reg  lsu_issued_r, mdu_issued_r;
 wire lsu_struct, lsu_struct_ld, mdu_struct;   // assign 在 lsu_req/mdu_req 定义之后
+wire lsu_gate, lsu_gate_ld;                    // S2：struct_r|req|issued_r（定义在 lsu 例化前）
 
 issue_queue u_iq(
   .clk(clk), .rst_n(rst_n),
@@ -327,7 +328,7 @@ issue_queue u_iq(
   .issue0_valid(issue0_valid), .issue0_uop(issue0_uop),
   .issue1_valid(issue1_valid), .issue1_uop(issue1_uop),
   .mdu_busy(mdu_struct), .lsu_block_load(lsu_block_load),
-  .lsu_struct(lsu_struct), .lsu_struct_ld(lsu_struct_ld),
+  .lsu_struct(lsu_gate), .lsu_struct_ld(lsu_gate_ld),
   .sb_v(lsu_sb_v), .sb_tags(lsu_sb_tags), .sb_g(lsu_sb_g),
   .rob_empty(rob_empty_rob), .rob_head_tag(rob_head_tag),
   .bru_flush(bru_flush), .bru_rob(bru_rob_tag), .rob_tail_cur(rob_tail_cur),
@@ -391,6 +392,22 @@ assign lsu_struct    = lsu_noaccept    | lsu_issued_r | lsu_req | lsu_skid_v | l
 // load 专用：不被 sb 满阻塞（noaccept_ld 只含 FSM 忙；sb 满只挡 store）
 assign lsu_struct_ld = lsu_noaccept_ld | lsu_issued_r | lsu_req | lsu_skid_v | lsu_done;
 assign mdu_struct = mdu_busy | mdu_issued_r | mdu_req | mdu_skid_v | mdu_done;
+// S2 时序手术方案A：lsu_struct 打一拍，斩断 lsu_skid_v→IQ 关键路径前缀
+// （CI 实证最差路径 lsu_skid_v_reg→u_iq/entry_uop CE，39 级 83% 布线）。
+// struct_r 是干净寄存器起点；lsu_req/lsu_issued_r 保持组合入 gate（其源均为
+// 寄存器，不在被斩前缀上）。IQ 侧安全性论证见 issue_queue.v 注释。
+reg lsu_struct_r, lsu_struct_ld_r;
+always @(posedge clk or negedge rst_n) begin
+  if (!rst_n) begin
+    lsu_struct_r    <= 1'b1;   // 复位期保守封锁（IQ 本为空，无实际影响）
+    lsu_struct_ld_r <= 1'b1;
+  end else begin
+    lsu_struct_r    <= lsu_struct;
+    lsu_struct_ld_r <= lsu_struct_ld;
+  end
+end
+wire lsu_gate    = lsu_struct_r    | lsu_req | lsu_issued_r;
+wire lsu_gate_ld = lsu_struct_ld_r | lsu_req | lsu_issued_r;
 // 发射历史寄存器（redirect 拍已用 ~redirect 门控 req，直接锁存即可）
 always @(posedge clk or negedge rst_n) begin
   if (!rst_n) begin

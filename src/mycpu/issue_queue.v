@@ -129,8 +129,22 @@ module issue_queue(
       if (entry_uop[i_elig][`UOP_FU] == `FU_MDU && mdu_busy)
         elig0[i_elig] = 1'b0;
       // LSU 结构冒险：发射寄存器化有一拍延迟，LSU busy 来不及反馈，
-      // 必须由 cpu_core 合成 lsu_struct（noaccept | 上拍发射了 LSU）提前门控，
-      // 否则背对背 LSU 访存会在 LSU 非 IDLE 拍被丢弃（ROB 永不 done 死锁）
+      // 必须由 cpu_core 合成结构门控提前阻断，否则背对背 LSU 访存会在
+      // LSU 无法接收拍被丢弃（ROB 永不 done 死锁）。
+      // 【S2 时序手术】lsu_struct/lsu_struct_ld 输入现语义 =
+      //   lsu_struct_r | lsu_req | lsu_issued_r（struct_r 为寄存一拍的
+      //   noaccept|skid_v|done 合成；斩断 lsu_skid_v→IQ 关键路径前缀）。
+      // 安全性论证（缺一拍延迟下 accept 仍有保证，无"发射但 LSU 不接收"）：
+      //   发射拍 T 须三者全 0：
+      //   (a) struct_r(T)=0 ⟹ struct(T-1)=0 ⟹ noaccept(T-1)=0 ⟹ T-1 拍
+      //       LSU x 槽为空或正在推进 ⟹ T 拍 x 槽必空；
+      //   (b) lsu_req(T)=0 ⟹ T 拍无访存 req 到达填充 x ⟹ T+1 拍 x 仍空；
+      //   ⟹ T 拍发出的 LSU op 于 T+1 到达时 accept 有保证（x 空）。
+      //   注意仅寄存 struct 而不保留 lsu_req/lsu_issued_r 组合项会留洞：
+      //   y 槽长 miss 期间 x 空、struct=0，背靠背两拍各发一笔访存时第二笔
+      //   会撞上第一笔刚占的 x 槽而被丢弃（死锁）；req/issued_r 的源均为
+      //   寄存器（issue0_valid/lsu_issued_r），不在被斩的 skid_v 前缀上。
+      //   反向（struct_r=1 但实际已空）只是 LSU op 晚发 1 拍，代价微小。
       // load 不占 store buffer，不应被 sb 满阻塞——否则"sb 满是未提交投机
       // store + ROB 头是 load"死锁（n13 实证）：load 发不出 → store 无法提交
       // 授权 → sb 永不排空。load 与更老 sb store 的序由下方 C6 独立保证。
