@@ -33,6 +33,12 @@ module bpu(
   output     [1:0]   q_offset,
   output     [31:0]  q_target,
   output     [1:0]   q_cat,
+  output             q_hit,   // v2b：BTB 命中（引出给 frontend 预译码二次预测）
+  // 预译码第二查询口（v2c：q2_pc=预译码分支的确切 PC，组合读）
+  input      [31:0]  q2_pc,
+  output             q2_dir,        // PHT[ghr ^ q2_pc[9:2]][1]，与训练侧哈希严格一致
+  output     [31:0]  q2_ras_top,    // RAS 栈顶
+  output             q2_ras_empty,  // RAS 空
   // RAS 投机操作（frontend resp 截断拍）
   input              ras_push,
   input      [31:0]  ras_push_addr,
@@ -63,7 +69,7 @@ module bpu(
 
   // ---------------- 查询（组合） ----------------
   wire [6:0]  q_idx   = q_pc[10:4];
-  wire        q_hit   = btb_valid[q_idx] && (btb_tag[q_idx] == q_pc[31:11]);
+  assign      q_hit   = btb_valid[q_idx] && (btb_tag[q_idx] == q_pc[31:11]);
   wire [1:0]  q_cat_w = btb_cat[q_idx];
   wire [7:0]  q_hash  = ghr ^ q_pc[9:2];
   wire        q_dir   = pht[q_hash][1];           // 2bit 高位=预测方向
@@ -73,6 +79,12 @@ module bpu(
   assign q_target     = (q_cat_w == `BC_RET) ? ras[ras_top] : btb_tgt[q_idx];
   assign q_pred_taken = q_hit && ((q_cat_w != `BC_COND) || q_dir)
                       && ((q_cat_w != `BC_RET) || (ras_cnt != 4'd0));
+
+  // ---------------- 预译码第二查询口（组合，v2c） ----------------
+  wire [7:0]  q2_hash = ghr ^ q2_pc[9:2];           // 与 u_hash/q_hash 同公式
+  assign q2_dir       = pht[q2_hash][1];
+  assign q2_ras_top   = ras[ras_top];
+  assign q2_ras_empty = (ras_cnt == 4'd0);
 
   // ---------------- 更新 ----------------
   wire [6:0] u_idx  = u_pc[10:4];

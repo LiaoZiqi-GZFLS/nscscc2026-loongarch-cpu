@@ -15,6 +15,14 @@
 //   offset+1 条、pc_reg<=预测目标（复用 skip 机制），同拍发出的旧流 req
 //   用 resp_kill 作废；FIFO 每项携 pred_taken/pred_target 随 dec 注入，
 //   由 EX BRU 验证（预测正确则 taken 不再 flush——核心收益）
+// - v2b/v2c 预译码二次预测：resp 拍对窗口内指令组合扫描"第一条分支"，
+//   BTB 漏判（bq_taken_r=0）时当拍纠正，pd 路径与 bq 路径经 fire_* mux 同构：
+//     B/BL：立即数重定向（恒 taken，BL 压 RAS 返回地址）
+//     cond（前后跳一视同仁）：方向由 bpu 第二查询口 q2_dir 给出
+//       （PHT[ghr ^ 分支PC[9:2]][1]，与 EX 训练哈希严格一致；未训练=弱NT不 fire）
+//     JIRL 且为 ret 模式（r0,r1,offs=0）：RAS 非空则弹栈给目标（cat=BC_RET）
+//     其他 JIRL：不 fire
+//   （v2b 的 cond BTFN 静态规则实测准确率仅 42% 净负，v2c 已砍）
 // ============================================================================
 `include "la32_defs.vh"
 
@@ -64,17 +72,65 @@ module frontend #(
   wire        bq_taken;
   wire [1:0]  bq_offset, bq_cat;
   wire [31:0] bq_target;
+  wire        bq_hit;
   reg         bq_taken_r;
   reg  [1:0]  bq_off_r, bq_cat_r;
   reg  [31:0] bq_tgt_r;
+  reg         bq_hit_r;
   wire        ras_push, ras_pop;
   wire [31:0] ras_push_addr;
+
+  // v2c：预译码第二查询口（组合读 PHT/RAS）
+  wire        q2_dir;
+  wire [31:0] q2_ras_top;
+  wire        q2_ras_empty;
+
+  wire [31:0] cur_blk  = {pc_reg[31:4], 4'b0000};
+
+  // ---- v2b/v2c 预译码二次预测：resp 拍组合扫描窗口内"第一条分支" ----
+  // （扫描本身只依赖 resp_line/skip_cnt/cur_blk，置于 bpu 例化前供 q2_pc 引用）
+  // opcode = word[31:26]：B=010100 BL=010101 cond=010110~011011 JIRL=010011
+  wire [5:0] pd_op0 = resp_line[31:26];
+  wire [5:0] pd_op1 = resp_line[63:58];
+  wire [5:0] pd_op2 = resp_line[95:90];
+  wire [5:0] pd_op3 = resp_line[127:122];
+  // cond = {010110,010111} | {011000..011011}
+  function pd_is_branch;
+    input [5:0] op;
+    begin
+      pd_is_branch = (op == 6'b010100) || (op == 6'b010101)
+                  || (op == 6'b010011)
+                  || (op[5:1] == 5'b01011) || (op[5:2] == 4'b0110);
+    end
+  endfunction
+  // 从 skip_cnt 起第一条分支（优先编码，pd_off 天然 >= skip_cnt）
+  wire pd_v0 = (skip_cnt <= 2'd0) && pd_is_branch(pd_op0);
+  wire pd_v1 = (skip_cnt <= 2'd1) && pd_is_branch(pd_op1);
+  wire pd_v2 = (skip_cnt <= 2'd2) && pd_is_branch(pd_op2);
+  wire pd_v3 =                 pd_is_branch(pd_op3);
+  wire       pd_found = pd_v0 || pd_v1 || pd_v2 || pd_v3;
+  wire [1:0] pd_off   = pd_v0 ? 2'd0 : pd_v1 ? 2'd1 : pd_v2 ? 2'd2 : 2'd3;
+  wire [31:0] pd_inst = pd_v0 ? resp_line[31:0]   : pd_v1 ? resp_line[63:32]
+                      : pd_v2 ? resp_line[95:64]  : resp_line[127:96];
+  wire pd_is_b    = (pd_inst[31:26] == 6'b010100);
+  wire pd_is_bl   = (pd_inst[31:26] == 6'b010101);
+  wire pd_is_cond = (pd_inst[31:27] == 5'b01011) || (pd_inst[31:28] == 4'b0110);
+  // JIRL 且为 ret 模式：jirl r0, r1, 0（rd=0, rj=1, offs16=0）
+  wire pd_is_ret  = (pd_inst[31:26] == 6'b010011)
+                 && (pd_inst[4:0] == 5'd0) && (pd_inst[9:5] == 5'd1)
+                 && (pd_inst[25:10] == 16'd0);
+  // 目标立即数（镜像 la32_decoder.v：B/BL 用 LA32R 交换格式 si26，符号位 inst[9]）
+  wire [31:0] pd_imm26 = {{4{pd_inst[9]}}, pd_inst[9:0], pd_inst[25:10], 2'b00};
+  wire [31:0] pd_imm16 = {{14{pd_inst[25]}}, pd_inst[25:10], 2'b00};
+  wire [31:0] pd_brpc  = cur_blk + {26'd0, pd_off, 2'b00};
 
   bpu u_bpu(
     .clk(clk), .rst_n(rst_n),
     .q_pc(req_addr),
     .q_pred_taken(bq_taken), .q_offset(bq_offset),
-    .q_target(bq_target), .q_cat(bq_cat),
+    .q_target(bq_target), .q_cat(bq_cat), .q_hit(bq_hit),
+    .q2_pc(pd_brpc), .q2_dir(q2_dir),
+    .q2_ras_top(q2_ras_top), .q2_ras_empty(q2_ras_empty),
     .ras_push(ras_push), .ras_push_addr(ras_push_addr), .ras_pop(ras_pop),
     .u_valid(bpu_u_valid), .u_pc(bpu_u_pc), .u_cat(bpu_u_cat),
     .u_taken(bpu_u_taken), .u_target(bpu_u_target)
@@ -92,7 +148,6 @@ module frontend #(
   //   有洞：ic_busy 拉高前 miss 块的下一行 req 已发出，其查询覆盖 bq_*_r，
   //   延迟 resp 用错块的 {off,cat,tgt} 截断重定向；截断点非分支时 EX 永不校验，
   //   错径直接提交。封堵：在途且 resp 未回禁发；hit 背靠背（同拍收发）不受影响。
-  wire [31:0] cur_blk  = {pc_reg[31:4], 4'b0000};
   assign req_addr = cur_blk + (inflight ? 32'd16 : 32'd0);
   assign req_valid = (fifo_cnt + (inflight ? 5'd4 : 5'd0) <= 5'd12)
                    && !redirect && !ic_busy && !resp_kill
@@ -101,17 +156,35 @@ module frontend #(
   // ---------------- resp 接收 ----------------
   wire        take      = resp_valid && !resp_kill && !redirect;
   wire [1:0]  pop_num   = rn_pop;
-  // v3：预测 taken 且分支在取指窗口内（offset>=skip_cnt）→ 行截断
-  wire        pred_fire = take && bq_taken_r && (bq_off_r >= skip_cnt);
+
+  // ---- v2c 触发与目标（扫描块在 bpu 例化前，q2_* 为其组合查询结果） ----
+  // B/BL：立即数重定向（恒 taken）；cond：方向 q2_dir（前后跳一视同仁）；
+  // JIRL-ret：RAS 非空弹栈给目标；其他 JIRL 不 fire
+  wire [31:0] pd_tgt   = pd_is_ret ? q2_ras_top
+                       : (pd_brpc + (pd_is_cond ? pd_imm16 : pd_imm26));
+  wire pd_trig = !bq_taken_r && pd_found
+              && (pd_is_b || pd_is_bl
+                  || (pd_is_cond && q2_dir)
+                  || (pd_is_ret && !q2_ras_empty));
+
+  // ---- 统一 fire 信息源：bq（BTB 预测）优先，pd（预译码）兜底 ----
+  wire [1:0]  fire_off = bq_taken_r ? bq_off_r : pd_off;
+  wire [31:0] fire_tgt = bq_taken_r ? bq_tgt_r : pd_tgt;
+  wire [1:0]  fire_cat = bq_taken_r ? bq_cat_r
+                       : (pd_is_bl ? `BC_CALL : (pd_is_b ? `BC_UNCOND
+                       : (pd_is_ret ? `BC_RET : `BC_COND)));
+  // v3/v2b：预测 taken 且分支在取指窗口内（offset>=skip_cnt）→ 行截断
+  wire        pred_fire = take && ((bq_taken_r && (bq_off_r >= skip_cnt))
+                                || (pd_trig    && (pd_off   >= skip_cnt)));
   // 首块压入条数 = 4 - skip_cnt；之后块恒 4；pred_fire 截断到 offset+1
   wire [2:0]  push_num  = take
-                        ? (pred_fire ? ({1'b0, bq_off_r} + 3'd1 - {1'b0, skip_cnt})
+                        ? (pred_fire ? ({1'b0, fire_off} + 3'd1 - {1'b0, skip_cnt})
                                      : (3'd4 - {1'b0, skip_cnt}))
                         : 3'd0;
   // RAS 投机操作（截断拍）：call 压返回地址（分支pc+4），ret 弹栈
-  assign ras_push      = pred_fire && (bq_cat_r == `BC_CALL);
-  assign ras_push_addr = cur_blk + {26'd0, bq_off_r, 2'b00} + 32'd4;
-  assign ras_pop       = pred_fire && (bq_cat_r == `BC_RET);
+  assign ras_push      = pred_fire && (fire_cat == `BC_CALL);
+  assign ras_push_addr = cur_blk + {26'd0, fire_off, 2'b00} + 32'd4;
+  assign ras_pop       = pred_fire && (fire_cat == `BC_RET);
 
   // ---------------- FIFO 次态（组合） ----------------
   reg [31:0] n_inst [0:15];
@@ -147,9 +220,9 @@ module frontend #(
           // 首有效条补回 pc[1:0]（redirect 非对齐目标）；其余条对齐 +4
           n_pc[n_cnt[3:0] + i[3:0]]   = cur_blk + {26'd0, skip_cnt + i[1:0], 2'b00}
                                       + ((i == 0) ? {30'd0, first_low} : 32'd0);
-          // v3：被预测 taken 的那条（分支本体）携预测标记与目标
-          n_ptk[n_cnt[3:0] + i[3:0]]  = pred_fire && ((skip_cnt + i[1:0]) == bq_off_r);
-          n_ptg[n_cnt[3:0] + i[3:0]]  = bq_tgt_r;
+          // v3/v2b：被预测 taken 的那条（分支本体）携预测标记与目标
+          n_ptk[n_cnt[3:0] + i[3:0]]  = pred_fire && ((skip_cnt + i[1:0]) == fire_off);
+          n_ptg[n_cnt[3:0] + i[3:0]]  = fire_tgt;
         end
       end
       n_cnt = n_cnt + {2'b0, push_num};
@@ -169,6 +242,7 @@ module frontend #(
       bq_off_r   <= 2'b0;
       bq_cat_r   <= 2'b0;
       bq_tgt_r   <= 32'b0;
+      bq_hit_r   <= 1'b0;
       for (i = 0; i < 16; i = i + 1) begin
         fifo_inst[i] <= 32'b0;
         fifo_pc[i]   <= 32'b0;
@@ -201,8 +275,8 @@ module frontend #(
           resp_kill <= 1'b0;               // 作废的 resp 到达，消化完毕
         if (take) begin
           if (pred_fire) begin
-            pc_reg    <= bq_tgt_r;         // 预测目标（BTB/RAS 恒 4B 对齐）
-            skip_cnt  <= bq_tgt_r[3:2];
+            pc_reg    <= fire_tgt;         // 预测目标（BTB/RAS/预译码恒 4B 对齐）
+            skip_cnt  <= fire_tgt[3:2];
             first_low <= 2'b0;
           end else begin
             pc_reg   <= cur_blk + 32'd16;  // 下一块
@@ -213,13 +287,15 @@ module frontend #(
       end
       // v3：BPU 查询打拍（req 拍锁存，与 resp 严格对齐；
       //     redirect 后旧查询作废，清 0 防假 pred_fire）
-      if (redirect)
+      if (redirect) begin
         bq_taken_r <= 1'b0;
-      else if (req_valid) begin
+        bq_hit_r   <= 1'b0;
+      end else if (req_valid) begin
         bq_taken_r <= bq_taken;
         bq_off_r   <= bq_offset;
         bq_cat_r   <= bq_cat;
         bq_tgt_r   <= bq_target;
+        bq_hit_r   <= bq_hit;
       end
       // FIFO
       fifo_cnt <= n_cnt;
