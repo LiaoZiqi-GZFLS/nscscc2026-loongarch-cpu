@@ -29,10 +29,12 @@ module axi_arbiter(
   input              ls_awvalid,
   output             ls_awready,
   input  [31:0]      ls_awaddr,
+  input  [3:0]       ls_awlen,   // DCache：写回 burst=3 / uncached 单拍=0
   input              ls_wvalid,
   output             ls_wready,
   input  [31:0]      ls_wdata,
   input  [3:0]       ls_wstrb,
+  input              ls_wlast,   // DCache 写回 burst 末拍
   output reg         ls_bvalid,
   // AXI3 master：读地址
   output reg [3:0]   arid,
@@ -145,7 +147,7 @@ module axi_arbiter(
     end else begin
       if (awvalid && awready)
         aw_pend <= 1'b1;
-      if (wvalid && wready)
+      if (wvalid && wready && ls_wlast)   // burst 仅末拍置位；单拍 ls_wlast=1 等价
         w_pend  <= 1'b1;
       if (bvalid && bready) begin
         aw_pend   <= 1'b0;
@@ -168,7 +170,7 @@ module axi_arbiter(
   assign arprot  = 3'd0;
 
   assign awid    = 4'd1;
-  assign awlen   = 4'd0;
+  assign awlen   = ls_awlen;   // DCache：写回 burst=3 / uncached 单拍=0
   assign awsize  = 3'b010;
   assign awburst = 2'b01;
   assign awlock  = 2'b00;
@@ -176,7 +178,7 @@ module axi_arbiter(
   assign awprot  = 3'd0;
 
   assign wid     = 4'd1;
-  assign wlast   = wvalid;
+  assign wlast   = ls_wlast;   // DCache 写回 burst 末拍 / 单拍恒 1
 
 endmodule
 /* verilator lint_on UNUSEDSIGNAL */

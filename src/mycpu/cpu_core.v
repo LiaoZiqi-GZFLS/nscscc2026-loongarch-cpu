@@ -67,6 +67,8 @@ wire [3:0]  dc_arlen;
 wire dc_awvalid, dc_awready, dc_wvalid, dc_wready, dc_bvalid;
 wire [31:0] dc_awaddr, dc_wdata;
 wire [3:0]  dc_wstrb;
+wire [3:0]  dc_awlen;
+wire        dc_wlast;
 
 // 前端 → 译码
 wire [`DEC_W-1:0] dec0, dec1;
@@ -541,8 +543,9 @@ dcache u_dcache(
   .s_bvalid(dc_bvalid),
   .m_arvalid(dc_arvalid), .m_arready(dc_arready), .m_araddr(dc_araddr), .m_arlen(dc_arlen),
   .m_rvalid(dc_rvalid), .m_rdata(dc_rdata), .m_rlast(dc_rlast),
-  .m_awvalid(dc_awvalid), .m_awready(dc_awready), .m_awaddr(dc_awaddr),
+  .m_awvalid(dc_awvalid), .m_awready(dc_awready), .m_awaddr(dc_awaddr), .m_awlen(dc_awlen),
   .m_wvalid(dc_wvalid), .m_wready(dc_wready), .m_wdata(dc_wdata), .m_wstrb(dc_wstrb),
+  .m_wlast(dc_wlast),
   .m_bvalid(ls_bvalid)
 );
 
@@ -554,8 +557,9 @@ axi_arbiter u_axi(
   .ls_arvalid(dc_arvalid), .ls_arready(dc_arready), .ls_araddr(dc_araddr),
   .ls_arlen(dc_arlen), .if_arlen(if_arlen),
   .ls_rvalid(dc_rvalid), .ls_rdata(dc_rdata), .ls_rlast(dc_rlast),
-  .ls_awvalid(dc_awvalid), .ls_awready(dc_awready), .ls_awaddr(dc_awaddr),
+  .ls_awvalid(dc_awvalid), .ls_awready(dc_awready), .ls_awaddr(dc_awaddr), .ls_awlen(dc_awlen),
   .ls_wvalid(dc_wvalid), .ls_wready(dc_wready), .ls_wdata(dc_wdata), .ls_wstrb(dc_wstrb),
+  .ls_wlast(dc_wlast),
   .ls_bvalid(dc_bvalid),
   .arid(arid), .araddr(araddr), .arlen(arlen), .arsize(arsize), .arburst(arburst),
   .arlock(arlock), .arcache(arcache), .arprot(arprot), .arvalid(arvalid), .arready(arready),
