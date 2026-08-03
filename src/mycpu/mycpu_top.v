@@ -1,7 +1,7 @@
 // Generator : SpinalHDL v1.8.1    git head : 2a7592004363e5b40ec43e1f122ed8641cd8965b
 // Component : mycpu_top
 // Git hash  : 1a5986d9d1ff02d2156fb4d065e5ad0ba0f94495
-// Date      : 03/08/2026, 19:29:42
+// Date      : 03/08/2026, 20:54:33
 
 `timescale 1ns/1ps
 
@@ -8614,77 +8614,77 @@ module MyCPUCore (
   reg        [31:0]   _zz_ROBFIFOPlugin_fifoIO_pop_2_payload_state_storeData;
   reg        [31:0]   _zz_ROBFIFOPlugin_fifoIO_pop_2_payload_state_myPC;
   wire       [4:0]    _zz__zz_14;
-  wire       [4:0]    _zz_when_ROBFIFOPlugin_l111;
-  wire       [4:0]    _zz_when_ROBFIFOPlugin_l111_1;
-  wire       [4:0]    _zz_when_ROBFIFOPlugin_l111_2;
-  wire       [4:0]    _zz_when_ROBFIFOPlugin_l111_3;
-  wire       [4:0]    _zz_when_ROBFIFOPlugin_l111_1_1;
-  wire       [4:0]    _zz_when_ROBFIFOPlugin_l111_1_2;
-  wire       [4:0]    _zz_when_ROBFIFOPlugin_l111_1_3;
-  wire       [4:0]    _zz_when_ROBFIFOPlugin_l111_1_4;
-  wire       [4:0]    _zz_when_ROBFIFOPlugin_l111_2_1;
-  wire       [4:0]    _zz_when_ROBFIFOPlugin_l111_2_2;
-  wire       [4:0]    _zz_when_ROBFIFOPlugin_l111_2_3;
-  wire       [4:0]    _zz_when_ROBFIFOPlugin_l111_2_4;
+  wire       [4:0]    _zz_when_ROBFIFOPlugin_l112;
+  wire       [4:0]    _zz_when_ROBFIFOPlugin_l112_1;
+  wire       [4:0]    _zz_when_ROBFIFOPlugin_l112_2;
+  wire       [4:0]    _zz_when_ROBFIFOPlugin_l112_3;
+  wire       [4:0]    _zz_when_ROBFIFOPlugin_l112_1_1;
+  wire       [4:0]    _zz_when_ROBFIFOPlugin_l112_1_2;
+  wire       [4:0]    _zz_when_ROBFIFOPlugin_l112_1_3;
+  wire       [4:0]    _zz_when_ROBFIFOPlugin_l112_1_4;
+  wire       [4:0]    _zz_when_ROBFIFOPlugin_l112_2_1;
+  wire       [4:0]    _zz_when_ROBFIFOPlugin_l112_2_2;
+  wire       [4:0]    _zz_when_ROBFIFOPlugin_l112_2_3;
+  wire       [4:0]    _zz_when_ROBFIFOPlugin_l112_2_4;
   wire       [4:0]    _zz__zz_47;
-  wire       [4:0]    _zz_when_ROBFIFOPlugin_l111_3_1;
-  wire       [4:0]    _zz_when_ROBFIFOPlugin_l111_3_2;
-  wire       [4:0]    _zz_when_ROBFIFOPlugin_l111_3_3;
-  wire       [4:0]    _zz_when_ROBFIFOPlugin_l111_3_4;
-  wire       [4:0]    _zz_when_ROBFIFOPlugin_l111_4;
-  wire       [4:0]    _zz_when_ROBFIFOPlugin_l111_4_1;
-  wire       [4:0]    _zz_when_ROBFIFOPlugin_l111_4_2;
-  wire       [4:0]    _zz_when_ROBFIFOPlugin_l111_4_3;
+  wire       [4:0]    _zz_when_ROBFIFOPlugin_l112_3_1;
+  wire       [4:0]    _zz_when_ROBFIFOPlugin_l112_3_2;
+  wire       [4:0]    _zz_when_ROBFIFOPlugin_l112_3_3;
+  wire       [4:0]    _zz_when_ROBFIFOPlugin_l112_3_4;
+  wire       [4:0]    _zz_when_ROBFIFOPlugin_l112_4;
+  wire       [4:0]    _zz_when_ROBFIFOPlugin_l112_4_1;
+  wire       [4:0]    _zz_when_ROBFIFOPlugin_l112_4_2;
+  wire       [4:0]    _zz_when_ROBFIFOPlugin_l112_4_3;
   wire       [4:0]    _zz__zz_80;
-  wire       [4:0]    _zz_when_ROBFIFOPlugin_l111_5;
-  wire       [4:0]    _zz_when_ROBFIFOPlugin_l111_5_1;
-  wire       [4:0]    _zz_when_ROBFIFOPlugin_l111_5_2;
-  wire       [4:0]    _zz_when_ROBFIFOPlugin_l111_5_3;
-  wire       [4:0]    _zz_when_ROBFIFOPlugin_l164;
-  wire       [4:0]    _zz_when_ROBFIFOPlugin_l164_1;
-  wire       [4:0]    _zz_when_ROBFIFOPlugin_l164_2;
-  wire       [4:0]    _zz_when_ROBFIFOPlugin_l164_1_1;
-  wire       [4:0]    _zz_when_ROBFIFOPlugin_l164_1_2;
-  wire       [4:0]    _zz_when_ROBFIFOPlugin_l164_1_3;
-  wire       [4:0]    _zz_when_ROBFIFOPlugin_l164_2_1;
-  wire       [4:0]    _zz_when_ROBFIFOPlugin_l164_2_2;
-  wire       [4:0]    _zz_when_ROBFIFOPlugin_l164_2_3;
-  wire       [4:0]    _zz_when_ROBFIFOPlugin_l164_3;
-  wire       [4:0]    _zz_when_ROBFIFOPlugin_l164_3_1;
-  wire       [4:0]    _zz_when_ROBFIFOPlugin_l164_3_2;
-  wire       [4:0]    _zz_when_ROBFIFOPlugin_l164_4;
-  wire       [4:0]    _zz_when_ROBFIFOPlugin_l164_4_1;
-  wire       [4:0]    _zz_when_ROBFIFOPlugin_l164_4_2;
-  wire       [4:0]    _zz_when_ROBFIFOPlugin_l164_5;
-  wire       [4:0]    _zz_when_ROBFIFOPlugin_l164_5_1;
-  wire       [4:0]    _zz_when_ROBFIFOPlugin_l164_5_2;
-  wire       [4:0]    _zz_when_ROBFIFOPlugin_l177;
-  wire       [4:0]    _zz_when_ROBFIFOPlugin_l177_1;
-  wire       [4:0]    _zz_when_ROBFIFOPlugin_l177_2;
-  wire       [4:0]    _zz_when_ROBFIFOPlugin_l177_1_1;
-  wire       [4:0]    _zz_when_ROBFIFOPlugin_l177_1_2;
-  wire       [4:0]    _zz_when_ROBFIFOPlugin_l177_1_3;
-  wire       [4:0]    _zz_when_ROBFIFOPlugin_l177_2_1;
-  wire       [4:0]    _zz_when_ROBFIFOPlugin_l177_2_2;
-  wire       [4:0]    _zz_when_ROBFIFOPlugin_l177_2_3;
-  wire       [4:0]    _zz_when_ROBFIFOPlugin_l190;
-  wire       [4:0]    _zz_when_ROBFIFOPlugin_l190_1;
-  wire       [4:0]    _zz_when_ROBFIFOPlugin_l190_2;
-  wire       [4:0]    _zz_when_ROBFIFOPlugin_l190_1_1;
-  wire       [4:0]    _zz_when_ROBFIFOPlugin_l190_1_2;
-  wire       [4:0]    _zz_when_ROBFIFOPlugin_l190_1_3;
-  wire       [4:0]    _zz_when_ROBFIFOPlugin_l190_2_1;
-  wire       [4:0]    _zz_when_ROBFIFOPlugin_l190_2_2;
-  wire       [4:0]    _zz_when_ROBFIFOPlugin_l190_2_3;
-  wire       [4:0]    _zz_when_ROBFIFOPlugin_l202;
-  wire       [4:0]    _zz_when_ROBFIFOPlugin_l202_1;
-  wire       [4:0]    _zz_when_ROBFIFOPlugin_l202_2;
-  wire       [4:0]    _zz_when_ROBFIFOPlugin_l202_1_1;
-  wire       [4:0]    _zz_when_ROBFIFOPlugin_l202_1_2;
-  wire       [4:0]    _zz_when_ROBFIFOPlugin_l202_1_3;
-  wire       [4:0]    _zz_when_ROBFIFOPlugin_l202_2_1;
-  wire       [4:0]    _zz_when_ROBFIFOPlugin_l202_2_2;
-  wire       [4:0]    _zz_when_ROBFIFOPlugin_l202_2_3;
+  wire       [4:0]    _zz_when_ROBFIFOPlugin_l112_5;
+  wire       [4:0]    _zz_when_ROBFIFOPlugin_l112_5_1;
+  wire       [4:0]    _zz_when_ROBFIFOPlugin_l112_5_2;
+  wire       [4:0]    _zz_when_ROBFIFOPlugin_l112_5_3;
+  wire       [4:0]    _zz_when_ROBFIFOPlugin_l165;
+  wire       [4:0]    _zz_when_ROBFIFOPlugin_l165_1;
+  wire       [4:0]    _zz_when_ROBFIFOPlugin_l165_2;
+  wire       [4:0]    _zz_when_ROBFIFOPlugin_l165_1_1;
+  wire       [4:0]    _zz_when_ROBFIFOPlugin_l165_1_2;
+  wire       [4:0]    _zz_when_ROBFIFOPlugin_l165_1_3;
+  wire       [4:0]    _zz_when_ROBFIFOPlugin_l165_2_1;
+  wire       [4:0]    _zz_when_ROBFIFOPlugin_l165_2_2;
+  wire       [4:0]    _zz_when_ROBFIFOPlugin_l165_2_3;
+  wire       [4:0]    _zz_when_ROBFIFOPlugin_l165_3;
+  wire       [4:0]    _zz_when_ROBFIFOPlugin_l165_3_1;
+  wire       [4:0]    _zz_when_ROBFIFOPlugin_l165_3_2;
+  wire       [4:0]    _zz_when_ROBFIFOPlugin_l165_4;
+  wire       [4:0]    _zz_when_ROBFIFOPlugin_l165_4_1;
+  wire       [4:0]    _zz_when_ROBFIFOPlugin_l165_4_2;
+  wire       [4:0]    _zz_when_ROBFIFOPlugin_l165_5;
+  wire       [4:0]    _zz_when_ROBFIFOPlugin_l165_5_1;
+  wire       [4:0]    _zz_when_ROBFIFOPlugin_l165_5_2;
+  wire       [4:0]    _zz_when_ROBFIFOPlugin_l178;
+  wire       [4:0]    _zz_when_ROBFIFOPlugin_l178_1;
+  wire       [4:0]    _zz_when_ROBFIFOPlugin_l178_2;
+  wire       [4:0]    _zz_when_ROBFIFOPlugin_l178_1_1;
+  wire       [4:0]    _zz_when_ROBFIFOPlugin_l178_1_2;
+  wire       [4:0]    _zz_when_ROBFIFOPlugin_l178_1_3;
+  wire       [4:0]    _zz_when_ROBFIFOPlugin_l178_2_1;
+  wire       [4:0]    _zz_when_ROBFIFOPlugin_l178_2_2;
+  wire       [4:0]    _zz_when_ROBFIFOPlugin_l178_2_3;
+  wire       [4:0]    _zz_when_ROBFIFOPlugin_l191;
+  wire       [4:0]    _zz_when_ROBFIFOPlugin_l191_1;
+  wire       [4:0]    _zz_when_ROBFIFOPlugin_l191_2;
+  wire       [4:0]    _zz_when_ROBFIFOPlugin_l191_1_1;
+  wire       [4:0]    _zz_when_ROBFIFOPlugin_l191_1_2;
+  wire       [4:0]    _zz_when_ROBFIFOPlugin_l191_1_3;
+  wire       [4:0]    _zz_when_ROBFIFOPlugin_l191_2_1;
+  wire       [4:0]    _zz_when_ROBFIFOPlugin_l191_2_2;
+  wire       [4:0]    _zz_when_ROBFIFOPlugin_l191_2_3;
+  wire       [4:0]    _zz_when_ROBFIFOPlugin_l203;
+  wire       [4:0]    _zz_when_ROBFIFOPlugin_l203_1;
+  wire       [4:0]    _zz_when_ROBFIFOPlugin_l203_2;
+  wire       [4:0]    _zz_when_ROBFIFOPlugin_l203_1_1;
+  wire       [4:0]    _zz_when_ROBFIFOPlugin_l203_1_2;
+  wire       [4:0]    _zz_when_ROBFIFOPlugin_l203_1_3;
+  wire       [4:0]    _zz_when_ROBFIFOPlugin_l203_2_1;
+  wire       [4:0]    _zz_when_ROBFIFOPlugin_l203_2_2;
+  wire       [4:0]    _zz_when_ROBFIFOPlugin_l203_2_3;
   wire       [31:0]   _zz_CommitPlugin_port0Commit_jumpTarget;
   reg        [31:0]   _zz_IntExecutePlugin_bypassRsp_0_payload_6;
   wire       [1:0]    _zz_IntExecutePlugin_bypassRsp_0_payload_7;
@@ -9776,14 +9776,14 @@ module MyCPUCore (
   wire       [31:0]   IF1_ICACHE_RSPS_1_3;
   wire                IF1_ICACHE_VALIDS_0;
   wire                IF1_ICACHE_VALIDS_1;
-  reg        [8:0]    _zz_MEM_MEM1_to_MEM_MEM2_EXCEPTION_ESUBCODE;
-  reg        [5:0]    _zz_MEM_MEM1_to_MEM_MEM2_EXCEPTION_ECODE;
-  wire                MEM_MEM1_EXCEPTION_OCCURRED;
-  reg                 _zz_MEM_MEM1_to_MEM_MEM2_EXCEPTION_OCCURRED;
   reg        [8:0]    _zz_MEM_ADDR_to_MEM_MEM1_EXCEPTION_ESUBCODE;
   reg        [5:0]    _zz_MEM_ADDR_to_MEM_MEM1_EXCEPTION_ECODE;
   wire                MEM_ADDR_EXCEPTION_OCCURRED;
   reg                 _zz_MEM_ADDR_to_MEM_MEM1_EXCEPTION_OCCURRED;
+  reg        [8:0]    _zz_MEM_MEM1_to_MEM_MEM2_EXCEPTION_ESUBCODE;
+  reg        [5:0]    _zz_MEM_MEM1_to_MEM_MEM2_EXCEPTION_ECODE;
+  wire                MEM_MEM1_EXCEPTION_OCCURRED;
+  reg                 _zz_MEM_MEM1_to_MEM_MEM2_EXCEPTION_OCCURRED;
   reg                 _zz_MEM_WB_to_MEM_WB2_STD_SLOT_valid;
   wire       [2:0]    _zz_MEM_WB_to_MEM_WB2_STD_SLOT_payload_lsType;
   wire       [2:0]    _zz_MEM_WB_to_MEM_WB2_STD_SLOT_payload_lsType_1;
@@ -16052,9 +16052,9 @@ module MyCPUCore (
   wire                _zz_44;
   wire                _zz_45;
   wire                _zz_46;
-  wire                when_ROBFIFOPlugin_l111;
-  wire                when_ROBFIFOPlugin_l111_1;
-  wire                when_ROBFIFOPlugin_l111_2;
+  wire                when_ROBFIFOPlugin_l112;
+  wire                when_ROBFIFOPlugin_l112_1;
+  wire                when_ROBFIFOPlugin_l112_2;
   wire                ROBFIFOPlugin_fifoIO_push_1_fire;
   wire       [31:0]   _zz_47;
   wire                _zz_48;
@@ -16089,8 +16089,8 @@ module MyCPUCore (
   wire                _zz_77;
   wire                _zz_78;
   wire                _zz_79;
-  wire                when_ROBFIFOPlugin_l111_3;
-  wire                when_ROBFIFOPlugin_l111_4;
+  wire                when_ROBFIFOPlugin_l112_3;
+  wire                when_ROBFIFOPlugin_l112_4;
   wire                ROBFIFOPlugin_fifoIO_push_2_fire;
   wire       [31:0]   _zz_80;
   wire                _zz_81;
@@ -16125,7 +16125,7 @@ module MyCPUCore (
   wire                _zz_110;
   wire                _zz_111;
   wire                _zz_112;
-  wire                when_ROBFIFOPlugin_l111_5;
+  wire                when_ROBFIFOPlugin_l112_5;
   wire                ROBFIFOPlugin_defaultState_complete;
   wire                ROBFIFOPlugin_defaultState_except_valid;
   wire       [5:0]    ROBFIFOPlugin_defaultState_except_payload_code;
@@ -16182,9 +16182,9 @@ module MyCPUCore (
   wire                _zz_143;
   wire                _zz_144;
   wire                _zz_145;
-  wire                when_ROBFIFOPlugin_l164;
-  wire                when_ROBFIFOPlugin_l164_1;
-  wire                when_ROBFIFOPlugin_l164_2;
+  wire                when_ROBFIFOPlugin_l165;
+  wire                when_ROBFIFOPlugin_l165_1;
+  wire                when_ROBFIFOPlugin_l165_2;
   wire       [31:0]   _zz_146;
   wire                _zz_147;
   wire                _zz_148;
@@ -16218,9 +16218,9 @@ module MyCPUCore (
   wire                _zz_176;
   wire                _zz_177;
   wire                _zz_178;
-  wire                when_ROBFIFOPlugin_l164_3;
-  wire                when_ROBFIFOPlugin_l164_4;
-  wire                when_ROBFIFOPlugin_l164_5;
+  wire                when_ROBFIFOPlugin_l165_3;
+  wire                when_ROBFIFOPlugin_l165_4;
+  wire                when_ROBFIFOPlugin_l165_5;
   wire       [31:0]   _zz_179;
   wire                _zz_180;
   wire                _zz_181;
@@ -16254,9 +16254,9 @@ module MyCPUCore (
   wire                _zz_209;
   wire                _zz_210;
   wire                _zz_211;
-  wire                when_ROBFIFOPlugin_l177;
-  wire                when_ROBFIFOPlugin_l177_1;
-  wire                when_ROBFIFOPlugin_l177_2;
+  wire                when_ROBFIFOPlugin_l178;
+  wire                when_ROBFIFOPlugin_l178_1;
+  wire                when_ROBFIFOPlugin_l178_2;
   wire       [31:0]   _zz_212;
   wire                _zz_213;
   wire                _zz_214;
@@ -16290,9 +16290,9 @@ module MyCPUCore (
   wire                _zz_242;
   wire                _zz_243;
   wire                _zz_244;
-  wire                when_ROBFIFOPlugin_l190;
-  wire                when_ROBFIFOPlugin_l190_1;
-  wire                when_ROBFIFOPlugin_l190_2;
+  wire                when_ROBFIFOPlugin_l191;
+  wire                when_ROBFIFOPlugin_l191_1;
+  wire                when_ROBFIFOPlugin_l191_2;
   wire       [31:0]   _zz_245;
   wire                _zz_246;
   wire                _zz_247;
@@ -16326,9 +16326,9 @@ module MyCPUCore (
   wire                _zz_275;
   wire                _zz_276;
   wire                _zz_277;
-  wire                when_ROBFIFOPlugin_l202;
-  wire                when_ROBFIFOPlugin_l202_1;
-  wire                when_ROBFIFOPlugin_l202_2;
+  wire                when_ROBFIFOPlugin_l203;
+  wire                when_ROBFIFOPlugin_l203_1;
+  wire                when_ROBFIFOPlugin_l203_2;
   wire                when_CommitPlugin_l71;
   wire                when_CommitPlugin_l71_1;
   wire                when_CommitPlugin_l71_2;
@@ -22154,77 +22154,77 @@ module MyCPUCore (
   assign _zz__zz_ROBFIFOPlugin_fifoIO_pop_2_payload_state_complete = (ROBFIFOPlugin_robInfo_popPtr + _zz__zz_ROBFIFOPlugin_fifoIO_pop_2_payload_state_complete_1);
   assign _zz__zz_ROBFIFOPlugin_fifoIO_pop_2_payload_state_complete_1 = {3'd0, ROBFIFOPlugin_robInfo_popCount};
   assign _zz__zz_14 = (ROBFIFOPlugin_robInfo_pushPtr + 5'h0);
-  assign _zz_when_ROBFIFOPlugin_l111 = (ROBFIFOPlugin_robInfo_pushPtr + 5'h0);
-  assign _zz_when_ROBFIFOPlugin_l111_1 = (_zz_when_ROBFIFOPlugin_l111_2 + 5'h0);
-  assign _zz_when_ROBFIFOPlugin_l111_2 = (ROBFIFOPlugin_robInfo_popPtr + _zz_when_ROBFIFOPlugin_l111_3);
-  assign _zz_when_ROBFIFOPlugin_l111_3 = {3'd0, ROBFIFOPlugin_robInfo_popCount};
-  assign _zz_when_ROBFIFOPlugin_l111_1_1 = (ROBFIFOPlugin_robInfo_pushPtr + 5'h0);
-  assign _zz_when_ROBFIFOPlugin_l111_1_2 = (_zz_when_ROBFIFOPlugin_l111_1_3 + 5'h01);
-  assign _zz_when_ROBFIFOPlugin_l111_1_3 = (ROBFIFOPlugin_robInfo_popPtr + _zz_when_ROBFIFOPlugin_l111_1_4);
-  assign _zz_when_ROBFIFOPlugin_l111_1_4 = {3'd0, ROBFIFOPlugin_robInfo_popCount};
-  assign _zz_when_ROBFIFOPlugin_l111_2_1 = (ROBFIFOPlugin_robInfo_pushPtr + 5'h0);
-  assign _zz_when_ROBFIFOPlugin_l111_2_2 = (_zz_when_ROBFIFOPlugin_l111_2_3 + 5'h02);
-  assign _zz_when_ROBFIFOPlugin_l111_2_3 = (ROBFIFOPlugin_robInfo_popPtr + _zz_when_ROBFIFOPlugin_l111_2_4);
-  assign _zz_when_ROBFIFOPlugin_l111_2_4 = {3'd0, ROBFIFOPlugin_robInfo_popCount};
+  assign _zz_when_ROBFIFOPlugin_l112 = (ROBFIFOPlugin_robInfo_pushPtr + 5'h0);
+  assign _zz_when_ROBFIFOPlugin_l112_1 = (_zz_when_ROBFIFOPlugin_l112_2 + 5'h0);
+  assign _zz_when_ROBFIFOPlugin_l112_2 = (ROBFIFOPlugin_robInfo_popPtr + _zz_when_ROBFIFOPlugin_l112_3);
+  assign _zz_when_ROBFIFOPlugin_l112_3 = {3'd0, ROBFIFOPlugin_robInfo_popCount};
+  assign _zz_when_ROBFIFOPlugin_l112_1_1 = (ROBFIFOPlugin_robInfo_pushPtr + 5'h0);
+  assign _zz_when_ROBFIFOPlugin_l112_1_2 = (_zz_when_ROBFIFOPlugin_l112_1_3 + 5'h01);
+  assign _zz_when_ROBFIFOPlugin_l112_1_3 = (ROBFIFOPlugin_robInfo_popPtr + _zz_when_ROBFIFOPlugin_l112_1_4);
+  assign _zz_when_ROBFIFOPlugin_l112_1_4 = {3'd0, ROBFIFOPlugin_robInfo_popCount};
+  assign _zz_when_ROBFIFOPlugin_l112_2_1 = (ROBFIFOPlugin_robInfo_pushPtr + 5'h0);
+  assign _zz_when_ROBFIFOPlugin_l112_2_2 = (_zz_when_ROBFIFOPlugin_l112_2_3 + 5'h02);
+  assign _zz_when_ROBFIFOPlugin_l112_2_3 = (ROBFIFOPlugin_robInfo_popPtr + _zz_when_ROBFIFOPlugin_l112_2_4);
+  assign _zz_when_ROBFIFOPlugin_l112_2_4 = {3'd0, ROBFIFOPlugin_robInfo_popCount};
   assign _zz__zz_47 = (ROBFIFOPlugin_robInfo_pushPtr + 5'h01);
-  assign _zz_when_ROBFIFOPlugin_l111_3_1 = (ROBFIFOPlugin_robInfo_pushPtr + 5'h01);
-  assign _zz_when_ROBFIFOPlugin_l111_3_2 = (_zz_when_ROBFIFOPlugin_l111_3_3 + 5'h01);
-  assign _zz_when_ROBFIFOPlugin_l111_3_3 = (ROBFIFOPlugin_robInfo_popPtr + _zz_when_ROBFIFOPlugin_l111_3_4);
-  assign _zz_when_ROBFIFOPlugin_l111_3_4 = {3'd0, ROBFIFOPlugin_robInfo_popCount};
-  assign _zz_when_ROBFIFOPlugin_l111_4 = (ROBFIFOPlugin_robInfo_pushPtr + 5'h01);
-  assign _zz_when_ROBFIFOPlugin_l111_4_1 = (_zz_when_ROBFIFOPlugin_l111_4_2 + 5'h02);
-  assign _zz_when_ROBFIFOPlugin_l111_4_2 = (ROBFIFOPlugin_robInfo_popPtr + _zz_when_ROBFIFOPlugin_l111_4_3);
-  assign _zz_when_ROBFIFOPlugin_l111_4_3 = {3'd0, ROBFIFOPlugin_robInfo_popCount};
+  assign _zz_when_ROBFIFOPlugin_l112_3_1 = (ROBFIFOPlugin_robInfo_pushPtr + 5'h01);
+  assign _zz_when_ROBFIFOPlugin_l112_3_2 = (_zz_when_ROBFIFOPlugin_l112_3_3 + 5'h01);
+  assign _zz_when_ROBFIFOPlugin_l112_3_3 = (ROBFIFOPlugin_robInfo_popPtr + _zz_when_ROBFIFOPlugin_l112_3_4);
+  assign _zz_when_ROBFIFOPlugin_l112_3_4 = {3'd0, ROBFIFOPlugin_robInfo_popCount};
+  assign _zz_when_ROBFIFOPlugin_l112_4 = (ROBFIFOPlugin_robInfo_pushPtr + 5'h01);
+  assign _zz_when_ROBFIFOPlugin_l112_4_1 = (_zz_when_ROBFIFOPlugin_l112_4_2 + 5'h02);
+  assign _zz_when_ROBFIFOPlugin_l112_4_2 = (ROBFIFOPlugin_robInfo_popPtr + _zz_when_ROBFIFOPlugin_l112_4_3);
+  assign _zz_when_ROBFIFOPlugin_l112_4_3 = {3'd0, ROBFIFOPlugin_robInfo_popCount};
   assign _zz__zz_80 = (ROBFIFOPlugin_robInfo_pushPtr + 5'h02);
-  assign _zz_when_ROBFIFOPlugin_l111_5 = (ROBFIFOPlugin_robInfo_pushPtr + 5'h02);
-  assign _zz_when_ROBFIFOPlugin_l111_5_1 = (_zz_when_ROBFIFOPlugin_l111_5_2 + 5'h02);
-  assign _zz_when_ROBFIFOPlugin_l111_5_2 = (ROBFIFOPlugin_robInfo_popPtr + _zz_when_ROBFIFOPlugin_l111_5_3);
-  assign _zz_when_ROBFIFOPlugin_l111_5_3 = {3'd0, ROBFIFOPlugin_robInfo_popCount};
-  assign _zz_when_ROBFIFOPlugin_l164 = (_zz_when_ROBFIFOPlugin_l164_1 + 5'h0);
-  assign _zz_when_ROBFIFOPlugin_l164_1 = (ROBFIFOPlugin_robInfo_popPtr + _zz_when_ROBFIFOPlugin_l164_2);
-  assign _zz_when_ROBFIFOPlugin_l164_2 = {3'd0, ROBFIFOPlugin_robInfo_popCount};
-  assign _zz_when_ROBFIFOPlugin_l164_1_1 = (_zz_when_ROBFIFOPlugin_l164_1_2 + 5'h01);
-  assign _zz_when_ROBFIFOPlugin_l164_1_2 = (ROBFIFOPlugin_robInfo_popPtr + _zz_when_ROBFIFOPlugin_l164_1_3);
-  assign _zz_when_ROBFIFOPlugin_l164_1_3 = {3'd0, ROBFIFOPlugin_robInfo_popCount};
-  assign _zz_when_ROBFIFOPlugin_l164_2_1 = (_zz_when_ROBFIFOPlugin_l164_2_2 + 5'h02);
-  assign _zz_when_ROBFIFOPlugin_l164_2_2 = (ROBFIFOPlugin_robInfo_popPtr + _zz_when_ROBFIFOPlugin_l164_2_3);
-  assign _zz_when_ROBFIFOPlugin_l164_2_3 = {3'd0, ROBFIFOPlugin_robInfo_popCount};
-  assign _zz_when_ROBFIFOPlugin_l164_3 = (_zz_when_ROBFIFOPlugin_l164_3_1 + 5'h0);
-  assign _zz_when_ROBFIFOPlugin_l164_3_1 = (ROBFIFOPlugin_robInfo_popPtr + _zz_when_ROBFIFOPlugin_l164_3_2);
-  assign _zz_when_ROBFIFOPlugin_l164_3_2 = {3'd0, ROBFIFOPlugin_robInfo_popCount};
-  assign _zz_when_ROBFIFOPlugin_l164_4 = (_zz_when_ROBFIFOPlugin_l164_4_1 + 5'h01);
-  assign _zz_when_ROBFIFOPlugin_l164_4_1 = (ROBFIFOPlugin_robInfo_popPtr + _zz_when_ROBFIFOPlugin_l164_4_2);
-  assign _zz_when_ROBFIFOPlugin_l164_4_2 = {3'd0, ROBFIFOPlugin_robInfo_popCount};
-  assign _zz_when_ROBFIFOPlugin_l164_5 = (_zz_when_ROBFIFOPlugin_l164_5_1 + 5'h02);
-  assign _zz_when_ROBFIFOPlugin_l164_5_1 = (ROBFIFOPlugin_robInfo_popPtr + _zz_when_ROBFIFOPlugin_l164_5_2);
-  assign _zz_when_ROBFIFOPlugin_l164_5_2 = {3'd0, ROBFIFOPlugin_robInfo_popCount};
-  assign _zz_when_ROBFIFOPlugin_l177 = (_zz_when_ROBFIFOPlugin_l177_1 + 5'h0);
-  assign _zz_when_ROBFIFOPlugin_l177_1 = (ROBFIFOPlugin_robInfo_popPtr + _zz_when_ROBFIFOPlugin_l177_2);
-  assign _zz_when_ROBFIFOPlugin_l177_2 = {3'd0, ROBFIFOPlugin_robInfo_popCount};
-  assign _zz_when_ROBFIFOPlugin_l177_1_1 = (_zz_when_ROBFIFOPlugin_l177_1_2 + 5'h01);
-  assign _zz_when_ROBFIFOPlugin_l177_1_2 = (ROBFIFOPlugin_robInfo_popPtr + _zz_when_ROBFIFOPlugin_l177_1_3);
-  assign _zz_when_ROBFIFOPlugin_l177_1_3 = {3'd0, ROBFIFOPlugin_robInfo_popCount};
-  assign _zz_when_ROBFIFOPlugin_l177_2_1 = (_zz_when_ROBFIFOPlugin_l177_2_2 + 5'h02);
-  assign _zz_when_ROBFIFOPlugin_l177_2_2 = (ROBFIFOPlugin_robInfo_popPtr + _zz_when_ROBFIFOPlugin_l177_2_3);
-  assign _zz_when_ROBFIFOPlugin_l177_2_3 = {3'd0, ROBFIFOPlugin_robInfo_popCount};
-  assign _zz_when_ROBFIFOPlugin_l190 = (_zz_when_ROBFIFOPlugin_l190_1 + 5'h0);
-  assign _zz_when_ROBFIFOPlugin_l190_1 = (ROBFIFOPlugin_robInfo_popPtr + _zz_when_ROBFIFOPlugin_l190_2);
-  assign _zz_when_ROBFIFOPlugin_l190_2 = {3'd0, ROBFIFOPlugin_robInfo_popCount};
-  assign _zz_when_ROBFIFOPlugin_l190_1_1 = (_zz_when_ROBFIFOPlugin_l190_1_2 + 5'h01);
-  assign _zz_when_ROBFIFOPlugin_l190_1_2 = (ROBFIFOPlugin_robInfo_popPtr + _zz_when_ROBFIFOPlugin_l190_1_3);
-  assign _zz_when_ROBFIFOPlugin_l190_1_3 = {3'd0, ROBFIFOPlugin_robInfo_popCount};
-  assign _zz_when_ROBFIFOPlugin_l190_2_1 = (_zz_when_ROBFIFOPlugin_l190_2_2 + 5'h02);
-  assign _zz_when_ROBFIFOPlugin_l190_2_2 = (ROBFIFOPlugin_robInfo_popPtr + _zz_when_ROBFIFOPlugin_l190_2_3);
-  assign _zz_when_ROBFIFOPlugin_l190_2_3 = {3'd0, ROBFIFOPlugin_robInfo_popCount};
-  assign _zz_when_ROBFIFOPlugin_l202 = (_zz_when_ROBFIFOPlugin_l202_1 + 5'h0);
-  assign _zz_when_ROBFIFOPlugin_l202_1 = (ROBFIFOPlugin_robInfo_popPtr + _zz_when_ROBFIFOPlugin_l202_2);
-  assign _zz_when_ROBFIFOPlugin_l202_2 = {3'd0, ROBFIFOPlugin_robInfo_popCount};
-  assign _zz_when_ROBFIFOPlugin_l202_1_1 = (_zz_when_ROBFIFOPlugin_l202_1_2 + 5'h01);
-  assign _zz_when_ROBFIFOPlugin_l202_1_2 = (ROBFIFOPlugin_robInfo_popPtr + _zz_when_ROBFIFOPlugin_l202_1_3);
-  assign _zz_when_ROBFIFOPlugin_l202_1_3 = {3'd0, ROBFIFOPlugin_robInfo_popCount};
-  assign _zz_when_ROBFIFOPlugin_l202_2_1 = (_zz_when_ROBFIFOPlugin_l202_2_2 + 5'h02);
-  assign _zz_when_ROBFIFOPlugin_l202_2_2 = (ROBFIFOPlugin_robInfo_popPtr + _zz_when_ROBFIFOPlugin_l202_2_3);
-  assign _zz_when_ROBFIFOPlugin_l202_2_3 = {3'd0, ROBFIFOPlugin_robInfo_popCount};
+  assign _zz_when_ROBFIFOPlugin_l112_5 = (ROBFIFOPlugin_robInfo_pushPtr + 5'h02);
+  assign _zz_when_ROBFIFOPlugin_l112_5_1 = (_zz_when_ROBFIFOPlugin_l112_5_2 + 5'h02);
+  assign _zz_when_ROBFIFOPlugin_l112_5_2 = (ROBFIFOPlugin_robInfo_popPtr + _zz_when_ROBFIFOPlugin_l112_5_3);
+  assign _zz_when_ROBFIFOPlugin_l112_5_3 = {3'd0, ROBFIFOPlugin_robInfo_popCount};
+  assign _zz_when_ROBFIFOPlugin_l165 = (_zz_when_ROBFIFOPlugin_l165_1 + 5'h0);
+  assign _zz_when_ROBFIFOPlugin_l165_1 = (ROBFIFOPlugin_robInfo_popPtr + _zz_when_ROBFIFOPlugin_l165_2);
+  assign _zz_when_ROBFIFOPlugin_l165_2 = {3'd0, ROBFIFOPlugin_robInfo_popCount};
+  assign _zz_when_ROBFIFOPlugin_l165_1_1 = (_zz_when_ROBFIFOPlugin_l165_1_2 + 5'h01);
+  assign _zz_when_ROBFIFOPlugin_l165_1_2 = (ROBFIFOPlugin_robInfo_popPtr + _zz_when_ROBFIFOPlugin_l165_1_3);
+  assign _zz_when_ROBFIFOPlugin_l165_1_3 = {3'd0, ROBFIFOPlugin_robInfo_popCount};
+  assign _zz_when_ROBFIFOPlugin_l165_2_1 = (_zz_when_ROBFIFOPlugin_l165_2_2 + 5'h02);
+  assign _zz_when_ROBFIFOPlugin_l165_2_2 = (ROBFIFOPlugin_robInfo_popPtr + _zz_when_ROBFIFOPlugin_l165_2_3);
+  assign _zz_when_ROBFIFOPlugin_l165_2_3 = {3'd0, ROBFIFOPlugin_robInfo_popCount};
+  assign _zz_when_ROBFIFOPlugin_l165_3 = (_zz_when_ROBFIFOPlugin_l165_3_1 + 5'h0);
+  assign _zz_when_ROBFIFOPlugin_l165_3_1 = (ROBFIFOPlugin_robInfo_popPtr + _zz_when_ROBFIFOPlugin_l165_3_2);
+  assign _zz_when_ROBFIFOPlugin_l165_3_2 = {3'd0, ROBFIFOPlugin_robInfo_popCount};
+  assign _zz_when_ROBFIFOPlugin_l165_4 = (_zz_when_ROBFIFOPlugin_l165_4_1 + 5'h01);
+  assign _zz_when_ROBFIFOPlugin_l165_4_1 = (ROBFIFOPlugin_robInfo_popPtr + _zz_when_ROBFIFOPlugin_l165_4_2);
+  assign _zz_when_ROBFIFOPlugin_l165_4_2 = {3'd0, ROBFIFOPlugin_robInfo_popCount};
+  assign _zz_when_ROBFIFOPlugin_l165_5 = (_zz_when_ROBFIFOPlugin_l165_5_1 + 5'h02);
+  assign _zz_when_ROBFIFOPlugin_l165_5_1 = (ROBFIFOPlugin_robInfo_popPtr + _zz_when_ROBFIFOPlugin_l165_5_2);
+  assign _zz_when_ROBFIFOPlugin_l165_5_2 = {3'd0, ROBFIFOPlugin_robInfo_popCount};
+  assign _zz_when_ROBFIFOPlugin_l178 = (_zz_when_ROBFIFOPlugin_l178_1 + 5'h0);
+  assign _zz_when_ROBFIFOPlugin_l178_1 = (ROBFIFOPlugin_robInfo_popPtr + _zz_when_ROBFIFOPlugin_l178_2);
+  assign _zz_when_ROBFIFOPlugin_l178_2 = {3'd0, ROBFIFOPlugin_robInfo_popCount};
+  assign _zz_when_ROBFIFOPlugin_l178_1_1 = (_zz_when_ROBFIFOPlugin_l178_1_2 + 5'h01);
+  assign _zz_when_ROBFIFOPlugin_l178_1_2 = (ROBFIFOPlugin_robInfo_popPtr + _zz_when_ROBFIFOPlugin_l178_1_3);
+  assign _zz_when_ROBFIFOPlugin_l178_1_3 = {3'd0, ROBFIFOPlugin_robInfo_popCount};
+  assign _zz_when_ROBFIFOPlugin_l178_2_1 = (_zz_when_ROBFIFOPlugin_l178_2_2 + 5'h02);
+  assign _zz_when_ROBFIFOPlugin_l178_2_2 = (ROBFIFOPlugin_robInfo_popPtr + _zz_when_ROBFIFOPlugin_l178_2_3);
+  assign _zz_when_ROBFIFOPlugin_l178_2_3 = {3'd0, ROBFIFOPlugin_robInfo_popCount};
+  assign _zz_when_ROBFIFOPlugin_l191 = (_zz_when_ROBFIFOPlugin_l191_1 + 5'h0);
+  assign _zz_when_ROBFIFOPlugin_l191_1 = (ROBFIFOPlugin_robInfo_popPtr + _zz_when_ROBFIFOPlugin_l191_2);
+  assign _zz_when_ROBFIFOPlugin_l191_2 = {3'd0, ROBFIFOPlugin_robInfo_popCount};
+  assign _zz_when_ROBFIFOPlugin_l191_1_1 = (_zz_when_ROBFIFOPlugin_l191_1_2 + 5'h01);
+  assign _zz_when_ROBFIFOPlugin_l191_1_2 = (ROBFIFOPlugin_robInfo_popPtr + _zz_when_ROBFIFOPlugin_l191_1_3);
+  assign _zz_when_ROBFIFOPlugin_l191_1_3 = {3'd0, ROBFIFOPlugin_robInfo_popCount};
+  assign _zz_when_ROBFIFOPlugin_l191_2_1 = (_zz_when_ROBFIFOPlugin_l191_2_2 + 5'h02);
+  assign _zz_when_ROBFIFOPlugin_l191_2_2 = (ROBFIFOPlugin_robInfo_popPtr + _zz_when_ROBFIFOPlugin_l191_2_3);
+  assign _zz_when_ROBFIFOPlugin_l191_2_3 = {3'd0, ROBFIFOPlugin_robInfo_popCount};
+  assign _zz_when_ROBFIFOPlugin_l203 = (_zz_when_ROBFIFOPlugin_l203_1 + 5'h0);
+  assign _zz_when_ROBFIFOPlugin_l203_1 = (ROBFIFOPlugin_robInfo_popPtr + _zz_when_ROBFIFOPlugin_l203_2);
+  assign _zz_when_ROBFIFOPlugin_l203_2 = {3'd0, ROBFIFOPlugin_robInfo_popCount};
+  assign _zz_when_ROBFIFOPlugin_l203_1_1 = (_zz_when_ROBFIFOPlugin_l203_1_2 + 5'h01);
+  assign _zz_when_ROBFIFOPlugin_l203_1_2 = (ROBFIFOPlugin_robInfo_popPtr + _zz_when_ROBFIFOPlugin_l203_1_3);
+  assign _zz_when_ROBFIFOPlugin_l203_1_3 = {3'd0, ROBFIFOPlugin_robInfo_popCount};
+  assign _zz_when_ROBFIFOPlugin_l203_2_1 = (_zz_when_ROBFIFOPlugin_l203_2_2 + 5'h02);
+  assign _zz_when_ROBFIFOPlugin_l203_2_2 = (ROBFIFOPlugin_robInfo_popPtr + _zz_when_ROBFIFOPlugin_l203_2_3);
+  assign _zz_when_ROBFIFOPlugin_l203_2_3 = {3'd0, ROBFIFOPlugin_robInfo_popCount};
   assign _zz_CommitPlugin_port0Commit_jumpTarget = (ROBFIFOPlugin_fifoIO_pop_0_payload_info_uop_pc + 32'h00000004);
   assign _zz__zz_IntExecutePlugin_issGrant_1_1 = (_zz_IntExecutePlugin_issGrant_1 - 7'h01);
   assign _zz__zz_IntExecutePlugin_issGrant_1_3 = (_zz_IntExecutePlugin_issGrant_1_2 - 7'h01);
@@ -49695,7 +49695,32 @@ module MyCPUCore (
   assign IF1_ICACHE_VALIDS_0 = _zz_IF1_ICACHE_VALIDS_0_1;
   assign IF1_ICACHE_VALIDS_1 = _zz_IF1_ICACHE_VALIDS_1;
   always @(*) begin
+    _zz_MEM_ADDR_to_MEM_MEM1_EXCEPTION_ESUBCODE = MEM_ADDR_EXCEPTION_ESUBCODE;
+    if(when_ExceptionMuxPlugin_l45_9) begin
+      _zz_MEM_ADDR_to_MEM_MEM1_EXCEPTION_ESUBCODE = 9'h0;
+    end
+  end
+
+  always @(*) begin
+    _zz_MEM_ADDR_to_MEM_MEM1_EXCEPTION_ECODE = MEM_ADDR_EXCEPTION_ECODE;
+    if(when_ExceptionMuxPlugin_l45_9) begin
+      _zz_MEM_ADDR_to_MEM_MEM1_EXCEPTION_ECODE = 6'h09;
+    end
+  end
+
+  assign MEM_ADDR_EXCEPTION_OCCURRED = 1'b0;
+  always @(*) begin
+    _zz_MEM_ADDR_to_MEM_MEM1_EXCEPTION_OCCURRED = MEM_ADDR_EXCEPTION_OCCURRED;
+    if(AddressGenerationPlugin_raiseALE) begin
+      _zz_MEM_ADDR_to_MEM_MEM1_EXCEPTION_OCCURRED = 1'b1;
+    end
+  end
+
+  always @(*) begin
     _zz_MEM_MEM1_to_MEM_MEM2_EXCEPTION_ESUBCODE = MEM_MEM1_EXCEPTION_ESUBCODE;
+    if(when_ExceptionMuxPlugin_l45_4) begin
+      _zz_MEM_MEM1_to_MEM_MEM2_EXCEPTION_ESUBCODE = 9'h0;
+    end
     if(when_ExceptionMuxPlugin_l45_5) begin
       _zz_MEM_MEM1_to_MEM_MEM2_EXCEPTION_ESUBCODE = 9'h0;
     end
@@ -49706,28 +49731,25 @@ module MyCPUCore (
       _zz_MEM_MEM1_to_MEM_MEM2_EXCEPTION_ESUBCODE = 9'h0;
     end
     if(when_ExceptionMuxPlugin_l45_8) begin
-      _zz_MEM_MEM1_to_MEM_MEM2_EXCEPTION_ESUBCODE = 9'h0;
-    end
-    if(when_ExceptionMuxPlugin_l45_9) begin
       _zz_MEM_MEM1_to_MEM_MEM2_EXCEPTION_ESUBCODE = 9'h0;
     end
   end
 
   always @(*) begin
     _zz_MEM_MEM1_to_MEM_MEM2_EXCEPTION_ECODE = MEM_MEM1_EXCEPTION_ECODE;
-    if(when_ExceptionMuxPlugin_l45_5) begin
+    if(when_ExceptionMuxPlugin_l45_4) begin
       _zz_MEM_MEM1_to_MEM_MEM2_EXCEPTION_ECODE = 6'h04;
     end
-    if(when_ExceptionMuxPlugin_l45_6) begin
+    if(when_ExceptionMuxPlugin_l45_5) begin
       _zz_MEM_MEM1_to_MEM_MEM2_EXCEPTION_ECODE = 6'h07;
     end
-    if(when_ExceptionMuxPlugin_l45_7) begin
+    if(when_ExceptionMuxPlugin_l45_6) begin
       _zz_MEM_MEM1_to_MEM_MEM2_EXCEPTION_ECODE = 6'h02;
     end
-    if(when_ExceptionMuxPlugin_l45_8) begin
+    if(when_ExceptionMuxPlugin_l45_7) begin
       _zz_MEM_MEM1_to_MEM_MEM2_EXCEPTION_ECODE = 6'h01;
     end
-    if(when_ExceptionMuxPlugin_l45_9) begin
+    if(when_ExceptionMuxPlugin_l45_8) begin
       _zz_MEM_MEM1_to_MEM_MEM2_EXCEPTION_ECODE = 6'h3f;
     end
   end
@@ -49749,28 +49771,6 @@ module MyCPUCore (
     end
     if(AddressGenerationPlugin_raiseTLBR) begin
       _zz_MEM_MEM1_to_MEM_MEM2_EXCEPTION_OCCURRED = 1'b1;
-    end
-  end
-
-  always @(*) begin
-    _zz_MEM_ADDR_to_MEM_MEM1_EXCEPTION_ESUBCODE = MEM_ADDR_EXCEPTION_ESUBCODE;
-    if(when_ExceptionMuxPlugin_l45_4) begin
-      _zz_MEM_ADDR_to_MEM_MEM1_EXCEPTION_ESUBCODE = 9'h0;
-    end
-  end
-
-  always @(*) begin
-    _zz_MEM_ADDR_to_MEM_MEM1_EXCEPTION_ECODE = MEM_ADDR_EXCEPTION_ECODE;
-    if(when_ExceptionMuxPlugin_l45_4) begin
-      _zz_MEM_ADDR_to_MEM_MEM1_EXCEPTION_ECODE = 6'h09;
-    end
-  end
-
-  assign MEM_ADDR_EXCEPTION_OCCURRED = 1'b0;
-  always @(*) begin
-    _zz_MEM_ADDR_to_MEM_MEM1_EXCEPTION_OCCURRED = MEM_ADDR_EXCEPTION_OCCURRED;
-    if(AddressGenerationPlugin_raiseALE) begin
-      _zz_MEM_ADDR_to_MEM_MEM1_EXCEPTION_OCCURRED = 1'b1;
     end
   end
 
@@ -59523,9 +59523,9 @@ module MyCPUCore (
   assign _zz_44 = _zz_14[29];
   assign _zz_45 = _zz_14[30];
   assign _zz_46 = _zz_14[31];
-  assign when_ROBFIFOPlugin_l111 = (_zz_when_ROBFIFOPlugin_l111 == _zz_when_ROBFIFOPlugin_l111_1);
-  assign when_ROBFIFOPlugin_l111_1 = (_zz_when_ROBFIFOPlugin_l111_1_1 == _zz_when_ROBFIFOPlugin_l111_1_2);
-  assign when_ROBFIFOPlugin_l111_2 = (_zz_when_ROBFIFOPlugin_l111_2_1 == _zz_when_ROBFIFOPlugin_l111_2_2);
+  assign when_ROBFIFOPlugin_l112 = (_zz_when_ROBFIFOPlugin_l112 == _zz_when_ROBFIFOPlugin_l112_1);
+  assign when_ROBFIFOPlugin_l112_1 = (_zz_when_ROBFIFOPlugin_l112_1_1 == _zz_when_ROBFIFOPlugin_l112_1_2);
+  assign when_ROBFIFOPlugin_l112_2 = (_zz_when_ROBFIFOPlugin_l112_2_1 == _zz_when_ROBFIFOPlugin_l112_2_2);
   assign ROBFIFOPlugin_fifoIO_push_1_ready = ROBFIFOPlugin_robInfo_io_push_1_ready;
   assign ROBFIFOPlugin_fifoIO_push_1_fire = (ROBFIFOPlugin_fifoIO_push_1_valid && ROBFIFOPlugin_fifoIO_push_1_ready);
   assign _zz_47 = ({31'd0,1'b1} <<< _zz__zz_47);
@@ -59561,8 +59561,8 @@ module MyCPUCore (
   assign _zz_77 = _zz_47[29];
   assign _zz_78 = _zz_47[30];
   assign _zz_79 = _zz_47[31];
-  assign when_ROBFIFOPlugin_l111_3 = (_zz_when_ROBFIFOPlugin_l111_3_1 == _zz_when_ROBFIFOPlugin_l111_3_2);
-  assign when_ROBFIFOPlugin_l111_4 = (_zz_when_ROBFIFOPlugin_l111_4 == _zz_when_ROBFIFOPlugin_l111_4_1);
+  assign when_ROBFIFOPlugin_l112_3 = (_zz_when_ROBFIFOPlugin_l112_3_1 == _zz_when_ROBFIFOPlugin_l112_3_2);
+  assign when_ROBFIFOPlugin_l112_4 = (_zz_when_ROBFIFOPlugin_l112_4 == _zz_when_ROBFIFOPlugin_l112_4_1);
   assign ROBFIFOPlugin_fifoIO_push_2_ready = ROBFIFOPlugin_robInfo_io_push_2_ready;
   assign ROBFIFOPlugin_fifoIO_push_2_fire = (ROBFIFOPlugin_fifoIO_push_2_valid && ROBFIFOPlugin_fifoIO_push_2_ready);
   assign _zz_80 = ({31'd0,1'b1} <<< _zz__zz_80);
@@ -59598,7 +59598,7 @@ module MyCPUCore (
   assign _zz_110 = _zz_80[29];
   assign _zz_111 = _zz_80[30];
   assign _zz_112 = _zz_80[31];
-  assign when_ROBFIFOPlugin_l111_5 = (_zz_when_ROBFIFOPlugin_l111_5 == _zz_when_ROBFIFOPlugin_l111_5_1);
+  assign when_ROBFIFOPlugin_l112_5 = (_zz_when_ROBFIFOPlugin_l112_5 == _zz_when_ROBFIFOPlugin_l112_5_1);
   assign ROBFIFOPlugin_defaultState_complete = 1'b0;
   assign ROBFIFOPlugin_defaultState_except_valid = 1'b0;
   assign ROBFIFOPlugin_defaultState_except_payload_code = 6'bxxxxxx;
@@ -59655,9 +59655,9 @@ module MyCPUCore (
   assign _zz_143 = _zz_113[29];
   assign _zz_144 = _zz_113[30];
   assign _zz_145 = _zz_113[31];
-  assign when_ROBFIFOPlugin_l164 = (IntExecutePlugin_robWrite_payload_robIdx == _zz_when_ROBFIFOPlugin_l164);
-  assign when_ROBFIFOPlugin_l164_1 = (IntExecutePlugin_robWrite_payload_robIdx == _zz_when_ROBFIFOPlugin_l164_1_1);
-  assign when_ROBFIFOPlugin_l164_2 = (IntExecutePlugin_robWrite_payload_robIdx == _zz_when_ROBFIFOPlugin_l164_2_1);
+  assign when_ROBFIFOPlugin_l165 = (IntExecutePlugin_robWrite_payload_robIdx == _zz_when_ROBFIFOPlugin_l165);
+  assign when_ROBFIFOPlugin_l165_1 = (IntExecutePlugin_robWrite_payload_robIdx == _zz_when_ROBFIFOPlugin_l165_1_1);
+  assign when_ROBFIFOPlugin_l165_2 = (IntExecutePlugin_robWrite_payload_robIdx == _zz_when_ROBFIFOPlugin_l165_2_1);
   assign _zz_146 = ({31'd0,1'b1} <<< IntExecutePlugin_robWrite_payload_robIdx_1);
   assign _zz_147 = _zz_146[0];
   assign _zz_148 = _zz_146[1];
@@ -59691,9 +59691,9 @@ module MyCPUCore (
   assign _zz_176 = _zz_146[29];
   assign _zz_177 = _zz_146[30];
   assign _zz_178 = _zz_146[31];
-  assign when_ROBFIFOPlugin_l164_3 = (IntExecutePlugin_robWrite_payload_robIdx_1 == _zz_when_ROBFIFOPlugin_l164_3);
-  assign when_ROBFIFOPlugin_l164_4 = (IntExecutePlugin_robWrite_payload_robIdx_1 == _zz_when_ROBFIFOPlugin_l164_4);
-  assign when_ROBFIFOPlugin_l164_5 = (IntExecutePlugin_robWrite_payload_robIdx_1 == _zz_when_ROBFIFOPlugin_l164_5);
+  assign when_ROBFIFOPlugin_l165_3 = (IntExecutePlugin_robWrite_payload_robIdx_1 == _zz_when_ROBFIFOPlugin_l165_3);
+  assign when_ROBFIFOPlugin_l165_4 = (IntExecutePlugin_robWrite_payload_robIdx_1 == _zz_when_ROBFIFOPlugin_l165_4);
+  assign when_ROBFIFOPlugin_l165_5 = (IntExecutePlugin_robWrite_payload_robIdx_1 == _zz_when_ROBFIFOPlugin_l165_5);
   assign _zz_179 = ({31'd0,1'b1} <<< IntExecutePlugin_robWriteBRU_payload_robIdx);
   assign _zz_180 = _zz_179[0];
   assign _zz_181 = _zz_179[1];
@@ -59727,9 +59727,9 @@ module MyCPUCore (
   assign _zz_209 = _zz_179[29];
   assign _zz_210 = _zz_179[30];
   assign _zz_211 = _zz_179[31];
-  assign when_ROBFIFOPlugin_l177 = (IntExecutePlugin_robWriteBRU_payload_robIdx == _zz_when_ROBFIFOPlugin_l177);
-  assign when_ROBFIFOPlugin_l177_1 = (IntExecutePlugin_robWriteBRU_payload_robIdx == _zz_when_ROBFIFOPlugin_l177_1_1);
-  assign when_ROBFIFOPlugin_l177_2 = (IntExecutePlugin_robWriteBRU_payload_robIdx == _zz_when_ROBFIFOPlugin_l177_2_1);
+  assign when_ROBFIFOPlugin_l178 = (IntExecutePlugin_robWriteBRU_payload_robIdx == _zz_when_ROBFIFOPlugin_l178);
+  assign when_ROBFIFOPlugin_l178_1 = (IntExecutePlugin_robWriteBRU_payload_robIdx == _zz_when_ROBFIFOPlugin_l178_1_1);
+  assign when_ROBFIFOPlugin_l178_2 = (IntExecutePlugin_robWriteBRU_payload_robIdx == _zz_when_ROBFIFOPlugin_l178_2_1);
   assign _zz_212 = ({31'd0,1'b1} <<< MemExecutePlugin_robWrite_payload_robIdx);
   assign _zz_213 = _zz_212[0];
   assign _zz_214 = _zz_212[1];
@@ -59763,9 +59763,9 @@ module MyCPUCore (
   assign _zz_242 = _zz_212[29];
   assign _zz_243 = _zz_212[30];
   assign _zz_244 = _zz_212[31];
-  assign when_ROBFIFOPlugin_l190 = (MemExecutePlugin_robWrite_payload_robIdx == _zz_when_ROBFIFOPlugin_l190);
-  assign when_ROBFIFOPlugin_l190_1 = (MemExecutePlugin_robWrite_payload_robIdx == _zz_when_ROBFIFOPlugin_l190_1_1);
-  assign when_ROBFIFOPlugin_l190_2 = (MemExecutePlugin_robWrite_payload_robIdx == _zz_when_ROBFIFOPlugin_l190_2_1);
+  assign when_ROBFIFOPlugin_l191 = (MemExecutePlugin_robWrite_payload_robIdx == _zz_when_ROBFIFOPlugin_l191);
+  assign when_ROBFIFOPlugin_l191_1 = (MemExecutePlugin_robWrite_payload_robIdx == _zz_when_ROBFIFOPlugin_l191_1_1);
+  assign when_ROBFIFOPlugin_l191_2 = (MemExecutePlugin_robWrite_payload_robIdx == _zz_when_ROBFIFOPlugin_l191_2_1);
   assign _zz_245 = ({31'd0,1'b1} <<< MulDivExecutePlugin_robWrite_payload);
   assign _zz_246 = _zz_245[0];
   assign _zz_247 = _zz_245[1];
@@ -59799,9 +59799,9 @@ module MyCPUCore (
   assign _zz_275 = _zz_245[29];
   assign _zz_276 = _zz_245[30];
   assign _zz_277 = _zz_245[31];
-  assign when_ROBFIFOPlugin_l202 = (MulDivExecutePlugin_robWrite_payload == _zz_when_ROBFIFOPlugin_l202);
-  assign when_ROBFIFOPlugin_l202_1 = (MulDivExecutePlugin_robWrite_payload == _zz_when_ROBFIFOPlugin_l202_1_1);
-  assign when_ROBFIFOPlugin_l202_2 = (MulDivExecutePlugin_robWrite_payload == _zz_when_ROBFIFOPlugin_l202_2_1);
+  assign when_ROBFIFOPlugin_l203 = (MulDivExecutePlugin_robWrite_payload == _zz_when_ROBFIFOPlugin_l203);
+  assign when_ROBFIFOPlugin_l203_1 = (MulDivExecutePlugin_robWrite_payload == _zz_when_ROBFIFOPlugin_l203_1_1);
+  assign when_ROBFIFOPlugin_l203_2 = (MulDivExecutePlugin_robWrite_payload == _zz_when_ROBFIFOPlugin_l203_2_1);
   assign ROBFIFOPlugin_fifoIO_push_0_payload_info_uop_pc = RENAME_DECODE_PACKET_0_payload_pc;
   assign ROBFIFOPlugin_fifoIO_push_0_payload_info_uop_inst = RENAME_DECODE_PACKET_0_payload_inst;
   assign ROBFIFOPlugin_fifoIO_push_0_payload_info_uop_predInfo_predictBranch = RENAME_DECODE_PACKET_0_payload_predInfo_predictBranch;
@@ -73259,12 +73259,12 @@ module MyCPUCore (
   assign MemExecutePlugin_robWrite_payload_pAddr = MEM_WB_MEMORY_ADDRESS_PHYSICAL;
   assign MemExecutePlugin_robWrite_payload_storeData = MEM_WB_MEMORY_WRITE_DATA;
   assign MemExecutePlugin_robWrite_payload_myPC = MEM_WB_ISSUE_SLOT_uop_pc;
-  assign when_ExceptionMuxPlugin_l45_4 = ((! MEM_ADDR_EXCEPTION_OCCURRED) && AddressGenerationPlugin_raiseALE);
-  assign when_ExceptionMuxPlugin_l45_5 = ((! MEM_MEM1_EXCEPTION_OCCURRED) && AddressGenerationPlugin_raisePME);
-  assign when_ExceptionMuxPlugin_l45_6 = ((! MEM_MEM1_EXCEPTION_OCCURRED) && AddressGenerationPlugin_raisePPI);
-  assign when_ExceptionMuxPlugin_l45_7 = ((! MEM_MEM1_EXCEPTION_OCCURRED) && AddressGenerationPlugin_raisePIS);
-  assign when_ExceptionMuxPlugin_l45_8 = ((! MEM_MEM1_EXCEPTION_OCCURRED) && AddressGenerationPlugin_raisePIL);
-  assign when_ExceptionMuxPlugin_l45_9 = ((! MEM_MEM1_EXCEPTION_OCCURRED) && AddressGenerationPlugin_raiseTLBR);
+  assign when_ExceptionMuxPlugin_l45_4 = ((! MEM_MEM1_EXCEPTION_OCCURRED) && AddressGenerationPlugin_raisePME);
+  assign when_ExceptionMuxPlugin_l45_5 = ((! MEM_MEM1_EXCEPTION_OCCURRED) && AddressGenerationPlugin_raisePPI);
+  assign when_ExceptionMuxPlugin_l45_6 = ((! MEM_MEM1_EXCEPTION_OCCURRED) && AddressGenerationPlugin_raisePIS);
+  assign when_ExceptionMuxPlugin_l45_7 = ((! MEM_MEM1_EXCEPTION_OCCURRED) && AddressGenerationPlugin_raisePIL);
+  assign when_ExceptionMuxPlugin_l45_8 = ((! MEM_MEM1_EXCEPTION_OCCURRED) && AddressGenerationPlugin_raiseTLBR);
+  assign when_ExceptionMuxPlugin_l45_9 = ((! MEM_ADDR_EXCEPTION_OCCURRED) && AddressGenerationPlugin_raiseALE);
   assign when_Pipeline_l158 = (! IF2_arbitration_isStuck);
   assign when_Pipeline_l158_1 = (! IF2_arbitration_isStuck);
   assign when_Pipeline_l158_2 = (! IF2_arbitration_isStuck);
@@ -92213,7 +92213,7 @@ module MyCPUCore (
       if(_zz_46) begin
         ROBFIFOPlugin_robState_31_actualTaken <= ROBFIFOPlugin_fifoIO_push_0_payload_state_actualTaken;
       end
-      if(when_ROBFIFOPlugin_l111) begin
+      if(when_ROBFIFOPlugin_l112) begin
         ROBFIFOPlugin_fifoIO_pop_0_payload_state_complete <= ROBFIFOPlugin_fifoIO_push_0_payload_state_complete;
         ROBFIFOPlugin_fifoIO_pop_0_payload_state_except_valid <= ROBFIFOPlugin_fifoIO_push_0_payload_state_except_valid;
         ROBFIFOPlugin_fifoIO_pop_0_payload_state_except_payload_code <= ROBFIFOPlugin_fifoIO_push_0_payload_state_except_payload_code;
@@ -92222,7 +92222,7 @@ module MyCPUCore (
         ROBFIFOPlugin_fifoIO_pop_0_payload_state_mispredict <= ROBFIFOPlugin_fifoIO_push_0_payload_state_mispredict;
         ROBFIFOPlugin_fifoIO_pop_0_payload_state_actualTaken <= ROBFIFOPlugin_fifoIO_push_0_payload_state_actualTaken;
       end
-      if(when_ROBFIFOPlugin_l111_1) begin
+      if(when_ROBFIFOPlugin_l112_1) begin
         ROBFIFOPlugin_fifoIO_pop_1_payload_state_complete <= ROBFIFOPlugin_fifoIO_push_0_payload_state_complete;
         ROBFIFOPlugin_fifoIO_pop_1_payload_state_except_valid <= ROBFIFOPlugin_fifoIO_push_0_payload_state_except_valid;
         ROBFIFOPlugin_fifoIO_pop_1_payload_state_except_payload_code <= ROBFIFOPlugin_fifoIO_push_0_payload_state_except_payload_code;
@@ -92231,7 +92231,7 @@ module MyCPUCore (
         ROBFIFOPlugin_fifoIO_pop_1_payload_state_mispredict <= ROBFIFOPlugin_fifoIO_push_0_payload_state_mispredict;
         ROBFIFOPlugin_fifoIO_pop_1_payload_state_actualTaken <= ROBFIFOPlugin_fifoIO_push_0_payload_state_actualTaken;
       end
-      if(when_ROBFIFOPlugin_l111_2) begin
+      if(when_ROBFIFOPlugin_l112_2) begin
         ROBFIFOPlugin_fifoIO_pop_2_payload_state_complete <= ROBFIFOPlugin_fifoIO_push_0_payload_state_complete;
         ROBFIFOPlugin_fifoIO_pop_2_payload_state_except_valid <= ROBFIFOPlugin_fifoIO_push_0_payload_state_except_valid;
         ROBFIFOPlugin_fifoIO_pop_2_payload_state_except_payload_code <= ROBFIFOPlugin_fifoIO_push_0_payload_state_except_payload_code;
@@ -92914,7 +92914,7 @@ module MyCPUCore (
       if(_zz_79) begin
         ROBFIFOPlugin_robState_31_actualTaken <= ROBFIFOPlugin_fifoIO_push_1_payload_state_actualTaken;
       end
-      if(when_ROBFIFOPlugin_l111_3) begin
+      if(when_ROBFIFOPlugin_l112_3) begin
         ROBFIFOPlugin_fifoIO_pop_1_payload_state_complete <= ROBFIFOPlugin_fifoIO_push_1_payload_state_complete;
         ROBFIFOPlugin_fifoIO_pop_1_payload_state_except_valid <= ROBFIFOPlugin_fifoIO_push_1_payload_state_except_valid;
         ROBFIFOPlugin_fifoIO_pop_1_payload_state_except_payload_code <= ROBFIFOPlugin_fifoIO_push_1_payload_state_except_payload_code;
@@ -92923,7 +92923,7 @@ module MyCPUCore (
         ROBFIFOPlugin_fifoIO_pop_1_payload_state_mispredict <= ROBFIFOPlugin_fifoIO_push_1_payload_state_mispredict;
         ROBFIFOPlugin_fifoIO_pop_1_payload_state_actualTaken <= ROBFIFOPlugin_fifoIO_push_1_payload_state_actualTaken;
       end
-      if(when_ROBFIFOPlugin_l111_4) begin
+      if(when_ROBFIFOPlugin_l112_4) begin
         ROBFIFOPlugin_fifoIO_pop_2_payload_state_complete <= ROBFIFOPlugin_fifoIO_push_1_payload_state_complete;
         ROBFIFOPlugin_fifoIO_pop_2_payload_state_except_valid <= ROBFIFOPlugin_fifoIO_push_1_payload_state_except_valid;
         ROBFIFOPlugin_fifoIO_pop_2_payload_state_except_payload_code <= ROBFIFOPlugin_fifoIO_push_1_payload_state_except_payload_code;
@@ -93606,7 +93606,7 @@ module MyCPUCore (
       if(_zz_112) begin
         ROBFIFOPlugin_robState_31_actualTaken <= ROBFIFOPlugin_fifoIO_push_2_payload_state_actualTaken;
       end
-      if(when_ROBFIFOPlugin_l111_5) begin
+      if(when_ROBFIFOPlugin_l112_5) begin
         ROBFIFOPlugin_fifoIO_pop_2_payload_state_complete <= ROBFIFOPlugin_fifoIO_push_2_payload_state_complete;
         ROBFIFOPlugin_fifoIO_pop_2_payload_state_except_valid <= ROBFIFOPlugin_fifoIO_push_2_payload_state_except_valid;
         ROBFIFOPlugin_fifoIO_pop_2_payload_state_except_payload_code <= ROBFIFOPlugin_fifoIO_push_2_payload_state_except_payload_code;
@@ -96881,7 +96881,7 @@ module MyCPUCore (
       if(_zz_145) begin
         ROBFIFOPlugin_robState_31_myPC <= IntExecutePlugin_robWrite_payload_myPC;
       end
-      if(when_ROBFIFOPlugin_l164) begin
+      if(when_ROBFIFOPlugin_l165) begin
         ROBFIFOPlugin_fifoIO_pop_0_payload_state_complete <= ROBFIFOPlugin_defaultState_complete;
         ROBFIFOPlugin_fifoIO_pop_0_payload_state_except_valid <= ROBFIFOPlugin_defaultState_except_valid;
         ROBFIFOPlugin_fifoIO_pop_0_payload_state_except_payload_code <= ROBFIFOPlugin_defaultState_except_payload_code;
@@ -96917,7 +96917,7 @@ module MyCPUCore (
         ROBFIFOPlugin_fifoIO_pop_0_payload_state_csrRdata <= IntExecutePlugin_robWrite_payload_csrRdata;
         ROBFIFOPlugin_fifoIO_pop_0_payload_state_myPC <= IntExecutePlugin_robWrite_payload_myPC;
       end
-      if(when_ROBFIFOPlugin_l164_1) begin
+      if(when_ROBFIFOPlugin_l165_1) begin
         ROBFIFOPlugin_fifoIO_pop_1_payload_state_complete <= ROBFIFOPlugin_defaultState_complete;
         ROBFIFOPlugin_fifoIO_pop_1_payload_state_except_valid <= ROBFIFOPlugin_defaultState_except_valid;
         ROBFIFOPlugin_fifoIO_pop_1_payload_state_except_payload_code <= ROBFIFOPlugin_defaultState_except_payload_code;
@@ -96953,7 +96953,7 @@ module MyCPUCore (
         ROBFIFOPlugin_fifoIO_pop_1_payload_state_csrRdata <= IntExecutePlugin_robWrite_payload_csrRdata;
         ROBFIFOPlugin_fifoIO_pop_1_payload_state_myPC <= IntExecutePlugin_robWrite_payload_myPC;
       end
-      if(when_ROBFIFOPlugin_l164_2) begin
+      if(when_ROBFIFOPlugin_l165_2) begin
         ROBFIFOPlugin_fifoIO_pop_2_payload_state_complete <= ROBFIFOPlugin_defaultState_complete;
         ROBFIFOPlugin_fifoIO_pop_2_payload_state_except_valid <= ROBFIFOPlugin_defaultState_except_valid;
         ROBFIFOPlugin_fifoIO_pop_2_payload_state_except_payload_code <= ROBFIFOPlugin_defaultState_except_payload_code;
@@ -100255,7 +100255,7 @@ module MyCPUCore (
       if(_zz_178) begin
         ROBFIFOPlugin_robState_31_myPC <= IntExecutePlugin_robWrite_payload_myPC_1;
       end
-      if(when_ROBFIFOPlugin_l164_3) begin
+      if(when_ROBFIFOPlugin_l165_3) begin
         ROBFIFOPlugin_fifoIO_pop_0_payload_state_complete <= ROBFIFOPlugin_defaultState_complete;
         ROBFIFOPlugin_fifoIO_pop_0_payload_state_except_valid <= ROBFIFOPlugin_defaultState_except_valid;
         ROBFIFOPlugin_fifoIO_pop_0_payload_state_except_payload_code <= ROBFIFOPlugin_defaultState_except_payload_code;
@@ -100291,7 +100291,7 @@ module MyCPUCore (
         ROBFIFOPlugin_fifoIO_pop_0_payload_state_csrRdata <= IntExecutePlugin_robWrite_payload_csrRdata_1;
         ROBFIFOPlugin_fifoIO_pop_0_payload_state_myPC <= IntExecutePlugin_robWrite_payload_myPC_1;
       end
-      if(when_ROBFIFOPlugin_l164_4) begin
+      if(when_ROBFIFOPlugin_l165_4) begin
         ROBFIFOPlugin_fifoIO_pop_1_payload_state_complete <= ROBFIFOPlugin_defaultState_complete;
         ROBFIFOPlugin_fifoIO_pop_1_payload_state_except_valid <= ROBFIFOPlugin_defaultState_except_valid;
         ROBFIFOPlugin_fifoIO_pop_1_payload_state_except_payload_code <= ROBFIFOPlugin_defaultState_except_payload_code;
@@ -100327,7 +100327,7 @@ module MyCPUCore (
         ROBFIFOPlugin_fifoIO_pop_1_payload_state_csrRdata <= IntExecutePlugin_robWrite_payload_csrRdata_1;
         ROBFIFOPlugin_fifoIO_pop_1_payload_state_myPC <= IntExecutePlugin_robWrite_payload_myPC_1;
       end
-      if(when_ROBFIFOPlugin_l164_5) begin
+      if(when_ROBFIFOPlugin_l165_5) begin
         ROBFIFOPlugin_fifoIO_pop_2_payload_state_complete <= ROBFIFOPlugin_defaultState_complete;
         ROBFIFOPlugin_fifoIO_pop_2_payload_state_except_valid <= ROBFIFOPlugin_defaultState_except_valid;
         ROBFIFOPlugin_fifoIO_pop_2_payload_state_except_payload_code <= ROBFIFOPlugin_defaultState_except_payload_code;
@@ -103341,7 +103341,7 @@ module MyCPUCore (
       if(_zz_211) begin
         ROBFIFOPlugin_robState_31_intResult <= IntExecutePlugin_robWriteBRU_payload_intResult;
       end
-      if(when_ROBFIFOPlugin_l177) begin
+      if(when_ROBFIFOPlugin_l178) begin
         ROBFIFOPlugin_fifoIO_pop_0_payload_state_complete <= ROBFIFOPlugin_defaultState_complete;
         ROBFIFOPlugin_fifoIO_pop_0_payload_state_except_valid <= ROBFIFOPlugin_defaultState_except_valid;
         ROBFIFOPlugin_fifoIO_pop_0_payload_state_except_payload_code <= ROBFIFOPlugin_defaultState_except_payload_code;
@@ -103374,7 +103374,7 @@ module MyCPUCore (
         ROBFIFOPlugin_fifoIO_pop_0_payload_state_actualTaken <= IntExecutePlugin_robWriteBRU_payload_actualTaken;
         ROBFIFOPlugin_fifoIO_pop_0_payload_state_intResult <= IntExecutePlugin_robWriteBRU_payload_intResult;
       end
-      if(when_ROBFIFOPlugin_l177_1) begin
+      if(when_ROBFIFOPlugin_l178_1) begin
         ROBFIFOPlugin_fifoIO_pop_1_payload_state_complete <= ROBFIFOPlugin_defaultState_complete;
         ROBFIFOPlugin_fifoIO_pop_1_payload_state_except_valid <= ROBFIFOPlugin_defaultState_except_valid;
         ROBFIFOPlugin_fifoIO_pop_1_payload_state_except_payload_code <= ROBFIFOPlugin_defaultState_except_payload_code;
@@ -103407,7 +103407,7 @@ module MyCPUCore (
         ROBFIFOPlugin_fifoIO_pop_1_payload_state_actualTaken <= IntExecutePlugin_robWriteBRU_payload_actualTaken;
         ROBFIFOPlugin_fifoIO_pop_1_payload_state_intResult <= IntExecutePlugin_robWriteBRU_payload_intResult;
       end
-      if(when_ROBFIFOPlugin_l177_2) begin
+      if(when_ROBFIFOPlugin_l178_2) begin
         ROBFIFOPlugin_fifoIO_pop_2_payload_state_complete <= ROBFIFOPlugin_defaultState_complete;
         ROBFIFOPlugin_fifoIO_pop_2_payload_state_except_valid <= ROBFIFOPlugin_defaultState_except_valid;
         ROBFIFOPlugin_fifoIO_pop_2_payload_state_except_payload_code <= ROBFIFOPlugin_defaultState_except_payload_code;
@@ -107282,7 +107282,7 @@ module MyCPUCore (
       if(_zz_244) begin
         ROBFIFOPlugin_robState_31_myPC <= MemExecutePlugin_robWrite_payload_myPC;
       end
-      if(when_ROBFIFOPlugin_l190) begin
+      if(when_ROBFIFOPlugin_l191) begin
         ROBFIFOPlugin_fifoIO_pop_0_payload_state_complete <= ROBFIFOPlugin_defaultState_complete;
         ROBFIFOPlugin_fifoIO_pop_0_payload_state_except_valid <= ROBFIFOPlugin_defaultState_except_valid;
         ROBFIFOPlugin_fifoIO_pop_0_payload_state_except_payload_code <= ROBFIFOPlugin_defaultState_except_payload_code;
@@ -107324,7 +107324,7 @@ module MyCPUCore (
         ROBFIFOPlugin_fifoIO_pop_0_payload_state_storeData <= MemExecutePlugin_robWrite_payload_storeData;
         ROBFIFOPlugin_fifoIO_pop_0_payload_state_myPC <= MemExecutePlugin_robWrite_payload_myPC;
       end
-      if(when_ROBFIFOPlugin_l190_1) begin
+      if(when_ROBFIFOPlugin_l191_1) begin
         ROBFIFOPlugin_fifoIO_pop_1_payload_state_complete <= ROBFIFOPlugin_defaultState_complete;
         ROBFIFOPlugin_fifoIO_pop_1_payload_state_except_valid <= ROBFIFOPlugin_defaultState_except_valid;
         ROBFIFOPlugin_fifoIO_pop_1_payload_state_except_payload_code <= ROBFIFOPlugin_defaultState_except_payload_code;
@@ -107366,7 +107366,7 @@ module MyCPUCore (
         ROBFIFOPlugin_fifoIO_pop_1_payload_state_storeData <= MemExecutePlugin_robWrite_payload_storeData;
         ROBFIFOPlugin_fifoIO_pop_1_payload_state_myPC <= MemExecutePlugin_robWrite_payload_myPC;
       end
-      if(when_ROBFIFOPlugin_l190_2) begin
+      if(when_ROBFIFOPlugin_l191_2) begin
         ROBFIFOPlugin_fifoIO_pop_2_payload_state_complete <= ROBFIFOPlugin_defaultState_complete;
         ROBFIFOPlugin_fifoIO_pop_2_payload_state_except_valid <= ROBFIFOPlugin_defaultState_except_valid;
         ROBFIFOPlugin_fifoIO_pop_2_payload_state_except_payload_code <= ROBFIFOPlugin_defaultState_except_payload_code;
@@ -109714,7 +109714,7 @@ module MyCPUCore (
       if(_zz_277) begin
         ROBFIFOPlugin_robState_31_complete <= 1'b1;
       end
-      if(when_ROBFIFOPlugin_l202) begin
+      if(when_ROBFIFOPlugin_l203) begin
         ROBFIFOPlugin_fifoIO_pop_0_payload_state_complete <= ROBFIFOPlugin_defaultState_complete;
         ROBFIFOPlugin_fifoIO_pop_0_payload_state_except_valid <= ROBFIFOPlugin_defaultState_except_valid;
         ROBFIFOPlugin_fifoIO_pop_0_payload_state_except_payload_code <= ROBFIFOPlugin_defaultState_except_payload_code;
@@ -109740,7 +109740,7 @@ module MyCPUCore (
         ROBFIFOPlugin_fifoIO_pop_0_payload_state_myPC <= ROBFIFOPlugin_defaultState_myPC;
         ROBFIFOPlugin_fifoIO_pop_0_payload_state_complete <= 1'b1;
       end
-      if(when_ROBFIFOPlugin_l202_1) begin
+      if(when_ROBFIFOPlugin_l203_1) begin
         ROBFIFOPlugin_fifoIO_pop_1_payload_state_complete <= ROBFIFOPlugin_defaultState_complete;
         ROBFIFOPlugin_fifoIO_pop_1_payload_state_except_valid <= ROBFIFOPlugin_defaultState_except_valid;
         ROBFIFOPlugin_fifoIO_pop_1_payload_state_except_payload_code <= ROBFIFOPlugin_defaultState_except_payload_code;
@@ -109766,7 +109766,7 @@ module MyCPUCore (
         ROBFIFOPlugin_fifoIO_pop_1_payload_state_myPC <= ROBFIFOPlugin_defaultState_myPC;
         ROBFIFOPlugin_fifoIO_pop_1_payload_state_complete <= 1'b1;
       end
-      if(when_ROBFIFOPlugin_l202_2) begin
+      if(when_ROBFIFOPlugin_l203_2) begin
         ROBFIFOPlugin_fifoIO_pop_2_payload_state_complete <= ROBFIFOPlugin_defaultState_complete;
         ROBFIFOPlugin_fifoIO_pop_2_payload_state_except_valid <= ROBFIFOPlugin_defaultState_except_valid;
         ROBFIFOPlugin_fifoIO_pop_2_payload_state_except_payload_code <= ROBFIFOPlugin_defaultState_except_payload_code;
@@ -114111,8 +114111,10 @@ module unamed_2 (
   wire       [5:0]    ram_io_read_rsp_2_rename_wPrevReg;
   wire                ram_io_read_rsp_2_frontendExc;
   wire       [4:0]    _zz_pushPtr;
+  wire       [4:0]    _zz_pushPtrC;
   wire       [4:0]    _zz_popPtr;
   wire       [4:0]    _zz_io_read_cmd_payload;
+  reg        [4:0]    pushPtrC;
   reg                 isRisingOccupancy;
   wire                isEmpty;
   wire                isFull;
@@ -114125,7 +114127,7 @@ module unamed_2 (
   wire                io_pop_0_fire;
   wire                io_pop_1_fire;
   wire                io_pop_2_fire;
-  wire                when_MultiPortFIFO_l69;
+  wire                when_MultiPortFIFO_l74;
   `ifndef SYNTHESIS
   reg [47:0] io_push_0_payload_uop_lsType_string;
   reg [55:0] io_push_0_payload_uop_tlbOp_string;
@@ -114143,6 +114145,7 @@ module unamed_2 (
 
 
   assign _zz_pushPtr = {3'd0, pushCount};
+  assign _zz_pushPtrC = {3'd0, pushCount};
   assign _zz_popPtr = {3'd0, popCount};
   assign _zz_io_read_cmd_payload = {3'd0, popCount};
   ReorderCacheRAMOutReg ram (
@@ -114517,8 +114520,8 @@ module unamed_2 (
   end
   `endif
 
-  assign isEmpty = ((pushPtr == popPtr) && (! isRisingOccupancy));
-  assign isFull = ((pushPtr == popPtr) && isRisingOccupancy);
+  assign isEmpty = ((pushPtrC == popPtr) && (! isRisingOccupancy));
+  assign isFull = ((pushPtrC == popPtr) && isRisingOccupancy);
   assign maxPush = (popPtr - pushPtr);
   assign io_push_0_fire = (io_push_0_valid && io_push_0_ready);
   assign io_push_1_fire = (io_push_1_valid && io_push_1_ready);
@@ -114534,7 +114537,7 @@ module unamed_2 (
 
   assign io_push_1_ready = (isEmpty || (5'h01 < maxPush));
   assign io_push_2_ready = (isEmpty || (5'h02 < maxPush));
-  assign maxPop = (pushPtr - popPtr);
+  assign maxPop = (pushPtrC - popPtr);
   assign io_pop_0_fire = (io_pop_0_valid && io_pop_0_ready);
   assign io_pop_1_fire = (io_pop_1_valid && io_pop_1_ready);
   assign io_pop_2_fire = (io_pop_2_valid && io_pop_2_ready);
@@ -114639,20 +114642,23 @@ module unamed_2 (
   assign io_pop_2_payload_rename_wPrevReg = ram_io_read_rsp_2_rename_wPrevReg;
   assign io_pop_2_payload_frontendExc = ram_io_read_rsp_2_frontendExc;
   assign ram_io_read_cmd_payload = (popPtr + _zz_io_read_cmd_payload);
-  assign when_MultiPortFIFO_l69 = (pushCount != popCount);
+  assign when_MultiPortFIFO_l74 = (pushCount != popCount);
   always @(posedge aclk or negedge aresetn) begin
     if(!aresetn) begin
       pushPtr <= 5'h0;
+      pushPtrC <= 5'h0;
       popPtr <= 5'h0;
       isRisingOccupancy <= 1'b0;
     end else begin
       pushPtr <= (pushPtr + _zz_pushPtr);
+      pushPtrC <= (pushPtr + _zz_pushPtrC);
       popPtr <= (popPtr + _zz_popPtr);
-      if(when_MultiPortFIFO_l69) begin
+      if(when_MultiPortFIFO_l74) begin
         isRisingOccupancy <= (popCount < pushCount);
       end
       if(flush) begin
         pushPtr <= 5'h0;
+        pushPtrC <= 5'h0;
         popPtr <= 5'h0;
         isRisingOccupancy <= 1'b0;
       end
