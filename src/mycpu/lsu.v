@@ -321,8 +321,8 @@ module lsu(
   // uncached/LL 维持 ls_rdata（不前递）；一级 AND-OR，mux 链已寄存化
   wire [31:0] y_fwd_mask32 = {{8{y_fwd_mask[3]}}, {8{y_fwd_mask[2]}},
                               {8{y_fwd_mask[1]}}, {8{y_fwd_mask[0]}}};
-  wire [31:0] y_ld_data = (y_uc || (y_aop == `AOP_LL)) ? ls_rdata
-                        : ((ls_rdata & ~y_fwd_mask32) | (y_fwd & y_fwd_mask32));
+  // I13'（v5.1）：UC/LL 同样吃前递合并（驻留门拆除后的存储序保障）
+  wire [31:0] y_ld_data = ((ls_rdata & ~y_fwd_mask32) | (y_fwd & y_fwd_mask32));
 
   // ---------------- x/y 流水 ----------------
   always @(posedge clk or negedge rst_n) begin
@@ -413,11 +413,14 @@ module lsu(
                 y_valid    <= 1'b0;
               end
             end else begin
-              // AR 未发：uc/LL 驻留门（无更老 store，I13）或 drain 互斥等窗（I6'）
+              // AR 未发：drain 互斥等窗（I6'）。
+              // I13'（v5.1）：UC/LL 立即发 AR、不驻留——原"等更老未完成 store"
+              // 门存在死锁环（UC load 驻 y ← 更老 store 等 commit ← ROB head 的
+              // load 卡 x ← y 被占；func n42/n44 实锤）。存储序改由前递合并
+              // 对 UC/LL 同样生效保证（sb 内更老 store 字节并入读数据）。
               if (y_kill) begin
                 y_valid <= 1'b0;         // 无 AR 可撤，直接清
-              end else if (ar_gate &&
-                           (!(y_uc || (y_aop == `AOP_LL)) || !uc_older_any))
+              end else if (ar_gate)
                 ls_arvalid <= 1'b1;
             end
           end
@@ -667,5 +670,3 @@ module lsu(
   /* verilator lint_on UNUSEDSIGNAL */
 
 endmodule
-
-// v5 CI trigger note: t26-fix branch verification build.
