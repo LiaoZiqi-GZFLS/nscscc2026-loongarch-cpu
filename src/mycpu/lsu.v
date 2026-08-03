@@ -670,3 +670,4 @@ module lsu(
   /* verilator lint_on UNUSEDSIGNAL */
 
 endmodule
+// t26-selfclk CI trigger: self-core 100MHz probe.
