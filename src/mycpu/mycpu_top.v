@@ -1,6 +1,7 @@
 // Generator : SpinalHDL v1.8.1    git head : 2a7592004363e5b40ec43e1f122ed8641cd8965b
 // Component : mycpu_top
-// Date      : 04/08/2026, 02:16:30
+// Git hash  : 0fbfaa1b0ced9bd44ea821b41ab8baf7be141b98
+// Date      : 06/08/2026, 06:10:46
 
 `timescale 1ns/1ps
 
@@ -7558,6 +7559,7 @@ module MyCPUCore (
   localparam ALUOpType_PCADDI = 5'd14;
   localparam ALUOpType_PCADDU12I = 5'd15;
   localparam ALUOpType_CPUCFG = 5'd16;
+  localparam ALUOpType_IOCSR = 5'd17;
   localparam CompareOpType_EQ = 4'd0;
   localparam CompareOpType_NE = 4'd1;
   localparam CompareOpType_EQZ = 4'd2;
@@ -8837,8 +8839,8 @@ module MyCPUCore (
   wire                _zz_when_ExceptionHandlerPlugin_l222_4;
   wire       [0:0]    _zz_when_ExceptionHandlerPlugin_l222_5;
   wire       [2:0]    _zz_when_ExceptionHandlerPlugin_l222_6;
-  wire       [0:0]    _zz_when_MMUPlugin_l404_15;
-  wire       [5:0]    _zz_when_MMUPlugin_l404_16;
+  wire       [0:0]    _zz_when_MMUPlugin_l412_15;
+  wire       [5:0]    _zz_when_MMUPlugin_l412_16;
   reg        [3:0]    _zz_MMUPlugin_TLBIDX_INDEX_4;
   wire       [3:0]    _zz_MMUPlugin_TLBIDX_INDEX_5;
   reg                 _zz__zz_MMUPlugin_TLBELO0_G;
@@ -8907,21 +8909,36 @@ module MyCPUCore (
   wire       [29:0]   _zz__zz_ReturnAddressStackPlugin_ras_0_1;
   reg        [29:0]   _zz_ReturnAddressStackPlugin_rasPredict_payload;
   wire       [2:0]    _zz__zz_1452;
-  wire                _zz_when_DecoderArrayPlugin_l309;
-  wire                _zz_when_DecoderArrayPlugin_l309_1;
-  wire       [31:0]   _zz_when_DecoderArrayPlugin_l309_2;
-  wire       [31:0]   _zz_when_DecoderArrayPlugin_l309_3;
-  wire       [31:0]   _zz_when_DecoderArrayPlugin_l309_4;
-  wire                _zz_when_DecoderArrayPlugin_l309_1_1;
-  wire                _zz_when_DecoderArrayPlugin_l309_1_2;
-  wire       [31:0]   _zz_when_DecoderArrayPlugin_l309_1_3;
-  wire       [31:0]   _zz_when_DecoderArrayPlugin_l309_1_4;
-  wire       [31:0]   _zz_when_DecoderArrayPlugin_l309_1_5;
-  wire                _zz_when_DecoderArrayPlugin_l309_2_1;
-  wire                _zz_when_DecoderArrayPlugin_l309_2_2;
-  wire       [31:0]   _zz_when_DecoderArrayPlugin_l309_2_3;
-  wire       [31:0]   _zz_when_DecoderArrayPlugin_l309_2_4;
-  wire       [31:0]   _zz_when_DecoderArrayPlugin_l309_2_5;
+  wire                _zz_when_DecoderArrayPlugin_l313;
+  wire                _zz_when_DecoderArrayPlugin_l313_1;
+  wire                _zz_when_DecoderArrayPlugin_l313_2;
+  wire       [31:0]   _zz_when_DecoderArrayPlugin_l313_3;
+  wire       [31:0]   _zz_when_DecoderArrayPlugin_l313_4;
+  wire       [31:0]   _zz_when_DecoderArrayPlugin_l313_5;
+  wire                _zz_when_DecoderArrayPlugin_l313_6;
+  wire       [31:0]   _zz_when_DecoderArrayPlugin_l313_7;
+  wire       [31:0]   _zz_when_DecoderArrayPlugin_l313_8;
+  wire       [31:0]   _zz_when_DecoderArrayPlugin_l313_9;
+  wire                _zz_when_DecoderArrayPlugin_l313_1_1;
+  wire                _zz_when_DecoderArrayPlugin_l313_1_2;
+  wire                _zz_when_DecoderArrayPlugin_l313_1_3;
+  wire       [31:0]   _zz_when_DecoderArrayPlugin_l313_1_4;
+  wire       [31:0]   _zz_when_DecoderArrayPlugin_l313_1_5;
+  wire       [31:0]   _zz_when_DecoderArrayPlugin_l313_1_6;
+  wire                _zz_when_DecoderArrayPlugin_l313_1_7;
+  wire       [31:0]   _zz_when_DecoderArrayPlugin_l313_1_8;
+  wire       [31:0]   _zz_when_DecoderArrayPlugin_l313_1_9;
+  wire       [31:0]   _zz_when_DecoderArrayPlugin_l313_1_10;
+  wire                _zz_when_DecoderArrayPlugin_l313_2_1;
+  wire                _zz_when_DecoderArrayPlugin_l313_2_2;
+  wire                _zz_when_DecoderArrayPlugin_l313_2_3;
+  wire       [31:0]   _zz_when_DecoderArrayPlugin_l313_2_4;
+  wire       [31:0]   _zz_when_DecoderArrayPlugin_l313_2_5;
+  wire       [31:0]   _zz_when_DecoderArrayPlugin_l313_2_6;
+  wire                _zz_when_DecoderArrayPlugin_l313_2_7;
+  wire       [31:0]   _zz_when_DecoderArrayPlugin_l313_2_8;
+  wire       [31:0]   _zz_when_DecoderArrayPlugin_l313_2_9;
+  wire       [31:0]   _zz_when_DecoderArrayPlugin_l313_2_10;
   wire       [5:0]    _zz_RENAME_RenamePlugin_debug_sRAT;
   wire       [119:0]  _zz_RENAME_RenamePlugin_debug_sRAT_1;
   wire       [5:0]    _zz_RENAME_RenamePlugin_debug_sRAT_2;
@@ -9775,14 +9792,14 @@ module MyCPUCore (
   wire       [31:0]   IF1_ICACHE_RSPS_1_3;
   wire                IF1_ICACHE_VALIDS_0;
   wire                IF1_ICACHE_VALIDS_1;
-  reg        [8:0]    _zz_MEM_ADDR_to_MEM_MEM1_EXCEPTION_ESUBCODE;
-  reg        [5:0]    _zz_MEM_ADDR_to_MEM_MEM1_EXCEPTION_ECODE;
-  wire                MEM_ADDR_EXCEPTION_OCCURRED;
-  reg                 _zz_MEM_ADDR_to_MEM_MEM1_EXCEPTION_OCCURRED;
   reg        [8:0]    _zz_MEM_MEM1_to_MEM_MEM2_EXCEPTION_ESUBCODE;
   reg        [5:0]    _zz_MEM_MEM1_to_MEM_MEM2_EXCEPTION_ECODE;
   wire                MEM_MEM1_EXCEPTION_OCCURRED;
   reg                 _zz_MEM_MEM1_to_MEM_MEM2_EXCEPTION_OCCURRED;
+  reg        [8:0]    _zz_MEM_ADDR_to_MEM_MEM1_EXCEPTION_ESUBCODE;
+  reg        [5:0]    _zz_MEM_ADDR_to_MEM_MEM1_EXCEPTION_ECODE;
+  wire                MEM_ADDR_EXCEPTION_OCCURRED;
+  reg                 _zz_MEM_ADDR_to_MEM_MEM1_EXCEPTION_OCCURRED;
   reg                 _zz_MEM_WB_to_MEM_WB2_STD_SLOT_valid;
   wire       [2:0]    _zz_MEM_WB_to_MEM_WB2_STD_SLOT_payload_lsType;
   wire       [2:0]    _zz_MEM_WB_to_MEM_WB2_STD_SLOT_payload_lsType_1;
@@ -16772,22 +16789,22 @@ module MyCPUCore (
   wire                when_InterruptHandlerPlugin_l87;
   wire                when_InterruptHandlerPlugin_l93;
   wire                when_InterruptHandlerPlugin_l97;
-  wire                _zz_when_MMUPlugin_l404;
-  wire                _zz_when_MMUPlugin_l404_1;
-  wire                _zz_when_MMUPlugin_l404_2;
-  wire                _zz_when_MMUPlugin_l404_3;
-  wire                _zz_when_MMUPlugin_l404_4;
-  wire                _zz_when_MMUPlugin_l404_5;
-  wire                _zz_when_MMUPlugin_l404_6;
-  wire                _zz_when_MMUPlugin_l404_7;
-  wire                _zz_when_MMUPlugin_l404_8;
-  wire                _zz_when_MMUPlugin_l404_9;
-  wire                _zz_when_MMUPlugin_l404_10;
-  wire                _zz_when_MMUPlugin_l404_11;
-  wire                _zz_when_MMUPlugin_l404_12;
-  wire                _zz_when_MMUPlugin_l404_13;
-  wire                _zz_when_MMUPlugin_l404_14;
-  wire                when_MMUPlugin_l404;
+  wire                _zz_when_MMUPlugin_l412;
+  wire                _zz_when_MMUPlugin_l412_1;
+  wire                _zz_when_MMUPlugin_l412_2;
+  wire                _zz_when_MMUPlugin_l412_3;
+  wire                _zz_when_MMUPlugin_l412_4;
+  wire                _zz_when_MMUPlugin_l412_5;
+  wire                _zz_when_MMUPlugin_l412_6;
+  wire                _zz_when_MMUPlugin_l412_7;
+  wire                _zz_when_MMUPlugin_l412_8;
+  wire                _zz_when_MMUPlugin_l412_9;
+  wire                _zz_when_MMUPlugin_l412_10;
+  wire                _zz_when_MMUPlugin_l412_11;
+  wire                _zz_when_MMUPlugin_l412_12;
+  wire                _zz_when_MMUPlugin_l412_13;
+  wire                _zz_when_MMUPlugin_l412_14;
+  wire                when_MMUPlugin_l412;
   wire                _zz_MMUPlugin_TLBIDX_INDEX;
   wire                _zz_MMUPlugin_TLBIDX_INDEX_1;
   wire                _zz_MMUPlugin_TLBIDX_INDEX_2;
@@ -16811,7 +16828,7 @@ module MyCPUCore (
   wire                _zz_292;
   wire                _zz_293;
   wire                _zz_294;
-  wire                when_MMUPlugin_l455;
+  wire                when_MMUPlugin_l463;
   wire                _zz_MMUPlugin_TLBTable_0_E;
   wire                _zz_MMUPlugin_TLBTable_0_G;
   wire       [5:0]    _zz_MMUPlugin_TLBTable_0_PS;
@@ -16832,7 +16849,7 @@ module MyCPUCore (
   wire                _zz_309;
   wire                _zz_310;
   wire                _zz_311;
-  wire                when_MMUPlugin_l479;
+  wire                when_MMUPlugin_l487;
   wire                _zz_MMUPlugin_TLBTable_0_E_1;
   wire       [5:0]    _zz_MMUPlugin_TLBTable_0_PS_1;
   wire                _zz_MMUPlugin_TLBTable_0_G_1;
@@ -17077,7 +17094,7 @@ module MyCPUCore (
   wire                IF1_InstAddrTranslatePlugin_directTranslateResult_resultBundle_payload_exception_raisePME;
   wire                IF1_InstAddrTranslatePlugin_directTranslateResult_resultBundle_payload_exception_raisePPI;
   wire                IF1_InstAddrTranslatePlugin_directTranslateResult_resultBundle_payload_exception_raiseTLBR;
-  wire       [1:0]    switch_MMUPlugin_l290;
+  wire       [1:0]    switch_MMUPlugin_l298;
   wire                IF1_InstAddrTranslatePlugin_tlbTranslateResult_resultValid;
   wire       [31:0]   IF1_InstAddrTranslatePlugin_tlbTranslateResult_resultPhysAddr;
   wire                IF1_InstAddrTranslatePlugin_tlbTranslateResult_resultCached;
@@ -17161,10 +17178,10 @@ module MyCPUCore (
   wire       [1:0]    IF1_InstAddrTranslatePlugin_tlbTranslateResult_TLBHitEntry_mat;
   wire       [1:0]    IF1_InstAddrTranslatePlugin_tlbTranslateResult_TLBHitEntry_plv;
   wire       [19:0]   IF1_InstAddrTranslatePlugin_tlbTranslateResult_TLBHitEntry_ppn;
-  wire                when_MMUPlugin_l285;
-  wire                when_MMUPlugin_l289;
-  wire                when_MMUPlugin_l303;
-  wire                when_MMUPlugin_l307;
+  wire                when_MMUPlugin_l293;
+  wire                when_MMUPlugin_l297;
+  wire                when_MMUPlugin_l311;
+  wire                when_MMUPlugin_l315;
   wire                IF1_InstAddrTranslatePlugin_tlbTranslateResult_resultBundle_valid;
   wire       [31:0]   IF1_InstAddrTranslatePlugin_tlbTranslateResult_resultBundle_payload_physAddr;
   wire                IF1_InstAddrTranslatePlugin_tlbTranslateResult_resultBundle_payload_cached;
@@ -17187,10 +17204,10 @@ module MyCPUCore (
   reg                 IF2_InstAddrTranslatePlugin_translateResult_resultExceptionBundle_raisePME;
   reg                 IF2_InstAddrTranslatePlugin_translateResult_resultExceptionBundle_raisePPI;
   reg                 IF2_InstAddrTranslatePlugin_translateResult_resultExceptionBundle_raiseTLBR;
-  wire                when_MMUPlugin_l339;
   wire                when_MMUPlugin_l347;
   wire                when_MMUPlugin_l355;
-  wire                when_MMUPlugin_l359;
+  wire                when_MMUPlugin_l363;
+  wire                when_MMUPlugin_l367;
   wire                IF2_InstAddrTranslatePlugin_translateResult_resultBundle_valid;
   wire       [31:0]   IF2_InstAddrTranslatePlugin_translateResult_resultBundle_payload_physAddr;
   wire                IF2_InstAddrTranslatePlugin_translateResult_resultBundle_payload_cached;
@@ -18388,13 +18405,19 @@ module MyCPUCore (
   wire                when_DecoderArrayPlugin_l186_62;
   wire                when_DecoderArrayPlugin_l186_63;
   wire                when_DecoderArrayPlugin_l186_64;
+  wire                when_DecoderArrayPlugin_l186_65;
+  wire                when_DecoderArrayPlugin_l186_66;
+  wire                when_DecoderArrayPlugin_l186_67;
+  wire                when_DecoderArrayPlugin_l186_68;
+  wire                when_DecoderArrayPlugin_l186_69;
+  wire                when_DecoderArrayPlugin_l186_70;
   wire                when_DecoderArrayPlugin_l220;
   wire                when_DecoderArrayPlugin_l227;
   wire                when_DecoderArrayPlugin_l228;
   wire                when_DecoderArrayPlugin_l252;
   wire                when_DecoderArrayPlugin_l271;
   wire       [4:0]    switch_DecoderArrayPlugin_l274;
-  wire                when_DecoderArrayPlugin_l309;
+  wire                when_DecoderArrayPlugin_l313;
   reg                 ID_DecoderArray_decoders_1_illegalEncoding;
   wire       [31:0]   ID_DecoderArray_decoders_1_uop_pc;
   wire       [31:0]   ID_DecoderArray_decoders_1_uop_inst;
@@ -18444,12 +18467,6 @@ module MyCPUCore (
   reg                 when_DecoderArrayPlugin_l254_1;
   reg                 when_DecoderArrayPlugin_l259_1;
   reg                 _zz_ID_DecoderArray_decoders_1_uop_flushState;
-  wire                when_DecoderArrayPlugin_l186_65;
-  wire                when_DecoderArrayPlugin_l186_66;
-  wire                when_DecoderArrayPlugin_l186_67;
-  wire                when_DecoderArrayPlugin_l186_68;
-  wire                when_DecoderArrayPlugin_l186_69;
-  wire                when_DecoderArrayPlugin_l186_70;
   wire                when_DecoderArrayPlugin_l186_71;
   wire                when_DecoderArrayPlugin_l186_72;
   wire                when_DecoderArrayPlugin_l186_73;
@@ -18509,13 +18526,25 @@ module MyCPUCore (
   wire                when_DecoderArrayPlugin_l186_127;
   wire                when_DecoderArrayPlugin_l186_128;
   wire                when_DecoderArrayPlugin_l186_129;
+  wire                when_DecoderArrayPlugin_l186_130;
+  wire                when_DecoderArrayPlugin_l186_131;
+  wire                when_DecoderArrayPlugin_l186_132;
+  wire                when_DecoderArrayPlugin_l186_133;
+  wire                when_DecoderArrayPlugin_l186_134;
+  wire                when_DecoderArrayPlugin_l186_135;
+  wire                when_DecoderArrayPlugin_l186_136;
+  wire                when_DecoderArrayPlugin_l186_137;
+  wire                when_DecoderArrayPlugin_l186_138;
+  wire                when_DecoderArrayPlugin_l186_139;
+  wire                when_DecoderArrayPlugin_l186_140;
+  wire                when_DecoderArrayPlugin_l186_141;
   wire                when_DecoderArrayPlugin_l220_1;
   wire                when_DecoderArrayPlugin_l227_1;
   wire                when_DecoderArrayPlugin_l228_1;
   wire                when_DecoderArrayPlugin_l252_1;
   wire                when_DecoderArrayPlugin_l271_1;
   wire       [4:0]    switch_DecoderArrayPlugin_l274_1;
-  wire                when_DecoderArrayPlugin_l309_1;
+  wire                when_DecoderArrayPlugin_l313_1;
   reg                 ID_DecoderArray_decoders_2_illegalEncoding;
   wire       [31:0]   ID_DecoderArray_decoders_2_uop_pc;
   wire       [31:0]   ID_DecoderArray_decoders_2_uop_inst;
@@ -18565,18 +18594,6 @@ module MyCPUCore (
   reg                 when_DecoderArrayPlugin_l254_2;
   reg                 when_DecoderArrayPlugin_l259_2;
   reg                 _zz_ID_DecoderArray_decoders_2_uop_flushState;
-  wire                when_DecoderArrayPlugin_l186_130;
-  wire                when_DecoderArrayPlugin_l186_131;
-  wire                when_DecoderArrayPlugin_l186_132;
-  wire                when_DecoderArrayPlugin_l186_133;
-  wire                when_DecoderArrayPlugin_l186_134;
-  wire                when_DecoderArrayPlugin_l186_135;
-  wire                when_DecoderArrayPlugin_l186_136;
-  wire                when_DecoderArrayPlugin_l186_137;
-  wire                when_DecoderArrayPlugin_l186_138;
-  wire                when_DecoderArrayPlugin_l186_139;
-  wire                when_DecoderArrayPlugin_l186_140;
-  wire                when_DecoderArrayPlugin_l186_141;
   wire                when_DecoderArrayPlugin_l186_142;
   wire                when_DecoderArrayPlugin_l186_143;
   wire                when_DecoderArrayPlugin_l186_144;
@@ -18630,13 +18647,31 @@ module MyCPUCore (
   wire                when_DecoderArrayPlugin_l186_192;
   wire                when_DecoderArrayPlugin_l186_193;
   wire                when_DecoderArrayPlugin_l186_194;
+  wire                when_DecoderArrayPlugin_l186_195;
+  wire                when_DecoderArrayPlugin_l186_196;
+  wire                when_DecoderArrayPlugin_l186_197;
+  wire                when_DecoderArrayPlugin_l186_198;
+  wire                when_DecoderArrayPlugin_l186_199;
+  wire                when_DecoderArrayPlugin_l186_200;
+  wire                when_DecoderArrayPlugin_l186_201;
+  wire                when_DecoderArrayPlugin_l186_202;
+  wire                when_DecoderArrayPlugin_l186_203;
+  wire                when_DecoderArrayPlugin_l186_204;
+  wire                when_DecoderArrayPlugin_l186_205;
+  wire                when_DecoderArrayPlugin_l186_206;
+  wire                when_DecoderArrayPlugin_l186_207;
+  wire                when_DecoderArrayPlugin_l186_208;
+  wire                when_DecoderArrayPlugin_l186_209;
+  wire                when_DecoderArrayPlugin_l186_210;
+  wire                when_DecoderArrayPlugin_l186_211;
+  wire                when_DecoderArrayPlugin_l186_212;
   wire                when_DecoderArrayPlugin_l220_2;
   wire                when_DecoderArrayPlugin_l227_2;
   wire                when_DecoderArrayPlugin_l228_2;
   wire                when_DecoderArrayPlugin_l252_2;
   wire                when_DecoderArrayPlugin_l271_2;
   wire       [4:0]    switch_DecoderArrayPlugin_l274_2;
-  wire                when_DecoderArrayPlugin_l309_2;
+  wire                when_DecoderArrayPlugin_l313_2;
   wire                RENAME_RenamePlugin_regReads_0_0_req_valid;
   wire       [4:0]    RENAME_RenamePlugin_regReads_0_0_req_payload;
   reg        [5:0]    RENAME_RenamePlugin_regReads_0_0_rsp;
@@ -19063,7 +19098,7 @@ module MyCPUCore (
   wire                MEM_ADDR_AddressGenerationPlugin_directTranslateResult_resultBundle_payload_exception_raisePME;
   wire                MEM_ADDR_AddressGenerationPlugin_directTranslateResult_resultBundle_payload_exception_raisePPI;
   wire                MEM_ADDR_AddressGenerationPlugin_directTranslateResult_resultBundle_payload_exception_raiseTLBR;
-  wire       [1:0]    switch_MMUPlugin_l290_1;
+  wire       [1:0]    switch_MMUPlugin_l298_1;
   wire                MEM_ADDR_AddressGenerationPlugin_tlbTranslateResult_resultValid;
   wire       [31:0]   MEM_ADDR_AddressGenerationPlugin_tlbTranslateResult_resultPhysAddr;
   wire                MEM_ADDR_AddressGenerationPlugin_tlbTranslateResult_resultCached;
@@ -19147,10 +19182,10 @@ module MyCPUCore (
   wire       [1:0]    MEM_ADDR_AddressGenerationPlugin_tlbTranslateResult_TLBHitEntry_mat;
   wire       [1:0]    MEM_ADDR_AddressGenerationPlugin_tlbTranslateResult_TLBHitEntry_plv;
   wire       [19:0]   MEM_ADDR_AddressGenerationPlugin_tlbTranslateResult_TLBHitEntry_ppn;
-  wire                when_MMUPlugin_l285_1;
-  wire                when_MMUPlugin_l289_1;
-  wire                when_MMUPlugin_l303_1;
-  wire                when_MMUPlugin_l307_1;
+  wire                when_MMUPlugin_l293_1;
+  wire                when_MMUPlugin_l297_1;
+  wire                when_MMUPlugin_l311_1;
+  wire                when_MMUPlugin_l315_1;
   wire                MEM_ADDR_AddressGenerationPlugin_tlbTranslateResult_resultBundle_valid;
   wire       [31:0]   MEM_ADDR_AddressGenerationPlugin_tlbTranslateResult_resultBundle_payload_physAddr;
   wire                MEM_ADDR_AddressGenerationPlugin_tlbTranslateResult_resultBundle_payload_cached;
@@ -19165,7 +19200,7 @@ module MyCPUCore (
   wire       [1:0]    MEM_ADDR_AddressGenerationPlugin_savedCSR_CRMD_DATF;
   wire       [1:0]    MEM_ADDR_AddressGenerationPlugin_savedCSR_CRMD_DATM;
   wire                MEM_MEM1_AddressGenerationPlugin_excAsLoad;
-  wire       [1:0]    _zz_when_MMUPlugin_l359;
+  wire       [1:0]    _zz_when_MMUPlugin_l367;
   reg                 MEM_MEM1_AddressGenerationPlugin_translateResult_resultValid;
   reg        [31:0]   MEM_MEM1_AddressGenerationPlugin_translateResult_resultPhysAddr;
   reg                 MEM_MEM1_AddressGenerationPlugin_translateResult_resultCached;
@@ -19175,10 +19210,10 @@ module MyCPUCore (
   reg                 MEM_MEM1_AddressGenerationPlugin_translateResult_resultExceptionBundle_raisePME;
   reg                 MEM_MEM1_AddressGenerationPlugin_translateResult_resultExceptionBundle_raisePPI;
   reg                 MEM_MEM1_AddressGenerationPlugin_translateResult_resultExceptionBundle_raiseTLBR;
-  wire                when_MMUPlugin_l339_1;
   wire                when_MMUPlugin_l347_1;
   wire                when_MMUPlugin_l355_1;
-  wire                when_MMUPlugin_l359_1;
+  wire                when_MMUPlugin_l363_1;
+  wire                when_MMUPlugin_l367_1;
   wire                MEM_MEM1_AddressGenerationPlugin_translateResult_resultBundle_valid;
   wire       [31:0]   MEM_MEM1_AddressGenerationPlugin_translateResult_resultBundle_payload_physAddr;
   wire                MEM_MEM1_AddressGenerationPlugin_translateResult_resultBundle_payload_cached;
@@ -21527,7 +21562,7 @@ module MyCPUCore (
   reg [47:0] _zz_MemIssueQueuePlugin_queueIO_pushPorts_0_payload_uop_lsType_2_string;
   reg [119:0] _zz_MemIssueQueuePlugin_queueIO_pushPorts_0_payload_uop_cacheOp_2_string;
   reg [87:0] _zz_MemIssueQueuePlugin_queueIO_pushPorts_0_payload_uop_cacheSel_2_string;
-  reg [39:0] switch_MMUPlugin_l290_string;
+  reg [39:0] switch_MMUPlugin_l298_string;
   reg [47:0] ID_DecoderArray_decoders_0_uop_fuType_string;
   reg [31:0] ID_DecoderArray_decoders_0_uop_immExtendType_string;
   reg [71:0] ID_DecoderArray_decoders_0_uop_aluOp_string;
@@ -21561,8 +21596,8 @@ module MyCPUCore (
   reg [71:0] _zz_INT0_ISS_IntExecutePlugin_issSlot_uop_aluOp_string;
   reg [23:0] _zz_INT0_ISS_IntExecutePlugin_issSlot_uop_cmpOp_string;
   reg [55:0] _zz_INT0_ISS_IntExecutePlugin_issSlot_uop_tlbOp_string;
-  reg [39:0] switch_MMUPlugin_l290_1_string;
-  reg [39:0] _zz_when_MMUPlugin_l359_string;
+  reg [39:0] switch_MMUPlugin_l298_1_string;
+  reg [39:0] _zz_when_MMUPlugin_l367_string;
   reg [47:0] MEM_MEM2_UncachedAccessPlugin_uncachedStoreFSM_regSTD_lsType_string;
   reg [47:0] MEM_MEM2_LoadPostprocessPlugin_accessType_string;
   reg [47:0] ID_to_RENAME_DECODE_PACKET_0_payload_fuType_string;
@@ -22395,25 +22430,40 @@ module MyCPUCore (
   assign _zz_when_ExceptionHandlerPlugin_l222_4 = ((CommitPlugin_except_payload_code == 6'h01) && (CommitPlugin_except_payload_subcode == 9'h0));
   assign _zz_when_ExceptionHandlerPlugin_l222_5 = ((CommitPlugin_except_payload_code == 6'h09) && (CommitPlugin_except_payload_subcode == 9'h0));
   assign _zz_when_ExceptionHandlerPlugin_l222_6 = {((CommitPlugin_except_payload_code == 6'h08) && (CommitPlugin_except_payload_subcode == 9'h001)),{((CommitPlugin_except_payload_code == 6'h08) && (CommitPlugin_except_payload_subcode == 9'h0)),((CommitPlugin_except_payload_code == 6'h3f) && (CommitPlugin_except_payload_subcode == 9'h0))}};
-  assign _zz_when_MMUPlugin_l404_15 = _zz_when_MMUPlugin_l404_5;
-  assign _zz_when_MMUPlugin_l404_16 = {_zz_when_MMUPlugin_l404_4,{_zz_when_MMUPlugin_l404_3,{_zz_when_MMUPlugin_l404_2,{_zz_when_MMUPlugin_l404_1,{_zz_when_MMUPlugin_l404,((MMUPlugin_TLBTable_0_E && ((MMUPlugin_TLBTable_0_ASID == MMUPlugin_ASID_ASID) || MMUPlugin_TLBTable_0_G)) && ((MMUPlugin_TLBTable_0_PS == 6'h0c) ? (MMUPlugin_TLBTable_0_VPPN == MMUPlugin_TLBEHI_VPPN) : (MMUPlugin_TLBTable_0_VPPN[18 : 9] == MMUPlugin_TLBEHI_VPPN[18 : 9])))}}}}};
+  assign _zz_when_MMUPlugin_l412_15 = _zz_when_MMUPlugin_l412_5;
+  assign _zz_when_MMUPlugin_l412_16 = {_zz_when_MMUPlugin_l412_4,{_zz_when_MMUPlugin_l412_3,{_zz_when_MMUPlugin_l412_2,{_zz_when_MMUPlugin_l412_1,{_zz_when_MMUPlugin_l412,((MMUPlugin_TLBTable_0_E && ((MMUPlugin_TLBTable_0_ASID == MMUPlugin_ASID_ASID) || MMUPlugin_TLBTable_0_G)) && ((MMUPlugin_TLBTable_0_PS == 6'h0c) ? (MMUPlugin_TLBTable_0_VPPN == MMUPlugin_TLBEHI_VPPN) : (MMUPlugin_TLBTable_0_VPPN[18 : 9] == MMUPlugin_TLBEHI_VPPN[18 : 9])))}}}}};
   assign _zz_IF1_InstAddrTranslatePlugin_tlbTranslateResult_TLBHit = IF1_InstAddrTranslatePlugin_tlbTranslateResult_EntryHits_6;
   assign _zz_IF1_InstAddrTranslatePlugin_tlbTranslateResult_TLBHit_1 = {IF1_InstAddrTranslatePlugin_tlbTranslateResult_EntryHits_5,{IF1_InstAddrTranslatePlugin_tlbTranslateResult_EntryHits_4,{IF1_InstAddrTranslatePlugin_tlbTranslateResult_EntryHits_3,{IF1_InstAddrTranslatePlugin_tlbTranslateResult_EntryHits_2,{IF1_InstAddrTranslatePlugin_tlbTranslateResult_EntryHits_1,IF1_InstAddrTranslatePlugin_tlbTranslateResult_EntryHits_0}}}}};
-  assign _zz_when_DecoderArrayPlugin_l309 = (((FetchBufferPlugin_bufferFIFO_io_pop_0_payload_inst & 32'hff000000) == 32'h04000000) || ((FetchBufferPlugin_bufferFIFO_io_pop_0_payload_inst & 32'hffc00000) == 32'h06000000));
-  assign _zz_when_DecoderArrayPlugin_l309_1 = ((FetchBufferPlugin_bufferFIFO_io_pop_0_payload_inst & 32'hffffffff) == 32'h06483800);
-  assign _zz_when_DecoderArrayPlugin_l309_2 = (FetchBufferPlugin_bufferFIFO_io_pop_0_payload_inst & 32'hffff8000);
-  assign _zz_when_DecoderArrayPlugin_l309_3 = 32'h06488000;
-  assign _zz_when_DecoderArrayPlugin_l309_4 = 32'hffffffff;
-  assign _zz_when_DecoderArrayPlugin_l309_1_1 = (((FetchBufferPlugin_bufferFIFO_io_pop_1_payload_inst & 32'hff000000) == 32'h04000000) || ((FetchBufferPlugin_bufferFIFO_io_pop_1_payload_inst & 32'hffc00000) == 32'h06000000));
-  assign _zz_when_DecoderArrayPlugin_l309_1_2 = ((FetchBufferPlugin_bufferFIFO_io_pop_1_payload_inst & 32'hffffffff) == 32'h06483800);
-  assign _zz_when_DecoderArrayPlugin_l309_1_3 = (FetchBufferPlugin_bufferFIFO_io_pop_1_payload_inst & 32'hffff8000);
-  assign _zz_when_DecoderArrayPlugin_l309_1_4 = 32'h06488000;
-  assign _zz_when_DecoderArrayPlugin_l309_1_5 = 32'hffffffff;
-  assign _zz_when_DecoderArrayPlugin_l309_2_1 = (((FetchBufferPlugin_bufferFIFO_io_pop_2_payload_inst & 32'hff000000) == 32'h04000000) || ((FetchBufferPlugin_bufferFIFO_io_pop_2_payload_inst & 32'hffc00000) == 32'h06000000));
-  assign _zz_when_DecoderArrayPlugin_l309_2_2 = ((FetchBufferPlugin_bufferFIFO_io_pop_2_payload_inst & 32'hffffffff) == 32'h06483800);
-  assign _zz_when_DecoderArrayPlugin_l309_2_3 = (FetchBufferPlugin_bufferFIFO_io_pop_2_payload_inst & 32'hffff8000);
-  assign _zz_when_DecoderArrayPlugin_l309_2_4 = 32'h06488000;
-  assign _zz_when_DecoderArrayPlugin_l309_2_5 = 32'hffffffff;
+  assign _zz_when_DecoderArrayPlugin_l313 = (((((((_zz_when_DecoderArrayPlugin_l313_1 || _zz_when_DecoderArrayPlugin_l313_2) || (_zz_when_DecoderArrayPlugin_l313_3 == _zz_when_DecoderArrayPlugin_l313_4)) || ((FetchBufferPlugin_bufferFIFO_io_pop_0_payload_inst & _zz_when_DecoderArrayPlugin_l313_5) == 32'h06488000)) || ((FetchBufferPlugin_bufferFIFO_io_pop_0_payload_inst & 32'hffffffff) == 32'h06482c00)) || ((FetchBufferPlugin_bufferFIFO_io_pop_0_payload_inst & 32'hffffffff) == 32'h06483000)) || ((FetchBufferPlugin_bufferFIFO_io_pop_0_payload_inst & 32'hffffffff) == 32'h06482800)) || ((FetchBufferPlugin_bufferFIFO_io_pop_0_payload_inst & 32'hffffffff) == 32'h06483400));
+  assign _zz_when_DecoderArrayPlugin_l313_6 = ((FetchBufferPlugin_bufferFIFO_io_pop_0_payload_inst & 32'hffff8000) == 32'h06498000);
+  assign _zz_when_DecoderArrayPlugin_l313_7 = (FetchBufferPlugin_bufferFIFO_io_pop_0_payload_inst & 32'hfffffc00);
+  assign _zz_when_DecoderArrayPlugin_l313_8 = 32'h06480000;
+  assign _zz_when_DecoderArrayPlugin_l313_9 = 32'hfffffc00;
+  assign _zz_when_DecoderArrayPlugin_l313_1 = ((FetchBufferPlugin_bufferFIFO_io_pop_0_payload_inst & 32'hff000000) == 32'h04000000);
+  assign _zz_when_DecoderArrayPlugin_l313_2 = ((FetchBufferPlugin_bufferFIFO_io_pop_0_payload_inst & 32'hffc00000) == 32'h06000000);
+  assign _zz_when_DecoderArrayPlugin_l313_3 = (FetchBufferPlugin_bufferFIFO_io_pop_0_payload_inst & 32'hffffffff);
+  assign _zz_when_DecoderArrayPlugin_l313_4 = 32'h06483800;
+  assign _zz_when_DecoderArrayPlugin_l313_5 = 32'hffff8000;
+  assign _zz_when_DecoderArrayPlugin_l313_1_1 = (((((((_zz_when_DecoderArrayPlugin_l313_1_2 || _zz_when_DecoderArrayPlugin_l313_1_3) || (_zz_when_DecoderArrayPlugin_l313_1_4 == _zz_when_DecoderArrayPlugin_l313_1_5)) || ((FetchBufferPlugin_bufferFIFO_io_pop_1_payload_inst & _zz_when_DecoderArrayPlugin_l313_1_6) == 32'h06488000)) || ((FetchBufferPlugin_bufferFIFO_io_pop_1_payload_inst & 32'hffffffff) == 32'h06482c00)) || ((FetchBufferPlugin_bufferFIFO_io_pop_1_payload_inst & 32'hffffffff) == 32'h06483000)) || ((FetchBufferPlugin_bufferFIFO_io_pop_1_payload_inst & 32'hffffffff) == 32'h06482800)) || ((FetchBufferPlugin_bufferFIFO_io_pop_1_payload_inst & 32'hffffffff) == 32'h06483400));
+  assign _zz_when_DecoderArrayPlugin_l313_1_7 = ((FetchBufferPlugin_bufferFIFO_io_pop_1_payload_inst & 32'hffff8000) == 32'h06498000);
+  assign _zz_when_DecoderArrayPlugin_l313_1_8 = (FetchBufferPlugin_bufferFIFO_io_pop_1_payload_inst & 32'hfffffc00);
+  assign _zz_when_DecoderArrayPlugin_l313_1_9 = 32'h06480000;
+  assign _zz_when_DecoderArrayPlugin_l313_1_10 = 32'hfffffc00;
+  assign _zz_when_DecoderArrayPlugin_l313_1_2 = ((FetchBufferPlugin_bufferFIFO_io_pop_1_payload_inst & 32'hff000000) == 32'h04000000);
+  assign _zz_when_DecoderArrayPlugin_l313_1_3 = ((FetchBufferPlugin_bufferFIFO_io_pop_1_payload_inst & 32'hffc00000) == 32'h06000000);
+  assign _zz_when_DecoderArrayPlugin_l313_1_4 = (FetchBufferPlugin_bufferFIFO_io_pop_1_payload_inst & 32'hffffffff);
+  assign _zz_when_DecoderArrayPlugin_l313_1_5 = 32'h06483800;
+  assign _zz_when_DecoderArrayPlugin_l313_1_6 = 32'hffff8000;
+  assign _zz_when_DecoderArrayPlugin_l313_2_1 = (((((((_zz_when_DecoderArrayPlugin_l313_2_2 || _zz_when_DecoderArrayPlugin_l313_2_3) || (_zz_when_DecoderArrayPlugin_l313_2_4 == _zz_when_DecoderArrayPlugin_l313_2_5)) || ((FetchBufferPlugin_bufferFIFO_io_pop_2_payload_inst & _zz_when_DecoderArrayPlugin_l313_2_6) == 32'h06488000)) || ((FetchBufferPlugin_bufferFIFO_io_pop_2_payload_inst & 32'hffffffff) == 32'h06482c00)) || ((FetchBufferPlugin_bufferFIFO_io_pop_2_payload_inst & 32'hffffffff) == 32'h06483000)) || ((FetchBufferPlugin_bufferFIFO_io_pop_2_payload_inst & 32'hffffffff) == 32'h06482800)) || ((FetchBufferPlugin_bufferFIFO_io_pop_2_payload_inst & 32'hffffffff) == 32'h06483400));
+  assign _zz_when_DecoderArrayPlugin_l313_2_7 = ((FetchBufferPlugin_bufferFIFO_io_pop_2_payload_inst & 32'hffff8000) == 32'h06498000);
+  assign _zz_when_DecoderArrayPlugin_l313_2_8 = (FetchBufferPlugin_bufferFIFO_io_pop_2_payload_inst & 32'hfffffc00);
+  assign _zz_when_DecoderArrayPlugin_l313_2_9 = 32'h06480000;
+  assign _zz_when_DecoderArrayPlugin_l313_2_10 = 32'hfffffc00;
+  assign _zz_when_DecoderArrayPlugin_l313_2_2 = ((FetchBufferPlugin_bufferFIFO_io_pop_2_payload_inst & 32'hff000000) == 32'h04000000);
+  assign _zz_when_DecoderArrayPlugin_l313_2_3 = ((FetchBufferPlugin_bufferFIFO_io_pop_2_payload_inst & 32'hffc00000) == 32'h06000000);
+  assign _zz_when_DecoderArrayPlugin_l313_2_4 = (FetchBufferPlugin_bufferFIFO_io_pop_2_payload_inst & 32'hffffffff);
+  assign _zz_when_DecoderArrayPlugin_l313_2_5 = 32'h06483800;
+  assign _zz_when_DecoderArrayPlugin_l313_2_6 = 32'hffff8000;
   assign _zz_RENAME_RenamePlugin_debug_sRAT = RenamePlugin_sRAT_20;
   assign _zz_RENAME_RenamePlugin_debug_sRAT_1 = {RenamePlugin_sRAT_19,{RenamePlugin_sRAT_18,{RenamePlugin_sRAT_17,{RenamePlugin_sRAT_16,{RenamePlugin_sRAT_15,{RenamePlugin_sRAT_14,{RenamePlugin_sRAT_13,{RenamePlugin_sRAT_12,{RenamePlugin_sRAT_11,{RenamePlugin_sRAT_10,{_zz_RENAME_RenamePlugin_debug_sRAT_2,_zz_RENAME_RenamePlugin_debug_sRAT_3}}}}}}}}}}};
   assign _zz_RENAME_RenamePlugin_debug_sRAT_2 = RenamePlugin_sRAT_9;
@@ -36035,6 +36085,7 @@ module MyCPUCore (
       ALUOpType_PCADDI : _zz_INT0_RRD_to_INT0_EXE_ISSUE_SLOT_uop_aluOp_string = "PCADDI   ";
       ALUOpType_PCADDU12I : _zz_INT0_RRD_to_INT0_EXE_ISSUE_SLOT_uop_aluOp_string = "PCADDU12I";
       ALUOpType_CPUCFG : _zz_INT0_RRD_to_INT0_EXE_ISSUE_SLOT_uop_aluOp_string = "CPUCFG   ";
+      ALUOpType_IOCSR : _zz_INT0_RRD_to_INT0_EXE_ISSUE_SLOT_uop_aluOp_string = "IOCSR    ";
       default : _zz_INT0_RRD_to_INT0_EXE_ISSUE_SLOT_uop_aluOp_string = "?????????";
     endcase
   end
@@ -36117,6 +36168,7 @@ module MyCPUCore (
       ALUOpType_PCADDI : _zz_INT0_RRD_to_INT0_EXE_ISSUE_SLOT_uop_aluOp_1_string = "PCADDI   ";
       ALUOpType_PCADDU12I : _zz_INT0_RRD_to_INT0_EXE_ISSUE_SLOT_uop_aluOp_1_string = "PCADDU12I";
       ALUOpType_CPUCFG : _zz_INT0_RRD_to_INT0_EXE_ISSUE_SLOT_uop_aluOp_1_string = "CPUCFG   ";
+      ALUOpType_IOCSR : _zz_INT0_RRD_to_INT0_EXE_ISSUE_SLOT_uop_aluOp_1_string = "IOCSR    ";
       default : _zz_INT0_RRD_to_INT0_EXE_ISSUE_SLOT_uop_aluOp_1_string = "?????????";
     endcase
   end
@@ -36199,6 +36251,7 @@ module MyCPUCore (
       ALUOpType_PCADDI : INT0_ISS_ISSUE_SLOT_uop_aluOp_string = "PCADDI   ";
       ALUOpType_PCADDU12I : INT0_ISS_ISSUE_SLOT_uop_aluOp_string = "PCADDU12I";
       ALUOpType_CPUCFG : INT0_ISS_ISSUE_SLOT_uop_aluOp_string = "CPUCFG   ";
+      ALUOpType_IOCSR : INT0_ISS_ISSUE_SLOT_uop_aluOp_string = "IOCSR    ";
       default : INT0_ISS_ISSUE_SLOT_uop_aluOp_string = "?????????";
     endcase
   end
@@ -36281,6 +36334,7 @@ module MyCPUCore (
       ALUOpType_PCADDI : _zz_INT0_ISS_ISSUE_SLOT_uop_aluOp_string = "PCADDI   ";
       ALUOpType_PCADDU12I : _zz_INT0_ISS_ISSUE_SLOT_uop_aluOp_string = "PCADDU12I";
       ALUOpType_CPUCFG : _zz_INT0_ISS_ISSUE_SLOT_uop_aluOp_string = "CPUCFG   ";
+      ALUOpType_IOCSR : _zz_INT0_ISS_ISSUE_SLOT_uop_aluOp_string = "IOCSR    ";
       default : _zz_INT0_ISS_ISSUE_SLOT_uop_aluOp_string = "?????????";
     endcase
   end
@@ -36363,6 +36417,7 @@ module MyCPUCore (
       ALUOpType_PCADDI : _zz_INT0_ISS_to_INT0_RRD_ISSUE_SLOT_uop_aluOp_string = "PCADDI   ";
       ALUOpType_PCADDU12I : _zz_INT0_ISS_to_INT0_RRD_ISSUE_SLOT_uop_aluOp_string = "PCADDU12I";
       ALUOpType_CPUCFG : _zz_INT0_ISS_to_INT0_RRD_ISSUE_SLOT_uop_aluOp_string = "CPUCFG   ";
+      ALUOpType_IOCSR : _zz_INT0_ISS_to_INT0_RRD_ISSUE_SLOT_uop_aluOp_string = "IOCSR    ";
       default : _zz_INT0_ISS_to_INT0_RRD_ISSUE_SLOT_uop_aluOp_string = "?????????";
     endcase
   end
@@ -36445,6 +36500,7 @@ module MyCPUCore (
       ALUOpType_PCADDI : _zz_INT0_ISS_to_INT0_RRD_ISSUE_SLOT_uop_aluOp_1_string = "PCADDI   ";
       ALUOpType_PCADDU12I : _zz_INT0_ISS_to_INT0_RRD_ISSUE_SLOT_uop_aluOp_1_string = "PCADDU12I";
       ALUOpType_CPUCFG : _zz_INT0_ISS_to_INT0_RRD_ISSUE_SLOT_uop_aluOp_1_string = "CPUCFG   ";
+      ALUOpType_IOCSR : _zz_INT0_ISS_to_INT0_RRD_ISSUE_SLOT_uop_aluOp_1_string = "IOCSR    ";
       default : _zz_INT0_ISS_to_INT0_RRD_ISSUE_SLOT_uop_aluOp_1_string = "?????????";
     endcase
   end
@@ -36527,6 +36583,7 @@ module MyCPUCore (
       ALUOpType_PCADDI : _zz_INT1_EXE_to_INT1_WB_ISSUE_SLOT_uop_aluOp_string = "PCADDI   ";
       ALUOpType_PCADDU12I : _zz_INT1_EXE_to_INT1_WB_ISSUE_SLOT_uop_aluOp_string = "PCADDU12I";
       ALUOpType_CPUCFG : _zz_INT1_EXE_to_INT1_WB_ISSUE_SLOT_uop_aluOp_string = "CPUCFG   ";
+      ALUOpType_IOCSR : _zz_INT1_EXE_to_INT1_WB_ISSUE_SLOT_uop_aluOp_string = "IOCSR    ";
       default : _zz_INT1_EXE_to_INT1_WB_ISSUE_SLOT_uop_aluOp_string = "?????????";
     endcase
   end
@@ -36609,6 +36666,7 @@ module MyCPUCore (
       ALUOpType_PCADDI : _zz_INT1_EXE_to_INT1_WB_ISSUE_SLOT_uop_aluOp_1_string = "PCADDI   ";
       ALUOpType_PCADDU12I : _zz_INT1_EXE_to_INT1_WB_ISSUE_SLOT_uop_aluOp_1_string = "PCADDU12I";
       ALUOpType_CPUCFG : _zz_INT1_EXE_to_INT1_WB_ISSUE_SLOT_uop_aluOp_1_string = "CPUCFG   ";
+      ALUOpType_IOCSR : _zz_INT1_EXE_to_INT1_WB_ISSUE_SLOT_uop_aluOp_1_string = "IOCSR    ";
       default : _zz_INT1_EXE_to_INT1_WB_ISSUE_SLOT_uop_aluOp_1_string = "?????????";
     endcase
   end
@@ -36691,6 +36749,7 @@ module MyCPUCore (
       ALUOpType_PCADDI : _zz_INT1_RRD_to_INT1_EXE_ISSUE_SLOT_uop_aluOp_string = "PCADDI   ";
       ALUOpType_PCADDU12I : _zz_INT1_RRD_to_INT1_EXE_ISSUE_SLOT_uop_aluOp_string = "PCADDU12I";
       ALUOpType_CPUCFG : _zz_INT1_RRD_to_INT1_EXE_ISSUE_SLOT_uop_aluOp_string = "CPUCFG   ";
+      ALUOpType_IOCSR : _zz_INT1_RRD_to_INT1_EXE_ISSUE_SLOT_uop_aluOp_string = "IOCSR    ";
       default : _zz_INT1_RRD_to_INT1_EXE_ISSUE_SLOT_uop_aluOp_string = "?????????";
     endcase
   end
@@ -36773,6 +36832,7 @@ module MyCPUCore (
       ALUOpType_PCADDI : _zz_INT1_RRD_to_INT1_EXE_ISSUE_SLOT_uop_aluOp_1_string = "PCADDI   ";
       ALUOpType_PCADDU12I : _zz_INT1_RRD_to_INT1_EXE_ISSUE_SLOT_uop_aluOp_1_string = "PCADDU12I";
       ALUOpType_CPUCFG : _zz_INT1_RRD_to_INT1_EXE_ISSUE_SLOT_uop_aluOp_1_string = "CPUCFG   ";
+      ALUOpType_IOCSR : _zz_INT1_RRD_to_INT1_EXE_ISSUE_SLOT_uop_aluOp_1_string = "IOCSR    ";
       default : _zz_INT1_RRD_to_INT1_EXE_ISSUE_SLOT_uop_aluOp_1_string = "?????????";
     endcase
   end
@@ -36855,6 +36915,7 @@ module MyCPUCore (
       ALUOpType_PCADDI : INT1_ISS_ISSUE_SLOT_uop_aluOp_string = "PCADDI   ";
       ALUOpType_PCADDU12I : INT1_ISS_ISSUE_SLOT_uop_aluOp_string = "PCADDU12I";
       ALUOpType_CPUCFG : INT1_ISS_ISSUE_SLOT_uop_aluOp_string = "CPUCFG   ";
+      ALUOpType_IOCSR : INT1_ISS_ISSUE_SLOT_uop_aluOp_string = "IOCSR    ";
       default : INT1_ISS_ISSUE_SLOT_uop_aluOp_string = "?????????";
     endcase
   end
@@ -36937,6 +36998,7 @@ module MyCPUCore (
       ALUOpType_PCADDI : _zz_INT1_ISS_ISSUE_SLOT_uop_aluOp_string = "PCADDI   ";
       ALUOpType_PCADDU12I : _zz_INT1_ISS_ISSUE_SLOT_uop_aluOp_string = "PCADDU12I";
       ALUOpType_CPUCFG : _zz_INT1_ISS_ISSUE_SLOT_uop_aluOp_string = "CPUCFG   ";
+      ALUOpType_IOCSR : _zz_INT1_ISS_ISSUE_SLOT_uop_aluOp_string = "IOCSR    ";
       default : _zz_INT1_ISS_ISSUE_SLOT_uop_aluOp_string = "?????????";
     endcase
   end
@@ -37019,6 +37081,7 @@ module MyCPUCore (
       ALUOpType_PCADDI : _zz_INT1_ISS_to_INT1_RRD_ISSUE_SLOT_uop_aluOp_string = "PCADDI   ";
       ALUOpType_PCADDU12I : _zz_INT1_ISS_to_INT1_RRD_ISSUE_SLOT_uop_aluOp_string = "PCADDU12I";
       ALUOpType_CPUCFG : _zz_INT1_ISS_to_INT1_RRD_ISSUE_SLOT_uop_aluOp_string = "CPUCFG   ";
+      ALUOpType_IOCSR : _zz_INT1_ISS_to_INT1_RRD_ISSUE_SLOT_uop_aluOp_string = "IOCSR    ";
       default : _zz_INT1_ISS_to_INT1_RRD_ISSUE_SLOT_uop_aluOp_string = "?????????";
     endcase
   end
@@ -37101,6 +37164,7 @@ module MyCPUCore (
       ALUOpType_PCADDI : _zz_INT1_ISS_to_INT1_RRD_ISSUE_SLOT_uop_aluOp_1_string = "PCADDI   ";
       ALUOpType_PCADDU12I : _zz_INT1_ISS_to_INT1_RRD_ISSUE_SLOT_uop_aluOp_1_string = "PCADDU12I";
       ALUOpType_CPUCFG : _zz_INT1_ISS_to_INT1_RRD_ISSUE_SLOT_uop_aluOp_1_string = "CPUCFG   ";
+      ALUOpType_IOCSR : _zz_INT1_ISS_to_INT1_RRD_ISSUE_SLOT_uop_aluOp_1_string = "IOCSR    ";
       default : _zz_INT1_ISS_to_INT1_RRD_ISSUE_SLOT_uop_aluOp_1_string = "?????????";
     endcase
   end
@@ -37183,6 +37247,7 @@ module MyCPUCore (
       ALUOpType_PCADDI : _zz_INT2_EXE_to_INT2_WB_ISSUE_SLOT_uop_aluOp_string = "PCADDI   ";
       ALUOpType_PCADDU12I : _zz_INT2_EXE_to_INT2_WB_ISSUE_SLOT_uop_aluOp_string = "PCADDU12I";
       ALUOpType_CPUCFG : _zz_INT2_EXE_to_INT2_WB_ISSUE_SLOT_uop_aluOp_string = "CPUCFG   ";
+      ALUOpType_IOCSR : _zz_INT2_EXE_to_INT2_WB_ISSUE_SLOT_uop_aluOp_string = "IOCSR    ";
       default : _zz_INT2_EXE_to_INT2_WB_ISSUE_SLOT_uop_aluOp_string = "?????????";
     endcase
   end
@@ -37265,6 +37330,7 @@ module MyCPUCore (
       ALUOpType_PCADDI : _zz_INT2_EXE_to_INT2_WB_ISSUE_SLOT_uop_aluOp_1_string = "PCADDI   ";
       ALUOpType_PCADDU12I : _zz_INT2_EXE_to_INT2_WB_ISSUE_SLOT_uop_aluOp_1_string = "PCADDU12I";
       ALUOpType_CPUCFG : _zz_INT2_EXE_to_INT2_WB_ISSUE_SLOT_uop_aluOp_1_string = "CPUCFG   ";
+      ALUOpType_IOCSR : _zz_INT2_EXE_to_INT2_WB_ISSUE_SLOT_uop_aluOp_1_string = "IOCSR    ";
       default : _zz_INT2_EXE_to_INT2_WB_ISSUE_SLOT_uop_aluOp_1_string = "?????????";
     endcase
   end
@@ -37347,6 +37413,7 @@ module MyCPUCore (
       ALUOpType_PCADDI : _zz_INT2_RRD_to_INT2_EXE_ISSUE_SLOT_uop_aluOp_string = "PCADDI   ";
       ALUOpType_PCADDU12I : _zz_INT2_RRD_to_INT2_EXE_ISSUE_SLOT_uop_aluOp_string = "PCADDU12I";
       ALUOpType_CPUCFG : _zz_INT2_RRD_to_INT2_EXE_ISSUE_SLOT_uop_aluOp_string = "CPUCFG   ";
+      ALUOpType_IOCSR : _zz_INT2_RRD_to_INT2_EXE_ISSUE_SLOT_uop_aluOp_string = "IOCSR    ";
       default : _zz_INT2_RRD_to_INT2_EXE_ISSUE_SLOT_uop_aluOp_string = "?????????";
     endcase
   end
@@ -37429,6 +37496,7 @@ module MyCPUCore (
       ALUOpType_PCADDI : _zz_INT2_RRD_to_INT2_EXE_ISSUE_SLOT_uop_aluOp_1_string = "PCADDI   ";
       ALUOpType_PCADDU12I : _zz_INT2_RRD_to_INT2_EXE_ISSUE_SLOT_uop_aluOp_1_string = "PCADDU12I";
       ALUOpType_CPUCFG : _zz_INT2_RRD_to_INT2_EXE_ISSUE_SLOT_uop_aluOp_1_string = "CPUCFG   ";
+      ALUOpType_IOCSR : _zz_INT2_RRD_to_INT2_EXE_ISSUE_SLOT_uop_aluOp_1_string = "IOCSR    ";
       default : _zz_INT2_RRD_to_INT2_EXE_ISSUE_SLOT_uop_aluOp_1_string = "?????????";
     endcase
   end
@@ -37511,6 +37579,7 @@ module MyCPUCore (
       ALUOpType_PCADDI : INT2_ISS_ISSUE_SLOT_uop_aluOp_string = "PCADDI   ";
       ALUOpType_PCADDU12I : INT2_ISS_ISSUE_SLOT_uop_aluOp_string = "PCADDU12I";
       ALUOpType_CPUCFG : INT2_ISS_ISSUE_SLOT_uop_aluOp_string = "CPUCFG   ";
+      ALUOpType_IOCSR : INT2_ISS_ISSUE_SLOT_uop_aluOp_string = "IOCSR    ";
       default : INT2_ISS_ISSUE_SLOT_uop_aluOp_string = "?????????";
     endcase
   end
@@ -37593,6 +37662,7 @@ module MyCPUCore (
       ALUOpType_PCADDI : _zz_INT2_ISS_ISSUE_SLOT_uop_aluOp_string = "PCADDI   ";
       ALUOpType_PCADDU12I : _zz_INT2_ISS_ISSUE_SLOT_uop_aluOp_string = "PCADDU12I";
       ALUOpType_CPUCFG : _zz_INT2_ISS_ISSUE_SLOT_uop_aluOp_string = "CPUCFG   ";
+      ALUOpType_IOCSR : _zz_INT2_ISS_ISSUE_SLOT_uop_aluOp_string = "IOCSR    ";
       default : _zz_INT2_ISS_ISSUE_SLOT_uop_aluOp_string = "?????????";
     endcase
   end
@@ -37675,6 +37745,7 @@ module MyCPUCore (
       ALUOpType_PCADDI : _zz_INT2_ISS_to_INT2_RRD_ISSUE_SLOT_uop_aluOp_string = "PCADDI   ";
       ALUOpType_PCADDU12I : _zz_INT2_ISS_to_INT2_RRD_ISSUE_SLOT_uop_aluOp_string = "PCADDU12I";
       ALUOpType_CPUCFG : _zz_INT2_ISS_to_INT2_RRD_ISSUE_SLOT_uop_aluOp_string = "CPUCFG   ";
+      ALUOpType_IOCSR : _zz_INT2_ISS_to_INT2_RRD_ISSUE_SLOT_uop_aluOp_string = "IOCSR    ";
       default : _zz_INT2_ISS_to_INT2_RRD_ISSUE_SLOT_uop_aluOp_string = "?????????";
     endcase
   end
@@ -37757,6 +37828,7 @@ module MyCPUCore (
       ALUOpType_PCADDI : _zz_INT2_ISS_to_INT2_RRD_ISSUE_SLOT_uop_aluOp_1_string = "PCADDI   ";
       ALUOpType_PCADDU12I : _zz_INT2_ISS_to_INT2_RRD_ISSUE_SLOT_uop_aluOp_1_string = "PCADDU12I";
       ALUOpType_CPUCFG : _zz_INT2_ISS_to_INT2_RRD_ISSUE_SLOT_uop_aluOp_1_string = "CPUCFG   ";
+      ALUOpType_IOCSR : _zz_INT2_ISS_to_INT2_RRD_ISSUE_SLOT_uop_aluOp_1_string = "IOCSR    ";
       default : _zz_INT2_ISS_to_INT2_RRD_ISSUE_SLOT_uop_aluOp_1_string = "?????????";
     endcase
   end
@@ -37839,6 +37911,7 @@ module MyCPUCore (
       ALUOpType_PCADDI : _zz_RENAME_to_DISPATCH_DECODE_PACKET_0_payload_aluOp_string = "PCADDI   ";
       ALUOpType_PCADDU12I : _zz_RENAME_to_DISPATCH_DECODE_PACKET_0_payload_aluOp_string = "PCADDU12I";
       ALUOpType_CPUCFG : _zz_RENAME_to_DISPATCH_DECODE_PACKET_0_payload_aluOp_string = "CPUCFG   ";
+      ALUOpType_IOCSR : _zz_RENAME_to_DISPATCH_DECODE_PACKET_0_payload_aluOp_string = "IOCSR    ";
       default : _zz_RENAME_to_DISPATCH_DECODE_PACKET_0_payload_aluOp_string = "?????????";
     endcase
   end
@@ -37933,6 +38006,7 @@ module MyCPUCore (
       ALUOpType_PCADDI : _zz_RENAME_to_DISPATCH_DECODE_PACKET_1_payload_aluOp_string = "PCADDI   ";
       ALUOpType_PCADDU12I : _zz_RENAME_to_DISPATCH_DECODE_PACKET_1_payload_aluOp_string = "PCADDU12I";
       ALUOpType_CPUCFG : _zz_RENAME_to_DISPATCH_DECODE_PACKET_1_payload_aluOp_string = "CPUCFG   ";
+      ALUOpType_IOCSR : _zz_RENAME_to_DISPATCH_DECODE_PACKET_1_payload_aluOp_string = "IOCSR    ";
       default : _zz_RENAME_to_DISPATCH_DECODE_PACKET_1_payload_aluOp_string = "?????????";
     endcase
   end
@@ -38027,6 +38101,7 @@ module MyCPUCore (
       ALUOpType_PCADDI : _zz_RENAME_to_DISPATCH_DECODE_PACKET_2_payload_aluOp_string = "PCADDI   ";
       ALUOpType_PCADDU12I : _zz_RENAME_to_DISPATCH_DECODE_PACKET_2_payload_aluOp_string = "PCADDU12I";
       ALUOpType_CPUCFG : _zz_RENAME_to_DISPATCH_DECODE_PACKET_2_payload_aluOp_string = "CPUCFG   ";
+      ALUOpType_IOCSR : _zz_RENAME_to_DISPATCH_DECODE_PACKET_2_payload_aluOp_string = "IOCSR    ";
       default : _zz_RENAME_to_DISPATCH_DECODE_PACKET_2_payload_aluOp_string = "?????????";
     endcase
   end
@@ -38121,6 +38196,7 @@ module MyCPUCore (
       ALUOpType_PCADDI : _zz_RENAME_to_DISPATCH_DECODE_PACKET_0_payload_aluOp_1_string = "PCADDI   ";
       ALUOpType_PCADDU12I : _zz_RENAME_to_DISPATCH_DECODE_PACKET_0_payload_aluOp_1_string = "PCADDU12I";
       ALUOpType_CPUCFG : _zz_RENAME_to_DISPATCH_DECODE_PACKET_0_payload_aluOp_1_string = "CPUCFG   ";
+      ALUOpType_IOCSR : _zz_RENAME_to_DISPATCH_DECODE_PACKET_0_payload_aluOp_1_string = "IOCSR    ";
       default : _zz_RENAME_to_DISPATCH_DECODE_PACKET_0_payload_aluOp_1_string = "?????????";
     endcase
   end
@@ -38215,6 +38291,7 @@ module MyCPUCore (
       ALUOpType_PCADDI : _zz_RENAME_to_DISPATCH_DECODE_PACKET_1_payload_aluOp_1_string = "PCADDI   ";
       ALUOpType_PCADDU12I : _zz_RENAME_to_DISPATCH_DECODE_PACKET_1_payload_aluOp_1_string = "PCADDU12I";
       ALUOpType_CPUCFG : _zz_RENAME_to_DISPATCH_DECODE_PACKET_1_payload_aluOp_1_string = "CPUCFG   ";
+      ALUOpType_IOCSR : _zz_RENAME_to_DISPATCH_DECODE_PACKET_1_payload_aluOp_1_string = "IOCSR    ";
       default : _zz_RENAME_to_DISPATCH_DECODE_PACKET_1_payload_aluOp_1_string = "?????????";
     endcase
   end
@@ -38309,6 +38386,7 @@ module MyCPUCore (
       ALUOpType_PCADDI : _zz_RENAME_to_DISPATCH_DECODE_PACKET_2_payload_aluOp_1_string = "PCADDI   ";
       ALUOpType_PCADDU12I : _zz_RENAME_to_DISPATCH_DECODE_PACKET_2_payload_aluOp_1_string = "PCADDU12I";
       ALUOpType_CPUCFG : _zz_RENAME_to_DISPATCH_DECODE_PACKET_2_payload_aluOp_1_string = "CPUCFG   ";
+      ALUOpType_IOCSR : _zz_RENAME_to_DISPATCH_DECODE_PACKET_2_payload_aluOp_1_string = "IOCSR    ";
       default : _zz_RENAME_to_DISPATCH_DECODE_PACKET_2_payload_aluOp_1_string = "?????????";
     endcase
   end
@@ -38403,6 +38481,7 @@ module MyCPUCore (
       ALUOpType_PCADDI : ID_DECODE_PACKET_0_payload_aluOp_string = "PCADDI   ";
       ALUOpType_PCADDU12I : ID_DECODE_PACKET_0_payload_aluOp_string = "PCADDU12I";
       ALUOpType_CPUCFG : ID_DECODE_PACKET_0_payload_aluOp_string = "CPUCFG   ";
+      ALUOpType_IOCSR : ID_DECODE_PACKET_0_payload_aluOp_string = "IOCSR    ";
       default : ID_DECODE_PACKET_0_payload_aluOp_string = "?????????";
     endcase
   end
@@ -38497,6 +38576,7 @@ module MyCPUCore (
       ALUOpType_PCADDI : ID_DECODE_PACKET_1_payload_aluOp_string = "PCADDI   ";
       ALUOpType_PCADDU12I : ID_DECODE_PACKET_1_payload_aluOp_string = "PCADDU12I";
       ALUOpType_CPUCFG : ID_DECODE_PACKET_1_payload_aluOp_string = "CPUCFG   ";
+      ALUOpType_IOCSR : ID_DECODE_PACKET_1_payload_aluOp_string = "IOCSR    ";
       default : ID_DECODE_PACKET_1_payload_aluOp_string = "?????????";
     endcase
   end
@@ -38591,6 +38671,7 @@ module MyCPUCore (
       ALUOpType_PCADDI : ID_DECODE_PACKET_2_payload_aluOp_string = "PCADDI   ";
       ALUOpType_PCADDU12I : ID_DECODE_PACKET_2_payload_aluOp_string = "PCADDU12I";
       ALUOpType_CPUCFG : ID_DECODE_PACKET_2_payload_aluOp_string = "CPUCFG   ";
+      ALUOpType_IOCSR : ID_DECODE_PACKET_2_payload_aluOp_string = "IOCSR    ";
       default : ID_DECODE_PACKET_2_payload_aluOp_string = "?????????";
     endcase
   end
@@ -38685,6 +38766,7 @@ module MyCPUCore (
       ALUOpType_PCADDI : _zz_ID_DECODE_PACKET_0_payload_aluOp_string = "PCADDI   ";
       ALUOpType_PCADDU12I : _zz_ID_DECODE_PACKET_0_payload_aluOp_string = "PCADDU12I";
       ALUOpType_CPUCFG : _zz_ID_DECODE_PACKET_0_payload_aluOp_string = "CPUCFG   ";
+      ALUOpType_IOCSR : _zz_ID_DECODE_PACKET_0_payload_aluOp_string = "IOCSR    ";
       default : _zz_ID_DECODE_PACKET_0_payload_aluOp_string = "?????????";
     endcase
   end
@@ -38779,6 +38861,7 @@ module MyCPUCore (
       ALUOpType_PCADDI : _zz_ID_DECODE_PACKET_1_payload_aluOp_string = "PCADDI   ";
       ALUOpType_PCADDU12I : _zz_ID_DECODE_PACKET_1_payload_aluOp_string = "PCADDU12I";
       ALUOpType_CPUCFG : _zz_ID_DECODE_PACKET_1_payload_aluOp_string = "CPUCFG   ";
+      ALUOpType_IOCSR : _zz_ID_DECODE_PACKET_1_payload_aluOp_string = "IOCSR    ";
       default : _zz_ID_DECODE_PACKET_1_payload_aluOp_string = "?????????";
     endcase
   end
@@ -38873,6 +38956,7 @@ module MyCPUCore (
       ALUOpType_PCADDI : _zz_ID_DECODE_PACKET_2_payload_aluOp_string = "PCADDI   ";
       ALUOpType_PCADDU12I : _zz_ID_DECODE_PACKET_2_payload_aluOp_string = "PCADDU12I";
       ALUOpType_CPUCFG : _zz_ID_DECODE_PACKET_2_payload_aluOp_string = "CPUCFG   ";
+      ALUOpType_IOCSR : _zz_ID_DECODE_PACKET_2_payload_aluOp_string = "IOCSR    ";
       default : _zz_ID_DECODE_PACKET_2_payload_aluOp_string = "?????????";
     endcase
   end
@@ -38967,6 +39051,7 @@ module MyCPUCore (
       ALUOpType_PCADDI : _zz_ID_to_RENAME_DECODE_PACKET_0_payload_aluOp_string = "PCADDI   ";
       ALUOpType_PCADDU12I : _zz_ID_to_RENAME_DECODE_PACKET_0_payload_aluOp_string = "PCADDU12I";
       ALUOpType_CPUCFG : _zz_ID_to_RENAME_DECODE_PACKET_0_payload_aluOp_string = "CPUCFG   ";
+      ALUOpType_IOCSR : _zz_ID_to_RENAME_DECODE_PACKET_0_payload_aluOp_string = "IOCSR    ";
       default : _zz_ID_to_RENAME_DECODE_PACKET_0_payload_aluOp_string = "?????????";
     endcase
   end
@@ -39061,6 +39146,7 @@ module MyCPUCore (
       ALUOpType_PCADDI : _zz_ID_to_RENAME_DECODE_PACKET_1_payload_aluOp_string = "PCADDI   ";
       ALUOpType_PCADDU12I : _zz_ID_to_RENAME_DECODE_PACKET_1_payload_aluOp_string = "PCADDU12I";
       ALUOpType_CPUCFG : _zz_ID_to_RENAME_DECODE_PACKET_1_payload_aluOp_string = "CPUCFG   ";
+      ALUOpType_IOCSR : _zz_ID_to_RENAME_DECODE_PACKET_1_payload_aluOp_string = "IOCSR    ";
       default : _zz_ID_to_RENAME_DECODE_PACKET_1_payload_aluOp_string = "?????????";
     endcase
   end
@@ -39155,6 +39241,7 @@ module MyCPUCore (
       ALUOpType_PCADDI : _zz_ID_to_RENAME_DECODE_PACKET_2_payload_aluOp_string = "PCADDI   ";
       ALUOpType_PCADDU12I : _zz_ID_to_RENAME_DECODE_PACKET_2_payload_aluOp_string = "PCADDU12I";
       ALUOpType_CPUCFG : _zz_ID_to_RENAME_DECODE_PACKET_2_payload_aluOp_string = "CPUCFG   ";
+      ALUOpType_IOCSR : _zz_ID_to_RENAME_DECODE_PACKET_2_payload_aluOp_string = "IOCSR    ";
       default : _zz_ID_to_RENAME_DECODE_PACKET_2_payload_aluOp_string = "?????????";
     endcase
   end
@@ -39249,6 +39336,7 @@ module MyCPUCore (
       ALUOpType_PCADDI : _zz_ID_to_RENAME_DECODE_PACKET_0_payload_aluOp_1_string = "PCADDI   ";
       ALUOpType_PCADDU12I : _zz_ID_to_RENAME_DECODE_PACKET_0_payload_aluOp_1_string = "PCADDU12I";
       ALUOpType_CPUCFG : _zz_ID_to_RENAME_DECODE_PACKET_0_payload_aluOp_1_string = "CPUCFG   ";
+      ALUOpType_IOCSR : _zz_ID_to_RENAME_DECODE_PACKET_0_payload_aluOp_1_string = "IOCSR    ";
       default : _zz_ID_to_RENAME_DECODE_PACKET_0_payload_aluOp_1_string = "?????????";
     endcase
   end
@@ -39343,6 +39431,7 @@ module MyCPUCore (
       ALUOpType_PCADDI : _zz_ID_to_RENAME_DECODE_PACKET_1_payload_aluOp_1_string = "PCADDI   ";
       ALUOpType_PCADDU12I : _zz_ID_to_RENAME_DECODE_PACKET_1_payload_aluOp_1_string = "PCADDU12I";
       ALUOpType_CPUCFG : _zz_ID_to_RENAME_DECODE_PACKET_1_payload_aluOp_1_string = "CPUCFG   ";
+      ALUOpType_IOCSR : _zz_ID_to_RENAME_DECODE_PACKET_1_payload_aluOp_1_string = "IOCSR    ";
       default : _zz_ID_to_RENAME_DECODE_PACKET_1_payload_aluOp_1_string = "?????????";
     endcase
   end
@@ -39437,6 +39526,7 @@ module MyCPUCore (
       ALUOpType_PCADDI : _zz_ID_to_RENAME_DECODE_PACKET_2_payload_aluOp_1_string = "PCADDI   ";
       ALUOpType_PCADDU12I : _zz_ID_to_RENAME_DECODE_PACKET_2_payload_aluOp_1_string = "PCADDU12I";
       ALUOpType_CPUCFG : _zz_ID_to_RENAME_DECODE_PACKET_2_payload_aluOp_1_string = "CPUCFG   ";
+      ALUOpType_IOCSR : _zz_ID_to_RENAME_DECODE_PACKET_2_payload_aluOp_1_string = "IOCSR    ";
       default : _zz_ID_to_RENAME_DECODE_PACKET_2_payload_aluOp_1_string = "?????????";
     endcase
   end
@@ -40309,6 +40399,7 @@ module MyCPUCore (
       ALUOpType_PCADDI : INT0_EXE_ISSUE_SLOT_uop_aluOp_string = "PCADDI   ";
       ALUOpType_PCADDU12I : INT0_EXE_ISSUE_SLOT_uop_aluOp_string = "PCADDU12I";
       ALUOpType_CPUCFG : INT0_EXE_ISSUE_SLOT_uop_aluOp_string = "CPUCFG   ";
+      ALUOpType_IOCSR : INT0_EXE_ISSUE_SLOT_uop_aluOp_string = "IOCSR    ";
       default : INT0_EXE_ISSUE_SLOT_uop_aluOp_string = "?????????";
     endcase
   end
@@ -40391,6 +40482,7 @@ module MyCPUCore (
       ALUOpType_PCADDI : _zz_INT0_EXE_ISSUE_SLOT_uop_aluOp_string = "PCADDI   ";
       ALUOpType_PCADDU12I : _zz_INT0_EXE_ISSUE_SLOT_uop_aluOp_string = "PCADDU12I";
       ALUOpType_CPUCFG : _zz_INT0_EXE_ISSUE_SLOT_uop_aluOp_string = "CPUCFG   ";
+      ALUOpType_IOCSR : _zz_INT0_EXE_ISSUE_SLOT_uop_aluOp_string = "IOCSR    ";
       default : _zz_INT0_EXE_ISSUE_SLOT_uop_aluOp_string = "?????????";
     endcase
   end
@@ -40473,6 +40565,7 @@ module MyCPUCore (
       ALUOpType_PCADDI : INT0_RRD_ISSUE_SLOT_uop_aluOp_string = "PCADDI   ";
       ALUOpType_PCADDU12I : INT0_RRD_ISSUE_SLOT_uop_aluOp_string = "PCADDU12I";
       ALUOpType_CPUCFG : INT0_RRD_ISSUE_SLOT_uop_aluOp_string = "CPUCFG   ";
+      ALUOpType_IOCSR : INT0_RRD_ISSUE_SLOT_uop_aluOp_string = "IOCSR    ";
       default : INT0_RRD_ISSUE_SLOT_uop_aluOp_string = "?????????";
     endcase
   end
@@ -40555,6 +40648,7 @@ module MyCPUCore (
       ALUOpType_PCADDI : _zz_INT0_RRD_ISSUE_SLOT_uop_aluOp_string = "PCADDI   ";
       ALUOpType_PCADDU12I : _zz_INT0_RRD_ISSUE_SLOT_uop_aluOp_string = "PCADDU12I";
       ALUOpType_CPUCFG : _zz_INT0_RRD_ISSUE_SLOT_uop_aluOp_string = "CPUCFG   ";
+      ALUOpType_IOCSR : _zz_INT0_RRD_ISSUE_SLOT_uop_aluOp_string = "IOCSR    ";
       default : _zz_INT0_RRD_ISSUE_SLOT_uop_aluOp_string = "?????????";
     endcase
   end
@@ -40637,6 +40731,7 @@ module MyCPUCore (
       ALUOpType_PCADDI : INT0_ISS_IntExecutePlugin_issSlot_uop_aluOp_string = "PCADDI   ";
       ALUOpType_PCADDU12I : INT0_ISS_IntExecutePlugin_issSlot_uop_aluOp_string = "PCADDU12I";
       ALUOpType_CPUCFG : INT0_ISS_IntExecutePlugin_issSlot_uop_aluOp_string = "CPUCFG   ";
+      ALUOpType_IOCSR : INT0_ISS_IntExecutePlugin_issSlot_uop_aluOp_string = "IOCSR    ";
       default : INT0_ISS_IntExecutePlugin_issSlot_uop_aluOp_string = "?????????";
     endcase
   end
@@ -40719,6 +40814,7 @@ module MyCPUCore (
       ALUOpType_PCADDI : INT1_WB_ISSUE_SLOT_uop_aluOp_string = "PCADDI   ";
       ALUOpType_PCADDU12I : INT1_WB_ISSUE_SLOT_uop_aluOp_string = "PCADDU12I";
       ALUOpType_CPUCFG : INT1_WB_ISSUE_SLOT_uop_aluOp_string = "CPUCFG   ";
+      ALUOpType_IOCSR : INT1_WB_ISSUE_SLOT_uop_aluOp_string = "IOCSR    ";
       default : INT1_WB_ISSUE_SLOT_uop_aluOp_string = "?????????";
     endcase
   end
@@ -40801,6 +40897,7 @@ module MyCPUCore (
       ALUOpType_PCADDI : _zz_INT1_WB_ISSUE_SLOT_uop_aluOp_string = "PCADDI   ";
       ALUOpType_PCADDU12I : _zz_INT1_WB_ISSUE_SLOT_uop_aluOp_string = "PCADDU12I";
       ALUOpType_CPUCFG : _zz_INT1_WB_ISSUE_SLOT_uop_aluOp_string = "CPUCFG   ";
+      ALUOpType_IOCSR : _zz_INT1_WB_ISSUE_SLOT_uop_aluOp_string = "IOCSR    ";
       default : _zz_INT1_WB_ISSUE_SLOT_uop_aluOp_string = "?????????";
     endcase
   end
@@ -40883,6 +40980,7 @@ module MyCPUCore (
       ALUOpType_PCADDI : INT1_EXE_ISSUE_SLOT_uop_aluOp_string = "PCADDI   ";
       ALUOpType_PCADDU12I : INT1_EXE_ISSUE_SLOT_uop_aluOp_string = "PCADDU12I";
       ALUOpType_CPUCFG : INT1_EXE_ISSUE_SLOT_uop_aluOp_string = "CPUCFG   ";
+      ALUOpType_IOCSR : INT1_EXE_ISSUE_SLOT_uop_aluOp_string = "IOCSR    ";
       default : INT1_EXE_ISSUE_SLOT_uop_aluOp_string = "?????????";
     endcase
   end
@@ -40965,6 +41063,7 @@ module MyCPUCore (
       ALUOpType_PCADDI : _zz_INT1_EXE_ISSUE_SLOT_uop_aluOp_string = "PCADDI   ";
       ALUOpType_PCADDU12I : _zz_INT1_EXE_ISSUE_SLOT_uop_aluOp_string = "PCADDU12I";
       ALUOpType_CPUCFG : _zz_INT1_EXE_ISSUE_SLOT_uop_aluOp_string = "CPUCFG   ";
+      ALUOpType_IOCSR : _zz_INT1_EXE_ISSUE_SLOT_uop_aluOp_string = "IOCSR    ";
       default : _zz_INT1_EXE_ISSUE_SLOT_uop_aluOp_string = "?????????";
     endcase
   end
@@ -41047,6 +41146,7 @@ module MyCPUCore (
       ALUOpType_PCADDI : INT1_RRD_ISSUE_SLOT_uop_aluOp_string = "PCADDI   ";
       ALUOpType_PCADDU12I : INT1_RRD_ISSUE_SLOT_uop_aluOp_string = "PCADDU12I";
       ALUOpType_CPUCFG : INT1_RRD_ISSUE_SLOT_uop_aluOp_string = "CPUCFG   ";
+      ALUOpType_IOCSR : INT1_RRD_ISSUE_SLOT_uop_aluOp_string = "IOCSR    ";
       default : INT1_RRD_ISSUE_SLOT_uop_aluOp_string = "?????????";
     endcase
   end
@@ -41129,6 +41229,7 @@ module MyCPUCore (
       ALUOpType_PCADDI : _zz_INT1_RRD_ISSUE_SLOT_uop_aluOp_string = "PCADDI   ";
       ALUOpType_PCADDU12I : _zz_INT1_RRD_ISSUE_SLOT_uop_aluOp_string = "PCADDU12I";
       ALUOpType_CPUCFG : _zz_INT1_RRD_ISSUE_SLOT_uop_aluOp_string = "CPUCFG   ";
+      ALUOpType_IOCSR : _zz_INT1_RRD_ISSUE_SLOT_uop_aluOp_string = "IOCSR    ";
       default : _zz_INT1_RRD_ISSUE_SLOT_uop_aluOp_string = "?????????";
     endcase
   end
@@ -41211,6 +41312,7 @@ module MyCPUCore (
       ALUOpType_PCADDI : INT1_ISS_IntExecutePlugin_issSlot_uop_aluOp_string = "PCADDI   ";
       ALUOpType_PCADDU12I : INT1_ISS_IntExecutePlugin_issSlot_uop_aluOp_string = "PCADDU12I";
       ALUOpType_CPUCFG : INT1_ISS_IntExecutePlugin_issSlot_uop_aluOp_string = "CPUCFG   ";
+      ALUOpType_IOCSR : INT1_ISS_IntExecutePlugin_issSlot_uop_aluOp_string = "IOCSR    ";
       default : INT1_ISS_IntExecutePlugin_issSlot_uop_aluOp_string = "?????????";
     endcase
   end
@@ -41293,6 +41395,7 @@ module MyCPUCore (
       ALUOpType_PCADDI : INT2_WB_ISSUE_SLOT_uop_aluOp_string = "PCADDI   ";
       ALUOpType_PCADDU12I : INT2_WB_ISSUE_SLOT_uop_aluOp_string = "PCADDU12I";
       ALUOpType_CPUCFG : INT2_WB_ISSUE_SLOT_uop_aluOp_string = "CPUCFG   ";
+      ALUOpType_IOCSR : INT2_WB_ISSUE_SLOT_uop_aluOp_string = "IOCSR    ";
       default : INT2_WB_ISSUE_SLOT_uop_aluOp_string = "?????????";
     endcase
   end
@@ -41375,6 +41478,7 @@ module MyCPUCore (
       ALUOpType_PCADDI : _zz_INT2_WB_ISSUE_SLOT_uop_aluOp_string = "PCADDI   ";
       ALUOpType_PCADDU12I : _zz_INT2_WB_ISSUE_SLOT_uop_aluOp_string = "PCADDU12I";
       ALUOpType_CPUCFG : _zz_INT2_WB_ISSUE_SLOT_uop_aluOp_string = "CPUCFG   ";
+      ALUOpType_IOCSR : _zz_INT2_WB_ISSUE_SLOT_uop_aluOp_string = "IOCSR    ";
       default : _zz_INT2_WB_ISSUE_SLOT_uop_aluOp_string = "?????????";
     endcase
   end
@@ -41457,6 +41561,7 @@ module MyCPUCore (
       ALUOpType_PCADDI : INT2_EXE_ISSUE_SLOT_uop_aluOp_string = "PCADDI   ";
       ALUOpType_PCADDU12I : INT2_EXE_ISSUE_SLOT_uop_aluOp_string = "PCADDU12I";
       ALUOpType_CPUCFG : INT2_EXE_ISSUE_SLOT_uop_aluOp_string = "CPUCFG   ";
+      ALUOpType_IOCSR : INT2_EXE_ISSUE_SLOT_uop_aluOp_string = "IOCSR    ";
       default : INT2_EXE_ISSUE_SLOT_uop_aluOp_string = "?????????";
     endcase
   end
@@ -41539,6 +41644,7 @@ module MyCPUCore (
       ALUOpType_PCADDI : _zz_INT2_EXE_ISSUE_SLOT_uop_aluOp_string = "PCADDI   ";
       ALUOpType_PCADDU12I : _zz_INT2_EXE_ISSUE_SLOT_uop_aluOp_string = "PCADDU12I";
       ALUOpType_CPUCFG : _zz_INT2_EXE_ISSUE_SLOT_uop_aluOp_string = "CPUCFG   ";
+      ALUOpType_IOCSR : _zz_INT2_EXE_ISSUE_SLOT_uop_aluOp_string = "IOCSR    ";
       default : _zz_INT2_EXE_ISSUE_SLOT_uop_aluOp_string = "?????????";
     endcase
   end
@@ -41621,6 +41727,7 @@ module MyCPUCore (
       ALUOpType_PCADDI : INT2_RRD_ISSUE_SLOT_uop_aluOp_string = "PCADDI   ";
       ALUOpType_PCADDU12I : INT2_RRD_ISSUE_SLOT_uop_aluOp_string = "PCADDU12I";
       ALUOpType_CPUCFG : INT2_RRD_ISSUE_SLOT_uop_aluOp_string = "CPUCFG   ";
+      ALUOpType_IOCSR : INT2_RRD_ISSUE_SLOT_uop_aluOp_string = "IOCSR    ";
       default : INT2_RRD_ISSUE_SLOT_uop_aluOp_string = "?????????";
     endcase
   end
@@ -41703,6 +41810,7 @@ module MyCPUCore (
       ALUOpType_PCADDI : _zz_INT2_RRD_ISSUE_SLOT_uop_aluOp_string = "PCADDI   ";
       ALUOpType_PCADDU12I : _zz_INT2_RRD_ISSUE_SLOT_uop_aluOp_string = "PCADDU12I";
       ALUOpType_CPUCFG : _zz_INT2_RRD_ISSUE_SLOT_uop_aluOp_string = "CPUCFG   ";
+      ALUOpType_IOCSR : _zz_INT2_RRD_ISSUE_SLOT_uop_aluOp_string = "IOCSR    ";
       default : _zz_INT2_RRD_ISSUE_SLOT_uop_aluOp_string = "?????????";
     endcase
   end
@@ -41785,6 +41893,7 @@ module MyCPUCore (
       ALUOpType_PCADDI : INT2_ISS_IntExecutePlugin_issSlot_uop_aluOp_string = "PCADDI   ";
       ALUOpType_PCADDU12I : INT2_ISS_IntExecutePlugin_issSlot_uop_aluOp_string = "PCADDU12I";
       ALUOpType_CPUCFG : INT2_ISS_IntExecutePlugin_issSlot_uop_aluOp_string = "CPUCFG   ";
+      ALUOpType_IOCSR : INT2_ISS_IntExecutePlugin_issSlot_uop_aluOp_string = "IOCSR    ";
       default : INT2_ISS_IntExecutePlugin_issSlot_uop_aluOp_string = "?????????";
     endcase
   end
@@ -41867,6 +41976,7 @@ module MyCPUCore (
       ALUOpType_PCADDI : ID_DecoderArray_decodePacket_0_payload_aluOp_string = "PCADDI   ";
       ALUOpType_PCADDU12I : ID_DecoderArray_decodePacket_0_payload_aluOp_string = "PCADDU12I";
       ALUOpType_CPUCFG : ID_DecoderArray_decodePacket_0_payload_aluOp_string = "CPUCFG   ";
+      ALUOpType_IOCSR : ID_DecoderArray_decodePacket_0_payload_aluOp_string = "IOCSR    ";
       default : ID_DecoderArray_decodePacket_0_payload_aluOp_string = "?????????";
     endcase
   end
@@ -41961,6 +42071,7 @@ module MyCPUCore (
       ALUOpType_PCADDI : ID_DecoderArray_decodePacket_1_payload_aluOp_string = "PCADDI   ";
       ALUOpType_PCADDU12I : ID_DecoderArray_decodePacket_1_payload_aluOp_string = "PCADDU12I";
       ALUOpType_CPUCFG : ID_DecoderArray_decodePacket_1_payload_aluOp_string = "CPUCFG   ";
+      ALUOpType_IOCSR : ID_DecoderArray_decodePacket_1_payload_aluOp_string = "IOCSR    ";
       default : ID_DecoderArray_decodePacket_1_payload_aluOp_string = "?????????";
     endcase
   end
@@ -42055,6 +42166,7 @@ module MyCPUCore (
       ALUOpType_PCADDI : ID_DecoderArray_decodePacket_2_payload_aluOp_string = "PCADDI   ";
       ALUOpType_PCADDU12I : ID_DecoderArray_decodePacket_2_payload_aluOp_string = "PCADDU12I";
       ALUOpType_CPUCFG : ID_DecoderArray_decodePacket_2_payload_aluOp_string = "CPUCFG   ";
+      ALUOpType_IOCSR : ID_DecoderArray_decodePacket_2_payload_aluOp_string = "IOCSR    ";
       default : ID_DecoderArray_decodePacket_2_payload_aluOp_string = "?????????";
     endcase
   end
@@ -42149,6 +42261,7 @@ module MyCPUCore (
       ALUOpType_PCADDI : DISPATCH_DECODE_PACKET_0_payload_aluOp_string = "PCADDI   ";
       ALUOpType_PCADDU12I : DISPATCH_DECODE_PACKET_0_payload_aluOp_string = "PCADDU12I";
       ALUOpType_CPUCFG : DISPATCH_DECODE_PACKET_0_payload_aluOp_string = "CPUCFG   ";
+      ALUOpType_IOCSR : DISPATCH_DECODE_PACKET_0_payload_aluOp_string = "IOCSR    ";
       default : DISPATCH_DECODE_PACKET_0_payload_aluOp_string = "?????????";
     endcase
   end
@@ -42243,6 +42356,7 @@ module MyCPUCore (
       ALUOpType_PCADDI : DISPATCH_DECODE_PACKET_1_payload_aluOp_string = "PCADDI   ";
       ALUOpType_PCADDU12I : DISPATCH_DECODE_PACKET_1_payload_aluOp_string = "PCADDU12I";
       ALUOpType_CPUCFG : DISPATCH_DECODE_PACKET_1_payload_aluOp_string = "CPUCFG   ";
+      ALUOpType_IOCSR : DISPATCH_DECODE_PACKET_1_payload_aluOp_string = "IOCSR    ";
       default : DISPATCH_DECODE_PACKET_1_payload_aluOp_string = "?????????";
     endcase
   end
@@ -42337,6 +42451,7 @@ module MyCPUCore (
       ALUOpType_PCADDI : DISPATCH_DECODE_PACKET_2_payload_aluOp_string = "PCADDI   ";
       ALUOpType_PCADDU12I : DISPATCH_DECODE_PACKET_2_payload_aluOp_string = "PCADDU12I";
       ALUOpType_CPUCFG : DISPATCH_DECODE_PACKET_2_payload_aluOp_string = "CPUCFG   ";
+      ALUOpType_IOCSR : DISPATCH_DECODE_PACKET_2_payload_aluOp_string = "IOCSR    ";
       default : DISPATCH_DECODE_PACKET_2_payload_aluOp_string = "?????????";
     endcase
   end
@@ -42431,6 +42546,7 @@ module MyCPUCore (
       ALUOpType_PCADDI : _zz_DISPATCH_DECODE_PACKET_0_payload_aluOp_string = "PCADDI   ";
       ALUOpType_PCADDU12I : _zz_DISPATCH_DECODE_PACKET_0_payload_aluOp_string = "PCADDU12I";
       ALUOpType_CPUCFG : _zz_DISPATCH_DECODE_PACKET_0_payload_aluOp_string = "CPUCFG   ";
+      ALUOpType_IOCSR : _zz_DISPATCH_DECODE_PACKET_0_payload_aluOp_string = "IOCSR    ";
       default : _zz_DISPATCH_DECODE_PACKET_0_payload_aluOp_string = "?????????";
     endcase
   end
@@ -42525,6 +42641,7 @@ module MyCPUCore (
       ALUOpType_PCADDI : _zz_DISPATCH_DECODE_PACKET_1_payload_aluOp_string = "PCADDI   ";
       ALUOpType_PCADDU12I : _zz_DISPATCH_DECODE_PACKET_1_payload_aluOp_string = "PCADDU12I";
       ALUOpType_CPUCFG : _zz_DISPATCH_DECODE_PACKET_1_payload_aluOp_string = "CPUCFG   ";
+      ALUOpType_IOCSR : _zz_DISPATCH_DECODE_PACKET_1_payload_aluOp_string = "IOCSR    ";
       default : _zz_DISPATCH_DECODE_PACKET_1_payload_aluOp_string = "?????????";
     endcase
   end
@@ -42619,6 +42736,7 @@ module MyCPUCore (
       ALUOpType_PCADDI : _zz_DISPATCH_DECODE_PACKET_2_payload_aluOp_string = "PCADDI   ";
       ALUOpType_PCADDU12I : _zz_DISPATCH_DECODE_PACKET_2_payload_aluOp_string = "PCADDU12I";
       ALUOpType_CPUCFG : _zz_DISPATCH_DECODE_PACKET_2_payload_aluOp_string = "CPUCFG   ";
+      ALUOpType_IOCSR : _zz_DISPATCH_DECODE_PACKET_2_payload_aluOp_string = "IOCSR    ";
       default : _zz_DISPATCH_DECODE_PACKET_2_payload_aluOp_string = "?????????";
     endcase
   end
@@ -42713,6 +42831,7 @@ module MyCPUCore (
       ALUOpType_PCADDI : RENAME_DECODE_PACKET_0_payload_aluOp_string = "PCADDI   ";
       ALUOpType_PCADDU12I : RENAME_DECODE_PACKET_0_payload_aluOp_string = "PCADDU12I";
       ALUOpType_CPUCFG : RENAME_DECODE_PACKET_0_payload_aluOp_string = "CPUCFG   ";
+      ALUOpType_IOCSR : RENAME_DECODE_PACKET_0_payload_aluOp_string = "IOCSR    ";
       default : RENAME_DECODE_PACKET_0_payload_aluOp_string = "?????????";
     endcase
   end
@@ -42807,6 +42926,7 @@ module MyCPUCore (
       ALUOpType_PCADDI : RENAME_DECODE_PACKET_1_payload_aluOp_string = "PCADDI   ";
       ALUOpType_PCADDU12I : RENAME_DECODE_PACKET_1_payload_aluOp_string = "PCADDU12I";
       ALUOpType_CPUCFG : RENAME_DECODE_PACKET_1_payload_aluOp_string = "CPUCFG   ";
+      ALUOpType_IOCSR : RENAME_DECODE_PACKET_1_payload_aluOp_string = "IOCSR    ";
       default : RENAME_DECODE_PACKET_1_payload_aluOp_string = "?????????";
     endcase
   end
@@ -42901,6 +43021,7 @@ module MyCPUCore (
       ALUOpType_PCADDI : RENAME_DECODE_PACKET_2_payload_aluOp_string = "PCADDI   ";
       ALUOpType_PCADDU12I : RENAME_DECODE_PACKET_2_payload_aluOp_string = "PCADDU12I";
       ALUOpType_CPUCFG : RENAME_DECODE_PACKET_2_payload_aluOp_string = "CPUCFG   ";
+      ALUOpType_IOCSR : RENAME_DECODE_PACKET_2_payload_aluOp_string = "IOCSR    ";
       default : RENAME_DECODE_PACKET_2_payload_aluOp_string = "?????????";
     endcase
   end
@@ -42995,6 +43116,7 @@ module MyCPUCore (
       ALUOpType_PCADDI : _zz_RENAME_DECODE_PACKET_0_payload_aluOp_string = "PCADDI   ";
       ALUOpType_PCADDU12I : _zz_RENAME_DECODE_PACKET_0_payload_aluOp_string = "PCADDU12I";
       ALUOpType_CPUCFG : _zz_RENAME_DECODE_PACKET_0_payload_aluOp_string = "CPUCFG   ";
+      ALUOpType_IOCSR : _zz_RENAME_DECODE_PACKET_0_payload_aluOp_string = "IOCSR    ";
       default : _zz_RENAME_DECODE_PACKET_0_payload_aluOp_string = "?????????";
     endcase
   end
@@ -43089,6 +43211,7 @@ module MyCPUCore (
       ALUOpType_PCADDI : _zz_RENAME_DECODE_PACKET_1_payload_aluOp_string = "PCADDI   ";
       ALUOpType_PCADDU12I : _zz_RENAME_DECODE_PACKET_1_payload_aluOp_string = "PCADDU12I";
       ALUOpType_CPUCFG : _zz_RENAME_DECODE_PACKET_1_payload_aluOp_string = "CPUCFG   ";
+      ALUOpType_IOCSR : _zz_RENAME_DECODE_PACKET_1_payload_aluOp_string = "IOCSR    ";
       default : _zz_RENAME_DECODE_PACKET_1_payload_aluOp_string = "?????????";
     endcase
   end
@@ -43183,6 +43306,7 @@ module MyCPUCore (
       ALUOpType_PCADDI : _zz_RENAME_DECODE_PACKET_2_payload_aluOp_string = "PCADDI   ";
       ALUOpType_PCADDU12I : _zz_RENAME_DECODE_PACKET_2_payload_aluOp_string = "PCADDU12I";
       ALUOpType_CPUCFG : _zz_RENAME_DECODE_PACKET_2_payload_aluOp_string = "CPUCFG   ";
+      ALUOpType_IOCSR : _zz_RENAME_DECODE_PACKET_2_payload_aluOp_string = "IOCSR    ";
       default : _zz_RENAME_DECODE_PACKET_2_payload_aluOp_string = "?????????";
     endcase
   end
@@ -44319,6 +44443,7 @@ module MyCPUCore (
       ALUOpType_PCADDI : IntIssueQueuePlugin_queue_0_payload_uop_aluOp_string = "PCADDI   ";
       ALUOpType_PCADDU12I : IntIssueQueuePlugin_queue_0_payload_uop_aluOp_string = "PCADDU12I";
       ALUOpType_CPUCFG : IntIssueQueuePlugin_queue_0_payload_uop_aluOp_string = "CPUCFG   ";
+      ALUOpType_IOCSR : IntIssueQueuePlugin_queue_0_payload_uop_aluOp_string = "IOCSR    ";
       default : IntIssueQueuePlugin_queue_0_payload_uop_aluOp_string = "?????????";
     endcase
   end
@@ -44401,6 +44526,7 @@ module MyCPUCore (
       ALUOpType_PCADDI : IntIssueQueuePlugin_queue_1_payload_uop_aluOp_string = "PCADDI   ";
       ALUOpType_PCADDU12I : IntIssueQueuePlugin_queue_1_payload_uop_aluOp_string = "PCADDU12I";
       ALUOpType_CPUCFG : IntIssueQueuePlugin_queue_1_payload_uop_aluOp_string = "CPUCFG   ";
+      ALUOpType_IOCSR : IntIssueQueuePlugin_queue_1_payload_uop_aluOp_string = "IOCSR    ";
       default : IntIssueQueuePlugin_queue_1_payload_uop_aluOp_string = "?????????";
     endcase
   end
@@ -44483,6 +44609,7 @@ module MyCPUCore (
       ALUOpType_PCADDI : IntIssueQueuePlugin_queue_2_payload_uop_aluOp_string = "PCADDI   ";
       ALUOpType_PCADDU12I : IntIssueQueuePlugin_queue_2_payload_uop_aluOp_string = "PCADDU12I";
       ALUOpType_CPUCFG : IntIssueQueuePlugin_queue_2_payload_uop_aluOp_string = "CPUCFG   ";
+      ALUOpType_IOCSR : IntIssueQueuePlugin_queue_2_payload_uop_aluOp_string = "IOCSR    ";
       default : IntIssueQueuePlugin_queue_2_payload_uop_aluOp_string = "?????????";
     endcase
   end
@@ -44565,6 +44692,7 @@ module MyCPUCore (
       ALUOpType_PCADDI : IntIssueQueuePlugin_queue_3_payload_uop_aluOp_string = "PCADDI   ";
       ALUOpType_PCADDU12I : IntIssueQueuePlugin_queue_3_payload_uop_aluOp_string = "PCADDU12I";
       ALUOpType_CPUCFG : IntIssueQueuePlugin_queue_3_payload_uop_aluOp_string = "CPUCFG   ";
+      ALUOpType_IOCSR : IntIssueQueuePlugin_queue_3_payload_uop_aluOp_string = "IOCSR    ";
       default : IntIssueQueuePlugin_queue_3_payload_uop_aluOp_string = "?????????";
     endcase
   end
@@ -44647,6 +44775,7 @@ module MyCPUCore (
       ALUOpType_PCADDI : IntIssueQueuePlugin_queue_4_payload_uop_aluOp_string = "PCADDI   ";
       ALUOpType_PCADDU12I : IntIssueQueuePlugin_queue_4_payload_uop_aluOp_string = "PCADDU12I";
       ALUOpType_CPUCFG : IntIssueQueuePlugin_queue_4_payload_uop_aluOp_string = "CPUCFG   ";
+      ALUOpType_IOCSR : IntIssueQueuePlugin_queue_4_payload_uop_aluOp_string = "IOCSR    ";
       default : IntIssueQueuePlugin_queue_4_payload_uop_aluOp_string = "?????????";
     endcase
   end
@@ -44729,6 +44858,7 @@ module MyCPUCore (
       ALUOpType_PCADDI : IntIssueQueuePlugin_queue_5_payload_uop_aluOp_string = "PCADDI   ";
       ALUOpType_PCADDU12I : IntIssueQueuePlugin_queue_5_payload_uop_aluOp_string = "PCADDU12I";
       ALUOpType_CPUCFG : IntIssueQueuePlugin_queue_5_payload_uop_aluOp_string = "CPUCFG   ";
+      ALUOpType_IOCSR : IntIssueQueuePlugin_queue_5_payload_uop_aluOp_string = "IOCSR    ";
       default : IntIssueQueuePlugin_queue_5_payload_uop_aluOp_string = "?????????";
     endcase
   end
@@ -44811,6 +44941,7 @@ module MyCPUCore (
       ALUOpType_PCADDI : IntIssueQueuePlugin_queue_6_payload_uop_aluOp_string = "PCADDI   ";
       ALUOpType_PCADDU12I : IntIssueQueuePlugin_queue_6_payload_uop_aluOp_string = "PCADDU12I";
       ALUOpType_CPUCFG : IntIssueQueuePlugin_queue_6_payload_uop_aluOp_string = "CPUCFG   ";
+      ALUOpType_IOCSR : IntIssueQueuePlugin_queue_6_payload_uop_aluOp_string = "IOCSR    ";
       default : IntIssueQueuePlugin_queue_6_payload_uop_aluOp_string = "?????????";
     endcase
   end
@@ -44893,6 +45024,7 @@ module MyCPUCore (
       ALUOpType_PCADDI : IntIssueQueuePlugin_queueNext_0_payload_uop_aluOp_string = "PCADDI   ";
       ALUOpType_PCADDU12I : IntIssueQueuePlugin_queueNext_0_payload_uop_aluOp_string = "PCADDU12I";
       ALUOpType_CPUCFG : IntIssueQueuePlugin_queueNext_0_payload_uop_aluOp_string = "CPUCFG   ";
+      ALUOpType_IOCSR : IntIssueQueuePlugin_queueNext_0_payload_uop_aluOp_string = "IOCSR    ";
       default : IntIssueQueuePlugin_queueNext_0_payload_uop_aluOp_string = "?????????";
     endcase
   end
@@ -44975,6 +45107,7 @@ module MyCPUCore (
       ALUOpType_PCADDI : IntIssueQueuePlugin_queueNext_1_payload_uop_aluOp_string = "PCADDI   ";
       ALUOpType_PCADDU12I : IntIssueQueuePlugin_queueNext_1_payload_uop_aluOp_string = "PCADDU12I";
       ALUOpType_CPUCFG : IntIssueQueuePlugin_queueNext_1_payload_uop_aluOp_string = "CPUCFG   ";
+      ALUOpType_IOCSR : IntIssueQueuePlugin_queueNext_1_payload_uop_aluOp_string = "IOCSR    ";
       default : IntIssueQueuePlugin_queueNext_1_payload_uop_aluOp_string = "?????????";
     endcase
   end
@@ -45057,6 +45190,7 @@ module MyCPUCore (
       ALUOpType_PCADDI : IntIssueQueuePlugin_queueNext_2_payload_uop_aluOp_string = "PCADDI   ";
       ALUOpType_PCADDU12I : IntIssueQueuePlugin_queueNext_2_payload_uop_aluOp_string = "PCADDU12I";
       ALUOpType_CPUCFG : IntIssueQueuePlugin_queueNext_2_payload_uop_aluOp_string = "CPUCFG   ";
+      ALUOpType_IOCSR : IntIssueQueuePlugin_queueNext_2_payload_uop_aluOp_string = "IOCSR    ";
       default : IntIssueQueuePlugin_queueNext_2_payload_uop_aluOp_string = "?????????";
     endcase
   end
@@ -45139,6 +45273,7 @@ module MyCPUCore (
       ALUOpType_PCADDI : IntIssueQueuePlugin_queueNext_3_payload_uop_aluOp_string = "PCADDI   ";
       ALUOpType_PCADDU12I : IntIssueQueuePlugin_queueNext_3_payload_uop_aluOp_string = "PCADDU12I";
       ALUOpType_CPUCFG : IntIssueQueuePlugin_queueNext_3_payload_uop_aluOp_string = "CPUCFG   ";
+      ALUOpType_IOCSR : IntIssueQueuePlugin_queueNext_3_payload_uop_aluOp_string = "IOCSR    ";
       default : IntIssueQueuePlugin_queueNext_3_payload_uop_aluOp_string = "?????????";
     endcase
   end
@@ -45221,6 +45356,7 @@ module MyCPUCore (
       ALUOpType_PCADDI : IntIssueQueuePlugin_queueNext_4_payload_uop_aluOp_string = "PCADDI   ";
       ALUOpType_PCADDU12I : IntIssueQueuePlugin_queueNext_4_payload_uop_aluOp_string = "PCADDU12I";
       ALUOpType_CPUCFG : IntIssueQueuePlugin_queueNext_4_payload_uop_aluOp_string = "CPUCFG   ";
+      ALUOpType_IOCSR : IntIssueQueuePlugin_queueNext_4_payload_uop_aluOp_string = "IOCSR    ";
       default : IntIssueQueuePlugin_queueNext_4_payload_uop_aluOp_string = "?????????";
     endcase
   end
@@ -45303,6 +45439,7 @@ module MyCPUCore (
       ALUOpType_PCADDI : IntIssueQueuePlugin_queueNext_5_payload_uop_aluOp_string = "PCADDI   ";
       ALUOpType_PCADDU12I : IntIssueQueuePlugin_queueNext_5_payload_uop_aluOp_string = "PCADDU12I";
       ALUOpType_CPUCFG : IntIssueQueuePlugin_queueNext_5_payload_uop_aluOp_string = "CPUCFG   ";
+      ALUOpType_IOCSR : IntIssueQueuePlugin_queueNext_5_payload_uop_aluOp_string = "IOCSR    ";
       default : IntIssueQueuePlugin_queueNext_5_payload_uop_aluOp_string = "?????????";
     endcase
   end
@@ -45385,6 +45522,7 @@ module MyCPUCore (
       ALUOpType_PCADDI : IntIssueQueuePlugin_queueNext_6_payload_uop_aluOp_string = "PCADDI   ";
       ALUOpType_PCADDU12I : IntIssueQueuePlugin_queueNext_6_payload_uop_aluOp_string = "PCADDU12I";
       ALUOpType_CPUCFG : IntIssueQueuePlugin_queueNext_6_payload_uop_aluOp_string = "CPUCFG   ";
+      ALUOpType_IOCSR : IntIssueQueuePlugin_queueNext_6_payload_uop_aluOp_string = "IOCSR    ";
       default : IntIssueQueuePlugin_queueNext_6_payload_uop_aluOp_string = "?????????";
     endcase
   end
@@ -45467,6 +45605,7 @@ module MyCPUCore (
       ALUOpType_PCADDI : IntIssueQueuePlugin_queueIO_pushPorts_0_payload_uop_aluOp_string = "PCADDI   ";
       ALUOpType_PCADDU12I : IntIssueQueuePlugin_queueIO_pushPorts_0_payload_uop_aluOp_string = "PCADDU12I";
       ALUOpType_CPUCFG : IntIssueQueuePlugin_queueIO_pushPorts_0_payload_uop_aluOp_string = "CPUCFG   ";
+      ALUOpType_IOCSR : IntIssueQueuePlugin_queueIO_pushPorts_0_payload_uop_aluOp_string = "IOCSR    ";
       default : IntIssueQueuePlugin_queueIO_pushPorts_0_payload_uop_aluOp_string = "?????????";
     endcase
   end
@@ -45549,6 +45688,7 @@ module MyCPUCore (
       ALUOpType_PCADDI : IntIssueQueuePlugin_queueIO_pushPorts_1_payload_uop_aluOp_string = "PCADDI   ";
       ALUOpType_PCADDU12I : IntIssueQueuePlugin_queueIO_pushPorts_1_payload_uop_aluOp_string = "PCADDU12I";
       ALUOpType_CPUCFG : IntIssueQueuePlugin_queueIO_pushPorts_1_payload_uop_aluOp_string = "CPUCFG   ";
+      ALUOpType_IOCSR : IntIssueQueuePlugin_queueIO_pushPorts_1_payload_uop_aluOp_string = "IOCSR    ";
       default : IntIssueQueuePlugin_queueIO_pushPorts_1_payload_uop_aluOp_string = "?????????";
     endcase
   end
@@ -45631,6 +45771,7 @@ module MyCPUCore (
       ALUOpType_PCADDI : IntIssueQueuePlugin_queueIO_pushPorts_2_payload_uop_aluOp_string = "PCADDI   ";
       ALUOpType_PCADDU12I : IntIssueQueuePlugin_queueIO_pushPorts_2_payload_uop_aluOp_string = "PCADDU12I";
       ALUOpType_CPUCFG : IntIssueQueuePlugin_queueIO_pushPorts_2_payload_uop_aluOp_string = "CPUCFG   ";
+      ALUOpType_IOCSR : IntIssueQueuePlugin_queueIO_pushPorts_2_payload_uop_aluOp_string = "IOCSR    ";
       default : IntIssueQueuePlugin_queueIO_pushPorts_2_payload_uop_aluOp_string = "?????????";
     endcase
   end
@@ -46325,6 +46466,7 @@ module MyCPUCore (
       ALUOpType_PCADDI : DISPATCH_IntIssueQueuePlugin_pushPorts_0_uop_aluOp_string = "PCADDI   ";
       ALUOpType_PCADDU12I : DISPATCH_IntIssueQueuePlugin_pushPorts_0_uop_aluOp_string = "PCADDU12I";
       ALUOpType_CPUCFG : DISPATCH_IntIssueQueuePlugin_pushPorts_0_uop_aluOp_string = "CPUCFG   ";
+      ALUOpType_IOCSR : DISPATCH_IntIssueQueuePlugin_pushPorts_0_uop_aluOp_string = "IOCSR    ";
       default : DISPATCH_IntIssueQueuePlugin_pushPorts_0_uop_aluOp_string = "?????????";
     endcase
   end
@@ -46407,6 +46549,7 @@ module MyCPUCore (
       ALUOpType_PCADDI : DISPATCH_IntIssueQueuePlugin_pushPorts_1_uop_aluOp_string = "PCADDI   ";
       ALUOpType_PCADDU12I : DISPATCH_IntIssueQueuePlugin_pushPorts_1_uop_aluOp_string = "PCADDU12I";
       ALUOpType_CPUCFG : DISPATCH_IntIssueQueuePlugin_pushPorts_1_uop_aluOp_string = "CPUCFG   ";
+      ALUOpType_IOCSR : DISPATCH_IntIssueQueuePlugin_pushPorts_1_uop_aluOp_string = "IOCSR    ";
       default : DISPATCH_IntIssueQueuePlugin_pushPorts_1_uop_aluOp_string = "?????????";
     endcase
   end
@@ -46489,6 +46632,7 @@ module MyCPUCore (
       ALUOpType_PCADDI : DISPATCH_IntIssueQueuePlugin_pushPorts_2_uop_aluOp_string = "PCADDI   ";
       ALUOpType_PCADDU12I : DISPATCH_IntIssueQueuePlugin_pushPorts_2_uop_aluOp_string = "PCADDU12I";
       ALUOpType_CPUCFG : DISPATCH_IntIssueQueuePlugin_pushPorts_2_uop_aluOp_string = "CPUCFG   ";
+      ALUOpType_IOCSR : DISPATCH_IntIssueQueuePlugin_pushPorts_2_uop_aluOp_string = "IOCSR    ";
       default : DISPATCH_IntIssueQueuePlugin_pushPorts_2_uop_aluOp_string = "?????????";
     endcase
   end
@@ -46571,6 +46715,7 @@ module MyCPUCore (
       ALUOpType_PCADDI : _zz_IntIssueQueuePlugin_queueIO_pushPorts_0_payload_uop_aluOp_string = "PCADDI   ";
       ALUOpType_PCADDU12I : _zz_IntIssueQueuePlugin_queueIO_pushPorts_0_payload_uop_aluOp_string = "PCADDU12I";
       ALUOpType_CPUCFG : _zz_IntIssueQueuePlugin_queueIO_pushPorts_0_payload_uop_aluOp_string = "CPUCFG   ";
+      ALUOpType_IOCSR : _zz_IntIssueQueuePlugin_queueIO_pushPorts_0_payload_uop_aluOp_string = "IOCSR    ";
       default : _zz_IntIssueQueuePlugin_queueIO_pushPorts_0_payload_uop_aluOp_string = "?????????";
     endcase
   end
@@ -46653,6 +46798,7 @@ module MyCPUCore (
       ALUOpType_PCADDI : _zz_IntIssueQueuePlugin_queueIO_pushPorts_1_payload_uop_aluOp_string = "PCADDI   ";
       ALUOpType_PCADDU12I : _zz_IntIssueQueuePlugin_queueIO_pushPorts_1_payload_uop_aluOp_string = "PCADDU12I";
       ALUOpType_CPUCFG : _zz_IntIssueQueuePlugin_queueIO_pushPorts_1_payload_uop_aluOp_string = "CPUCFG   ";
+      ALUOpType_IOCSR : _zz_IntIssueQueuePlugin_queueIO_pushPorts_1_payload_uop_aluOp_string = "IOCSR    ";
       default : _zz_IntIssueQueuePlugin_queueIO_pushPorts_1_payload_uop_aluOp_string = "?????????";
     endcase
   end
@@ -46735,6 +46881,7 @@ module MyCPUCore (
       ALUOpType_PCADDI : _zz_IntIssueQueuePlugin_queueIO_pushPorts_2_payload_uop_aluOp_string = "PCADDI   ";
       ALUOpType_PCADDU12I : _zz_IntIssueQueuePlugin_queueIO_pushPorts_2_payload_uop_aluOp_string = "PCADDU12I";
       ALUOpType_CPUCFG : _zz_IntIssueQueuePlugin_queueIO_pushPorts_2_payload_uop_aluOp_string = "CPUCFG   ";
+      ALUOpType_IOCSR : _zz_IntIssueQueuePlugin_queueIO_pushPorts_2_payload_uop_aluOp_string = "IOCSR    ";
       default : _zz_IntIssueQueuePlugin_queueIO_pushPorts_2_payload_uop_aluOp_string = "?????????";
     endcase
   end
@@ -46914,11 +47061,11 @@ module MyCPUCore (
     endcase
   end
   always @(*) begin
-    case(switch_MMUPlugin_l290)
-      MemOperationType_FETCH : switch_MMUPlugin_l290_string = "FETCH";
-      MemOperationType_LOAD : switch_MMUPlugin_l290_string = "LOAD ";
-      MemOperationType_STORE : switch_MMUPlugin_l290_string = "STORE";
-      default : switch_MMUPlugin_l290_string = "?????";
+    case(switch_MMUPlugin_l298)
+      MemOperationType_FETCH : switch_MMUPlugin_l298_string = "FETCH";
+      MemOperationType_LOAD : switch_MMUPlugin_l298_string = "LOAD ";
+      MemOperationType_STORE : switch_MMUPlugin_l298_string = "STORE";
+      default : switch_MMUPlugin_l298_string = "?????";
     endcase
   end
   always @(*) begin
@@ -46963,6 +47110,7 @@ module MyCPUCore (
       ALUOpType_PCADDI : ID_DecoderArray_decoders_0_uop_aluOp_string = "PCADDI   ";
       ALUOpType_PCADDU12I : ID_DecoderArray_decoders_0_uop_aluOp_string = "PCADDU12I";
       ALUOpType_CPUCFG : ID_DecoderArray_decoders_0_uop_aluOp_string = "CPUCFG   ";
+      ALUOpType_IOCSR : ID_DecoderArray_decoders_0_uop_aluOp_string = "IOCSR    ";
       default : ID_DecoderArray_decoders_0_uop_aluOp_string = "?????????";
     endcase
   end
@@ -47057,6 +47205,7 @@ module MyCPUCore (
       ALUOpType_PCADDI : ID_DecoderArray_decoders_1_uop_aluOp_string = "PCADDI   ";
       ALUOpType_PCADDU12I : ID_DecoderArray_decoders_1_uop_aluOp_string = "PCADDU12I";
       ALUOpType_CPUCFG : ID_DecoderArray_decoders_1_uop_aluOp_string = "CPUCFG   ";
+      ALUOpType_IOCSR : ID_DecoderArray_decoders_1_uop_aluOp_string = "IOCSR    ";
       default : ID_DecoderArray_decoders_1_uop_aluOp_string = "?????????";
     endcase
   end
@@ -47151,6 +47300,7 @@ module MyCPUCore (
       ALUOpType_PCADDI : ID_DecoderArray_decoders_2_uop_aluOp_string = "PCADDI   ";
       ALUOpType_PCADDU12I : ID_DecoderArray_decoders_2_uop_aluOp_string = "PCADDU12I";
       ALUOpType_CPUCFG : ID_DecoderArray_decoders_2_uop_aluOp_string = "CPUCFG   ";
+      ALUOpType_IOCSR : ID_DecoderArray_decoders_2_uop_aluOp_string = "IOCSR    ";
       default : ID_DecoderArray_decoders_2_uop_aluOp_string = "?????????";
     endcase
   end
@@ -47245,6 +47395,7 @@ module MyCPUCore (
       ALUOpType_PCADDI : _zz_INT2_ISS_IntExecutePlugin_issSlot_uop_aluOp_string = "PCADDI   ";
       ALUOpType_PCADDU12I : _zz_INT2_ISS_IntExecutePlugin_issSlot_uop_aluOp_string = "PCADDU12I";
       ALUOpType_CPUCFG : _zz_INT2_ISS_IntExecutePlugin_issSlot_uop_aluOp_string = "CPUCFG   ";
+      ALUOpType_IOCSR : _zz_INT2_ISS_IntExecutePlugin_issSlot_uop_aluOp_string = "IOCSR    ";
       default : _zz_INT2_ISS_IntExecutePlugin_issSlot_uop_aluOp_string = "?????????";
     endcase
   end
@@ -47327,6 +47478,7 @@ module MyCPUCore (
       ALUOpType_PCADDI : _zz_INT1_ISS_IntExecutePlugin_issSlot_uop_aluOp_string = "PCADDI   ";
       ALUOpType_PCADDU12I : _zz_INT1_ISS_IntExecutePlugin_issSlot_uop_aluOp_string = "PCADDU12I";
       ALUOpType_CPUCFG : _zz_INT1_ISS_IntExecutePlugin_issSlot_uop_aluOp_string = "CPUCFG   ";
+      ALUOpType_IOCSR : _zz_INT1_ISS_IntExecutePlugin_issSlot_uop_aluOp_string = "IOCSR    ";
       default : _zz_INT1_ISS_IntExecutePlugin_issSlot_uop_aluOp_string = "?????????";
     endcase
   end
@@ -47409,6 +47561,7 @@ module MyCPUCore (
       ALUOpType_PCADDI : _zz_INT0_ISS_IntExecutePlugin_issSlot_uop_aluOp_string = "PCADDI   ";
       ALUOpType_PCADDU12I : _zz_INT0_ISS_IntExecutePlugin_issSlot_uop_aluOp_string = "PCADDU12I";
       ALUOpType_CPUCFG : _zz_INT0_ISS_IntExecutePlugin_issSlot_uop_aluOp_string = "CPUCFG   ";
+      ALUOpType_IOCSR : _zz_INT0_ISS_IntExecutePlugin_issSlot_uop_aluOp_string = "IOCSR    ";
       default : _zz_INT0_ISS_IntExecutePlugin_issSlot_uop_aluOp_string = "?????????";
     endcase
   end
@@ -47450,19 +47603,19 @@ module MyCPUCore (
     endcase
   end
   always @(*) begin
-    case(switch_MMUPlugin_l290_1)
-      MemOperationType_FETCH : switch_MMUPlugin_l290_1_string = "FETCH";
-      MemOperationType_LOAD : switch_MMUPlugin_l290_1_string = "LOAD ";
-      MemOperationType_STORE : switch_MMUPlugin_l290_1_string = "STORE";
-      default : switch_MMUPlugin_l290_1_string = "?????";
+    case(switch_MMUPlugin_l298_1)
+      MemOperationType_FETCH : switch_MMUPlugin_l298_1_string = "FETCH";
+      MemOperationType_LOAD : switch_MMUPlugin_l298_1_string = "LOAD ";
+      MemOperationType_STORE : switch_MMUPlugin_l298_1_string = "STORE";
+      default : switch_MMUPlugin_l298_1_string = "?????";
     endcase
   end
   always @(*) begin
-    case(_zz_when_MMUPlugin_l359)
-      MemOperationType_FETCH : _zz_when_MMUPlugin_l359_string = "FETCH";
-      MemOperationType_LOAD : _zz_when_MMUPlugin_l359_string = "LOAD ";
-      MemOperationType_STORE : _zz_when_MMUPlugin_l359_string = "STORE";
-      default : _zz_when_MMUPlugin_l359_string = "?????";
+    case(_zz_when_MMUPlugin_l367)
+      MemOperationType_FETCH : _zz_when_MMUPlugin_l367_string = "FETCH";
+      MemOperationType_LOAD : _zz_when_MMUPlugin_l367_string = "LOAD ";
+      MemOperationType_STORE : _zz_when_MMUPlugin_l367_string = "STORE";
+      default : _zz_when_MMUPlugin_l367_string = "?????";
     endcase
   end
   always @(*) begin
@@ -47531,6 +47684,7 @@ module MyCPUCore (
       ALUOpType_PCADDI : ID_to_RENAME_DECODE_PACKET_0_payload_aluOp_string = "PCADDI   ";
       ALUOpType_PCADDU12I : ID_to_RENAME_DECODE_PACKET_0_payload_aluOp_string = "PCADDU12I";
       ALUOpType_CPUCFG : ID_to_RENAME_DECODE_PACKET_0_payload_aluOp_string = "CPUCFG   ";
+      ALUOpType_IOCSR : ID_to_RENAME_DECODE_PACKET_0_payload_aluOp_string = "IOCSR    ";
       default : ID_to_RENAME_DECODE_PACKET_0_payload_aluOp_string = "?????????";
     endcase
   end
@@ -47625,6 +47779,7 @@ module MyCPUCore (
       ALUOpType_PCADDI : ID_to_RENAME_DECODE_PACKET_1_payload_aluOp_string = "PCADDI   ";
       ALUOpType_PCADDU12I : ID_to_RENAME_DECODE_PACKET_1_payload_aluOp_string = "PCADDU12I";
       ALUOpType_CPUCFG : ID_to_RENAME_DECODE_PACKET_1_payload_aluOp_string = "CPUCFG   ";
+      ALUOpType_IOCSR : ID_to_RENAME_DECODE_PACKET_1_payload_aluOp_string = "IOCSR    ";
       default : ID_to_RENAME_DECODE_PACKET_1_payload_aluOp_string = "?????????";
     endcase
   end
@@ -47719,6 +47874,7 @@ module MyCPUCore (
       ALUOpType_PCADDI : ID_to_RENAME_DECODE_PACKET_2_payload_aluOp_string = "PCADDI   ";
       ALUOpType_PCADDU12I : ID_to_RENAME_DECODE_PACKET_2_payload_aluOp_string = "PCADDU12I";
       ALUOpType_CPUCFG : ID_to_RENAME_DECODE_PACKET_2_payload_aluOp_string = "CPUCFG   ";
+      ALUOpType_IOCSR : ID_to_RENAME_DECODE_PACKET_2_payload_aluOp_string = "IOCSR    ";
       default : ID_to_RENAME_DECODE_PACKET_2_payload_aluOp_string = "?????????";
     endcase
   end
@@ -47813,6 +47969,7 @@ module MyCPUCore (
       ALUOpType_PCADDI : RENAME_to_DISPATCH_DECODE_PACKET_0_payload_aluOp_string = "PCADDI   ";
       ALUOpType_PCADDU12I : RENAME_to_DISPATCH_DECODE_PACKET_0_payload_aluOp_string = "PCADDU12I";
       ALUOpType_CPUCFG : RENAME_to_DISPATCH_DECODE_PACKET_0_payload_aluOp_string = "CPUCFG   ";
+      ALUOpType_IOCSR : RENAME_to_DISPATCH_DECODE_PACKET_0_payload_aluOp_string = "IOCSR    ";
       default : RENAME_to_DISPATCH_DECODE_PACKET_0_payload_aluOp_string = "?????????";
     endcase
   end
@@ -47907,6 +48064,7 @@ module MyCPUCore (
       ALUOpType_PCADDI : RENAME_to_DISPATCH_DECODE_PACKET_1_payload_aluOp_string = "PCADDI   ";
       ALUOpType_PCADDU12I : RENAME_to_DISPATCH_DECODE_PACKET_1_payload_aluOp_string = "PCADDU12I";
       ALUOpType_CPUCFG : RENAME_to_DISPATCH_DECODE_PACKET_1_payload_aluOp_string = "CPUCFG   ";
+      ALUOpType_IOCSR : RENAME_to_DISPATCH_DECODE_PACKET_1_payload_aluOp_string = "IOCSR    ";
       default : RENAME_to_DISPATCH_DECODE_PACKET_1_payload_aluOp_string = "?????????";
     endcase
   end
@@ -48001,6 +48159,7 @@ module MyCPUCore (
       ALUOpType_PCADDI : RENAME_to_DISPATCH_DECODE_PACKET_2_payload_aluOp_string = "PCADDI   ";
       ALUOpType_PCADDU12I : RENAME_to_DISPATCH_DECODE_PACKET_2_payload_aluOp_string = "PCADDU12I";
       ALUOpType_CPUCFG : RENAME_to_DISPATCH_DECODE_PACKET_2_payload_aluOp_string = "CPUCFG   ";
+      ALUOpType_IOCSR : RENAME_to_DISPATCH_DECODE_PACKET_2_payload_aluOp_string = "IOCSR    ";
       default : RENAME_to_DISPATCH_DECODE_PACKET_2_payload_aluOp_string = "?????????";
     endcase
   end
@@ -48095,6 +48254,7 @@ module MyCPUCore (
       ALUOpType_PCADDI : INT2_ISS_to_INT2_RRD_ISSUE_SLOT_uop_aluOp_string = "PCADDI   ";
       ALUOpType_PCADDU12I : INT2_ISS_to_INT2_RRD_ISSUE_SLOT_uop_aluOp_string = "PCADDU12I";
       ALUOpType_CPUCFG : INT2_ISS_to_INT2_RRD_ISSUE_SLOT_uop_aluOp_string = "CPUCFG   ";
+      ALUOpType_IOCSR : INT2_ISS_to_INT2_RRD_ISSUE_SLOT_uop_aluOp_string = "IOCSR    ";
       default : INT2_ISS_to_INT2_RRD_ISSUE_SLOT_uop_aluOp_string = "?????????";
     endcase
   end
@@ -48177,6 +48337,7 @@ module MyCPUCore (
       ALUOpType_PCADDI : INT2_RRD_to_INT2_EXE_ISSUE_SLOT_uop_aluOp_string = "PCADDI   ";
       ALUOpType_PCADDU12I : INT2_RRD_to_INT2_EXE_ISSUE_SLOT_uop_aluOp_string = "PCADDU12I";
       ALUOpType_CPUCFG : INT2_RRD_to_INT2_EXE_ISSUE_SLOT_uop_aluOp_string = "CPUCFG   ";
+      ALUOpType_IOCSR : INT2_RRD_to_INT2_EXE_ISSUE_SLOT_uop_aluOp_string = "IOCSR    ";
       default : INT2_RRD_to_INT2_EXE_ISSUE_SLOT_uop_aluOp_string = "?????????";
     endcase
   end
@@ -48259,6 +48420,7 @@ module MyCPUCore (
       ALUOpType_PCADDI : INT2_EXE_to_INT2_WB_ISSUE_SLOT_uop_aluOp_string = "PCADDI   ";
       ALUOpType_PCADDU12I : INT2_EXE_to_INT2_WB_ISSUE_SLOT_uop_aluOp_string = "PCADDU12I";
       ALUOpType_CPUCFG : INT2_EXE_to_INT2_WB_ISSUE_SLOT_uop_aluOp_string = "CPUCFG   ";
+      ALUOpType_IOCSR : INT2_EXE_to_INT2_WB_ISSUE_SLOT_uop_aluOp_string = "IOCSR    ";
       default : INT2_EXE_to_INT2_WB_ISSUE_SLOT_uop_aluOp_string = "?????????";
     endcase
   end
@@ -48341,6 +48503,7 @@ module MyCPUCore (
       ALUOpType_PCADDI : INT1_ISS_to_INT1_RRD_ISSUE_SLOT_uop_aluOp_string = "PCADDI   ";
       ALUOpType_PCADDU12I : INT1_ISS_to_INT1_RRD_ISSUE_SLOT_uop_aluOp_string = "PCADDU12I";
       ALUOpType_CPUCFG : INT1_ISS_to_INT1_RRD_ISSUE_SLOT_uop_aluOp_string = "CPUCFG   ";
+      ALUOpType_IOCSR : INT1_ISS_to_INT1_RRD_ISSUE_SLOT_uop_aluOp_string = "IOCSR    ";
       default : INT1_ISS_to_INT1_RRD_ISSUE_SLOT_uop_aluOp_string = "?????????";
     endcase
   end
@@ -48423,6 +48586,7 @@ module MyCPUCore (
       ALUOpType_PCADDI : INT1_RRD_to_INT1_EXE_ISSUE_SLOT_uop_aluOp_string = "PCADDI   ";
       ALUOpType_PCADDU12I : INT1_RRD_to_INT1_EXE_ISSUE_SLOT_uop_aluOp_string = "PCADDU12I";
       ALUOpType_CPUCFG : INT1_RRD_to_INT1_EXE_ISSUE_SLOT_uop_aluOp_string = "CPUCFG   ";
+      ALUOpType_IOCSR : INT1_RRD_to_INT1_EXE_ISSUE_SLOT_uop_aluOp_string = "IOCSR    ";
       default : INT1_RRD_to_INT1_EXE_ISSUE_SLOT_uop_aluOp_string = "?????????";
     endcase
   end
@@ -48505,6 +48669,7 @@ module MyCPUCore (
       ALUOpType_PCADDI : INT1_EXE_to_INT1_WB_ISSUE_SLOT_uop_aluOp_string = "PCADDI   ";
       ALUOpType_PCADDU12I : INT1_EXE_to_INT1_WB_ISSUE_SLOT_uop_aluOp_string = "PCADDU12I";
       ALUOpType_CPUCFG : INT1_EXE_to_INT1_WB_ISSUE_SLOT_uop_aluOp_string = "CPUCFG   ";
+      ALUOpType_IOCSR : INT1_EXE_to_INT1_WB_ISSUE_SLOT_uop_aluOp_string = "IOCSR    ";
       default : INT1_EXE_to_INT1_WB_ISSUE_SLOT_uop_aluOp_string = "?????????";
     endcase
   end
@@ -48587,6 +48752,7 @@ module MyCPUCore (
       ALUOpType_PCADDI : INT0_ISS_to_INT0_RRD_ISSUE_SLOT_uop_aluOp_string = "PCADDI   ";
       ALUOpType_PCADDU12I : INT0_ISS_to_INT0_RRD_ISSUE_SLOT_uop_aluOp_string = "PCADDU12I";
       ALUOpType_CPUCFG : INT0_ISS_to_INT0_RRD_ISSUE_SLOT_uop_aluOp_string = "CPUCFG   ";
+      ALUOpType_IOCSR : INT0_ISS_to_INT0_RRD_ISSUE_SLOT_uop_aluOp_string = "IOCSR    ";
       default : INT0_ISS_to_INT0_RRD_ISSUE_SLOT_uop_aluOp_string = "?????????";
     endcase
   end
@@ -48669,6 +48835,7 @@ module MyCPUCore (
       ALUOpType_PCADDI : INT0_RRD_to_INT0_EXE_ISSUE_SLOT_uop_aluOp_string = "PCADDI   ";
       ALUOpType_PCADDU12I : INT0_RRD_to_INT0_EXE_ISSUE_SLOT_uop_aluOp_string = "PCADDU12I";
       ALUOpType_CPUCFG : INT0_RRD_to_INT0_EXE_ISSUE_SLOT_uop_aluOp_string = "CPUCFG   ";
+      ALUOpType_IOCSR : INT0_RRD_to_INT0_EXE_ISSUE_SLOT_uop_aluOp_string = "IOCSR    ";
       default : INT0_RRD_to_INT0_EXE_ISSUE_SLOT_uop_aluOp_string = "?????????";
     endcase
   end
@@ -49616,32 +49783,7 @@ module MyCPUCore (
   assign IF1_ICACHE_VALIDS_0 = _zz_IF1_ICACHE_VALIDS_0_1;
   assign IF1_ICACHE_VALIDS_1 = _zz_IF1_ICACHE_VALIDS_1;
   always @(*) begin
-    _zz_MEM_ADDR_to_MEM_MEM1_EXCEPTION_ESUBCODE = MEM_ADDR_EXCEPTION_ESUBCODE;
-    if(when_ExceptionMuxPlugin_l45_9) begin
-      _zz_MEM_ADDR_to_MEM_MEM1_EXCEPTION_ESUBCODE = 9'h0;
-    end
-  end
-
-  always @(*) begin
-    _zz_MEM_ADDR_to_MEM_MEM1_EXCEPTION_ECODE = MEM_ADDR_EXCEPTION_ECODE;
-    if(when_ExceptionMuxPlugin_l45_9) begin
-      _zz_MEM_ADDR_to_MEM_MEM1_EXCEPTION_ECODE = 6'h09;
-    end
-  end
-
-  assign MEM_ADDR_EXCEPTION_OCCURRED = 1'b0;
-  always @(*) begin
-    _zz_MEM_ADDR_to_MEM_MEM1_EXCEPTION_OCCURRED = MEM_ADDR_EXCEPTION_OCCURRED;
-    if(AddressGenerationPlugin_raiseALE) begin
-      _zz_MEM_ADDR_to_MEM_MEM1_EXCEPTION_OCCURRED = 1'b1;
-    end
-  end
-
-  always @(*) begin
     _zz_MEM_MEM1_to_MEM_MEM2_EXCEPTION_ESUBCODE = MEM_MEM1_EXCEPTION_ESUBCODE;
-    if(when_ExceptionMuxPlugin_l45_4) begin
-      _zz_MEM_MEM1_to_MEM_MEM2_EXCEPTION_ESUBCODE = 9'h0;
-    end
     if(when_ExceptionMuxPlugin_l45_5) begin
       _zz_MEM_MEM1_to_MEM_MEM2_EXCEPTION_ESUBCODE = 9'h0;
     end
@@ -49652,25 +49794,28 @@ module MyCPUCore (
       _zz_MEM_MEM1_to_MEM_MEM2_EXCEPTION_ESUBCODE = 9'h0;
     end
     if(when_ExceptionMuxPlugin_l45_8) begin
+      _zz_MEM_MEM1_to_MEM_MEM2_EXCEPTION_ESUBCODE = 9'h0;
+    end
+    if(when_ExceptionMuxPlugin_l45_9) begin
       _zz_MEM_MEM1_to_MEM_MEM2_EXCEPTION_ESUBCODE = 9'h0;
     end
   end
 
   always @(*) begin
     _zz_MEM_MEM1_to_MEM_MEM2_EXCEPTION_ECODE = MEM_MEM1_EXCEPTION_ECODE;
-    if(when_ExceptionMuxPlugin_l45_4) begin
+    if(when_ExceptionMuxPlugin_l45_5) begin
       _zz_MEM_MEM1_to_MEM_MEM2_EXCEPTION_ECODE = 6'h04;
     end
-    if(when_ExceptionMuxPlugin_l45_5) begin
+    if(when_ExceptionMuxPlugin_l45_6) begin
       _zz_MEM_MEM1_to_MEM_MEM2_EXCEPTION_ECODE = 6'h07;
     end
-    if(when_ExceptionMuxPlugin_l45_6) begin
+    if(when_ExceptionMuxPlugin_l45_7) begin
       _zz_MEM_MEM1_to_MEM_MEM2_EXCEPTION_ECODE = 6'h02;
     end
-    if(when_ExceptionMuxPlugin_l45_7) begin
+    if(when_ExceptionMuxPlugin_l45_8) begin
       _zz_MEM_MEM1_to_MEM_MEM2_EXCEPTION_ECODE = 6'h01;
     end
-    if(when_ExceptionMuxPlugin_l45_8) begin
+    if(when_ExceptionMuxPlugin_l45_9) begin
       _zz_MEM_MEM1_to_MEM_MEM2_EXCEPTION_ECODE = 6'h3f;
     end
   end
@@ -49692,6 +49837,28 @@ module MyCPUCore (
     end
     if(AddressGenerationPlugin_raiseTLBR) begin
       _zz_MEM_MEM1_to_MEM_MEM2_EXCEPTION_OCCURRED = 1'b1;
+    end
+  end
+
+  always @(*) begin
+    _zz_MEM_ADDR_to_MEM_MEM1_EXCEPTION_ESUBCODE = MEM_ADDR_EXCEPTION_ESUBCODE;
+    if(when_ExceptionMuxPlugin_l45_4) begin
+      _zz_MEM_ADDR_to_MEM_MEM1_EXCEPTION_ESUBCODE = 9'h0;
+    end
+  end
+
+  always @(*) begin
+    _zz_MEM_ADDR_to_MEM_MEM1_EXCEPTION_ECODE = MEM_ADDR_EXCEPTION_ECODE;
+    if(when_ExceptionMuxPlugin_l45_4) begin
+      _zz_MEM_ADDR_to_MEM_MEM1_EXCEPTION_ECODE = 6'h09;
+    end
+  end
+
+  assign MEM_ADDR_EXCEPTION_OCCURRED = 1'b0;
+  always @(*) begin
+    _zz_MEM_ADDR_to_MEM_MEM1_EXCEPTION_OCCURRED = MEM_ADDR_EXCEPTION_OCCURRED;
+    if(AddressGenerationPlugin_raiseALE) begin
+      _zz_MEM_ADDR_to_MEM_MEM1_EXCEPTION_OCCURRED = 1'b1;
     end
   end
 
@@ -58409,6 +58576,15 @@ module MyCPUCore (
         CSRPlugin_readDataInit[27 : 25] = MMUPlugin_DMW1_PSEG;
         CSRPlugin_readDataInit[31 : 29] = MMUPlugin_DMW1_VSEG;
       end
+      14'h0021 : begin
+        CSRPlugin_readDataInit[31 : 0] = 32'h000003f4;
+      end
+      14'h0022 : begin
+        CSRPlugin_readDataInit[31 : 0] = 32'h00001000;
+      end
+      14'h0023 : begin
+        CSRPlugin_readDataInit[31 : 0] = 32'h000000f1;
+      end
       default : begin
       end
     endcase
@@ -62160,26 +62336,26 @@ module MyCPUCore (
   end
 
   assign CSRPlugin_DifftestCSRRegStateDMW1 = _zz_CSRPlugin_DifftestCSRRegStateDMW1;
-  assign _zz_when_MMUPlugin_l404 = ((MMUPlugin_TLBTable_1_E && ((MMUPlugin_TLBTable_1_ASID == MMUPlugin_ASID_ASID) || MMUPlugin_TLBTable_1_G)) && ((MMUPlugin_TLBTable_1_PS == 6'h0c) ? (MMUPlugin_TLBTable_1_VPPN == MMUPlugin_TLBEHI_VPPN) : (MMUPlugin_TLBTable_1_VPPN[18 : 9] == MMUPlugin_TLBEHI_VPPN[18 : 9])));
-  assign _zz_when_MMUPlugin_l404_1 = ((MMUPlugin_TLBTable_2_E && ((MMUPlugin_TLBTable_2_ASID == MMUPlugin_ASID_ASID) || MMUPlugin_TLBTable_2_G)) && ((MMUPlugin_TLBTable_2_PS == 6'h0c) ? (MMUPlugin_TLBTable_2_VPPN == MMUPlugin_TLBEHI_VPPN) : (MMUPlugin_TLBTable_2_VPPN[18 : 9] == MMUPlugin_TLBEHI_VPPN[18 : 9])));
-  assign _zz_when_MMUPlugin_l404_2 = ((MMUPlugin_TLBTable_3_E && ((MMUPlugin_TLBTable_3_ASID == MMUPlugin_ASID_ASID) || MMUPlugin_TLBTable_3_G)) && ((MMUPlugin_TLBTable_3_PS == 6'h0c) ? (MMUPlugin_TLBTable_3_VPPN == MMUPlugin_TLBEHI_VPPN) : (MMUPlugin_TLBTable_3_VPPN[18 : 9] == MMUPlugin_TLBEHI_VPPN[18 : 9])));
-  assign _zz_when_MMUPlugin_l404_3 = ((MMUPlugin_TLBTable_4_E && ((MMUPlugin_TLBTable_4_ASID == MMUPlugin_ASID_ASID) || MMUPlugin_TLBTable_4_G)) && ((MMUPlugin_TLBTable_4_PS == 6'h0c) ? (MMUPlugin_TLBTable_4_VPPN == MMUPlugin_TLBEHI_VPPN) : (MMUPlugin_TLBTable_4_VPPN[18 : 9] == MMUPlugin_TLBEHI_VPPN[18 : 9])));
-  assign _zz_when_MMUPlugin_l404_4 = ((MMUPlugin_TLBTable_5_E && ((MMUPlugin_TLBTable_5_ASID == MMUPlugin_ASID_ASID) || MMUPlugin_TLBTable_5_G)) && ((MMUPlugin_TLBTable_5_PS == 6'h0c) ? (MMUPlugin_TLBTable_5_VPPN == MMUPlugin_TLBEHI_VPPN) : (MMUPlugin_TLBTable_5_VPPN[18 : 9] == MMUPlugin_TLBEHI_VPPN[18 : 9])));
-  assign _zz_when_MMUPlugin_l404_5 = ((MMUPlugin_TLBTable_6_E && ((MMUPlugin_TLBTable_6_ASID == MMUPlugin_ASID_ASID) || MMUPlugin_TLBTable_6_G)) && ((MMUPlugin_TLBTable_6_PS == 6'h0c) ? (MMUPlugin_TLBTable_6_VPPN == MMUPlugin_TLBEHI_VPPN) : (MMUPlugin_TLBTable_6_VPPN[18 : 9] == MMUPlugin_TLBEHI_VPPN[18 : 9])));
-  assign _zz_when_MMUPlugin_l404_6 = ((MMUPlugin_TLBTable_7_E && ((MMUPlugin_TLBTable_7_ASID == MMUPlugin_ASID_ASID) || MMUPlugin_TLBTable_7_G)) && ((MMUPlugin_TLBTable_7_PS == 6'h0c) ? (MMUPlugin_TLBTable_7_VPPN == MMUPlugin_TLBEHI_VPPN) : (MMUPlugin_TLBTable_7_VPPN[18 : 9] == MMUPlugin_TLBEHI_VPPN[18 : 9])));
-  assign _zz_when_MMUPlugin_l404_7 = ((MMUPlugin_TLBTable_8_E && ((MMUPlugin_TLBTable_8_ASID == MMUPlugin_ASID_ASID) || MMUPlugin_TLBTable_8_G)) && ((MMUPlugin_TLBTable_8_PS == 6'h0c) ? (MMUPlugin_TLBTable_8_VPPN == MMUPlugin_TLBEHI_VPPN) : (MMUPlugin_TLBTable_8_VPPN[18 : 9] == MMUPlugin_TLBEHI_VPPN[18 : 9])));
-  assign _zz_when_MMUPlugin_l404_8 = ((MMUPlugin_TLBTable_9_E && ((MMUPlugin_TLBTable_9_ASID == MMUPlugin_ASID_ASID) || MMUPlugin_TLBTable_9_G)) && ((MMUPlugin_TLBTable_9_PS == 6'h0c) ? (MMUPlugin_TLBTable_9_VPPN == MMUPlugin_TLBEHI_VPPN) : (MMUPlugin_TLBTable_9_VPPN[18 : 9] == MMUPlugin_TLBEHI_VPPN[18 : 9])));
-  assign _zz_when_MMUPlugin_l404_9 = ((MMUPlugin_TLBTable_10_E && ((MMUPlugin_TLBTable_10_ASID == MMUPlugin_ASID_ASID) || MMUPlugin_TLBTable_10_G)) && ((MMUPlugin_TLBTable_10_PS == 6'h0c) ? (MMUPlugin_TLBTable_10_VPPN == MMUPlugin_TLBEHI_VPPN) : (MMUPlugin_TLBTable_10_VPPN[18 : 9] == MMUPlugin_TLBEHI_VPPN[18 : 9])));
-  assign _zz_when_MMUPlugin_l404_10 = ((MMUPlugin_TLBTable_11_E && ((MMUPlugin_TLBTable_11_ASID == MMUPlugin_ASID_ASID) || MMUPlugin_TLBTable_11_G)) && ((MMUPlugin_TLBTable_11_PS == 6'h0c) ? (MMUPlugin_TLBTable_11_VPPN == MMUPlugin_TLBEHI_VPPN) : (MMUPlugin_TLBTable_11_VPPN[18 : 9] == MMUPlugin_TLBEHI_VPPN[18 : 9])));
-  assign _zz_when_MMUPlugin_l404_11 = ((MMUPlugin_TLBTable_12_E && ((MMUPlugin_TLBTable_12_ASID == MMUPlugin_ASID_ASID) || MMUPlugin_TLBTable_12_G)) && ((MMUPlugin_TLBTable_12_PS == 6'h0c) ? (MMUPlugin_TLBTable_12_VPPN == MMUPlugin_TLBEHI_VPPN) : (MMUPlugin_TLBTable_12_VPPN[18 : 9] == MMUPlugin_TLBEHI_VPPN[18 : 9])));
-  assign _zz_when_MMUPlugin_l404_12 = ((MMUPlugin_TLBTable_13_E && ((MMUPlugin_TLBTable_13_ASID == MMUPlugin_ASID_ASID) || MMUPlugin_TLBTable_13_G)) && ((MMUPlugin_TLBTable_13_PS == 6'h0c) ? (MMUPlugin_TLBTable_13_VPPN == MMUPlugin_TLBEHI_VPPN) : (MMUPlugin_TLBTable_13_VPPN[18 : 9] == MMUPlugin_TLBEHI_VPPN[18 : 9])));
-  assign _zz_when_MMUPlugin_l404_13 = ((MMUPlugin_TLBTable_14_E && ((MMUPlugin_TLBTable_14_ASID == MMUPlugin_ASID_ASID) || MMUPlugin_TLBTable_14_G)) && ((MMUPlugin_TLBTable_14_PS == 6'h0c) ? (MMUPlugin_TLBTable_14_VPPN == MMUPlugin_TLBEHI_VPPN) : (MMUPlugin_TLBTable_14_VPPN[18 : 9] == MMUPlugin_TLBEHI_VPPN[18 : 9])));
-  assign _zz_when_MMUPlugin_l404_14 = ((MMUPlugin_TLBTable_15_E && ((MMUPlugin_TLBTable_15_ASID == MMUPlugin_ASID_ASID) || MMUPlugin_TLBTable_15_G)) && ((MMUPlugin_TLBTable_15_PS == 6'h0c) ? (MMUPlugin_TLBTable_15_VPPN == MMUPlugin_TLBEHI_VPPN) : (MMUPlugin_TLBTable_15_VPPN[18 : 9] == MMUPlugin_TLBEHI_VPPN[18 : 9])));
-  assign when_MMUPlugin_l404 = ({_zz_when_MMUPlugin_l404_14,{_zz_when_MMUPlugin_l404_13,{_zz_when_MMUPlugin_l404_12,{_zz_when_MMUPlugin_l404_11,{_zz_when_MMUPlugin_l404_10,{_zz_when_MMUPlugin_l404_9,{_zz_when_MMUPlugin_l404_8,{_zz_when_MMUPlugin_l404_7,{_zz_when_MMUPlugin_l404_6,{_zz_when_MMUPlugin_l404_15,_zz_when_MMUPlugin_l404_16}}}}}}}}}} != 16'h0);
-  assign _zz_MMUPlugin_TLBIDX_INDEX = (((((((_zz_when_MMUPlugin_l404 || _zz_when_MMUPlugin_l404_2) || _zz_when_MMUPlugin_l404_4) || _zz_when_MMUPlugin_l404_6) || _zz_when_MMUPlugin_l404_8) || _zz_when_MMUPlugin_l404_10) || _zz_when_MMUPlugin_l404_12) || _zz_when_MMUPlugin_l404_14);
-  assign _zz_MMUPlugin_TLBIDX_INDEX_1 = (((((((_zz_when_MMUPlugin_l404_1 || _zz_when_MMUPlugin_l404_2) || _zz_when_MMUPlugin_l404_5) || _zz_when_MMUPlugin_l404_6) || _zz_when_MMUPlugin_l404_9) || _zz_when_MMUPlugin_l404_10) || _zz_when_MMUPlugin_l404_13) || _zz_when_MMUPlugin_l404_14);
-  assign _zz_MMUPlugin_TLBIDX_INDEX_2 = (((((((_zz_when_MMUPlugin_l404_3 || _zz_when_MMUPlugin_l404_4) || _zz_when_MMUPlugin_l404_5) || _zz_when_MMUPlugin_l404_6) || _zz_when_MMUPlugin_l404_11) || _zz_when_MMUPlugin_l404_12) || _zz_when_MMUPlugin_l404_13) || _zz_when_MMUPlugin_l404_14);
-  assign _zz_MMUPlugin_TLBIDX_INDEX_3 = (((((((_zz_when_MMUPlugin_l404_7 || _zz_when_MMUPlugin_l404_8) || _zz_when_MMUPlugin_l404_9) || _zz_when_MMUPlugin_l404_10) || _zz_when_MMUPlugin_l404_11) || _zz_when_MMUPlugin_l404_12) || _zz_when_MMUPlugin_l404_13) || _zz_when_MMUPlugin_l404_14);
+  assign _zz_when_MMUPlugin_l412 = ((MMUPlugin_TLBTable_1_E && ((MMUPlugin_TLBTable_1_ASID == MMUPlugin_ASID_ASID) || MMUPlugin_TLBTable_1_G)) && ((MMUPlugin_TLBTable_1_PS == 6'h0c) ? (MMUPlugin_TLBTable_1_VPPN == MMUPlugin_TLBEHI_VPPN) : (MMUPlugin_TLBTable_1_VPPN[18 : 9] == MMUPlugin_TLBEHI_VPPN[18 : 9])));
+  assign _zz_when_MMUPlugin_l412_1 = ((MMUPlugin_TLBTable_2_E && ((MMUPlugin_TLBTable_2_ASID == MMUPlugin_ASID_ASID) || MMUPlugin_TLBTable_2_G)) && ((MMUPlugin_TLBTable_2_PS == 6'h0c) ? (MMUPlugin_TLBTable_2_VPPN == MMUPlugin_TLBEHI_VPPN) : (MMUPlugin_TLBTable_2_VPPN[18 : 9] == MMUPlugin_TLBEHI_VPPN[18 : 9])));
+  assign _zz_when_MMUPlugin_l412_2 = ((MMUPlugin_TLBTable_3_E && ((MMUPlugin_TLBTable_3_ASID == MMUPlugin_ASID_ASID) || MMUPlugin_TLBTable_3_G)) && ((MMUPlugin_TLBTable_3_PS == 6'h0c) ? (MMUPlugin_TLBTable_3_VPPN == MMUPlugin_TLBEHI_VPPN) : (MMUPlugin_TLBTable_3_VPPN[18 : 9] == MMUPlugin_TLBEHI_VPPN[18 : 9])));
+  assign _zz_when_MMUPlugin_l412_3 = ((MMUPlugin_TLBTable_4_E && ((MMUPlugin_TLBTable_4_ASID == MMUPlugin_ASID_ASID) || MMUPlugin_TLBTable_4_G)) && ((MMUPlugin_TLBTable_4_PS == 6'h0c) ? (MMUPlugin_TLBTable_4_VPPN == MMUPlugin_TLBEHI_VPPN) : (MMUPlugin_TLBTable_4_VPPN[18 : 9] == MMUPlugin_TLBEHI_VPPN[18 : 9])));
+  assign _zz_when_MMUPlugin_l412_4 = ((MMUPlugin_TLBTable_5_E && ((MMUPlugin_TLBTable_5_ASID == MMUPlugin_ASID_ASID) || MMUPlugin_TLBTable_5_G)) && ((MMUPlugin_TLBTable_5_PS == 6'h0c) ? (MMUPlugin_TLBTable_5_VPPN == MMUPlugin_TLBEHI_VPPN) : (MMUPlugin_TLBTable_5_VPPN[18 : 9] == MMUPlugin_TLBEHI_VPPN[18 : 9])));
+  assign _zz_when_MMUPlugin_l412_5 = ((MMUPlugin_TLBTable_6_E && ((MMUPlugin_TLBTable_6_ASID == MMUPlugin_ASID_ASID) || MMUPlugin_TLBTable_6_G)) && ((MMUPlugin_TLBTable_6_PS == 6'h0c) ? (MMUPlugin_TLBTable_6_VPPN == MMUPlugin_TLBEHI_VPPN) : (MMUPlugin_TLBTable_6_VPPN[18 : 9] == MMUPlugin_TLBEHI_VPPN[18 : 9])));
+  assign _zz_when_MMUPlugin_l412_6 = ((MMUPlugin_TLBTable_7_E && ((MMUPlugin_TLBTable_7_ASID == MMUPlugin_ASID_ASID) || MMUPlugin_TLBTable_7_G)) && ((MMUPlugin_TLBTable_7_PS == 6'h0c) ? (MMUPlugin_TLBTable_7_VPPN == MMUPlugin_TLBEHI_VPPN) : (MMUPlugin_TLBTable_7_VPPN[18 : 9] == MMUPlugin_TLBEHI_VPPN[18 : 9])));
+  assign _zz_when_MMUPlugin_l412_7 = ((MMUPlugin_TLBTable_8_E && ((MMUPlugin_TLBTable_8_ASID == MMUPlugin_ASID_ASID) || MMUPlugin_TLBTable_8_G)) && ((MMUPlugin_TLBTable_8_PS == 6'h0c) ? (MMUPlugin_TLBTable_8_VPPN == MMUPlugin_TLBEHI_VPPN) : (MMUPlugin_TLBTable_8_VPPN[18 : 9] == MMUPlugin_TLBEHI_VPPN[18 : 9])));
+  assign _zz_when_MMUPlugin_l412_8 = ((MMUPlugin_TLBTable_9_E && ((MMUPlugin_TLBTable_9_ASID == MMUPlugin_ASID_ASID) || MMUPlugin_TLBTable_9_G)) && ((MMUPlugin_TLBTable_9_PS == 6'h0c) ? (MMUPlugin_TLBTable_9_VPPN == MMUPlugin_TLBEHI_VPPN) : (MMUPlugin_TLBTable_9_VPPN[18 : 9] == MMUPlugin_TLBEHI_VPPN[18 : 9])));
+  assign _zz_when_MMUPlugin_l412_9 = ((MMUPlugin_TLBTable_10_E && ((MMUPlugin_TLBTable_10_ASID == MMUPlugin_ASID_ASID) || MMUPlugin_TLBTable_10_G)) && ((MMUPlugin_TLBTable_10_PS == 6'h0c) ? (MMUPlugin_TLBTable_10_VPPN == MMUPlugin_TLBEHI_VPPN) : (MMUPlugin_TLBTable_10_VPPN[18 : 9] == MMUPlugin_TLBEHI_VPPN[18 : 9])));
+  assign _zz_when_MMUPlugin_l412_10 = ((MMUPlugin_TLBTable_11_E && ((MMUPlugin_TLBTable_11_ASID == MMUPlugin_ASID_ASID) || MMUPlugin_TLBTable_11_G)) && ((MMUPlugin_TLBTable_11_PS == 6'h0c) ? (MMUPlugin_TLBTable_11_VPPN == MMUPlugin_TLBEHI_VPPN) : (MMUPlugin_TLBTable_11_VPPN[18 : 9] == MMUPlugin_TLBEHI_VPPN[18 : 9])));
+  assign _zz_when_MMUPlugin_l412_11 = ((MMUPlugin_TLBTable_12_E && ((MMUPlugin_TLBTable_12_ASID == MMUPlugin_ASID_ASID) || MMUPlugin_TLBTable_12_G)) && ((MMUPlugin_TLBTable_12_PS == 6'h0c) ? (MMUPlugin_TLBTable_12_VPPN == MMUPlugin_TLBEHI_VPPN) : (MMUPlugin_TLBTable_12_VPPN[18 : 9] == MMUPlugin_TLBEHI_VPPN[18 : 9])));
+  assign _zz_when_MMUPlugin_l412_12 = ((MMUPlugin_TLBTable_13_E && ((MMUPlugin_TLBTable_13_ASID == MMUPlugin_ASID_ASID) || MMUPlugin_TLBTable_13_G)) && ((MMUPlugin_TLBTable_13_PS == 6'h0c) ? (MMUPlugin_TLBTable_13_VPPN == MMUPlugin_TLBEHI_VPPN) : (MMUPlugin_TLBTable_13_VPPN[18 : 9] == MMUPlugin_TLBEHI_VPPN[18 : 9])));
+  assign _zz_when_MMUPlugin_l412_13 = ((MMUPlugin_TLBTable_14_E && ((MMUPlugin_TLBTable_14_ASID == MMUPlugin_ASID_ASID) || MMUPlugin_TLBTable_14_G)) && ((MMUPlugin_TLBTable_14_PS == 6'h0c) ? (MMUPlugin_TLBTable_14_VPPN == MMUPlugin_TLBEHI_VPPN) : (MMUPlugin_TLBTable_14_VPPN[18 : 9] == MMUPlugin_TLBEHI_VPPN[18 : 9])));
+  assign _zz_when_MMUPlugin_l412_14 = ((MMUPlugin_TLBTable_15_E && ((MMUPlugin_TLBTable_15_ASID == MMUPlugin_ASID_ASID) || MMUPlugin_TLBTable_15_G)) && ((MMUPlugin_TLBTable_15_PS == 6'h0c) ? (MMUPlugin_TLBTable_15_VPPN == MMUPlugin_TLBEHI_VPPN) : (MMUPlugin_TLBTable_15_VPPN[18 : 9] == MMUPlugin_TLBEHI_VPPN[18 : 9])));
+  assign when_MMUPlugin_l412 = ({_zz_when_MMUPlugin_l412_14,{_zz_when_MMUPlugin_l412_13,{_zz_when_MMUPlugin_l412_12,{_zz_when_MMUPlugin_l412_11,{_zz_when_MMUPlugin_l412_10,{_zz_when_MMUPlugin_l412_9,{_zz_when_MMUPlugin_l412_8,{_zz_when_MMUPlugin_l412_7,{_zz_when_MMUPlugin_l412_6,{_zz_when_MMUPlugin_l412_15,_zz_when_MMUPlugin_l412_16}}}}}}}}}} != 16'h0);
+  assign _zz_MMUPlugin_TLBIDX_INDEX = (((((((_zz_when_MMUPlugin_l412 || _zz_when_MMUPlugin_l412_2) || _zz_when_MMUPlugin_l412_4) || _zz_when_MMUPlugin_l412_6) || _zz_when_MMUPlugin_l412_8) || _zz_when_MMUPlugin_l412_10) || _zz_when_MMUPlugin_l412_12) || _zz_when_MMUPlugin_l412_14);
+  assign _zz_MMUPlugin_TLBIDX_INDEX_1 = (((((((_zz_when_MMUPlugin_l412_1 || _zz_when_MMUPlugin_l412_2) || _zz_when_MMUPlugin_l412_5) || _zz_when_MMUPlugin_l412_6) || _zz_when_MMUPlugin_l412_9) || _zz_when_MMUPlugin_l412_10) || _zz_when_MMUPlugin_l412_13) || _zz_when_MMUPlugin_l412_14);
+  assign _zz_MMUPlugin_TLBIDX_INDEX_2 = (((((((_zz_when_MMUPlugin_l412_3 || _zz_when_MMUPlugin_l412_4) || _zz_when_MMUPlugin_l412_5) || _zz_when_MMUPlugin_l412_6) || _zz_when_MMUPlugin_l412_11) || _zz_when_MMUPlugin_l412_12) || _zz_when_MMUPlugin_l412_13) || _zz_when_MMUPlugin_l412_14);
+  assign _zz_MMUPlugin_TLBIDX_INDEX_3 = (((((((_zz_when_MMUPlugin_l412_7 || _zz_when_MMUPlugin_l412_8) || _zz_when_MMUPlugin_l412_9) || _zz_when_MMUPlugin_l412_10) || _zz_when_MMUPlugin_l412_11) || _zz_when_MMUPlugin_l412_12) || _zz_when_MMUPlugin_l412_13) || _zz_when_MMUPlugin_l412_14);
   assign _zz_MMUPlugin_TLBIDX_PS = MMUPlugin_TLBIDX_INDEX;
   assign _zz_MMUPlugin_TLBELO0_G = _zz__zz_MMUPlugin_TLBELO0_G;
   assign _zz_278 = ({15'd0,1'b1} <<< MMUPlugin_TLBIDX_INDEX);
@@ -62199,7 +62375,7 @@ module MyCPUCore (
   assign _zz_292 = _zz_278[13];
   assign _zz_293 = _zz_278[14];
   assign _zz_294 = _zz_278[15];
-  assign when_MMUPlugin_l455 = (ExceptionHandlerPlugin_ESTAT_ECODE == 6'h3f);
+  assign when_MMUPlugin_l463 = (ExceptionHandlerPlugin_ESTAT_ECODE == 6'h3f);
   assign _zz_MMUPlugin_TLBTable_0_E = (! MMUPlugin_TLBIDX_NE);
   assign _zz_MMUPlugin_TLBTable_0_G = (MMUPlugin_TLBELO0_G && MMUPlugin_TLBELO1_G);
   assign _zz_MMUPlugin_TLBTable_0_PS = MMUPlugin_TLBIDX_PS;
@@ -62220,7 +62396,7 @@ module MyCPUCore (
   assign _zz_309 = _zz_295[13];
   assign _zz_310 = _zz_295[14];
   assign _zz_311 = _zz_295[15];
-  assign when_MMUPlugin_l479 = (ExceptionHandlerPlugin_ESTAT_ECODE == 6'h3f);
+  assign when_MMUPlugin_l487 = (ExceptionHandlerPlugin_ESTAT_ECODE == 6'h3f);
   assign _zz_MMUPlugin_TLBTable_0_E_1 = (! MMUPlugin_TLBIDX_NE);
   assign _zz_MMUPlugin_TLBTable_0_PS_1 = MMUPlugin_TLBIDX_PS;
   assign _zz_MMUPlugin_TLBTable_0_G_1 = (MMUPlugin_TLBELO0_G && MMUPlugin_TLBELO1_G);
@@ -64268,12 +64444,12 @@ module MyCPUCore (
   assign IF1_InstAddrTranslatePlugin_directTranslateResult_resultBundle_payload_exception_raisePME = IF1_InstAddrTranslatePlugin_directTranslateResult_resultExceptionBundle_raisePME;
   assign IF1_InstAddrTranslatePlugin_directTranslateResult_resultBundle_payload_exception_raisePPI = IF1_InstAddrTranslatePlugin_directTranslateResult_resultExceptionBundle_raisePPI;
   assign IF1_InstAddrTranslatePlugin_directTranslateResult_resultBundle_payload_exception_raiseTLBR = IF1_InstAddrTranslatePlugin_directTranslateResult_resultExceptionBundle_raiseTLBR;
-  assign switch_MMUPlugin_l290 = MemOperationType_FETCH;
+  assign switch_MMUPlugin_l298 = MemOperationType_FETCH;
   assign IF1_InstAddrTranslatePlugin_tlbTranslateResult_resultValid = 1'b1;
   always @(*) begin
     IF1_InstAddrTranslatePlugin_tlbTranslateResult_resultExceptionBundle_raisePIL = 1'b0;
-    if(when_MMUPlugin_l289) begin
-      case(switch_MMUPlugin_l290)
+    if(when_MMUPlugin_l297) begin
+      case(switch_MMUPlugin_l298)
         MemOperationType_FETCH : begin
         end
         MemOperationType_LOAD : begin
@@ -64287,8 +64463,8 @@ module MyCPUCore (
 
   always @(*) begin
     IF1_InstAddrTranslatePlugin_tlbTranslateResult_resultExceptionBundle_raisePIS = 1'b0;
-    if(when_MMUPlugin_l289) begin
-      case(switch_MMUPlugin_l290)
+    if(when_MMUPlugin_l297) begin
+      case(switch_MMUPlugin_l298)
         MemOperationType_FETCH : begin
         end
         MemOperationType_LOAD : begin
@@ -64302,8 +64478,8 @@ module MyCPUCore (
 
   always @(*) begin
     IF1_InstAddrTranslatePlugin_tlbTranslateResult_resultExceptionBundle_raisePIF = 1'b0;
-    if(when_MMUPlugin_l289) begin
-      case(switch_MMUPlugin_l290)
+    if(when_MMUPlugin_l297) begin
+      case(switch_MMUPlugin_l298)
         MemOperationType_FETCH : begin
           IF1_InstAddrTranslatePlugin_tlbTranslateResult_resultExceptionBundle_raisePIF = 1'b1;
         end
@@ -64317,21 +64493,21 @@ module MyCPUCore (
 
   always @(*) begin
     IF1_InstAddrTranslatePlugin_tlbTranslateResult_resultExceptionBundle_raisePME = 1'b0;
-    if(when_MMUPlugin_l307) begin
+    if(when_MMUPlugin_l315) begin
       IF1_InstAddrTranslatePlugin_tlbTranslateResult_resultExceptionBundle_raisePME = 1'b1;
     end
   end
 
   always @(*) begin
     IF1_InstAddrTranslatePlugin_tlbTranslateResult_resultExceptionBundle_raisePPI = 1'b0;
-    if(when_MMUPlugin_l303) begin
+    if(when_MMUPlugin_l311) begin
       IF1_InstAddrTranslatePlugin_tlbTranslateResult_resultExceptionBundle_raisePPI = 1'b1;
     end
   end
 
   always @(*) begin
     IF1_InstAddrTranslatePlugin_tlbTranslateResult_resultExceptionBundle_raiseTLBR = 1'b0;
-    if(when_MMUPlugin_l285) begin
+    if(when_MMUPlugin_l293) begin
       IF1_InstAddrTranslatePlugin_tlbTranslateResult_resultExceptionBundle_raiseTLBR = 1'b1;
     end
   end
@@ -64410,10 +64586,10 @@ module MyCPUCore (
   assign IF1_InstAddrTranslatePlugin_tlbTranslateResult_TLBHitEntry_mat = (IF1_PC[IF1_InstAddrTranslatePlugin_tlbTranslateResult_TLBHitEntry_PS[4 : 0]] ? IF1_InstAddrTranslatePlugin_tlbTranslateResult_TLBHitEntry_MAT1 : IF1_InstAddrTranslatePlugin_tlbTranslateResult_TLBHitEntry_MAT0);
   assign IF1_InstAddrTranslatePlugin_tlbTranslateResult_TLBHitEntry_plv = (IF1_PC[IF1_InstAddrTranslatePlugin_tlbTranslateResult_TLBHitEntry_PS[4 : 0]] ? IF1_InstAddrTranslatePlugin_tlbTranslateResult_TLBHitEntry_PLV1 : IF1_InstAddrTranslatePlugin_tlbTranslateResult_TLBHitEntry_PLV0);
   assign IF1_InstAddrTranslatePlugin_tlbTranslateResult_TLBHitEntry_ppn = (IF1_PC[IF1_InstAddrTranslatePlugin_tlbTranslateResult_TLBHitEntry_PS[4 : 0]] ? IF1_InstAddrTranslatePlugin_tlbTranslateResult_TLBHitEntry_PPN1 : IF1_InstAddrTranslatePlugin_tlbTranslateResult_TLBHitEntry_PPN0);
-  assign when_MMUPlugin_l285 = (! IF1_InstAddrTranslatePlugin_tlbTranslateResult_TLBHit);
-  assign when_MMUPlugin_l289 = (! IF1_InstAddrTranslatePlugin_tlbTranslateResult_TLBHitEntry_v);
-  assign when_MMUPlugin_l303 = (IF1_InstAddrTranslatePlugin_tlbTranslateResult_TLBHitEntry_plv < ExceptionHandlerPlugin_CRMD_PLV);
-  assign when_MMUPlugin_l307 = ((switch_MMUPlugin_l290 == MemOperationType_STORE) && (! IF1_InstAddrTranslatePlugin_tlbTranslateResult_TLBHitEntry_d));
+  assign when_MMUPlugin_l293 = (! IF1_InstAddrTranslatePlugin_tlbTranslateResult_TLBHit);
+  assign when_MMUPlugin_l297 = (! IF1_InstAddrTranslatePlugin_tlbTranslateResult_TLBHitEntry_v);
+  assign when_MMUPlugin_l311 = (IF1_InstAddrTranslatePlugin_tlbTranslateResult_TLBHitEntry_plv < ExceptionHandlerPlugin_CRMD_PLV);
+  assign when_MMUPlugin_l315 = ((switch_MMUPlugin_l298 == MemOperationType_STORE) && (! IF1_InstAddrTranslatePlugin_tlbTranslateResult_TLBHitEntry_d));
   assign IF1_InstAddrTranslatePlugin_tlbTranslateResult_resultPhysAddr = ((IF1_InstAddrTranslatePlugin_tlbTranslateResult_TLBHitEntry_PS == 6'h0c) ? {IF1_InstAddrTranslatePlugin_tlbTranslateResult_TLBHitEntry_ppn,IF1_PC[11 : 0]} : {IF1_InstAddrTranslatePlugin_tlbTranslateResult_TLBHitEntry_ppn[19 : 9],IF1_PC[20 : 0]});
   assign IF1_InstAddrTranslatePlugin_tlbTranslateResult_resultCached = IF1_InstAddrTranslatePlugin_tlbTranslateResult_TLBHitEntry_mat[0];
   assign IF1_InstAddrTranslatePlugin_tlbTranslateResult_resultBundle_valid = IF1_InstAddrTranslatePlugin_tlbTranslateResult_resultValid;
@@ -64432,40 +64608,40 @@ module MyCPUCore (
   assign InstAddrTranslatePlugin_badVaddr2 = IF2_PC;
   always @(*) begin
     IF2_InstAddrTranslatePlugin_translateResult_resultValid = 1'b0;
-    if(when_MMUPlugin_l339) begin
+    if(when_MMUPlugin_l347) begin
       IF2_InstAddrTranslatePlugin_translateResult_resultValid = IF2_TLB_TRANSLATE_RESULT_valid;
     end
-    if(when_MMUPlugin_l347) begin
+    if(when_MMUPlugin_l355) begin
       IF2_InstAddrTranslatePlugin_translateResult_resultValid = IF2_DIRECT_TRANSLATE_RESULT_valid;
     end
-    if(when_MMUPlugin_l355) begin
+    if(when_MMUPlugin_l363) begin
       IF2_InstAddrTranslatePlugin_translateResult_resultValid = 1'b1;
     end
   end
 
   always @(*) begin
     IF2_InstAddrTranslatePlugin_translateResult_resultPhysAddr = 32'h0;
-    if(when_MMUPlugin_l339) begin
+    if(when_MMUPlugin_l347) begin
       IF2_InstAddrTranslatePlugin_translateResult_resultPhysAddr = IF2_TLB_TRANSLATE_RESULT_payload_physAddr;
     end
-    if(when_MMUPlugin_l347) begin
+    if(when_MMUPlugin_l355) begin
       IF2_InstAddrTranslatePlugin_translateResult_resultPhysAddr = IF2_DIRECT_TRANSLATE_RESULT_payload_physAddr;
     end
-    if(when_MMUPlugin_l355) begin
+    if(when_MMUPlugin_l363) begin
       IF2_InstAddrTranslatePlugin_translateResult_resultPhysAddr = IF2_PC;
     end
   end
 
   always @(*) begin
     IF2_InstAddrTranslatePlugin_translateResult_resultCached = 1'b0;
-    if(when_MMUPlugin_l339) begin
+    if(when_MMUPlugin_l347) begin
       IF2_InstAddrTranslatePlugin_translateResult_resultCached = IF2_TLB_TRANSLATE_RESULT_payload_cached;
     end
-    if(when_MMUPlugin_l347) begin
+    if(when_MMUPlugin_l355) begin
       IF2_InstAddrTranslatePlugin_translateResult_resultCached = IF2_DIRECT_TRANSLATE_RESULT_payload_cached;
     end
-    if(when_MMUPlugin_l355) begin
-      if(when_MMUPlugin_l359) begin
+    if(when_MMUPlugin_l363) begin
+      if(when_MMUPlugin_l367) begin
         IF2_InstAddrTranslatePlugin_translateResult_resultCached = IF2_TRANSLATE_SAVED_CSR_CRMD_DATF[0];
       end else begin
         IF2_InstAddrTranslatePlugin_translateResult_resultCached = IF2_TRANSLATE_SAVED_CSR_CRMD_DATM[0];
@@ -64475,86 +64651,86 @@ module MyCPUCore (
 
   always @(*) begin
     IF2_InstAddrTranslatePlugin_translateResult_resultExceptionBundle_raisePIL = 1'b0;
-    if(when_MMUPlugin_l339) begin
+    if(when_MMUPlugin_l347) begin
       IF2_InstAddrTranslatePlugin_translateResult_resultExceptionBundle_raisePIL = IF2_TLB_TRANSLATE_RESULT_payload_exception_raisePIL;
     end
-    if(when_MMUPlugin_l347) begin
+    if(when_MMUPlugin_l355) begin
       IF2_InstAddrTranslatePlugin_translateResult_resultExceptionBundle_raisePIL = IF2_DIRECT_TRANSLATE_RESULT_payload_exception_raisePIL;
     end
-    if(when_MMUPlugin_l355) begin
+    if(when_MMUPlugin_l363) begin
       IF2_InstAddrTranslatePlugin_translateResult_resultExceptionBundle_raisePIL = 1'b0;
     end
   end
 
   always @(*) begin
     IF2_InstAddrTranslatePlugin_translateResult_resultExceptionBundle_raisePIS = 1'b0;
-    if(when_MMUPlugin_l339) begin
+    if(when_MMUPlugin_l347) begin
       IF2_InstAddrTranslatePlugin_translateResult_resultExceptionBundle_raisePIS = IF2_TLB_TRANSLATE_RESULT_payload_exception_raisePIS;
     end
-    if(when_MMUPlugin_l347) begin
+    if(when_MMUPlugin_l355) begin
       IF2_InstAddrTranslatePlugin_translateResult_resultExceptionBundle_raisePIS = IF2_DIRECT_TRANSLATE_RESULT_payload_exception_raisePIS;
     end
-    if(when_MMUPlugin_l355) begin
+    if(when_MMUPlugin_l363) begin
       IF2_InstAddrTranslatePlugin_translateResult_resultExceptionBundle_raisePIS = 1'b0;
     end
   end
 
   always @(*) begin
     IF2_InstAddrTranslatePlugin_translateResult_resultExceptionBundle_raisePIF = 1'b0;
-    if(when_MMUPlugin_l339) begin
+    if(when_MMUPlugin_l347) begin
       IF2_InstAddrTranslatePlugin_translateResult_resultExceptionBundle_raisePIF = IF2_TLB_TRANSLATE_RESULT_payload_exception_raisePIF;
     end
-    if(when_MMUPlugin_l347) begin
+    if(when_MMUPlugin_l355) begin
       IF2_InstAddrTranslatePlugin_translateResult_resultExceptionBundle_raisePIF = IF2_DIRECT_TRANSLATE_RESULT_payload_exception_raisePIF;
     end
-    if(when_MMUPlugin_l355) begin
+    if(when_MMUPlugin_l363) begin
       IF2_InstAddrTranslatePlugin_translateResult_resultExceptionBundle_raisePIF = 1'b0;
     end
   end
 
   always @(*) begin
     IF2_InstAddrTranslatePlugin_translateResult_resultExceptionBundle_raisePME = 1'b0;
-    if(when_MMUPlugin_l339) begin
+    if(when_MMUPlugin_l347) begin
       IF2_InstAddrTranslatePlugin_translateResult_resultExceptionBundle_raisePME = IF2_TLB_TRANSLATE_RESULT_payload_exception_raisePME;
     end
-    if(when_MMUPlugin_l347) begin
+    if(when_MMUPlugin_l355) begin
       IF2_InstAddrTranslatePlugin_translateResult_resultExceptionBundle_raisePME = IF2_DIRECT_TRANSLATE_RESULT_payload_exception_raisePME;
     end
-    if(when_MMUPlugin_l355) begin
+    if(when_MMUPlugin_l363) begin
       IF2_InstAddrTranslatePlugin_translateResult_resultExceptionBundle_raisePME = 1'b0;
     end
   end
 
   always @(*) begin
     IF2_InstAddrTranslatePlugin_translateResult_resultExceptionBundle_raisePPI = 1'b0;
-    if(when_MMUPlugin_l339) begin
+    if(when_MMUPlugin_l347) begin
       IF2_InstAddrTranslatePlugin_translateResult_resultExceptionBundle_raisePPI = IF2_TLB_TRANSLATE_RESULT_payload_exception_raisePPI;
     end
-    if(when_MMUPlugin_l347) begin
+    if(when_MMUPlugin_l355) begin
       IF2_InstAddrTranslatePlugin_translateResult_resultExceptionBundle_raisePPI = IF2_DIRECT_TRANSLATE_RESULT_payload_exception_raisePPI;
     end
-    if(when_MMUPlugin_l355) begin
+    if(when_MMUPlugin_l363) begin
       IF2_InstAddrTranslatePlugin_translateResult_resultExceptionBundle_raisePPI = 1'b0;
     end
   end
 
   always @(*) begin
     IF2_InstAddrTranslatePlugin_translateResult_resultExceptionBundle_raiseTLBR = 1'b0;
-    if(when_MMUPlugin_l339) begin
+    if(when_MMUPlugin_l347) begin
       IF2_InstAddrTranslatePlugin_translateResult_resultExceptionBundle_raiseTLBR = IF2_TLB_TRANSLATE_RESULT_payload_exception_raiseTLBR;
     end
-    if(when_MMUPlugin_l347) begin
+    if(when_MMUPlugin_l355) begin
       IF2_InstAddrTranslatePlugin_translateResult_resultExceptionBundle_raiseTLBR = IF2_DIRECT_TRANSLATE_RESULT_payload_exception_raiseTLBR;
     end
-    if(when_MMUPlugin_l355) begin
+    if(when_MMUPlugin_l363) begin
       IF2_InstAddrTranslatePlugin_translateResult_resultExceptionBundle_raiseTLBR = 1'b0;
     end
   end
 
-  assign when_MMUPlugin_l339 = (((! IF2_TRANSLATE_SAVED_CSR_CRMD_DA) && IF2_TRANSLATE_SAVED_CSR_CRMD_PG) && IF2_TLB_TRANSLATE_RESULT_valid);
-  assign when_MMUPlugin_l347 = (((! IF2_TRANSLATE_SAVED_CSR_CRMD_DA) && IF2_TRANSLATE_SAVED_CSR_CRMD_PG) && IF2_DIRECT_TRANSLATE_RESULT_valid);
-  assign when_MMUPlugin_l355 = (IF2_TRANSLATE_SAVED_CSR_CRMD_DA && (! IF2_TRANSLATE_SAVED_CSR_CRMD_PG));
-  assign when_MMUPlugin_l359 = (MemOperationType_FETCH == MemOperationType_FETCH);
+  assign when_MMUPlugin_l347 = (((! IF2_TRANSLATE_SAVED_CSR_CRMD_DA) && IF2_TRANSLATE_SAVED_CSR_CRMD_PG) && IF2_TLB_TRANSLATE_RESULT_valid);
+  assign when_MMUPlugin_l355 = (((! IF2_TRANSLATE_SAVED_CSR_CRMD_DA) && IF2_TRANSLATE_SAVED_CSR_CRMD_PG) && IF2_DIRECT_TRANSLATE_RESULT_valid);
+  assign when_MMUPlugin_l363 = (IF2_TRANSLATE_SAVED_CSR_CRMD_DA && (! IF2_TRANSLATE_SAVED_CSR_CRMD_PG));
+  assign when_MMUPlugin_l367 = (MemOperationType_FETCH == MemOperationType_FETCH);
   assign IF2_InstAddrTranslatePlugin_translateResult_resultBundle_valid = IF2_InstAddrTranslatePlugin_translateResult_resultValid;
   assign IF2_InstAddrTranslatePlugin_translateResult_resultBundle_payload_physAddr = IF2_InstAddrTranslatePlugin_translateResult_resultPhysAddr;
   assign IF2_InstAddrTranslatePlugin_translateResult_resultBundle_payload_cached = IF2_InstAddrTranslatePlugin_translateResult_resultCached;
@@ -66293,6 +66469,24 @@ module MyCPUCore (
     if(when_DecoderArrayPlugin_l186_64) begin
       ID_DecoderArray_decoders_0_illegalEncoding = 1'b0;
     end
+    if(when_DecoderArrayPlugin_l186_65) begin
+      ID_DecoderArray_decoders_0_illegalEncoding = 1'b0;
+    end
+    if(when_DecoderArrayPlugin_l186_66) begin
+      ID_DecoderArray_decoders_0_illegalEncoding = 1'b0;
+    end
+    if(when_DecoderArrayPlugin_l186_67) begin
+      ID_DecoderArray_decoders_0_illegalEncoding = 1'b0;
+    end
+    if(when_DecoderArrayPlugin_l186_68) begin
+      ID_DecoderArray_decoders_0_illegalEncoding = 1'b0;
+    end
+    if(when_DecoderArrayPlugin_l186_69) begin
+      ID_DecoderArray_decoders_0_illegalEncoding = 1'b0;
+    end
+    if(when_DecoderArrayPlugin_l186_70) begin
+      ID_DecoderArray_decoders_0_illegalEncoding = 1'b0;
+    end
   end
 
   always @(*) begin
@@ -66384,24 +66578,6 @@ module MyCPUCore (
     if(when_DecoderArrayPlugin_l186_51) begin
       ID_DecoderArray_decoders_0_uop_fuType = FUType_TIMER;
     end
-    if(when_DecoderArrayPlugin_l186_53) begin
-      ID_DecoderArray_decoders_0_uop_fuType = FUType_NONE;
-    end
-    if(when_DecoderArrayPlugin_l186_54) begin
-      ID_DecoderArray_decoders_0_uop_fuType = FUType_NONE;
-    end
-    if(when_DecoderArrayPlugin_l186_55) begin
-      ID_DecoderArray_decoders_0_uop_fuType = FUType_NONE;
-    end
-    if(when_DecoderArrayPlugin_l186_56) begin
-      ID_DecoderArray_decoders_0_uop_fuType = FUType_NONE;
-    end
-    if(when_DecoderArrayPlugin_l186_57) begin
-      ID_DecoderArray_decoders_0_uop_fuType = FUType_NONE;
-    end
-    if(when_DecoderArrayPlugin_l186_58) begin
-      ID_DecoderArray_decoders_0_uop_fuType = FUType_NONE;
-    end
     if(when_DecoderArrayPlugin_l186_59) begin
       ID_DecoderArray_decoders_0_uop_fuType = FUType_NONE;
     end
@@ -66409,7 +66585,7 @@ module MyCPUCore (
       ID_DecoderArray_decoders_0_uop_fuType = FUType_NONE;
     end
     if(when_DecoderArrayPlugin_l186_61) begin
-      ID_DecoderArray_decoders_0_uop_fuType = FUType_INVTLB;
+      ID_DecoderArray_decoders_0_uop_fuType = FUType_NONE;
     end
     if(when_DecoderArrayPlugin_l186_62) begin
       ID_DecoderArray_decoders_0_uop_fuType = FUType_NONE;
@@ -66418,25 +66594,43 @@ module MyCPUCore (
       ID_DecoderArray_decoders_0_uop_fuType = FUType_NONE;
     end
     if(when_DecoderArrayPlugin_l186_64) begin
+      ID_DecoderArray_decoders_0_uop_fuType = FUType_NONE;
+    end
+    if(when_DecoderArrayPlugin_l186_65) begin
+      ID_DecoderArray_decoders_0_uop_fuType = FUType_NONE;
+    end
+    if(when_DecoderArrayPlugin_l186_66) begin
+      ID_DecoderArray_decoders_0_uop_fuType = FUType_NONE;
+    end
+    if(when_DecoderArrayPlugin_l186_67) begin
+      ID_DecoderArray_decoders_0_uop_fuType = FUType_INVTLB;
+    end
+    if(when_DecoderArrayPlugin_l186_68) begin
+      ID_DecoderArray_decoders_0_uop_fuType = FUType_NONE;
+    end
+    if(when_DecoderArrayPlugin_l186_69) begin
+      ID_DecoderArray_decoders_0_uop_fuType = FUType_NONE;
+    end
+    if(when_DecoderArrayPlugin_l186_70) begin
       ID_DecoderArray_decoders_0_uop_fuType = FUType_LSU;
     end
   end
 
   always @(*) begin
     ID_DecoderArray_decoders_0_uop_tlbOp = TLBOpType_NONE;
-    if(when_DecoderArrayPlugin_l186_57) begin
+    if(when_DecoderArrayPlugin_l186_63) begin
       ID_DecoderArray_decoders_0_uop_tlbOp = TLBOpType_TLBSRCH;
     end
-    if(when_DecoderArrayPlugin_l186_58) begin
+    if(when_DecoderArrayPlugin_l186_64) begin
       ID_DecoderArray_decoders_0_uop_tlbOp = TLBOpType_TLBRD;
     end
-    if(when_DecoderArrayPlugin_l186_59) begin
+    if(when_DecoderArrayPlugin_l186_65) begin
       ID_DecoderArray_decoders_0_uop_tlbOp = TLBOpType_TLBWR;
     end
-    if(when_DecoderArrayPlugin_l186_60) begin
+    if(when_DecoderArrayPlugin_l186_66) begin
       ID_DecoderArray_decoders_0_uop_tlbOp = TLBOpType_TLBFILL;
     end
-    if(when_DecoderArrayPlugin_l186_61) begin
+    if(when_DecoderArrayPlugin_l186_67) begin
       ID_DecoderArray_decoders_0_uop_tlbOp = TLBOpType_INVTLB1;
     end
     if(when_DecoderArrayPlugin_l252) begin
@@ -66469,7 +66663,7 @@ module MyCPUCore (
 
   always @(*) begin
     ID_DecoderArray_decoders_0_uop_operateCache = 1'b0;
-    if(when_DecoderArrayPlugin_l186_64) begin
+    if(when_DecoderArrayPlugin_l186_70) begin
       ID_DecoderArray_decoders_0_uop_operateCache = 1'b1;
     end
   end
@@ -66611,10 +66805,28 @@ module MyCPUCore (
     if(when_DecoderArrayPlugin_l186_52) begin
       ID_DecoderArray_decoders_0_uop_useRj = 1'b1;
     end
-    if(when_DecoderArrayPlugin_l186_61) begin
+    if(when_DecoderArrayPlugin_l186_53) begin
       ID_DecoderArray_decoders_0_uop_useRj = 1'b1;
     end
-    if(when_DecoderArrayPlugin_l186_64) begin
+    if(when_DecoderArrayPlugin_l186_54) begin
+      ID_DecoderArray_decoders_0_uop_useRj = 1'b1;
+    end
+    if(when_DecoderArrayPlugin_l186_55) begin
+      ID_DecoderArray_decoders_0_uop_useRj = 1'b1;
+    end
+    if(when_DecoderArrayPlugin_l186_56) begin
+      ID_DecoderArray_decoders_0_uop_useRj = 1'b1;
+    end
+    if(when_DecoderArrayPlugin_l186_57) begin
+      ID_DecoderArray_decoders_0_uop_useRj = 1'b1;
+    end
+    if(when_DecoderArrayPlugin_l186_58) begin
+      ID_DecoderArray_decoders_0_uop_useRj = 1'b1;
+    end
+    if(when_DecoderArrayPlugin_l186_67) begin
+      ID_DecoderArray_decoders_0_uop_useRj = 1'b1;
+    end
+    if(when_DecoderArrayPlugin_l186_70) begin
       ID_DecoderArray_decoders_0_uop_useRj = 1'b1;
     end
     if(when_DecoderArrayPlugin_l220) begin
@@ -66678,7 +66890,7 @@ module MyCPUCore (
     if(when_DecoderArrayPlugin_l186_38) begin
       ID_DecoderArray_decoders_0_uop_useRk = 1'b1;
     end
-    if(when_DecoderArrayPlugin_l186_61) begin
+    if(when_DecoderArrayPlugin_l186_67) begin
       ID_DecoderArray_decoders_0_uop_useRk = 1'b1;
     end
   end
@@ -66713,6 +66925,15 @@ module MyCPUCore (
       ID_DecoderArray_decoders_0_uop_useRd = 1'b1;
     end
     if(when_DecoderArrayPlugin_l186_48) begin
+      ID_DecoderArray_decoders_0_uop_useRd = 1'b1;
+    end
+    if(when_DecoderArrayPlugin_l186_56) begin
+      ID_DecoderArray_decoders_0_uop_useRd = 1'b1;
+    end
+    if(when_DecoderArrayPlugin_l186_57) begin
+      ID_DecoderArray_decoders_0_uop_useRd = 1'b1;
+    end
+    if(when_DecoderArrayPlugin_l186_58) begin
       ID_DecoderArray_decoders_0_uop_useRd = 1'b1;
     end
     if(ID_DecoderArray_decoders_0_uop_writeCSR) begin
@@ -66851,6 +67072,24 @@ module MyCPUCore (
     if(when_DecoderArrayPlugin_l186_52) begin
       _zz_ID_DecoderArray_decoders_0_uop_doRegWrite = 1'b1;
     end
+    if(when_DecoderArrayPlugin_l186_53) begin
+      _zz_ID_DecoderArray_decoders_0_uop_doRegWrite = 1'b1;
+    end
+    if(when_DecoderArrayPlugin_l186_54) begin
+      _zz_ID_DecoderArray_decoders_0_uop_doRegWrite = 1'b1;
+    end
+    if(when_DecoderArrayPlugin_l186_55) begin
+      _zz_ID_DecoderArray_decoders_0_uop_doRegWrite = 1'b1;
+    end
+    if(when_DecoderArrayPlugin_l186_56) begin
+      _zz_ID_DecoderArray_decoders_0_uop_doRegWrite = 1'b1;
+    end
+    if(when_DecoderArrayPlugin_l186_57) begin
+      _zz_ID_DecoderArray_decoders_0_uop_doRegWrite = 1'b1;
+    end
+    if(when_DecoderArrayPlugin_l186_58) begin
+      _zz_ID_DecoderArray_decoders_0_uop_doRegWrite = 1'b1;
+    end
   end
 
   always @(*) begin
@@ -66970,6 +67209,24 @@ module MyCPUCore (
     if(when_DecoderArrayPlugin_l186_52) begin
       ID_DecoderArray_decoders_0_uop_aluOp = ALUOpType_CPUCFG;
     end
+    if(when_DecoderArrayPlugin_l186_53) begin
+      ID_DecoderArray_decoders_0_uop_aluOp = ALUOpType_IOCSR;
+    end
+    if(when_DecoderArrayPlugin_l186_54) begin
+      ID_DecoderArray_decoders_0_uop_aluOp = ALUOpType_IOCSR;
+    end
+    if(when_DecoderArrayPlugin_l186_55) begin
+      ID_DecoderArray_decoders_0_uop_aluOp = ALUOpType_IOCSR;
+    end
+    if(when_DecoderArrayPlugin_l186_56) begin
+      ID_DecoderArray_decoders_0_uop_aluOp = ALUOpType_IOCSR;
+    end
+    if(when_DecoderArrayPlugin_l186_57) begin
+      ID_DecoderArray_decoders_0_uop_aluOp = ALUOpType_IOCSR;
+    end
+    if(when_DecoderArrayPlugin_l186_58) begin
+      ID_DecoderArray_decoders_0_uop_aluOp = ALUOpType_IOCSR;
+    end
   end
 
   always @(*) begin
@@ -67051,7 +67308,7 @@ module MyCPUCore (
     if(when_DecoderArrayPlugin_l186_48) begin
       ID_DecoderArray_decoders_0_uop_lsType = LoadStoreType_WORD;
     end
-    if(when_DecoderArrayPlugin_l186_64) begin
+    if(when_DecoderArrayPlugin_l186_70) begin
       ID_DecoderArray_decoders_0_uop_lsType = LoadStoreType_CACOP;
     end
   end
@@ -67149,38 +67406,38 @@ module MyCPUCore (
 
   always @(*) begin
     when_DecoderArrayPlugin_l254 = 1'b0;
-    if(when_DecoderArrayPlugin_l186_53) begin
+    if(when_DecoderArrayPlugin_l186_59) begin
       when_DecoderArrayPlugin_l254 = 1'b1;
     end
   end
 
   always @(*) begin
     ID_DecoderArray_decoders_0_uop_isErtn = 1'b0;
-    if(when_DecoderArrayPlugin_l186_55) begin
+    if(when_DecoderArrayPlugin_l186_61) begin
       ID_DecoderArray_decoders_0_uop_isErtn = 1'b1;
     end
   end
 
   always @(*) begin
     when_DecoderArrayPlugin_l259 = 1'b0;
-    if(when_DecoderArrayPlugin_l186_54) begin
+    if(when_DecoderArrayPlugin_l186_60) begin
       when_DecoderArrayPlugin_l259 = 1'b1;
     end
   end
 
   always @(*) begin
     ID_DecoderArray_decoders_0_uop_isWait = 1'b0;
-    if(when_DecoderArrayPlugin_l186_56) begin
+    if(when_DecoderArrayPlugin_l186_62) begin
       ID_DecoderArray_decoders_0_uop_isWait = 1'b1;
     end
   end
 
   always @(*) begin
     _zz_ID_DecoderArray_decoders_0_uop_flushState = 1'b0;
-    if(when_DecoderArrayPlugin_l186_62) begin
+    if(when_DecoderArrayPlugin_l186_68) begin
       _zz_ID_DecoderArray_decoders_0_uop_flushState = 1'b1;
     end
-    if(when_DecoderArrayPlugin_l186_63) begin
+    if(when_DecoderArrayPlugin_l186_69) begin
       _zz_ID_DecoderArray_decoders_0_uop_flushState = 1'b1;
     end
   end
@@ -67238,18 +67495,24 @@ module MyCPUCore (
   assign when_DecoderArrayPlugin_l186_50 = ((FetchBufferPlugin_bufferFIFO_io_pop_0_payload_inst & 32'hfffffc00) == 32'h00006000);
   assign when_DecoderArrayPlugin_l186_51 = ((FetchBufferPlugin_bufferFIFO_io_pop_0_payload_inst & 32'hffffffe0) == 32'h00006400);
   assign when_DecoderArrayPlugin_l186_52 = ((FetchBufferPlugin_bufferFIFO_io_pop_0_payload_inst & 32'hfffffc00) == 32'h00006c00);
-  assign when_DecoderArrayPlugin_l186_53 = ((FetchBufferPlugin_bufferFIFO_io_pop_0_payload_inst & 32'hffff8000) == 32'h002b0000);
-  assign when_DecoderArrayPlugin_l186_54 = ((FetchBufferPlugin_bufferFIFO_io_pop_0_payload_inst & 32'hffff8000) == 32'h002a0000);
-  assign when_DecoderArrayPlugin_l186_55 = ((FetchBufferPlugin_bufferFIFO_io_pop_0_payload_inst & 32'hffffffff) == 32'h06483800);
-  assign when_DecoderArrayPlugin_l186_56 = ((FetchBufferPlugin_bufferFIFO_io_pop_0_payload_inst & 32'hffff8000) == 32'h06488000);
-  assign when_DecoderArrayPlugin_l186_57 = ((FetchBufferPlugin_bufferFIFO_io_pop_0_payload_inst & 32'hffffffff) == 32'h06482800);
-  assign when_DecoderArrayPlugin_l186_58 = ((FetchBufferPlugin_bufferFIFO_io_pop_0_payload_inst & 32'hffffffff) == 32'h06482c00);
-  assign when_DecoderArrayPlugin_l186_59 = ((FetchBufferPlugin_bufferFIFO_io_pop_0_payload_inst & 32'hffffffff) == 32'h06483000);
-  assign when_DecoderArrayPlugin_l186_60 = ((FetchBufferPlugin_bufferFIFO_io_pop_0_payload_inst & 32'hffffffff) == 32'h06483400);
-  assign when_DecoderArrayPlugin_l186_61 = ((FetchBufferPlugin_bufferFIFO_io_pop_0_payload_inst & 32'hffff8000) == 32'h06498000);
-  assign when_DecoderArrayPlugin_l186_62 = ((FetchBufferPlugin_bufferFIFO_io_pop_0_payload_inst & 32'hffff8000) == 32'h38728000);
-  assign when_DecoderArrayPlugin_l186_63 = ((FetchBufferPlugin_bufferFIFO_io_pop_0_payload_inst & 32'hffff8000) == 32'h38720000);
-  assign when_DecoderArrayPlugin_l186_64 = ((FetchBufferPlugin_bufferFIFO_io_pop_0_payload_inst & 32'hffc00000) == 32'h06000000);
+  assign when_DecoderArrayPlugin_l186_53 = ((FetchBufferPlugin_bufferFIFO_io_pop_0_payload_inst & 32'hfffffc00) == 32'h06480000);
+  assign when_DecoderArrayPlugin_l186_54 = ((FetchBufferPlugin_bufferFIFO_io_pop_0_payload_inst & 32'hfffffc00) == 32'h06480400);
+  assign when_DecoderArrayPlugin_l186_55 = ((FetchBufferPlugin_bufferFIFO_io_pop_0_payload_inst & 32'hfffffc00) == 32'h06480800);
+  assign when_DecoderArrayPlugin_l186_56 = ((FetchBufferPlugin_bufferFIFO_io_pop_0_payload_inst & 32'hfffffc00) == 32'h06481000);
+  assign when_DecoderArrayPlugin_l186_57 = ((FetchBufferPlugin_bufferFIFO_io_pop_0_payload_inst & 32'hfffffc00) == 32'h06481400);
+  assign when_DecoderArrayPlugin_l186_58 = ((FetchBufferPlugin_bufferFIFO_io_pop_0_payload_inst & 32'hfffffc00) == 32'h06481800);
+  assign when_DecoderArrayPlugin_l186_59 = ((FetchBufferPlugin_bufferFIFO_io_pop_0_payload_inst & 32'hffff8000) == 32'h002b0000);
+  assign when_DecoderArrayPlugin_l186_60 = ((FetchBufferPlugin_bufferFIFO_io_pop_0_payload_inst & 32'hffff8000) == 32'h002a0000);
+  assign when_DecoderArrayPlugin_l186_61 = ((FetchBufferPlugin_bufferFIFO_io_pop_0_payload_inst & 32'hffffffff) == 32'h06483800);
+  assign when_DecoderArrayPlugin_l186_62 = ((FetchBufferPlugin_bufferFIFO_io_pop_0_payload_inst & 32'hffff8000) == 32'h06488000);
+  assign when_DecoderArrayPlugin_l186_63 = ((FetchBufferPlugin_bufferFIFO_io_pop_0_payload_inst & 32'hffffffff) == 32'h06482800);
+  assign when_DecoderArrayPlugin_l186_64 = ((FetchBufferPlugin_bufferFIFO_io_pop_0_payload_inst & 32'hffffffff) == 32'h06482c00);
+  assign when_DecoderArrayPlugin_l186_65 = ((FetchBufferPlugin_bufferFIFO_io_pop_0_payload_inst & 32'hffffffff) == 32'h06483000);
+  assign when_DecoderArrayPlugin_l186_66 = ((FetchBufferPlugin_bufferFIFO_io_pop_0_payload_inst & 32'hffffffff) == 32'h06483400);
+  assign when_DecoderArrayPlugin_l186_67 = ((FetchBufferPlugin_bufferFIFO_io_pop_0_payload_inst & 32'hffff8000) == 32'h06498000);
+  assign when_DecoderArrayPlugin_l186_68 = ((FetchBufferPlugin_bufferFIFO_io_pop_0_payload_inst & 32'hffff8000) == 32'h38728000);
+  assign when_DecoderArrayPlugin_l186_69 = ((FetchBufferPlugin_bufferFIFO_io_pop_0_payload_inst & 32'hffff8000) == 32'h38720000);
+  assign when_DecoderArrayPlugin_l186_70 = ((FetchBufferPlugin_bufferFIFO_io_pop_0_payload_inst & 32'hffc00000) == 32'h06000000);
   assign ID_DecoderArray_decoders_0_uop_pc = FetchBufferPlugin_bufferFIFO_io_pop_0_payload_pc;
   assign ID_DecoderArray_decoders_0_uop_inst = FetchBufferPlugin_bufferFIFO_io_pop_0_payload_inst;
   assign ID_DecoderArray_decoders_0_uop_predInfo_predictBranch = FetchBufferPlugin_bufferFIFO_io_pop_0_payload_predInfo_predictBranch;
@@ -67325,7 +67588,7 @@ module MyCPUCore (
           end
         endcase
       end
-      if(when_DecoderArrayPlugin_l309) begin
+      if(when_DecoderArrayPlugin_l313) begin
         ID_DecoderArray_decoders_0_uop_except_valid = 1'b1;
       end
     end
@@ -67362,7 +67625,7 @@ module MyCPUCore (
           end
         endcase
       end
-      if(when_DecoderArrayPlugin_l309) begin
+      if(when_DecoderArrayPlugin_l313) begin
         ID_DecoderArray_decoders_0_uop_except_payload_code = 6'h0e;
       end
     end
@@ -67399,7 +67662,7 @@ module MyCPUCore (
           end
         endcase
       end
-      if(when_DecoderArrayPlugin_l309) begin
+      if(when_DecoderArrayPlugin_l313) begin
         ID_DecoderArray_decoders_0_uop_except_payload_subcode = 9'h0;
       end
     end
@@ -67415,30 +67678,12 @@ module MyCPUCore (
   assign when_DecoderArrayPlugin_l252 = (! FetchBufferPlugin_bufferFIFO_io_pop_0_payload_except_valid);
   assign when_DecoderArrayPlugin_l271 = ((((FetchBufferPlugin_bufferFIFO_io_pop_0_payload_inst & 32'hffff8000) == 32'h06498000) && ID_DecoderArray_decoders_0_uop_useRj) && ID_DecoderArray_decoders_0_uop_useRk);
   assign switch_DecoderArrayPlugin_l274 = FetchBufferPlugin_bufferFIFO_io_pop_0_payload_inst[4 : 0];
-  assign when_DecoderArrayPlugin_l309 = ((ExceptionHandlerPlugin_CRMD_PLV != 2'b00) && (((((((_zz_when_DecoderArrayPlugin_l309 || _zz_when_DecoderArrayPlugin_l309_1) || (_zz_when_DecoderArrayPlugin_l309_2 == _zz_when_DecoderArrayPlugin_l309_3)) || ((FetchBufferPlugin_bufferFIFO_io_pop_0_payload_inst & _zz_when_DecoderArrayPlugin_l309_4) == 32'h06482c00)) || ((FetchBufferPlugin_bufferFIFO_io_pop_0_payload_inst & 32'hffffffff) == 32'h06483000)) || ((FetchBufferPlugin_bufferFIFO_io_pop_0_payload_inst & 32'hffffffff) == 32'h06482800)) || ((FetchBufferPlugin_bufferFIFO_io_pop_0_payload_inst & 32'hffffffff) == 32'h06483400)) || ((FetchBufferPlugin_bufferFIFO_io_pop_0_payload_inst & 32'hffff8000) == 32'h06498000)));
+  assign when_DecoderArrayPlugin_l313 = ((ExceptionHandlerPlugin_CRMD_PLV != 2'b00) && (((((((_zz_when_DecoderArrayPlugin_l313 || _zz_when_DecoderArrayPlugin_l313_6) || (_zz_when_DecoderArrayPlugin_l313_7 == _zz_when_DecoderArrayPlugin_l313_8)) || ((FetchBufferPlugin_bufferFIFO_io_pop_0_payload_inst & _zz_when_DecoderArrayPlugin_l313_9) == 32'h06480400)) || ((FetchBufferPlugin_bufferFIFO_io_pop_0_payload_inst & 32'hfffffc00) == 32'h06480800)) || ((FetchBufferPlugin_bufferFIFO_io_pop_0_payload_inst & 32'hfffffc00) == 32'h06481000)) || ((FetchBufferPlugin_bufferFIFO_io_pop_0_payload_inst & 32'hfffffc00) == 32'h06481400)) || ((FetchBufferPlugin_bufferFIFO_io_pop_0_payload_inst & 32'hfffffc00) == 32'h06481800)));
   assign ID_DecoderArray_decoders_0_uop_branchLike = ((ID_DecoderArray_decoders_0_uop_isBranch || ID_DecoderArray_decoders_0_uop_isJump) || ID_DecoderArray_decoders_0_uop_isJR);
   assign ID_DecoderArray_decoders_0_uop_flushState = (((((((ID_DecoderArray_decoders_0_uop_isErtn || ID_DecoderArray_decoders_0_uop_writeCSR) || ID_DecoderArray_decoders_0_uop_isWait) || (ID_DecoderArray_decoders_0_uop_tlbOp != TLBOpType_NONE)) || ID_DecoderArray_decoders_0_uop_operateCache) || _zz_ID_DecoderArray_decoders_0_uop_flushState) || ID_DecoderArray_decoders_0_uop_isLL) || ID_DecoderArray_decoders_0_uop_isSC);
   assign ID_DecoderArray_decoders_0_uop_uniqueRetire = ((((ID_DecoderArray_decoders_0_uop_flushState || ID_DecoderArray_decoders_0_uop_branchLike) || ID_DecoderArray_decoders_0_uop_isLoad) || ID_DecoderArray_decoders_0_uop_isStore) || ID_DecoderArray_decoders_0_uop_predInfo_predictBranch);
   always @(*) begin
     ID_DecoderArray_decoders_1_illegalEncoding = 1'b1;
-    if(when_DecoderArrayPlugin_l186_65) begin
-      ID_DecoderArray_decoders_1_illegalEncoding = 1'b0;
-    end
-    if(when_DecoderArrayPlugin_l186_66) begin
-      ID_DecoderArray_decoders_1_illegalEncoding = 1'b0;
-    end
-    if(when_DecoderArrayPlugin_l186_67) begin
-      ID_DecoderArray_decoders_1_illegalEncoding = 1'b0;
-    end
-    if(when_DecoderArrayPlugin_l186_68) begin
-      ID_DecoderArray_decoders_1_illegalEncoding = 1'b0;
-    end
-    if(when_DecoderArrayPlugin_l186_69) begin
-      ID_DecoderArray_decoders_1_illegalEncoding = 1'b0;
-    end
-    if(when_DecoderArrayPlugin_l186_70) begin
-      ID_DecoderArray_decoders_1_illegalEncoding = 1'b0;
-    end
     if(when_DecoderArrayPlugin_l186_71) begin
       ID_DecoderArray_decoders_1_illegalEncoding = 1'b0;
     end
@@ -67616,28 +67861,46 @@ module MyCPUCore (
     if(when_DecoderArrayPlugin_l186_129) begin
       ID_DecoderArray_decoders_1_illegalEncoding = 1'b0;
     end
+    if(when_DecoderArrayPlugin_l186_130) begin
+      ID_DecoderArray_decoders_1_illegalEncoding = 1'b0;
+    end
+    if(when_DecoderArrayPlugin_l186_131) begin
+      ID_DecoderArray_decoders_1_illegalEncoding = 1'b0;
+    end
+    if(when_DecoderArrayPlugin_l186_132) begin
+      ID_DecoderArray_decoders_1_illegalEncoding = 1'b0;
+    end
+    if(when_DecoderArrayPlugin_l186_133) begin
+      ID_DecoderArray_decoders_1_illegalEncoding = 1'b0;
+    end
+    if(when_DecoderArrayPlugin_l186_134) begin
+      ID_DecoderArray_decoders_1_illegalEncoding = 1'b0;
+    end
+    if(when_DecoderArrayPlugin_l186_135) begin
+      ID_DecoderArray_decoders_1_illegalEncoding = 1'b0;
+    end
+    if(when_DecoderArrayPlugin_l186_136) begin
+      ID_DecoderArray_decoders_1_illegalEncoding = 1'b0;
+    end
+    if(when_DecoderArrayPlugin_l186_137) begin
+      ID_DecoderArray_decoders_1_illegalEncoding = 1'b0;
+    end
+    if(when_DecoderArrayPlugin_l186_138) begin
+      ID_DecoderArray_decoders_1_illegalEncoding = 1'b0;
+    end
+    if(when_DecoderArrayPlugin_l186_139) begin
+      ID_DecoderArray_decoders_1_illegalEncoding = 1'b0;
+    end
+    if(when_DecoderArrayPlugin_l186_140) begin
+      ID_DecoderArray_decoders_1_illegalEncoding = 1'b0;
+    end
+    if(when_DecoderArrayPlugin_l186_141) begin
+      ID_DecoderArray_decoders_1_illegalEncoding = 1'b0;
+    end
   end
 
   always @(*) begin
     ID_DecoderArray_decoders_1_uop_fuType = FUType_ALU;
-    if(when_DecoderArrayPlugin_l186_88) begin
-      ID_DecoderArray_decoders_1_uop_fuType = FUType_CMP;
-    end
-    if(when_DecoderArrayPlugin_l186_89) begin
-      ID_DecoderArray_decoders_1_uop_fuType = FUType_CMP;
-    end
-    if(when_DecoderArrayPlugin_l186_90) begin
-      ID_DecoderArray_decoders_1_uop_fuType = FUType_CMP;
-    end
-    if(when_DecoderArrayPlugin_l186_91) begin
-      ID_DecoderArray_decoders_1_uop_fuType = FUType_CMP;
-    end
-    if(when_DecoderArrayPlugin_l186_92) begin
-      ID_DecoderArray_decoders_1_uop_fuType = FUType_CMP;
-    end
-    if(when_DecoderArrayPlugin_l186_93) begin
-      ID_DecoderArray_decoders_1_uop_fuType = FUType_CMP;
-    end
     if(when_DecoderArrayPlugin_l186_94) begin
       ID_DecoderArray_decoders_1_uop_fuType = FUType_CMP;
     end
@@ -67648,43 +67911,43 @@ module MyCPUCore (
       ID_DecoderArray_decoders_1_uop_fuType = FUType_CMP;
     end
     if(when_DecoderArrayPlugin_l186_97) begin
-      ID_DecoderArray_decoders_1_uop_fuType = FUType_MUL;
+      ID_DecoderArray_decoders_1_uop_fuType = FUType_CMP;
     end
     if(when_DecoderArrayPlugin_l186_98) begin
-      ID_DecoderArray_decoders_1_uop_fuType = FUType_MULH;
+      ID_DecoderArray_decoders_1_uop_fuType = FUType_CMP;
     end
     if(when_DecoderArrayPlugin_l186_99) begin
-      ID_DecoderArray_decoders_1_uop_fuType = FUType_MULH;
+      ID_DecoderArray_decoders_1_uop_fuType = FUType_CMP;
     end
     if(when_DecoderArrayPlugin_l186_100) begin
-      ID_DecoderArray_decoders_1_uop_fuType = FUType_DIV;
+      ID_DecoderArray_decoders_1_uop_fuType = FUType_CMP;
     end
     if(when_DecoderArrayPlugin_l186_101) begin
-      ID_DecoderArray_decoders_1_uop_fuType = FUType_DIV;
+      ID_DecoderArray_decoders_1_uop_fuType = FUType_CMP;
     end
     if(when_DecoderArrayPlugin_l186_102) begin
-      ID_DecoderArray_decoders_1_uop_fuType = FUType_MOD_1;
+      ID_DecoderArray_decoders_1_uop_fuType = FUType_CMP;
     end
     if(when_DecoderArrayPlugin_l186_103) begin
-      ID_DecoderArray_decoders_1_uop_fuType = FUType_MOD_1;
+      ID_DecoderArray_decoders_1_uop_fuType = FUType_MUL;
     end
     if(when_DecoderArrayPlugin_l186_104) begin
-      ID_DecoderArray_decoders_1_uop_fuType = FUType_LSU;
+      ID_DecoderArray_decoders_1_uop_fuType = FUType_MULH;
     end
     if(when_DecoderArrayPlugin_l186_105) begin
-      ID_DecoderArray_decoders_1_uop_fuType = FUType_LSU;
+      ID_DecoderArray_decoders_1_uop_fuType = FUType_MULH;
     end
     if(when_DecoderArrayPlugin_l186_106) begin
-      ID_DecoderArray_decoders_1_uop_fuType = FUType_LSU;
+      ID_DecoderArray_decoders_1_uop_fuType = FUType_DIV;
     end
     if(when_DecoderArrayPlugin_l186_107) begin
-      ID_DecoderArray_decoders_1_uop_fuType = FUType_LSU;
+      ID_DecoderArray_decoders_1_uop_fuType = FUType_DIV;
     end
     if(when_DecoderArrayPlugin_l186_108) begin
-      ID_DecoderArray_decoders_1_uop_fuType = FUType_LSU;
+      ID_DecoderArray_decoders_1_uop_fuType = FUType_MOD_1;
     end
     if(when_DecoderArrayPlugin_l186_109) begin
-      ID_DecoderArray_decoders_1_uop_fuType = FUType_LSU;
+      ID_DecoderArray_decoders_1_uop_fuType = FUType_MOD_1;
     end
     if(when_DecoderArrayPlugin_l186_110) begin
       ID_DecoderArray_decoders_1_uop_fuType = FUType_LSU;
@@ -67699,67 +67962,85 @@ module MyCPUCore (
       ID_DecoderArray_decoders_1_uop_fuType = FUType_LSU;
     end
     if(when_DecoderArrayPlugin_l186_114) begin
-      ID_DecoderArray_decoders_1_uop_fuType = FUType_CSR;
+      ID_DecoderArray_decoders_1_uop_fuType = FUType_LSU;
     end
     if(when_DecoderArrayPlugin_l186_115) begin
-      ID_DecoderArray_decoders_1_uop_fuType = FUType_TIMER;
+      ID_DecoderArray_decoders_1_uop_fuType = FUType_LSU;
     end
     if(when_DecoderArrayPlugin_l186_116) begin
-      ID_DecoderArray_decoders_1_uop_fuType = FUType_TIMER;
+      ID_DecoderArray_decoders_1_uop_fuType = FUType_LSU;
+    end
+    if(when_DecoderArrayPlugin_l186_117) begin
+      ID_DecoderArray_decoders_1_uop_fuType = FUType_LSU;
     end
     if(when_DecoderArrayPlugin_l186_118) begin
-      ID_DecoderArray_decoders_1_uop_fuType = FUType_NONE;
+      ID_DecoderArray_decoders_1_uop_fuType = FUType_LSU;
     end
     if(when_DecoderArrayPlugin_l186_119) begin
-      ID_DecoderArray_decoders_1_uop_fuType = FUType_NONE;
+      ID_DecoderArray_decoders_1_uop_fuType = FUType_LSU;
     end
     if(when_DecoderArrayPlugin_l186_120) begin
-      ID_DecoderArray_decoders_1_uop_fuType = FUType_NONE;
+      ID_DecoderArray_decoders_1_uop_fuType = FUType_CSR;
     end
     if(when_DecoderArrayPlugin_l186_121) begin
-      ID_DecoderArray_decoders_1_uop_fuType = FUType_NONE;
+      ID_DecoderArray_decoders_1_uop_fuType = FUType_TIMER;
     end
     if(when_DecoderArrayPlugin_l186_122) begin
+      ID_DecoderArray_decoders_1_uop_fuType = FUType_TIMER;
+    end
+    if(when_DecoderArrayPlugin_l186_130) begin
       ID_DecoderArray_decoders_1_uop_fuType = FUType_NONE;
     end
-    if(when_DecoderArrayPlugin_l186_123) begin
+    if(when_DecoderArrayPlugin_l186_131) begin
       ID_DecoderArray_decoders_1_uop_fuType = FUType_NONE;
     end
-    if(when_DecoderArrayPlugin_l186_124) begin
+    if(when_DecoderArrayPlugin_l186_132) begin
       ID_DecoderArray_decoders_1_uop_fuType = FUType_NONE;
     end
-    if(when_DecoderArrayPlugin_l186_125) begin
+    if(when_DecoderArrayPlugin_l186_133) begin
       ID_DecoderArray_decoders_1_uop_fuType = FUType_NONE;
     end
-    if(when_DecoderArrayPlugin_l186_126) begin
+    if(when_DecoderArrayPlugin_l186_134) begin
+      ID_DecoderArray_decoders_1_uop_fuType = FUType_NONE;
+    end
+    if(when_DecoderArrayPlugin_l186_135) begin
+      ID_DecoderArray_decoders_1_uop_fuType = FUType_NONE;
+    end
+    if(when_DecoderArrayPlugin_l186_136) begin
+      ID_DecoderArray_decoders_1_uop_fuType = FUType_NONE;
+    end
+    if(when_DecoderArrayPlugin_l186_137) begin
+      ID_DecoderArray_decoders_1_uop_fuType = FUType_NONE;
+    end
+    if(when_DecoderArrayPlugin_l186_138) begin
       ID_DecoderArray_decoders_1_uop_fuType = FUType_INVTLB;
     end
-    if(when_DecoderArrayPlugin_l186_127) begin
+    if(when_DecoderArrayPlugin_l186_139) begin
       ID_DecoderArray_decoders_1_uop_fuType = FUType_NONE;
     end
-    if(when_DecoderArrayPlugin_l186_128) begin
+    if(when_DecoderArrayPlugin_l186_140) begin
       ID_DecoderArray_decoders_1_uop_fuType = FUType_NONE;
     end
-    if(when_DecoderArrayPlugin_l186_129) begin
+    if(when_DecoderArrayPlugin_l186_141) begin
       ID_DecoderArray_decoders_1_uop_fuType = FUType_LSU;
     end
   end
 
   always @(*) begin
     ID_DecoderArray_decoders_1_uop_tlbOp = TLBOpType_NONE;
-    if(when_DecoderArrayPlugin_l186_122) begin
+    if(when_DecoderArrayPlugin_l186_134) begin
       ID_DecoderArray_decoders_1_uop_tlbOp = TLBOpType_TLBSRCH;
     end
-    if(when_DecoderArrayPlugin_l186_123) begin
+    if(when_DecoderArrayPlugin_l186_135) begin
       ID_DecoderArray_decoders_1_uop_tlbOp = TLBOpType_TLBRD;
     end
-    if(when_DecoderArrayPlugin_l186_124) begin
+    if(when_DecoderArrayPlugin_l186_136) begin
       ID_DecoderArray_decoders_1_uop_tlbOp = TLBOpType_TLBWR;
     end
-    if(when_DecoderArrayPlugin_l186_125) begin
+    if(when_DecoderArrayPlugin_l186_137) begin
       ID_DecoderArray_decoders_1_uop_tlbOp = TLBOpType_TLBFILL;
     end
-    if(when_DecoderArrayPlugin_l186_126) begin
+    if(when_DecoderArrayPlugin_l186_138) begin
       ID_DecoderArray_decoders_1_uop_tlbOp = TLBOpType_INVTLB1;
     end
     if(when_DecoderArrayPlugin_l252_1) begin
@@ -67792,31 +68073,13 @@ module MyCPUCore (
 
   always @(*) begin
     ID_DecoderArray_decoders_1_uop_operateCache = 1'b0;
-    if(when_DecoderArrayPlugin_l186_129) begin
+    if(when_DecoderArrayPlugin_l186_141) begin
       ID_DecoderArray_decoders_1_uop_operateCache = 1'b1;
     end
   end
 
   always @(*) begin
     ID_DecoderArray_decoders_1_uop_useRj = 1'b0;
-    if(when_DecoderArrayPlugin_l186_65) begin
-      ID_DecoderArray_decoders_1_uop_useRj = 1'b1;
-    end
-    if(when_DecoderArrayPlugin_l186_66) begin
-      ID_DecoderArray_decoders_1_uop_useRj = 1'b1;
-    end
-    if(when_DecoderArrayPlugin_l186_67) begin
-      ID_DecoderArray_decoders_1_uop_useRj = 1'b1;
-    end
-    if(when_DecoderArrayPlugin_l186_68) begin
-      ID_DecoderArray_decoders_1_uop_useRj = 1'b1;
-    end
-    if(when_DecoderArrayPlugin_l186_69) begin
-      ID_DecoderArray_decoders_1_uop_useRj = 1'b1;
-    end
-    if(when_DecoderArrayPlugin_l186_70) begin
-      ID_DecoderArray_decoders_1_uop_useRj = 1'b1;
-    end
     if(when_DecoderArrayPlugin_l186_71) begin
       ID_DecoderArray_decoders_1_uop_useRj = 1'b1;
     end
@@ -67859,6 +68122,15 @@ module MyCPUCore (
     if(when_DecoderArrayPlugin_l186_84) begin
       ID_DecoderArray_decoders_1_uop_useRj = 1'b1;
     end
+    if(when_DecoderArrayPlugin_l186_85) begin
+      ID_DecoderArray_decoders_1_uop_useRj = 1'b1;
+    end
+    if(when_DecoderArrayPlugin_l186_86) begin
+      ID_DecoderArray_decoders_1_uop_useRj = 1'b1;
+    end
+    if(when_DecoderArrayPlugin_l186_87) begin
+      ID_DecoderArray_decoders_1_uop_useRj = 1'b1;
+    end
     if(when_DecoderArrayPlugin_l186_88) begin
       ID_DecoderArray_decoders_1_uop_useRj = 1'b1;
     end
@@ -67868,13 +68140,10 @@ module MyCPUCore (
     if(when_DecoderArrayPlugin_l186_90) begin
       ID_DecoderArray_decoders_1_uop_useRj = 1'b1;
     end
-    if(when_DecoderArrayPlugin_l186_91) begin
+    if(when_DecoderArrayPlugin_l186_94) begin
       ID_DecoderArray_decoders_1_uop_useRj = 1'b1;
     end
-    if(when_DecoderArrayPlugin_l186_92) begin
-      ID_DecoderArray_decoders_1_uop_useRj = 1'b1;
-    end
-    if(when_DecoderArrayPlugin_l186_93) begin
+    if(when_DecoderArrayPlugin_l186_95) begin
       ID_DecoderArray_decoders_1_uop_useRj = 1'b1;
     end
     if(when_DecoderArrayPlugin_l186_96) begin
@@ -67887,12 +68156,6 @@ module MyCPUCore (
       ID_DecoderArray_decoders_1_uop_useRj = 1'b1;
     end
     if(when_DecoderArrayPlugin_l186_99) begin
-      ID_DecoderArray_decoders_1_uop_useRj = 1'b1;
-    end
-    if(when_DecoderArrayPlugin_l186_100) begin
-      ID_DecoderArray_decoders_1_uop_useRj = 1'b1;
-    end
-    if(when_DecoderArrayPlugin_l186_101) begin
       ID_DecoderArray_decoders_1_uop_useRj = 1'b1;
     end
     if(when_DecoderArrayPlugin_l186_102) begin
@@ -67931,13 +68194,49 @@ module MyCPUCore (
     if(when_DecoderArrayPlugin_l186_113) begin
       ID_DecoderArray_decoders_1_uop_useRj = 1'b1;
     end
+    if(when_DecoderArrayPlugin_l186_114) begin
+      ID_DecoderArray_decoders_1_uop_useRj = 1'b1;
+    end
+    if(when_DecoderArrayPlugin_l186_115) begin
+      ID_DecoderArray_decoders_1_uop_useRj = 1'b1;
+    end
+    if(when_DecoderArrayPlugin_l186_116) begin
+      ID_DecoderArray_decoders_1_uop_useRj = 1'b1;
+    end
     if(when_DecoderArrayPlugin_l186_117) begin
+      ID_DecoderArray_decoders_1_uop_useRj = 1'b1;
+    end
+    if(when_DecoderArrayPlugin_l186_118) begin
+      ID_DecoderArray_decoders_1_uop_useRj = 1'b1;
+    end
+    if(when_DecoderArrayPlugin_l186_119) begin
+      ID_DecoderArray_decoders_1_uop_useRj = 1'b1;
+    end
+    if(when_DecoderArrayPlugin_l186_123) begin
+      ID_DecoderArray_decoders_1_uop_useRj = 1'b1;
+    end
+    if(when_DecoderArrayPlugin_l186_124) begin
+      ID_DecoderArray_decoders_1_uop_useRj = 1'b1;
+    end
+    if(when_DecoderArrayPlugin_l186_125) begin
       ID_DecoderArray_decoders_1_uop_useRj = 1'b1;
     end
     if(when_DecoderArrayPlugin_l186_126) begin
       ID_DecoderArray_decoders_1_uop_useRj = 1'b1;
     end
+    if(when_DecoderArrayPlugin_l186_127) begin
+      ID_DecoderArray_decoders_1_uop_useRj = 1'b1;
+    end
+    if(when_DecoderArrayPlugin_l186_128) begin
+      ID_DecoderArray_decoders_1_uop_useRj = 1'b1;
+    end
     if(when_DecoderArrayPlugin_l186_129) begin
+      ID_DecoderArray_decoders_1_uop_useRj = 1'b1;
+    end
+    if(when_DecoderArrayPlugin_l186_138) begin
+      ID_DecoderArray_decoders_1_uop_useRj = 1'b1;
+    end
+    if(when_DecoderArrayPlugin_l186_141) begin
       ID_DecoderArray_decoders_1_uop_useRj = 1'b1;
     end
     if(when_DecoderArrayPlugin_l220_1) begin
@@ -67947,24 +68246,6 @@ module MyCPUCore (
 
   always @(*) begin
     ID_DecoderArray_decoders_1_uop_useRk = 1'b0;
-    if(when_DecoderArrayPlugin_l186_65) begin
-      ID_DecoderArray_decoders_1_uop_useRk = 1'b1;
-    end
-    if(when_DecoderArrayPlugin_l186_66) begin
-      ID_DecoderArray_decoders_1_uop_useRk = 1'b1;
-    end
-    if(when_DecoderArrayPlugin_l186_67) begin
-      ID_DecoderArray_decoders_1_uop_useRk = 1'b1;
-    end
-    if(when_DecoderArrayPlugin_l186_68) begin
-      ID_DecoderArray_decoders_1_uop_useRk = 1'b1;
-    end
-    if(when_DecoderArrayPlugin_l186_69) begin
-      ID_DecoderArray_decoders_1_uop_useRk = 1'b1;
-    end
-    if(when_DecoderArrayPlugin_l186_70) begin
-      ID_DecoderArray_decoders_1_uop_useRk = 1'b1;
-    end
     if(when_DecoderArrayPlugin_l186_71) begin
       ID_DecoderArray_decoders_1_uop_useRk = 1'b1;
     end
@@ -67980,62 +68261,89 @@ module MyCPUCore (
     if(when_DecoderArrayPlugin_l186_75) begin
       ID_DecoderArray_decoders_1_uop_useRk = 1'b1;
     end
-    if(when_DecoderArrayPlugin_l186_97) begin
+    if(when_DecoderArrayPlugin_l186_76) begin
       ID_DecoderArray_decoders_1_uop_useRk = 1'b1;
     end
-    if(when_DecoderArrayPlugin_l186_98) begin
+    if(when_DecoderArrayPlugin_l186_77) begin
       ID_DecoderArray_decoders_1_uop_useRk = 1'b1;
     end
-    if(when_DecoderArrayPlugin_l186_99) begin
+    if(when_DecoderArrayPlugin_l186_78) begin
       ID_DecoderArray_decoders_1_uop_useRk = 1'b1;
     end
-    if(when_DecoderArrayPlugin_l186_100) begin
+    if(when_DecoderArrayPlugin_l186_79) begin
       ID_DecoderArray_decoders_1_uop_useRk = 1'b1;
     end
-    if(when_DecoderArrayPlugin_l186_101) begin
+    if(when_DecoderArrayPlugin_l186_80) begin
       ID_DecoderArray_decoders_1_uop_useRk = 1'b1;
     end
-    if(when_DecoderArrayPlugin_l186_102) begin
+    if(when_DecoderArrayPlugin_l186_81) begin
       ID_DecoderArray_decoders_1_uop_useRk = 1'b1;
     end
     if(when_DecoderArrayPlugin_l186_103) begin
       ID_DecoderArray_decoders_1_uop_useRk = 1'b1;
     end
-    if(when_DecoderArrayPlugin_l186_126) begin
+    if(when_DecoderArrayPlugin_l186_104) begin
+      ID_DecoderArray_decoders_1_uop_useRk = 1'b1;
+    end
+    if(when_DecoderArrayPlugin_l186_105) begin
+      ID_DecoderArray_decoders_1_uop_useRk = 1'b1;
+    end
+    if(when_DecoderArrayPlugin_l186_106) begin
+      ID_DecoderArray_decoders_1_uop_useRk = 1'b1;
+    end
+    if(when_DecoderArrayPlugin_l186_107) begin
+      ID_DecoderArray_decoders_1_uop_useRk = 1'b1;
+    end
+    if(when_DecoderArrayPlugin_l186_108) begin
+      ID_DecoderArray_decoders_1_uop_useRk = 1'b1;
+    end
+    if(when_DecoderArrayPlugin_l186_109) begin
+      ID_DecoderArray_decoders_1_uop_useRk = 1'b1;
+    end
+    if(when_DecoderArrayPlugin_l186_138) begin
       ID_DecoderArray_decoders_1_uop_useRk = 1'b1;
     end
   end
 
   always @(*) begin
     ID_DecoderArray_decoders_1_uop_useRd = 1'b0;
-    if(when_DecoderArrayPlugin_l186_88) begin
+    if(when_DecoderArrayPlugin_l186_94) begin
       ID_DecoderArray_decoders_1_uop_useRd = 1'b1;
     end
-    if(when_DecoderArrayPlugin_l186_89) begin
+    if(when_DecoderArrayPlugin_l186_95) begin
       ID_DecoderArray_decoders_1_uop_useRd = 1'b1;
     end
-    if(when_DecoderArrayPlugin_l186_90) begin
+    if(when_DecoderArrayPlugin_l186_96) begin
       ID_DecoderArray_decoders_1_uop_useRd = 1'b1;
     end
-    if(when_DecoderArrayPlugin_l186_91) begin
+    if(when_DecoderArrayPlugin_l186_97) begin
       ID_DecoderArray_decoders_1_uop_useRd = 1'b1;
     end
-    if(when_DecoderArrayPlugin_l186_92) begin
+    if(when_DecoderArrayPlugin_l186_98) begin
       ID_DecoderArray_decoders_1_uop_useRd = 1'b1;
     end
-    if(when_DecoderArrayPlugin_l186_93) begin
+    if(when_DecoderArrayPlugin_l186_99) begin
       ID_DecoderArray_decoders_1_uop_useRd = 1'b1;
     end
-    if(when_DecoderArrayPlugin_l186_109) begin
+    if(when_DecoderArrayPlugin_l186_115) begin
       ID_DecoderArray_decoders_1_uop_useRd = 1'b1;
     end
-    if(when_DecoderArrayPlugin_l186_110) begin
+    if(when_DecoderArrayPlugin_l186_116) begin
       ID_DecoderArray_decoders_1_uop_useRd = 1'b1;
     end
-    if(when_DecoderArrayPlugin_l186_111) begin
+    if(when_DecoderArrayPlugin_l186_117) begin
       ID_DecoderArray_decoders_1_uop_useRd = 1'b1;
     end
-    if(when_DecoderArrayPlugin_l186_113) begin
+    if(when_DecoderArrayPlugin_l186_119) begin
+      ID_DecoderArray_decoders_1_uop_useRd = 1'b1;
+    end
+    if(when_DecoderArrayPlugin_l186_127) begin
+      ID_DecoderArray_decoders_1_uop_useRd = 1'b1;
+    end
+    if(when_DecoderArrayPlugin_l186_128) begin
+      ID_DecoderArray_decoders_1_uop_useRd = 1'b1;
+    end
+    if(when_DecoderArrayPlugin_l186_129) begin
       ID_DecoderArray_decoders_1_uop_useRd = 1'b1;
     end
     if(ID_DecoderArray_decoders_1_uop_writeCSR) begin
@@ -68045,24 +68353,6 @@ module MyCPUCore (
 
   always @(*) begin
     _zz_ID_DecoderArray_decoders_1_uop_doRegWrite = 1'b0;
-    if(when_DecoderArrayPlugin_l186_65) begin
-      _zz_ID_DecoderArray_decoders_1_uop_doRegWrite = 1'b1;
-    end
-    if(when_DecoderArrayPlugin_l186_66) begin
-      _zz_ID_DecoderArray_decoders_1_uop_doRegWrite = 1'b1;
-    end
-    if(when_DecoderArrayPlugin_l186_67) begin
-      _zz_ID_DecoderArray_decoders_1_uop_doRegWrite = 1'b1;
-    end
-    if(when_DecoderArrayPlugin_l186_68) begin
-      _zz_ID_DecoderArray_decoders_1_uop_doRegWrite = 1'b1;
-    end
-    if(when_DecoderArrayPlugin_l186_69) begin
-      _zz_ID_DecoderArray_decoders_1_uop_doRegWrite = 1'b1;
-    end
-    if(when_DecoderArrayPlugin_l186_70) begin
-      _zz_ID_DecoderArray_decoders_1_uop_doRegWrite = 1'b1;
-    end
     if(when_DecoderArrayPlugin_l186_71) begin
       _zz_ID_DecoderArray_decoders_1_uop_doRegWrite = 1'b1;
     end
@@ -68114,22 +68404,22 @@ module MyCPUCore (
     if(when_DecoderArrayPlugin_l186_87) begin
       _zz_ID_DecoderArray_decoders_1_uop_doRegWrite = 1'b1;
     end
-    if(when_DecoderArrayPlugin_l186_95) begin
+    if(when_DecoderArrayPlugin_l186_88) begin
       _zz_ID_DecoderArray_decoders_1_uop_doRegWrite = 1'b1;
     end
-    if(when_DecoderArrayPlugin_l186_96) begin
+    if(when_DecoderArrayPlugin_l186_89) begin
       _zz_ID_DecoderArray_decoders_1_uop_doRegWrite = 1'b1;
     end
-    if(when_DecoderArrayPlugin_l186_97) begin
+    if(when_DecoderArrayPlugin_l186_90) begin
       _zz_ID_DecoderArray_decoders_1_uop_doRegWrite = 1'b1;
     end
-    if(when_DecoderArrayPlugin_l186_98) begin
+    if(when_DecoderArrayPlugin_l186_91) begin
       _zz_ID_DecoderArray_decoders_1_uop_doRegWrite = 1'b1;
     end
-    if(when_DecoderArrayPlugin_l186_99) begin
+    if(when_DecoderArrayPlugin_l186_92) begin
       _zz_ID_DecoderArray_decoders_1_uop_doRegWrite = 1'b1;
     end
-    if(when_DecoderArrayPlugin_l186_100) begin
+    if(when_DecoderArrayPlugin_l186_93) begin
       _zz_ID_DecoderArray_decoders_1_uop_doRegWrite = 1'b1;
     end
     if(when_DecoderArrayPlugin_l186_101) begin
@@ -68156,6 +68446,15 @@ module MyCPUCore (
     if(when_DecoderArrayPlugin_l186_108) begin
       _zz_ID_DecoderArray_decoders_1_uop_doRegWrite = 1'b1;
     end
+    if(when_DecoderArrayPlugin_l186_109) begin
+      _zz_ID_DecoderArray_decoders_1_uop_doRegWrite = 1'b1;
+    end
+    if(when_DecoderArrayPlugin_l186_110) begin
+      _zz_ID_DecoderArray_decoders_1_uop_doRegWrite = 1'b1;
+    end
+    if(when_DecoderArrayPlugin_l186_111) begin
+      _zz_ID_DecoderArray_decoders_1_uop_doRegWrite = 1'b1;
+    end
     if(when_DecoderArrayPlugin_l186_112) begin
       _zz_ID_DecoderArray_decoders_1_uop_doRegWrite = 1'b1;
     end
@@ -68165,20 +68464,47 @@ module MyCPUCore (
     if(when_DecoderArrayPlugin_l186_114) begin
       _zz_ID_DecoderArray_decoders_1_uop_doRegWrite = 1'b1;
     end
-    if(when_DecoderArrayPlugin_l186_115) begin
+    if(when_DecoderArrayPlugin_l186_118) begin
       _zz_ID_DecoderArray_decoders_1_uop_doRegWrite = 1'b1;
     end
-    if(when_DecoderArrayPlugin_l186_116) begin
+    if(when_DecoderArrayPlugin_l186_119) begin
       _zz_ID_DecoderArray_decoders_1_uop_doRegWrite = 1'b1;
     end
-    if(when_DecoderArrayPlugin_l186_117) begin
+    if(when_DecoderArrayPlugin_l186_120) begin
+      _zz_ID_DecoderArray_decoders_1_uop_doRegWrite = 1'b1;
+    end
+    if(when_DecoderArrayPlugin_l186_121) begin
+      _zz_ID_DecoderArray_decoders_1_uop_doRegWrite = 1'b1;
+    end
+    if(when_DecoderArrayPlugin_l186_122) begin
+      _zz_ID_DecoderArray_decoders_1_uop_doRegWrite = 1'b1;
+    end
+    if(when_DecoderArrayPlugin_l186_123) begin
+      _zz_ID_DecoderArray_decoders_1_uop_doRegWrite = 1'b1;
+    end
+    if(when_DecoderArrayPlugin_l186_124) begin
+      _zz_ID_DecoderArray_decoders_1_uop_doRegWrite = 1'b1;
+    end
+    if(when_DecoderArrayPlugin_l186_125) begin
+      _zz_ID_DecoderArray_decoders_1_uop_doRegWrite = 1'b1;
+    end
+    if(when_DecoderArrayPlugin_l186_126) begin
+      _zz_ID_DecoderArray_decoders_1_uop_doRegWrite = 1'b1;
+    end
+    if(when_DecoderArrayPlugin_l186_127) begin
+      _zz_ID_DecoderArray_decoders_1_uop_doRegWrite = 1'b1;
+    end
+    if(when_DecoderArrayPlugin_l186_128) begin
+      _zz_ID_DecoderArray_decoders_1_uop_doRegWrite = 1'b1;
+    end
+    if(when_DecoderArrayPlugin_l186_129) begin
       _zz_ID_DecoderArray_decoders_1_uop_doRegWrite = 1'b1;
     end
   end
 
   always @(*) begin
     when_DecoderArrayPlugin_l237_1 = 1'b0;
-    if(when_DecoderArrayPlugin_l186_95) begin
+    if(when_DecoderArrayPlugin_l186_101) begin
       when_DecoderArrayPlugin_l237_1 = 1'b1;
     end
   end
@@ -68194,385 +68520,409 @@ module MyCPUCore (
 
   always @(*) begin
     ID_DecoderArray_decoders_1_uop_readCSR = 1'b0;
-    if(when_DecoderArrayPlugin_l186_114) begin
+    if(when_DecoderArrayPlugin_l186_120) begin
       ID_DecoderArray_decoders_1_uop_readCSR = 1'b1;
     end
   end
 
   always @(*) begin
     ID_DecoderArray_decoders_1_uop_readTimer64H = 1'b0;
-    if(when_DecoderArrayPlugin_l186_116) begin
+    if(when_DecoderArrayPlugin_l186_122) begin
       ID_DecoderArray_decoders_1_uop_readTimer64H = 1'b1;
     end
   end
 
   always @(*) begin
     ID_DecoderArray_decoders_1_uop_immExtendType = ExtendType_SIGN;
-    if(when_DecoderArrayPlugin_l186_82) begin
+    if(when_DecoderArrayPlugin_l186_88) begin
       ID_DecoderArray_decoders_1_uop_immExtendType = ExtendType_ZERO;
     end
-    if(when_DecoderArrayPlugin_l186_83) begin
+    if(when_DecoderArrayPlugin_l186_89) begin
       ID_DecoderArray_decoders_1_uop_immExtendType = ExtendType_ZERO;
     end
-    if(when_DecoderArrayPlugin_l186_84) begin
+    if(when_DecoderArrayPlugin_l186_90) begin
       ID_DecoderArray_decoders_1_uop_immExtendType = ExtendType_ZERO;
     end
   end
 
   always @(*) begin
     ID_DecoderArray_decoders_1_uop_aluOp = (5'bxxxxx);
-    if(when_DecoderArrayPlugin_l186_65) begin
-      ID_DecoderArray_decoders_1_uop_aluOp = ALUOpType_ADD;
-    end
-    if(when_DecoderArrayPlugin_l186_66) begin
-      ID_DecoderArray_decoders_1_uop_aluOp = ALUOpType_SUB;
-    end
-    if(when_DecoderArrayPlugin_l186_67) begin
-      ID_DecoderArray_decoders_1_uop_aluOp = ALUOpType_SLT;
-    end
-    if(when_DecoderArrayPlugin_l186_68) begin
-      ID_DecoderArray_decoders_1_uop_aluOp = ALUOpType_SLTU;
-    end
-    if(when_DecoderArrayPlugin_l186_69) begin
-      ID_DecoderArray_decoders_1_uop_aluOp = ALUOpType_NOR_1;
-    end
-    if(when_DecoderArrayPlugin_l186_70) begin
-      ID_DecoderArray_decoders_1_uop_aluOp = ALUOpType_AND_1;
-    end
     if(when_DecoderArrayPlugin_l186_71) begin
-      ID_DecoderArray_decoders_1_uop_aluOp = ALUOpType_OR_1;
+      ID_DecoderArray_decoders_1_uop_aluOp = ALUOpType_ADD;
     end
     if(when_DecoderArrayPlugin_l186_72) begin
-      ID_DecoderArray_decoders_1_uop_aluOp = ALUOpType_XOR_1;
+      ID_DecoderArray_decoders_1_uop_aluOp = ALUOpType_SUB;
     end
     if(when_DecoderArrayPlugin_l186_73) begin
-      ID_DecoderArray_decoders_1_uop_aluOp = ALUOpType_SLL_1;
-    end
-    if(when_DecoderArrayPlugin_l186_74) begin
-      ID_DecoderArray_decoders_1_uop_aluOp = ALUOpType_SRL_1;
-    end
-    if(when_DecoderArrayPlugin_l186_75) begin
-      ID_DecoderArray_decoders_1_uop_aluOp = ALUOpType_SRA_1;
-    end
-    if(when_DecoderArrayPlugin_l186_76) begin
-      ID_DecoderArray_decoders_1_uop_aluOp = ALUOpType_SLL_1;
-    end
-    if(when_DecoderArrayPlugin_l186_77) begin
-      ID_DecoderArray_decoders_1_uop_aluOp = ALUOpType_SRL_1;
-    end
-    if(when_DecoderArrayPlugin_l186_78) begin
-      ID_DecoderArray_decoders_1_uop_aluOp = ALUOpType_SRA_1;
-    end
-    if(when_DecoderArrayPlugin_l186_79) begin
       ID_DecoderArray_decoders_1_uop_aluOp = ALUOpType_SLT;
     end
-    if(when_DecoderArrayPlugin_l186_80) begin
+    if(when_DecoderArrayPlugin_l186_74) begin
       ID_DecoderArray_decoders_1_uop_aluOp = ALUOpType_SLTU;
     end
-    if(when_DecoderArrayPlugin_l186_81) begin
-      ID_DecoderArray_decoders_1_uop_aluOp = ALUOpType_ADD;
+    if(when_DecoderArrayPlugin_l186_75) begin
+      ID_DecoderArray_decoders_1_uop_aluOp = ALUOpType_NOR_1;
     end
-    if(when_DecoderArrayPlugin_l186_82) begin
+    if(when_DecoderArrayPlugin_l186_76) begin
       ID_DecoderArray_decoders_1_uop_aluOp = ALUOpType_AND_1;
     end
-    if(when_DecoderArrayPlugin_l186_83) begin
+    if(when_DecoderArrayPlugin_l186_77) begin
       ID_DecoderArray_decoders_1_uop_aluOp = ALUOpType_OR_1;
     end
-    if(when_DecoderArrayPlugin_l186_84) begin
+    if(when_DecoderArrayPlugin_l186_78) begin
       ID_DecoderArray_decoders_1_uop_aluOp = ALUOpType_XOR_1;
     end
+    if(when_DecoderArrayPlugin_l186_79) begin
+      ID_DecoderArray_decoders_1_uop_aluOp = ALUOpType_SLL_1;
+    end
+    if(when_DecoderArrayPlugin_l186_80) begin
+      ID_DecoderArray_decoders_1_uop_aluOp = ALUOpType_SRL_1;
+    end
+    if(when_DecoderArrayPlugin_l186_81) begin
+      ID_DecoderArray_decoders_1_uop_aluOp = ALUOpType_SRA_1;
+    end
+    if(when_DecoderArrayPlugin_l186_82) begin
+      ID_DecoderArray_decoders_1_uop_aluOp = ALUOpType_SLL_1;
+    end
+    if(when_DecoderArrayPlugin_l186_83) begin
+      ID_DecoderArray_decoders_1_uop_aluOp = ALUOpType_SRL_1;
+    end
+    if(when_DecoderArrayPlugin_l186_84) begin
+      ID_DecoderArray_decoders_1_uop_aluOp = ALUOpType_SRA_1;
+    end
     if(when_DecoderArrayPlugin_l186_85) begin
-      ID_DecoderArray_decoders_1_uop_aluOp = ALUOpType_LU12I;
+      ID_DecoderArray_decoders_1_uop_aluOp = ALUOpType_SLT;
     end
     if(when_DecoderArrayPlugin_l186_86) begin
-      ID_DecoderArray_decoders_1_uop_aluOp = ALUOpType_PCADDI;
+      ID_DecoderArray_decoders_1_uop_aluOp = ALUOpType_SLTU;
     end
     if(when_DecoderArrayPlugin_l186_87) begin
+      ID_DecoderArray_decoders_1_uop_aluOp = ALUOpType_ADD;
+    end
+    if(when_DecoderArrayPlugin_l186_88) begin
+      ID_DecoderArray_decoders_1_uop_aluOp = ALUOpType_AND_1;
+    end
+    if(when_DecoderArrayPlugin_l186_89) begin
+      ID_DecoderArray_decoders_1_uop_aluOp = ALUOpType_OR_1;
+    end
+    if(when_DecoderArrayPlugin_l186_90) begin
+      ID_DecoderArray_decoders_1_uop_aluOp = ALUOpType_XOR_1;
+    end
+    if(when_DecoderArrayPlugin_l186_91) begin
+      ID_DecoderArray_decoders_1_uop_aluOp = ALUOpType_LU12I;
+    end
+    if(when_DecoderArrayPlugin_l186_92) begin
+      ID_DecoderArray_decoders_1_uop_aluOp = ALUOpType_PCADDI;
+    end
+    if(when_DecoderArrayPlugin_l186_93) begin
       ID_DecoderArray_decoders_1_uop_aluOp = ALUOpType_PCADDU12I;
     end
-    if(when_DecoderArrayPlugin_l186_117) begin
+    if(when_DecoderArrayPlugin_l186_123) begin
       ID_DecoderArray_decoders_1_uop_aluOp = ALUOpType_CPUCFG;
+    end
+    if(when_DecoderArrayPlugin_l186_124) begin
+      ID_DecoderArray_decoders_1_uop_aluOp = ALUOpType_IOCSR;
+    end
+    if(when_DecoderArrayPlugin_l186_125) begin
+      ID_DecoderArray_decoders_1_uop_aluOp = ALUOpType_IOCSR;
+    end
+    if(when_DecoderArrayPlugin_l186_126) begin
+      ID_DecoderArray_decoders_1_uop_aluOp = ALUOpType_IOCSR;
+    end
+    if(when_DecoderArrayPlugin_l186_127) begin
+      ID_DecoderArray_decoders_1_uop_aluOp = ALUOpType_IOCSR;
+    end
+    if(when_DecoderArrayPlugin_l186_128) begin
+      ID_DecoderArray_decoders_1_uop_aluOp = ALUOpType_IOCSR;
+    end
+    if(when_DecoderArrayPlugin_l186_129) begin
+      ID_DecoderArray_decoders_1_uop_aluOp = ALUOpType_IOCSR;
     end
   end
 
   always @(*) begin
     ID_DecoderArray_decoders_1_uop_cmpOp = (4'bxxxx);
-    if(when_DecoderArrayPlugin_l186_88) begin
+    if(when_DecoderArrayPlugin_l186_94) begin
       ID_DecoderArray_decoders_1_uop_cmpOp = CompareOpType_EQ;
     end
-    if(when_DecoderArrayPlugin_l186_89) begin
+    if(when_DecoderArrayPlugin_l186_95) begin
       ID_DecoderArray_decoders_1_uop_cmpOp = CompareOpType_NE;
     end
-    if(when_DecoderArrayPlugin_l186_90) begin
+    if(when_DecoderArrayPlugin_l186_96) begin
       ID_DecoderArray_decoders_1_uop_cmpOp = CompareOpType_LT;
     end
-    if(when_DecoderArrayPlugin_l186_91) begin
+    if(when_DecoderArrayPlugin_l186_97) begin
       ID_DecoderArray_decoders_1_uop_cmpOp = CompareOpType_GE;
     end
-    if(when_DecoderArrayPlugin_l186_92) begin
+    if(when_DecoderArrayPlugin_l186_98) begin
       ID_DecoderArray_decoders_1_uop_cmpOp = CompareOpType_LTU;
     end
-    if(when_DecoderArrayPlugin_l186_93) begin
+    if(when_DecoderArrayPlugin_l186_99) begin
       ID_DecoderArray_decoders_1_uop_cmpOp = CompareOpType_GEU;
     end
   end
 
   always @(*) begin
     ID_DecoderArray_decoders_1_uop_signed = 1'bx;
-    if(when_DecoderArrayPlugin_l186_97) begin
-      ID_DecoderArray_decoders_1_uop_signed = 1'b1;
-    end
-    if(when_DecoderArrayPlugin_l186_98) begin
-      ID_DecoderArray_decoders_1_uop_signed = 1'b1;
-    end
-    if(when_DecoderArrayPlugin_l186_99) begin
-      ID_DecoderArray_decoders_1_uop_signed = 1'b0;
-    end
-    if(when_DecoderArrayPlugin_l186_100) begin
-      ID_DecoderArray_decoders_1_uop_signed = 1'b1;
-    end
-    if(when_DecoderArrayPlugin_l186_101) begin
-      ID_DecoderArray_decoders_1_uop_signed = 1'b0;
-    end
-    if(when_DecoderArrayPlugin_l186_102) begin
-      ID_DecoderArray_decoders_1_uop_signed = 1'b1;
-    end
     if(when_DecoderArrayPlugin_l186_103) begin
+      ID_DecoderArray_decoders_1_uop_signed = 1'b1;
+    end
+    if(when_DecoderArrayPlugin_l186_104) begin
+      ID_DecoderArray_decoders_1_uop_signed = 1'b1;
+    end
+    if(when_DecoderArrayPlugin_l186_105) begin
+      ID_DecoderArray_decoders_1_uop_signed = 1'b0;
+    end
+    if(when_DecoderArrayPlugin_l186_106) begin
+      ID_DecoderArray_decoders_1_uop_signed = 1'b1;
+    end
+    if(when_DecoderArrayPlugin_l186_107) begin
+      ID_DecoderArray_decoders_1_uop_signed = 1'b0;
+    end
+    if(when_DecoderArrayPlugin_l186_108) begin
+      ID_DecoderArray_decoders_1_uop_signed = 1'b1;
+    end
+    if(when_DecoderArrayPlugin_l186_109) begin
       ID_DecoderArray_decoders_1_uop_signed = 1'b0;
     end
   end
 
   always @(*) begin
     ID_DecoderArray_decoders_1_uop_lsType = LoadStoreType_BYTE_1;
-    if(when_DecoderArrayPlugin_l186_104) begin
-      ID_DecoderArray_decoders_1_uop_lsType = LoadStoreType_WORD;
-    end
-    if(when_DecoderArrayPlugin_l186_105) begin
-      ID_DecoderArray_decoders_1_uop_lsType = LoadStoreType_HALF;
-    end
-    if(when_DecoderArrayPlugin_l186_106) begin
-      ID_DecoderArray_decoders_1_uop_lsType = LoadStoreType_HALF_U;
-    end
-    if(when_DecoderArrayPlugin_l186_107) begin
-      ID_DecoderArray_decoders_1_uop_lsType = LoadStoreType_BYTE_1;
-    end
-    if(when_DecoderArrayPlugin_l186_108) begin
-      ID_DecoderArray_decoders_1_uop_lsType = LoadStoreType_BYTE_U;
-    end
-    if(when_DecoderArrayPlugin_l186_109) begin
-      ID_DecoderArray_decoders_1_uop_lsType = LoadStoreType_WORD;
-    end
     if(when_DecoderArrayPlugin_l186_110) begin
-      ID_DecoderArray_decoders_1_uop_lsType = LoadStoreType_HALF;
+      ID_DecoderArray_decoders_1_uop_lsType = LoadStoreType_WORD;
     end
     if(when_DecoderArrayPlugin_l186_111) begin
-      ID_DecoderArray_decoders_1_uop_lsType = LoadStoreType_BYTE_1;
+      ID_DecoderArray_decoders_1_uop_lsType = LoadStoreType_HALF;
     end
     if(when_DecoderArrayPlugin_l186_112) begin
-      ID_DecoderArray_decoders_1_uop_lsType = LoadStoreType_WORD;
+      ID_DecoderArray_decoders_1_uop_lsType = LoadStoreType_HALF_U;
     end
     if(when_DecoderArrayPlugin_l186_113) begin
+      ID_DecoderArray_decoders_1_uop_lsType = LoadStoreType_BYTE_1;
+    end
+    if(when_DecoderArrayPlugin_l186_114) begin
+      ID_DecoderArray_decoders_1_uop_lsType = LoadStoreType_BYTE_U;
+    end
+    if(when_DecoderArrayPlugin_l186_115) begin
       ID_DecoderArray_decoders_1_uop_lsType = LoadStoreType_WORD;
     end
-    if(when_DecoderArrayPlugin_l186_129) begin
+    if(when_DecoderArrayPlugin_l186_116) begin
+      ID_DecoderArray_decoders_1_uop_lsType = LoadStoreType_HALF;
+    end
+    if(when_DecoderArrayPlugin_l186_117) begin
+      ID_DecoderArray_decoders_1_uop_lsType = LoadStoreType_BYTE_1;
+    end
+    if(when_DecoderArrayPlugin_l186_118) begin
+      ID_DecoderArray_decoders_1_uop_lsType = LoadStoreType_WORD;
+    end
+    if(when_DecoderArrayPlugin_l186_119) begin
+      ID_DecoderArray_decoders_1_uop_lsType = LoadStoreType_WORD;
+    end
+    if(when_DecoderArrayPlugin_l186_141) begin
       ID_DecoderArray_decoders_1_uop_lsType = LoadStoreType_CACOP;
     end
   end
 
   always @(*) begin
     ID_DecoderArray_decoders_1_uop_isLoad = 1'b0;
-    if(when_DecoderArrayPlugin_l186_104) begin
+    if(when_DecoderArrayPlugin_l186_110) begin
       ID_DecoderArray_decoders_1_uop_isLoad = 1'b1;
     end
-    if(when_DecoderArrayPlugin_l186_105) begin
-      ID_DecoderArray_decoders_1_uop_isLoad = 1'b1;
-    end
-    if(when_DecoderArrayPlugin_l186_106) begin
-      ID_DecoderArray_decoders_1_uop_isLoad = 1'b1;
-    end
-    if(when_DecoderArrayPlugin_l186_107) begin
-      ID_DecoderArray_decoders_1_uop_isLoad = 1'b1;
-    end
-    if(when_DecoderArrayPlugin_l186_108) begin
+    if(when_DecoderArrayPlugin_l186_111) begin
       ID_DecoderArray_decoders_1_uop_isLoad = 1'b1;
     end
     if(when_DecoderArrayPlugin_l186_112) begin
+      ID_DecoderArray_decoders_1_uop_isLoad = 1'b1;
+    end
+    if(when_DecoderArrayPlugin_l186_113) begin
+      ID_DecoderArray_decoders_1_uop_isLoad = 1'b1;
+    end
+    if(when_DecoderArrayPlugin_l186_114) begin
+      ID_DecoderArray_decoders_1_uop_isLoad = 1'b1;
+    end
+    if(when_DecoderArrayPlugin_l186_118) begin
       ID_DecoderArray_decoders_1_uop_isLoad = 1'b1;
     end
   end
 
   always @(*) begin
     ID_DecoderArray_decoders_1_uop_isStore = 1'b0;
-    if(when_DecoderArrayPlugin_l186_109) begin
+    if(when_DecoderArrayPlugin_l186_115) begin
       ID_DecoderArray_decoders_1_uop_isStore = 1'b1;
     end
-    if(when_DecoderArrayPlugin_l186_110) begin
+    if(when_DecoderArrayPlugin_l186_116) begin
       ID_DecoderArray_decoders_1_uop_isStore = 1'b1;
     end
-    if(when_DecoderArrayPlugin_l186_111) begin
+    if(when_DecoderArrayPlugin_l186_117) begin
       ID_DecoderArray_decoders_1_uop_isStore = 1'b1;
     end
-    if(when_DecoderArrayPlugin_l186_113) begin
+    if(when_DecoderArrayPlugin_l186_119) begin
       ID_DecoderArray_decoders_1_uop_isStore = 1'b1;
     end
   end
 
   always @(*) begin
     ID_DecoderArray_decoders_1_uop_isLL = 1'b0;
-    if(when_DecoderArrayPlugin_l186_112) begin
+    if(when_DecoderArrayPlugin_l186_118) begin
       ID_DecoderArray_decoders_1_uop_isLL = 1'b1;
     end
   end
 
   always @(*) begin
     ID_DecoderArray_decoders_1_uop_isSC = 1'b0;
-    if(when_DecoderArrayPlugin_l186_113) begin
+    if(when_DecoderArrayPlugin_l186_119) begin
       ID_DecoderArray_decoders_1_uop_isSC = 1'b1;
     end
   end
 
   always @(*) begin
     ID_DecoderArray_decoders_1_uop_isBranch = 1'b0;
-    if(when_DecoderArrayPlugin_l186_88) begin
+    if(when_DecoderArrayPlugin_l186_94) begin
       ID_DecoderArray_decoders_1_uop_isBranch = 1'b1;
     end
-    if(when_DecoderArrayPlugin_l186_89) begin
+    if(when_DecoderArrayPlugin_l186_95) begin
       ID_DecoderArray_decoders_1_uop_isBranch = 1'b1;
     end
-    if(when_DecoderArrayPlugin_l186_90) begin
+    if(when_DecoderArrayPlugin_l186_96) begin
       ID_DecoderArray_decoders_1_uop_isBranch = 1'b1;
     end
-    if(when_DecoderArrayPlugin_l186_91) begin
+    if(when_DecoderArrayPlugin_l186_97) begin
       ID_DecoderArray_decoders_1_uop_isBranch = 1'b1;
     end
-    if(when_DecoderArrayPlugin_l186_92) begin
+    if(when_DecoderArrayPlugin_l186_98) begin
       ID_DecoderArray_decoders_1_uop_isBranch = 1'b1;
     end
-    if(when_DecoderArrayPlugin_l186_93) begin
+    if(when_DecoderArrayPlugin_l186_99) begin
       ID_DecoderArray_decoders_1_uop_isBranch = 1'b1;
     end
   end
 
   always @(*) begin
     ID_DecoderArray_decoders_1_uop_isJump = 1'b0;
-    if(when_DecoderArrayPlugin_l186_94) begin
+    if(when_DecoderArrayPlugin_l186_100) begin
       ID_DecoderArray_decoders_1_uop_isJump = 1'b1;
     end
-    if(when_DecoderArrayPlugin_l186_95) begin
+    if(when_DecoderArrayPlugin_l186_101) begin
       ID_DecoderArray_decoders_1_uop_isJump = 1'b1;
     end
   end
 
   always @(*) begin
     ID_DecoderArray_decoders_1_uop_isJR = 1'b0;
-    if(when_DecoderArrayPlugin_l186_96) begin
+    if(when_DecoderArrayPlugin_l186_102) begin
       ID_DecoderArray_decoders_1_uop_isJR = 1'b1;
     end
   end
 
   always @(*) begin
     when_DecoderArrayPlugin_l254_1 = 1'b0;
-    if(when_DecoderArrayPlugin_l186_118) begin
+    if(when_DecoderArrayPlugin_l186_130) begin
       when_DecoderArrayPlugin_l254_1 = 1'b1;
     end
   end
 
   always @(*) begin
     ID_DecoderArray_decoders_1_uop_isErtn = 1'b0;
-    if(when_DecoderArrayPlugin_l186_120) begin
+    if(when_DecoderArrayPlugin_l186_132) begin
       ID_DecoderArray_decoders_1_uop_isErtn = 1'b1;
     end
   end
 
   always @(*) begin
     when_DecoderArrayPlugin_l259_1 = 1'b0;
-    if(when_DecoderArrayPlugin_l186_119) begin
+    if(when_DecoderArrayPlugin_l186_131) begin
       when_DecoderArrayPlugin_l259_1 = 1'b1;
     end
   end
 
   always @(*) begin
     ID_DecoderArray_decoders_1_uop_isWait = 1'b0;
-    if(when_DecoderArrayPlugin_l186_121) begin
+    if(when_DecoderArrayPlugin_l186_133) begin
       ID_DecoderArray_decoders_1_uop_isWait = 1'b1;
     end
   end
 
   always @(*) begin
     _zz_ID_DecoderArray_decoders_1_uop_flushState = 1'b0;
-    if(when_DecoderArrayPlugin_l186_127) begin
+    if(when_DecoderArrayPlugin_l186_139) begin
       _zz_ID_DecoderArray_decoders_1_uop_flushState = 1'b1;
     end
-    if(when_DecoderArrayPlugin_l186_128) begin
+    if(when_DecoderArrayPlugin_l186_140) begin
       _zz_ID_DecoderArray_decoders_1_uop_flushState = 1'b1;
     end
   end
 
-  assign when_DecoderArrayPlugin_l186_65 = ((FetchBufferPlugin_bufferFIFO_io_pop_1_payload_inst & 32'hffff8000) == 32'h00100000);
-  assign when_DecoderArrayPlugin_l186_66 = ((FetchBufferPlugin_bufferFIFO_io_pop_1_payload_inst & 32'hffff8000) == 32'h00110000);
-  assign when_DecoderArrayPlugin_l186_67 = ((FetchBufferPlugin_bufferFIFO_io_pop_1_payload_inst & 32'hffff8000) == 32'h00120000);
-  assign when_DecoderArrayPlugin_l186_68 = ((FetchBufferPlugin_bufferFIFO_io_pop_1_payload_inst & 32'hffff8000) == 32'h00128000);
-  assign when_DecoderArrayPlugin_l186_69 = ((FetchBufferPlugin_bufferFIFO_io_pop_1_payload_inst & 32'hffff8000) == 32'h00140000);
-  assign when_DecoderArrayPlugin_l186_70 = ((FetchBufferPlugin_bufferFIFO_io_pop_1_payload_inst & 32'hffff8000) == 32'h00148000);
-  assign when_DecoderArrayPlugin_l186_71 = ((FetchBufferPlugin_bufferFIFO_io_pop_1_payload_inst & 32'hffff8000) == 32'h00150000);
-  assign when_DecoderArrayPlugin_l186_72 = ((FetchBufferPlugin_bufferFIFO_io_pop_1_payload_inst & 32'hffff8000) == 32'h00158000);
-  assign when_DecoderArrayPlugin_l186_73 = ((FetchBufferPlugin_bufferFIFO_io_pop_1_payload_inst & 32'hffff8000) == 32'h00170000);
-  assign when_DecoderArrayPlugin_l186_74 = ((FetchBufferPlugin_bufferFIFO_io_pop_1_payload_inst & 32'hffff8000) == 32'h00178000);
-  assign when_DecoderArrayPlugin_l186_75 = ((FetchBufferPlugin_bufferFIFO_io_pop_1_payload_inst & 32'hffff8000) == 32'h00180000);
-  assign when_DecoderArrayPlugin_l186_76 = ((FetchBufferPlugin_bufferFIFO_io_pop_1_payload_inst & 32'hffff8000) == 32'h00408000);
-  assign when_DecoderArrayPlugin_l186_77 = ((FetchBufferPlugin_bufferFIFO_io_pop_1_payload_inst & 32'hffff8000) == 32'h00448000);
-  assign when_DecoderArrayPlugin_l186_78 = ((FetchBufferPlugin_bufferFIFO_io_pop_1_payload_inst & 32'hffff8000) == 32'h00488000);
-  assign when_DecoderArrayPlugin_l186_79 = ((FetchBufferPlugin_bufferFIFO_io_pop_1_payload_inst & 32'hffc00000) == 32'h02000000);
-  assign when_DecoderArrayPlugin_l186_80 = ((FetchBufferPlugin_bufferFIFO_io_pop_1_payload_inst & 32'hffc00000) == 32'h02400000);
-  assign when_DecoderArrayPlugin_l186_81 = ((FetchBufferPlugin_bufferFIFO_io_pop_1_payload_inst & 32'hffc00000) == 32'h02800000);
-  assign when_DecoderArrayPlugin_l186_82 = ((FetchBufferPlugin_bufferFIFO_io_pop_1_payload_inst & 32'hffc00000) == 32'h03400000);
-  assign when_DecoderArrayPlugin_l186_83 = ((FetchBufferPlugin_bufferFIFO_io_pop_1_payload_inst & 32'hffc00000) == 32'h03800000);
-  assign when_DecoderArrayPlugin_l186_84 = ((FetchBufferPlugin_bufferFIFO_io_pop_1_payload_inst & 32'hffc00000) == 32'h03c00000);
-  assign when_DecoderArrayPlugin_l186_85 = ((FetchBufferPlugin_bufferFIFO_io_pop_1_payload_inst & 32'hfe000000) == 32'h14000000);
-  assign when_DecoderArrayPlugin_l186_86 = ((FetchBufferPlugin_bufferFIFO_io_pop_1_payload_inst & 32'hfe000000) == 32'h18000000);
-  assign when_DecoderArrayPlugin_l186_87 = ((FetchBufferPlugin_bufferFIFO_io_pop_1_payload_inst & 32'hfe000000) == 32'h1c000000);
-  assign when_DecoderArrayPlugin_l186_88 = ((FetchBufferPlugin_bufferFIFO_io_pop_1_payload_inst & 32'hfc000000) == 32'h58000000);
-  assign when_DecoderArrayPlugin_l186_89 = ((FetchBufferPlugin_bufferFIFO_io_pop_1_payload_inst & 32'hfc000000) == 32'h5c000000);
-  assign when_DecoderArrayPlugin_l186_90 = ((FetchBufferPlugin_bufferFIFO_io_pop_1_payload_inst & 32'hfc000000) == 32'h60000000);
-  assign when_DecoderArrayPlugin_l186_91 = ((FetchBufferPlugin_bufferFIFO_io_pop_1_payload_inst & 32'hfc000000) == 32'h64000000);
-  assign when_DecoderArrayPlugin_l186_92 = ((FetchBufferPlugin_bufferFIFO_io_pop_1_payload_inst & 32'hfc000000) == 32'h68000000);
-  assign when_DecoderArrayPlugin_l186_93 = ((FetchBufferPlugin_bufferFIFO_io_pop_1_payload_inst & 32'hfc000000) == 32'h6c000000);
-  assign when_DecoderArrayPlugin_l186_94 = ((FetchBufferPlugin_bufferFIFO_io_pop_1_payload_inst & 32'hfc000000) == 32'h50000000);
-  assign when_DecoderArrayPlugin_l186_95 = ((FetchBufferPlugin_bufferFIFO_io_pop_1_payload_inst & 32'hfc000000) == 32'h54000000);
-  assign when_DecoderArrayPlugin_l186_96 = ((FetchBufferPlugin_bufferFIFO_io_pop_1_payload_inst & 32'hfc000000) == 32'h4c000000);
-  assign when_DecoderArrayPlugin_l186_97 = ((FetchBufferPlugin_bufferFIFO_io_pop_1_payload_inst & 32'hffff8000) == 32'h001c0000);
-  assign when_DecoderArrayPlugin_l186_98 = ((FetchBufferPlugin_bufferFIFO_io_pop_1_payload_inst & 32'hffff8000) == 32'h001c8000);
-  assign when_DecoderArrayPlugin_l186_99 = ((FetchBufferPlugin_bufferFIFO_io_pop_1_payload_inst & 32'hffff8000) == 32'h001d0000);
-  assign when_DecoderArrayPlugin_l186_100 = ((FetchBufferPlugin_bufferFIFO_io_pop_1_payload_inst & 32'hffff8000) == 32'h00200000);
-  assign when_DecoderArrayPlugin_l186_101 = ((FetchBufferPlugin_bufferFIFO_io_pop_1_payload_inst & 32'hffff8000) == 32'h00210000);
-  assign when_DecoderArrayPlugin_l186_102 = ((FetchBufferPlugin_bufferFIFO_io_pop_1_payload_inst & 32'hffff8000) == 32'h00208000);
-  assign when_DecoderArrayPlugin_l186_103 = ((FetchBufferPlugin_bufferFIFO_io_pop_1_payload_inst & 32'hffff8000) == 32'h00218000);
-  assign when_DecoderArrayPlugin_l186_104 = ((FetchBufferPlugin_bufferFIFO_io_pop_1_payload_inst & 32'hffc00000) == 32'h28800000);
-  assign when_DecoderArrayPlugin_l186_105 = ((FetchBufferPlugin_bufferFIFO_io_pop_1_payload_inst & 32'hffc00000) == 32'h28400000);
-  assign when_DecoderArrayPlugin_l186_106 = ((FetchBufferPlugin_bufferFIFO_io_pop_1_payload_inst & 32'hffc00000) == 32'h2a400000);
-  assign when_DecoderArrayPlugin_l186_107 = ((FetchBufferPlugin_bufferFIFO_io_pop_1_payload_inst & 32'hffc00000) == 32'h28000000);
-  assign when_DecoderArrayPlugin_l186_108 = ((FetchBufferPlugin_bufferFIFO_io_pop_1_payload_inst & 32'hffc00000) == 32'h2a000000);
-  assign when_DecoderArrayPlugin_l186_109 = ((FetchBufferPlugin_bufferFIFO_io_pop_1_payload_inst & 32'hffc00000) == 32'h29800000);
-  assign when_DecoderArrayPlugin_l186_110 = ((FetchBufferPlugin_bufferFIFO_io_pop_1_payload_inst & 32'hffc00000) == 32'h29400000);
-  assign when_DecoderArrayPlugin_l186_111 = ((FetchBufferPlugin_bufferFIFO_io_pop_1_payload_inst & 32'hffc00000) == 32'h29000000);
-  assign when_DecoderArrayPlugin_l186_112 = ((FetchBufferPlugin_bufferFIFO_io_pop_1_payload_inst & 32'hff000000) == 32'h20000000);
-  assign when_DecoderArrayPlugin_l186_113 = ((FetchBufferPlugin_bufferFIFO_io_pop_1_payload_inst & 32'hff000000) == 32'h21000000);
-  assign when_DecoderArrayPlugin_l186_114 = ((FetchBufferPlugin_bufferFIFO_io_pop_1_payload_inst & 32'hff000000) == 32'h04000000);
-  assign when_DecoderArrayPlugin_l186_115 = ((FetchBufferPlugin_bufferFIFO_io_pop_1_payload_inst & 32'hfffffc00) == 32'h00006000);
-  assign when_DecoderArrayPlugin_l186_116 = ((FetchBufferPlugin_bufferFIFO_io_pop_1_payload_inst & 32'hffffffe0) == 32'h00006400);
-  assign when_DecoderArrayPlugin_l186_117 = ((FetchBufferPlugin_bufferFIFO_io_pop_1_payload_inst & 32'hfffffc00) == 32'h00006c00);
-  assign when_DecoderArrayPlugin_l186_118 = ((FetchBufferPlugin_bufferFIFO_io_pop_1_payload_inst & 32'hffff8000) == 32'h002b0000);
-  assign when_DecoderArrayPlugin_l186_119 = ((FetchBufferPlugin_bufferFIFO_io_pop_1_payload_inst & 32'hffff8000) == 32'h002a0000);
-  assign when_DecoderArrayPlugin_l186_120 = ((FetchBufferPlugin_bufferFIFO_io_pop_1_payload_inst & 32'hffffffff) == 32'h06483800);
-  assign when_DecoderArrayPlugin_l186_121 = ((FetchBufferPlugin_bufferFIFO_io_pop_1_payload_inst & 32'hffff8000) == 32'h06488000);
-  assign when_DecoderArrayPlugin_l186_122 = ((FetchBufferPlugin_bufferFIFO_io_pop_1_payload_inst & 32'hffffffff) == 32'h06482800);
-  assign when_DecoderArrayPlugin_l186_123 = ((FetchBufferPlugin_bufferFIFO_io_pop_1_payload_inst & 32'hffffffff) == 32'h06482c00);
-  assign when_DecoderArrayPlugin_l186_124 = ((FetchBufferPlugin_bufferFIFO_io_pop_1_payload_inst & 32'hffffffff) == 32'h06483000);
-  assign when_DecoderArrayPlugin_l186_125 = ((FetchBufferPlugin_bufferFIFO_io_pop_1_payload_inst & 32'hffffffff) == 32'h06483400);
-  assign when_DecoderArrayPlugin_l186_126 = ((FetchBufferPlugin_bufferFIFO_io_pop_1_payload_inst & 32'hffff8000) == 32'h06498000);
-  assign when_DecoderArrayPlugin_l186_127 = ((FetchBufferPlugin_bufferFIFO_io_pop_1_payload_inst & 32'hffff8000) == 32'h38728000);
-  assign when_DecoderArrayPlugin_l186_128 = ((FetchBufferPlugin_bufferFIFO_io_pop_1_payload_inst & 32'hffff8000) == 32'h38720000);
-  assign when_DecoderArrayPlugin_l186_129 = ((FetchBufferPlugin_bufferFIFO_io_pop_1_payload_inst & 32'hffc00000) == 32'h06000000);
+  assign when_DecoderArrayPlugin_l186_71 = ((FetchBufferPlugin_bufferFIFO_io_pop_1_payload_inst & 32'hffff8000) == 32'h00100000);
+  assign when_DecoderArrayPlugin_l186_72 = ((FetchBufferPlugin_bufferFIFO_io_pop_1_payload_inst & 32'hffff8000) == 32'h00110000);
+  assign when_DecoderArrayPlugin_l186_73 = ((FetchBufferPlugin_bufferFIFO_io_pop_1_payload_inst & 32'hffff8000) == 32'h00120000);
+  assign when_DecoderArrayPlugin_l186_74 = ((FetchBufferPlugin_bufferFIFO_io_pop_1_payload_inst & 32'hffff8000) == 32'h00128000);
+  assign when_DecoderArrayPlugin_l186_75 = ((FetchBufferPlugin_bufferFIFO_io_pop_1_payload_inst & 32'hffff8000) == 32'h00140000);
+  assign when_DecoderArrayPlugin_l186_76 = ((FetchBufferPlugin_bufferFIFO_io_pop_1_payload_inst & 32'hffff8000) == 32'h00148000);
+  assign when_DecoderArrayPlugin_l186_77 = ((FetchBufferPlugin_bufferFIFO_io_pop_1_payload_inst & 32'hffff8000) == 32'h00150000);
+  assign when_DecoderArrayPlugin_l186_78 = ((FetchBufferPlugin_bufferFIFO_io_pop_1_payload_inst & 32'hffff8000) == 32'h00158000);
+  assign when_DecoderArrayPlugin_l186_79 = ((FetchBufferPlugin_bufferFIFO_io_pop_1_payload_inst & 32'hffff8000) == 32'h00170000);
+  assign when_DecoderArrayPlugin_l186_80 = ((FetchBufferPlugin_bufferFIFO_io_pop_1_payload_inst & 32'hffff8000) == 32'h00178000);
+  assign when_DecoderArrayPlugin_l186_81 = ((FetchBufferPlugin_bufferFIFO_io_pop_1_payload_inst & 32'hffff8000) == 32'h00180000);
+  assign when_DecoderArrayPlugin_l186_82 = ((FetchBufferPlugin_bufferFIFO_io_pop_1_payload_inst & 32'hffff8000) == 32'h00408000);
+  assign when_DecoderArrayPlugin_l186_83 = ((FetchBufferPlugin_bufferFIFO_io_pop_1_payload_inst & 32'hffff8000) == 32'h00448000);
+  assign when_DecoderArrayPlugin_l186_84 = ((FetchBufferPlugin_bufferFIFO_io_pop_1_payload_inst & 32'hffff8000) == 32'h00488000);
+  assign when_DecoderArrayPlugin_l186_85 = ((FetchBufferPlugin_bufferFIFO_io_pop_1_payload_inst & 32'hffc00000) == 32'h02000000);
+  assign when_DecoderArrayPlugin_l186_86 = ((FetchBufferPlugin_bufferFIFO_io_pop_1_payload_inst & 32'hffc00000) == 32'h02400000);
+  assign when_DecoderArrayPlugin_l186_87 = ((FetchBufferPlugin_bufferFIFO_io_pop_1_payload_inst & 32'hffc00000) == 32'h02800000);
+  assign when_DecoderArrayPlugin_l186_88 = ((FetchBufferPlugin_bufferFIFO_io_pop_1_payload_inst & 32'hffc00000) == 32'h03400000);
+  assign when_DecoderArrayPlugin_l186_89 = ((FetchBufferPlugin_bufferFIFO_io_pop_1_payload_inst & 32'hffc00000) == 32'h03800000);
+  assign when_DecoderArrayPlugin_l186_90 = ((FetchBufferPlugin_bufferFIFO_io_pop_1_payload_inst & 32'hffc00000) == 32'h03c00000);
+  assign when_DecoderArrayPlugin_l186_91 = ((FetchBufferPlugin_bufferFIFO_io_pop_1_payload_inst & 32'hfe000000) == 32'h14000000);
+  assign when_DecoderArrayPlugin_l186_92 = ((FetchBufferPlugin_bufferFIFO_io_pop_1_payload_inst & 32'hfe000000) == 32'h18000000);
+  assign when_DecoderArrayPlugin_l186_93 = ((FetchBufferPlugin_bufferFIFO_io_pop_1_payload_inst & 32'hfe000000) == 32'h1c000000);
+  assign when_DecoderArrayPlugin_l186_94 = ((FetchBufferPlugin_bufferFIFO_io_pop_1_payload_inst & 32'hfc000000) == 32'h58000000);
+  assign when_DecoderArrayPlugin_l186_95 = ((FetchBufferPlugin_bufferFIFO_io_pop_1_payload_inst & 32'hfc000000) == 32'h5c000000);
+  assign when_DecoderArrayPlugin_l186_96 = ((FetchBufferPlugin_bufferFIFO_io_pop_1_payload_inst & 32'hfc000000) == 32'h60000000);
+  assign when_DecoderArrayPlugin_l186_97 = ((FetchBufferPlugin_bufferFIFO_io_pop_1_payload_inst & 32'hfc000000) == 32'h64000000);
+  assign when_DecoderArrayPlugin_l186_98 = ((FetchBufferPlugin_bufferFIFO_io_pop_1_payload_inst & 32'hfc000000) == 32'h68000000);
+  assign when_DecoderArrayPlugin_l186_99 = ((FetchBufferPlugin_bufferFIFO_io_pop_1_payload_inst & 32'hfc000000) == 32'h6c000000);
+  assign when_DecoderArrayPlugin_l186_100 = ((FetchBufferPlugin_bufferFIFO_io_pop_1_payload_inst & 32'hfc000000) == 32'h50000000);
+  assign when_DecoderArrayPlugin_l186_101 = ((FetchBufferPlugin_bufferFIFO_io_pop_1_payload_inst & 32'hfc000000) == 32'h54000000);
+  assign when_DecoderArrayPlugin_l186_102 = ((FetchBufferPlugin_bufferFIFO_io_pop_1_payload_inst & 32'hfc000000) == 32'h4c000000);
+  assign when_DecoderArrayPlugin_l186_103 = ((FetchBufferPlugin_bufferFIFO_io_pop_1_payload_inst & 32'hffff8000) == 32'h001c0000);
+  assign when_DecoderArrayPlugin_l186_104 = ((FetchBufferPlugin_bufferFIFO_io_pop_1_payload_inst & 32'hffff8000) == 32'h001c8000);
+  assign when_DecoderArrayPlugin_l186_105 = ((FetchBufferPlugin_bufferFIFO_io_pop_1_payload_inst & 32'hffff8000) == 32'h001d0000);
+  assign when_DecoderArrayPlugin_l186_106 = ((FetchBufferPlugin_bufferFIFO_io_pop_1_payload_inst & 32'hffff8000) == 32'h00200000);
+  assign when_DecoderArrayPlugin_l186_107 = ((FetchBufferPlugin_bufferFIFO_io_pop_1_payload_inst & 32'hffff8000) == 32'h00210000);
+  assign when_DecoderArrayPlugin_l186_108 = ((FetchBufferPlugin_bufferFIFO_io_pop_1_payload_inst & 32'hffff8000) == 32'h00208000);
+  assign when_DecoderArrayPlugin_l186_109 = ((FetchBufferPlugin_bufferFIFO_io_pop_1_payload_inst & 32'hffff8000) == 32'h00218000);
+  assign when_DecoderArrayPlugin_l186_110 = ((FetchBufferPlugin_bufferFIFO_io_pop_1_payload_inst & 32'hffc00000) == 32'h28800000);
+  assign when_DecoderArrayPlugin_l186_111 = ((FetchBufferPlugin_bufferFIFO_io_pop_1_payload_inst & 32'hffc00000) == 32'h28400000);
+  assign when_DecoderArrayPlugin_l186_112 = ((FetchBufferPlugin_bufferFIFO_io_pop_1_payload_inst & 32'hffc00000) == 32'h2a400000);
+  assign when_DecoderArrayPlugin_l186_113 = ((FetchBufferPlugin_bufferFIFO_io_pop_1_payload_inst & 32'hffc00000) == 32'h28000000);
+  assign when_DecoderArrayPlugin_l186_114 = ((FetchBufferPlugin_bufferFIFO_io_pop_1_payload_inst & 32'hffc00000) == 32'h2a000000);
+  assign when_DecoderArrayPlugin_l186_115 = ((FetchBufferPlugin_bufferFIFO_io_pop_1_payload_inst & 32'hffc00000) == 32'h29800000);
+  assign when_DecoderArrayPlugin_l186_116 = ((FetchBufferPlugin_bufferFIFO_io_pop_1_payload_inst & 32'hffc00000) == 32'h29400000);
+  assign when_DecoderArrayPlugin_l186_117 = ((FetchBufferPlugin_bufferFIFO_io_pop_1_payload_inst & 32'hffc00000) == 32'h29000000);
+  assign when_DecoderArrayPlugin_l186_118 = ((FetchBufferPlugin_bufferFIFO_io_pop_1_payload_inst & 32'hff000000) == 32'h20000000);
+  assign when_DecoderArrayPlugin_l186_119 = ((FetchBufferPlugin_bufferFIFO_io_pop_1_payload_inst & 32'hff000000) == 32'h21000000);
+  assign when_DecoderArrayPlugin_l186_120 = ((FetchBufferPlugin_bufferFIFO_io_pop_1_payload_inst & 32'hff000000) == 32'h04000000);
+  assign when_DecoderArrayPlugin_l186_121 = ((FetchBufferPlugin_bufferFIFO_io_pop_1_payload_inst & 32'hfffffc00) == 32'h00006000);
+  assign when_DecoderArrayPlugin_l186_122 = ((FetchBufferPlugin_bufferFIFO_io_pop_1_payload_inst & 32'hffffffe0) == 32'h00006400);
+  assign when_DecoderArrayPlugin_l186_123 = ((FetchBufferPlugin_bufferFIFO_io_pop_1_payload_inst & 32'hfffffc00) == 32'h00006c00);
+  assign when_DecoderArrayPlugin_l186_124 = ((FetchBufferPlugin_bufferFIFO_io_pop_1_payload_inst & 32'hfffffc00) == 32'h06480000);
+  assign when_DecoderArrayPlugin_l186_125 = ((FetchBufferPlugin_bufferFIFO_io_pop_1_payload_inst & 32'hfffffc00) == 32'h06480400);
+  assign when_DecoderArrayPlugin_l186_126 = ((FetchBufferPlugin_bufferFIFO_io_pop_1_payload_inst & 32'hfffffc00) == 32'h06480800);
+  assign when_DecoderArrayPlugin_l186_127 = ((FetchBufferPlugin_bufferFIFO_io_pop_1_payload_inst & 32'hfffffc00) == 32'h06481000);
+  assign when_DecoderArrayPlugin_l186_128 = ((FetchBufferPlugin_bufferFIFO_io_pop_1_payload_inst & 32'hfffffc00) == 32'h06481400);
+  assign when_DecoderArrayPlugin_l186_129 = ((FetchBufferPlugin_bufferFIFO_io_pop_1_payload_inst & 32'hfffffc00) == 32'h06481800);
+  assign when_DecoderArrayPlugin_l186_130 = ((FetchBufferPlugin_bufferFIFO_io_pop_1_payload_inst & 32'hffff8000) == 32'h002b0000);
+  assign when_DecoderArrayPlugin_l186_131 = ((FetchBufferPlugin_bufferFIFO_io_pop_1_payload_inst & 32'hffff8000) == 32'h002a0000);
+  assign when_DecoderArrayPlugin_l186_132 = ((FetchBufferPlugin_bufferFIFO_io_pop_1_payload_inst & 32'hffffffff) == 32'h06483800);
+  assign when_DecoderArrayPlugin_l186_133 = ((FetchBufferPlugin_bufferFIFO_io_pop_1_payload_inst & 32'hffff8000) == 32'h06488000);
+  assign when_DecoderArrayPlugin_l186_134 = ((FetchBufferPlugin_bufferFIFO_io_pop_1_payload_inst & 32'hffffffff) == 32'h06482800);
+  assign when_DecoderArrayPlugin_l186_135 = ((FetchBufferPlugin_bufferFIFO_io_pop_1_payload_inst & 32'hffffffff) == 32'h06482c00);
+  assign when_DecoderArrayPlugin_l186_136 = ((FetchBufferPlugin_bufferFIFO_io_pop_1_payload_inst & 32'hffffffff) == 32'h06483000);
+  assign when_DecoderArrayPlugin_l186_137 = ((FetchBufferPlugin_bufferFIFO_io_pop_1_payload_inst & 32'hffffffff) == 32'h06483400);
+  assign when_DecoderArrayPlugin_l186_138 = ((FetchBufferPlugin_bufferFIFO_io_pop_1_payload_inst & 32'hffff8000) == 32'h06498000);
+  assign when_DecoderArrayPlugin_l186_139 = ((FetchBufferPlugin_bufferFIFO_io_pop_1_payload_inst & 32'hffff8000) == 32'h38728000);
+  assign when_DecoderArrayPlugin_l186_140 = ((FetchBufferPlugin_bufferFIFO_io_pop_1_payload_inst & 32'hffff8000) == 32'h38720000);
+  assign when_DecoderArrayPlugin_l186_141 = ((FetchBufferPlugin_bufferFIFO_io_pop_1_payload_inst & 32'hffc00000) == 32'h06000000);
   assign ID_DecoderArray_decoders_1_uop_pc = FetchBufferPlugin_bufferFIFO_io_pop_1_payload_pc;
   assign ID_DecoderArray_decoders_1_uop_inst = FetchBufferPlugin_bufferFIFO_io_pop_1_payload_inst;
   assign ID_DecoderArray_decoders_1_uop_predInfo_predictBranch = FetchBufferPlugin_bufferFIFO_io_pop_1_payload_predInfo_predictBranch;
@@ -68648,7 +68998,7 @@ module MyCPUCore (
           end
         endcase
       end
-      if(when_DecoderArrayPlugin_l309_1) begin
+      if(when_DecoderArrayPlugin_l313_1) begin
         ID_DecoderArray_decoders_1_uop_except_valid = 1'b1;
       end
     end
@@ -68685,7 +69035,7 @@ module MyCPUCore (
           end
         endcase
       end
-      if(when_DecoderArrayPlugin_l309_1) begin
+      if(when_DecoderArrayPlugin_l313_1) begin
         ID_DecoderArray_decoders_1_uop_except_payload_code = 6'h0e;
       end
     end
@@ -68722,7 +69072,7 @@ module MyCPUCore (
           end
         endcase
       end
-      if(when_DecoderArrayPlugin_l309_1) begin
+      if(when_DecoderArrayPlugin_l313_1) begin
         ID_DecoderArray_decoders_1_uop_except_payload_subcode = 9'h0;
       end
     end
@@ -68738,48 +69088,12 @@ module MyCPUCore (
   assign when_DecoderArrayPlugin_l252_1 = (! FetchBufferPlugin_bufferFIFO_io_pop_1_payload_except_valid);
   assign when_DecoderArrayPlugin_l271_1 = ((((FetchBufferPlugin_bufferFIFO_io_pop_1_payload_inst & 32'hffff8000) == 32'h06498000) && ID_DecoderArray_decoders_1_uop_useRj) && ID_DecoderArray_decoders_1_uop_useRk);
   assign switch_DecoderArrayPlugin_l274_1 = FetchBufferPlugin_bufferFIFO_io_pop_1_payload_inst[4 : 0];
-  assign when_DecoderArrayPlugin_l309_1 = ((ExceptionHandlerPlugin_CRMD_PLV != 2'b00) && (((((((_zz_when_DecoderArrayPlugin_l309_1_1 || _zz_when_DecoderArrayPlugin_l309_1_2) || (_zz_when_DecoderArrayPlugin_l309_1_3 == _zz_when_DecoderArrayPlugin_l309_1_4)) || ((FetchBufferPlugin_bufferFIFO_io_pop_1_payload_inst & _zz_when_DecoderArrayPlugin_l309_1_5) == 32'h06482c00)) || ((FetchBufferPlugin_bufferFIFO_io_pop_1_payload_inst & 32'hffffffff) == 32'h06483000)) || ((FetchBufferPlugin_bufferFIFO_io_pop_1_payload_inst & 32'hffffffff) == 32'h06482800)) || ((FetchBufferPlugin_bufferFIFO_io_pop_1_payload_inst & 32'hffffffff) == 32'h06483400)) || ((FetchBufferPlugin_bufferFIFO_io_pop_1_payload_inst & 32'hffff8000) == 32'h06498000)));
+  assign when_DecoderArrayPlugin_l313_1 = ((ExceptionHandlerPlugin_CRMD_PLV != 2'b00) && (((((((_zz_when_DecoderArrayPlugin_l313_1_1 || _zz_when_DecoderArrayPlugin_l313_1_7) || (_zz_when_DecoderArrayPlugin_l313_1_8 == _zz_when_DecoderArrayPlugin_l313_1_9)) || ((FetchBufferPlugin_bufferFIFO_io_pop_1_payload_inst & _zz_when_DecoderArrayPlugin_l313_1_10) == 32'h06480400)) || ((FetchBufferPlugin_bufferFIFO_io_pop_1_payload_inst & 32'hfffffc00) == 32'h06480800)) || ((FetchBufferPlugin_bufferFIFO_io_pop_1_payload_inst & 32'hfffffc00) == 32'h06481000)) || ((FetchBufferPlugin_bufferFIFO_io_pop_1_payload_inst & 32'hfffffc00) == 32'h06481400)) || ((FetchBufferPlugin_bufferFIFO_io_pop_1_payload_inst & 32'hfffffc00) == 32'h06481800)));
   assign ID_DecoderArray_decoders_1_uop_branchLike = ((ID_DecoderArray_decoders_1_uop_isBranch || ID_DecoderArray_decoders_1_uop_isJump) || ID_DecoderArray_decoders_1_uop_isJR);
   assign ID_DecoderArray_decoders_1_uop_flushState = (((((((ID_DecoderArray_decoders_1_uop_isErtn || ID_DecoderArray_decoders_1_uop_writeCSR) || ID_DecoderArray_decoders_1_uop_isWait) || (ID_DecoderArray_decoders_1_uop_tlbOp != TLBOpType_NONE)) || ID_DecoderArray_decoders_1_uop_operateCache) || _zz_ID_DecoderArray_decoders_1_uop_flushState) || ID_DecoderArray_decoders_1_uop_isLL) || ID_DecoderArray_decoders_1_uop_isSC);
   assign ID_DecoderArray_decoders_1_uop_uniqueRetire = ((((ID_DecoderArray_decoders_1_uop_flushState || ID_DecoderArray_decoders_1_uop_branchLike) || ID_DecoderArray_decoders_1_uop_isLoad) || ID_DecoderArray_decoders_1_uop_isStore) || ID_DecoderArray_decoders_1_uop_predInfo_predictBranch);
   always @(*) begin
     ID_DecoderArray_decoders_2_illegalEncoding = 1'b1;
-    if(when_DecoderArrayPlugin_l186_130) begin
-      ID_DecoderArray_decoders_2_illegalEncoding = 1'b0;
-    end
-    if(when_DecoderArrayPlugin_l186_131) begin
-      ID_DecoderArray_decoders_2_illegalEncoding = 1'b0;
-    end
-    if(when_DecoderArrayPlugin_l186_132) begin
-      ID_DecoderArray_decoders_2_illegalEncoding = 1'b0;
-    end
-    if(when_DecoderArrayPlugin_l186_133) begin
-      ID_DecoderArray_decoders_2_illegalEncoding = 1'b0;
-    end
-    if(when_DecoderArrayPlugin_l186_134) begin
-      ID_DecoderArray_decoders_2_illegalEncoding = 1'b0;
-    end
-    if(when_DecoderArrayPlugin_l186_135) begin
-      ID_DecoderArray_decoders_2_illegalEncoding = 1'b0;
-    end
-    if(when_DecoderArrayPlugin_l186_136) begin
-      ID_DecoderArray_decoders_2_illegalEncoding = 1'b0;
-    end
-    if(when_DecoderArrayPlugin_l186_137) begin
-      ID_DecoderArray_decoders_2_illegalEncoding = 1'b0;
-    end
-    if(when_DecoderArrayPlugin_l186_138) begin
-      ID_DecoderArray_decoders_2_illegalEncoding = 1'b0;
-    end
-    if(when_DecoderArrayPlugin_l186_139) begin
-      ID_DecoderArray_decoders_2_illegalEncoding = 1'b0;
-    end
-    if(when_DecoderArrayPlugin_l186_140) begin
-      ID_DecoderArray_decoders_2_illegalEncoding = 1'b0;
-    end
-    if(when_DecoderArrayPlugin_l186_141) begin
-      ID_DecoderArray_decoders_2_illegalEncoding = 1'b0;
-    end
     if(when_DecoderArrayPlugin_l186_142) begin
       ID_DecoderArray_decoders_2_illegalEncoding = 1'b0;
     end
@@ -68939,150 +69253,204 @@ module MyCPUCore (
     if(when_DecoderArrayPlugin_l186_194) begin
       ID_DecoderArray_decoders_2_illegalEncoding = 1'b0;
     end
+    if(when_DecoderArrayPlugin_l186_195) begin
+      ID_DecoderArray_decoders_2_illegalEncoding = 1'b0;
+    end
+    if(when_DecoderArrayPlugin_l186_196) begin
+      ID_DecoderArray_decoders_2_illegalEncoding = 1'b0;
+    end
+    if(when_DecoderArrayPlugin_l186_197) begin
+      ID_DecoderArray_decoders_2_illegalEncoding = 1'b0;
+    end
+    if(when_DecoderArrayPlugin_l186_198) begin
+      ID_DecoderArray_decoders_2_illegalEncoding = 1'b0;
+    end
+    if(when_DecoderArrayPlugin_l186_199) begin
+      ID_DecoderArray_decoders_2_illegalEncoding = 1'b0;
+    end
+    if(when_DecoderArrayPlugin_l186_200) begin
+      ID_DecoderArray_decoders_2_illegalEncoding = 1'b0;
+    end
+    if(when_DecoderArrayPlugin_l186_201) begin
+      ID_DecoderArray_decoders_2_illegalEncoding = 1'b0;
+    end
+    if(when_DecoderArrayPlugin_l186_202) begin
+      ID_DecoderArray_decoders_2_illegalEncoding = 1'b0;
+    end
+    if(when_DecoderArrayPlugin_l186_203) begin
+      ID_DecoderArray_decoders_2_illegalEncoding = 1'b0;
+    end
+    if(when_DecoderArrayPlugin_l186_204) begin
+      ID_DecoderArray_decoders_2_illegalEncoding = 1'b0;
+    end
+    if(when_DecoderArrayPlugin_l186_205) begin
+      ID_DecoderArray_decoders_2_illegalEncoding = 1'b0;
+    end
+    if(when_DecoderArrayPlugin_l186_206) begin
+      ID_DecoderArray_decoders_2_illegalEncoding = 1'b0;
+    end
+    if(when_DecoderArrayPlugin_l186_207) begin
+      ID_DecoderArray_decoders_2_illegalEncoding = 1'b0;
+    end
+    if(when_DecoderArrayPlugin_l186_208) begin
+      ID_DecoderArray_decoders_2_illegalEncoding = 1'b0;
+    end
+    if(when_DecoderArrayPlugin_l186_209) begin
+      ID_DecoderArray_decoders_2_illegalEncoding = 1'b0;
+    end
+    if(when_DecoderArrayPlugin_l186_210) begin
+      ID_DecoderArray_decoders_2_illegalEncoding = 1'b0;
+    end
+    if(when_DecoderArrayPlugin_l186_211) begin
+      ID_DecoderArray_decoders_2_illegalEncoding = 1'b0;
+    end
+    if(when_DecoderArrayPlugin_l186_212) begin
+      ID_DecoderArray_decoders_2_illegalEncoding = 1'b0;
+    end
   end
 
   always @(*) begin
     ID_DecoderArray_decoders_2_uop_fuType = FUType_ALU;
-    if(when_DecoderArrayPlugin_l186_153) begin
-      ID_DecoderArray_decoders_2_uop_fuType = FUType_CMP;
-    end
-    if(when_DecoderArrayPlugin_l186_154) begin
-      ID_DecoderArray_decoders_2_uop_fuType = FUType_CMP;
-    end
-    if(when_DecoderArrayPlugin_l186_155) begin
-      ID_DecoderArray_decoders_2_uop_fuType = FUType_CMP;
-    end
-    if(when_DecoderArrayPlugin_l186_156) begin
-      ID_DecoderArray_decoders_2_uop_fuType = FUType_CMP;
-    end
-    if(when_DecoderArrayPlugin_l186_157) begin
-      ID_DecoderArray_decoders_2_uop_fuType = FUType_CMP;
-    end
-    if(when_DecoderArrayPlugin_l186_158) begin
-      ID_DecoderArray_decoders_2_uop_fuType = FUType_CMP;
-    end
-    if(when_DecoderArrayPlugin_l186_159) begin
-      ID_DecoderArray_decoders_2_uop_fuType = FUType_CMP;
-    end
-    if(when_DecoderArrayPlugin_l186_160) begin
-      ID_DecoderArray_decoders_2_uop_fuType = FUType_CMP;
-    end
-    if(when_DecoderArrayPlugin_l186_161) begin
-      ID_DecoderArray_decoders_2_uop_fuType = FUType_CMP;
-    end
-    if(when_DecoderArrayPlugin_l186_162) begin
-      ID_DecoderArray_decoders_2_uop_fuType = FUType_MUL;
-    end
-    if(when_DecoderArrayPlugin_l186_163) begin
-      ID_DecoderArray_decoders_2_uop_fuType = FUType_MULH;
-    end
-    if(when_DecoderArrayPlugin_l186_164) begin
-      ID_DecoderArray_decoders_2_uop_fuType = FUType_MULH;
-    end
     if(when_DecoderArrayPlugin_l186_165) begin
-      ID_DecoderArray_decoders_2_uop_fuType = FUType_DIV;
+      ID_DecoderArray_decoders_2_uop_fuType = FUType_CMP;
     end
     if(when_DecoderArrayPlugin_l186_166) begin
-      ID_DecoderArray_decoders_2_uop_fuType = FUType_DIV;
+      ID_DecoderArray_decoders_2_uop_fuType = FUType_CMP;
     end
     if(when_DecoderArrayPlugin_l186_167) begin
-      ID_DecoderArray_decoders_2_uop_fuType = FUType_MOD_1;
+      ID_DecoderArray_decoders_2_uop_fuType = FUType_CMP;
     end
     if(when_DecoderArrayPlugin_l186_168) begin
-      ID_DecoderArray_decoders_2_uop_fuType = FUType_MOD_1;
+      ID_DecoderArray_decoders_2_uop_fuType = FUType_CMP;
     end
     if(when_DecoderArrayPlugin_l186_169) begin
-      ID_DecoderArray_decoders_2_uop_fuType = FUType_LSU;
+      ID_DecoderArray_decoders_2_uop_fuType = FUType_CMP;
     end
     if(when_DecoderArrayPlugin_l186_170) begin
-      ID_DecoderArray_decoders_2_uop_fuType = FUType_LSU;
+      ID_DecoderArray_decoders_2_uop_fuType = FUType_CMP;
     end
     if(when_DecoderArrayPlugin_l186_171) begin
-      ID_DecoderArray_decoders_2_uop_fuType = FUType_LSU;
+      ID_DecoderArray_decoders_2_uop_fuType = FUType_CMP;
     end
     if(when_DecoderArrayPlugin_l186_172) begin
-      ID_DecoderArray_decoders_2_uop_fuType = FUType_LSU;
+      ID_DecoderArray_decoders_2_uop_fuType = FUType_CMP;
     end
     if(when_DecoderArrayPlugin_l186_173) begin
-      ID_DecoderArray_decoders_2_uop_fuType = FUType_LSU;
+      ID_DecoderArray_decoders_2_uop_fuType = FUType_CMP;
     end
     if(when_DecoderArrayPlugin_l186_174) begin
-      ID_DecoderArray_decoders_2_uop_fuType = FUType_LSU;
+      ID_DecoderArray_decoders_2_uop_fuType = FUType_MUL;
     end
     if(when_DecoderArrayPlugin_l186_175) begin
-      ID_DecoderArray_decoders_2_uop_fuType = FUType_LSU;
+      ID_DecoderArray_decoders_2_uop_fuType = FUType_MULH;
     end
     if(when_DecoderArrayPlugin_l186_176) begin
-      ID_DecoderArray_decoders_2_uop_fuType = FUType_LSU;
+      ID_DecoderArray_decoders_2_uop_fuType = FUType_MULH;
     end
     if(when_DecoderArrayPlugin_l186_177) begin
-      ID_DecoderArray_decoders_2_uop_fuType = FUType_LSU;
+      ID_DecoderArray_decoders_2_uop_fuType = FUType_DIV;
     end
     if(when_DecoderArrayPlugin_l186_178) begin
-      ID_DecoderArray_decoders_2_uop_fuType = FUType_LSU;
+      ID_DecoderArray_decoders_2_uop_fuType = FUType_DIV;
     end
     if(when_DecoderArrayPlugin_l186_179) begin
-      ID_DecoderArray_decoders_2_uop_fuType = FUType_CSR;
+      ID_DecoderArray_decoders_2_uop_fuType = FUType_MOD_1;
     end
     if(when_DecoderArrayPlugin_l186_180) begin
-      ID_DecoderArray_decoders_2_uop_fuType = FUType_TIMER;
+      ID_DecoderArray_decoders_2_uop_fuType = FUType_MOD_1;
     end
     if(when_DecoderArrayPlugin_l186_181) begin
-      ID_DecoderArray_decoders_2_uop_fuType = FUType_TIMER;
+      ID_DecoderArray_decoders_2_uop_fuType = FUType_LSU;
+    end
+    if(when_DecoderArrayPlugin_l186_182) begin
+      ID_DecoderArray_decoders_2_uop_fuType = FUType_LSU;
     end
     if(when_DecoderArrayPlugin_l186_183) begin
-      ID_DecoderArray_decoders_2_uop_fuType = FUType_NONE;
+      ID_DecoderArray_decoders_2_uop_fuType = FUType_LSU;
     end
     if(when_DecoderArrayPlugin_l186_184) begin
-      ID_DecoderArray_decoders_2_uop_fuType = FUType_NONE;
+      ID_DecoderArray_decoders_2_uop_fuType = FUType_LSU;
     end
     if(when_DecoderArrayPlugin_l186_185) begin
-      ID_DecoderArray_decoders_2_uop_fuType = FUType_NONE;
+      ID_DecoderArray_decoders_2_uop_fuType = FUType_LSU;
     end
     if(when_DecoderArrayPlugin_l186_186) begin
-      ID_DecoderArray_decoders_2_uop_fuType = FUType_NONE;
+      ID_DecoderArray_decoders_2_uop_fuType = FUType_LSU;
     end
     if(when_DecoderArrayPlugin_l186_187) begin
-      ID_DecoderArray_decoders_2_uop_fuType = FUType_NONE;
+      ID_DecoderArray_decoders_2_uop_fuType = FUType_LSU;
     end
     if(when_DecoderArrayPlugin_l186_188) begin
-      ID_DecoderArray_decoders_2_uop_fuType = FUType_NONE;
+      ID_DecoderArray_decoders_2_uop_fuType = FUType_LSU;
     end
     if(when_DecoderArrayPlugin_l186_189) begin
-      ID_DecoderArray_decoders_2_uop_fuType = FUType_NONE;
+      ID_DecoderArray_decoders_2_uop_fuType = FUType_LSU;
     end
     if(when_DecoderArrayPlugin_l186_190) begin
-      ID_DecoderArray_decoders_2_uop_fuType = FUType_NONE;
+      ID_DecoderArray_decoders_2_uop_fuType = FUType_LSU;
     end
     if(when_DecoderArrayPlugin_l186_191) begin
-      ID_DecoderArray_decoders_2_uop_fuType = FUType_INVTLB;
+      ID_DecoderArray_decoders_2_uop_fuType = FUType_CSR;
     end
     if(when_DecoderArrayPlugin_l186_192) begin
-      ID_DecoderArray_decoders_2_uop_fuType = FUType_NONE;
+      ID_DecoderArray_decoders_2_uop_fuType = FUType_TIMER;
     end
     if(when_DecoderArrayPlugin_l186_193) begin
+      ID_DecoderArray_decoders_2_uop_fuType = FUType_TIMER;
+    end
+    if(when_DecoderArrayPlugin_l186_201) begin
       ID_DecoderArray_decoders_2_uop_fuType = FUType_NONE;
     end
-    if(when_DecoderArrayPlugin_l186_194) begin
+    if(when_DecoderArrayPlugin_l186_202) begin
+      ID_DecoderArray_decoders_2_uop_fuType = FUType_NONE;
+    end
+    if(when_DecoderArrayPlugin_l186_203) begin
+      ID_DecoderArray_decoders_2_uop_fuType = FUType_NONE;
+    end
+    if(when_DecoderArrayPlugin_l186_204) begin
+      ID_DecoderArray_decoders_2_uop_fuType = FUType_NONE;
+    end
+    if(when_DecoderArrayPlugin_l186_205) begin
+      ID_DecoderArray_decoders_2_uop_fuType = FUType_NONE;
+    end
+    if(when_DecoderArrayPlugin_l186_206) begin
+      ID_DecoderArray_decoders_2_uop_fuType = FUType_NONE;
+    end
+    if(when_DecoderArrayPlugin_l186_207) begin
+      ID_DecoderArray_decoders_2_uop_fuType = FUType_NONE;
+    end
+    if(when_DecoderArrayPlugin_l186_208) begin
+      ID_DecoderArray_decoders_2_uop_fuType = FUType_NONE;
+    end
+    if(when_DecoderArrayPlugin_l186_209) begin
+      ID_DecoderArray_decoders_2_uop_fuType = FUType_INVTLB;
+    end
+    if(when_DecoderArrayPlugin_l186_210) begin
+      ID_DecoderArray_decoders_2_uop_fuType = FUType_NONE;
+    end
+    if(when_DecoderArrayPlugin_l186_211) begin
+      ID_DecoderArray_decoders_2_uop_fuType = FUType_NONE;
+    end
+    if(when_DecoderArrayPlugin_l186_212) begin
       ID_DecoderArray_decoders_2_uop_fuType = FUType_LSU;
     end
   end
 
   always @(*) begin
     ID_DecoderArray_decoders_2_uop_tlbOp = TLBOpType_NONE;
-    if(when_DecoderArrayPlugin_l186_187) begin
+    if(when_DecoderArrayPlugin_l186_205) begin
       ID_DecoderArray_decoders_2_uop_tlbOp = TLBOpType_TLBSRCH;
     end
-    if(when_DecoderArrayPlugin_l186_188) begin
+    if(when_DecoderArrayPlugin_l186_206) begin
       ID_DecoderArray_decoders_2_uop_tlbOp = TLBOpType_TLBRD;
     end
-    if(when_DecoderArrayPlugin_l186_189) begin
+    if(when_DecoderArrayPlugin_l186_207) begin
       ID_DecoderArray_decoders_2_uop_tlbOp = TLBOpType_TLBWR;
     end
-    if(when_DecoderArrayPlugin_l186_190) begin
+    if(when_DecoderArrayPlugin_l186_208) begin
       ID_DecoderArray_decoders_2_uop_tlbOp = TLBOpType_TLBFILL;
     end
-    if(when_DecoderArrayPlugin_l186_191) begin
+    if(when_DecoderArrayPlugin_l186_209) begin
       ID_DecoderArray_decoders_2_uop_tlbOp = TLBOpType_INVTLB1;
     end
     if(when_DecoderArrayPlugin_l252_2) begin
@@ -69115,49 +69483,13 @@ module MyCPUCore (
 
   always @(*) begin
     ID_DecoderArray_decoders_2_uop_operateCache = 1'b0;
-    if(when_DecoderArrayPlugin_l186_194) begin
+    if(when_DecoderArrayPlugin_l186_212) begin
       ID_DecoderArray_decoders_2_uop_operateCache = 1'b1;
     end
   end
 
   always @(*) begin
     ID_DecoderArray_decoders_2_uop_useRj = 1'b0;
-    if(when_DecoderArrayPlugin_l186_130) begin
-      ID_DecoderArray_decoders_2_uop_useRj = 1'b1;
-    end
-    if(when_DecoderArrayPlugin_l186_131) begin
-      ID_DecoderArray_decoders_2_uop_useRj = 1'b1;
-    end
-    if(when_DecoderArrayPlugin_l186_132) begin
-      ID_DecoderArray_decoders_2_uop_useRj = 1'b1;
-    end
-    if(when_DecoderArrayPlugin_l186_133) begin
-      ID_DecoderArray_decoders_2_uop_useRj = 1'b1;
-    end
-    if(when_DecoderArrayPlugin_l186_134) begin
-      ID_DecoderArray_decoders_2_uop_useRj = 1'b1;
-    end
-    if(when_DecoderArrayPlugin_l186_135) begin
-      ID_DecoderArray_decoders_2_uop_useRj = 1'b1;
-    end
-    if(when_DecoderArrayPlugin_l186_136) begin
-      ID_DecoderArray_decoders_2_uop_useRj = 1'b1;
-    end
-    if(when_DecoderArrayPlugin_l186_137) begin
-      ID_DecoderArray_decoders_2_uop_useRj = 1'b1;
-    end
-    if(when_DecoderArrayPlugin_l186_138) begin
-      ID_DecoderArray_decoders_2_uop_useRj = 1'b1;
-    end
-    if(when_DecoderArrayPlugin_l186_139) begin
-      ID_DecoderArray_decoders_2_uop_useRj = 1'b1;
-    end
-    if(when_DecoderArrayPlugin_l186_140) begin
-      ID_DecoderArray_decoders_2_uop_useRj = 1'b1;
-    end
-    if(when_DecoderArrayPlugin_l186_141) begin
-      ID_DecoderArray_decoders_2_uop_useRj = 1'b1;
-    end
     if(when_DecoderArrayPlugin_l186_142) begin
       ID_DecoderArray_decoders_2_uop_useRj = 1'b1;
     end
@@ -69182,6 +69514,15 @@ module MyCPUCore (
     if(when_DecoderArrayPlugin_l186_149) begin
       ID_DecoderArray_decoders_2_uop_useRj = 1'b1;
     end
+    if(when_DecoderArrayPlugin_l186_150) begin
+      ID_DecoderArray_decoders_2_uop_useRj = 1'b1;
+    end
+    if(when_DecoderArrayPlugin_l186_151) begin
+      ID_DecoderArray_decoders_2_uop_useRj = 1'b1;
+    end
+    if(when_DecoderArrayPlugin_l186_152) begin
+      ID_DecoderArray_decoders_2_uop_useRj = 1'b1;
+    end
     if(when_DecoderArrayPlugin_l186_153) begin
       ID_DecoderArray_decoders_2_uop_useRj = 1'b1;
     end
@@ -69200,16 +69541,13 @@ module MyCPUCore (
     if(when_DecoderArrayPlugin_l186_158) begin
       ID_DecoderArray_decoders_2_uop_useRj = 1'b1;
     end
+    if(when_DecoderArrayPlugin_l186_159) begin
+      ID_DecoderArray_decoders_2_uop_useRj = 1'b1;
+    end
+    if(when_DecoderArrayPlugin_l186_160) begin
+      ID_DecoderArray_decoders_2_uop_useRj = 1'b1;
+    end
     if(when_DecoderArrayPlugin_l186_161) begin
-      ID_DecoderArray_decoders_2_uop_useRj = 1'b1;
-    end
-    if(when_DecoderArrayPlugin_l186_162) begin
-      ID_DecoderArray_decoders_2_uop_useRj = 1'b1;
-    end
-    if(when_DecoderArrayPlugin_l186_163) begin
-      ID_DecoderArray_decoders_2_uop_useRj = 1'b1;
-    end
-    if(when_DecoderArrayPlugin_l186_164) begin
       ID_DecoderArray_decoders_2_uop_useRj = 1'b1;
     end
     if(when_DecoderArrayPlugin_l186_165) begin
@@ -69230,12 +69568,6 @@ module MyCPUCore (
     if(when_DecoderArrayPlugin_l186_170) begin
       ID_DecoderArray_decoders_2_uop_useRj = 1'b1;
     end
-    if(when_DecoderArrayPlugin_l186_171) begin
-      ID_DecoderArray_decoders_2_uop_useRj = 1'b1;
-    end
-    if(when_DecoderArrayPlugin_l186_172) begin
-      ID_DecoderArray_decoders_2_uop_useRj = 1'b1;
-    end
     if(when_DecoderArrayPlugin_l186_173) begin
       ID_DecoderArray_decoders_2_uop_useRj = 1'b1;
     end
@@ -69254,13 +69586,67 @@ module MyCPUCore (
     if(when_DecoderArrayPlugin_l186_178) begin
       ID_DecoderArray_decoders_2_uop_useRj = 1'b1;
     end
+    if(when_DecoderArrayPlugin_l186_179) begin
+      ID_DecoderArray_decoders_2_uop_useRj = 1'b1;
+    end
+    if(when_DecoderArrayPlugin_l186_180) begin
+      ID_DecoderArray_decoders_2_uop_useRj = 1'b1;
+    end
+    if(when_DecoderArrayPlugin_l186_181) begin
+      ID_DecoderArray_decoders_2_uop_useRj = 1'b1;
+    end
     if(when_DecoderArrayPlugin_l186_182) begin
       ID_DecoderArray_decoders_2_uop_useRj = 1'b1;
     end
-    if(when_DecoderArrayPlugin_l186_191) begin
+    if(when_DecoderArrayPlugin_l186_183) begin
+      ID_DecoderArray_decoders_2_uop_useRj = 1'b1;
+    end
+    if(when_DecoderArrayPlugin_l186_184) begin
+      ID_DecoderArray_decoders_2_uop_useRj = 1'b1;
+    end
+    if(when_DecoderArrayPlugin_l186_185) begin
+      ID_DecoderArray_decoders_2_uop_useRj = 1'b1;
+    end
+    if(when_DecoderArrayPlugin_l186_186) begin
+      ID_DecoderArray_decoders_2_uop_useRj = 1'b1;
+    end
+    if(when_DecoderArrayPlugin_l186_187) begin
+      ID_DecoderArray_decoders_2_uop_useRj = 1'b1;
+    end
+    if(when_DecoderArrayPlugin_l186_188) begin
+      ID_DecoderArray_decoders_2_uop_useRj = 1'b1;
+    end
+    if(when_DecoderArrayPlugin_l186_189) begin
+      ID_DecoderArray_decoders_2_uop_useRj = 1'b1;
+    end
+    if(when_DecoderArrayPlugin_l186_190) begin
       ID_DecoderArray_decoders_2_uop_useRj = 1'b1;
     end
     if(when_DecoderArrayPlugin_l186_194) begin
+      ID_DecoderArray_decoders_2_uop_useRj = 1'b1;
+    end
+    if(when_DecoderArrayPlugin_l186_195) begin
+      ID_DecoderArray_decoders_2_uop_useRj = 1'b1;
+    end
+    if(when_DecoderArrayPlugin_l186_196) begin
+      ID_DecoderArray_decoders_2_uop_useRj = 1'b1;
+    end
+    if(when_DecoderArrayPlugin_l186_197) begin
+      ID_DecoderArray_decoders_2_uop_useRj = 1'b1;
+    end
+    if(when_DecoderArrayPlugin_l186_198) begin
+      ID_DecoderArray_decoders_2_uop_useRj = 1'b1;
+    end
+    if(when_DecoderArrayPlugin_l186_199) begin
+      ID_DecoderArray_decoders_2_uop_useRj = 1'b1;
+    end
+    if(when_DecoderArrayPlugin_l186_200) begin
+      ID_DecoderArray_decoders_2_uop_useRj = 1'b1;
+    end
+    if(when_DecoderArrayPlugin_l186_209) begin
+      ID_DecoderArray_decoders_2_uop_useRj = 1'b1;
+    end
+    if(when_DecoderArrayPlugin_l186_212) begin
       ID_DecoderArray_decoders_2_uop_useRj = 1'b1;
     end
     if(when_DecoderArrayPlugin_l220_2) begin
@@ -69270,95 +69656,104 @@ module MyCPUCore (
 
   always @(*) begin
     ID_DecoderArray_decoders_2_uop_useRk = 1'b0;
-    if(when_DecoderArrayPlugin_l186_130) begin
+    if(when_DecoderArrayPlugin_l186_142) begin
       ID_DecoderArray_decoders_2_uop_useRk = 1'b1;
     end
-    if(when_DecoderArrayPlugin_l186_131) begin
+    if(when_DecoderArrayPlugin_l186_143) begin
       ID_DecoderArray_decoders_2_uop_useRk = 1'b1;
     end
-    if(when_DecoderArrayPlugin_l186_132) begin
+    if(when_DecoderArrayPlugin_l186_144) begin
       ID_DecoderArray_decoders_2_uop_useRk = 1'b1;
     end
-    if(when_DecoderArrayPlugin_l186_133) begin
+    if(when_DecoderArrayPlugin_l186_145) begin
       ID_DecoderArray_decoders_2_uop_useRk = 1'b1;
     end
-    if(when_DecoderArrayPlugin_l186_134) begin
+    if(when_DecoderArrayPlugin_l186_146) begin
       ID_DecoderArray_decoders_2_uop_useRk = 1'b1;
     end
-    if(when_DecoderArrayPlugin_l186_135) begin
+    if(when_DecoderArrayPlugin_l186_147) begin
       ID_DecoderArray_decoders_2_uop_useRk = 1'b1;
     end
-    if(when_DecoderArrayPlugin_l186_136) begin
+    if(when_DecoderArrayPlugin_l186_148) begin
       ID_DecoderArray_decoders_2_uop_useRk = 1'b1;
     end
-    if(when_DecoderArrayPlugin_l186_137) begin
+    if(when_DecoderArrayPlugin_l186_149) begin
       ID_DecoderArray_decoders_2_uop_useRk = 1'b1;
     end
-    if(when_DecoderArrayPlugin_l186_138) begin
+    if(when_DecoderArrayPlugin_l186_150) begin
       ID_DecoderArray_decoders_2_uop_useRk = 1'b1;
     end
-    if(when_DecoderArrayPlugin_l186_139) begin
+    if(when_DecoderArrayPlugin_l186_151) begin
       ID_DecoderArray_decoders_2_uop_useRk = 1'b1;
     end
-    if(when_DecoderArrayPlugin_l186_140) begin
+    if(when_DecoderArrayPlugin_l186_152) begin
       ID_DecoderArray_decoders_2_uop_useRk = 1'b1;
     end
-    if(when_DecoderArrayPlugin_l186_162) begin
+    if(when_DecoderArrayPlugin_l186_174) begin
       ID_DecoderArray_decoders_2_uop_useRk = 1'b1;
     end
-    if(when_DecoderArrayPlugin_l186_163) begin
+    if(when_DecoderArrayPlugin_l186_175) begin
       ID_DecoderArray_decoders_2_uop_useRk = 1'b1;
     end
-    if(when_DecoderArrayPlugin_l186_164) begin
+    if(when_DecoderArrayPlugin_l186_176) begin
       ID_DecoderArray_decoders_2_uop_useRk = 1'b1;
     end
-    if(when_DecoderArrayPlugin_l186_165) begin
+    if(when_DecoderArrayPlugin_l186_177) begin
       ID_DecoderArray_decoders_2_uop_useRk = 1'b1;
     end
-    if(when_DecoderArrayPlugin_l186_166) begin
+    if(when_DecoderArrayPlugin_l186_178) begin
       ID_DecoderArray_decoders_2_uop_useRk = 1'b1;
     end
-    if(when_DecoderArrayPlugin_l186_167) begin
+    if(when_DecoderArrayPlugin_l186_179) begin
       ID_DecoderArray_decoders_2_uop_useRk = 1'b1;
     end
-    if(when_DecoderArrayPlugin_l186_168) begin
+    if(when_DecoderArrayPlugin_l186_180) begin
       ID_DecoderArray_decoders_2_uop_useRk = 1'b1;
     end
-    if(when_DecoderArrayPlugin_l186_191) begin
+    if(when_DecoderArrayPlugin_l186_209) begin
       ID_DecoderArray_decoders_2_uop_useRk = 1'b1;
     end
   end
 
   always @(*) begin
     ID_DecoderArray_decoders_2_uop_useRd = 1'b0;
-    if(when_DecoderArrayPlugin_l186_153) begin
+    if(when_DecoderArrayPlugin_l186_165) begin
       ID_DecoderArray_decoders_2_uop_useRd = 1'b1;
     end
-    if(when_DecoderArrayPlugin_l186_154) begin
+    if(when_DecoderArrayPlugin_l186_166) begin
       ID_DecoderArray_decoders_2_uop_useRd = 1'b1;
     end
-    if(when_DecoderArrayPlugin_l186_155) begin
+    if(when_DecoderArrayPlugin_l186_167) begin
       ID_DecoderArray_decoders_2_uop_useRd = 1'b1;
     end
-    if(when_DecoderArrayPlugin_l186_156) begin
+    if(when_DecoderArrayPlugin_l186_168) begin
       ID_DecoderArray_decoders_2_uop_useRd = 1'b1;
     end
-    if(when_DecoderArrayPlugin_l186_157) begin
+    if(when_DecoderArrayPlugin_l186_169) begin
       ID_DecoderArray_decoders_2_uop_useRd = 1'b1;
     end
-    if(when_DecoderArrayPlugin_l186_158) begin
+    if(when_DecoderArrayPlugin_l186_170) begin
       ID_DecoderArray_decoders_2_uop_useRd = 1'b1;
     end
-    if(when_DecoderArrayPlugin_l186_174) begin
+    if(when_DecoderArrayPlugin_l186_186) begin
       ID_DecoderArray_decoders_2_uop_useRd = 1'b1;
     end
-    if(when_DecoderArrayPlugin_l186_175) begin
+    if(when_DecoderArrayPlugin_l186_187) begin
       ID_DecoderArray_decoders_2_uop_useRd = 1'b1;
     end
-    if(when_DecoderArrayPlugin_l186_176) begin
+    if(when_DecoderArrayPlugin_l186_188) begin
       ID_DecoderArray_decoders_2_uop_useRd = 1'b1;
     end
-    if(when_DecoderArrayPlugin_l186_178) begin
+    if(when_DecoderArrayPlugin_l186_190) begin
+      ID_DecoderArray_decoders_2_uop_useRd = 1'b1;
+    end
+    if(when_DecoderArrayPlugin_l186_198) begin
+      ID_DecoderArray_decoders_2_uop_useRd = 1'b1;
+    end
+    if(when_DecoderArrayPlugin_l186_199) begin
+      ID_DecoderArray_decoders_2_uop_useRd = 1'b1;
+    end
+    if(when_DecoderArrayPlugin_l186_200) begin
       ID_DecoderArray_decoders_2_uop_useRd = 1'b1;
     end
     if(ID_DecoderArray_decoders_2_uop_writeCSR) begin
@@ -69368,42 +69763,6 @@ module MyCPUCore (
 
   always @(*) begin
     _zz_ID_DecoderArray_decoders_2_uop_doRegWrite = 1'b0;
-    if(when_DecoderArrayPlugin_l186_130) begin
-      _zz_ID_DecoderArray_decoders_2_uop_doRegWrite = 1'b1;
-    end
-    if(when_DecoderArrayPlugin_l186_131) begin
-      _zz_ID_DecoderArray_decoders_2_uop_doRegWrite = 1'b1;
-    end
-    if(when_DecoderArrayPlugin_l186_132) begin
-      _zz_ID_DecoderArray_decoders_2_uop_doRegWrite = 1'b1;
-    end
-    if(when_DecoderArrayPlugin_l186_133) begin
-      _zz_ID_DecoderArray_decoders_2_uop_doRegWrite = 1'b1;
-    end
-    if(when_DecoderArrayPlugin_l186_134) begin
-      _zz_ID_DecoderArray_decoders_2_uop_doRegWrite = 1'b1;
-    end
-    if(when_DecoderArrayPlugin_l186_135) begin
-      _zz_ID_DecoderArray_decoders_2_uop_doRegWrite = 1'b1;
-    end
-    if(when_DecoderArrayPlugin_l186_136) begin
-      _zz_ID_DecoderArray_decoders_2_uop_doRegWrite = 1'b1;
-    end
-    if(when_DecoderArrayPlugin_l186_137) begin
-      _zz_ID_DecoderArray_decoders_2_uop_doRegWrite = 1'b1;
-    end
-    if(when_DecoderArrayPlugin_l186_138) begin
-      _zz_ID_DecoderArray_decoders_2_uop_doRegWrite = 1'b1;
-    end
-    if(when_DecoderArrayPlugin_l186_139) begin
-      _zz_ID_DecoderArray_decoders_2_uop_doRegWrite = 1'b1;
-    end
-    if(when_DecoderArrayPlugin_l186_140) begin
-      _zz_ID_DecoderArray_decoders_2_uop_doRegWrite = 1'b1;
-    end
-    if(when_DecoderArrayPlugin_l186_141) begin
-      _zz_ID_DecoderArray_decoders_2_uop_doRegWrite = 1'b1;
-    end
     if(when_DecoderArrayPlugin_l186_142) begin
       _zz_ID_DecoderArray_decoders_2_uop_doRegWrite = 1'b1;
     end
@@ -69437,6 +69796,27 @@ module MyCPUCore (
     if(when_DecoderArrayPlugin_l186_152) begin
       _zz_ID_DecoderArray_decoders_2_uop_doRegWrite = 1'b1;
     end
+    if(when_DecoderArrayPlugin_l186_153) begin
+      _zz_ID_DecoderArray_decoders_2_uop_doRegWrite = 1'b1;
+    end
+    if(when_DecoderArrayPlugin_l186_154) begin
+      _zz_ID_DecoderArray_decoders_2_uop_doRegWrite = 1'b1;
+    end
+    if(when_DecoderArrayPlugin_l186_155) begin
+      _zz_ID_DecoderArray_decoders_2_uop_doRegWrite = 1'b1;
+    end
+    if(when_DecoderArrayPlugin_l186_156) begin
+      _zz_ID_DecoderArray_decoders_2_uop_doRegWrite = 1'b1;
+    end
+    if(when_DecoderArrayPlugin_l186_157) begin
+      _zz_ID_DecoderArray_decoders_2_uop_doRegWrite = 1'b1;
+    end
+    if(when_DecoderArrayPlugin_l186_158) begin
+      _zz_ID_DecoderArray_decoders_2_uop_doRegWrite = 1'b1;
+    end
+    if(when_DecoderArrayPlugin_l186_159) begin
+      _zz_ID_DecoderArray_decoders_2_uop_doRegWrite = 1'b1;
+    end
     if(when_DecoderArrayPlugin_l186_160) begin
       _zz_ID_DecoderArray_decoders_2_uop_doRegWrite = 1'b1;
     end
@@ -69452,31 +69832,19 @@ module MyCPUCore (
     if(when_DecoderArrayPlugin_l186_164) begin
       _zz_ID_DecoderArray_decoders_2_uop_doRegWrite = 1'b1;
     end
-    if(when_DecoderArrayPlugin_l186_165) begin
-      _zz_ID_DecoderArray_decoders_2_uop_doRegWrite = 1'b1;
-    end
-    if(when_DecoderArrayPlugin_l186_166) begin
-      _zz_ID_DecoderArray_decoders_2_uop_doRegWrite = 1'b1;
-    end
-    if(when_DecoderArrayPlugin_l186_167) begin
-      _zz_ID_DecoderArray_decoders_2_uop_doRegWrite = 1'b1;
-    end
-    if(when_DecoderArrayPlugin_l186_168) begin
-      _zz_ID_DecoderArray_decoders_2_uop_doRegWrite = 1'b1;
-    end
-    if(when_DecoderArrayPlugin_l186_169) begin
-      _zz_ID_DecoderArray_decoders_2_uop_doRegWrite = 1'b1;
-    end
-    if(when_DecoderArrayPlugin_l186_170) begin
-      _zz_ID_DecoderArray_decoders_2_uop_doRegWrite = 1'b1;
-    end
-    if(when_DecoderArrayPlugin_l186_171) begin
-      _zz_ID_DecoderArray_decoders_2_uop_doRegWrite = 1'b1;
-    end
     if(when_DecoderArrayPlugin_l186_172) begin
       _zz_ID_DecoderArray_decoders_2_uop_doRegWrite = 1'b1;
     end
     if(when_DecoderArrayPlugin_l186_173) begin
+      _zz_ID_DecoderArray_decoders_2_uop_doRegWrite = 1'b1;
+    end
+    if(when_DecoderArrayPlugin_l186_174) begin
+      _zz_ID_DecoderArray_decoders_2_uop_doRegWrite = 1'b1;
+    end
+    if(when_DecoderArrayPlugin_l186_175) begin
+      _zz_ID_DecoderArray_decoders_2_uop_doRegWrite = 1'b1;
+    end
+    if(when_DecoderArrayPlugin_l186_176) begin
       _zz_ID_DecoderArray_decoders_2_uop_doRegWrite = 1'b1;
     end
     if(when_DecoderArrayPlugin_l186_177) begin
@@ -69497,11 +69865,56 @@ module MyCPUCore (
     if(when_DecoderArrayPlugin_l186_182) begin
       _zz_ID_DecoderArray_decoders_2_uop_doRegWrite = 1'b1;
     end
+    if(when_DecoderArrayPlugin_l186_183) begin
+      _zz_ID_DecoderArray_decoders_2_uop_doRegWrite = 1'b1;
+    end
+    if(when_DecoderArrayPlugin_l186_184) begin
+      _zz_ID_DecoderArray_decoders_2_uop_doRegWrite = 1'b1;
+    end
+    if(when_DecoderArrayPlugin_l186_185) begin
+      _zz_ID_DecoderArray_decoders_2_uop_doRegWrite = 1'b1;
+    end
+    if(when_DecoderArrayPlugin_l186_189) begin
+      _zz_ID_DecoderArray_decoders_2_uop_doRegWrite = 1'b1;
+    end
+    if(when_DecoderArrayPlugin_l186_190) begin
+      _zz_ID_DecoderArray_decoders_2_uop_doRegWrite = 1'b1;
+    end
+    if(when_DecoderArrayPlugin_l186_191) begin
+      _zz_ID_DecoderArray_decoders_2_uop_doRegWrite = 1'b1;
+    end
+    if(when_DecoderArrayPlugin_l186_192) begin
+      _zz_ID_DecoderArray_decoders_2_uop_doRegWrite = 1'b1;
+    end
+    if(when_DecoderArrayPlugin_l186_193) begin
+      _zz_ID_DecoderArray_decoders_2_uop_doRegWrite = 1'b1;
+    end
+    if(when_DecoderArrayPlugin_l186_194) begin
+      _zz_ID_DecoderArray_decoders_2_uop_doRegWrite = 1'b1;
+    end
+    if(when_DecoderArrayPlugin_l186_195) begin
+      _zz_ID_DecoderArray_decoders_2_uop_doRegWrite = 1'b1;
+    end
+    if(when_DecoderArrayPlugin_l186_196) begin
+      _zz_ID_DecoderArray_decoders_2_uop_doRegWrite = 1'b1;
+    end
+    if(when_DecoderArrayPlugin_l186_197) begin
+      _zz_ID_DecoderArray_decoders_2_uop_doRegWrite = 1'b1;
+    end
+    if(when_DecoderArrayPlugin_l186_198) begin
+      _zz_ID_DecoderArray_decoders_2_uop_doRegWrite = 1'b1;
+    end
+    if(when_DecoderArrayPlugin_l186_199) begin
+      _zz_ID_DecoderArray_decoders_2_uop_doRegWrite = 1'b1;
+    end
+    if(when_DecoderArrayPlugin_l186_200) begin
+      _zz_ID_DecoderArray_decoders_2_uop_doRegWrite = 1'b1;
+    end
   end
 
   always @(*) begin
     when_DecoderArrayPlugin_l237_2 = 1'b0;
-    if(when_DecoderArrayPlugin_l186_160) begin
+    if(when_DecoderArrayPlugin_l186_172) begin
       when_DecoderArrayPlugin_l237_2 = 1'b1;
     end
   end
@@ -69517,74 +69930,38 @@ module MyCPUCore (
 
   always @(*) begin
     ID_DecoderArray_decoders_2_uop_readCSR = 1'b0;
-    if(when_DecoderArrayPlugin_l186_179) begin
+    if(when_DecoderArrayPlugin_l186_191) begin
       ID_DecoderArray_decoders_2_uop_readCSR = 1'b1;
     end
   end
 
   always @(*) begin
     ID_DecoderArray_decoders_2_uop_readTimer64H = 1'b0;
-    if(when_DecoderArrayPlugin_l186_181) begin
+    if(when_DecoderArrayPlugin_l186_193) begin
       ID_DecoderArray_decoders_2_uop_readTimer64H = 1'b1;
     end
   end
 
   always @(*) begin
     ID_DecoderArray_decoders_2_uop_immExtendType = ExtendType_SIGN;
-    if(when_DecoderArrayPlugin_l186_147) begin
+    if(when_DecoderArrayPlugin_l186_159) begin
       ID_DecoderArray_decoders_2_uop_immExtendType = ExtendType_ZERO;
     end
-    if(when_DecoderArrayPlugin_l186_148) begin
+    if(when_DecoderArrayPlugin_l186_160) begin
       ID_DecoderArray_decoders_2_uop_immExtendType = ExtendType_ZERO;
     end
-    if(when_DecoderArrayPlugin_l186_149) begin
+    if(when_DecoderArrayPlugin_l186_161) begin
       ID_DecoderArray_decoders_2_uop_immExtendType = ExtendType_ZERO;
     end
   end
 
   always @(*) begin
     ID_DecoderArray_decoders_2_uop_aluOp = (5'bxxxxx);
-    if(when_DecoderArrayPlugin_l186_130) begin
+    if(when_DecoderArrayPlugin_l186_142) begin
       ID_DecoderArray_decoders_2_uop_aluOp = ALUOpType_ADD;
     end
-    if(when_DecoderArrayPlugin_l186_131) begin
-      ID_DecoderArray_decoders_2_uop_aluOp = ALUOpType_SUB;
-    end
-    if(when_DecoderArrayPlugin_l186_132) begin
-      ID_DecoderArray_decoders_2_uop_aluOp = ALUOpType_SLT;
-    end
-    if(when_DecoderArrayPlugin_l186_133) begin
-      ID_DecoderArray_decoders_2_uop_aluOp = ALUOpType_SLTU;
-    end
-    if(when_DecoderArrayPlugin_l186_134) begin
-      ID_DecoderArray_decoders_2_uop_aluOp = ALUOpType_NOR_1;
-    end
-    if(when_DecoderArrayPlugin_l186_135) begin
-      ID_DecoderArray_decoders_2_uop_aluOp = ALUOpType_AND_1;
-    end
-    if(when_DecoderArrayPlugin_l186_136) begin
-      ID_DecoderArray_decoders_2_uop_aluOp = ALUOpType_OR_1;
-    end
-    if(when_DecoderArrayPlugin_l186_137) begin
-      ID_DecoderArray_decoders_2_uop_aluOp = ALUOpType_XOR_1;
-    end
-    if(when_DecoderArrayPlugin_l186_138) begin
-      ID_DecoderArray_decoders_2_uop_aluOp = ALUOpType_SLL_1;
-    end
-    if(when_DecoderArrayPlugin_l186_139) begin
-      ID_DecoderArray_decoders_2_uop_aluOp = ALUOpType_SRL_1;
-    end
-    if(when_DecoderArrayPlugin_l186_140) begin
-      ID_DecoderArray_decoders_2_uop_aluOp = ALUOpType_SRA_1;
-    end
-    if(when_DecoderArrayPlugin_l186_141) begin
-      ID_DecoderArray_decoders_2_uop_aluOp = ALUOpType_SLL_1;
-    end
-    if(when_DecoderArrayPlugin_l186_142) begin
-      ID_DecoderArray_decoders_2_uop_aluOp = ALUOpType_SRL_1;
-    end
     if(when_DecoderArrayPlugin_l186_143) begin
-      ID_DecoderArray_decoders_2_uop_aluOp = ALUOpType_SRA_1;
+      ID_DecoderArray_decoders_2_uop_aluOp = ALUOpType_SUB;
     end
     if(when_DecoderArrayPlugin_l186_144) begin
       ID_DecoderArray_decoders_2_uop_aluOp = ALUOpType_SLT;
@@ -69593,7 +69970,7 @@ module MyCPUCore (
       ID_DecoderArray_decoders_2_uop_aluOp = ALUOpType_SLTU;
     end
     if(when_DecoderArrayPlugin_l186_146) begin
-      ID_DecoderArray_decoders_2_uop_aluOp = ALUOpType_ADD;
+      ID_DecoderArray_decoders_2_uop_aluOp = ALUOpType_NOR_1;
     end
     if(when_DecoderArrayPlugin_l186_147) begin
       ID_DecoderArray_decoders_2_uop_aluOp = ALUOpType_AND_1;
@@ -69605,297 +69982,357 @@ module MyCPUCore (
       ID_DecoderArray_decoders_2_uop_aluOp = ALUOpType_XOR_1;
     end
     if(when_DecoderArrayPlugin_l186_150) begin
-      ID_DecoderArray_decoders_2_uop_aluOp = ALUOpType_LU12I;
+      ID_DecoderArray_decoders_2_uop_aluOp = ALUOpType_SLL_1;
     end
     if(when_DecoderArrayPlugin_l186_151) begin
-      ID_DecoderArray_decoders_2_uop_aluOp = ALUOpType_PCADDI;
+      ID_DecoderArray_decoders_2_uop_aluOp = ALUOpType_SRL_1;
     end
     if(when_DecoderArrayPlugin_l186_152) begin
+      ID_DecoderArray_decoders_2_uop_aluOp = ALUOpType_SRA_1;
+    end
+    if(when_DecoderArrayPlugin_l186_153) begin
+      ID_DecoderArray_decoders_2_uop_aluOp = ALUOpType_SLL_1;
+    end
+    if(when_DecoderArrayPlugin_l186_154) begin
+      ID_DecoderArray_decoders_2_uop_aluOp = ALUOpType_SRL_1;
+    end
+    if(when_DecoderArrayPlugin_l186_155) begin
+      ID_DecoderArray_decoders_2_uop_aluOp = ALUOpType_SRA_1;
+    end
+    if(when_DecoderArrayPlugin_l186_156) begin
+      ID_DecoderArray_decoders_2_uop_aluOp = ALUOpType_SLT;
+    end
+    if(when_DecoderArrayPlugin_l186_157) begin
+      ID_DecoderArray_decoders_2_uop_aluOp = ALUOpType_SLTU;
+    end
+    if(when_DecoderArrayPlugin_l186_158) begin
+      ID_DecoderArray_decoders_2_uop_aluOp = ALUOpType_ADD;
+    end
+    if(when_DecoderArrayPlugin_l186_159) begin
+      ID_DecoderArray_decoders_2_uop_aluOp = ALUOpType_AND_1;
+    end
+    if(when_DecoderArrayPlugin_l186_160) begin
+      ID_DecoderArray_decoders_2_uop_aluOp = ALUOpType_OR_1;
+    end
+    if(when_DecoderArrayPlugin_l186_161) begin
+      ID_DecoderArray_decoders_2_uop_aluOp = ALUOpType_XOR_1;
+    end
+    if(when_DecoderArrayPlugin_l186_162) begin
+      ID_DecoderArray_decoders_2_uop_aluOp = ALUOpType_LU12I;
+    end
+    if(when_DecoderArrayPlugin_l186_163) begin
+      ID_DecoderArray_decoders_2_uop_aluOp = ALUOpType_PCADDI;
+    end
+    if(when_DecoderArrayPlugin_l186_164) begin
       ID_DecoderArray_decoders_2_uop_aluOp = ALUOpType_PCADDU12I;
     end
-    if(when_DecoderArrayPlugin_l186_182) begin
+    if(when_DecoderArrayPlugin_l186_194) begin
       ID_DecoderArray_decoders_2_uop_aluOp = ALUOpType_CPUCFG;
+    end
+    if(when_DecoderArrayPlugin_l186_195) begin
+      ID_DecoderArray_decoders_2_uop_aluOp = ALUOpType_IOCSR;
+    end
+    if(when_DecoderArrayPlugin_l186_196) begin
+      ID_DecoderArray_decoders_2_uop_aluOp = ALUOpType_IOCSR;
+    end
+    if(when_DecoderArrayPlugin_l186_197) begin
+      ID_DecoderArray_decoders_2_uop_aluOp = ALUOpType_IOCSR;
+    end
+    if(when_DecoderArrayPlugin_l186_198) begin
+      ID_DecoderArray_decoders_2_uop_aluOp = ALUOpType_IOCSR;
+    end
+    if(when_DecoderArrayPlugin_l186_199) begin
+      ID_DecoderArray_decoders_2_uop_aluOp = ALUOpType_IOCSR;
+    end
+    if(when_DecoderArrayPlugin_l186_200) begin
+      ID_DecoderArray_decoders_2_uop_aluOp = ALUOpType_IOCSR;
     end
   end
 
   always @(*) begin
     ID_DecoderArray_decoders_2_uop_cmpOp = (4'bxxxx);
-    if(when_DecoderArrayPlugin_l186_153) begin
+    if(when_DecoderArrayPlugin_l186_165) begin
       ID_DecoderArray_decoders_2_uop_cmpOp = CompareOpType_EQ;
     end
-    if(when_DecoderArrayPlugin_l186_154) begin
+    if(when_DecoderArrayPlugin_l186_166) begin
       ID_DecoderArray_decoders_2_uop_cmpOp = CompareOpType_NE;
     end
-    if(when_DecoderArrayPlugin_l186_155) begin
+    if(when_DecoderArrayPlugin_l186_167) begin
       ID_DecoderArray_decoders_2_uop_cmpOp = CompareOpType_LT;
     end
-    if(when_DecoderArrayPlugin_l186_156) begin
+    if(when_DecoderArrayPlugin_l186_168) begin
       ID_DecoderArray_decoders_2_uop_cmpOp = CompareOpType_GE;
     end
-    if(when_DecoderArrayPlugin_l186_157) begin
+    if(when_DecoderArrayPlugin_l186_169) begin
       ID_DecoderArray_decoders_2_uop_cmpOp = CompareOpType_LTU;
     end
-    if(when_DecoderArrayPlugin_l186_158) begin
+    if(when_DecoderArrayPlugin_l186_170) begin
       ID_DecoderArray_decoders_2_uop_cmpOp = CompareOpType_GEU;
     end
   end
 
   always @(*) begin
     ID_DecoderArray_decoders_2_uop_signed = 1'bx;
-    if(when_DecoderArrayPlugin_l186_162) begin
+    if(when_DecoderArrayPlugin_l186_174) begin
       ID_DecoderArray_decoders_2_uop_signed = 1'b1;
     end
-    if(when_DecoderArrayPlugin_l186_163) begin
+    if(when_DecoderArrayPlugin_l186_175) begin
       ID_DecoderArray_decoders_2_uop_signed = 1'b1;
     end
-    if(when_DecoderArrayPlugin_l186_164) begin
+    if(when_DecoderArrayPlugin_l186_176) begin
       ID_DecoderArray_decoders_2_uop_signed = 1'b0;
     end
-    if(when_DecoderArrayPlugin_l186_165) begin
+    if(when_DecoderArrayPlugin_l186_177) begin
       ID_DecoderArray_decoders_2_uop_signed = 1'b1;
     end
-    if(when_DecoderArrayPlugin_l186_166) begin
+    if(when_DecoderArrayPlugin_l186_178) begin
       ID_DecoderArray_decoders_2_uop_signed = 1'b0;
     end
-    if(when_DecoderArrayPlugin_l186_167) begin
+    if(when_DecoderArrayPlugin_l186_179) begin
       ID_DecoderArray_decoders_2_uop_signed = 1'b1;
     end
-    if(when_DecoderArrayPlugin_l186_168) begin
+    if(when_DecoderArrayPlugin_l186_180) begin
       ID_DecoderArray_decoders_2_uop_signed = 1'b0;
     end
   end
 
   always @(*) begin
     ID_DecoderArray_decoders_2_uop_lsType = LoadStoreType_BYTE_1;
-    if(when_DecoderArrayPlugin_l186_169) begin
+    if(when_DecoderArrayPlugin_l186_181) begin
       ID_DecoderArray_decoders_2_uop_lsType = LoadStoreType_WORD;
     end
-    if(when_DecoderArrayPlugin_l186_170) begin
+    if(when_DecoderArrayPlugin_l186_182) begin
       ID_DecoderArray_decoders_2_uop_lsType = LoadStoreType_HALF;
     end
-    if(when_DecoderArrayPlugin_l186_171) begin
+    if(when_DecoderArrayPlugin_l186_183) begin
       ID_DecoderArray_decoders_2_uop_lsType = LoadStoreType_HALF_U;
     end
-    if(when_DecoderArrayPlugin_l186_172) begin
+    if(when_DecoderArrayPlugin_l186_184) begin
       ID_DecoderArray_decoders_2_uop_lsType = LoadStoreType_BYTE_1;
     end
-    if(when_DecoderArrayPlugin_l186_173) begin
+    if(when_DecoderArrayPlugin_l186_185) begin
       ID_DecoderArray_decoders_2_uop_lsType = LoadStoreType_BYTE_U;
     end
-    if(when_DecoderArrayPlugin_l186_174) begin
+    if(when_DecoderArrayPlugin_l186_186) begin
       ID_DecoderArray_decoders_2_uop_lsType = LoadStoreType_WORD;
     end
-    if(when_DecoderArrayPlugin_l186_175) begin
+    if(when_DecoderArrayPlugin_l186_187) begin
       ID_DecoderArray_decoders_2_uop_lsType = LoadStoreType_HALF;
     end
-    if(when_DecoderArrayPlugin_l186_176) begin
+    if(when_DecoderArrayPlugin_l186_188) begin
       ID_DecoderArray_decoders_2_uop_lsType = LoadStoreType_BYTE_1;
     end
-    if(when_DecoderArrayPlugin_l186_177) begin
+    if(when_DecoderArrayPlugin_l186_189) begin
       ID_DecoderArray_decoders_2_uop_lsType = LoadStoreType_WORD;
     end
-    if(when_DecoderArrayPlugin_l186_178) begin
+    if(when_DecoderArrayPlugin_l186_190) begin
       ID_DecoderArray_decoders_2_uop_lsType = LoadStoreType_WORD;
     end
-    if(when_DecoderArrayPlugin_l186_194) begin
+    if(when_DecoderArrayPlugin_l186_212) begin
       ID_DecoderArray_decoders_2_uop_lsType = LoadStoreType_CACOP;
     end
   end
 
   always @(*) begin
     ID_DecoderArray_decoders_2_uop_isLoad = 1'b0;
-    if(when_DecoderArrayPlugin_l186_169) begin
+    if(when_DecoderArrayPlugin_l186_181) begin
       ID_DecoderArray_decoders_2_uop_isLoad = 1'b1;
     end
-    if(when_DecoderArrayPlugin_l186_170) begin
+    if(when_DecoderArrayPlugin_l186_182) begin
       ID_DecoderArray_decoders_2_uop_isLoad = 1'b1;
     end
-    if(when_DecoderArrayPlugin_l186_171) begin
+    if(when_DecoderArrayPlugin_l186_183) begin
       ID_DecoderArray_decoders_2_uop_isLoad = 1'b1;
     end
-    if(when_DecoderArrayPlugin_l186_172) begin
+    if(when_DecoderArrayPlugin_l186_184) begin
       ID_DecoderArray_decoders_2_uop_isLoad = 1'b1;
     end
-    if(when_DecoderArrayPlugin_l186_173) begin
+    if(when_DecoderArrayPlugin_l186_185) begin
       ID_DecoderArray_decoders_2_uop_isLoad = 1'b1;
     end
-    if(when_DecoderArrayPlugin_l186_177) begin
+    if(when_DecoderArrayPlugin_l186_189) begin
       ID_DecoderArray_decoders_2_uop_isLoad = 1'b1;
     end
   end
 
   always @(*) begin
     ID_DecoderArray_decoders_2_uop_isStore = 1'b0;
-    if(when_DecoderArrayPlugin_l186_174) begin
+    if(when_DecoderArrayPlugin_l186_186) begin
       ID_DecoderArray_decoders_2_uop_isStore = 1'b1;
     end
-    if(when_DecoderArrayPlugin_l186_175) begin
+    if(when_DecoderArrayPlugin_l186_187) begin
       ID_DecoderArray_decoders_2_uop_isStore = 1'b1;
     end
-    if(when_DecoderArrayPlugin_l186_176) begin
+    if(when_DecoderArrayPlugin_l186_188) begin
       ID_DecoderArray_decoders_2_uop_isStore = 1'b1;
     end
-    if(when_DecoderArrayPlugin_l186_178) begin
+    if(when_DecoderArrayPlugin_l186_190) begin
       ID_DecoderArray_decoders_2_uop_isStore = 1'b1;
     end
   end
 
   always @(*) begin
     ID_DecoderArray_decoders_2_uop_isLL = 1'b0;
-    if(when_DecoderArrayPlugin_l186_177) begin
+    if(when_DecoderArrayPlugin_l186_189) begin
       ID_DecoderArray_decoders_2_uop_isLL = 1'b1;
     end
   end
 
   always @(*) begin
     ID_DecoderArray_decoders_2_uop_isSC = 1'b0;
-    if(when_DecoderArrayPlugin_l186_178) begin
+    if(when_DecoderArrayPlugin_l186_190) begin
       ID_DecoderArray_decoders_2_uop_isSC = 1'b1;
     end
   end
 
   always @(*) begin
     ID_DecoderArray_decoders_2_uop_isBranch = 1'b0;
-    if(when_DecoderArrayPlugin_l186_153) begin
+    if(when_DecoderArrayPlugin_l186_165) begin
       ID_DecoderArray_decoders_2_uop_isBranch = 1'b1;
     end
-    if(when_DecoderArrayPlugin_l186_154) begin
+    if(when_DecoderArrayPlugin_l186_166) begin
       ID_DecoderArray_decoders_2_uop_isBranch = 1'b1;
     end
-    if(when_DecoderArrayPlugin_l186_155) begin
+    if(when_DecoderArrayPlugin_l186_167) begin
       ID_DecoderArray_decoders_2_uop_isBranch = 1'b1;
     end
-    if(when_DecoderArrayPlugin_l186_156) begin
+    if(when_DecoderArrayPlugin_l186_168) begin
       ID_DecoderArray_decoders_2_uop_isBranch = 1'b1;
     end
-    if(when_DecoderArrayPlugin_l186_157) begin
+    if(when_DecoderArrayPlugin_l186_169) begin
       ID_DecoderArray_decoders_2_uop_isBranch = 1'b1;
     end
-    if(when_DecoderArrayPlugin_l186_158) begin
+    if(when_DecoderArrayPlugin_l186_170) begin
       ID_DecoderArray_decoders_2_uop_isBranch = 1'b1;
     end
   end
 
   always @(*) begin
     ID_DecoderArray_decoders_2_uop_isJump = 1'b0;
-    if(when_DecoderArrayPlugin_l186_159) begin
+    if(when_DecoderArrayPlugin_l186_171) begin
       ID_DecoderArray_decoders_2_uop_isJump = 1'b1;
     end
-    if(when_DecoderArrayPlugin_l186_160) begin
+    if(when_DecoderArrayPlugin_l186_172) begin
       ID_DecoderArray_decoders_2_uop_isJump = 1'b1;
     end
   end
 
   always @(*) begin
     ID_DecoderArray_decoders_2_uop_isJR = 1'b0;
-    if(when_DecoderArrayPlugin_l186_161) begin
+    if(when_DecoderArrayPlugin_l186_173) begin
       ID_DecoderArray_decoders_2_uop_isJR = 1'b1;
     end
   end
 
   always @(*) begin
     when_DecoderArrayPlugin_l254_2 = 1'b0;
-    if(when_DecoderArrayPlugin_l186_183) begin
+    if(when_DecoderArrayPlugin_l186_201) begin
       when_DecoderArrayPlugin_l254_2 = 1'b1;
     end
   end
 
   always @(*) begin
     ID_DecoderArray_decoders_2_uop_isErtn = 1'b0;
-    if(when_DecoderArrayPlugin_l186_185) begin
+    if(when_DecoderArrayPlugin_l186_203) begin
       ID_DecoderArray_decoders_2_uop_isErtn = 1'b1;
     end
   end
 
   always @(*) begin
     when_DecoderArrayPlugin_l259_2 = 1'b0;
-    if(when_DecoderArrayPlugin_l186_184) begin
+    if(when_DecoderArrayPlugin_l186_202) begin
       when_DecoderArrayPlugin_l259_2 = 1'b1;
     end
   end
 
   always @(*) begin
     ID_DecoderArray_decoders_2_uop_isWait = 1'b0;
-    if(when_DecoderArrayPlugin_l186_186) begin
+    if(when_DecoderArrayPlugin_l186_204) begin
       ID_DecoderArray_decoders_2_uop_isWait = 1'b1;
     end
   end
 
   always @(*) begin
     _zz_ID_DecoderArray_decoders_2_uop_flushState = 1'b0;
-    if(when_DecoderArrayPlugin_l186_192) begin
+    if(when_DecoderArrayPlugin_l186_210) begin
       _zz_ID_DecoderArray_decoders_2_uop_flushState = 1'b1;
     end
-    if(when_DecoderArrayPlugin_l186_193) begin
+    if(when_DecoderArrayPlugin_l186_211) begin
       _zz_ID_DecoderArray_decoders_2_uop_flushState = 1'b1;
     end
   end
 
-  assign when_DecoderArrayPlugin_l186_130 = ((FetchBufferPlugin_bufferFIFO_io_pop_2_payload_inst & 32'hffff8000) == 32'h00100000);
-  assign when_DecoderArrayPlugin_l186_131 = ((FetchBufferPlugin_bufferFIFO_io_pop_2_payload_inst & 32'hffff8000) == 32'h00110000);
-  assign when_DecoderArrayPlugin_l186_132 = ((FetchBufferPlugin_bufferFIFO_io_pop_2_payload_inst & 32'hffff8000) == 32'h00120000);
-  assign when_DecoderArrayPlugin_l186_133 = ((FetchBufferPlugin_bufferFIFO_io_pop_2_payload_inst & 32'hffff8000) == 32'h00128000);
-  assign when_DecoderArrayPlugin_l186_134 = ((FetchBufferPlugin_bufferFIFO_io_pop_2_payload_inst & 32'hffff8000) == 32'h00140000);
-  assign when_DecoderArrayPlugin_l186_135 = ((FetchBufferPlugin_bufferFIFO_io_pop_2_payload_inst & 32'hffff8000) == 32'h00148000);
-  assign when_DecoderArrayPlugin_l186_136 = ((FetchBufferPlugin_bufferFIFO_io_pop_2_payload_inst & 32'hffff8000) == 32'h00150000);
-  assign when_DecoderArrayPlugin_l186_137 = ((FetchBufferPlugin_bufferFIFO_io_pop_2_payload_inst & 32'hffff8000) == 32'h00158000);
-  assign when_DecoderArrayPlugin_l186_138 = ((FetchBufferPlugin_bufferFIFO_io_pop_2_payload_inst & 32'hffff8000) == 32'h00170000);
-  assign when_DecoderArrayPlugin_l186_139 = ((FetchBufferPlugin_bufferFIFO_io_pop_2_payload_inst & 32'hffff8000) == 32'h00178000);
-  assign when_DecoderArrayPlugin_l186_140 = ((FetchBufferPlugin_bufferFIFO_io_pop_2_payload_inst & 32'hffff8000) == 32'h00180000);
-  assign when_DecoderArrayPlugin_l186_141 = ((FetchBufferPlugin_bufferFIFO_io_pop_2_payload_inst & 32'hffff8000) == 32'h00408000);
-  assign when_DecoderArrayPlugin_l186_142 = ((FetchBufferPlugin_bufferFIFO_io_pop_2_payload_inst & 32'hffff8000) == 32'h00448000);
-  assign when_DecoderArrayPlugin_l186_143 = ((FetchBufferPlugin_bufferFIFO_io_pop_2_payload_inst & 32'hffff8000) == 32'h00488000);
-  assign when_DecoderArrayPlugin_l186_144 = ((FetchBufferPlugin_bufferFIFO_io_pop_2_payload_inst & 32'hffc00000) == 32'h02000000);
-  assign when_DecoderArrayPlugin_l186_145 = ((FetchBufferPlugin_bufferFIFO_io_pop_2_payload_inst & 32'hffc00000) == 32'h02400000);
-  assign when_DecoderArrayPlugin_l186_146 = ((FetchBufferPlugin_bufferFIFO_io_pop_2_payload_inst & 32'hffc00000) == 32'h02800000);
-  assign when_DecoderArrayPlugin_l186_147 = ((FetchBufferPlugin_bufferFIFO_io_pop_2_payload_inst & 32'hffc00000) == 32'h03400000);
-  assign when_DecoderArrayPlugin_l186_148 = ((FetchBufferPlugin_bufferFIFO_io_pop_2_payload_inst & 32'hffc00000) == 32'h03800000);
-  assign when_DecoderArrayPlugin_l186_149 = ((FetchBufferPlugin_bufferFIFO_io_pop_2_payload_inst & 32'hffc00000) == 32'h03c00000);
-  assign when_DecoderArrayPlugin_l186_150 = ((FetchBufferPlugin_bufferFIFO_io_pop_2_payload_inst & 32'hfe000000) == 32'h14000000);
-  assign when_DecoderArrayPlugin_l186_151 = ((FetchBufferPlugin_bufferFIFO_io_pop_2_payload_inst & 32'hfe000000) == 32'h18000000);
-  assign when_DecoderArrayPlugin_l186_152 = ((FetchBufferPlugin_bufferFIFO_io_pop_2_payload_inst & 32'hfe000000) == 32'h1c000000);
-  assign when_DecoderArrayPlugin_l186_153 = ((FetchBufferPlugin_bufferFIFO_io_pop_2_payload_inst & 32'hfc000000) == 32'h58000000);
-  assign when_DecoderArrayPlugin_l186_154 = ((FetchBufferPlugin_bufferFIFO_io_pop_2_payload_inst & 32'hfc000000) == 32'h5c000000);
-  assign when_DecoderArrayPlugin_l186_155 = ((FetchBufferPlugin_bufferFIFO_io_pop_2_payload_inst & 32'hfc000000) == 32'h60000000);
-  assign when_DecoderArrayPlugin_l186_156 = ((FetchBufferPlugin_bufferFIFO_io_pop_2_payload_inst & 32'hfc000000) == 32'h64000000);
-  assign when_DecoderArrayPlugin_l186_157 = ((FetchBufferPlugin_bufferFIFO_io_pop_2_payload_inst & 32'hfc000000) == 32'h68000000);
-  assign when_DecoderArrayPlugin_l186_158 = ((FetchBufferPlugin_bufferFIFO_io_pop_2_payload_inst & 32'hfc000000) == 32'h6c000000);
-  assign when_DecoderArrayPlugin_l186_159 = ((FetchBufferPlugin_bufferFIFO_io_pop_2_payload_inst & 32'hfc000000) == 32'h50000000);
-  assign when_DecoderArrayPlugin_l186_160 = ((FetchBufferPlugin_bufferFIFO_io_pop_2_payload_inst & 32'hfc000000) == 32'h54000000);
-  assign when_DecoderArrayPlugin_l186_161 = ((FetchBufferPlugin_bufferFIFO_io_pop_2_payload_inst & 32'hfc000000) == 32'h4c000000);
-  assign when_DecoderArrayPlugin_l186_162 = ((FetchBufferPlugin_bufferFIFO_io_pop_2_payload_inst & 32'hffff8000) == 32'h001c0000);
-  assign when_DecoderArrayPlugin_l186_163 = ((FetchBufferPlugin_bufferFIFO_io_pop_2_payload_inst & 32'hffff8000) == 32'h001c8000);
-  assign when_DecoderArrayPlugin_l186_164 = ((FetchBufferPlugin_bufferFIFO_io_pop_2_payload_inst & 32'hffff8000) == 32'h001d0000);
-  assign when_DecoderArrayPlugin_l186_165 = ((FetchBufferPlugin_bufferFIFO_io_pop_2_payload_inst & 32'hffff8000) == 32'h00200000);
-  assign when_DecoderArrayPlugin_l186_166 = ((FetchBufferPlugin_bufferFIFO_io_pop_2_payload_inst & 32'hffff8000) == 32'h00210000);
-  assign when_DecoderArrayPlugin_l186_167 = ((FetchBufferPlugin_bufferFIFO_io_pop_2_payload_inst & 32'hffff8000) == 32'h00208000);
-  assign when_DecoderArrayPlugin_l186_168 = ((FetchBufferPlugin_bufferFIFO_io_pop_2_payload_inst & 32'hffff8000) == 32'h00218000);
-  assign when_DecoderArrayPlugin_l186_169 = ((FetchBufferPlugin_bufferFIFO_io_pop_2_payload_inst & 32'hffc00000) == 32'h28800000);
-  assign when_DecoderArrayPlugin_l186_170 = ((FetchBufferPlugin_bufferFIFO_io_pop_2_payload_inst & 32'hffc00000) == 32'h28400000);
-  assign when_DecoderArrayPlugin_l186_171 = ((FetchBufferPlugin_bufferFIFO_io_pop_2_payload_inst & 32'hffc00000) == 32'h2a400000);
-  assign when_DecoderArrayPlugin_l186_172 = ((FetchBufferPlugin_bufferFIFO_io_pop_2_payload_inst & 32'hffc00000) == 32'h28000000);
-  assign when_DecoderArrayPlugin_l186_173 = ((FetchBufferPlugin_bufferFIFO_io_pop_2_payload_inst & 32'hffc00000) == 32'h2a000000);
-  assign when_DecoderArrayPlugin_l186_174 = ((FetchBufferPlugin_bufferFIFO_io_pop_2_payload_inst & 32'hffc00000) == 32'h29800000);
-  assign when_DecoderArrayPlugin_l186_175 = ((FetchBufferPlugin_bufferFIFO_io_pop_2_payload_inst & 32'hffc00000) == 32'h29400000);
-  assign when_DecoderArrayPlugin_l186_176 = ((FetchBufferPlugin_bufferFIFO_io_pop_2_payload_inst & 32'hffc00000) == 32'h29000000);
-  assign when_DecoderArrayPlugin_l186_177 = ((FetchBufferPlugin_bufferFIFO_io_pop_2_payload_inst & 32'hff000000) == 32'h20000000);
-  assign when_DecoderArrayPlugin_l186_178 = ((FetchBufferPlugin_bufferFIFO_io_pop_2_payload_inst & 32'hff000000) == 32'h21000000);
-  assign when_DecoderArrayPlugin_l186_179 = ((FetchBufferPlugin_bufferFIFO_io_pop_2_payload_inst & 32'hff000000) == 32'h04000000);
-  assign when_DecoderArrayPlugin_l186_180 = ((FetchBufferPlugin_bufferFIFO_io_pop_2_payload_inst & 32'hfffffc00) == 32'h00006000);
-  assign when_DecoderArrayPlugin_l186_181 = ((FetchBufferPlugin_bufferFIFO_io_pop_2_payload_inst & 32'hffffffe0) == 32'h00006400);
-  assign when_DecoderArrayPlugin_l186_182 = ((FetchBufferPlugin_bufferFIFO_io_pop_2_payload_inst & 32'hfffffc00) == 32'h00006c00);
-  assign when_DecoderArrayPlugin_l186_183 = ((FetchBufferPlugin_bufferFIFO_io_pop_2_payload_inst & 32'hffff8000) == 32'h002b0000);
-  assign when_DecoderArrayPlugin_l186_184 = ((FetchBufferPlugin_bufferFIFO_io_pop_2_payload_inst & 32'hffff8000) == 32'h002a0000);
-  assign when_DecoderArrayPlugin_l186_185 = ((FetchBufferPlugin_bufferFIFO_io_pop_2_payload_inst & 32'hffffffff) == 32'h06483800);
-  assign when_DecoderArrayPlugin_l186_186 = ((FetchBufferPlugin_bufferFIFO_io_pop_2_payload_inst & 32'hffff8000) == 32'h06488000);
-  assign when_DecoderArrayPlugin_l186_187 = ((FetchBufferPlugin_bufferFIFO_io_pop_2_payload_inst & 32'hffffffff) == 32'h06482800);
-  assign when_DecoderArrayPlugin_l186_188 = ((FetchBufferPlugin_bufferFIFO_io_pop_2_payload_inst & 32'hffffffff) == 32'h06482c00);
-  assign when_DecoderArrayPlugin_l186_189 = ((FetchBufferPlugin_bufferFIFO_io_pop_2_payload_inst & 32'hffffffff) == 32'h06483000);
-  assign when_DecoderArrayPlugin_l186_190 = ((FetchBufferPlugin_bufferFIFO_io_pop_2_payload_inst & 32'hffffffff) == 32'h06483400);
-  assign when_DecoderArrayPlugin_l186_191 = ((FetchBufferPlugin_bufferFIFO_io_pop_2_payload_inst & 32'hffff8000) == 32'h06498000);
-  assign when_DecoderArrayPlugin_l186_192 = ((FetchBufferPlugin_bufferFIFO_io_pop_2_payload_inst & 32'hffff8000) == 32'h38728000);
-  assign when_DecoderArrayPlugin_l186_193 = ((FetchBufferPlugin_bufferFIFO_io_pop_2_payload_inst & 32'hffff8000) == 32'h38720000);
-  assign when_DecoderArrayPlugin_l186_194 = ((FetchBufferPlugin_bufferFIFO_io_pop_2_payload_inst & 32'hffc00000) == 32'h06000000);
+  assign when_DecoderArrayPlugin_l186_142 = ((FetchBufferPlugin_bufferFIFO_io_pop_2_payload_inst & 32'hffff8000) == 32'h00100000);
+  assign when_DecoderArrayPlugin_l186_143 = ((FetchBufferPlugin_bufferFIFO_io_pop_2_payload_inst & 32'hffff8000) == 32'h00110000);
+  assign when_DecoderArrayPlugin_l186_144 = ((FetchBufferPlugin_bufferFIFO_io_pop_2_payload_inst & 32'hffff8000) == 32'h00120000);
+  assign when_DecoderArrayPlugin_l186_145 = ((FetchBufferPlugin_bufferFIFO_io_pop_2_payload_inst & 32'hffff8000) == 32'h00128000);
+  assign when_DecoderArrayPlugin_l186_146 = ((FetchBufferPlugin_bufferFIFO_io_pop_2_payload_inst & 32'hffff8000) == 32'h00140000);
+  assign when_DecoderArrayPlugin_l186_147 = ((FetchBufferPlugin_bufferFIFO_io_pop_2_payload_inst & 32'hffff8000) == 32'h00148000);
+  assign when_DecoderArrayPlugin_l186_148 = ((FetchBufferPlugin_bufferFIFO_io_pop_2_payload_inst & 32'hffff8000) == 32'h00150000);
+  assign when_DecoderArrayPlugin_l186_149 = ((FetchBufferPlugin_bufferFIFO_io_pop_2_payload_inst & 32'hffff8000) == 32'h00158000);
+  assign when_DecoderArrayPlugin_l186_150 = ((FetchBufferPlugin_bufferFIFO_io_pop_2_payload_inst & 32'hffff8000) == 32'h00170000);
+  assign when_DecoderArrayPlugin_l186_151 = ((FetchBufferPlugin_bufferFIFO_io_pop_2_payload_inst & 32'hffff8000) == 32'h00178000);
+  assign when_DecoderArrayPlugin_l186_152 = ((FetchBufferPlugin_bufferFIFO_io_pop_2_payload_inst & 32'hffff8000) == 32'h00180000);
+  assign when_DecoderArrayPlugin_l186_153 = ((FetchBufferPlugin_bufferFIFO_io_pop_2_payload_inst & 32'hffff8000) == 32'h00408000);
+  assign when_DecoderArrayPlugin_l186_154 = ((FetchBufferPlugin_bufferFIFO_io_pop_2_payload_inst & 32'hffff8000) == 32'h00448000);
+  assign when_DecoderArrayPlugin_l186_155 = ((FetchBufferPlugin_bufferFIFO_io_pop_2_payload_inst & 32'hffff8000) == 32'h00488000);
+  assign when_DecoderArrayPlugin_l186_156 = ((FetchBufferPlugin_bufferFIFO_io_pop_2_payload_inst & 32'hffc00000) == 32'h02000000);
+  assign when_DecoderArrayPlugin_l186_157 = ((FetchBufferPlugin_bufferFIFO_io_pop_2_payload_inst & 32'hffc00000) == 32'h02400000);
+  assign when_DecoderArrayPlugin_l186_158 = ((FetchBufferPlugin_bufferFIFO_io_pop_2_payload_inst & 32'hffc00000) == 32'h02800000);
+  assign when_DecoderArrayPlugin_l186_159 = ((FetchBufferPlugin_bufferFIFO_io_pop_2_payload_inst & 32'hffc00000) == 32'h03400000);
+  assign when_DecoderArrayPlugin_l186_160 = ((FetchBufferPlugin_bufferFIFO_io_pop_2_payload_inst & 32'hffc00000) == 32'h03800000);
+  assign when_DecoderArrayPlugin_l186_161 = ((FetchBufferPlugin_bufferFIFO_io_pop_2_payload_inst & 32'hffc00000) == 32'h03c00000);
+  assign when_DecoderArrayPlugin_l186_162 = ((FetchBufferPlugin_bufferFIFO_io_pop_2_payload_inst & 32'hfe000000) == 32'h14000000);
+  assign when_DecoderArrayPlugin_l186_163 = ((FetchBufferPlugin_bufferFIFO_io_pop_2_payload_inst & 32'hfe000000) == 32'h18000000);
+  assign when_DecoderArrayPlugin_l186_164 = ((FetchBufferPlugin_bufferFIFO_io_pop_2_payload_inst & 32'hfe000000) == 32'h1c000000);
+  assign when_DecoderArrayPlugin_l186_165 = ((FetchBufferPlugin_bufferFIFO_io_pop_2_payload_inst & 32'hfc000000) == 32'h58000000);
+  assign when_DecoderArrayPlugin_l186_166 = ((FetchBufferPlugin_bufferFIFO_io_pop_2_payload_inst & 32'hfc000000) == 32'h5c000000);
+  assign when_DecoderArrayPlugin_l186_167 = ((FetchBufferPlugin_bufferFIFO_io_pop_2_payload_inst & 32'hfc000000) == 32'h60000000);
+  assign when_DecoderArrayPlugin_l186_168 = ((FetchBufferPlugin_bufferFIFO_io_pop_2_payload_inst & 32'hfc000000) == 32'h64000000);
+  assign when_DecoderArrayPlugin_l186_169 = ((FetchBufferPlugin_bufferFIFO_io_pop_2_payload_inst & 32'hfc000000) == 32'h68000000);
+  assign when_DecoderArrayPlugin_l186_170 = ((FetchBufferPlugin_bufferFIFO_io_pop_2_payload_inst & 32'hfc000000) == 32'h6c000000);
+  assign when_DecoderArrayPlugin_l186_171 = ((FetchBufferPlugin_bufferFIFO_io_pop_2_payload_inst & 32'hfc000000) == 32'h50000000);
+  assign when_DecoderArrayPlugin_l186_172 = ((FetchBufferPlugin_bufferFIFO_io_pop_2_payload_inst & 32'hfc000000) == 32'h54000000);
+  assign when_DecoderArrayPlugin_l186_173 = ((FetchBufferPlugin_bufferFIFO_io_pop_2_payload_inst & 32'hfc000000) == 32'h4c000000);
+  assign when_DecoderArrayPlugin_l186_174 = ((FetchBufferPlugin_bufferFIFO_io_pop_2_payload_inst & 32'hffff8000) == 32'h001c0000);
+  assign when_DecoderArrayPlugin_l186_175 = ((FetchBufferPlugin_bufferFIFO_io_pop_2_payload_inst & 32'hffff8000) == 32'h001c8000);
+  assign when_DecoderArrayPlugin_l186_176 = ((FetchBufferPlugin_bufferFIFO_io_pop_2_payload_inst & 32'hffff8000) == 32'h001d0000);
+  assign when_DecoderArrayPlugin_l186_177 = ((FetchBufferPlugin_bufferFIFO_io_pop_2_payload_inst & 32'hffff8000) == 32'h00200000);
+  assign when_DecoderArrayPlugin_l186_178 = ((FetchBufferPlugin_bufferFIFO_io_pop_2_payload_inst & 32'hffff8000) == 32'h00210000);
+  assign when_DecoderArrayPlugin_l186_179 = ((FetchBufferPlugin_bufferFIFO_io_pop_2_payload_inst & 32'hffff8000) == 32'h00208000);
+  assign when_DecoderArrayPlugin_l186_180 = ((FetchBufferPlugin_bufferFIFO_io_pop_2_payload_inst & 32'hffff8000) == 32'h00218000);
+  assign when_DecoderArrayPlugin_l186_181 = ((FetchBufferPlugin_bufferFIFO_io_pop_2_payload_inst & 32'hffc00000) == 32'h28800000);
+  assign when_DecoderArrayPlugin_l186_182 = ((FetchBufferPlugin_bufferFIFO_io_pop_2_payload_inst & 32'hffc00000) == 32'h28400000);
+  assign when_DecoderArrayPlugin_l186_183 = ((FetchBufferPlugin_bufferFIFO_io_pop_2_payload_inst & 32'hffc00000) == 32'h2a400000);
+  assign when_DecoderArrayPlugin_l186_184 = ((FetchBufferPlugin_bufferFIFO_io_pop_2_payload_inst & 32'hffc00000) == 32'h28000000);
+  assign when_DecoderArrayPlugin_l186_185 = ((FetchBufferPlugin_bufferFIFO_io_pop_2_payload_inst & 32'hffc00000) == 32'h2a000000);
+  assign when_DecoderArrayPlugin_l186_186 = ((FetchBufferPlugin_bufferFIFO_io_pop_2_payload_inst & 32'hffc00000) == 32'h29800000);
+  assign when_DecoderArrayPlugin_l186_187 = ((FetchBufferPlugin_bufferFIFO_io_pop_2_payload_inst & 32'hffc00000) == 32'h29400000);
+  assign when_DecoderArrayPlugin_l186_188 = ((FetchBufferPlugin_bufferFIFO_io_pop_2_payload_inst & 32'hffc00000) == 32'h29000000);
+  assign when_DecoderArrayPlugin_l186_189 = ((FetchBufferPlugin_bufferFIFO_io_pop_2_payload_inst & 32'hff000000) == 32'h20000000);
+  assign when_DecoderArrayPlugin_l186_190 = ((FetchBufferPlugin_bufferFIFO_io_pop_2_payload_inst & 32'hff000000) == 32'h21000000);
+  assign when_DecoderArrayPlugin_l186_191 = ((FetchBufferPlugin_bufferFIFO_io_pop_2_payload_inst & 32'hff000000) == 32'h04000000);
+  assign when_DecoderArrayPlugin_l186_192 = ((FetchBufferPlugin_bufferFIFO_io_pop_2_payload_inst & 32'hfffffc00) == 32'h00006000);
+  assign when_DecoderArrayPlugin_l186_193 = ((FetchBufferPlugin_bufferFIFO_io_pop_2_payload_inst & 32'hffffffe0) == 32'h00006400);
+  assign when_DecoderArrayPlugin_l186_194 = ((FetchBufferPlugin_bufferFIFO_io_pop_2_payload_inst & 32'hfffffc00) == 32'h00006c00);
+  assign when_DecoderArrayPlugin_l186_195 = ((FetchBufferPlugin_bufferFIFO_io_pop_2_payload_inst & 32'hfffffc00) == 32'h06480000);
+  assign when_DecoderArrayPlugin_l186_196 = ((FetchBufferPlugin_bufferFIFO_io_pop_2_payload_inst & 32'hfffffc00) == 32'h06480400);
+  assign when_DecoderArrayPlugin_l186_197 = ((FetchBufferPlugin_bufferFIFO_io_pop_2_payload_inst & 32'hfffffc00) == 32'h06480800);
+  assign when_DecoderArrayPlugin_l186_198 = ((FetchBufferPlugin_bufferFIFO_io_pop_2_payload_inst & 32'hfffffc00) == 32'h06481000);
+  assign when_DecoderArrayPlugin_l186_199 = ((FetchBufferPlugin_bufferFIFO_io_pop_2_payload_inst & 32'hfffffc00) == 32'h06481400);
+  assign when_DecoderArrayPlugin_l186_200 = ((FetchBufferPlugin_bufferFIFO_io_pop_2_payload_inst & 32'hfffffc00) == 32'h06481800);
+  assign when_DecoderArrayPlugin_l186_201 = ((FetchBufferPlugin_bufferFIFO_io_pop_2_payload_inst & 32'hffff8000) == 32'h002b0000);
+  assign when_DecoderArrayPlugin_l186_202 = ((FetchBufferPlugin_bufferFIFO_io_pop_2_payload_inst & 32'hffff8000) == 32'h002a0000);
+  assign when_DecoderArrayPlugin_l186_203 = ((FetchBufferPlugin_bufferFIFO_io_pop_2_payload_inst & 32'hffffffff) == 32'h06483800);
+  assign when_DecoderArrayPlugin_l186_204 = ((FetchBufferPlugin_bufferFIFO_io_pop_2_payload_inst & 32'hffff8000) == 32'h06488000);
+  assign when_DecoderArrayPlugin_l186_205 = ((FetchBufferPlugin_bufferFIFO_io_pop_2_payload_inst & 32'hffffffff) == 32'h06482800);
+  assign when_DecoderArrayPlugin_l186_206 = ((FetchBufferPlugin_bufferFIFO_io_pop_2_payload_inst & 32'hffffffff) == 32'h06482c00);
+  assign when_DecoderArrayPlugin_l186_207 = ((FetchBufferPlugin_bufferFIFO_io_pop_2_payload_inst & 32'hffffffff) == 32'h06483000);
+  assign when_DecoderArrayPlugin_l186_208 = ((FetchBufferPlugin_bufferFIFO_io_pop_2_payload_inst & 32'hffffffff) == 32'h06483400);
+  assign when_DecoderArrayPlugin_l186_209 = ((FetchBufferPlugin_bufferFIFO_io_pop_2_payload_inst & 32'hffff8000) == 32'h06498000);
+  assign when_DecoderArrayPlugin_l186_210 = ((FetchBufferPlugin_bufferFIFO_io_pop_2_payload_inst & 32'hffff8000) == 32'h38728000);
+  assign when_DecoderArrayPlugin_l186_211 = ((FetchBufferPlugin_bufferFIFO_io_pop_2_payload_inst & 32'hffff8000) == 32'h38720000);
+  assign when_DecoderArrayPlugin_l186_212 = ((FetchBufferPlugin_bufferFIFO_io_pop_2_payload_inst & 32'hffc00000) == 32'h06000000);
   assign ID_DecoderArray_decoders_2_uop_pc = FetchBufferPlugin_bufferFIFO_io_pop_2_payload_pc;
   assign ID_DecoderArray_decoders_2_uop_inst = FetchBufferPlugin_bufferFIFO_io_pop_2_payload_inst;
   assign ID_DecoderArray_decoders_2_uop_predInfo_predictBranch = FetchBufferPlugin_bufferFIFO_io_pop_2_payload_predInfo_predictBranch;
@@ -69971,7 +70408,7 @@ module MyCPUCore (
           end
         endcase
       end
-      if(when_DecoderArrayPlugin_l309_2) begin
+      if(when_DecoderArrayPlugin_l313_2) begin
         ID_DecoderArray_decoders_2_uop_except_valid = 1'b1;
       end
     end
@@ -70008,7 +70445,7 @@ module MyCPUCore (
           end
         endcase
       end
-      if(when_DecoderArrayPlugin_l309_2) begin
+      if(when_DecoderArrayPlugin_l313_2) begin
         ID_DecoderArray_decoders_2_uop_except_payload_code = 6'h0e;
       end
     end
@@ -70045,7 +70482,7 @@ module MyCPUCore (
           end
         endcase
       end
-      if(when_DecoderArrayPlugin_l309_2) begin
+      if(when_DecoderArrayPlugin_l313_2) begin
         ID_DecoderArray_decoders_2_uop_except_payload_subcode = 9'h0;
       end
     end
@@ -70061,7 +70498,7 @@ module MyCPUCore (
   assign when_DecoderArrayPlugin_l252_2 = (! FetchBufferPlugin_bufferFIFO_io_pop_2_payload_except_valid);
   assign when_DecoderArrayPlugin_l271_2 = ((((FetchBufferPlugin_bufferFIFO_io_pop_2_payload_inst & 32'hffff8000) == 32'h06498000) && ID_DecoderArray_decoders_2_uop_useRj) && ID_DecoderArray_decoders_2_uop_useRk);
   assign switch_DecoderArrayPlugin_l274_2 = FetchBufferPlugin_bufferFIFO_io_pop_2_payload_inst[4 : 0];
-  assign when_DecoderArrayPlugin_l309_2 = ((ExceptionHandlerPlugin_CRMD_PLV != 2'b00) && (((((((_zz_when_DecoderArrayPlugin_l309_2_1 || _zz_when_DecoderArrayPlugin_l309_2_2) || (_zz_when_DecoderArrayPlugin_l309_2_3 == _zz_when_DecoderArrayPlugin_l309_2_4)) || ((FetchBufferPlugin_bufferFIFO_io_pop_2_payload_inst & _zz_when_DecoderArrayPlugin_l309_2_5) == 32'h06482c00)) || ((FetchBufferPlugin_bufferFIFO_io_pop_2_payload_inst & 32'hffffffff) == 32'h06483000)) || ((FetchBufferPlugin_bufferFIFO_io_pop_2_payload_inst & 32'hffffffff) == 32'h06482800)) || ((FetchBufferPlugin_bufferFIFO_io_pop_2_payload_inst & 32'hffffffff) == 32'h06483400)) || ((FetchBufferPlugin_bufferFIFO_io_pop_2_payload_inst & 32'hffff8000) == 32'h06498000)));
+  assign when_DecoderArrayPlugin_l313_2 = ((ExceptionHandlerPlugin_CRMD_PLV != 2'b00) && (((((((_zz_when_DecoderArrayPlugin_l313_2_1 || _zz_when_DecoderArrayPlugin_l313_2_7) || (_zz_when_DecoderArrayPlugin_l313_2_8 == _zz_when_DecoderArrayPlugin_l313_2_9)) || ((FetchBufferPlugin_bufferFIFO_io_pop_2_payload_inst & _zz_when_DecoderArrayPlugin_l313_2_10) == 32'h06480400)) || ((FetchBufferPlugin_bufferFIFO_io_pop_2_payload_inst & 32'hfffffc00) == 32'h06480800)) || ((FetchBufferPlugin_bufferFIFO_io_pop_2_payload_inst & 32'hfffffc00) == 32'h06481000)) || ((FetchBufferPlugin_bufferFIFO_io_pop_2_payload_inst & 32'hfffffc00) == 32'h06481400)) || ((FetchBufferPlugin_bufferFIFO_io_pop_2_payload_inst & 32'hfffffc00) == 32'h06481800)));
   assign ID_DecoderArray_decoders_2_uop_branchLike = ((ID_DecoderArray_decoders_2_uop_isBranch || ID_DecoderArray_decoders_2_uop_isJump) || ID_DecoderArray_decoders_2_uop_isJR);
   assign ID_DecoderArray_decoders_2_uop_flushState = (((((((ID_DecoderArray_decoders_2_uop_isErtn || ID_DecoderArray_decoders_2_uop_writeCSR) || ID_DecoderArray_decoders_2_uop_isWait) || (ID_DecoderArray_decoders_2_uop_tlbOp != TLBOpType_NONE)) || ID_DecoderArray_decoders_2_uop_operateCache) || _zz_ID_DecoderArray_decoders_2_uop_flushState) || ID_DecoderArray_decoders_2_uop_isLL) || ID_DecoderArray_decoders_2_uop_isSC);
   assign ID_DecoderArray_decoders_2_uop_uniqueRetire = ((((ID_DecoderArray_decoders_2_uop_flushState || ID_DecoderArray_decoders_2_uop_branchLike) || ID_DecoderArray_decoders_2_uop_isLoad) || ID_DecoderArray_decoders_2_uop_isStore) || ID_DecoderArray_decoders_2_uop_predInfo_predictBranch);
@@ -71635,12 +72072,12 @@ module MyCPUCore (
   assign MEM_ADDR_AddressGenerationPlugin_directTranslateResult_resultBundle_payload_exception_raisePME = MEM_ADDR_AddressGenerationPlugin_directTranslateResult_resultExceptionBundle_raisePME;
   assign MEM_ADDR_AddressGenerationPlugin_directTranslateResult_resultBundle_payload_exception_raisePPI = MEM_ADDR_AddressGenerationPlugin_directTranslateResult_resultExceptionBundle_raisePPI;
   assign MEM_ADDR_AddressGenerationPlugin_directTranslateResult_resultBundle_payload_exception_raiseTLBR = MEM_ADDR_AddressGenerationPlugin_directTranslateResult_resultExceptionBundle_raiseTLBR;
-  assign switch_MMUPlugin_l290_1 = (MEM_ADDR_ISSUE_SLOT_uop_isStore ? MemOperationType_STORE : MemOperationType_LOAD);
+  assign switch_MMUPlugin_l298_1 = (MEM_ADDR_ISSUE_SLOT_uop_isStore ? MemOperationType_STORE : MemOperationType_LOAD);
   assign MEM_ADDR_AddressGenerationPlugin_tlbTranslateResult_resultValid = 1'b1;
   always @(*) begin
     MEM_ADDR_AddressGenerationPlugin_tlbTranslateResult_resultExceptionBundle_raisePIL = 1'b0;
-    if(when_MMUPlugin_l289_1) begin
-      case(switch_MMUPlugin_l290_1)
+    if(when_MMUPlugin_l297_1) begin
+      case(switch_MMUPlugin_l298_1)
         MemOperationType_FETCH : begin
         end
         MemOperationType_LOAD : begin
@@ -71654,8 +72091,8 @@ module MyCPUCore (
 
   always @(*) begin
     MEM_ADDR_AddressGenerationPlugin_tlbTranslateResult_resultExceptionBundle_raisePIS = 1'b0;
-    if(when_MMUPlugin_l289_1) begin
-      case(switch_MMUPlugin_l290_1)
+    if(when_MMUPlugin_l297_1) begin
+      case(switch_MMUPlugin_l298_1)
         MemOperationType_FETCH : begin
         end
         MemOperationType_LOAD : begin
@@ -71669,8 +72106,8 @@ module MyCPUCore (
 
   always @(*) begin
     MEM_ADDR_AddressGenerationPlugin_tlbTranslateResult_resultExceptionBundle_raisePIF = 1'b0;
-    if(when_MMUPlugin_l289_1) begin
-      case(switch_MMUPlugin_l290_1)
+    if(when_MMUPlugin_l297_1) begin
+      case(switch_MMUPlugin_l298_1)
         MemOperationType_FETCH : begin
           MEM_ADDR_AddressGenerationPlugin_tlbTranslateResult_resultExceptionBundle_raisePIF = 1'b1;
         end
@@ -71684,21 +72121,21 @@ module MyCPUCore (
 
   always @(*) begin
     MEM_ADDR_AddressGenerationPlugin_tlbTranslateResult_resultExceptionBundle_raisePME = 1'b0;
-    if(when_MMUPlugin_l307_1) begin
+    if(when_MMUPlugin_l315_1) begin
       MEM_ADDR_AddressGenerationPlugin_tlbTranslateResult_resultExceptionBundle_raisePME = 1'b1;
     end
   end
 
   always @(*) begin
     MEM_ADDR_AddressGenerationPlugin_tlbTranslateResult_resultExceptionBundle_raisePPI = 1'b0;
-    if(when_MMUPlugin_l303_1) begin
+    if(when_MMUPlugin_l311_1) begin
       MEM_ADDR_AddressGenerationPlugin_tlbTranslateResult_resultExceptionBundle_raisePPI = 1'b1;
     end
   end
 
   always @(*) begin
     MEM_ADDR_AddressGenerationPlugin_tlbTranslateResult_resultExceptionBundle_raiseTLBR = 1'b0;
-    if(when_MMUPlugin_l285_1) begin
+    if(when_MMUPlugin_l293_1) begin
       MEM_ADDR_AddressGenerationPlugin_tlbTranslateResult_resultExceptionBundle_raiseTLBR = 1'b1;
     end
   end
@@ -71777,10 +72214,10 @@ module MyCPUCore (
   assign MEM_ADDR_AddressGenerationPlugin_tlbTranslateResult_TLBHitEntry_mat = (MEM_ADDR_MEMORY_ADDRESS[MEM_ADDR_AddressGenerationPlugin_tlbTranslateResult_TLBHitEntry_PS[4 : 0]] ? MEM_ADDR_AddressGenerationPlugin_tlbTranslateResult_TLBHitEntry_MAT1 : MEM_ADDR_AddressGenerationPlugin_tlbTranslateResult_TLBHitEntry_MAT0);
   assign MEM_ADDR_AddressGenerationPlugin_tlbTranslateResult_TLBHitEntry_plv = (MEM_ADDR_MEMORY_ADDRESS[MEM_ADDR_AddressGenerationPlugin_tlbTranslateResult_TLBHitEntry_PS[4 : 0]] ? MEM_ADDR_AddressGenerationPlugin_tlbTranslateResult_TLBHitEntry_PLV1 : MEM_ADDR_AddressGenerationPlugin_tlbTranslateResult_TLBHitEntry_PLV0);
   assign MEM_ADDR_AddressGenerationPlugin_tlbTranslateResult_TLBHitEntry_ppn = (MEM_ADDR_MEMORY_ADDRESS[MEM_ADDR_AddressGenerationPlugin_tlbTranslateResult_TLBHitEntry_PS[4 : 0]] ? MEM_ADDR_AddressGenerationPlugin_tlbTranslateResult_TLBHitEntry_PPN1 : MEM_ADDR_AddressGenerationPlugin_tlbTranslateResult_TLBHitEntry_PPN0);
-  assign when_MMUPlugin_l285_1 = (! MEM_ADDR_AddressGenerationPlugin_tlbTranslateResult_TLBHit);
-  assign when_MMUPlugin_l289_1 = (! MEM_ADDR_AddressGenerationPlugin_tlbTranslateResult_TLBHitEntry_v);
-  assign when_MMUPlugin_l303_1 = (MEM_ADDR_AddressGenerationPlugin_tlbTranslateResult_TLBHitEntry_plv < ExceptionHandlerPlugin_CRMD_PLV);
-  assign when_MMUPlugin_l307_1 = ((switch_MMUPlugin_l290_1 == MemOperationType_STORE) && (! MEM_ADDR_AddressGenerationPlugin_tlbTranslateResult_TLBHitEntry_d));
+  assign when_MMUPlugin_l293_1 = (! MEM_ADDR_AddressGenerationPlugin_tlbTranslateResult_TLBHit);
+  assign when_MMUPlugin_l297_1 = (! MEM_ADDR_AddressGenerationPlugin_tlbTranslateResult_TLBHitEntry_v);
+  assign when_MMUPlugin_l311_1 = (MEM_ADDR_AddressGenerationPlugin_tlbTranslateResult_TLBHitEntry_plv < ExceptionHandlerPlugin_CRMD_PLV);
+  assign when_MMUPlugin_l315_1 = ((switch_MMUPlugin_l298_1 == MemOperationType_STORE) && (! MEM_ADDR_AddressGenerationPlugin_tlbTranslateResult_TLBHitEntry_d));
   assign MEM_ADDR_AddressGenerationPlugin_tlbTranslateResult_resultPhysAddr = ((MEM_ADDR_AddressGenerationPlugin_tlbTranslateResult_TLBHitEntry_PS == 6'h0c) ? {MEM_ADDR_AddressGenerationPlugin_tlbTranslateResult_TLBHitEntry_ppn,MEM_ADDR_MEMORY_ADDRESS[11 : 0]} : {MEM_ADDR_AddressGenerationPlugin_tlbTranslateResult_TLBHitEntry_ppn[19 : 9],MEM_ADDR_MEMORY_ADDRESS[20 : 0]});
   assign MEM_ADDR_AddressGenerationPlugin_tlbTranslateResult_resultCached = MEM_ADDR_AddressGenerationPlugin_tlbTranslateResult_TLBHitEntry_mat[0];
   assign MEM_ADDR_AddressGenerationPlugin_tlbTranslateResult_resultBundle_valid = MEM_ADDR_AddressGenerationPlugin_tlbTranslateResult_resultValid;
@@ -71797,43 +72234,43 @@ module MyCPUCore (
   assign MEM_ADDR_AddressGenerationPlugin_savedCSR_CRMD_DATF = ExceptionHandlerPlugin_CRMD_DATF;
   assign MEM_ADDR_AddressGenerationPlugin_savedCSR_CRMD_DATM = ExceptionHandlerPlugin_CRMD_DATM;
   assign MEM_MEM1_AddressGenerationPlugin_excAsLoad = (! MEM_MEM1_ISSUE_SLOT_uop_isStore);
-  assign _zz_when_MMUPlugin_l359 = (MEM_MEM1_ISSUE_SLOT_uop_isStore ? MemOperationType_STORE : MemOperationType_LOAD);
+  assign _zz_when_MMUPlugin_l367 = (MEM_MEM1_ISSUE_SLOT_uop_isStore ? MemOperationType_STORE : MemOperationType_LOAD);
   always @(*) begin
     MEM_MEM1_AddressGenerationPlugin_translateResult_resultValid = 1'b0;
-    if(when_MMUPlugin_l339_1) begin
+    if(when_MMUPlugin_l347_1) begin
       MEM_MEM1_AddressGenerationPlugin_translateResult_resultValid = MEM_MEM1_TLB_TRANSLATE_RESULT_valid;
     end
-    if(when_MMUPlugin_l347_1) begin
+    if(when_MMUPlugin_l355_1) begin
       MEM_MEM1_AddressGenerationPlugin_translateResult_resultValid = MEM_MEM1_DIRECT_TRANSLATE_RESULT_valid;
     end
-    if(when_MMUPlugin_l355_1) begin
+    if(when_MMUPlugin_l363_1) begin
       MEM_MEM1_AddressGenerationPlugin_translateResult_resultValid = 1'b1;
     end
   end
 
   always @(*) begin
     MEM_MEM1_AddressGenerationPlugin_translateResult_resultPhysAddr = 32'h0;
-    if(when_MMUPlugin_l339_1) begin
+    if(when_MMUPlugin_l347_1) begin
       MEM_MEM1_AddressGenerationPlugin_translateResult_resultPhysAddr = MEM_MEM1_TLB_TRANSLATE_RESULT_payload_physAddr;
     end
-    if(when_MMUPlugin_l347_1) begin
+    if(when_MMUPlugin_l355_1) begin
       MEM_MEM1_AddressGenerationPlugin_translateResult_resultPhysAddr = MEM_MEM1_DIRECT_TRANSLATE_RESULT_payload_physAddr;
     end
-    if(when_MMUPlugin_l355_1) begin
+    if(when_MMUPlugin_l363_1) begin
       MEM_MEM1_AddressGenerationPlugin_translateResult_resultPhysAddr = MEM_MEM1_MEMORY_ADDRESS;
     end
   end
 
   always @(*) begin
     MEM_MEM1_AddressGenerationPlugin_translateResult_resultCached = 1'b0;
-    if(when_MMUPlugin_l339_1) begin
+    if(when_MMUPlugin_l347_1) begin
       MEM_MEM1_AddressGenerationPlugin_translateResult_resultCached = MEM_MEM1_TLB_TRANSLATE_RESULT_payload_cached;
     end
-    if(when_MMUPlugin_l347_1) begin
+    if(when_MMUPlugin_l355_1) begin
       MEM_MEM1_AddressGenerationPlugin_translateResult_resultCached = MEM_MEM1_DIRECT_TRANSLATE_RESULT_payload_cached;
     end
-    if(when_MMUPlugin_l355_1) begin
-      if(when_MMUPlugin_l359_1) begin
+    if(when_MMUPlugin_l363_1) begin
+      if(when_MMUPlugin_l367_1) begin
         MEM_MEM1_AddressGenerationPlugin_translateResult_resultCached = MEM_MEM1_TRANSLATE_SAVED_CSR_CRMD_DATF[0];
       end else begin
         MEM_MEM1_AddressGenerationPlugin_translateResult_resultCached = MEM_MEM1_TRANSLATE_SAVED_CSR_CRMD_DATM[0];
@@ -71843,86 +72280,86 @@ module MyCPUCore (
 
   always @(*) begin
     MEM_MEM1_AddressGenerationPlugin_translateResult_resultExceptionBundle_raisePIL = 1'b0;
-    if(when_MMUPlugin_l339_1) begin
+    if(when_MMUPlugin_l347_1) begin
       MEM_MEM1_AddressGenerationPlugin_translateResult_resultExceptionBundle_raisePIL = MEM_MEM1_TLB_TRANSLATE_RESULT_payload_exception_raisePIL;
     end
-    if(when_MMUPlugin_l347_1) begin
+    if(when_MMUPlugin_l355_1) begin
       MEM_MEM1_AddressGenerationPlugin_translateResult_resultExceptionBundle_raisePIL = MEM_MEM1_DIRECT_TRANSLATE_RESULT_payload_exception_raisePIL;
     end
-    if(when_MMUPlugin_l355_1) begin
+    if(when_MMUPlugin_l363_1) begin
       MEM_MEM1_AddressGenerationPlugin_translateResult_resultExceptionBundle_raisePIL = 1'b0;
     end
   end
 
   always @(*) begin
     MEM_MEM1_AddressGenerationPlugin_translateResult_resultExceptionBundle_raisePIS = 1'b0;
-    if(when_MMUPlugin_l339_1) begin
+    if(when_MMUPlugin_l347_1) begin
       MEM_MEM1_AddressGenerationPlugin_translateResult_resultExceptionBundle_raisePIS = MEM_MEM1_TLB_TRANSLATE_RESULT_payload_exception_raisePIS;
     end
-    if(when_MMUPlugin_l347_1) begin
+    if(when_MMUPlugin_l355_1) begin
       MEM_MEM1_AddressGenerationPlugin_translateResult_resultExceptionBundle_raisePIS = MEM_MEM1_DIRECT_TRANSLATE_RESULT_payload_exception_raisePIS;
     end
-    if(when_MMUPlugin_l355_1) begin
+    if(when_MMUPlugin_l363_1) begin
       MEM_MEM1_AddressGenerationPlugin_translateResult_resultExceptionBundle_raisePIS = 1'b0;
     end
   end
 
   always @(*) begin
     MEM_MEM1_AddressGenerationPlugin_translateResult_resultExceptionBundle_raisePIF = 1'b0;
-    if(when_MMUPlugin_l339_1) begin
+    if(when_MMUPlugin_l347_1) begin
       MEM_MEM1_AddressGenerationPlugin_translateResult_resultExceptionBundle_raisePIF = MEM_MEM1_TLB_TRANSLATE_RESULT_payload_exception_raisePIF;
     end
-    if(when_MMUPlugin_l347_1) begin
+    if(when_MMUPlugin_l355_1) begin
       MEM_MEM1_AddressGenerationPlugin_translateResult_resultExceptionBundle_raisePIF = MEM_MEM1_DIRECT_TRANSLATE_RESULT_payload_exception_raisePIF;
     end
-    if(when_MMUPlugin_l355_1) begin
+    if(when_MMUPlugin_l363_1) begin
       MEM_MEM1_AddressGenerationPlugin_translateResult_resultExceptionBundle_raisePIF = 1'b0;
     end
   end
 
   always @(*) begin
     MEM_MEM1_AddressGenerationPlugin_translateResult_resultExceptionBundle_raisePME = 1'b0;
-    if(when_MMUPlugin_l339_1) begin
+    if(when_MMUPlugin_l347_1) begin
       MEM_MEM1_AddressGenerationPlugin_translateResult_resultExceptionBundle_raisePME = MEM_MEM1_TLB_TRANSLATE_RESULT_payload_exception_raisePME;
     end
-    if(when_MMUPlugin_l347_1) begin
+    if(when_MMUPlugin_l355_1) begin
       MEM_MEM1_AddressGenerationPlugin_translateResult_resultExceptionBundle_raisePME = MEM_MEM1_DIRECT_TRANSLATE_RESULT_payload_exception_raisePME;
     end
-    if(when_MMUPlugin_l355_1) begin
+    if(when_MMUPlugin_l363_1) begin
       MEM_MEM1_AddressGenerationPlugin_translateResult_resultExceptionBundle_raisePME = 1'b0;
     end
   end
 
   always @(*) begin
     MEM_MEM1_AddressGenerationPlugin_translateResult_resultExceptionBundle_raisePPI = 1'b0;
-    if(when_MMUPlugin_l339_1) begin
+    if(when_MMUPlugin_l347_1) begin
       MEM_MEM1_AddressGenerationPlugin_translateResult_resultExceptionBundle_raisePPI = MEM_MEM1_TLB_TRANSLATE_RESULT_payload_exception_raisePPI;
     end
-    if(when_MMUPlugin_l347_1) begin
+    if(when_MMUPlugin_l355_1) begin
       MEM_MEM1_AddressGenerationPlugin_translateResult_resultExceptionBundle_raisePPI = MEM_MEM1_DIRECT_TRANSLATE_RESULT_payload_exception_raisePPI;
     end
-    if(when_MMUPlugin_l355_1) begin
+    if(when_MMUPlugin_l363_1) begin
       MEM_MEM1_AddressGenerationPlugin_translateResult_resultExceptionBundle_raisePPI = 1'b0;
     end
   end
 
   always @(*) begin
     MEM_MEM1_AddressGenerationPlugin_translateResult_resultExceptionBundle_raiseTLBR = 1'b0;
-    if(when_MMUPlugin_l339_1) begin
+    if(when_MMUPlugin_l347_1) begin
       MEM_MEM1_AddressGenerationPlugin_translateResult_resultExceptionBundle_raiseTLBR = MEM_MEM1_TLB_TRANSLATE_RESULT_payload_exception_raiseTLBR;
     end
-    if(when_MMUPlugin_l347_1) begin
+    if(when_MMUPlugin_l355_1) begin
       MEM_MEM1_AddressGenerationPlugin_translateResult_resultExceptionBundle_raiseTLBR = MEM_MEM1_DIRECT_TRANSLATE_RESULT_payload_exception_raiseTLBR;
     end
-    if(when_MMUPlugin_l355_1) begin
+    if(when_MMUPlugin_l363_1) begin
       MEM_MEM1_AddressGenerationPlugin_translateResult_resultExceptionBundle_raiseTLBR = 1'b0;
     end
   end
 
-  assign when_MMUPlugin_l339_1 = (((! MEM_MEM1_TRANSLATE_SAVED_CSR_CRMD_DA) && MEM_MEM1_TRANSLATE_SAVED_CSR_CRMD_PG) && MEM_MEM1_TLB_TRANSLATE_RESULT_valid);
-  assign when_MMUPlugin_l347_1 = (((! MEM_MEM1_TRANSLATE_SAVED_CSR_CRMD_DA) && MEM_MEM1_TRANSLATE_SAVED_CSR_CRMD_PG) && MEM_MEM1_DIRECT_TRANSLATE_RESULT_valid);
-  assign when_MMUPlugin_l355_1 = (MEM_MEM1_TRANSLATE_SAVED_CSR_CRMD_DA && (! MEM_MEM1_TRANSLATE_SAVED_CSR_CRMD_PG));
-  assign when_MMUPlugin_l359_1 = (_zz_when_MMUPlugin_l359 == MemOperationType_FETCH);
+  assign when_MMUPlugin_l347_1 = (((! MEM_MEM1_TRANSLATE_SAVED_CSR_CRMD_DA) && MEM_MEM1_TRANSLATE_SAVED_CSR_CRMD_PG) && MEM_MEM1_TLB_TRANSLATE_RESULT_valid);
+  assign when_MMUPlugin_l355_1 = (((! MEM_MEM1_TRANSLATE_SAVED_CSR_CRMD_DA) && MEM_MEM1_TRANSLATE_SAVED_CSR_CRMD_PG) && MEM_MEM1_DIRECT_TRANSLATE_RESULT_valid);
+  assign when_MMUPlugin_l363_1 = (MEM_MEM1_TRANSLATE_SAVED_CSR_CRMD_DA && (! MEM_MEM1_TRANSLATE_SAVED_CSR_CRMD_PG));
+  assign when_MMUPlugin_l367_1 = (_zz_when_MMUPlugin_l367 == MemOperationType_FETCH);
   assign MEM_MEM1_AddressGenerationPlugin_translateResult_resultBundle_valid = MEM_MEM1_AddressGenerationPlugin_translateResult_resultValid;
   assign MEM_MEM1_AddressGenerationPlugin_translateResult_resultBundle_payload_physAddr = MEM_MEM1_AddressGenerationPlugin_translateResult_resultPhysAddr;
   assign MEM_MEM1_AddressGenerationPlugin_translateResult_resultBundle_payload_cached = MEM_MEM1_AddressGenerationPlugin_translateResult_resultCached;
@@ -73180,12 +73617,12 @@ module MyCPUCore (
   assign MemExecutePlugin_robWrite_payload_pAddr = MEM_WB_MEMORY_ADDRESS_PHYSICAL;
   assign MemExecutePlugin_robWrite_payload_storeData = MEM_WB_MEMORY_WRITE_DATA;
   assign MemExecutePlugin_robWrite_payload_myPC = MEM_WB_ISSUE_SLOT_uop_pc;
-  assign when_ExceptionMuxPlugin_l45_4 = ((! MEM_MEM1_EXCEPTION_OCCURRED) && AddressGenerationPlugin_raisePME);
-  assign when_ExceptionMuxPlugin_l45_5 = ((! MEM_MEM1_EXCEPTION_OCCURRED) && AddressGenerationPlugin_raisePPI);
-  assign when_ExceptionMuxPlugin_l45_6 = ((! MEM_MEM1_EXCEPTION_OCCURRED) && AddressGenerationPlugin_raisePIS);
-  assign when_ExceptionMuxPlugin_l45_7 = ((! MEM_MEM1_EXCEPTION_OCCURRED) && AddressGenerationPlugin_raisePIL);
-  assign when_ExceptionMuxPlugin_l45_8 = ((! MEM_MEM1_EXCEPTION_OCCURRED) && AddressGenerationPlugin_raiseTLBR);
-  assign when_ExceptionMuxPlugin_l45_9 = ((! MEM_ADDR_EXCEPTION_OCCURRED) && AddressGenerationPlugin_raiseALE);
+  assign when_ExceptionMuxPlugin_l45_4 = ((! MEM_ADDR_EXCEPTION_OCCURRED) && AddressGenerationPlugin_raiseALE);
+  assign when_ExceptionMuxPlugin_l45_5 = ((! MEM_MEM1_EXCEPTION_OCCURRED) && AddressGenerationPlugin_raisePME);
+  assign when_ExceptionMuxPlugin_l45_6 = ((! MEM_MEM1_EXCEPTION_OCCURRED) && AddressGenerationPlugin_raisePPI);
+  assign when_ExceptionMuxPlugin_l45_7 = ((! MEM_MEM1_EXCEPTION_OCCURRED) && AddressGenerationPlugin_raisePIS);
+  assign when_ExceptionMuxPlugin_l45_8 = ((! MEM_MEM1_EXCEPTION_OCCURRED) && AddressGenerationPlugin_raisePIL);
+  assign when_ExceptionMuxPlugin_l45_9 = ((! MEM_MEM1_EXCEPTION_OCCURRED) && AddressGenerationPlugin_raiseTLBR);
   assign when_Pipeline_l158 = (! IF2_arbitration_isStuck);
   assign when_Pipeline_l158_1 = (! IF2_arbitration_isStuck);
   assign when_Pipeline_l158_2 = (! IF2_arbitration_isStuck);
@@ -78945,7 +79382,7 @@ module MyCPUCore (
         TLBOpType_NONE : begin
         end
         TLBOpType_TLBSRCH : begin
-          if(when_MMUPlugin_l404) begin
+          if(when_MMUPlugin_l412) begin
             MMUPlugin_TLBIDX_INDEX <= _zz_MMUPlugin_TLBIDX_INDEX_4;
             MMUPlugin_TLBIDX_NE <= 1'b0;
           end else begin
@@ -78990,7 +79427,7 @@ module MyCPUCore (
           end
         end
         TLBOpType_TLBWR : begin
-          if(when_MMUPlugin_l455) begin
+          if(when_MMUPlugin_l463) begin
             if(_zz_279) begin
               MMUPlugin_TLBTable_0_E <= 1'b1;
             end
@@ -79764,7 +80201,7 @@ module MyCPUCore (
         end
         TLBOpType_TLBFILL : begin
           MMUPlugin_victim_idx <= (MMUPlugin_victim_idx + 4'b0001);
-          if(when_MMUPlugin_l479) begin
+          if(when_MMUPlugin_l487) begin
             if(_zz_296) begin
               MMUPlugin_TLBTable_0_E <= 1'b1;
             end
@@ -113519,6 +113956,7 @@ module ALU (
   localparam ALUOpType_PCADDI = 5'd14;
   localparam ALUOpType_PCADDU12I = 5'd15;
   localparam ALUOpType_CPUCFG = 5'd16;
+  localparam ALUOpType_IOCSR = 5'd17;
 
   wire       [0:0]    _zz_io_result;
   wire       [31:0]   _zz_io_result_1;
@@ -113557,6 +113995,7 @@ module ALU (
       ALUOpType_PCADDI : io_op_string = "PCADDI   ";
       ALUOpType_PCADDU12I : io_op_string = "PCADDU12I";
       ALUOpType_CPUCFG : io_op_string = "CPUCFG   ";
+      ALUOpType_IOCSR : io_op_string = "IOCSR    ";
       default : io_op_string = "?????????";
     endcase
   end
@@ -113602,6 +114041,28 @@ module ALU (
       end
       ALUOpType_SRA_1 : begin
         io_result = _zz_io_result_4;
+      end
+      ALUOpType_CPUCFG : begin
+        io_result = 32'h0;
+        case(io_src1)
+          32'h0 : begin
+            io_result = 32'h00144200;
+          end
+          32'h00000001 : begin
+            io_result = 32'h0001f1fc;
+          end
+          32'h00000002 : begin
+            io_result = 32'h00004000;
+          end
+          32'h00000004 : begin
+            io_result = 32'h06422c40;
+          end
+          32'h00000005 : begin
+            io_result = 32'h00010001;
+          end
+          default : begin
+          end
+        endcase
       end
       default : begin
         io_result = 32'h0;

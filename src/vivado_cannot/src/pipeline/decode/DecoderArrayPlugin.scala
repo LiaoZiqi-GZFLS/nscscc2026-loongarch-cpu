@@ -303,7 +303,11 @@ class DecoderArray(config: MyCPUConfig, val popPorts: Vec[Stream[InstBufferEntry
             val privInst =
               entry.inst === LoongArch.CSR || entry.inst === LoongArch.CACOP || entry.inst === LoongArch.ERTN ||
                 entry.inst === LoongArch.IDLE || entry.inst === LoongArch.TLBRD || entry.inst === LoongArch.TLBWR ||
-                entry.inst === LoongArch.TLBSRCH || entry.inst === LoongArch.TLBFILL || entry.inst === LoongArch.INVTLB
+                entry.inst === LoongArch.TLBSRCH || entry.inst === LoongArch.TLBFILL || entry.inst === LoongArch.INVTLB ||
+                // 2026-final: Linux boot support —— IOCSR 特权指令，用户态执行产生 IPE
+                entry.inst === LoongArch.IOCSRRD_B || entry.inst === LoongArch.IOCSRRD_H ||
+                entry.inst === LoongArch.IOCSRRD_W || entry.inst === LoongArch.IOCSRWR_B ||
+                entry.inst === LoongArch.IOCSRWR_H || entry.inst === LoongArch.IOCSRWR_W
 
             val privLvl = pipeline.globalService(classOf[ExceptionHandlerPlugin]).CRMD_PLV
             when(privLvl =/= 0 && privInst) {
@@ -482,9 +486,21 @@ class DecoderArray(config: MyCPUConfig, val popPorts: Vec[Stream[InstBufferEntry
       LoongArch.RDCNTVH -> Seq(fuType -> FUType.TIMER, isRegWrite -> True, readTimer64H -> True)
     )
 
-    // CPUCFG（2026 perf start.S 需要；走 ALU 恒写 0）
+    // CPUCFG（2026 perf start.S 需要；走 ALU，按 rj 索引返回常量表）
     addAll(
       LoongArch.CPUCFG -> (reg1R1WActions ++ Seq(aluOp -> ALUOpType.CPUCFG))
+    )
+
+    // 2026-final: Linux boot support —— IOCSR 指令：iocsrrd 读返回 0；iocsrwr 写忽略、rd 写回旧值(0)。
+    // 走 ALU 通路恒写 0，不产生异常；特权检查见下方 IPE 段（privInst）。
+    addAll(
+      LoongArch.IOCSRRD_B -> (reg1R1WActions ++ Seq(aluOp -> ALUOpType.IOCSR)),
+      LoongArch.IOCSRRD_H -> (reg1R1WActions ++ Seq(aluOp -> ALUOpType.IOCSR)),
+      LoongArch.IOCSRRD_W -> (reg1R1WActions ++ Seq(aluOp -> ALUOpType.IOCSR)),
+      // iocsrwr rd, rj：IOCSR 地址在 rd、写数据在 rj，rd 写回旧值 —— useRd 读 rd、isRegWrite 写 rd
+      LoongArch.IOCSRWR_B -> (Seq(useRj -> True, useRd -> True, isRegWrite -> True, aluOp -> ALUOpType.IOCSR)),
+      LoongArch.IOCSRWR_H -> (Seq(useRj -> True, useRd -> True, isRegWrite -> True, aluOp -> ALUOpType.IOCSR)),
+      LoongArch.IOCSRWR_W -> (Seq(useRj -> True, useRd -> True, isRegWrite -> True, aluOp -> ALUOpType.IOCSR))
     )
 
     addAll(

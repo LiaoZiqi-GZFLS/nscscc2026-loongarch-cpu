@@ -178,6 +178,14 @@ class MMUPlugin(config: MyCPUConfig) extends Plugin[MyCPUCore] {
       29 -> DMW1_VSEG
     )
 
+    // 2026-final: Linux boot support —— PRCFG1/2/3 只读常量（手册卷一 7.4.13~15）
+    // PRCFG1：SAVENum=4（SAVE0~3）| TimerBits=63（64 位定时器位宽-1）| VSMax=0（ECFG.VS 未实现）
+    CSRMan.r(CSRAddress.PRCFG1, 0 -> U(4 | (63 << 4), 32 bits))
+    // PRCFG2：页大小位图，仅上报 4KB 页（bit12；硬件亦支持 PS=21，但不对内核上报）
+    CSRMan.r(CSRAddress.PRCFG2, 0 -> U(1 << 12, 32 bits))
+    // PRCFG3：TLBType=1（仅全相联 MTLB）| MTLBEntries = numEntries-1（本核 16 项 → 0xF1）
+    CSRMan.r(CSRAddress.PRCFG3, 0 -> U(1 | ((tlbConfig.numEntries - 1) << 4), 32 bits))
+
   }
 
   // * Address Translate!

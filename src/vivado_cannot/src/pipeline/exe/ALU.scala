@@ -62,7 +62,31 @@ class ALU() extends Component {
       result := (src1.asSInt >> sa).asUInt
     }
     is(CPUCFG) {
-      result := 0 // 上报无 cache 几何，perf start.S 跳过 cacop 初始化
+      // 2026-final: Linux boot support —— CPUCFG 常量表（rj=字号经 src1 传入，手册卷一表 2-2）
+      // word 0x10~0x14（cache 几何）保持返回 0：2026 perf start.S 依此跳过 cacop 初始化，
+      // 赛事 5.14 内核（la32r-Linux）cache 几何为硬编码，不读这些字。
+      result := 0
+      switch(src1) {
+        is(0) {
+          result := U(0x00144200L, 32 bits) // PRID：公司域 0x14 + LOONGSON32(0x42)，5.14 内核 BUG_ON 必需
+        }
+        is(1) {
+          result := U(0x0001f1fcL, 32 bits) // ARCH=0(LA32R)|PGMMU=1|IOCSR=1，PALEN=VALEN=31（位数-1），UAL=0（非对齐产生 ALE）
+        }
+        is(2) {
+          result := U(0x00004000L, 32 bits) // LLFTP(bit14)：有恒定频率定时器（Timer64Plugin 每拍 +1）
+        }
+        is(4) {
+          result := U(105000000L, 32 bits) // CC_FREQ：稳定计数器频率 = 105MHz CPU 时钟
+        }
+        is(5) {
+          result := U(0x00010001L, 32 bits) // CC_MUL=1 / CC_DIV=1：定时器时钟 = CC_FREQ × 1 / 1
+        }
+        // word3/word6/word7~0xF/word0x10~0x14 及其余未定义字号：返回 0
+      }
+    }
+    is(IOCSR) {
+      result := 0 // 2026-final: Linux boot support —— IOCSR 读恒返回 0（写忽略，译码侧不产生异常）
     }
 
   }

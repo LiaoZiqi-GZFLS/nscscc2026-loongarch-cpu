@@ -84,6 +84,15 @@ object LoongArch {
 
   // CPUCFG rd, rj —— 2026 perf start.S 用其查询 cache 几何；恒返回 0 上报无 cache
   val CPUCFG = MakeMaskedLiteral("0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 1 1 0 1 1" + Rj() + Rd())
+
+  // 2026-final: Linux boot support —— IOCSR 指令（手册卷一；iocsrrd.b/h/w = 0x06480000/0x06480400/0x06480800，
+  // iocsrwr.b/h/w = 0x06481000/0x06481400/0x06481800，bits[14:10] 为变体号）
+  val IOCSRRD_B = MakeMaskedLiteral("00000110010010000" + "00000" + Rj() + Rd())
+  val IOCSRRD_H = MakeMaskedLiteral("00000110010010000" + "00001" + Rj() + Rd())
+  val IOCSRRD_W = MakeMaskedLiteral("00000110010010000" + "00010" + Rj() + Rd())
+  val IOCSRWR_B = MakeMaskedLiteral("00000110010010000" + "00100" + Rj() + Rd())
+  val IOCSRWR_H = MakeMaskedLiteral("00000110010010000" + "00101" + Rj() + Rd())
+  val IOCSRWR_W = MakeMaskedLiteral("00000110010010000" + "00110" + Rj() + Rd())
   val RDCNTVL = MakeMaskedLiteral("0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 1 1 0 0 0" + Rj() + Rd())
   val RDCNTVH = MakeMaskedLiteral("0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 1 1 0 0 1" + "0 0 0 0 0" + Rd())
 
@@ -119,6 +128,10 @@ object LoongArch {
     val PGDH = 0x1a
     val PGD = 0x1b
     val CPUID = 0x20
+    // 2026-final: Linux boot support —— 处理器配置只读常量 CSR（手册卷一 7.4.13~15）
+    val PRCFG1 = 0x21
+    val PRCFG2 = 0x22
+    val PRCFG3 = 0x23
     val SAVE0 = 0x30
     val SAVE1 = 0x31
     val SAVE2 = 0x32
