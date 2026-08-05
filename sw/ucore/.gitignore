@@ -1,0 +1,8 @@
+*.o
+boot/loader
+*.d
+obj/
+tools/mkfs
+tools/mksfs
+.vscode
+core
