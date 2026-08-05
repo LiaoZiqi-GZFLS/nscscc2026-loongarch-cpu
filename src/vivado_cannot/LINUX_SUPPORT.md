@@ -42,6 +42,16 @@
 - `src/pipeline/decode/DecoderArrayPlugin.scala`：iocsrrd 走 ALU 通路恒写 0；iocsrwr 读 rj/rd、写忽略、rd 写回旧值（0）。不产生异常；已加入 privInst 列表，用户态执行产生 IPE（特权级执行）
 - `src/pipeline/exe/ALU.scala`：`is(IOCSR)` 返回 0
 
+## Runbook 风险项（按优先级）
+
+1. **WNS / 105MHz 时序收敛未验证（首位）**：本沙箱无 Vivado，新网表在 105MHz
+   （perf_clock.json）下的时序收敛必须在 Vivado 实现流程重跑确认（WNS 不允许为负）。
+   本次改动为译码/常量mux 级逻辑，理论上对关键路径影响极小，但以上板前的
+   Vivado 时序报告为准。赛事 CI 因提交截止（deadline_guard，README 第4条）
+   不再运行，时序验证须走赛事方决赛提交通道。
+2. 功能回归：本地以 chiplab（nscscc2026）Verilator 流程跑 func 测试验证
+   （结果见本节末尾追加记录）。
+
 ## 网表重生成与 diff 结论
 - 按 COMPILE.md 执行 `runMain NOP.Main`（sbt-launch 1.9.9 + JDK17），产物
   `build/mycpu_top.v`（123447 行）替换 `src/mycpu/mycpu_top.v`（原 122986 行）。
