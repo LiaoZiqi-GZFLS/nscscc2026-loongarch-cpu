@@ -1,0 +1,17 @@
+diff --git a/arch/loongarch/kernel/setup.c b/arch/loongarch/kernel/setup.c
+index 976c91159..53c714b89 100644
+--- a/arch/loongarch/kernel/setup.c
++++ b/arch/loongarch/kernel/setup.c
+@@ -43,9 +43,10 @@ struct cpuinfo_loongarch cpu_data[NR_CPUS] __read_mostly;
+ 
+ EXPORT_SYMBOL(cpu_data);
+ 
+-#ifdef CONFIG_VT
++/* T2026143250012561: screen_info 除 VT 外还被 loongson32/env.c 的
++ * SINFO bootparam 解析与 efi earlycon 引用；CONFIG_VT=n 时必须仍然定义，
++ * 否则裁剪配置链接失败。 */
+ struct screen_info screen_info;
+-#endif
+ 
+ /*
+  * Setup information

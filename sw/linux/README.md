@@ -4,7 +4,22 @@
 Linux 5.14 + busybox 最小根文件系统（内含 `sh`、`ls` 等 applet）。
 
 > 内核源码本体不进本仓库。本目录只含适配层：补丁、配置增量、构建脚本、
-> 根文件系统模板与构建产物（`out/`）。完整复现执行 `./build.sh` 即可。
+> 根文件系统模板与构建产物（`out/`）。完整复现执行 `./build.sh all` 即可。
+
+## 0. 两个构建变体
+
+| | **verilator-flow** | **board-16m** |
+|---|---|---|
+| 目标 | chiplab verilator 官方 linux 流程 | nscscc-team 最小 SoC 上板 |
+| RAM 布局（DTS memory） | 物理 0 起 128MB | **16MB @ 0x1c000000** |
+| 内核链接/加载 | 物理 0x300000（虚址 0xa0300000） | **物理 0x1c300000（虚址 0xbc300000）** |
+| 内核配置 | la32_defconfig 原样 | la32_defconfig + `config/board-16m.fragment` 裁剪 |
+| 额外补丁 | 0001/0002/0003/0005/0006 | 上述 + **0004（memory 节点）** |
+| 镜像大小（vmlinux.bin） | ~13.3MB（verilator RAM 充裕） | 见 §5 预算，须 << 16MB |
+| 产物目录 | `out/verilator-flow/` | `out/board-16m/` |
+
+两变体共用：busybox initramfs（内嵌）、`boot/start.S` 引导 stub（变体无关）、
+UART 100MHz 修正、105MHz 定时器修正、DMW 512MB 段修正。
 
 ## 1. 软件栈来源
 
@@ -18,93 +33,81 @@ Linux 5.14 + busybox 最小根文件系统（内含 `sh`、`ls` 等 applet）。
 
 ```sh
 export PATH=<工具链>/bin:$PATH     # loongarch32r-linux-gnusf-gcc 须在 PATH
-./build.sh                          # 全部自动完成，产物在 out/
+./build.sh all                     # 两变体全量构建，产物在 out/
+./build.sh verilator               # 只构建 verilator-flow
+./build.sh board-16m               # 只构建 board-16m
 ```
 
-host 依赖：`gcc make flex bison bc perl python3 gzip git`。
-内核构建细节：`make ARCH=loongarch CROSS_COMPILE=loongarch32r-linux-gnusf- la32_defconfig`，
-随后 `CONFIG_INITRAMFS_SOURCE` 指向 `mkrootfs.sh` 生成的清单文件再 `make -j`。
+host 依赖：`gcc make flex bison bc perl python3 gzip git curl`。
 
-### 相对上游的改动清单
+## 3. 相对上游的改动清单（patches/，按序 git apply）
 
-| 改动 | 位置 | 理由 |
+| 补丁 | 内容 | 理由 |
 |---|---|---|
-| 恒定频率计时器 200MHz → **105MHz** | `patches/0001-ls-soc-const-freq-105MHz.patch`（`arch/loongarch/include/asm/time.h`） | 上游硬编码龙芯实验箱 200MHz；本队核稳定计数器 105MHz，不改则内核时钟/延时约 2 倍失真。**若决赛实际 CPU 时钟变化（perf_clock.json 10~200MHz），须同步改此值重编** |
-| 内嵌 initramfs | `config/chiplab-la32.fragment`（`CONFIG_INITRAMFS_SOURCE`） | 单镜像启动，不依赖 bootloader 额外传 initrd 地址，最稳 |
+| 0001 | `arch/loongarch/include/asm/time.h`：LS_SOC 恒定频率计时器 200MHz→**105MHz** | 上游硬编码龙芯实验箱 200MHz；本队核稳定计数器 105MHz，不改则时钟/延时约 2 倍失真。**决赛实际 CPU 时钟变化须同步改此值重编** |
+| 0002 | `loongson32_ls.dts`：串口 `clock-frequency` 33MHz→**100MHz** | chiplab 16550 挂 sys_clk=100MHz（比赛规则 sys_clk 恒定，仅 cpu_clk 可调）；33MHz 会使内核 8250 重算除数（33M/16/115200≈18）后真板乱码。100MHz 下除数=54，与 bootloader（DLL=54）无缝衔接 |
+| 0003 | **DMW 段长 256MB→512MB**：`addrspace.h` DMW_PABITS 28→29；`loongarchregs.h` CSR_DMW0/1_VSEG 0x8/0xa→0x4/0x5；`traps.c` TLBRENTRY 掩码 0x0fffffff→0x1fffffff；`tlbex-32.S` refill 页表地址掩码同上 | LA32R DMW 为 3bit VSEG/PSEG、512MB 段。上游按 256MB 假设会把 ≥0x10000000 的物理地址截断 bit28——16MB 最小 SoC DDR 在 0x1c000000（448MB），不改则 __pa/TLBRENTRY/refill 页表访问全部错位。对 RAM 在 0~128MB 的 verilator 流程语义不变 |
+| 0004 | `loongson32_ls.dts`：memory 节点 0x0/128MB→**0x1c000000/16MB**（仅 board-16m 应用） | 最小 SoC DDR 窗口 |
+| 0005 | `loongson32/setup.c`：`register_gop_device` 加 `#ifdef CONFIG_VT` 守卫 | 裁剪配置关 VT 后编译失败（上游缺守卫） |
+| 0006 | `boot_param.h`：`screen_info` 改由 uapi 头引入 | 同上，VT=n 时 `struct screen_info` 不完整 |
 
-### initramfs 方案选择
+配置增量：`config/chiplab-la32.fragment`（INITRAMFS_SOURCE 说明，两变体通用）、
+`config/board-16m.fragment`（board-16m 裁剪：关 NET/VT/MODULES/CGROUPS/BPF/
+多余文件系统与驱动等，保留 16550 串口、proc/sysfs/tmpfs、KALLSYMS）。
 
-上游支持两种：① `CONFIG_INITRAMFS_SOURCE` 内嵌（编译期链入 vmlinux）；
-② bootloader 经 fw_arg 命令行 `rd_start=/rd_size=` 外挂 initrd（chiplab 官方
-例程走这条路，initrd 放在物理 0x0308c000）。
-**本队选 ①**：少一个地址约定，bootloader 只需加载一个内核镜像；
-`out/rootfs.cpio.gz` 同时生成，若日后要改外挂方案可直接用（命令行加
-`rd_start=0x<虚址> rd_size=<大小>`）。
+链接地址：board-16m 由 `make CONFIG_PHYSICAL_START=0xbc300000` 控制
+（`arch/loongarch/Makefile` 的 `load-y` 覆盖 loongson32/Platform 的 0xa0300000）。
 
-## 3. 启动协议（bootloader / 上板接口）
+## 4. initramfs 方案
 
-内核启动遵循 chiplab nscscc2026 `software/examples/linux` 例程约定
-（`boot/start.S` 已按此实现，与官方版兼容）：
+`CONFIG_INITRAMFS_SOURCE` 内嵌（单镜像，bootloader 只需加载一个内核镜像）。
+`out/rootfs.cpio.gz` 同时产出，支持外挂 initrd 备选（命令行 `rd_start=/rd_size=`）。
 
-1. **复位**：CPU 复位向量 `0x1c000000`，此处放 `start.bin`（`boot/mkimage.sh` 生成）。
-2. **内存映射**：start.S 配置 DMW0/1 —— 虚址 `0x80000000`（cached）/ `0xa0000000`
-   （uncached）均直映物理 `0x0`，开 PG 后跳 `kernel_entry`（从 vmlinux ELF 符号表读取）。
-3. **内核加载**：`vmlinux.bin` 按其链接虚址对应的物理地址加载
-   （KSEG0：物理地址 = 虚址 − 0x80000000）。实际值见 `out/` 构建日志 /
-   `readelf -S out/vmlinux` 的 `.text` 地址。chiplab verilator 流程中该地址为
-   物理 `0x300000`（`rom.vlog` 已按此生成）。
-4. **fw_arg 约定**（a0~a2）：
-   - `a0 = 2`（argc）
-   - `a1 = argv`：指针数组 + 字符串（`"g"`，命令行），uncached 虚址。
-     命令行默认 `console=ttyS0,115200 rdinit=/init loglevel=8`（`boot/mkimage.sh`
-     的 `CMDLINE` 变量可改）
-   - `a2 = bootparam` 区：全 0 内存（内核按 `bootparamsinterface` 解析，全 0 即
-     无扩展链表，与官方行为一致）
-   - **内存大小不通过 fw_arg 传递**：本内核内存布局来自内嵌 DTS
-     （`loongson32_ls.dts` 的 `memory { reg = <0x0 0x08000000> }`，即物理 0 起 128MB）
-5. **串口**：16550 @ `0x1fe001e0`，115200 8N1。start.S 用除数=1 初始化；
-   内核 8250 驱动随后按 DTS `clock-frequency=<33000000>` 重算除数（=18）。
-   若上板后内核日志乱码而 start.S 横幅正常，说明实际 UART 时钟 ≠33MHz，
-   需按实际时钟改 DTS `serial@0x1fe001e0` 的 `clock-frequency` 后重编。
+## 5. board-16m 内存预算
 
-### verilator 仿真
+16MB 窗口：`0x1c000000`(start.bin, 768B) + `0x1c300000`(内核) ~ `0x1d000000`。
 
-`boot/mkimage.sh` 生成的 `rom.vlog` 与 chiplab `sims/verilator/run_prog`
-的 RAM 模型格式兼容（`@地址` + 每行一字节十六进制）：`start.bin` @ `0x1c000000`，
-`vmlinux.bin` @ 内核物理加载地址。参照官方例程把它作为软件镜像运行即可。
+- 未裁剪内核镜像 13.3MB+bss 0.5MB → 0x1c300000+13.85MB = **0x1D0D9000，超窗**，
+  故 board-16m 必须裁剪（`config/board-16m.fragment`）。
+- 裁剪后实际值见 `out/board-16m/README.txt`（目标 bin+bss ≤ 8MB，
+  保留 ≥ 7MB 给页表/slab/页缓存/busybox 用户态）。
+- 若未来镜像仍过大，备选：进一步关 KALLSYMS/PRINTK、外挂 initrd（内核镜像
+  减 ~1.3MB）、或 SoC 侧扩 DDR 窗。
 
-## 4. CPU 硬件前提（本内核 32 位路径实际依赖，已与核设计对齐）
+## 6. 启动协议（两变体通用，boot/start.S 实现）
 
-本内核 32 位走 `arch/loongarch/kernel/cpu-probe32.c`（**不读** CPUCFG/PRCFG/IOCSR，
-PRID 硬编码 0x4200，TLB 几何硬编码 mtlb=64/stlb=8×256——该值仅影响 hugepage
-阈值，TLB 失效走 invtlb 全清，不迭代项数）。真正依赖：
+1. CPU 复位 @`0x1c000000`（start.bin 位置）。
+2. start.S 初始化 16550（除数=1 兜底打印）→ 写 DMW0=0xa0000011 /
+   DMW1=0x80000001（0xa0000000 缓存 / 0x80000000 非缓存窗口，512MB 段均映到
+   物理段 0，覆盖 0x0~0x1fffffff）→ CRMD 开 PG → 跳 kernel_entry（从 vmlinux
+   ELF 符号表读取，mkimage.sh 自动提取）。
+3. fw_arg：a0=2，a1=argv（内嵌于 start.bin，缓存窗口虚址 0xbc0000xx，
+   指向物理 start.bin 内的 `"g"` 与命令行字符串），a2=全 0 bootparam 区。
+   命令行默认 `console=ttyS0,115200 rdinit=/init loglevel=8`（mkimage.sh
+   `CMDLINE` 可改）。**内存大小来自内嵌 DTS，不经 fw_arg。**
+4. 上板加载：start.bin→0x1c000000，vmlinux.bin→其物理加载地址
+   （verilator-flow: 0x300000；board-16m: 0x1c300000），JTAG-AXI/verilator
+   rom.vlog 均可（`boot/mkimage.sh` 生成 rom.vlog，地址自动按变体计算）。
 
-- **TLB**：支持 4KB 页（`write_csr_pagesize(4K)` 写后读回校验，失败直接 panic）；
-  ASID ≥ 8bit（内核硬编码 asid_mask=0xff）；invtlb 指令
-- **恒定频率计时器 + 定时器中断**（LLFTP 等价能力），频率须与补丁值（105MHz）一致
-- **LL/SC 原子指令**（内核 cmpxchg/futex 走 LL/SC 路径；产物已验证 0 条 AM* 指令）
-- **无 FPU**：内核/用户态均按软浮点编译（ilp32s）；defconfig 的 `CONFIG_CPU_HAS_FPU`
-  仅影响 FPU 上下文代码路径，32 位 probe 不使能 FPU
-- 串口 16550 @0x1fe001e0、中断线按 DTS（cpuic + extioi）
-- Cache：内核硬编码 I/D 各 8KB、2 路、16B 行（`arch/loongarch/mm/cache.c`
-  `config=0xfe994cd3`），CACOP 按此几何执行
+## 7. CPU 硬件前提（本内核 32 位路径实际依赖）
 
-> 注：侦察报告中「PRID=0x00144200 / PRCFG3 TLB 项数 / IOCSR 读 0 写忽略」是
-> 64 位 `cpu-probe.c` 路径的要求；核里补齐 CPUCFG/PRCFG/IOCSR 对兼容性仍有价值
-> （主线/更新内核会用），但本 5.14 32 位内核不读取它们。
+本内核 32 位走 `arch/loongarch/kernel/cpu-probe32.c`：**不读 CPUCFG/PRCFG/IOCSR**
+（PRID 硬编码 0x4200，TLB 几何硬编码且仅影响 hugepage 阈值，TLB 失效走 invtlb
+全清）。**RTL 侧补齐 CPUCFG/PRCFG/IOCSR 是面向主线/更新内核的保险，本 5.14
+32 位内核不消费它们。** 真正依赖：
 
-## 5. 产物验收（`out/`）
+- **TLB**：4KB 页（`write_csr_pagesize(4K)` 写后读回校验，失败 panic）；
+  ASID ≥ 8bit（硬编码 asid_mask=0xff）；invtlb；TLBR 异常进 DA 模式
+  （refill handler/TLBRENTRY 用物理地址）
+- **恒定频率计时器 + 定时器中断**，频率与补丁值（105MHz）一致
+- **LL/SC 原子指令**（产物已验证 0 条 AM* 指令）
+- **无 FPU**：全部按 ilp32s 软浮点编译
+- **DMW**：3bit VSEG/PSEG、512MB 段（与补丁 0003 匹配）
+- 串口 16550 @0x1fe001e0（时钟 100MHz）、中断按 DTS（cpuic + extioi）
+- Cache：内核硬编码 I/D 各 8KB、2 路、16B 行（`cache.c` config=0xfe994cd3）
 
-- `vmlinux`：ELF32 LoongArch 内核（含内嵌 initramfs）
-- `vmlinux.bin`：裸二进制（objcopy 段清单与 chiplab 官方一致）
-- `start.bin` / `rom.vlog`：引导 stub / verilator 内存初始化文件
-- `rootfs.cpio.gz`：独立 initrd（含 `/bin/busybox` 与 `sh/ls/...` 链接）
-- `busybox`：静态 ELF32 LoongArch
-- `kernel.config`、`initramfs_list.txt`：复现凭证
+## 8. 产物验收
 
-验收硬指标（另见 `out/verification.txt`）：vmlinux = ELF32 LoongArch，
-entry `0xa0b84c70`，`.text` 虚址 `0xa0300000` → **物理加载地址 `0x300000`**；
-`objdump -d vmlinux` 全扫 AM* 原子指令 = **0**（反汇编 234 万行）；
-`rootfs.cpio.gz` 解包含 `/bin/ls`、`/bin/sh`、`/dev/console` 等 39 项。
-镜像大小：`vmlinux.bin` 13,340,928 B，`rootfs.cpio.gz` 1,312,992 B（内嵌进内核），
-`start.bin` 768 B。
+各变体目录含 README.txt 与 verification 记录；硬指标：vmlinux = ELF32
+LoongArch；`objdump -d vmlinux` 全扫 AM* 原子指令 = 0；
+`rootfs.cpio.gz` 解包含 `/bin/ls`、`/bin/sh`、`/dev/console`（39 项）。

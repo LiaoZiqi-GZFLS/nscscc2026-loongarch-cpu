@@ -1,0 +1,16 @@
+diff --git a/arch/loongarch/boot/dts/loongson/loongson32_ls.dts b/arch/loongarch/boot/dts/loongson/loongson32_ls.dts
+index cc11bbafc..3ee723527 100644
+--- a/arch/loongarch/boot/dts/loongson/loongson32_ls.dts
++++ b/arch/loongarch/boot/dts/loongson/loongson32_ls.dts
+@@ -49,7 +49,10 @@ soc {
+ 		cpu_uart0: serial@0x1fe001e0 {
+ 			compatible = "ns16550a";
+ 			reg = <0x1fe001e0  0x10>;
+-			clock-frequency = <33000000>;
++			/* T2026143250012561: chiplab 16550 挂 sys_clk=100MHz（比赛规则
++			 * sys_clk 恒定，仅 cpu_clk 可调），上游默认 33MHz 会导致内核
++			 * 重算波特率除数后真板乱码。 */
++			clock-frequency = <100000000>;
+ 			interrupt-parent = <&cpuic>;
+ 			interrupts = <3>;
+ 			no-loopback-test;

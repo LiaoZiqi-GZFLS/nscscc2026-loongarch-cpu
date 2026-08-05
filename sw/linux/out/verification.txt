@@ -1,31 +1,29 @@
-T2026143250012561 sw/linux 构建验收记录
-构建机: x86_64 Debian 12, 2 核
-工具链: loongarch32r-linux-gnusf-gcc 8.3.0 (LoongArch GNU toolchain LA32 v2.0 20230903), ilp32s
-内核:   https://gitee.com/loongson-edu/la32r-Linux commit 4ed7b98e08e8d9628f8d39a21ca8bbdd29ad8d1e
-busybox: 1.36.1 静态
+T2026143250012561 sw/linux 构建验收记录（双变体，2026-08 第二轮）
+================================================================
+构建机: x86_64 Debian 12, 2 核；工具链 gcc 8.3.0 ilp32s (LA32 v2.0 20230903)
+内核: la32r-Linux @ 4ed7b98e08e8d9628f8d39a21ca8bbdd29ad8d1e
+busybox 1.36.1 静态；补丁 0001~0007 全部应用（board-16m 另加 0004）
 
-[1] vmlinux ELF 头
-  Class:   ELF32
-  Type:    EXEC
-  Machine: LoongArch
-  Entry:   0xa0b84c70 (kernel_entry)
-  .text:   vaddr 0xa0300000 -> 物理加载地址 0x300000
+[verilator-flow]（chiplab verilator 官方流程，RAM 0 起 128MB）
+  vmlinux: ELF32 LoongArch EXEC, entry 0xa0b84b00, .text vaddr 0xa0300000
+           -> 物理加载 0x300000
+  AM* 原子指令: 0（objdump 全扫）
+  vmlinux.bin = 13,340,896 B；start.bin = 768 B
+  注：本变体构建后源码树追加了 0005/0006/0007（CONFIG_VT 相关编译守卫），
+  在 VT=y 下与被构建版本代码等价，不影响二进制行为。
 
-[2] AM* 原子指令全扫（LA32R 无 AM 指令，必须为 0）
-  $ loongarch32r-linux-gnusf-objdump -d vmlinux | grep -cE '\bam(swap|add|and|or|xor|max|min|cas)'
-  0    （反汇编共 2,341,947 行）
+[board-16m]（nscscc-team 最小 SoC，16MB DDR @ 0x1c000000）
+  vmlinux: ELF32 LoongArch EXEC, entry 0xbc593b30, .text vaddr 0xbc300000
+           -> 物理加载 0x1c300000（DDR 窗内 ✓）
+  AM* 原子指令: 0（objdump 全扫）
+  vmlinux.bin = 5,721,328 B；bss = 0x7111c；内核镜像末端 0x1c8f111c
+  剩余可用 RAM ≈ 7.0MB / 16MB 窗
+  内嵌 dtb 二进制验证: memory reg <0x1c000000 0x01000000> ✓（旧 128MB
+  reg 不存在）、uart clock-frequency=100000000 ✓
+  start.bin 反汇编验证: 跳转目标 0xbc593b30 ✓、argv 指针 0xbc0000dc/de
+  （=物理 0x1c0000dc，即 DDR 内 start.bin 自身）✓
 
-[3] rootfs.cpio.gz 解包清单（python gzip+newc 解析，39 项）
-  含 bin/busybox (2325620B), init, bin/sh, bin/ls, bin/mount, bin/cat 等
-  applet 链接与 dev/console, dev/null, dev/ttyS0 设备节点：全部存在
-
-[4] 镜像
-  vmlinux        13,345,992 B (strip 后 ELF)
-  vmlinux.bin    13,340,928 B
-  rootfs.cpio.gz  1,312,992 B
-  start.bin             768 B （复位向量 0x1c000000，内嵌 argv/cmdline/bootparam）
-  rom.vlog       40,025,106 B （未入库，boot/mkimage.sh 可再生成）
-
-[5] 启动参数约定
-  a0=2, a1=argv -> {"g", "console=ttyS0,115200 rdinit=/init loglevel=8", NULL}
-  a2=bootparam 全 0 区；DMW0=0xa0000011, DMW1=0x80000001, CRMD PG=1
+[共用]
+  rootfs.cpio.gz = 1,312,992 B，newc 解析 39 项：bin/busybox(2.33MB)、
+  bin/sh、bin/ls、bin/mount、bin/cat、init、dev/console、dev/null、dev/ttyS0 全在 ✓
+  命令行: console=ttyS0,115200 rdinit=/init loglevel=8（UART 100MHz/除数54）

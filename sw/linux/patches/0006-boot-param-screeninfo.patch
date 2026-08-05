@@ -1,0 +1,18 @@
+diff --git a/arch/loongarch/include/asm/mach-loongson32/boot_param.h b/arch/loongarch/include/asm/mach-loongson32/boot_param.h
+index 6d3b1509b..47bd13216 100644
+--- a/arch/loongarch/include/asm/mach-loongson32/boot_param.h
++++ b/arch/loongarch/include/asm/mach-loongson32/boot_param.h
+@@ -2,9 +2,10 @@
+ #ifndef __ASM_MACH_LOONGSON32_BOOT_PARAM_H_
+ #define __ASM_MACH_LOONGSON32_BOOT_PARAM_H_
+ 
+-#ifdef CONFIG_VT
+-#include <linux/screen_info.h>
+-#endif
++/* T2026143250012561: struct screen_info 是 uapi 结构，loongsonlist_screeninfo
++ * 需要其完整定义；上游只在 CONFIG_VT 下包含头文件，裁剪配置（VT=n）编译失败。
++ * 改为使用始终可用的 uapi 头。 */
++#include <uapi/linux/screen_info.h>
+ 
+ #define ADDRESS_TYPE_SYSRAM	1
+ #define ADDRESS_TYPE_RESERVED	2

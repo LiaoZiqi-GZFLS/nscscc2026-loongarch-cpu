@@ -1,0 +1,23 @@
+diff --git a/arch/loongarch/loongson32/setup.c b/arch/loongarch/loongson32/setup.c
+index 3372e581d..eef2024de 100644
+--- a/arch/loongarch/loongson32/setup.c
++++ b/arch/loongarch/loongson32/setup.c
+@@ -353,6 +353,10 @@ void __init platform_init(void)
+ 
+ }
+ 
++/* T2026143250012561: CONFIG_VT=n 时 platform_device.h 未被包含、
++ * screen_info 未定义，register_gop_device 必须同样按 CONFIG_VT 守卫，
++ * 否则裁剪配置（关闭 VT）编译失败。 */
++#ifdef CONFIG_VT
+ static int __init register_gop_device(void)
+ {
+ 	void *pd;
+@@ -364,6 +368,7 @@ static int __init register_gop_device(void)
+ 	return PTR_ERR_OR_ZERO(pd);
+ }
+ subsys_initcall(register_gop_device);
++#endif
+ 
+ #ifdef BX_SOC
+ #include <linux/serial_8250.h>

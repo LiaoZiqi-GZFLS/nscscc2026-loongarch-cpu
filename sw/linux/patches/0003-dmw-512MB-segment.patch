@@ -1,0 +1,67 @@
+diff --git a/arch/loongarch/include/asm/addrspace.h b/arch/loongarch/include/asm/addrspace.h
+index faa82ee0c..24db2abc6 100644
+--- a/arch/loongarch/include/asm/addrspace.h
++++ b/arch/loongarch/include/asm/addrspace.h
+@@ -31,7 +31,11 @@ extern unsigned long vm_map_base;
+ #endif
+ 
+ #ifdef CONFIG_32BIT
+-#define DMW_PABITS	28
++/* T2026143250012561: LA32R DMW 为 3bit VSEG/PSEG、512MB 段（2^29）。
++ * 上游按 256MB 段（28）取值，会把 0x10000000 以上的物理地址截断；
++ * 16MB 最小 SoC 的 DDR 在 0x1c000000（448MB），必须取 29。
++ * 对 RAM 在 0~128MB 的 verilator/实验箱流程本改动语义不变。 */
++#define DMW_PABITS	29
+ #define TO_PHYS_MASK	((1UL << DMW_PABITS) - 1)
+ #endif
+ 
+diff --git a/arch/loongarch/include/asm/loongarchregs.h b/arch/loongarch/include/asm/loongarchregs.h
+index 9cb016fe5..411629320 100644
+--- a/arch/loongarch/include/asm/loongarchregs.h
++++ b/arch/loongarch/include/asm/loongarchregs.h
+@@ -1075,13 +1075,15 @@ static inline void iocsr_writeq(u64 val, u32 reg)
+ 
+ #else
+ #define CSR_DMW0_PLV0		_ULCAST_(1 << 0)
+-#define CSR_DMW0_VSEG		_ULCAST_(0x8)
++/* T2026143250012561: 配合 DMW_PABITS=29（512MB 段），窗口基址编码
++ * 0x80000000=4<<29, 0xa0000000=5<<29，生成的 DMWx_INIT 值不变 */
++#define CSR_DMW0_VSEG		_ULCAST_(0x4)
+ #define CSR_DMW0_BASE		(CSR_DMW0_VSEG << DMW_PABITS)
+ #define CSR_DMW0_INIT		(CSR_DMW0_BASE | CSR_DMW0_PLV0)
+ 
+ #define CSR_DMW1_PLV0		_ULCAST_(1 << 0)
+ #define CSR_DMW1_MAT		_ULCAST_(1 << 4)
+-#define CSR_DMW1_VSEG		_ULCAST_(0xa)
++#define CSR_DMW1_VSEG		_ULCAST_(0x5)
+ #define CSR_DMW1_BASE		(CSR_DMW1_VSEG << DMW_PABITS)
+ #define CSR_DMW1_INIT		(CSR_DMW1_BASE | CSR_DMW1_MAT | CSR_DMW1_PLV0)
+ #endif
+diff --git a/arch/loongarch/kernel/traps.c b/arch/loongarch/kernel/traps.c
+index 1ac2f3e00..4c25c168b 100644
+--- a/arch/loongarch/kernel/traps.c
++++ b/arch/loongarch/kernel/traps.c
+@@ -599,7 +599,8 @@ extern void cache_error_setup(void);
+ static void configure_exception_vector(void)
+ {
+ 	csr_writel(eentry + 0x4000, LOONGARCH_CSR_EENTRY);
+-	csr_writel( (tlbrentry & 0x0fffffff), LOONGARCH_CSR_TLBRENTRY);
++	/* T2026143250012561: TLBRENTRY 为物理地址，256MB->512MB 窗口掩码 */
++	csr_writel( (tlbrentry & 0x1fffffff), LOONGARCH_CSR_TLBRENTRY);
+ }
+ 
+ void __init boot_cpu_trap_init(void)
+diff --git a/arch/loongarch/mm/tlbex-32.S b/arch/loongarch/mm/tlbex-32.S
+index a2805464c..2d551abb3 100644
+--- a/arch/loongarch/mm/tlbex-32.S
++++ b/arch/loongarch/mm/tlbex-32.S
+@@ -275,7 +275,8 @@ SYM_FUNC_START(handle_tlb_refill)
+ 	srli.w	t1, t1, 0x16
+ 	slli.w	t1, t1, 0x2
+ 	add.w	t0, t0, t1
+-	li.w	ra, 0xfffffff
++	/* T2026143250012561: DA 模式下页表物理地址，256MB->512MB 掩码 */
++	li.w	ra, 0x1fffffff
+ 	and	t0, t0, ra
+ 	ld.w	t0, t0, 0
+ 

@@ -1,0 +1,15 @@
+diff --git a/arch/loongarch/boot/dts/loongson/loongson32_ls.dts b/arch/loongarch/boot/dts/loongson/loongson32_ls.dts
+index cc11bbafc..01306fa7f 100644
+--- a/arch/loongarch/boot/dts/loongson/loongson32_ls.dts
++++ b/arch/loongarch/boot/dts/loongson/loongson32_ls.dts
+@@ -31,7 +31,9 @@ extioiic: interrupt-controller@0x1fe11600 {
+ 	memory {
+ 		name = "memory";
+ 		device_type = "memory";
+-		reg = <0x00000000  0x08000000>;
++		/* T2026143250012561 board-16m 变体：nscscc-team 最小 SoC
++		 * DDR3 为 16MB @ 物理 0x1c000000（仅 board-16m 构建应用本补丁） */
++		reg = <0x1c000000  0x01000000>;
+ 	};
+ 
+ 	cpuic: interrupt-controller {
