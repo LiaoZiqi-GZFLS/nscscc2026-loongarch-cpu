@@ -84,9 +84,29 @@ outw(uint32_t port, uint32_t data) {
 // NOTE: nscscc-team SoC ties intrpt[7:0] to 0, so this IRQ never fires;
 // console input is polled from the timer interrupt (see clock.c).
 #define COM1_IRQ        3
-// Divisor for the chiplab 16550 UART, per software/examples/linux/start.S.
-// (0x23 was upstream's value for the QEMU ls3a5k32 UART clock.)
-#define COM1_BAUD_DDL   0x1
+// 2026-final: chiplab/nscscc adaptation (rev2: real-board baud rate)
+// The chiplab 16550 (Loongson URT, IP/APB_DEV/URT/uart_regs.v) is clocked by
+// PCLK = sys_clk = 100 MHz on the nscscc-team SoC (clk_pll clk_out2; contest
+// rules fix sys_clk, only cpu_clk is configurable). Its baud generator is a
+// 24-bit fractional divider {DL3[7:0], DLM, DLL}, baud = PCLK/(16*dl), where
+// DL3 is a first-order DSM fractional register reachable at register offset 2
+// while DLAB=1 (plain 16550s ignore it).
+//   100 MHz / 115200 -> dl = 54.2539 -> DLL=54(0x36), DL3=64(0x40)
+//   => 115212 baud, -0.06% error. Same values as sw/boot (verified there).
+// Override the clock with -DUART_PCLK=<hz>. For verilator simulation (whose
+// C++ UART model ignores timing/baud entirely) build with
+// -DUCORE_VERILATOR_UART to use divisor=1, the chiplab sim convention
+// (software/examples/linux/start.S).
+#ifndef UART_PCLK
+#define UART_PCLK       100000000
+#endif
+#ifndef UART_BAUD
+#define UART_BAUD       115200
+#endif
+#define COM1_BAUD_DIV   ((UART_PCLK + 8 * UART_BAUD) / (16 * UART_BAUD))
+#define COM1_BAUD_DLL   (COM1_BAUD_DIV & 0xff)          /* 0x36 @ 100MHz/115200 */
+#define COM1_BAUD_DLM   ((COM1_BAUD_DIV >> 8) & 0xff)   /* 0x00 */
+#define COM1_BAUD_DL3   ((((UART_PCLK % (16 * UART_BAUD)) * 256) / (16 * UART_BAUD)) & 0xff) /* 0x40 */
 
 #define TIMER0_IRQ      11
 

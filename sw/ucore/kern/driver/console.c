@@ -41,18 +41,29 @@ serial_init(void) {
     if(serial_exists)
       return ;
     serial_exists = 1;
-    // 2026-final: chiplab/nscscc adaptation
-    // Follow chiplab software/examples/linux/start.S, the proven init
-    // sequence for this exact 16550-compatible URT IP at 0x1fe001e0:
-    // enable FIFO + reset both FIFOs, divisor = 1 (COM1_BAUD_DDL).
-    outb(COM1 + COM_FCR, 0x47);
+    // 2026-final: chiplab/nscscc adaptation (rev2: real-board baud rate)
+    // Init sequence for the Loongson URT 16550 at phys 0x1fe001e0, mirrors
+    // sw/boot/start.S (see COM1_BAUD_* in loongarch.h): DLAB=1 -> DLL/DLM ->
+    // DL3 fractional divider (register offset 2 aliases FCR while DLAB=1) ->
+    // 8N1 -> FIFO on. Real board: 100MHz sys_clk, 115200 baud (DLL=0x36,
+    // DL3=0x40). Verilator sim: -DUCORE_VERILATOR_UART keeps divisor=1.
     // Set speed; requires DLAB latch
     outb(COM1 + COM_LCR, COM_LCR_DLAB);
-    outb(COM1 + COM_DLL, (uint8_t) (COM1_BAUD_DDL));
+#ifdef UCORE_VERILATOR_UART
+    outb(COM1 + COM_DLL, 1);
     outb(COM1 + COM_DLM, 0);
+    outb(COM1 + COM_FCR, 0);        // DL3 while DLAB=1; 0 in sim
+#else
+    outb(COM1 + COM_DLL, (uint8_t) (COM1_BAUD_DLL));
+    outb(COM1 + COM_DLM, (uint8_t) (COM1_BAUD_DLM));
+    outb(COM1 + COM_FCR, (uint8_t) (COM1_BAUD_DL3)); // DL3 (Loongson frac) while DLAB=1
+#endif
 
     // 8 data bits, 1 stop bit, parity off; turn off DLAB latch
     outb(COM1 + COM_LCR, COM_LCR_WLEN8 & ~COM_LCR_DLAB);
+
+    // Enable FIFO + reset both FIFOs, 4-byte trigger (chiplab convention)
+    outb(COM1 + COM_FCR, 0x47);
 
     // No modem controls
     outb(COM1 + COM_MCR, 0);

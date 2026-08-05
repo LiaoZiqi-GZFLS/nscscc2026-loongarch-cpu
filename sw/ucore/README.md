@@ -90,8 +90,11 @@ nscscc-team SoC 的版本。上游版本、commit 与逐处改动清单见
 
 - DDR3：物理 0x1c000000，16MB 窗口；内核链接于虚拟地址 0xbc000000
   （DMWIN0 cached 窗口 0xa0000000 + 0x1c000000）。
-- UART16550：物理 0x1fe001e0（经 DMWIN1 uncached 窗口访问为 0x9fe001e0），
-  divisor=1（与 chiplab `software/examples/linux/start.S` 一致）。
+- UART16550：物理 0x1fe001e0（经 DMWIN1 uncached 窗口访问为 0x9fe001e0）。
+  **真板波特率已按 sys_clk=100MHz 修正**（rev2）：URT IP 为 24bit 小数分频
+  `baud=PCLK/16/dl`，115200 需 DLL=0x36、DL3=0x40（与 sw/boot 一致，可在
+  编译期用 `-DUART_PCLK=<hz>` 覆盖）；divisor=1 仅是 verilator 约定（其
+  C++ UART 模型不计时），仿真构建加 `-DUCORE_VERILATOR_UART` 保留该路径。
 - 稳定计数器 105MHz，时钟中断 100Hz（周期 1,050,000）。
 - SoC 不接外部中断线（`intrpt[7:0]`=0）：串口输入由时钟中断里轮询。
 - 核只有 DMW0/DMW1、16 项全相联 TLB、4 个 SAVE 寄存器、64B cache line；
