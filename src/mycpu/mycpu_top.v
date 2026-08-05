@@ -1,6 +1,7 @@
 // Generator : SpinalHDL v1.8.1    git head : 2a7592004363e5b40ec43e1f122ed8641cd8965b
 // Component : mycpu_top
-// Date      : 04/08/2026, 02:16:30
+// Git hash  : 68f49c16afa73f363fa75e2ec0284dd97426ecaa
+// Date      : 05/08/2026, 18:28:05
 
 `timescale 1ns/1ps
 
@@ -9775,14 +9776,14 @@ module MyCPUCore (
   wire       [31:0]   IF1_ICACHE_RSPS_1_3;
   wire                IF1_ICACHE_VALIDS_0;
   wire                IF1_ICACHE_VALIDS_1;
-  reg        [8:0]    _zz_MEM_ADDR_to_MEM_MEM1_EXCEPTION_ESUBCODE;
-  reg        [5:0]    _zz_MEM_ADDR_to_MEM_MEM1_EXCEPTION_ECODE;
-  wire                MEM_ADDR_EXCEPTION_OCCURRED;
-  reg                 _zz_MEM_ADDR_to_MEM_MEM1_EXCEPTION_OCCURRED;
   reg        [8:0]    _zz_MEM_MEM1_to_MEM_MEM2_EXCEPTION_ESUBCODE;
   reg        [5:0]    _zz_MEM_MEM1_to_MEM_MEM2_EXCEPTION_ECODE;
   wire                MEM_MEM1_EXCEPTION_OCCURRED;
   reg                 _zz_MEM_MEM1_to_MEM_MEM2_EXCEPTION_OCCURRED;
+  reg        [8:0]    _zz_MEM_ADDR_to_MEM_MEM1_EXCEPTION_ESUBCODE;
+  reg        [5:0]    _zz_MEM_ADDR_to_MEM_MEM1_EXCEPTION_ECODE;
+  wire                MEM_ADDR_EXCEPTION_OCCURRED;
+  reg                 _zz_MEM_ADDR_to_MEM_MEM1_EXCEPTION_OCCURRED;
   reg                 _zz_MEM_WB_to_MEM_WB2_STD_SLOT_valid;
   wire       [2:0]    _zz_MEM_WB_to_MEM_WB2_STD_SLOT_payload_lsType;
   wire       [2:0]    _zz_MEM_WB_to_MEM_WB2_STD_SLOT_payload_lsType_1;
@@ -10666,12 +10667,12 @@ module MyCPUCore (
   wire                IF2_InstAddrTranslatePlugin_tlbRefill;
   wire                IF2_InstAddrTranslatePlugin_pcCached;
   wire       [31:0]   IF2_InstAddrTranslatePlugin_physPC;
+  wire                IF2_EXCEPTION_OCCURRED;
   reg        [31:0]   _zz_IF1_to_IF2_BAD_VADDR;
   reg        [8:0]    _zz_IF1_to_IF2_EXCEPTION_ESUBCODE;
   reg        [5:0]    _zz_IF1_to_IF2_EXCEPTION_ECODE;
   wire                IF1_EXCEPTION_OCCURRED;
   reg                 _zz_IF1_to_IF2_EXCEPTION_OCCURRED;
-  wire                IF2_EXCEPTION_OCCURRED;
   reg        [8:0]    _zz_IF2_ICachePlugin_fetchPacket_except_payload_subcode;
   reg        [5:0]    _zz_IF2_ICachePlugin_fetchPacket_except_payload_code;
   wire       [31:0]   IF2_ICachePlugin_fetchPacket_pc;
@@ -49616,32 +49617,7 @@ module MyCPUCore (
   assign IF1_ICACHE_VALIDS_0 = _zz_IF1_ICACHE_VALIDS_0_1;
   assign IF1_ICACHE_VALIDS_1 = _zz_IF1_ICACHE_VALIDS_1;
   always @(*) begin
-    _zz_MEM_ADDR_to_MEM_MEM1_EXCEPTION_ESUBCODE = MEM_ADDR_EXCEPTION_ESUBCODE;
-    if(when_ExceptionMuxPlugin_l45_9) begin
-      _zz_MEM_ADDR_to_MEM_MEM1_EXCEPTION_ESUBCODE = 9'h0;
-    end
-  end
-
-  always @(*) begin
-    _zz_MEM_ADDR_to_MEM_MEM1_EXCEPTION_ECODE = MEM_ADDR_EXCEPTION_ECODE;
-    if(when_ExceptionMuxPlugin_l45_9) begin
-      _zz_MEM_ADDR_to_MEM_MEM1_EXCEPTION_ECODE = 6'h09;
-    end
-  end
-
-  assign MEM_ADDR_EXCEPTION_OCCURRED = 1'b0;
-  always @(*) begin
-    _zz_MEM_ADDR_to_MEM_MEM1_EXCEPTION_OCCURRED = MEM_ADDR_EXCEPTION_OCCURRED;
-    if(AddressGenerationPlugin_raiseALE) begin
-      _zz_MEM_ADDR_to_MEM_MEM1_EXCEPTION_OCCURRED = 1'b1;
-    end
-  end
-
-  always @(*) begin
     _zz_MEM_MEM1_to_MEM_MEM2_EXCEPTION_ESUBCODE = MEM_MEM1_EXCEPTION_ESUBCODE;
-    if(when_ExceptionMuxPlugin_l45_4) begin
-      _zz_MEM_MEM1_to_MEM_MEM2_EXCEPTION_ESUBCODE = 9'h0;
-    end
     if(when_ExceptionMuxPlugin_l45_5) begin
       _zz_MEM_MEM1_to_MEM_MEM2_EXCEPTION_ESUBCODE = 9'h0;
     end
@@ -49652,25 +49628,28 @@ module MyCPUCore (
       _zz_MEM_MEM1_to_MEM_MEM2_EXCEPTION_ESUBCODE = 9'h0;
     end
     if(when_ExceptionMuxPlugin_l45_8) begin
+      _zz_MEM_MEM1_to_MEM_MEM2_EXCEPTION_ESUBCODE = 9'h0;
+    end
+    if(when_ExceptionMuxPlugin_l45_9) begin
       _zz_MEM_MEM1_to_MEM_MEM2_EXCEPTION_ESUBCODE = 9'h0;
     end
   end
 
   always @(*) begin
     _zz_MEM_MEM1_to_MEM_MEM2_EXCEPTION_ECODE = MEM_MEM1_EXCEPTION_ECODE;
-    if(when_ExceptionMuxPlugin_l45_4) begin
+    if(when_ExceptionMuxPlugin_l45_5) begin
       _zz_MEM_MEM1_to_MEM_MEM2_EXCEPTION_ECODE = 6'h04;
     end
-    if(when_ExceptionMuxPlugin_l45_5) begin
+    if(when_ExceptionMuxPlugin_l45_6) begin
       _zz_MEM_MEM1_to_MEM_MEM2_EXCEPTION_ECODE = 6'h07;
     end
-    if(when_ExceptionMuxPlugin_l45_6) begin
+    if(when_ExceptionMuxPlugin_l45_7) begin
       _zz_MEM_MEM1_to_MEM_MEM2_EXCEPTION_ECODE = 6'h02;
     end
-    if(when_ExceptionMuxPlugin_l45_7) begin
+    if(when_ExceptionMuxPlugin_l45_8) begin
       _zz_MEM_MEM1_to_MEM_MEM2_EXCEPTION_ECODE = 6'h01;
     end
-    if(when_ExceptionMuxPlugin_l45_8) begin
+    if(when_ExceptionMuxPlugin_l45_9) begin
       _zz_MEM_MEM1_to_MEM_MEM2_EXCEPTION_ECODE = 6'h3f;
     end
   end
@@ -49692,6 +49671,28 @@ module MyCPUCore (
     end
     if(AddressGenerationPlugin_raiseTLBR) begin
       _zz_MEM_MEM1_to_MEM_MEM2_EXCEPTION_OCCURRED = 1'b1;
+    end
+  end
+
+  always @(*) begin
+    _zz_MEM_ADDR_to_MEM_MEM1_EXCEPTION_ESUBCODE = MEM_ADDR_EXCEPTION_ESUBCODE;
+    if(when_ExceptionMuxPlugin_l45_4) begin
+      _zz_MEM_ADDR_to_MEM_MEM1_EXCEPTION_ESUBCODE = 9'h0;
+    end
+  end
+
+  always @(*) begin
+    _zz_MEM_ADDR_to_MEM_MEM1_EXCEPTION_ECODE = MEM_ADDR_EXCEPTION_ECODE;
+    if(when_ExceptionMuxPlugin_l45_4) begin
+      _zz_MEM_ADDR_to_MEM_MEM1_EXCEPTION_ECODE = 6'h09;
+    end
+  end
+
+  assign MEM_ADDR_EXCEPTION_OCCURRED = 1'b0;
+  always @(*) begin
+    _zz_MEM_ADDR_to_MEM_MEM1_EXCEPTION_OCCURRED = MEM_ADDR_EXCEPTION_OCCURRED;
+    if(AddressGenerationPlugin_raiseALE) begin
+      _zz_MEM_ADDR_to_MEM_MEM1_EXCEPTION_OCCURRED = 1'b1;
     end
   end
 
@@ -50347,23 +50348,24 @@ module MyCPUCore (
   assign IF2_DIRECT_TRANSLATE_RESULT_payload_exception_raisePME = IF1_to_IF2_DIRECT_TRANSLATE_RESULT_payload_exception_raisePME;
   assign IF2_DIRECT_TRANSLATE_RESULT_payload_exception_raisePPI = IF1_to_IF2_DIRECT_TRANSLATE_RESULT_payload_exception_raisePPI;
   assign IF2_DIRECT_TRANSLATE_RESULT_payload_exception_raiseTLBR = IF1_to_IF2_DIRECT_TRANSLATE_RESULT_payload_exception_raiseTLBR;
+  assign IF2_EXCEPTION_OCCURRED = IF1_to_IF2_EXCEPTION_OCCURRED;
   always @(*) begin
     _zz_IF1_to_IF2_BAD_VADDR = IF1_BAD_VADDR;
-    if(when_ExceptionMuxPlugin_l45_3) begin
+    if(when_ExceptionMuxPlugin_l45) begin
       _zz_IF1_to_IF2_BAD_VADDR = InstAddrTranslatePlugin_badVaddr;
     end
   end
 
   always @(*) begin
     _zz_IF1_to_IF2_EXCEPTION_ESUBCODE = IF1_EXCEPTION_ESUBCODE;
-    if(when_ExceptionMuxPlugin_l45_3) begin
+    if(when_ExceptionMuxPlugin_l45) begin
       _zz_IF1_to_IF2_EXCEPTION_ESUBCODE = 9'h0;
     end
   end
 
   always @(*) begin
     _zz_IF1_to_IF2_EXCEPTION_ECODE = IF1_EXCEPTION_ECODE;
-    if(when_ExceptionMuxPlugin_l45_3) begin
+    if(when_ExceptionMuxPlugin_l45) begin
       _zz_IF1_to_IF2_EXCEPTION_ECODE = 6'h08;
     end
   end
@@ -50376,29 +50378,28 @@ module MyCPUCore (
     end
   end
 
-  assign IF2_EXCEPTION_OCCURRED = IF1_to_IF2_EXCEPTION_OCCURRED;
   always @(*) begin
     _zz_IF2_ICachePlugin_fetchPacket_except_payload_subcode = IF2_EXCEPTION_ESUBCODE;
-    if(when_ExceptionMuxPlugin_l45) begin
-      _zz_IF2_ICachePlugin_fetchPacket_except_payload_subcode = 9'h0;
-    end
     if(when_ExceptionMuxPlugin_l45_1) begin
       _zz_IF2_ICachePlugin_fetchPacket_except_payload_subcode = 9'h0;
     end
     if(when_ExceptionMuxPlugin_l45_2) begin
+      _zz_IF2_ICachePlugin_fetchPacket_except_payload_subcode = 9'h0;
+    end
+    if(when_ExceptionMuxPlugin_l45_3) begin
       _zz_IF2_ICachePlugin_fetchPacket_except_payload_subcode = 9'h0;
     end
   end
 
   always @(*) begin
     _zz_IF2_ICachePlugin_fetchPacket_except_payload_code = IF2_EXCEPTION_ECODE;
-    if(when_ExceptionMuxPlugin_l45) begin
+    if(when_ExceptionMuxPlugin_l45_1) begin
       _zz_IF2_ICachePlugin_fetchPacket_except_payload_code = 6'h07;
     end
-    if(when_ExceptionMuxPlugin_l45_1) begin
+    if(when_ExceptionMuxPlugin_l45_2) begin
       _zz_IF2_ICachePlugin_fetchPacket_except_payload_code = 6'h03;
     end
-    if(when_ExceptionMuxPlugin_l45_2) begin
+    if(when_ExceptionMuxPlugin_l45_3) begin
       _zz_IF2_ICachePlugin_fetchPacket_except_payload_code = 6'h3f;
     end
   end
@@ -64238,10 +64239,10 @@ module MyCPUCore (
   assign _zz_423 = _zz_360[62];
   assign _zz_424 = _zz_360[63];
   assign _zz_425 = ({1'd0,1'b1} <<< ICachePlugin_commit_way);
-  assign when_ExceptionMuxPlugin_l45 = ((! IF2_EXCEPTION_OCCURRED) && InstAddrTranslatePlugin_PPI);
-  assign when_ExceptionMuxPlugin_l45_1 = ((! IF2_EXCEPTION_OCCURRED) && InstAddrTranslatePlugin_PIF);
-  assign when_ExceptionMuxPlugin_l45_2 = ((! IF2_EXCEPTION_OCCURRED) && InstAddrTranslatePlugin_TLBR);
-  assign when_ExceptionMuxPlugin_l45_3 = ((! IF1_EXCEPTION_OCCURRED) && InstAddrTranslatePlugin_ADEF);
+  assign when_ExceptionMuxPlugin_l45 = ((! IF1_EXCEPTION_OCCURRED) && InstAddrTranslatePlugin_ADEF);
+  assign when_ExceptionMuxPlugin_l45_1 = ((! IF2_EXCEPTION_OCCURRED) && InstAddrTranslatePlugin_PPI);
+  assign when_ExceptionMuxPlugin_l45_2 = ((! IF2_EXCEPTION_OCCURRED) && InstAddrTranslatePlugin_PIF);
+  assign when_ExceptionMuxPlugin_l45_3 = ((! IF2_EXCEPTION_OCCURRED) && InstAddrTranslatePlugin_TLBR);
   assign InstAddrTranslatePlugin_badVaddr = IF1_PC;
   assign InstAddrTranslatePlugin_ADEF = (IF1_PC[0] || IF1_PC[1]);
   assign IF1_InstAddrTranslatePlugin_directTranslateResult_resultExceptionBundle_raisePIL = 1'b0;
@@ -73180,12 +73181,12 @@ module MyCPUCore (
   assign MemExecutePlugin_robWrite_payload_pAddr = MEM_WB_MEMORY_ADDRESS_PHYSICAL;
   assign MemExecutePlugin_robWrite_payload_storeData = MEM_WB_MEMORY_WRITE_DATA;
   assign MemExecutePlugin_robWrite_payload_myPC = MEM_WB_ISSUE_SLOT_uop_pc;
-  assign when_ExceptionMuxPlugin_l45_4 = ((! MEM_MEM1_EXCEPTION_OCCURRED) && AddressGenerationPlugin_raisePME);
-  assign when_ExceptionMuxPlugin_l45_5 = ((! MEM_MEM1_EXCEPTION_OCCURRED) && AddressGenerationPlugin_raisePPI);
-  assign when_ExceptionMuxPlugin_l45_6 = ((! MEM_MEM1_EXCEPTION_OCCURRED) && AddressGenerationPlugin_raisePIS);
-  assign when_ExceptionMuxPlugin_l45_7 = ((! MEM_MEM1_EXCEPTION_OCCURRED) && AddressGenerationPlugin_raisePIL);
-  assign when_ExceptionMuxPlugin_l45_8 = ((! MEM_MEM1_EXCEPTION_OCCURRED) && AddressGenerationPlugin_raiseTLBR);
-  assign when_ExceptionMuxPlugin_l45_9 = ((! MEM_ADDR_EXCEPTION_OCCURRED) && AddressGenerationPlugin_raiseALE);
+  assign when_ExceptionMuxPlugin_l45_4 = ((! MEM_ADDR_EXCEPTION_OCCURRED) && AddressGenerationPlugin_raiseALE);
+  assign when_ExceptionMuxPlugin_l45_5 = ((! MEM_MEM1_EXCEPTION_OCCURRED) && AddressGenerationPlugin_raisePME);
+  assign when_ExceptionMuxPlugin_l45_6 = ((! MEM_MEM1_EXCEPTION_OCCURRED) && AddressGenerationPlugin_raisePPI);
+  assign when_ExceptionMuxPlugin_l45_7 = ((! MEM_MEM1_EXCEPTION_OCCURRED) && AddressGenerationPlugin_raisePIS);
+  assign when_ExceptionMuxPlugin_l45_8 = ((! MEM_MEM1_EXCEPTION_OCCURRED) && AddressGenerationPlugin_raisePIL);
+  assign when_ExceptionMuxPlugin_l45_9 = ((! MEM_MEM1_EXCEPTION_OCCURRED) && AddressGenerationPlugin_raiseTLBR);
   assign when_Pipeline_l158 = (! IF2_arbitration_isStuck);
   assign when_Pipeline_l158_1 = (! IF2_arbitration_isStuck);
   assign when_Pipeline_l158_2 = (! IF2_arbitration_isStuck);
@@ -115011,46 +115012,52 @@ module unamed_1 (
   input               aresetn
 );
 
+  reg        [4:0]    _zz_nextPopPtr_3;
+  reg        [4:0]    _zz_readIdx_0;
+  wire       [4:0]    _zz_readIdx_0_1;
+  wire       [4:0]    _zz_readIdx_0_2;
+  wire       [4:0]    _zz_readIdx_0_3;
+  wire       [4:0]    _zz_readIdx_0_4;
+  wire       [4:0]    _zz_readIdx_0_5;
+  wire       [4:0]    _zz_readIdx_0_6;
+  wire       [4:0]    _zz_readIdx_0_7;
+  wire       [4:0]    _zz_readIdx_0_8;
+  reg        [4:0]    _zz_readIdx_1;
+  wire       [4:0]    _zz_readIdx_1_1;
+  wire       [4:0]    _zz_readIdx_1_2;
+  wire       [4:0]    _zz_readIdx_1_3;
+  wire       [4:0]    _zz_readIdx_1_4;
+  wire       [4:0]    _zz_readIdx_1_5;
+  wire       [4:0]    _zz_readIdx_1_6;
+  wire       [4:0]    _zz_readIdx_1_7;
+  wire       [4:0]    _zz_readIdx_1_8;
+  reg        [4:0]    _zz_readIdx_2;
+  wire       [4:0]    _zz_readIdx_2_1;
+  wire       [4:0]    _zz_readIdx_2_2;
+  wire       [4:0]    _zz_readIdx_2_3;
+  wire       [4:0]    _zz_readIdx_2_4;
+  wire       [4:0]    _zz_readIdx_2_5;
+  wire       [4:0]    _zz_readIdx_2_6;
+  wire       [4:0]    _zz_readIdx_2_7;
+  wire       [4:0]    _zz_readIdx_2_8;
   reg        [5:0]    _zz_io_pop_0_payload;
-  wire       [4:0]    _zz_io_pop_0_payload_1;
-  wire       [4:0]    _zz_io_pop_0_payload_2;
-  wire       [4:0]    _zz_io_pop_0_payload_3;
   reg        [5:0]    _zz_io_pop_1_payload;
-  wire       [4:0]    _zz_io_pop_1_payload_1;
-  wire       [4:0]    _zz_io_pop_1_payload_2;
-  wire       [4:0]    _zz_io_pop_1_payload_3;
   reg        [5:0]    _zz_io_pop_2_payload;
-  wire       [4:0]    _zz_io_pop_2_payload_1;
-  wire       [4:0]    _zz_io_pop_2_payload_2;
-  wire       [4:0]    _zz_io_pop_2_payload_3;
-  wire       [4:0]    _zz_popPtr;
   wire       [4:0]    _zz__zz_1;
-  wire       [4:0]    _zz_when_MultiPortFIFOVec_l149;
-  wire       [4:0]    _zz_when_MultiPortFIFOVec_l149_1;
-  wire       [4:0]    _zz_when_MultiPortFIFOVec_l149_2;
-  wire       [4:0]    _zz_when_MultiPortFIFOVec_l149_3;
-  wire       [4:0]    _zz_when_MultiPortFIFOVec_l149_1_1;
-  wire       [4:0]    _zz_when_MultiPortFIFOVec_l149_1_2;
-  wire       [4:0]    _zz_when_MultiPortFIFOVec_l149_1_3;
-  wire       [4:0]    _zz_when_MultiPortFIFOVec_l149_1_4;
-  wire       [4:0]    _zz_when_MultiPortFIFOVec_l149_2_1;
-  wire       [4:0]    _zz_when_MultiPortFIFOVec_l149_2_2;
-  wire       [4:0]    _zz_when_MultiPortFIFOVec_l149_2_3;
-  wire       [4:0]    _zz_when_MultiPortFIFOVec_l149_2_4;
+  wire       [4:0]    _zz_when_MultiPortFIFOVec_l166;
+  wire       [4:0]    _zz_when_MultiPortFIFOVec_l166_1;
+  wire       [4:0]    _zz_when_MultiPortFIFOVec_l166_1_1;
+  wire       [4:0]    _zz_when_MultiPortFIFOVec_l166_1_2;
+  wire       [4:0]    _zz_when_MultiPortFIFOVec_l166_2;
+  wire       [4:0]    _zz_when_MultiPortFIFOVec_l166_2_1;
   wire       [4:0]    _zz__zz_2;
-  wire       [4:0]    _zz_when_MultiPortFIFOVec_l149_3_1;
-  wire       [4:0]    _zz_when_MultiPortFIFOVec_l149_3_2;
-  wire       [4:0]    _zz_when_MultiPortFIFOVec_l149_3_3;
-  wire       [4:0]    _zz_when_MultiPortFIFOVec_l149_3_4;
-  wire       [4:0]    _zz_when_MultiPortFIFOVec_l149_4;
-  wire       [4:0]    _zz_when_MultiPortFIFOVec_l149_4_1;
-  wire       [4:0]    _zz_when_MultiPortFIFOVec_l149_4_2;
-  wire       [4:0]    _zz_when_MultiPortFIFOVec_l149_4_3;
+  wire       [4:0]    _zz_when_MultiPortFIFOVec_l166_3;
+  wire       [4:0]    _zz_when_MultiPortFIFOVec_l166_3_1;
+  wire       [4:0]    _zz_when_MultiPortFIFOVec_l166_4;
+  wire       [4:0]    _zz_when_MultiPortFIFOVec_l166_4_1;
   wire       [4:0]    _zz__zz_3;
-  wire       [4:0]    _zz_when_MultiPortFIFOVec_l149_5;
-  wire       [4:0]    _zz_when_MultiPortFIFOVec_l149_5_1;
-  wire       [4:0]    _zz_when_MultiPortFIFOVec_l149_5_2;
-  wire       [4:0]    _zz_when_MultiPortFIFOVec_l149_5_3;
+  wire       [4:0]    _zz_when_MultiPortFIFOVec_l166_5;
+  wire       [4:0]    _zz_when_MultiPortFIFOVec_l166_5_1;
   wire       [4:0]    _zz_pushPtr;
   reg        [5:0]    dataVec_0;
   reg        [5:0]    dataVec_1;
@@ -115158,65 +115165,116 @@ module unamed_1 (
   wire                io_pop_1_fire;
   wire                io_pop_2_fire;
   wire       [1:0]    popCount;
+  wire       [4:0]    nextPopPtrCands_0;
+  wire       [4:0]    nextPopPtrCands_1;
+  wire       [4:0]    nextPopPtrCands_2;
+  wire       [4:0]    nextPopPtrCands_3;
+  wire                io_pop_0_fire_1;
+  wire                popSelOH_0;
+  wire                io_pop_0_fire_2;
+  wire                io_pop_1_fire_1;
+  wire                popSelOH_1;
+  wire                io_pop_1_fire_2;
+  wire                io_pop_2_fire_1;
+  wire                popSelOH_2;
+  wire                popSelOH_3;
+  wire                _zz_nextPopPtr;
+  wire                _zz_nextPopPtr_1;
+  wire       [1:0]    _zz_nextPopPtr_2;
+  wire       [4:0]    nextPopPtr;
+  wire       [4:0]    readIdx_0;
+  wire       [4:0]    readIdx_1;
+  wire       [4:0]    readIdx_2;
   wire       [4:0]    maxPush;
   wire                io_push_0_fire;
   wire                io_push_1_fire;
   wire                io_push_2_fire;
   wire       [1:0]    pushCount;
-  wire                when_MultiPortFIFOVec_l147;
+  wire                when_MultiPortFIFOVec_l164;
   wire       [31:0]   _zz_1;
-  wire                when_MultiPortFIFOVec_l149;
-  wire                when_MultiPortFIFOVec_l149_1;
-  wire                when_MultiPortFIFOVec_l149_2;
-  wire                when_MultiPortFIFOVec_l147_1;
+  wire                when_MultiPortFIFOVec_l166;
+  wire                when_MultiPortFIFOVec_l166_1;
+  wire                when_MultiPortFIFOVec_l166_2;
+  wire                when_MultiPortFIFOVec_l164_1;
   wire       [31:0]   _zz_2;
-  wire                when_MultiPortFIFOVec_l149_3;
-  wire                when_MultiPortFIFOVec_l149_4;
-  wire                when_MultiPortFIFOVec_l147_2;
+  wire                when_MultiPortFIFOVec_l166_3;
+  wire                when_MultiPortFIFOVec_l166_4;
+  wire                when_MultiPortFIFOVec_l164_2;
   wire       [31:0]   _zz_3;
-  wire                when_MultiPortFIFOVec_l149_5;
-  wire                when_MultiPortFIFOVec_l156;
+  wire                when_MultiPortFIFOVec_l166_5;
+  wire                when_MultiPortFIFOVec_l173;
 
-  assign _zz_io_pop_0_payload_1 = (_zz_io_pop_0_payload_2 + 5'h0);
-  assign _zz_io_pop_0_payload_2 = (popPtr + _zz_io_pop_0_payload_3);
-  assign _zz_io_pop_0_payload_3 = {3'd0, popCount};
-  assign _zz_io_pop_1_payload_1 = (_zz_io_pop_1_payload_2 + 5'h01);
-  assign _zz_io_pop_1_payload_2 = (popPtr + _zz_io_pop_1_payload_3);
-  assign _zz_io_pop_1_payload_3 = {3'd0, popCount};
-  assign _zz_io_pop_2_payload_1 = (_zz_io_pop_2_payload_2 + 5'h02);
-  assign _zz_io_pop_2_payload_2 = (popPtr + _zz_io_pop_2_payload_3);
-  assign _zz_io_pop_2_payload_3 = {3'd0, popCount};
-  assign _zz_popPtr = {3'd0, popCount};
+  assign _zz_readIdx_0_1 = (_zz_readIdx_0_2 + 5'h0);
+  assign _zz_readIdx_0_2 = (popPtr + 5'h0);
+  assign _zz_readIdx_0_3 = (_zz_readIdx_0_4 + 5'h0);
+  assign _zz_readIdx_0_4 = (popPtr + 5'h01);
+  assign _zz_readIdx_0_5 = (_zz_readIdx_0_6 + 5'h0);
+  assign _zz_readIdx_0_6 = (popPtr + 5'h02);
+  assign _zz_readIdx_0_7 = (_zz_readIdx_0_8 + 5'h0);
+  assign _zz_readIdx_0_8 = (popPtr + 5'h03);
+  assign _zz_readIdx_1_1 = (_zz_readIdx_1_2 + 5'h01);
+  assign _zz_readIdx_1_2 = (popPtr + 5'h0);
+  assign _zz_readIdx_1_3 = (_zz_readIdx_1_4 + 5'h01);
+  assign _zz_readIdx_1_4 = (popPtr + 5'h01);
+  assign _zz_readIdx_1_5 = (_zz_readIdx_1_6 + 5'h01);
+  assign _zz_readIdx_1_6 = (popPtr + 5'h02);
+  assign _zz_readIdx_1_7 = (_zz_readIdx_1_8 + 5'h01);
+  assign _zz_readIdx_1_8 = (popPtr + 5'h03);
+  assign _zz_readIdx_2_1 = (_zz_readIdx_2_2 + 5'h02);
+  assign _zz_readIdx_2_2 = (popPtr + 5'h0);
+  assign _zz_readIdx_2_3 = (_zz_readIdx_2_4 + 5'h02);
+  assign _zz_readIdx_2_4 = (popPtr + 5'h01);
+  assign _zz_readIdx_2_5 = (_zz_readIdx_2_6 + 5'h02);
+  assign _zz_readIdx_2_6 = (popPtr + 5'h02);
+  assign _zz_readIdx_2_7 = (_zz_readIdx_2_8 + 5'h02);
+  assign _zz_readIdx_2_8 = (popPtr + 5'h03);
   assign _zz__zz_1 = (pushPtr + 5'h0);
-  assign _zz_when_MultiPortFIFOVec_l149 = (pushPtr + 5'h0);
-  assign _zz_when_MultiPortFIFOVec_l149_1 = (_zz_when_MultiPortFIFOVec_l149_2 + 5'h0);
-  assign _zz_when_MultiPortFIFOVec_l149_2 = (popPtr + _zz_when_MultiPortFIFOVec_l149_3);
-  assign _zz_when_MultiPortFIFOVec_l149_3 = {3'd0, popCount};
-  assign _zz_when_MultiPortFIFOVec_l149_1_1 = (pushPtr + 5'h0);
-  assign _zz_when_MultiPortFIFOVec_l149_1_2 = (_zz_when_MultiPortFIFOVec_l149_1_3 + 5'h01);
-  assign _zz_when_MultiPortFIFOVec_l149_1_3 = (popPtr + _zz_when_MultiPortFIFOVec_l149_1_4);
-  assign _zz_when_MultiPortFIFOVec_l149_1_4 = {3'd0, popCount};
-  assign _zz_when_MultiPortFIFOVec_l149_2_1 = (pushPtr + 5'h0);
-  assign _zz_when_MultiPortFIFOVec_l149_2_2 = (_zz_when_MultiPortFIFOVec_l149_2_3 + 5'h02);
-  assign _zz_when_MultiPortFIFOVec_l149_2_3 = (popPtr + _zz_when_MultiPortFIFOVec_l149_2_4);
-  assign _zz_when_MultiPortFIFOVec_l149_2_4 = {3'd0, popCount};
+  assign _zz_when_MultiPortFIFOVec_l166 = (pushPtr + 5'h0);
+  assign _zz_when_MultiPortFIFOVec_l166_1 = (nextPopPtr + 5'h0);
+  assign _zz_when_MultiPortFIFOVec_l166_1_1 = (pushPtr + 5'h0);
+  assign _zz_when_MultiPortFIFOVec_l166_1_2 = (nextPopPtr + 5'h01);
+  assign _zz_when_MultiPortFIFOVec_l166_2 = (pushPtr + 5'h0);
+  assign _zz_when_MultiPortFIFOVec_l166_2_1 = (nextPopPtr + 5'h02);
   assign _zz__zz_2 = (pushPtr + 5'h01);
-  assign _zz_when_MultiPortFIFOVec_l149_3_1 = (pushPtr + 5'h01);
-  assign _zz_when_MultiPortFIFOVec_l149_3_2 = (_zz_when_MultiPortFIFOVec_l149_3_3 + 5'h01);
-  assign _zz_when_MultiPortFIFOVec_l149_3_3 = (popPtr + _zz_when_MultiPortFIFOVec_l149_3_4);
-  assign _zz_when_MultiPortFIFOVec_l149_3_4 = {3'd0, popCount};
-  assign _zz_when_MultiPortFIFOVec_l149_4 = (pushPtr + 5'h01);
-  assign _zz_when_MultiPortFIFOVec_l149_4_1 = (_zz_when_MultiPortFIFOVec_l149_4_2 + 5'h02);
-  assign _zz_when_MultiPortFIFOVec_l149_4_2 = (popPtr + _zz_when_MultiPortFIFOVec_l149_4_3);
-  assign _zz_when_MultiPortFIFOVec_l149_4_3 = {3'd0, popCount};
+  assign _zz_when_MultiPortFIFOVec_l166_3 = (pushPtr + 5'h01);
+  assign _zz_when_MultiPortFIFOVec_l166_3_1 = (nextPopPtr + 5'h01);
+  assign _zz_when_MultiPortFIFOVec_l166_4 = (pushPtr + 5'h01);
+  assign _zz_when_MultiPortFIFOVec_l166_4_1 = (nextPopPtr + 5'h02);
   assign _zz__zz_3 = (pushPtr + 5'h02);
-  assign _zz_when_MultiPortFIFOVec_l149_5 = (pushPtr + 5'h02);
-  assign _zz_when_MultiPortFIFOVec_l149_5_1 = (_zz_when_MultiPortFIFOVec_l149_5_2 + 5'h02);
-  assign _zz_when_MultiPortFIFOVec_l149_5_2 = (popPtr + _zz_when_MultiPortFIFOVec_l149_5_3);
-  assign _zz_when_MultiPortFIFOVec_l149_5_3 = {3'd0, popCount};
+  assign _zz_when_MultiPortFIFOVec_l166_5 = (pushPtr + 5'h02);
+  assign _zz_when_MultiPortFIFOVec_l166_5_1 = (nextPopPtr + 5'h02);
   assign _zz_pushPtr = {3'd0, pushCount};
   always @(*) begin
-    case(_zz_io_pop_0_payload_1)
+    case(_zz_nextPopPtr_2)
+      2'b00 : begin
+        _zz_nextPopPtr_3 = nextPopPtrCands_0;
+        _zz_readIdx_0 = _zz_readIdx_0_1;
+        _zz_readIdx_1 = _zz_readIdx_1_1;
+        _zz_readIdx_2 = _zz_readIdx_2_1;
+      end
+      2'b01 : begin
+        _zz_nextPopPtr_3 = nextPopPtrCands_1;
+        _zz_readIdx_0 = _zz_readIdx_0_3;
+        _zz_readIdx_1 = _zz_readIdx_1_3;
+        _zz_readIdx_2 = _zz_readIdx_2_3;
+      end
+      2'b10 : begin
+        _zz_nextPopPtr_3 = nextPopPtrCands_2;
+        _zz_readIdx_0 = _zz_readIdx_0_5;
+        _zz_readIdx_1 = _zz_readIdx_1_5;
+        _zz_readIdx_2 = _zz_readIdx_2_5;
+      end
+      default : begin
+        _zz_nextPopPtr_3 = nextPopPtrCands_3;
+        _zz_readIdx_0 = _zz_readIdx_0_7;
+        _zz_readIdx_1 = _zz_readIdx_1_7;
+        _zz_readIdx_2 = _zz_readIdx_2_7;
+      end
+    endcase
+  end
+
+  always @(*) begin
+    case(readIdx_0)
       5'b00000 : _zz_io_pop_0_payload = dataVec_0;
       5'b00001 : _zz_io_pop_0_payload = dataVec_1;
       5'b00010 : _zz_io_pop_0_payload = dataVec_2;
@@ -115253,7 +115311,7 @@ module unamed_1 (
   end
 
   always @(*) begin
-    case(_zz_io_pop_1_payload_1)
+    case(readIdx_1)
       5'b00000 : _zz_io_pop_1_payload = dataVec_0;
       5'b00001 : _zz_io_pop_1_payload = dataVec_1;
       5'b00010 : _zz_io_pop_1_payload = dataVec_2;
@@ -115290,7 +115348,7 @@ module unamed_1 (
   end
 
   always @(*) begin
-    case(_zz_io_pop_2_payload_1)
+    case(readIdx_2)
       5'b00000 : _zz_io_pop_2_payload = dataVec_0;
       5'b00001 : _zz_io_pop_2_payload = dataVec_1;
       5'b00010 : _zz_io_pop_2_payload = dataVec_2;
@@ -115397,6 +115455,26 @@ module unamed_1 (
   assign io_pop_1_fire = (io_pop_1_valid && io_pop_1_ready);
   assign io_pop_2_fire = (io_pop_2_valid && io_pop_2_ready);
   assign popCount = ((! io_pop_0_fire) ? 2'b00 : ((! io_pop_1_fire) ? 2'b01 : ((! io_pop_2_fire) ? 2'b10 : 2'b11)));
+  assign nextPopPtrCands_0 = (popPtr + 5'h0);
+  assign nextPopPtrCands_1 = (popPtr + 5'h01);
+  assign nextPopPtrCands_2 = (popPtr + 5'h02);
+  assign nextPopPtrCands_3 = (popPtr + 5'h03);
+  assign io_pop_0_fire_1 = (io_pop_0_valid && io_pop_0_ready);
+  assign popSelOH_0 = (! io_pop_0_fire_1);
+  assign io_pop_0_fire_2 = (io_pop_0_valid && io_pop_0_ready);
+  assign io_pop_1_fire_1 = (io_pop_1_valid && io_pop_1_ready);
+  assign popSelOH_1 = (io_pop_0_fire_2 && (! io_pop_1_fire_1));
+  assign io_pop_1_fire_2 = (io_pop_1_valid && io_pop_1_ready);
+  assign io_pop_2_fire_1 = (io_pop_2_valid && io_pop_2_ready);
+  assign popSelOH_2 = (io_pop_1_fire_2 && (! io_pop_2_fire_1));
+  assign popSelOH_3 = (io_pop_2_valid && io_pop_2_ready);
+  assign _zz_nextPopPtr = (popSelOH_1 || popSelOH_3);
+  assign _zz_nextPopPtr_1 = (popSelOH_2 || popSelOH_3);
+  assign _zz_nextPopPtr_2 = {_zz_nextPopPtr_1,_zz_nextPopPtr};
+  assign nextPopPtr = _zz_nextPopPtr_3;
+  assign readIdx_0 = _zz_readIdx_0;
+  assign readIdx_1 = _zz_readIdx_1;
+  assign readIdx_2 = _zz_readIdx_2;
   assign io_pop_0_valid = (isFull || (5'h0 < maxPop));
   assign io_pop_1_valid = (isFull || (5'h01 < maxPop));
   assign io_pop_2_valid = (isFull || (5'h02 < maxPop));
@@ -115406,21 +115484,21 @@ module unamed_1 (
   assign io_push_2_fire = (io_push_2_valid && io_push_2_ready);
   assign pushCount = ((! io_push_0_fire) ? 2'b00 : ((! io_push_1_fire) ? 2'b01 : ((! io_push_2_fire) ? 2'b10 : 2'b11)));
   assign io_push_0_ready = (isEmpty || (5'h0 < maxPush));
-  assign when_MultiPortFIFOVec_l147 = (io_push_0_ready && io_push_0_valid);
+  assign when_MultiPortFIFOVec_l164 = (io_push_0_ready && io_push_0_valid);
   assign _zz_1 = ({31'd0,1'b1} <<< _zz__zz_1);
-  assign when_MultiPortFIFOVec_l149 = (_zz_when_MultiPortFIFOVec_l149 == _zz_when_MultiPortFIFOVec_l149_1);
-  assign when_MultiPortFIFOVec_l149_1 = (_zz_when_MultiPortFIFOVec_l149_1_1 == _zz_when_MultiPortFIFOVec_l149_1_2);
-  assign when_MultiPortFIFOVec_l149_2 = (_zz_when_MultiPortFIFOVec_l149_2_1 == _zz_when_MultiPortFIFOVec_l149_2_2);
+  assign when_MultiPortFIFOVec_l166 = (_zz_when_MultiPortFIFOVec_l166 == _zz_when_MultiPortFIFOVec_l166_1);
+  assign when_MultiPortFIFOVec_l166_1 = (_zz_when_MultiPortFIFOVec_l166_1_1 == _zz_when_MultiPortFIFOVec_l166_1_2);
+  assign when_MultiPortFIFOVec_l166_2 = (_zz_when_MultiPortFIFOVec_l166_2 == _zz_when_MultiPortFIFOVec_l166_2_1);
   assign io_push_1_ready = (isEmpty || (5'h01 < maxPush));
-  assign when_MultiPortFIFOVec_l147_1 = (io_push_1_ready && (io_push_0_valid && io_push_1_valid));
+  assign when_MultiPortFIFOVec_l164_1 = (io_push_1_ready && (io_push_0_valid && io_push_1_valid));
   assign _zz_2 = ({31'd0,1'b1} <<< _zz__zz_2);
-  assign when_MultiPortFIFOVec_l149_3 = (_zz_when_MultiPortFIFOVec_l149_3_1 == _zz_when_MultiPortFIFOVec_l149_3_2);
-  assign when_MultiPortFIFOVec_l149_4 = (_zz_when_MultiPortFIFOVec_l149_4 == _zz_when_MultiPortFIFOVec_l149_4_1);
+  assign when_MultiPortFIFOVec_l166_3 = (_zz_when_MultiPortFIFOVec_l166_3 == _zz_when_MultiPortFIFOVec_l166_3_1);
+  assign when_MultiPortFIFOVec_l166_4 = (_zz_when_MultiPortFIFOVec_l166_4 == _zz_when_MultiPortFIFOVec_l166_4_1);
   assign io_push_2_ready = (isEmpty || (5'h02 < maxPush));
-  assign when_MultiPortFIFOVec_l147_2 = (io_push_2_ready && ((io_push_0_valid && io_push_1_valid) && io_push_2_valid));
+  assign when_MultiPortFIFOVec_l164_2 = (io_push_2_ready && ((io_push_0_valid && io_push_1_valid) && io_push_2_valid));
   assign _zz_3 = ({31'd0,1'b1} <<< _zz__zz_3);
-  assign when_MultiPortFIFOVec_l149_5 = (_zz_when_MultiPortFIFOVec_l149_5 == _zz_when_MultiPortFIFOVec_l149_5_1);
-  assign when_MultiPortFIFOVec_l156 = (pushCount != popCount);
+  assign when_MultiPortFIFOVec_l166_5 = (_zz_when_MultiPortFIFOVec_l166_5 == _zz_when_MultiPortFIFOVec_l166_5_1);
+  assign when_MultiPortFIFOVec_l173 = (pushCount != popCount);
   always @(posedge aclk or negedge aresetn) begin
     if(!aresetn) begin
       dataVec_0 <= 6'h20;
@@ -115459,8 +115537,8 @@ module unamed_1 (
       popPtr <= 5'h0;
       isRisingOccupancy <= 1'b1;
     end else begin
-      popPtr <= (popPtr + _zz_popPtr);
-      if(when_MultiPortFIFOVec_l147) begin
+      popPtr <= nextPopPtr;
+      if(when_MultiPortFIFOVec_l164) begin
         if(_zz_1[0]) begin
           dataVec_0 <= io_push_0_payload;
         end
@@ -115558,7 +115636,7 @@ module unamed_1 (
           dataVec_31 <= io_push_0_payload;
         end
       end
-      if(when_MultiPortFIFOVec_l147_1) begin
+      if(when_MultiPortFIFOVec_l164_1) begin
         if(_zz_2[0]) begin
           dataVec_0 <= io_push_1_payload;
         end
@@ -115656,7 +115734,7 @@ module unamed_1 (
           dataVec_31 <= io_push_1_payload;
         end
       end
-      if(when_MultiPortFIFOVec_l147_2) begin
+      if(when_MultiPortFIFOVec_l164_2) begin
         if(_zz_3[0]) begin
           dataVec_0 <= io_push_2_payload;
         end
@@ -115755,7 +115833,7 @@ module unamed_1 (
         end
       end
       pushPtr <= (pushPtr + _zz_pushPtr);
-      if(when_MultiPortFIFOVec_l156) begin
+      if(when_MultiPortFIFOVec_l173) begin
         isRisingOccupancy <= (popCount < pushCount);
       end
       if(recover) begin
@@ -115769,27 +115847,27 @@ module unamed_1 (
     io_pop_0_payload <= _zz_io_pop_0_payload;
     io_pop_1_payload <= _zz_io_pop_1_payload;
     io_pop_2_payload <= _zz_io_pop_2_payload;
-    if(when_MultiPortFIFOVec_l147) begin
-      if(when_MultiPortFIFOVec_l149) begin
+    if(when_MultiPortFIFOVec_l164) begin
+      if(when_MultiPortFIFOVec_l166) begin
         io_pop_0_payload <= io_push_0_payload;
       end
-      if(when_MultiPortFIFOVec_l149_1) begin
+      if(when_MultiPortFIFOVec_l166_1) begin
         io_pop_1_payload <= io_push_0_payload;
       end
-      if(when_MultiPortFIFOVec_l149_2) begin
+      if(when_MultiPortFIFOVec_l166_2) begin
         io_pop_2_payload <= io_push_0_payload;
       end
     end
-    if(when_MultiPortFIFOVec_l147_1) begin
-      if(when_MultiPortFIFOVec_l149_3) begin
+    if(when_MultiPortFIFOVec_l164_1) begin
+      if(when_MultiPortFIFOVec_l166_3) begin
         io_pop_1_payload <= io_push_1_payload;
       end
-      if(when_MultiPortFIFOVec_l149_4) begin
+      if(when_MultiPortFIFOVec_l166_4) begin
         io_pop_2_payload <= io_push_1_payload;
       end
     end
-    if(when_MultiPortFIFOVec_l147_2) begin
-      if(when_MultiPortFIFOVec_l149_5) begin
+    if(when_MultiPortFIFOVec_l164_2) begin
+      if(when_MultiPortFIFOVec_l166_5) begin
         io_pop_2_payload <= io_push_2_payload;
       end
     end
