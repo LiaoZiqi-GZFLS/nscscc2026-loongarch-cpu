@@ -1,0 +1,20 @@
+# T2026143250012561 chiplab LA32R 内核配置增量
+#
+# 基线: la32r-Linux @ 4ed7b98e 的 arch/loongarch/configs/la32_defconfig
+# 用法: make la32_defconfig 后按下面两项修改 .config（build.sh 自动完成），
+#       或把本文件作为 fragment 使用。
+#
+# 1) 内嵌 initramfs（唯一功能性改动；路径按实际生成位置填写，
+#    内容为本目录 mkrootfs.sh 生成的 initramfs_list.txt）
+CONFIG_INITRAMFS_SOURCE="/abs/path/to/initramfs_list.txt"
+#
+# 2) 其余关键项均为 la32_defconfig 默认值，这里仅列出与平台相关的确认项：
+#    CONFIG_MACH_LOONGSON32=y / CONFIG_LS_SOC=y      chiplab/loongson-soc 平台
+#    CONFIG_BUILTIN_DTB_NAME="loongson32_ls"         内嵌 loongson32_ls.dts
+#    CONFIG_BLK_DEV_INITRD=y / CONFIG_RD_GZIP=y      initrd/initramfs 支持
+#    CONFIG_DEVTMPFS=y / CONFIG_DEVTMPFS_MOUNT=y     自动挂载 /dev
+#    CONFIG_SERIAL_8250=y / CONFIG_SERIAL_8250_CONSOLE=y  16550 串口控制台
+#    CONFIG_HZ_250=y                                  内核 tick
+#
+# 源码级适配（无法通过配置完成，见 patches/0001-ls-soc-const-freq-105MHz.patch）:
+#    arch/loongarch/include/asm/time.h: LS_SOC 恒定频率计时器 200MHz -> 105MHz

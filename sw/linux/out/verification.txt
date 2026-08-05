@@ -1,0 +1,31 @@
+T2026143250012561 sw/linux 构建验收记录
+构建机: x86_64 Debian 12, 2 核
+工具链: loongarch32r-linux-gnusf-gcc 8.3.0 (LoongArch GNU toolchain LA32 v2.0 20230903), ilp32s
+内核:   https://gitee.com/loongson-edu/la32r-Linux commit 4ed7b98e08e8d9628f8d39a21ca8bbdd29ad8d1e
+busybox: 1.36.1 静态
+
+[1] vmlinux ELF 头
+  Class:   ELF32
+  Type:    EXEC
+  Machine: LoongArch
+  Entry:   0xa0b84c70 (kernel_entry)
+  .text:   vaddr 0xa0300000 -> 物理加载地址 0x300000
+
+[2] AM* 原子指令全扫（LA32R 无 AM 指令，必须为 0）
+  $ loongarch32r-linux-gnusf-objdump -d vmlinux | grep -cE '\bam(swap|add|and|or|xor|max|min|cas)'
+  0    （反汇编共 2,341,947 行）
+
+[3] rootfs.cpio.gz 解包清单（python gzip+newc 解析，39 项）
+  含 bin/busybox (2325620B), init, bin/sh, bin/ls, bin/mount, bin/cat 等
+  applet 链接与 dev/console, dev/null, dev/ttyS0 设备节点：全部存在
+
+[4] 镜像
+  vmlinux        13,345,992 B (strip 后 ELF)
+  vmlinux.bin    13,340,928 B
+  rootfs.cpio.gz  1,312,992 B
+  start.bin             768 B （复位向量 0x1c000000，内嵌 argv/cmdline/bootparam）
+  rom.vlog       40,025,106 B （未入库，boot/mkimage.sh 可再生成）
+
+[5] 启动参数约定
+  a0=2, a1=argv -> {"g", "console=ttyS0,115200 rdinit=/init loglevel=8", NULL}
+  a2=bootparam 全 0 区；DMW0=0xa0000011, DMW1=0x80000001, CRMD PG=1

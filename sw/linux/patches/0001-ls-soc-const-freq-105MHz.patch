@@ -1,0 +1,21 @@
+diff --git a/arch/loongarch/include/asm/time.h b/arch/loongarch/include/asm/time.h
+index 4a85335b1..c67046ff9 100644
+--- a/arch/loongarch/include/asm/time.h
++++ b/arch/loongarch/include/asm/time.h
+@@ -41,7 +41,15 @@ static inline unsigned int calc_const_freq(void)
+ static inline unsigned int calc_const_freq(void)
+ {
+ #ifdef CONFIG_LS_SOC
+-	return 200000000;
++	/*
++	 * T2026143250012561 chiplab 适配补丁：
++	 * 上游此处硬编码 200MHz（龙芯实验箱 SoC）。本队 LA32R 核的恒定
++	 * 频率（稳定）计数器为 105MHz，故改为 105000000。
++	 * 注意：若决赛 FPGA 实际 CPU 时钟不是 105MHz（perf_clock.json
++	 * 可配 10~200MHz），必须同步修改此值后重新编译内核，否则内核
++	 * 时钟/延时按比例失真。
++	 */
++	return 105000000;
+ #elif CONFIG_BX_SOC
+ 	return 33000000;
+ #endif
