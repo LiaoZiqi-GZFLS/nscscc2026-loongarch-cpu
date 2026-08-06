@@ -35,7 +35,7 @@ if [ ! -d la32r-Linux ]; then
 else
 	cd la32r-Linux
 fi
-for p in "$HERE"/patches/000[123567]*.patch; do
+for p in "$HERE"/patches/000[1235678]*.patch; do
 	git apply --check "$p" 2>/dev/null && git apply "$p" && echo "applied: $(basename $p)" \
 		|| echo "skip（已应用）: $(basename $p)"
 done
@@ -86,7 +86,7 @@ if [ "$VARIANT" = "board-16m" ] || [ "$VARIANT" = "all" ]; then
 	cd "$WORK/la32r-Linux"
 	[ -d "$WORK/la32r-Linux-16m" ] || git worktree add "$WORK/la32r-Linux-16m" HEAD
 	cd "$WORK/la32r-Linux-16m"
-	for p in "$HERE"/patches/000[1-7]*.patch; do
+	for p in "$HERE"/patches/000[1-8]*.patch; do
 		git apply --check "$p" 2>/dev/null && git apply "$p" && echo "applied: $(basename $p)" \
 			|| echo "skip（已应用）: $(basename $p)"
 	done

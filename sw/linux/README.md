@@ -50,6 +50,8 @@ host 依赖：`gcc make flex bison bc perl python3 gzip git curl`。
 | 0004 | `loongson32_ls.dts`：memory 节点 0x0/128MB→**0x1c000000/16MB**（仅 board-16m 应用） | 最小 SoC DDR 窗口 |
 | 0005 | `loongson32/setup.c`：`register_gop_device` 加 `#ifdef CONFIG_VT` 守卫 | 裁剪配置关 VT 后编译失败（上游缺守卫） |
 | 0006 | `boot_param.h`：`screen_info` 改由 uapi 头引入 | 同上，VT=n 时 `struct screen_info` 不完整 |
+| 0007 | `kernel/setup.c`：`screen_info` 无条件定义 | VT=n 时 env.c/efi earlycon 仍引用它，链接失败 |
+| 0008 | **cache 几何修正**：`cache.c` probe_pcache 硬编码 `0xfe994cd3`(16B/256sets/2way)→`0xfe2914d3`(**64B/64sets/2way**，按内核自身解码公式)；`waybit` 赋值（原全树恒 0，blast 全清只覆盖 way 0）；`cacheflush.h` 补 `cache64_unroll32` 与 blast_*64 实例，`cache.c` 两处 `blast_dcache16()`→`blast_dcache64()` | 本核 ICache/DCache 各 64sets×64B×2way（8KB VIPT）。内核按错误 line/index 位宽做 index 类 cacop 维护 → 清不全/清错位置 |
 
 配置增量：`config/chiplab-la32.fragment`（INITRAMFS_SOURCE 说明，两变体通用）、
 `config/board-16m.fragment`（board-16m 裁剪：关 NET/VT/MODULES/CGROUPS/BPF/
@@ -104,7 +106,8 @@ host 依赖：`gcc make flex bison bc perl python3 gzip git curl`。
 - **无 FPU**：全部按 ilp32s 软浮点编译
 - **DMW**：3bit VSEG/PSEG、512MB 段（与补丁 0003 匹配）
 - 串口 16550 @0x1fe001e0（时钟 100MHz）、中断按 DTS（cpuic + extioi）
-- Cache：内核硬编码 I/D 各 8KB、2 路、16B 行（`cache.c` config=0xfe994cd3）
+- Cache：本核 I/D 各 64sets×64B×2way（8KB VIPT），已由补丁 0008 匹配
+  （原内核硬编码 16B/256sets 与 waybit=0 的 bug 一并修复）
 
 ## 8. 产物验收
 

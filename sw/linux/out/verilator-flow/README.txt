@@ -1,7 +1,7 @@
 verilator-flow 变体（chiplab verilator 官方流程）
 ================================================
 布局: RAM 物理 0 起 128MB（内嵌 DTS loongson32_ls.dts memory 节点）
-内核: 链接/加载 物理 0x300000（虚址 0xa0300000 缓存窗口），kernel_entry 0xa0b84b00
+内核: 链接/加载 物理 0x300000（虚址 0xa0300000 缓存窗口），kernel_entry 0xa0b84b10
 启动: CPU 复位 @0x1c000000 -> start.bin -> DMW(0xa0000011/0x80000001, PG=1)
       -> 跳 kernel_entry；a0=2 a1=argv a2=bootparam(全0)
 命令行: console=ttyS0,115200 rdinit=/init loglevel=8（UART 时钟 100MHz，

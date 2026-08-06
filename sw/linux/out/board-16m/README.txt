@@ -2,7 +2,7 @@ board-16m 变体（nscscc-team 最小 SoC 上板：16MB DDR @ 0x1c000000）
 ====================================================================
 布局: RAM 物理 0x1c000000 起 16MB（0004 补丁改内嵌 DTS memory 节点）
 内核: 链接/加载 物理 0x1c300000（虚址 0xbc300000 缓存窗口，
-      make CONFIG_PHYSICAL_START=0xbc300000），kernel_entry 0xbc593b30
+      make CONFIG_PHYSICAL_START=0xbc300000），kernel_entry 0xbc593b40
 配置: la32_defconfig + config/board-16m.fragment（关 NET/VT/MODULES/CGROUPS/
       BPF/多余文件系统与驱动，保留 16550 串口、proc/sysfs/tmpfs、KALLSYMS）
 关键前提: DMW 512MB 段（补丁 0003）——否则 0x1c000000 以上物理地址被
