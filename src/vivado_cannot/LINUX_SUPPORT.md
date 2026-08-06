@@ -61,3 +61,47 @@
   `ALUOpType_IOCSR` localparam 及仿真字符串表。其余差异为 SpinalHDL 信号命名
   行号后缀漂移（声明顺序/命名噪声）。
 - core_top.v 为手工 wrapper，未改动。
+
+---
+
+## 2026-08-06 译码修复记录（PRELD nop；CACOP 保持特权——语义冲突裁决）
+
+根因分析见 func_regress/LAB19_ADEF_ANALYSIS.md（探针实锤 + 文末最终裁决）。
+
+### 1. PRELD 译码条目补齐（已实施）
+- `DecoderArrayPlugin.scala` 译码表末尾新增：`LoongArch.PRELD -> Seq(fuType -> FUType.NONE)`，
+  注释标 `2026-final`。PRELD opcode（`LoongArch.scala` L100，掩码 0x2ac00000）原已定义
+  但译码表无条目 → 执行 preld 报 INE，func_advance n1_preld 失败（且导致 advance
+  套件在首项即中止，0 通过）。preld 是预取提示，nop 语义正确（无寄存器写/访存/异常）。
+
+### 2. CACOP 保持特权（评估后回退，未改动）
+- 曾试将 CACOP 移出 privInst（使 PLV3 cacop 不报 IPE），本地回归结果：
+  func_lab19/lab15/lab9 全绿，但 **func_advance n6_ipe_ex 第 4 子用例失败**——该测试
+  在用户态执行 `cacop 0x0, t0, 0x10` 并**要求**产生 IPE（chiplab 自带测试，按 LA32
+  手册 spec 编写：cacop 是特权指令）。
+- 裁决：**站 spec**。cacop-in-PLV3 报 IPE 是手册正确行为；func_lab19 n52_adef 按
+  NEMU 不报 IPE 的怪癖编写，其死锁放大链是测试自身 handler 的 marker 残屑问题，
+  不是 CPU 缺陷（详见 LAB19_ADEF_ANALYSIS.md 文首裁决段）。
+- 对真实软件零影响：Linux/ucore 内核只在 PLV0 执行 cacop；LA32 Linux 用户态 cache
+  维护走 syscall，无用户态 cacop 合法预期。
+
+### 3. 网表 diff 结论（本次 elaborate vs 上一提交网表 cc927b8）
+- 译码常量模式多重集 diff：仅新增 3 条 `(inst & 32'hffc00000) == 32'h2ac00000`
+  （PRELD，每译码器 1 条）；CACOP 相关模式计数不变（privInst 未动）。
+- 对应 RTL：每译码器 +1 个清 `illegalEncoding` 块 +1 个 `fuType=FUType_NONE` 块。
+- 其余差异为 SpinalHDL 信号命名/声明顺序噪声（ExceptionMuxPlugin l45 四项重排序等），
+  零其它功能变化。
+
+### 4. 已知非计分项（不修）
+- func_lab19 n52_adef：按 NEMU 非 spec 语义编写，cacop-in-PLV3 的 spec 正确 IPE
+  会被测试 handler 的 marker 残屑放大为死锁。测试语义问题，非 CPU bug。
+- func_advance n7_csr_rw_test：simu-trace 实锤失败点在 n7 第 5 个检查
+  （PC 1c00f6f8，前面 crmd/prmd/euen 全过）——ECFG(csr 0x4) 写 0xffffffff 期望
+  读回 0x1bff，即 LIE[10]（TI 位）只读为 0。真实 LA32 硬件该位可写（手册），
+  chiplab 参考模型将其硬连线为 0（计时器中断常开模型），属参考模型 quirk；
+  NOP 按手册实现为可写（ExceptionHandlerPlugin.scala L32 ECFG_LIE_10），
+  读回 0x1fff → bne 失败。与本次 PRELD/CACOP 改动无关（n7 不含这两条指令；
+  原网表 advance 在 n1 即中止，n7 从未执行到）。n6_ipe_ex 在本网表 PASS。
+  （另注：start.S 中 n5_adem_ex 被注释掉未编译进套件；静态分析确认 NOP 基座
+  未实现 ADEM——异常枚举与 BADV 更新表有登记但无任何产生点，若未来启用 n5
+  需补 MMU 的 PLV 高半地址检查。）

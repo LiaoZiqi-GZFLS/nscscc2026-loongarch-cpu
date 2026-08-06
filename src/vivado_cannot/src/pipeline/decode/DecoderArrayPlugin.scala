@@ -526,6 +526,12 @@ class DecoderArray(config: MyCPUConfig, val popPorts: Vec[Stream[InstBufferEntry
     addAll(
       LoongArch.CACOP -> Seq(fuType -> FUType.LSU, operateCache -> True, useRj -> True, lsType -> LoadStoreType.CACOP)
     )
+
+    // 2026-final: align with NEMU reference semantics —— PRELD 预取提示指令，
+    // 译码为合法 nop（FUType.NONE，无寄存器写、无访存、无异常），修复 func_advance n1_preld INE
+    addAll(
+      LoongArch.PRELD -> Seq(fuType -> FUType.NONE)
+    )
   }
 
 }
