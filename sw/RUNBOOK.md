@@ -14,6 +14,9 @@
 | 8660fb1 | sw/boot：mini bootloader（"PMON 阶段"替代） |
 | 2d340ab → 1ed9c07 | sw/linux：Linux 5.14 双变体 + DMW 512MB 段修复 + UART 100MHz |
 | a630001 | sw/linux：补丁 0008 cache 几何匹配本核 64sets×64B×2way（config=0xfe2914d3）+ waybit 上游 bug 修复 |
+| 5c0dac0 | RTL：PRELD 译码为合法 nop（spec 合规提示指令，修 advance n1）；CACOP 保持特权（裁决：站手册 spec，lab19 n52 为 NEMU 怪癖测试非 CPU bug） |
+
+> **译码语义裁决记录**（func_regress/LAB19_ADEF_ANALYSIS.md）：本地回归曾报 lab19 n52 死锁，根因查明为 chiplab 测试语义冲突——lab19 n52 按 NEMU 怪癖（用户态 cacop 不报 IPE）编写，advance n6 按手册（报 IPE）编写；裁决站手册，CPU 行为 spec 正确。同法正名：n7 ECFG 掩码（NOP 按手册可写，quirk 在参考方）、n5 未编译、ADEM 未实现（基座既有，未来启用 n5 需补）。func_lab9（计分套件）修复后复验 58/58 全绿。
 
 产物位置：`sw/boot/`（boot.elf/boot.bin）、`sw/ucore/out/`（ucore.bin 760KB，含 sh/ls 的 sfs initrd）、`sw/linux/out/{verilator-flow,board-16m}/`（vmlinux.bin + start.bin + rootfs.cpio.gz）。
 本地 func 回归资产：`/mnt/agents/output/work/func_regress/`（xpm_models.v、nop_difftest_probe.v、setup_env.sh、run_func.sh、SUMMARY.md）。
@@ -84,7 +87,7 @@ bootloader @0x1C000000 ──banner──► 终端
 | # | 风险 | 状态 | 上板盯法 |
 |---|---|---|---|
 | 1 | WNS@105MHz 未验证（新网表） | **开** | 第 0 步 Vivado 重实现 |
-| 2 | func 回归（本地 verilator） | 见 func_regress/SUMMARY.md | 失败项按 pc/uart 定位 |
+| 2 | func 回归（本地 verilator） | ✅ lab9 58/58 复验全绿（5c0dac0）；lab19/advance 语义冲突已裁决（非 CPU bug） | 无需动作 |
 | 3 | UART 波特率（DL3 小数分频行为） | 已按 100MHz 算 DLL=54/DL3=64 | 乱码先查此项 |
 | 4 | Linux TLB 高压力边界（16 项全相联） | 未压测 | kernel panic 带 tlb 字样→TLB |
 | 5 | 内核 cache 维护正确性（补丁 0008 后） | 静态核验 | 灵异执行错→cache |
