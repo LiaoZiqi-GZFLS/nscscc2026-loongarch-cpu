@@ -1,0 +1,11 @@
+# Vivado tool logs (transient)
+vivado*.jou
+vivado*.log
+vivado_*.backup.jou
+vivado_*.backup.log
+
+# Vivado project workspace (generated, local paths)
+Loongarch/
+
+# Raw hardware test logs
+logs/*.log
