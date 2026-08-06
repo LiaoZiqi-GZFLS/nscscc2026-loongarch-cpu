@@ -24,10 +24,12 @@ _start:
 	st.b	$t2, $t1, 2
 	li.w	$t2, 0x80		/* LCR: DLAB=1 */
 	st.b	$t2, $t1, 3
-	li.w	$t2, 0x1		/* DLL: 除数=1 */
+	li.w	$t2, 0x36		/* DLL: 100MHz / (16 * 115200) */
 	st.b	$t2, $t1, 0
 	li.w	$t2, 0x0		/* DLM */
 	st.b	$t2, $t1, 1
+	li.w	$t2, 0x40		/* DL3: fractional divisor for the Loongson URT */
+	st.b	$t2, $t1, 2
 	li.w	$t2, 0x3		/* LCR: 8N1 */
 	st.b	$t2, $t1, 3
 	li.w	$t2, 0x0		/* MCR */
@@ -46,9 +48,9 @@ _start:
 	bl	print_char
 
 	/* ---- 直接映射窗口：与内核 head.S 一致 ---- */
-	li.w	$t2, 0xa0000011		/* DMW0: 0xa0000000 uncached -> phys 0 */
+	li.w	$t2, 0xa0000001		/* DMW0: 0xa0000000 cached -> phys 0 */
 	csrwr	$t2, 0x180
-	li.w	$t2, 0x80000001		/* DMW1: 0x80000000 cached   -> phys 0 */
+	li.w	$t2, 0x00000001		/* DMW1: 0x00000000 uncached -> phys 0 */
 	csrwr	$t2, 0x181
 
 	/* ---- CRMD: 清 DA(0x8) 置 PG(0x10) ---- */
@@ -83,7 +85,7 @@ argv:
 str_g:
 	.string	"g"
 str_args:
-	.string	CMDLINE
+	.string	CMDLINE " rd_start=0x1c900000 rd_size=1312992"
 
 	.align	8
 bootparam:
