@@ -281,7 +281,8 @@ class MMUPlugin(config: MyCPUConfig) extends Plugin[MyCPUCore] {
     }
 
     val TLBHit = EntryHits.orR
-    val TLBHitEntry = MuxOH(Vec(EntryHits), TLBTable)
+    val PriorityEntryHits = OHMasking.first(EntryHits)
+    val TLBHitEntry = MuxOH(PriorityEntryHits, TLBTable)
 
     // Extract entry. Use (virtAddr[TLBHitEntry.PS]) as mux.
     val TLBHitEntry_v = Mux(virtAddr(TLBHitEntry.PS(4 downto 0)), TLBHitEntry.V1, TLBHitEntry.V0)
@@ -410,7 +411,7 @@ class MMUPlugin(config: MyCPUConfig) extends Plugin[MyCPUCore] {
 
         val EntryHit = EntryHits.orR
         when(EntryHit) {
-          TLBIDX_INDEX := MuxOH(EntryHits, Indices)
+          TLBIDX_INDEX := MuxOH(OHMasking.first(EntryHits), Indices)
           TLBIDX_NE := False
         } otherwise {
           TLBIDX_NE := True

@@ -68,23 +68,12 @@ class InstAddrTranslatePlugin() extends Plugin[FetchPipeline] {
       val pcCached = insert(ADDRESS_CACHED)
       val tlbRefill = insert(IS_TLB_REFILL)
 
-      // TLB entries and CRMD can change while an IF1 result is waiting in IF2
-      // (for example, across tlbfill/ertn). Re-read all translation inputs so
-      // a stale pre-fill miss or DA/PG mode cannot be replayed on return.
-      val currentDirectTranslateResult = mmu.directTranslate(virtPC, MemOperationType.FETCH)
-      val currentTlbTranslateResult = mmu.tlbTranslate(virtPC, MemOperationType.FETCH)
-      val currentSavedCSR = TranslateCSRBundle()
-      currentSavedCSR.CRMD_DA := excHandler.CRMD_DA
-      currentSavedCSR.CRMD_PG := excHandler.CRMD_PG
-      currentSavedCSR.CRMD_DATF := excHandler.CRMD_DATF
-      currentSavedCSR.CRMD_DATM := excHandler.CRMD_DATM
-
       val translateResult = mmu.translate(
         virtPC,
         MemOperationType.FETCH,
-        currentDirectTranslateResult.resultBundle,
-        currentTlbTranslateResult.resultBundle,
-        currentSavedCSR
+        input(DIRECT_TRANSLATE_RESULT),
+        input(TLB_TRANSLATE_RESULT),
+        input(TRANSLATE_SAVED_CSR)
       )
       PIF := translateResult.resultExceptionBundle.raisePIF
       PPI := translateResult.resultExceptionBundle.raisePPI
