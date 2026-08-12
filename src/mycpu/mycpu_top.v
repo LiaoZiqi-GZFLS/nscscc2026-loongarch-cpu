@@ -1,6 +1,7 @@
 // Generator : SpinalHDL v1.8.1    git head : 2a7592004363e5b40ec43e1f122ed8641cd8965b
 // Component : mycpu_top
-// Date      : 04/08/2026, 02:16:30
+// Git hash  : 28579511356e604d1c80cbdb7015ddcea9efebef
+// Date      : 12/08/2026, 23:24:47
 
 `timescale 1ns/1ps
 
@@ -614,7 +615,7 @@ module mycpu_top (
   wire                toplevel_cpu_ROBFIFOPlugin_debug_fifoIO_push_0_payload_info_uop_predInfo_predictTaken;
   wire       [2:0]    toplevel_cpu_ROBFIFOPlugin_debug_fifoIO_push_0_payload_info_uop_predRecover_recoverTop;
   wire       [1:0]    toplevel_cpu_ROBFIFOPlugin_debug_fifoIO_push_0_payload_info_uop_predRecover_predictCounter;
-  wire       [4:0]    toplevel_cpu_ROBFIFOPlugin_debug_fifoIO_push_0_payload_info_uop_predRecover_ghr;
+  wire       [6:0]    toplevel_cpu_ROBFIFOPlugin_debug_fifoIO_push_0_payload_info_uop_predRecover_ghr;
   wire       [4:0]    toplevel_cpu_ROBFIFOPlugin_debug_fifoIO_push_0_payload_info_uop_wbAddr;
   wire                toplevel_cpu_ROBFIFOPlugin_debug_fifoIO_push_0_payload_info_uop_doRegWrite;
   wire                toplevel_cpu_ROBFIFOPlugin_debug_fifoIO_push_0_payload_info_uop_isLoad;
@@ -655,7 +656,7 @@ module mycpu_top (
   wire                toplevel_cpu_ROBFIFOPlugin_debug_fifoIO_push_1_payload_info_uop_predInfo_predictTaken;
   wire       [2:0]    toplevel_cpu_ROBFIFOPlugin_debug_fifoIO_push_1_payload_info_uop_predRecover_recoverTop;
   wire       [1:0]    toplevel_cpu_ROBFIFOPlugin_debug_fifoIO_push_1_payload_info_uop_predRecover_predictCounter;
-  wire       [4:0]    toplevel_cpu_ROBFIFOPlugin_debug_fifoIO_push_1_payload_info_uop_predRecover_ghr;
+  wire       [6:0]    toplevel_cpu_ROBFIFOPlugin_debug_fifoIO_push_1_payload_info_uop_predRecover_ghr;
   wire       [4:0]    toplevel_cpu_ROBFIFOPlugin_debug_fifoIO_push_1_payload_info_uop_wbAddr;
   wire                toplevel_cpu_ROBFIFOPlugin_debug_fifoIO_push_1_payload_info_uop_doRegWrite;
   wire                toplevel_cpu_ROBFIFOPlugin_debug_fifoIO_push_1_payload_info_uop_isLoad;
@@ -696,7 +697,7 @@ module mycpu_top (
   wire                toplevel_cpu_ROBFIFOPlugin_debug_fifoIO_push_2_payload_info_uop_predInfo_predictTaken;
   wire       [2:0]    toplevel_cpu_ROBFIFOPlugin_debug_fifoIO_push_2_payload_info_uop_predRecover_recoverTop;
   wire       [1:0]    toplevel_cpu_ROBFIFOPlugin_debug_fifoIO_push_2_payload_info_uop_predRecover_predictCounter;
-  wire       [4:0]    toplevel_cpu_ROBFIFOPlugin_debug_fifoIO_push_2_payload_info_uop_predRecover_ghr;
+  wire       [6:0]    toplevel_cpu_ROBFIFOPlugin_debug_fifoIO_push_2_payload_info_uop_predRecover_ghr;
   wire       [4:0]    toplevel_cpu_ROBFIFOPlugin_debug_fifoIO_push_2_payload_info_uop_wbAddr;
   wire                toplevel_cpu_ROBFIFOPlugin_debug_fifoIO_push_2_payload_info_uop_doRegWrite;
   wire                toplevel_cpu_ROBFIFOPlugin_debug_fifoIO_push_2_payload_info_uop_isLoad;
@@ -737,7 +738,7 @@ module mycpu_top (
   wire                toplevel_cpu_ROBFIFOPlugin_debug_fifoIO_pop_0_payload_info_uop_predInfo_predictTaken;
   wire       [2:0]    toplevel_cpu_ROBFIFOPlugin_debug_fifoIO_pop_0_payload_info_uop_predRecover_recoverTop;
   wire       [1:0]    toplevel_cpu_ROBFIFOPlugin_debug_fifoIO_pop_0_payload_info_uop_predRecover_predictCounter;
-  wire       [4:0]    toplevel_cpu_ROBFIFOPlugin_debug_fifoIO_pop_0_payload_info_uop_predRecover_ghr;
+  wire       [6:0]    toplevel_cpu_ROBFIFOPlugin_debug_fifoIO_pop_0_payload_info_uop_predRecover_ghr;
   wire       [4:0]    toplevel_cpu_ROBFIFOPlugin_debug_fifoIO_pop_0_payload_info_uop_wbAddr;
   wire                toplevel_cpu_ROBFIFOPlugin_debug_fifoIO_pop_0_payload_info_uop_doRegWrite;
   wire                toplevel_cpu_ROBFIFOPlugin_debug_fifoIO_pop_0_payload_info_uop_isLoad;
@@ -794,7 +795,7 @@ module mycpu_top (
   wire                toplevel_cpu_ROBFIFOPlugin_debug_fifoIO_pop_1_payload_info_uop_predInfo_predictTaken;
   wire       [2:0]    toplevel_cpu_ROBFIFOPlugin_debug_fifoIO_pop_1_payload_info_uop_predRecover_recoverTop;
   wire       [1:0]    toplevel_cpu_ROBFIFOPlugin_debug_fifoIO_pop_1_payload_info_uop_predRecover_predictCounter;
-  wire       [4:0]    toplevel_cpu_ROBFIFOPlugin_debug_fifoIO_pop_1_payload_info_uop_predRecover_ghr;
+  wire       [6:0]    toplevel_cpu_ROBFIFOPlugin_debug_fifoIO_pop_1_payload_info_uop_predRecover_ghr;
   wire       [4:0]    toplevel_cpu_ROBFIFOPlugin_debug_fifoIO_pop_1_payload_info_uop_wbAddr;
   wire                toplevel_cpu_ROBFIFOPlugin_debug_fifoIO_pop_1_payload_info_uop_doRegWrite;
   wire                toplevel_cpu_ROBFIFOPlugin_debug_fifoIO_pop_1_payload_info_uop_isLoad;
@@ -851,7 +852,7 @@ module mycpu_top (
   wire                toplevel_cpu_ROBFIFOPlugin_debug_fifoIO_pop_2_payload_info_uop_predInfo_predictTaken;
   wire       [2:0]    toplevel_cpu_ROBFIFOPlugin_debug_fifoIO_pop_2_payload_info_uop_predRecover_recoverTop;
   wire       [1:0]    toplevel_cpu_ROBFIFOPlugin_debug_fifoIO_pop_2_payload_info_uop_predRecover_predictCounter;
-  wire       [4:0]    toplevel_cpu_ROBFIFOPlugin_debug_fifoIO_pop_2_payload_info_uop_predRecover_ghr;
+  wire       [6:0]    toplevel_cpu_ROBFIFOPlugin_debug_fifoIO_pop_2_payload_info_uop_predRecover_ghr;
   wire       [4:0]    toplevel_cpu_ROBFIFOPlugin_debug_fifoIO_pop_2_payload_info_uop_wbAddr;
   wire                toplevel_cpu_ROBFIFOPlugin_debug_fifoIO_pop_2_payload_info_uop_doRegWrite;
   wire                toplevel_cpu_ROBFIFOPlugin_debug_fifoIO_pop_2_payload_info_uop_isLoad;
@@ -1597,7 +1598,7 @@ module mycpu_top (
     .ROBFIFOPlugin_debug_fifoIO_push_0_payload_info_uop_predInfo_predictTaken      (toplevel_cpu_ROBFIFOPlugin_debug_fifoIO_push_0_payload_info_uop_predInfo_predictTaken          ), //o
     .ROBFIFOPlugin_debug_fifoIO_push_0_payload_info_uop_predRecover_recoverTop     (toplevel_cpu_ROBFIFOPlugin_debug_fifoIO_push_0_payload_info_uop_predRecover_recoverTop[2:0]    ), //o
     .ROBFIFOPlugin_debug_fifoIO_push_0_payload_info_uop_predRecover_predictCounter (toplevel_cpu_ROBFIFOPlugin_debug_fifoIO_push_0_payload_info_uop_predRecover_predictCounter[1:0]), //o
-    .ROBFIFOPlugin_debug_fifoIO_push_0_payload_info_uop_predRecover_ghr            (toplevel_cpu_ROBFIFOPlugin_debug_fifoIO_push_0_payload_info_uop_predRecover_ghr[4:0]           ), //o
+    .ROBFIFOPlugin_debug_fifoIO_push_0_payload_info_uop_predRecover_ghr            (toplevel_cpu_ROBFIFOPlugin_debug_fifoIO_push_0_payload_info_uop_predRecover_ghr[6:0]           ), //o
     .ROBFIFOPlugin_debug_fifoIO_push_0_payload_info_uop_wbAddr                     (toplevel_cpu_ROBFIFOPlugin_debug_fifoIO_push_0_payload_info_uop_wbAddr[4:0]                    ), //o
     .ROBFIFOPlugin_debug_fifoIO_push_0_payload_info_uop_doRegWrite                 (toplevel_cpu_ROBFIFOPlugin_debug_fifoIO_push_0_payload_info_uop_doRegWrite                     ), //o
     .ROBFIFOPlugin_debug_fifoIO_push_0_payload_info_uop_isLoad                     (toplevel_cpu_ROBFIFOPlugin_debug_fifoIO_push_0_payload_info_uop_isLoad                         ), //o
@@ -1638,7 +1639,7 @@ module mycpu_top (
     .ROBFIFOPlugin_debug_fifoIO_push_1_payload_info_uop_predInfo_predictTaken      (toplevel_cpu_ROBFIFOPlugin_debug_fifoIO_push_1_payload_info_uop_predInfo_predictTaken          ), //o
     .ROBFIFOPlugin_debug_fifoIO_push_1_payload_info_uop_predRecover_recoverTop     (toplevel_cpu_ROBFIFOPlugin_debug_fifoIO_push_1_payload_info_uop_predRecover_recoverTop[2:0]    ), //o
     .ROBFIFOPlugin_debug_fifoIO_push_1_payload_info_uop_predRecover_predictCounter (toplevel_cpu_ROBFIFOPlugin_debug_fifoIO_push_1_payload_info_uop_predRecover_predictCounter[1:0]), //o
-    .ROBFIFOPlugin_debug_fifoIO_push_1_payload_info_uop_predRecover_ghr            (toplevel_cpu_ROBFIFOPlugin_debug_fifoIO_push_1_payload_info_uop_predRecover_ghr[4:0]           ), //o
+    .ROBFIFOPlugin_debug_fifoIO_push_1_payload_info_uop_predRecover_ghr            (toplevel_cpu_ROBFIFOPlugin_debug_fifoIO_push_1_payload_info_uop_predRecover_ghr[6:0]           ), //o
     .ROBFIFOPlugin_debug_fifoIO_push_1_payload_info_uop_wbAddr                     (toplevel_cpu_ROBFIFOPlugin_debug_fifoIO_push_1_payload_info_uop_wbAddr[4:0]                    ), //o
     .ROBFIFOPlugin_debug_fifoIO_push_1_payload_info_uop_doRegWrite                 (toplevel_cpu_ROBFIFOPlugin_debug_fifoIO_push_1_payload_info_uop_doRegWrite                     ), //o
     .ROBFIFOPlugin_debug_fifoIO_push_1_payload_info_uop_isLoad                     (toplevel_cpu_ROBFIFOPlugin_debug_fifoIO_push_1_payload_info_uop_isLoad                         ), //o
@@ -1679,7 +1680,7 @@ module mycpu_top (
     .ROBFIFOPlugin_debug_fifoIO_push_2_payload_info_uop_predInfo_predictTaken      (toplevel_cpu_ROBFIFOPlugin_debug_fifoIO_push_2_payload_info_uop_predInfo_predictTaken          ), //o
     .ROBFIFOPlugin_debug_fifoIO_push_2_payload_info_uop_predRecover_recoverTop     (toplevel_cpu_ROBFIFOPlugin_debug_fifoIO_push_2_payload_info_uop_predRecover_recoverTop[2:0]    ), //o
     .ROBFIFOPlugin_debug_fifoIO_push_2_payload_info_uop_predRecover_predictCounter (toplevel_cpu_ROBFIFOPlugin_debug_fifoIO_push_2_payload_info_uop_predRecover_predictCounter[1:0]), //o
-    .ROBFIFOPlugin_debug_fifoIO_push_2_payload_info_uop_predRecover_ghr            (toplevel_cpu_ROBFIFOPlugin_debug_fifoIO_push_2_payload_info_uop_predRecover_ghr[4:0]           ), //o
+    .ROBFIFOPlugin_debug_fifoIO_push_2_payload_info_uop_predRecover_ghr            (toplevel_cpu_ROBFIFOPlugin_debug_fifoIO_push_2_payload_info_uop_predRecover_ghr[6:0]           ), //o
     .ROBFIFOPlugin_debug_fifoIO_push_2_payload_info_uop_wbAddr                     (toplevel_cpu_ROBFIFOPlugin_debug_fifoIO_push_2_payload_info_uop_wbAddr[4:0]                    ), //o
     .ROBFIFOPlugin_debug_fifoIO_push_2_payload_info_uop_doRegWrite                 (toplevel_cpu_ROBFIFOPlugin_debug_fifoIO_push_2_payload_info_uop_doRegWrite                     ), //o
     .ROBFIFOPlugin_debug_fifoIO_push_2_payload_info_uop_isLoad                     (toplevel_cpu_ROBFIFOPlugin_debug_fifoIO_push_2_payload_info_uop_isLoad                         ), //o
@@ -1720,7 +1721,7 @@ module mycpu_top (
     .ROBFIFOPlugin_debug_fifoIO_pop_0_payload_info_uop_predInfo_predictTaken       (toplevel_cpu_ROBFIFOPlugin_debug_fifoIO_pop_0_payload_info_uop_predInfo_predictTaken           ), //o
     .ROBFIFOPlugin_debug_fifoIO_pop_0_payload_info_uop_predRecover_recoverTop      (toplevel_cpu_ROBFIFOPlugin_debug_fifoIO_pop_0_payload_info_uop_predRecover_recoverTop[2:0]     ), //o
     .ROBFIFOPlugin_debug_fifoIO_pop_0_payload_info_uop_predRecover_predictCounter  (toplevel_cpu_ROBFIFOPlugin_debug_fifoIO_pop_0_payload_info_uop_predRecover_predictCounter[1:0] ), //o
-    .ROBFIFOPlugin_debug_fifoIO_pop_0_payload_info_uop_predRecover_ghr             (toplevel_cpu_ROBFIFOPlugin_debug_fifoIO_pop_0_payload_info_uop_predRecover_ghr[4:0]            ), //o
+    .ROBFIFOPlugin_debug_fifoIO_pop_0_payload_info_uop_predRecover_ghr             (toplevel_cpu_ROBFIFOPlugin_debug_fifoIO_pop_0_payload_info_uop_predRecover_ghr[6:0]            ), //o
     .ROBFIFOPlugin_debug_fifoIO_pop_0_payload_info_uop_wbAddr                      (toplevel_cpu_ROBFIFOPlugin_debug_fifoIO_pop_0_payload_info_uop_wbAddr[4:0]                     ), //o
     .ROBFIFOPlugin_debug_fifoIO_pop_0_payload_info_uop_doRegWrite                  (toplevel_cpu_ROBFIFOPlugin_debug_fifoIO_pop_0_payload_info_uop_doRegWrite                      ), //o
     .ROBFIFOPlugin_debug_fifoIO_pop_0_payload_info_uop_isLoad                      (toplevel_cpu_ROBFIFOPlugin_debug_fifoIO_pop_0_payload_info_uop_isLoad                          ), //o
@@ -1777,7 +1778,7 @@ module mycpu_top (
     .ROBFIFOPlugin_debug_fifoIO_pop_1_payload_info_uop_predInfo_predictTaken       (toplevel_cpu_ROBFIFOPlugin_debug_fifoIO_pop_1_payload_info_uop_predInfo_predictTaken           ), //o
     .ROBFIFOPlugin_debug_fifoIO_pop_1_payload_info_uop_predRecover_recoverTop      (toplevel_cpu_ROBFIFOPlugin_debug_fifoIO_pop_1_payload_info_uop_predRecover_recoverTop[2:0]     ), //o
     .ROBFIFOPlugin_debug_fifoIO_pop_1_payload_info_uop_predRecover_predictCounter  (toplevel_cpu_ROBFIFOPlugin_debug_fifoIO_pop_1_payload_info_uop_predRecover_predictCounter[1:0] ), //o
-    .ROBFIFOPlugin_debug_fifoIO_pop_1_payload_info_uop_predRecover_ghr             (toplevel_cpu_ROBFIFOPlugin_debug_fifoIO_pop_1_payload_info_uop_predRecover_ghr[4:0]            ), //o
+    .ROBFIFOPlugin_debug_fifoIO_pop_1_payload_info_uop_predRecover_ghr             (toplevel_cpu_ROBFIFOPlugin_debug_fifoIO_pop_1_payload_info_uop_predRecover_ghr[6:0]            ), //o
     .ROBFIFOPlugin_debug_fifoIO_pop_1_payload_info_uop_wbAddr                      (toplevel_cpu_ROBFIFOPlugin_debug_fifoIO_pop_1_payload_info_uop_wbAddr[4:0]                     ), //o
     .ROBFIFOPlugin_debug_fifoIO_pop_1_payload_info_uop_doRegWrite                  (toplevel_cpu_ROBFIFOPlugin_debug_fifoIO_pop_1_payload_info_uop_doRegWrite                      ), //o
     .ROBFIFOPlugin_debug_fifoIO_pop_1_payload_info_uop_isLoad                      (toplevel_cpu_ROBFIFOPlugin_debug_fifoIO_pop_1_payload_info_uop_isLoad                          ), //o
@@ -1834,7 +1835,7 @@ module mycpu_top (
     .ROBFIFOPlugin_debug_fifoIO_pop_2_payload_info_uop_predInfo_predictTaken       (toplevel_cpu_ROBFIFOPlugin_debug_fifoIO_pop_2_payload_info_uop_predInfo_predictTaken           ), //o
     .ROBFIFOPlugin_debug_fifoIO_pop_2_payload_info_uop_predRecover_recoverTop      (toplevel_cpu_ROBFIFOPlugin_debug_fifoIO_pop_2_payload_info_uop_predRecover_recoverTop[2:0]     ), //o
     .ROBFIFOPlugin_debug_fifoIO_pop_2_payload_info_uop_predRecover_predictCounter  (toplevel_cpu_ROBFIFOPlugin_debug_fifoIO_pop_2_payload_info_uop_predRecover_predictCounter[1:0] ), //o
-    .ROBFIFOPlugin_debug_fifoIO_pop_2_payload_info_uop_predRecover_ghr             (toplevel_cpu_ROBFIFOPlugin_debug_fifoIO_pop_2_payload_info_uop_predRecover_ghr[4:0]            ), //o
+    .ROBFIFOPlugin_debug_fifoIO_pop_2_payload_info_uop_predRecover_ghr             (toplevel_cpu_ROBFIFOPlugin_debug_fifoIO_pop_2_payload_info_uop_predRecover_ghr[6:0]            ), //o
     .ROBFIFOPlugin_debug_fifoIO_pop_2_payload_info_uop_wbAddr                      (toplevel_cpu_ROBFIFOPlugin_debug_fifoIO_pop_2_payload_info_uop_wbAddr[4:0]                     ), //o
     .ROBFIFOPlugin_debug_fifoIO_pop_2_payload_info_uop_doRegWrite                  (toplevel_cpu_ROBFIFOPlugin_debug_fifoIO_pop_2_payload_info_uop_doRegWrite                      ), //o
     .ROBFIFOPlugin_debug_fifoIO_pop_2_payload_info_uop_isLoad                      (toplevel_cpu_ROBFIFOPlugin_debug_fifoIO_pop_2_payload_info_uop_isLoad                          ), //o
@@ -6950,7 +6951,7 @@ module MyCPUCore (
   output              ROBFIFOPlugin_debug_fifoIO_push_0_payload_info_uop_predInfo_predictTaken,
   output     [2:0]    ROBFIFOPlugin_debug_fifoIO_push_0_payload_info_uop_predRecover_recoverTop,
   output     [1:0]    ROBFIFOPlugin_debug_fifoIO_push_0_payload_info_uop_predRecover_predictCounter,
-  output     [4:0]    ROBFIFOPlugin_debug_fifoIO_push_0_payload_info_uop_predRecover_ghr,
+  output     [6:0]    ROBFIFOPlugin_debug_fifoIO_push_0_payload_info_uop_predRecover_ghr,
   output     [4:0]    ROBFIFOPlugin_debug_fifoIO_push_0_payload_info_uop_wbAddr,
   output              ROBFIFOPlugin_debug_fifoIO_push_0_payload_info_uop_doRegWrite,
   output              ROBFIFOPlugin_debug_fifoIO_push_0_payload_info_uop_isLoad,
@@ -6991,7 +6992,7 @@ module MyCPUCore (
   output              ROBFIFOPlugin_debug_fifoIO_push_1_payload_info_uop_predInfo_predictTaken,
   output     [2:0]    ROBFIFOPlugin_debug_fifoIO_push_1_payload_info_uop_predRecover_recoverTop,
   output     [1:0]    ROBFIFOPlugin_debug_fifoIO_push_1_payload_info_uop_predRecover_predictCounter,
-  output     [4:0]    ROBFIFOPlugin_debug_fifoIO_push_1_payload_info_uop_predRecover_ghr,
+  output     [6:0]    ROBFIFOPlugin_debug_fifoIO_push_1_payload_info_uop_predRecover_ghr,
   output     [4:0]    ROBFIFOPlugin_debug_fifoIO_push_1_payload_info_uop_wbAddr,
   output              ROBFIFOPlugin_debug_fifoIO_push_1_payload_info_uop_doRegWrite,
   output              ROBFIFOPlugin_debug_fifoIO_push_1_payload_info_uop_isLoad,
@@ -7032,7 +7033,7 @@ module MyCPUCore (
   output              ROBFIFOPlugin_debug_fifoIO_push_2_payload_info_uop_predInfo_predictTaken,
   output     [2:0]    ROBFIFOPlugin_debug_fifoIO_push_2_payload_info_uop_predRecover_recoverTop,
   output     [1:0]    ROBFIFOPlugin_debug_fifoIO_push_2_payload_info_uop_predRecover_predictCounter,
-  output     [4:0]    ROBFIFOPlugin_debug_fifoIO_push_2_payload_info_uop_predRecover_ghr,
+  output     [6:0]    ROBFIFOPlugin_debug_fifoIO_push_2_payload_info_uop_predRecover_ghr,
   output     [4:0]    ROBFIFOPlugin_debug_fifoIO_push_2_payload_info_uop_wbAddr,
   output              ROBFIFOPlugin_debug_fifoIO_push_2_payload_info_uop_doRegWrite,
   output              ROBFIFOPlugin_debug_fifoIO_push_2_payload_info_uop_isLoad,
@@ -7073,7 +7074,7 @@ module MyCPUCore (
   output              ROBFIFOPlugin_debug_fifoIO_pop_0_payload_info_uop_predInfo_predictTaken,
   output     [2:0]    ROBFIFOPlugin_debug_fifoIO_pop_0_payload_info_uop_predRecover_recoverTop,
   output     [1:0]    ROBFIFOPlugin_debug_fifoIO_pop_0_payload_info_uop_predRecover_predictCounter,
-  output     [4:0]    ROBFIFOPlugin_debug_fifoIO_pop_0_payload_info_uop_predRecover_ghr,
+  output     [6:0]    ROBFIFOPlugin_debug_fifoIO_pop_0_payload_info_uop_predRecover_ghr,
   output     [4:0]    ROBFIFOPlugin_debug_fifoIO_pop_0_payload_info_uop_wbAddr,
   output              ROBFIFOPlugin_debug_fifoIO_pop_0_payload_info_uop_doRegWrite,
   output              ROBFIFOPlugin_debug_fifoIO_pop_0_payload_info_uop_isLoad,
@@ -7130,7 +7131,7 @@ module MyCPUCore (
   output              ROBFIFOPlugin_debug_fifoIO_pop_1_payload_info_uop_predInfo_predictTaken,
   output     [2:0]    ROBFIFOPlugin_debug_fifoIO_pop_1_payload_info_uop_predRecover_recoverTop,
   output     [1:0]    ROBFIFOPlugin_debug_fifoIO_pop_1_payload_info_uop_predRecover_predictCounter,
-  output     [4:0]    ROBFIFOPlugin_debug_fifoIO_pop_1_payload_info_uop_predRecover_ghr,
+  output     [6:0]    ROBFIFOPlugin_debug_fifoIO_pop_1_payload_info_uop_predRecover_ghr,
   output     [4:0]    ROBFIFOPlugin_debug_fifoIO_pop_1_payload_info_uop_wbAddr,
   output              ROBFIFOPlugin_debug_fifoIO_pop_1_payload_info_uop_doRegWrite,
   output              ROBFIFOPlugin_debug_fifoIO_pop_1_payload_info_uop_isLoad,
@@ -7187,7 +7188,7 @@ module MyCPUCore (
   output              ROBFIFOPlugin_debug_fifoIO_pop_2_payload_info_uop_predInfo_predictTaken,
   output     [2:0]    ROBFIFOPlugin_debug_fifoIO_pop_2_payload_info_uop_predRecover_recoverTop,
   output     [1:0]    ROBFIFOPlugin_debug_fifoIO_pop_2_payload_info_uop_predRecover_predictCounter,
-  output     [4:0]    ROBFIFOPlugin_debug_fifoIO_pop_2_payload_info_uop_predRecover_ghr,
+  output     [6:0]    ROBFIFOPlugin_debug_fifoIO_pop_2_payload_info_uop_predRecover_ghr,
   output     [4:0]    ROBFIFOPlugin_debug_fifoIO_pop_2_payload_info_uop_wbAddr,
   output              ROBFIFOPlugin_debug_fifoIO_pop_2_payload_info_uop_doRegWrite,
   output              ROBFIFOPlugin_debug_fifoIO_pop_2_payload_info_uop_isLoad,
@@ -7688,10 +7689,10 @@ module MyCPUCore (
   reg                 GlobalPredictorBTBPlugin_btb_io_write_payload_data_0_statusBundle_isReturn;
   reg        [3:0]    GlobalPredictorBTBPlugin_btb_io_write_payload_mask;
   reg                 GlobalPredictorBTBPlugin_predictor_io_updateGHR_valid;
-  reg        [4:0]    GlobalPredictorBTBPlugin_predictor_io_updateGHR_payload;
+  reg        [6:0]    GlobalPredictorBTBPlugin_predictor_io_updateGHR_payload;
   reg                 GlobalPredictorBTBPlugin_predictor_io_write_valid;
   reg        [31:0]   GlobalPredictorBTBPlugin_predictor_io_write_payload_pc;
-  reg        [4:0]    GlobalPredictorBTBPlugin_predictor_io_write_payload_ghr;
+  reg        [6:0]    GlobalPredictorBTBPlugin_predictor_io_write_payload_ghr;
   reg        [1:0]    GlobalPredictorBTBPlugin_predictor_io_write_payload_newCounter;
   reg                 RenamePlugin_freeList_io_push_0_valid;
   reg        [5:0]    RenamePlugin_freeList_io_push_0_payload;
@@ -7759,7 +7760,7 @@ module MyCPUCore (
   wire       [31:0]   FetchBufferPlugin_bufferFIFO_io_pop_0_payload_predInfo_predictAddr;
   wire       [2:0]    FetchBufferPlugin_bufferFIFO_io_pop_0_payload_predRecover_recoverTop;
   wire       [1:0]    FetchBufferPlugin_bufferFIFO_io_pop_0_payload_predRecover_predictCounter;
-  wire       [4:0]    FetchBufferPlugin_bufferFIFO_io_pop_0_payload_predRecover_ghr;
+  wire       [6:0]    FetchBufferPlugin_bufferFIFO_io_pop_0_payload_predRecover_ghr;
   wire                FetchBufferPlugin_bufferFIFO_io_pop_1_valid;
   wire       [31:0]   FetchBufferPlugin_bufferFIFO_io_pop_1_payload_pc;
   wire       [31:0]   FetchBufferPlugin_bufferFIFO_io_pop_1_payload_inst;
@@ -7772,7 +7773,7 @@ module MyCPUCore (
   wire       [31:0]   FetchBufferPlugin_bufferFIFO_io_pop_1_payload_predInfo_predictAddr;
   wire       [2:0]    FetchBufferPlugin_bufferFIFO_io_pop_1_payload_predRecover_recoverTop;
   wire       [1:0]    FetchBufferPlugin_bufferFIFO_io_pop_1_payload_predRecover_predictCounter;
-  wire       [4:0]    FetchBufferPlugin_bufferFIFO_io_pop_1_payload_predRecover_ghr;
+  wire       [6:0]    FetchBufferPlugin_bufferFIFO_io_pop_1_payload_predRecover_ghr;
   wire                FetchBufferPlugin_bufferFIFO_io_pop_2_valid;
   wire       [31:0]   FetchBufferPlugin_bufferFIFO_io_pop_2_payload_pc;
   wire       [31:0]   FetchBufferPlugin_bufferFIFO_io_pop_2_payload_inst;
@@ -7785,7 +7786,7 @@ module MyCPUCore (
   wire       [31:0]   FetchBufferPlugin_bufferFIFO_io_pop_2_payload_predInfo_predictAddr;
   wire       [2:0]    FetchBufferPlugin_bufferFIFO_io_pop_2_payload_predRecover_recoverTop;
   wire       [1:0]    FetchBufferPlugin_bufferFIFO_io_pop_2_payload_predRecover_predictCounter;
-  wire       [4:0]    FetchBufferPlugin_bufferFIFO_io_pop_2_payload_predRecover_ghr;
+  wire       [6:0]    FetchBufferPlugin_bufferFIFO_io_pop_2_payload_predRecover_ghr;
   wire       [2:0]    FetchBufferPlugin_bufferFIFO_pushPtr;
   wire       [2:0]    FetchBufferPlugin_bufferFIFO_popPtr;
   wire       [31:0]   ICachePlugin_dataRAMs_0_io_read_rsp_0;
@@ -7844,7 +7845,7 @@ module MyCPUCore (
   wire       [1:0]    GlobalPredictorBTBPlugin_predictor_io_read_predCounters_2;
   wire       [1:0]    GlobalPredictorBTBPlugin_predictor_io_read_predCounters_3;
   wire       [3:0]    GlobalPredictorBTBPlugin_predictor_io_read_predTaken;
-  wire       [4:0]    GlobalPredictorBTBPlugin_predictor_io_read_globalHistory;
+  wire       [6:0]    GlobalPredictorBTBPlugin_predictor_io_read_globalHistory;
   wire                RenamePlugin_freeList_io_push_0_ready;
   wire                RenamePlugin_freeList_io_push_1_ready;
   wire                RenamePlugin_freeList_io_push_2_ready;
@@ -7870,7 +7871,7 @@ module MyCPUCore (
   wire                ROBFIFOPlugin_robInfo_io_pop_0_payload_uop_predInfo_predictTaken;
   wire       [2:0]    ROBFIFOPlugin_robInfo_io_pop_0_payload_uop_predRecover_recoverTop;
   wire       [1:0]    ROBFIFOPlugin_robInfo_io_pop_0_payload_uop_predRecover_predictCounter;
-  wire       [4:0]    ROBFIFOPlugin_robInfo_io_pop_0_payload_uop_predRecover_ghr;
+  wire       [6:0]    ROBFIFOPlugin_robInfo_io_pop_0_payload_uop_predRecover_ghr;
   wire       [4:0]    ROBFIFOPlugin_robInfo_io_pop_0_payload_uop_wbAddr;
   wire                ROBFIFOPlugin_robInfo_io_pop_0_payload_uop_doRegWrite;
   wire                ROBFIFOPlugin_robInfo_io_pop_0_payload_uop_isLoad;
@@ -7903,7 +7904,7 @@ module MyCPUCore (
   wire                ROBFIFOPlugin_robInfo_io_pop_1_payload_uop_predInfo_predictTaken;
   wire       [2:0]    ROBFIFOPlugin_robInfo_io_pop_1_payload_uop_predRecover_recoverTop;
   wire       [1:0]    ROBFIFOPlugin_robInfo_io_pop_1_payload_uop_predRecover_predictCounter;
-  wire       [4:0]    ROBFIFOPlugin_robInfo_io_pop_1_payload_uop_predRecover_ghr;
+  wire       [6:0]    ROBFIFOPlugin_robInfo_io_pop_1_payload_uop_predRecover_ghr;
   wire       [4:0]    ROBFIFOPlugin_robInfo_io_pop_1_payload_uop_wbAddr;
   wire                ROBFIFOPlugin_robInfo_io_pop_1_payload_uop_doRegWrite;
   wire                ROBFIFOPlugin_robInfo_io_pop_1_payload_uop_isLoad;
@@ -7936,7 +7937,7 @@ module MyCPUCore (
   wire                ROBFIFOPlugin_robInfo_io_pop_2_payload_uop_predInfo_predictTaken;
   wire       [2:0]    ROBFIFOPlugin_robInfo_io_pop_2_payload_uop_predRecover_recoverTop;
   wire       [1:0]    ROBFIFOPlugin_robInfo_io_pop_2_payload_uop_predRecover_predictCounter;
-  wire       [4:0]    ROBFIFOPlugin_robInfo_io_pop_2_payload_uop_predRecover_ghr;
+  wire       [6:0]    ROBFIFOPlugin_robInfo_io_pop_2_payload_uop_predRecover_ghr;
   wire       [4:0]    ROBFIFOPlugin_robInfo_io_pop_2_payload_uop_wbAddr;
   wire                ROBFIFOPlugin_robInfo_io_pop_2_payload_uop_doRegWrite;
   wire                ROBFIFOPlugin_robInfo_io_pop_2_payload_uop_isLoad;
@@ -8898,10 +8899,10 @@ module MyCPUCore (
   reg        [2:0]    _zz_IF2_GlobalPredictorBTBPlugin_branchCount_11;
   wire       [2:0]    _zz_IF2_GlobalPredictorBTBPlugin_branchCount_12;
   wire       [0:0]    _zz_IF2_GlobalPredictorBTBPlugin_branchCount_13;
-  wire       [4:0]    _zz_io_updateGHR_payload;
+  wire       [6:0]    _zz_io_updateGHR_payload;
   wire       [0:0]    _zz_io_updateGHR_payload_1;
   wire       [0:0]    _zz_io_write_payload_mask;
-  wire       [5:0]    _zz_io_updateGHR_payload_2;
+  wire       [7:0]    _zz_io_updateGHR_payload_2;
   wire       [2:0]    _zz__zz_1451;
   wire       [29:0]   _zz__zz_ReturnAddressStackPlugin_ras_0;
   wire       [29:0]   _zz__zz_ReturnAddressStackPlugin_ras_0_1;
@@ -9546,7 +9547,7 @@ module MyCPUCore (
   wire       [31:0]   ID_DECODE_PACKET_0_payload_predInfo_predictAddr;
   wire       [2:0]    ID_DECODE_PACKET_0_payload_predRecover_recoverTop;
   wire       [1:0]    ID_DECODE_PACKET_0_payload_predRecover_predictCounter;
-  wire       [4:0]    ID_DECODE_PACKET_0_payload_predRecover_ghr;
+  wire       [6:0]    ID_DECODE_PACKET_0_payload_predRecover_ghr;
   wire       [3:0]    ID_DECODE_PACKET_0_payload_fuType;
   wire                ID_DECODE_PACKET_0_payload_useRj;
   wire                ID_DECODE_PACKET_0_payload_useRk;
@@ -9589,7 +9590,7 @@ module MyCPUCore (
   wire       [31:0]   ID_DECODE_PACKET_1_payload_predInfo_predictAddr;
   wire       [2:0]    ID_DECODE_PACKET_1_payload_predRecover_recoverTop;
   wire       [1:0]    ID_DECODE_PACKET_1_payload_predRecover_predictCounter;
-  wire       [4:0]    ID_DECODE_PACKET_1_payload_predRecover_ghr;
+  wire       [6:0]    ID_DECODE_PACKET_1_payload_predRecover_ghr;
   wire       [3:0]    ID_DECODE_PACKET_1_payload_fuType;
   wire                ID_DECODE_PACKET_1_payload_useRj;
   wire                ID_DECODE_PACKET_1_payload_useRk;
@@ -9632,7 +9633,7 @@ module MyCPUCore (
   wire       [31:0]   ID_DECODE_PACKET_2_payload_predInfo_predictAddr;
   wire       [2:0]    ID_DECODE_PACKET_2_payload_predRecover_recoverTop;
   wire       [1:0]    ID_DECODE_PACKET_2_payload_predRecover_predictCounter;
-  wire       [4:0]    ID_DECODE_PACKET_2_payload_predRecover_ghr;
+  wire       [6:0]    ID_DECODE_PACKET_2_payload_predRecover_ghr;
   wire       [3:0]    ID_DECODE_PACKET_2_payload_fuType;
   wire                ID_DECODE_PACKET_2_payload_useRj;
   wire                ID_DECODE_PACKET_2_payload_useRk;
@@ -9722,7 +9723,7 @@ module MyCPUCore (
   wire       [3:0]    _zz_ID_to_RENAME_DECODE_PACKET_2_payload_cmpOp_1;
   wire       [3:0]    _zz_ID_to_RENAME_DECODE_PACKET_2_payload_tlbOp_1;
   wire                IF2_IS_TLB_REFILL;
-  wire       [4:0]    IF1_GLOBAL_BRANCH_HISTORY;
+  wire       [6:0]    IF1_GLOBAL_BRANCH_HISTORY;
   wire       [1:0]    IF1_PRED_COUNTER_0;
   wire       [1:0]    IF1_PRED_COUNTER_1;
   wire       [1:0]    IF1_PRED_COUNTER_2;
@@ -10502,7 +10503,7 @@ module MyCPUCore (
   wire       [31:0]   ID_DecoderArray_decodePacket_0_payload_predInfo_predictAddr;
   wire       [2:0]    ID_DecoderArray_decodePacket_0_payload_predRecover_recoverTop;
   wire       [1:0]    ID_DecoderArray_decodePacket_0_payload_predRecover_predictCounter;
-  wire       [4:0]    ID_DecoderArray_decodePacket_0_payload_predRecover_ghr;
+  wire       [6:0]    ID_DecoderArray_decodePacket_0_payload_predRecover_ghr;
   wire       [3:0]    ID_DecoderArray_decodePacket_0_payload_fuType;
   wire                ID_DecoderArray_decodePacket_0_payload_useRj;
   wire                ID_DecoderArray_decodePacket_0_payload_useRk;
@@ -10545,7 +10546,7 @@ module MyCPUCore (
   wire       [31:0]   ID_DecoderArray_decodePacket_1_payload_predInfo_predictAddr;
   wire       [2:0]    ID_DecoderArray_decodePacket_1_payload_predRecover_recoverTop;
   wire       [1:0]    ID_DecoderArray_decodePacket_1_payload_predRecover_predictCounter;
-  wire       [4:0]    ID_DecoderArray_decodePacket_1_payload_predRecover_ghr;
+  wire       [6:0]    ID_DecoderArray_decodePacket_1_payload_predRecover_ghr;
   wire       [3:0]    ID_DecoderArray_decodePacket_1_payload_fuType;
   wire                ID_DecoderArray_decodePacket_1_payload_useRj;
   wire                ID_DecoderArray_decodePacket_1_payload_useRk;
@@ -10588,7 +10589,7 @@ module MyCPUCore (
   wire       [31:0]   ID_DecoderArray_decodePacket_2_payload_predInfo_predictAddr;
   wire       [2:0]    ID_DecoderArray_decodePacket_2_payload_predRecover_recoverTop;
   wire       [1:0]    ID_DecoderArray_decodePacket_2_payload_predRecover_predictCounter;
-  wire       [4:0]    ID_DecoderArray_decodePacket_2_payload_predRecover_ghr;
+  wire       [6:0]    ID_DecoderArray_decodePacket_2_payload_predRecover_ghr;
   wire       [3:0]    ID_DecoderArray_decodePacket_2_payload_fuType;
   wire                ID_DecoderArray_decodePacket_2_payload_useRj;
   wire                ID_DecoderArray_decodePacket_2_payload_useRk;
@@ -10623,7 +10624,7 @@ module MyCPUCore (
   wire                ID_DecoderArray_decodePacket_2_payload_except_payload_isTLBRefill;
   wire                ID_DecoderArray_decodePacket_2_payload_isErtn;
   wire                ID_DecoderArray_decodePacket_2_payload_flushState;
-  wire       [4:0]    IF2_GLOBAL_BRANCH_HISTORY;
+  wire       [6:0]    IF2_GLOBAL_BRANCH_HISTORY;
   reg        [3:0]    _zz_IF2_TAKEN_MASK;
   wire       [1:0]    IF2_PREDICT_JUMP_WAY;
   wire       [29:0]   IF2_PREDICT_JUMP_PAYLOAD_target;
@@ -10666,12 +10667,12 @@ module MyCPUCore (
   wire                IF2_InstAddrTranslatePlugin_tlbRefill;
   wire                IF2_InstAddrTranslatePlugin_pcCached;
   wire       [31:0]   IF2_InstAddrTranslatePlugin_physPC;
+  wire                IF2_EXCEPTION_OCCURRED;
   reg        [31:0]   _zz_IF1_to_IF2_BAD_VADDR;
   reg        [8:0]    _zz_IF1_to_IF2_EXCEPTION_ESUBCODE;
   reg        [5:0]    _zz_IF1_to_IF2_EXCEPTION_ECODE;
   wire                IF1_EXCEPTION_OCCURRED;
   reg                 _zz_IF1_to_IF2_EXCEPTION_OCCURRED;
-  wire                IF2_EXCEPTION_OCCURRED;
   reg        [8:0]    _zz_IF2_ICachePlugin_fetchPacket_except_payload_subcode;
   reg        [5:0]    _zz_IF2_ICachePlugin_fetchPacket_except_payload_code;
   wire       [31:0]   IF2_ICachePlugin_fetchPacket_pc;
@@ -10703,10 +10704,10 @@ module MyCPUCore (
   wire       [31:0]   IF2_PC_PHYSICAL;
   reg                 _zz_IF2_ICachePlugin_fetchPacket_except_valid;
   wire       [31:0]   IF1_PC;
-  wire       [4:0]    IF2_PRIVATE_BRANCH_HISTORY_0;
-  wire       [4:0]    IF2_PRIVATE_BRANCH_HISTORY_1;
-  wire       [4:0]    IF2_PRIVATE_BRANCH_HISTORY_2;
-  wire       [4:0]    IF2_PRIVATE_BRANCH_HISTORY_3;
+  wire       [6:0]    IF2_PRIVATE_BRANCH_HISTORY_0;
+  wire       [6:0]    IF2_PRIVATE_BRANCH_HISTORY_1;
+  wire       [6:0]    IF2_PRIVATE_BRANCH_HISTORY_2;
+  wire       [6:0]    IF2_PRIVATE_BRANCH_HISTORY_3;
   wire       [1:0]    IF2_PRED_COUNTER_0;
   wire       [1:0]    IF2_PRED_COUNTER_1;
   wire       [1:0]    IF2_PRED_COUNTER_2;
@@ -10759,7 +10760,7 @@ module MyCPUCore (
   wire       [31:0]   DISPATCH_DECODE_PACKET_0_payload_predInfo_predictAddr;
   wire       [2:0]    DISPATCH_DECODE_PACKET_0_payload_predRecover_recoverTop;
   wire       [1:0]    DISPATCH_DECODE_PACKET_0_payload_predRecover_predictCounter;
-  wire       [4:0]    DISPATCH_DECODE_PACKET_0_payload_predRecover_ghr;
+  wire       [6:0]    DISPATCH_DECODE_PACKET_0_payload_predRecover_ghr;
   wire       [3:0]    DISPATCH_DECODE_PACKET_0_payload_fuType;
   wire                DISPATCH_DECODE_PACKET_0_payload_useRj;
   wire                DISPATCH_DECODE_PACKET_0_payload_useRk;
@@ -10802,7 +10803,7 @@ module MyCPUCore (
   wire       [31:0]   DISPATCH_DECODE_PACKET_1_payload_predInfo_predictAddr;
   wire       [2:0]    DISPATCH_DECODE_PACKET_1_payload_predRecover_recoverTop;
   wire       [1:0]    DISPATCH_DECODE_PACKET_1_payload_predRecover_predictCounter;
-  wire       [4:0]    DISPATCH_DECODE_PACKET_1_payload_predRecover_ghr;
+  wire       [6:0]    DISPATCH_DECODE_PACKET_1_payload_predRecover_ghr;
   wire       [3:0]    DISPATCH_DECODE_PACKET_1_payload_fuType;
   wire                DISPATCH_DECODE_PACKET_1_payload_useRj;
   wire                DISPATCH_DECODE_PACKET_1_payload_useRk;
@@ -10845,7 +10846,7 @@ module MyCPUCore (
   wire       [31:0]   DISPATCH_DECODE_PACKET_2_payload_predInfo_predictAddr;
   wire       [2:0]    DISPATCH_DECODE_PACKET_2_payload_predRecover_recoverTop;
   wire       [1:0]    DISPATCH_DECODE_PACKET_2_payload_predRecover_predictCounter;
-  wire       [4:0]    DISPATCH_DECODE_PACKET_2_payload_predRecover_ghr;
+  wire       [6:0]    DISPATCH_DECODE_PACKET_2_payload_predRecover_ghr;
   wire       [3:0]    DISPATCH_DECODE_PACKET_2_payload_fuType;
   wire                DISPATCH_DECODE_PACKET_2_payload_useRj;
   wire                DISPATCH_DECODE_PACKET_2_payload_useRk;
@@ -10927,7 +10928,7 @@ module MyCPUCore (
   wire       [31:0]   RENAME_DECODE_PACKET_0_payload_predInfo_predictAddr;
   wire       [2:0]    RENAME_DECODE_PACKET_0_payload_predRecover_recoverTop;
   wire       [1:0]    RENAME_DECODE_PACKET_0_payload_predRecover_predictCounter;
-  wire       [4:0]    RENAME_DECODE_PACKET_0_payload_predRecover_ghr;
+  wire       [6:0]    RENAME_DECODE_PACKET_0_payload_predRecover_ghr;
   wire       [3:0]    RENAME_DECODE_PACKET_0_payload_fuType;
   wire                RENAME_DECODE_PACKET_0_payload_useRj;
   wire                RENAME_DECODE_PACKET_0_payload_useRk;
@@ -10970,7 +10971,7 @@ module MyCPUCore (
   wire       [31:0]   RENAME_DECODE_PACKET_1_payload_predInfo_predictAddr;
   wire       [2:0]    RENAME_DECODE_PACKET_1_payload_predRecover_recoverTop;
   wire       [1:0]    RENAME_DECODE_PACKET_1_payload_predRecover_predictCounter;
-  wire       [4:0]    RENAME_DECODE_PACKET_1_payload_predRecover_ghr;
+  wire       [6:0]    RENAME_DECODE_PACKET_1_payload_predRecover_ghr;
   wire       [3:0]    RENAME_DECODE_PACKET_1_payload_fuType;
   wire                RENAME_DECODE_PACKET_1_payload_useRj;
   wire                RENAME_DECODE_PACKET_1_payload_useRk;
@@ -11013,7 +11014,7 @@ module MyCPUCore (
   wire       [31:0]   RENAME_DECODE_PACKET_2_payload_predInfo_predictAddr;
   wire       [2:0]    RENAME_DECODE_PACKET_2_payload_predRecover_recoverTop;
   wire       [1:0]    RENAME_DECODE_PACKET_2_payload_predRecover_predictCounter;
-  wire       [4:0]    RENAME_DECODE_PACKET_2_payload_predRecover_ghr;
+  wire       [6:0]    RENAME_DECODE_PACKET_2_payload_predRecover_ghr;
   wire       [3:0]    RENAME_DECODE_PACKET_2_payload_fuType;
   wire                RENAME_DECODE_PACKET_2_payload_useRj;
   wire                RENAME_DECODE_PACKET_2_payload_useRk;
@@ -13971,7 +13972,7 @@ module MyCPUCore (
   wire                ROBFIFOPlugin_fifoIO_push_0_payload_info_uop_predInfo_predictTaken;
   wire       [2:0]    ROBFIFOPlugin_fifoIO_push_0_payload_info_uop_predRecover_recoverTop;
   wire       [1:0]    ROBFIFOPlugin_fifoIO_push_0_payload_info_uop_predRecover_predictCounter;
-  wire       [4:0]    ROBFIFOPlugin_fifoIO_push_0_payload_info_uop_predRecover_ghr;
+  wire       [6:0]    ROBFIFOPlugin_fifoIO_push_0_payload_info_uop_predRecover_ghr;
   wire       [4:0]    ROBFIFOPlugin_fifoIO_push_0_payload_info_uop_wbAddr;
   wire                ROBFIFOPlugin_fifoIO_push_0_payload_info_uop_doRegWrite;
   wire                ROBFIFOPlugin_fifoIO_push_0_payload_info_uop_isLoad;
@@ -14012,7 +14013,7 @@ module MyCPUCore (
   wire                ROBFIFOPlugin_fifoIO_push_1_payload_info_uop_predInfo_predictTaken;
   wire       [2:0]    ROBFIFOPlugin_fifoIO_push_1_payload_info_uop_predRecover_recoverTop;
   wire       [1:0]    ROBFIFOPlugin_fifoIO_push_1_payload_info_uop_predRecover_predictCounter;
-  wire       [4:0]    ROBFIFOPlugin_fifoIO_push_1_payload_info_uop_predRecover_ghr;
+  wire       [6:0]    ROBFIFOPlugin_fifoIO_push_1_payload_info_uop_predRecover_ghr;
   wire       [4:0]    ROBFIFOPlugin_fifoIO_push_1_payload_info_uop_wbAddr;
   wire                ROBFIFOPlugin_fifoIO_push_1_payload_info_uop_doRegWrite;
   wire                ROBFIFOPlugin_fifoIO_push_1_payload_info_uop_isLoad;
@@ -14053,7 +14054,7 @@ module MyCPUCore (
   wire                ROBFIFOPlugin_fifoIO_push_2_payload_info_uop_predInfo_predictTaken;
   wire       [2:0]    ROBFIFOPlugin_fifoIO_push_2_payload_info_uop_predRecover_recoverTop;
   wire       [1:0]    ROBFIFOPlugin_fifoIO_push_2_payload_info_uop_predRecover_predictCounter;
-  wire       [4:0]    ROBFIFOPlugin_fifoIO_push_2_payload_info_uop_predRecover_ghr;
+  wire       [6:0]    ROBFIFOPlugin_fifoIO_push_2_payload_info_uop_predRecover_ghr;
   wire       [4:0]    ROBFIFOPlugin_fifoIO_push_2_payload_info_uop_wbAddr;
   wire                ROBFIFOPlugin_fifoIO_push_2_payload_info_uop_doRegWrite;
   wire                ROBFIFOPlugin_fifoIO_push_2_payload_info_uop_isLoad;
@@ -14094,7 +14095,7 @@ module MyCPUCore (
   wire                ROBFIFOPlugin_fifoIO_pop_0_payload_info_uop_predInfo_predictTaken;
   wire       [2:0]    ROBFIFOPlugin_fifoIO_pop_0_payload_info_uop_predRecover_recoverTop;
   wire       [1:0]    ROBFIFOPlugin_fifoIO_pop_0_payload_info_uop_predRecover_predictCounter;
-  wire       [4:0]    ROBFIFOPlugin_fifoIO_pop_0_payload_info_uop_predRecover_ghr;
+  wire       [6:0]    ROBFIFOPlugin_fifoIO_pop_0_payload_info_uop_predRecover_ghr;
   wire       [4:0]    ROBFIFOPlugin_fifoIO_pop_0_payload_info_uop_wbAddr;
   wire                ROBFIFOPlugin_fifoIO_pop_0_payload_info_uop_doRegWrite;
   wire                ROBFIFOPlugin_fifoIO_pop_0_payload_info_uop_isLoad;
@@ -14151,7 +14152,7 @@ module MyCPUCore (
   wire                ROBFIFOPlugin_fifoIO_pop_1_payload_info_uop_predInfo_predictTaken;
   wire       [2:0]    ROBFIFOPlugin_fifoIO_pop_1_payload_info_uop_predRecover_recoverTop;
   wire       [1:0]    ROBFIFOPlugin_fifoIO_pop_1_payload_info_uop_predRecover_predictCounter;
-  wire       [4:0]    ROBFIFOPlugin_fifoIO_pop_1_payload_info_uop_predRecover_ghr;
+  wire       [6:0]    ROBFIFOPlugin_fifoIO_pop_1_payload_info_uop_predRecover_ghr;
   wire       [4:0]    ROBFIFOPlugin_fifoIO_pop_1_payload_info_uop_wbAddr;
   wire                ROBFIFOPlugin_fifoIO_pop_1_payload_info_uop_doRegWrite;
   wire                ROBFIFOPlugin_fifoIO_pop_1_payload_info_uop_isLoad;
@@ -14208,7 +14209,7 @@ module MyCPUCore (
   wire                ROBFIFOPlugin_fifoIO_pop_2_payload_info_uop_predInfo_predictTaken;
   wire       [2:0]    ROBFIFOPlugin_fifoIO_pop_2_payload_info_uop_predRecover_recoverTop;
   wire       [1:0]    ROBFIFOPlugin_fifoIO_pop_2_payload_info_uop_predRecover_predictCounter;
-  wire       [4:0]    ROBFIFOPlugin_fifoIO_pop_2_payload_info_uop_predRecover_ghr;
+  wire       [6:0]    ROBFIFOPlugin_fifoIO_pop_2_payload_info_uop_predRecover_ghr;
   wire       [4:0]    ROBFIFOPlugin_fifoIO_pop_2_payload_info_uop_wbAddr;
   wire                ROBFIFOPlugin_fifoIO_pop_2_payload_info_uop_doRegWrite;
   wire                ROBFIFOPlugin_fifoIO_pop_2_payload_info_uop_isLoad;
@@ -14271,7 +14272,7 @@ module MyCPUCore (
   reg                 CommitPlugin_predUpdate_payload_predInfo_predictTaken;
   reg        [2:0]    CommitPlugin_predUpdate_payload_predRecover_recoverTop;
   reg        [1:0]    CommitPlugin_predUpdate_payload_predRecover_predictCounter;
-  reg        [4:0]    CommitPlugin_predUpdate_payload_predRecover_ghr;
+  reg        [6:0]    CommitPlugin_predUpdate_payload_predRecover_ghr;
   reg                 CommitPlugin_predUpdate_payload_branchLike;
   reg                 CommitPlugin_predUpdate_payload_isTaken;
   reg                 CommitPlugin_predUpdate_payload_isRet;
@@ -17234,7 +17235,7 @@ module MyCPUCore (
   wire       [2:0]    _zz_IF2_GlobalPredictorBTBPlugin_branchCount_7;
   wire       [2:0]    _zz_IF2_GlobalPredictorBTBPlugin_branchCount_8;
   wire       [2:0]    IF2_GlobalPredictorBTBPlugin_branchCount;
-  wire       [4:0]    IF2_GlobalPredictorBTBPlugin_shiftedGHR;
+  wire       [6:0]    IF2_GlobalPredictorBTBPlugin_shiftedGHR;
   wire       [19:0]   _zz_io_write_payload_data_0_tag;
   wire       [9:0]    _zz_io_write_payload_address;
   wire                when_GlobalPredictorBTBPlugin_l204;
@@ -18282,7 +18283,7 @@ module MyCPUCore (
   wire       [31:0]   ID_DecoderArray_decoders_0_uop_predInfo_predictAddr;
   wire       [2:0]    ID_DecoderArray_decoders_0_uop_predRecover_recoverTop;
   wire       [1:0]    ID_DecoderArray_decoders_0_uop_predRecover_predictCounter;
-  wire       [4:0]    ID_DecoderArray_decoders_0_uop_predRecover_ghr;
+  wire       [6:0]    ID_DecoderArray_decoders_0_uop_predRecover_ghr;
   reg        [3:0]    ID_DecoderArray_decoders_0_uop_fuType;
   reg                 ID_DecoderArray_decoders_0_uop_useRj;
   reg                 ID_DecoderArray_decoders_0_uop_useRk;
@@ -18403,7 +18404,7 @@ module MyCPUCore (
   wire       [31:0]   ID_DecoderArray_decoders_1_uop_predInfo_predictAddr;
   wire       [2:0]    ID_DecoderArray_decoders_1_uop_predRecover_recoverTop;
   wire       [1:0]    ID_DecoderArray_decoders_1_uop_predRecover_predictCounter;
-  wire       [4:0]    ID_DecoderArray_decoders_1_uop_predRecover_ghr;
+  wire       [6:0]    ID_DecoderArray_decoders_1_uop_predRecover_ghr;
   reg        [3:0]    ID_DecoderArray_decoders_1_uop_fuType;
   reg                 ID_DecoderArray_decoders_1_uop_useRj;
   reg                 ID_DecoderArray_decoders_1_uop_useRk;
@@ -18524,7 +18525,7 @@ module MyCPUCore (
   wire       [31:0]   ID_DecoderArray_decoders_2_uop_predInfo_predictAddr;
   wire       [2:0]    ID_DecoderArray_decoders_2_uop_predRecover_recoverTop;
   wire       [1:0]    ID_DecoderArray_decoders_2_uop_predRecover_predictCounter;
-  wire       [4:0]    ID_DecoderArray_decoders_2_uop_predRecover_ghr;
+  wire       [6:0]    ID_DecoderArray_decoders_2_uop_predRecover_ghr;
   reg        [3:0]    ID_DecoderArray_decoders_2_uop_fuType;
   reg                 ID_DecoderArray_decoders_2_uop_useRj;
   reg                 ID_DecoderArray_decoders_2_uop_useRk;
@@ -19487,7 +19488,7 @@ module MyCPUCore (
   reg        [1:0]    IF1_to_IF2_PRED_COUNTER_2;
   reg        [1:0]    IF1_to_IF2_PRED_COUNTER_3;
   wire                when_Pipeline_l158_17;
-  reg        [4:0]    IF1_to_IF2_GLOBAL_BRANCH_HISTORY;
+  reg        [6:0]    IF1_to_IF2_GLOBAL_BRANCH_HISTORY;
   wire                when_Pipeline_l198;
   wire                when_Pipeline_l208;
   wire                when_Pipeline_l211;
@@ -19501,7 +19502,7 @@ module MyCPUCore (
   reg        [31:0]   ID_to_RENAME_DECODE_PACKET_0_payload_predInfo_predictAddr;
   reg        [2:0]    ID_to_RENAME_DECODE_PACKET_0_payload_predRecover_recoverTop;
   reg        [1:0]    ID_to_RENAME_DECODE_PACKET_0_payload_predRecover_predictCounter;
-  reg        [4:0]    ID_to_RENAME_DECODE_PACKET_0_payload_predRecover_ghr;
+  reg        [6:0]    ID_to_RENAME_DECODE_PACKET_0_payload_predRecover_ghr;
   reg        [3:0]    ID_to_RENAME_DECODE_PACKET_0_payload_fuType;
   reg                 ID_to_RENAME_DECODE_PACKET_0_payload_useRj;
   reg                 ID_to_RENAME_DECODE_PACKET_0_payload_useRk;
@@ -19544,7 +19545,7 @@ module MyCPUCore (
   reg        [31:0]   ID_to_RENAME_DECODE_PACKET_1_payload_predInfo_predictAddr;
   reg        [2:0]    ID_to_RENAME_DECODE_PACKET_1_payload_predRecover_recoverTop;
   reg        [1:0]    ID_to_RENAME_DECODE_PACKET_1_payload_predRecover_predictCounter;
-  reg        [4:0]    ID_to_RENAME_DECODE_PACKET_1_payload_predRecover_ghr;
+  reg        [6:0]    ID_to_RENAME_DECODE_PACKET_1_payload_predRecover_ghr;
   reg        [3:0]    ID_to_RENAME_DECODE_PACKET_1_payload_fuType;
   reg                 ID_to_RENAME_DECODE_PACKET_1_payload_useRj;
   reg                 ID_to_RENAME_DECODE_PACKET_1_payload_useRk;
@@ -19587,7 +19588,7 @@ module MyCPUCore (
   reg        [31:0]   ID_to_RENAME_DECODE_PACKET_2_payload_predInfo_predictAddr;
   reg        [2:0]    ID_to_RENAME_DECODE_PACKET_2_payload_predRecover_recoverTop;
   reg        [1:0]    ID_to_RENAME_DECODE_PACKET_2_payload_predRecover_predictCounter;
-  reg        [4:0]    ID_to_RENAME_DECODE_PACKET_2_payload_predRecover_ghr;
+  reg        [6:0]    ID_to_RENAME_DECODE_PACKET_2_payload_predRecover_ghr;
   reg        [3:0]    ID_to_RENAME_DECODE_PACKET_2_payload_fuType;
   reg                 ID_to_RENAME_DECODE_PACKET_2_payload_useRj;
   reg                 ID_to_RENAME_DECODE_PACKET_2_payload_useRk;
@@ -19631,7 +19632,7 @@ module MyCPUCore (
   reg        [31:0]   RENAME_to_DISPATCH_DECODE_PACKET_0_payload_predInfo_predictAddr;
   reg        [2:0]    RENAME_to_DISPATCH_DECODE_PACKET_0_payload_predRecover_recoverTop;
   reg        [1:0]    RENAME_to_DISPATCH_DECODE_PACKET_0_payload_predRecover_predictCounter;
-  reg        [4:0]    RENAME_to_DISPATCH_DECODE_PACKET_0_payload_predRecover_ghr;
+  reg        [6:0]    RENAME_to_DISPATCH_DECODE_PACKET_0_payload_predRecover_ghr;
   reg        [3:0]    RENAME_to_DISPATCH_DECODE_PACKET_0_payload_fuType;
   reg                 RENAME_to_DISPATCH_DECODE_PACKET_0_payload_useRj;
   reg                 RENAME_to_DISPATCH_DECODE_PACKET_0_payload_useRk;
@@ -19674,7 +19675,7 @@ module MyCPUCore (
   reg        [31:0]   RENAME_to_DISPATCH_DECODE_PACKET_1_payload_predInfo_predictAddr;
   reg        [2:0]    RENAME_to_DISPATCH_DECODE_PACKET_1_payload_predRecover_recoverTop;
   reg        [1:0]    RENAME_to_DISPATCH_DECODE_PACKET_1_payload_predRecover_predictCounter;
-  reg        [4:0]    RENAME_to_DISPATCH_DECODE_PACKET_1_payload_predRecover_ghr;
+  reg        [6:0]    RENAME_to_DISPATCH_DECODE_PACKET_1_payload_predRecover_ghr;
   reg        [3:0]    RENAME_to_DISPATCH_DECODE_PACKET_1_payload_fuType;
   reg                 RENAME_to_DISPATCH_DECODE_PACKET_1_payload_useRj;
   reg                 RENAME_to_DISPATCH_DECODE_PACKET_1_payload_useRk;
@@ -19717,7 +19718,7 @@ module MyCPUCore (
   reg        [31:0]   RENAME_to_DISPATCH_DECODE_PACKET_2_payload_predInfo_predictAddr;
   reg        [2:0]    RENAME_to_DISPATCH_DECODE_PACKET_2_payload_predRecover_recoverTop;
   reg        [1:0]    RENAME_to_DISPATCH_DECODE_PACKET_2_payload_predRecover_predictCounter;
-  reg        [4:0]    RENAME_to_DISPATCH_DECODE_PACKET_2_payload_predRecover_ghr;
+  reg        [6:0]    RENAME_to_DISPATCH_DECODE_PACKET_2_payload_predRecover_ghr;
   reg        [3:0]    RENAME_to_DISPATCH_DECODE_PACKET_2_payload_fuType;
   reg                 RENAME_to_DISPATCH_DECODE_PACKET_2_payload_useRj;
   reg                 RENAME_to_DISPATCH_DECODE_PACKET_2_payload_useRk;
@@ -22181,7 +22182,7 @@ module MyCPUCore (
   assign _zz_IF2_GlobalPredictorBTBPlugin_branchCount_13 = _zz_IF2_GlobalPredictorBTBPlugin_branchCount[3];
   assign _zz_IF2_GlobalPredictorBTBPlugin_branchCount_12 = {2'd0, _zz_IF2_GlobalPredictorBTBPlugin_branchCount_13};
   assign _zz_io_updateGHR_payload_1 = IF2_PREDICT_JUMP_FLAG;
-  assign _zz_io_updateGHR_payload = {4'd0, _zz_io_updateGHR_payload_1};
+  assign _zz_io_updateGHR_payload = {6'd0, _zz_io_updateGHR_payload_1};
   assign _zz_io_write_payload_mask = 1'b1;
   assign _zz_io_updateGHR_payload_2 = {CommitPlugin_predUpdate_payload_predRecover_ghr,CommitPlugin_predUpdate_payload_isTaken};
   assign _zz__zz_1451 = (ReturnAddressStackPlugin_rasTopEntry + 3'b001);
@@ -22446,7 +22447,7 @@ module MyCPUCore (
     .io_push_0_payload_predInfo_predictAddr       (IF2_PREDICT_ADDR[31:0]                                                       ), //i
     .io_push_0_payload_predRecover_recoverTop     (IF2_RECOVER_TOP[2:0]                                                         ), //i
     .io_push_0_payload_predRecover_predictCounter (IF2_PRED_COUNTER_0[1:0]                                                      ), //i
-    .io_push_0_payload_predRecover_ghr            (IF2_PRIVATE_BRANCH_HISTORY_0[4:0]                                            ), //i
+    .io_push_0_payload_predRecover_ghr            (IF2_PRIVATE_BRANCH_HISTORY_0[6:0]                                            ), //i
     .io_push_1_valid                              (FetchBufferPlugin_bufferFIFO_io_push_1_valid                                 ), //i
     .io_push_1_ready                              (FetchBufferPlugin_bufferFIFO_io_push_1_ready                                 ), //o
     .io_push_1_payload_pc                         (FetchBufferPlugin_bufferFIFO_io_push_1_payload_pc[31:0]                      ), //i
@@ -22460,7 +22461,7 @@ module MyCPUCore (
     .io_push_1_payload_predInfo_predictAddr       (IF2_PREDICT_ADDR[31:0]                                                       ), //i
     .io_push_1_payload_predRecover_recoverTop     (IF2_RECOVER_TOP[2:0]                                                         ), //i
     .io_push_1_payload_predRecover_predictCounter (IF2_PRED_COUNTER_1[1:0]                                                      ), //i
-    .io_push_1_payload_predRecover_ghr            (IF2_PRIVATE_BRANCH_HISTORY_1[4:0]                                            ), //i
+    .io_push_1_payload_predRecover_ghr            (IF2_PRIVATE_BRANCH_HISTORY_1[6:0]                                            ), //i
     .io_push_2_valid                              (FetchBufferPlugin_bufferFIFO_io_push_2_valid                                 ), //i
     .io_push_2_ready                              (FetchBufferPlugin_bufferFIFO_io_push_2_ready                                 ), //o
     .io_push_2_payload_pc                         (FetchBufferPlugin_bufferFIFO_io_push_2_payload_pc[31:0]                      ), //i
@@ -22474,7 +22475,7 @@ module MyCPUCore (
     .io_push_2_payload_predInfo_predictAddr       (IF2_PREDICT_ADDR[31:0]                                                       ), //i
     .io_push_2_payload_predRecover_recoverTop     (IF2_RECOVER_TOP[2:0]                                                         ), //i
     .io_push_2_payload_predRecover_predictCounter (IF2_PRED_COUNTER_2[1:0]                                                      ), //i
-    .io_push_2_payload_predRecover_ghr            (IF2_PRIVATE_BRANCH_HISTORY_2[4:0]                                            ), //i
+    .io_push_2_payload_predRecover_ghr            (IF2_PRIVATE_BRANCH_HISTORY_2[6:0]                                            ), //i
     .io_push_3_valid                              (FetchBufferPlugin_bufferFIFO_io_push_3_valid                                 ), //i
     .io_push_3_ready                              (FetchBufferPlugin_bufferFIFO_io_push_3_ready                                 ), //o
     .io_push_3_payload_pc                         (FetchBufferPlugin_bufferFIFO_io_push_3_payload_pc[31:0]                      ), //i
@@ -22488,7 +22489,7 @@ module MyCPUCore (
     .io_push_3_payload_predInfo_predictAddr       (IF2_PREDICT_ADDR[31:0]                                                       ), //i
     .io_push_3_payload_predRecover_recoverTop     (IF2_RECOVER_TOP[2:0]                                                         ), //i
     .io_push_3_payload_predRecover_predictCounter (IF2_PRED_COUNTER_3[1:0]                                                      ), //i
-    .io_push_3_payload_predRecover_ghr            (IF2_PRIVATE_BRANCH_HISTORY_3[4:0]                                            ), //i
+    .io_push_3_payload_predRecover_ghr            (IF2_PRIVATE_BRANCH_HISTORY_3[6:0]                                            ), //i
     .io_pop_0_valid                               (FetchBufferPlugin_bufferFIFO_io_pop_0_valid                                  ), //o
     .io_pop_0_ready                               (ID_arbitration_isFiring                                                      ), //i
     .io_pop_0_payload_pc                          (FetchBufferPlugin_bufferFIFO_io_pop_0_payload_pc[31:0]                       ), //o
@@ -22502,7 +22503,7 @@ module MyCPUCore (
     .io_pop_0_payload_predInfo_predictAddr        (FetchBufferPlugin_bufferFIFO_io_pop_0_payload_predInfo_predictAddr[31:0]     ), //o
     .io_pop_0_payload_predRecover_recoverTop      (FetchBufferPlugin_bufferFIFO_io_pop_0_payload_predRecover_recoverTop[2:0]    ), //o
     .io_pop_0_payload_predRecover_predictCounter  (FetchBufferPlugin_bufferFIFO_io_pop_0_payload_predRecover_predictCounter[1:0]), //o
-    .io_pop_0_payload_predRecover_ghr             (FetchBufferPlugin_bufferFIFO_io_pop_0_payload_predRecover_ghr[4:0]           ), //o
+    .io_pop_0_payload_predRecover_ghr             (FetchBufferPlugin_bufferFIFO_io_pop_0_payload_predRecover_ghr[6:0]           ), //o
     .io_pop_1_valid                               (FetchBufferPlugin_bufferFIFO_io_pop_1_valid                                  ), //o
     .io_pop_1_ready                               (ID_arbitration_isFiring                                                      ), //i
     .io_pop_1_payload_pc                          (FetchBufferPlugin_bufferFIFO_io_pop_1_payload_pc[31:0]                       ), //o
@@ -22516,7 +22517,7 @@ module MyCPUCore (
     .io_pop_1_payload_predInfo_predictAddr        (FetchBufferPlugin_bufferFIFO_io_pop_1_payload_predInfo_predictAddr[31:0]     ), //o
     .io_pop_1_payload_predRecover_recoverTop      (FetchBufferPlugin_bufferFIFO_io_pop_1_payload_predRecover_recoverTop[2:0]    ), //o
     .io_pop_1_payload_predRecover_predictCounter  (FetchBufferPlugin_bufferFIFO_io_pop_1_payload_predRecover_predictCounter[1:0]), //o
-    .io_pop_1_payload_predRecover_ghr             (FetchBufferPlugin_bufferFIFO_io_pop_1_payload_predRecover_ghr[4:0]           ), //o
+    .io_pop_1_payload_predRecover_ghr             (FetchBufferPlugin_bufferFIFO_io_pop_1_payload_predRecover_ghr[6:0]           ), //o
     .io_pop_2_valid                               (FetchBufferPlugin_bufferFIFO_io_pop_2_valid                                  ), //o
     .io_pop_2_ready                               (ID_arbitration_isFiring                                                      ), //i
     .io_pop_2_payload_pc                          (FetchBufferPlugin_bufferFIFO_io_pop_2_payload_pc[31:0]                       ), //o
@@ -22530,7 +22531,7 @@ module MyCPUCore (
     .io_pop_2_payload_predInfo_predictAddr        (FetchBufferPlugin_bufferFIFO_io_pop_2_payload_predInfo_predictAddr[31:0]     ), //o
     .io_pop_2_payload_predRecover_recoverTop      (FetchBufferPlugin_bufferFIFO_io_pop_2_payload_predRecover_recoverTop[2:0]    ), //o
     .io_pop_2_payload_predRecover_predictCounter  (FetchBufferPlugin_bufferFIFO_io_pop_2_payload_predRecover_predictCounter[1:0]), //o
-    .io_pop_2_payload_predRecover_ghr             (FetchBufferPlugin_bufferFIFO_io_pop_2_payload_predRecover_ghr[4:0]           ), //o
+    .io_pop_2_payload_predRecover_ghr             (FetchBufferPlugin_bufferFIFO_io_pop_2_payload_predRecover_ghr[6:0]           ), //o
     .flush                                        (CommitPlugin_needFlush                                                       ), //i
     .aclk                                         (aclk                                                                         ), //i
     .aresetn                                      (aresetn                                                                      )  //i
@@ -22680,12 +22681,12 @@ module MyCPUCore (
     .io_read_predCounters_2      (GlobalPredictorBTBPlugin_predictor_io_read_predCounters_2[1:0]     ), //o
     .io_read_predCounters_3      (GlobalPredictorBTBPlugin_predictor_io_read_predCounters_3[1:0]     ), //o
     .io_read_predTaken           (GlobalPredictorBTBPlugin_predictor_io_read_predTaken[3:0]          ), //o
-    .io_read_globalHistory       (GlobalPredictorBTBPlugin_predictor_io_read_globalHistory[4:0]      ), //o
+    .io_read_globalHistory       (GlobalPredictorBTBPlugin_predictor_io_read_globalHistory[6:0]      ), //o
     .io_updateGHR_valid          (GlobalPredictorBTBPlugin_predictor_io_updateGHR_valid              ), //i
-    .io_updateGHR_payload        (GlobalPredictorBTBPlugin_predictor_io_updateGHR_payload[4:0]       ), //i
+    .io_updateGHR_payload        (GlobalPredictorBTBPlugin_predictor_io_updateGHR_payload[6:0]       ), //i
     .io_write_valid              (GlobalPredictorBTBPlugin_predictor_io_write_valid                  ), //i
     .io_write_payload_pc         (GlobalPredictorBTBPlugin_predictor_io_write_payload_pc[31:0]       ), //i
-    .io_write_payload_ghr        (GlobalPredictorBTBPlugin_predictor_io_write_payload_ghr[4:0]       ), //i
+    .io_write_payload_ghr        (GlobalPredictorBTBPlugin_predictor_io_write_payload_ghr[6:0]       ), //i
     .io_write_payload_newCounter (GlobalPredictorBTBPlugin_predictor_io_write_payload_newCounter[1:0]), //i
     .aclk                        (aclk                                                               ), //i
     .aresetn                     (aresetn                                                            )  //i
@@ -22772,7 +22773,7 @@ module MyCPUCore (
     .io_push_0_payload_uop_predInfo_predictTaken      (ROBFIFOPlugin_fifoIO_push_0_payload_info_uop_predInfo_predictTaken          ), //i
     .io_push_0_payload_uop_predRecover_recoverTop     (ROBFIFOPlugin_fifoIO_push_0_payload_info_uop_predRecover_recoverTop[2:0]    ), //i
     .io_push_0_payload_uop_predRecover_predictCounter (ROBFIFOPlugin_fifoIO_push_0_payload_info_uop_predRecover_predictCounter[1:0]), //i
-    .io_push_0_payload_uop_predRecover_ghr            (ROBFIFOPlugin_fifoIO_push_0_payload_info_uop_predRecover_ghr[4:0]           ), //i
+    .io_push_0_payload_uop_predRecover_ghr            (ROBFIFOPlugin_fifoIO_push_0_payload_info_uop_predRecover_ghr[6:0]           ), //i
     .io_push_0_payload_uop_wbAddr                     (ROBFIFOPlugin_fifoIO_push_0_payload_info_uop_wbAddr[4:0]                    ), //i
     .io_push_0_payload_uop_doRegWrite                 (ROBFIFOPlugin_fifoIO_push_0_payload_info_uop_doRegWrite                     ), //i
     .io_push_0_payload_uop_isLoad                     (ROBFIFOPlugin_fifoIO_push_0_payload_info_uop_isLoad                         ), //i
@@ -22806,7 +22807,7 @@ module MyCPUCore (
     .io_push_1_payload_uop_predInfo_predictTaken      (ROBFIFOPlugin_fifoIO_push_1_payload_info_uop_predInfo_predictTaken          ), //i
     .io_push_1_payload_uop_predRecover_recoverTop     (ROBFIFOPlugin_fifoIO_push_1_payload_info_uop_predRecover_recoverTop[2:0]    ), //i
     .io_push_1_payload_uop_predRecover_predictCounter (ROBFIFOPlugin_fifoIO_push_1_payload_info_uop_predRecover_predictCounter[1:0]), //i
-    .io_push_1_payload_uop_predRecover_ghr            (ROBFIFOPlugin_fifoIO_push_1_payload_info_uop_predRecover_ghr[4:0]           ), //i
+    .io_push_1_payload_uop_predRecover_ghr            (ROBFIFOPlugin_fifoIO_push_1_payload_info_uop_predRecover_ghr[6:0]           ), //i
     .io_push_1_payload_uop_wbAddr                     (ROBFIFOPlugin_fifoIO_push_1_payload_info_uop_wbAddr[4:0]                    ), //i
     .io_push_1_payload_uop_doRegWrite                 (ROBFIFOPlugin_fifoIO_push_1_payload_info_uop_doRegWrite                     ), //i
     .io_push_1_payload_uop_isLoad                     (ROBFIFOPlugin_fifoIO_push_1_payload_info_uop_isLoad                         ), //i
@@ -22840,7 +22841,7 @@ module MyCPUCore (
     .io_push_2_payload_uop_predInfo_predictTaken      (ROBFIFOPlugin_fifoIO_push_2_payload_info_uop_predInfo_predictTaken          ), //i
     .io_push_2_payload_uop_predRecover_recoverTop     (ROBFIFOPlugin_fifoIO_push_2_payload_info_uop_predRecover_recoverTop[2:0]    ), //i
     .io_push_2_payload_uop_predRecover_predictCounter (ROBFIFOPlugin_fifoIO_push_2_payload_info_uop_predRecover_predictCounter[1:0]), //i
-    .io_push_2_payload_uop_predRecover_ghr            (ROBFIFOPlugin_fifoIO_push_2_payload_info_uop_predRecover_ghr[4:0]           ), //i
+    .io_push_2_payload_uop_predRecover_ghr            (ROBFIFOPlugin_fifoIO_push_2_payload_info_uop_predRecover_ghr[6:0]           ), //i
     .io_push_2_payload_uop_wbAddr                     (ROBFIFOPlugin_fifoIO_push_2_payload_info_uop_wbAddr[4:0]                    ), //i
     .io_push_2_payload_uop_doRegWrite                 (ROBFIFOPlugin_fifoIO_push_2_payload_info_uop_doRegWrite                     ), //i
     .io_push_2_payload_uop_isLoad                     (ROBFIFOPlugin_fifoIO_push_2_payload_info_uop_isLoad                         ), //i
@@ -22874,7 +22875,7 @@ module MyCPUCore (
     .io_pop_0_payload_uop_predInfo_predictTaken       (ROBFIFOPlugin_robInfo_io_pop_0_payload_uop_predInfo_predictTaken            ), //o
     .io_pop_0_payload_uop_predRecover_recoverTop      (ROBFIFOPlugin_robInfo_io_pop_0_payload_uop_predRecover_recoverTop[2:0]      ), //o
     .io_pop_0_payload_uop_predRecover_predictCounter  (ROBFIFOPlugin_robInfo_io_pop_0_payload_uop_predRecover_predictCounter[1:0]  ), //o
-    .io_pop_0_payload_uop_predRecover_ghr             (ROBFIFOPlugin_robInfo_io_pop_0_payload_uop_predRecover_ghr[4:0]             ), //o
+    .io_pop_0_payload_uop_predRecover_ghr             (ROBFIFOPlugin_robInfo_io_pop_0_payload_uop_predRecover_ghr[6:0]             ), //o
     .io_pop_0_payload_uop_wbAddr                      (ROBFIFOPlugin_robInfo_io_pop_0_payload_uop_wbAddr[4:0]                      ), //o
     .io_pop_0_payload_uop_doRegWrite                  (ROBFIFOPlugin_robInfo_io_pop_0_payload_uop_doRegWrite                       ), //o
     .io_pop_0_payload_uop_isLoad                      (ROBFIFOPlugin_robInfo_io_pop_0_payload_uop_isLoad                           ), //o
@@ -22908,7 +22909,7 @@ module MyCPUCore (
     .io_pop_1_payload_uop_predInfo_predictTaken       (ROBFIFOPlugin_robInfo_io_pop_1_payload_uop_predInfo_predictTaken            ), //o
     .io_pop_1_payload_uop_predRecover_recoverTop      (ROBFIFOPlugin_robInfo_io_pop_1_payload_uop_predRecover_recoverTop[2:0]      ), //o
     .io_pop_1_payload_uop_predRecover_predictCounter  (ROBFIFOPlugin_robInfo_io_pop_1_payload_uop_predRecover_predictCounter[1:0]  ), //o
-    .io_pop_1_payload_uop_predRecover_ghr             (ROBFIFOPlugin_robInfo_io_pop_1_payload_uop_predRecover_ghr[4:0]             ), //o
+    .io_pop_1_payload_uop_predRecover_ghr             (ROBFIFOPlugin_robInfo_io_pop_1_payload_uop_predRecover_ghr[6:0]             ), //o
     .io_pop_1_payload_uop_wbAddr                      (ROBFIFOPlugin_robInfo_io_pop_1_payload_uop_wbAddr[4:0]                      ), //o
     .io_pop_1_payload_uop_doRegWrite                  (ROBFIFOPlugin_robInfo_io_pop_1_payload_uop_doRegWrite                       ), //o
     .io_pop_1_payload_uop_isLoad                      (ROBFIFOPlugin_robInfo_io_pop_1_payload_uop_isLoad                           ), //o
@@ -22942,7 +22943,7 @@ module MyCPUCore (
     .io_pop_2_payload_uop_predInfo_predictTaken       (ROBFIFOPlugin_robInfo_io_pop_2_payload_uop_predInfo_predictTaken            ), //o
     .io_pop_2_payload_uop_predRecover_recoverTop      (ROBFIFOPlugin_robInfo_io_pop_2_payload_uop_predRecover_recoverTop[2:0]      ), //o
     .io_pop_2_payload_uop_predRecover_predictCounter  (ROBFIFOPlugin_robInfo_io_pop_2_payload_uop_predRecover_predictCounter[1:0]  ), //o
-    .io_pop_2_payload_uop_predRecover_ghr             (ROBFIFOPlugin_robInfo_io_pop_2_payload_uop_predRecover_ghr[4:0]             ), //o
+    .io_pop_2_payload_uop_predRecover_ghr             (ROBFIFOPlugin_robInfo_io_pop_2_payload_uop_predRecover_ghr[6:0]             ), //o
     .io_pop_2_payload_uop_wbAddr                      (ROBFIFOPlugin_robInfo_io_pop_2_payload_uop_wbAddr[4:0]                      ), //o
     .io_pop_2_payload_uop_doRegWrite                  (ROBFIFOPlugin_robInfo_io_pop_2_payload_uop_doRegWrite                       ), //o
     .io_pop_2_payload_uop_isLoad                      (ROBFIFOPlugin_robInfo_io_pop_2_payload_uop_isLoad                           ), //o
@@ -50347,23 +50348,24 @@ module MyCPUCore (
   assign IF2_DIRECT_TRANSLATE_RESULT_payload_exception_raisePME = IF1_to_IF2_DIRECT_TRANSLATE_RESULT_payload_exception_raisePME;
   assign IF2_DIRECT_TRANSLATE_RESULT_payload_exception_raisePPI = IF1_to_IF2_DIRECT_TRANSLATE_RESULT_payload_exception_raisePPI;
   assign IF2_DIRECT_TRANSLATE_RESULT_payload_exception_raiseTLBR = IF1_to_IF2_DIRECT_TRANSLATE_RESULT_payload_exception_raiseTLBR;
+  assign IF2_EXCEPTION_OCCURRED = IF1_to_IF2_EXCEPTION_OCCURRED;
   always @(*) begin
     _zz_IF1_to_IF2_BAD_VADDR = IF1_BAD_VADDR;
-    if(when_ExceptionMuxPlugin_l45_3) begin
+    if(when_ExceptionMuxPlugin_l45) begin
       _zz_IF1_to_IF2_BAD_VADDR = InstAddrTranslatePlugin_badVaddr;
     end
   end
 
   always @(*) begin
     _zz_IF1_to_IF2_EXCEPTION_ESUBCODE = IF1_EXCEPTION_ESUBCODE;
-    if(when_ExceptionMuxPlugin_l45_3) begin
+    if(when_ExceptionMuxPlugin_l45) begin
       _zz_IF1_to_IF2_EXCEPTION_ESUBCODE = 9'h0;
     end
   end
 
   always @(*) begin
     _zz_IF1_to_IF2_EXCEPTION_ECODE = IF1_EXCEPTION_ECODE;
-    if(when_ExceptionMuxPlugin_l45_3) begin
+    if(when_ExceptionMuxPlugin_l45) begin
       _zz_IF1_to_IF2_EXCEPTION_ECODE = 6'h08;
     end
   end
@@ -50376,29 +50378,28 @@ module MyCPUCore (
     end
   end
 
-  assign IF2_EXCEPTION_OCCURRED = IF1_to_IF2_EXCEPTION_OCCURRED;
   always @(*) begin
     _zz_IF2_ICachePlugin_fetchPacket_except_payload_subcode = IF2_EXCEPTION_ESUBCODE;
-    if(when_ExceptionMuxPlugin_l45) begin
-      _zz_IF2_ICachePlugin_fetchPacket_except_payload_subcode = 9'h0;
-    end
     if(when_ExceptionMuxPlugin_l45_1) begin
       _zz_IF2_ICachePlugin_fetchPacket_except_payload_subcode = 9'h0;
     end
     if(when_ExceptionMuxPlugin_l45_2) begin
+      _zz_IF2_ICachePlugin_fetchPacket_except_payload_subcode = 9'h0;
+    end
+    if(when_ExceptionMuxPlugin_l45_3) begin
       _zz_IF2_ICachePlugin_fetchPacket_except_payload_subcode = 9'h0;
     end
   end
 
   always @(*) begin
     _zz_IF2_ICachePlugin_fetchPacket_except_payload_code = IF2_EXCEPTION_ECODE;
-    if(when_ExceptionMuxPlugin_l45) begin
+    if(when_ExceptionMuxPlugin_l45_1) begin
       _zz_IF2_ICachePlugin_fetchPacket_except_payload_code = 6'h07;
     end
-    if(when_ExceptionMuxPlugin_l45_1) begin
+    if(when_ExceptionMuxPlugin_l45_2) begin
       _zz_IF2_ICachePlugin_fetchPacket_except_payload_code = 6'h03;
     end
-    if(when_ExceptionMuxPlugin_l45_2) begin
+    if(when_ExceptionMuxPlugin_l45_3) begin
       _zz_IF2_ICachePlugin_fetchPacket_except_payload_code = 6'h3f;
     end
   end
@@ -59975,7 +59976,7 @@ module MyCPUCore (
   end
 
   always @(*) begin
-    CommitPlugin_predUpdate_payload_predRecover_ghr = 5'bxxxxx;
+    CommitPlugin_predUpdate_payload_predRecover_ghr = 7'bxxxxxxx;
     if(when_CommitPlugin_l184) begin
       CommitPlugin_predUpdate_payload_predRecover_ghr = ROBFIFOPlugin_fifoIO_pop_0_payload_info_uop_predRecover_ghr;
     end
@@ -64238,10 +64239,10 @@ module MyCPUCore (
   assign _zz_423 = _zz_360[62];
   assign _zz_424 = _zz_360[63];
   assign _zz_425 = ({1'd0,1'b1} <<< ICachePlugin_commit_way);
-  assign when_ExceptionMuxPlugin_l45 = ((! IF2_EXCEPTION_OCCURRED) && InstAddrTranslatePlugin_PPI);
-  assign when_ExceptionMuxPlugin_l45_1 = ((! IF2_EXCEPTION_OCCURRED) && InstAddrTranslatePlugin_PIF);
-  assign when_ExceptionMuxPlugin_l45_2 = ((! IF2_EXCEPTION_OCCURRED) && InstAddrTranslatePlugin_TLBR);
-  assign when_ExceptionMuxPlugin_l45_3 = ((! IF1_EXCEPTION_OCCURRED) && InstAddrTranslatePlugin_ADEF);
+  assign when_ExceptionMuxPlugin_l45 = ((! IF1_EXCEPTION_OCCURRED) && InstAddrTranslatePlugin_ADEF);
+  assign when_ExceptionMuxPlugin_l45_1 = ((! IF2_EXCEPTION_OCCURRED) && InstAddrTranslatePlugin_PPI);
+  assign when_ExceptionMuxPlugin_l45_2 = ((! IF2_EXCEPTION_OCCURRED) && InstAddrTranslatePlugin_PIF);
+  assign when_ExceptionMuxPlugin_l45_3 = ((! IF2_EXCEPTION_OCCURRED) && InstAddrTranslatePlugin_TLBR);
   assign InstAddrTranslatePlugin_badVaddr = IF1_PC;
   assign InstAddrTranslatePlugin_ADEF = (IF1_PC[0] || IF1_PC[1]);
   assign IF1_InstAddrTranslatePlugin_directTranslateResult_resultExceptionBundle_raisePIL = 1'b0;
@@ -64901,13 +64902,13 @@ module MyCPUCore (
   end
 
   always @(*) begin
-    GlobalPredictorBTBPlugin_predictor_io_updateGHR_payload = 5'bxxxxx;
+    GlobalPredictorBTBPlugin_predictor_io_updateGHR_payload = 7'bxxxxxxx;
     if(IF2_arbitration_isFiring) begin
       GlobalPredictorBTBPlugin_predictor_io_updateGHR_payload = (IF2_GlobalPredictorBTBPlugin_shiftedGHR | _zz_io_updateGHR_payload);
     end
     if(CommitPlugin_predUpdate_valid) begin
       if(CommitPlugin_predUpdate_payload_mispredict) begin
-        GlobalPredictorBTBPlugin_predictor_io_updateGHR_payload = _zz_io_updateGHR_payload_2[4:0];
+        GlobalPredictorBTBPlugin_predictor_io_updateGHR_payload = _zz_io_updateGHR_payload_2[6:0];
       end
     end
   end
@@ -65024,7 +65025,7 @@ module MyCPUCore (
   end
 
   always @(*) begin
-    GlobalPredictorBTBPlugin_predictor_io_write_payload_ghr = 5'bxxxxx;
+    GlobalPredictorBTBPlugin_predictor_io_write_payload_ghr = 7'bxxxxxxx;
     if(CommitPlugin_predUpdate_valid) begin
       GlobalPredictorBTBPlugin_predictor_io_write_payload_ghr = CommitPlugin_predUpdate_payload_predRecover_ghr;
     end
@@ -113625,7 +113626,7 @@ module unamed_2 (
   input               io_push_0_payload_uop_predInfo_predictTaken,
   input      [2:0]    io_push_0_payload_uop_predRecover_recoverTop,
   input      [1:0]    io_push_0_payload_uop_predRecover_predictCounter,
-  input      [4:0]    io_push_0_payload_uop_predRecover_ghr,
+  input      [6:0]    io_push_0_payload_uop_predRecover_ghr,
   input      [4:0]    io_push_0_payload_uop_wbAddr,
   input               io_push_0_payload_uop_doRegWrite,
   input               io_push_0_payload_uop_isLoad,
@@ -113659,7 +113660,7 @@ module unamed_2 (
   input               io_push_1_payload_uop_predInfo_predictTaken,
   input      [2:0]    io_push_1_payload_uop_predRecover_recoverTop,
   input      [1:0]    io_push_1_payload_uop_predRecover_predictCounter,
-  input      [4:0]    io_push_1_payload_uop_predRecover_ghr,
+  input      [6:0]    io_push_1_payload_uop_predRecover_ghr,
   input      [4:0]    io_push_1_payload_uop_wbAddr,
   input               io_push_1_payload_uop_doRegWrite,
   input               io_push_1_payload_uop_isLoad,
@@ -113693,7 +113694,7 @@ module unamed_2 (
   input               io_push_2_payload_uop_predInfo_predictTaken,
   input      [2:0]    io_push_2_payload_uop_predRecover_recoverTop,
   input      [1:0]    io_push_2_payload_uop_predRecover_predictCounter,
-  input      [4:0]    io_push_2_payload_uop_predRecover_ghr,
+  input      [6:0]    io_push_2_payload_uop_predRecover_ghr,
   input      [4:0]    io_push_2_payload_uop_wbAddr,
   input               io_push_2_payload_uop_doRegWrite,
   input               io_push_2_payload_uop_isLoad,
@@ -113727,7 +113728,7 @@ module unamed_2 (
   output              io_pop_0_payload_uop_predInfo_predictTaken,
   output     [2:0]    io_pop_0_payload_uop_predRecover_recoverTop,
   output     [1:0]    io_pop_0_payload_uop_predRecover_predictCounter,
-  output     [4:0]    io_pop_0_payload_uop_predRecover_ghr,
+  output     [6:0]    io_pop_0_payload_uop_predRecover_ghr,
   output     [4:0]    io_pop_0_payload_uop_wbAddr,
   output              io_pop_0_payload_uop_doRegWrite,
   output              io_pop_0_payload_uop_isLoad,
@@ -113761,7 +113762,7 @@ module unamed_2 (
   output              io_pop_1_payload_uop_predInfo_predictTaken,
   output     [2:0]    io_pop_1_payload_uop_predRecover_recoverTop,
   output     [1:0]    io_pop_1_payload_uop_predRecover_predictCounter,
-  output     [4:0]    io_pop_1_payload_uop_predRecover_ghr,
+  output     [6:0]    io_pop_1_payload_uop_predRecover_ghr,
   output     [4:0]    io_pop_1_payload_uop_wbAddr,
   output              io_pop_1_payload_uop_doRegWrite,
   output              io_pop_1_payload_uop_isLoad,
@@ -113795,7 +113796,7 @@ module unamed_2 (
   output              io_pop_2_payload_uop_predInfo_predictTaken,
   output     [2:0]    io_pop_2_payload_uop_predRecover_recoverTop,
   output     [1:0]    io_pop_2_payload_uop_predRecover_predictCounter,
-  output     [4:0]    io_pop_2_payload_uop_predRecover_ghr,
+  output     [6:0]    io_pop_2_payload_uop_predRecover_ghr,
   output     [4:0]    io_pop_2_payload_uop_wbAddr,
   output              io_pop_2_payload_uop_doRegWrite,
   output              io_pop_2_payload_uop_isLoad,
@@ -113852,7 +113853,7 @@ module unamed_2 (
   wire                ram_io_read_rsp_0_uop_predInfo_predictTaken;
   wire       [2:0]    ram_io_read_rsp_0_uop_predRecover_recoverTop;
   wire       [1:0]    ram_io_read_rsp_0_uop_predRecover_predictCounter;
-  wire       [4:0]    ram_io_read_rsp_0_uop_predRecover_ghr;
+  wire       [6:0]    ram_io_read_rsp_0_uop_predRecover_ghr;
   wire       [4:0]    ram_io_read_rsp_0_uop_wbAddr;
   wire                ram_io_read_rsp_0_uop_doRegWrite;
   wire                ram_io_read_rsp_0_uop_isLoad;
@@ -113884,7 +113885,7 @@ module unamed_2 (
   wire                ram_io_read_rsp_1_uop_predInfo_predictTaken;
   wire       [2:0]    ram_io_read_rsp_1_uop_predRecover_recoverTop;
   wire       [1:0]    ram_io_read_rsp_1_uop_predRecover_predictCounter;
-  wire       [4:0]    ram_io_read_rsp_1_uop_predRecover_ghr;
+  wire       [6:0]    ram_io_read_rsp_1_uop_predRecover_ghr;
   wire       [4:0]    ram_io_read_rsp_1_uop_wbAddr;
   wire                ram_io_read_rsp_1_uop_doRegWrite;
   wire                ram_io_read_rsp_1_uop_isLoad;
@@ -113916,7 +113917,7 @@ module unamed_2 (
   wire                ram_io_read_rsp_2_uop_predInfo_predictTaken;
   wire       [2:0]    ram_io_read_rsp_2_uop_predRecover_recoverTop;
   wire       [1:0]    ram_io_read_rsp_2_uop_predRecover_predictCounter;
-  wire       [4:0]    ram_io_read_rsp_2_uop_predRecover_ghr;
+  wire       [6:0]    ram_io_read_rsp_2_uop_predRecover_ghr;
   wire       [4:0]    ram_io_read_rsp_2_uop_wbAddr;
   wire                ram_io_read_rsp_2_uop_doRegWrite;
   wire                ram_io_read_rsp_2_uop_isLoad;
@@ -113988,7 +113989,7 @@ module unamed_2 (
     .io_read_rsp_0_uop_predInfo_predictTaken                (ram_io_read_rsp_0_uop_predInfo_predictTaken          ), //o
     .io_read_rsp_0_uop_predRecover_recoverTop               (ram_io_read_rsp_0_uop_predRecover_recoverTop[2:0]    ), //o
     .io_read_rsp_0_uop_predRecover_predictCounter           (ram_io_read_rsp_0_uop_predRecover_predictCounter[1:0]), //o
-    .io_read_rsp_0_uop_predRecover_ghr                      (ram_io_read_rsp_0_uop_predRecover_ghr[4:0]           ), //o
+    .io_read_rsp_0_uop_predRecover_ghr                      (ram_io_read_rsp_0_uop_predRecover_ghr[6:0]           ), //o
     .io_read_rsp_0_uop_wbAddr                               (ram_io_read_rsp_0_uop_wbAddr[4:0]                    ), //o
     .io_read_rsp_0_uop_doRegWrite                           (ram_io_read_rsp_0_uop_doRegWrite                     ), //o
     .io_read_rsp_0_uop_isLoad                               (ram_io_read_rsp_0_uop_isLoad                         ), //o
@@ -114020,7 +114021,7 @@ module unamed_2 (
     .io_read_rsp_1_uop_predInfo_predictTaken                (ram_io_read_rsp_1_uop_predInfo_predictTaken          ), //o
     .io_read_rsp_1_uop_predRecover_recoverTop               (ram_io_read_rsp_1_uop_predRecover_recoverTop[2:0]    ), //o
     .io_read_rsp_1_uop_predRecover_predictCounter           (ram_io_read_rsp_1_uop_predRecover_predictCounter[1:0]), //o
-    .io_read_rsp_1_uop_predRecover_ghr                      (ram_io_read_rsp_1_uop_predRecover_ghr[4:0]           ), //o
+    .io_read_rsp_1_uop_predRecover_ghr                      (ram_io_read_rsp_1_uop_predRecover_ghr[6:0]           ), //o
     .io_read_rsp_1_uop_wbAddr                               (ram_io_read_rsp_1_uop_wbAddr[4:0]                    ), //o
     .io_read_rsp_1_uop_doRegWrite                           (ram_io_read_rsp_1_uop_doRegWrite                     ), //o
     .io_read_rsp_1_uop_isLoad                               (ram_io_read_rsp_1_uop_isLoad                         ), //o
@@ -114052,7 +114053,7 @@ module unamed_2 (
     .io_read_rsp_2_uop_predInfo_predictTaken                (ram_io_read_rsp_2_uop_predInfo_predictTaken          ), //o
     .io_read_rsp_2_uop_predRecover_recoverTop               (ram_io_read_rsp_2_uop_predRecover_recoverTop[2:0]    ), //o
     .io_read_rsp_2_uop_predRecover_predictCounter           (ram_io_read_rsp_2_uop_predRecover_predictCounter[1:0]), //o
-    .io_read_rsp_2_uop_predRecover_ghr                      (ram_io_read_rsp_2_uop_predRecover_ghr[4:0]           ), //o
+    .io_read_rsp_2_uop_predRecover_ghr                      (ram_io_read_rsp_2_uop_predRecover_ghr[6:0]           ), //o
     .io_read_rsp_2_uop_wbAddr                               (ram_io_read_rsp_2_uop_wbAddr[4:0]                    ), //o
     .io_read_rsp_2_uop_doRegWrite                           (ram_io_read_rsp_2_uop_doRegWrite                     ), //o
     .io_read_rsp_2_uop_isLoad                               (ram_io_read_rsp_2_uop_isLoad                         ), //o
@@ -114086,7 +114087,7 @@ module unamed_2 (
     .io_write_payload_data_0_uop_predInfo_predictTaken      (io_push_0_payload_uop_predInfo_predictTaken          ), //i
     .io_write_payload_data_0_uop_predRecover_recoverTop     (io_push_0_payload_uop_predRecover_recoverTop[2:0]    ), //i
     .io_write_payload_data_0_uop_predRecover_predictCounter (io_push_0_payload_uop_predRecover_predictCounter[1:0]), //i
-    .io_write_payload_data_0_uop_predRecover_ghr            (io_push_0_payload_uop_predRecover_ghr[4:0]           ), //i
+    .io_write_payload_data_0_uop_predRecover_ghr            (io_push_0_payload_uop_predRecover_ghr[6:0]           ), //i
     .io_write_payload_data_0_uop_wbAddr                     (io_push_0_payload_uop_wbAddr[4:0]                    ), //i
     .io_write_payload_data_0_uop_doRegWrite                 (io_push_0_payload_uop_doRegWrite                     ), //i
     .io_write_payload_data_0_uop_isLoad                     (io_push_0_payload_uop_isLoad                         ), //i
@@ -114118,7 +114119,7 @@ module unamed_2 (
     .io_write_payload_data_1_uop_predInfo_predictTaken      (io_push_1_payload_uop_predInfo_predictTaken          ), //i
     .io_write_payload_data_1_uop_predRecover_recoverTop     (io_push_1_payload_uop_predRecover_recoverTop[2:0]    ), //i
     .io_write_payload_data_1_uop_predRecover_predictCounter (io_push_1_payload_uop_predRecover_predictCounter[1:0]), //i
-    .io_write_payload_data_1_uop_predRecover_ghr            (io_push_1_payload_uop_predRecover_ghr[4:0]           ), //i
+    .io_write_payload_data_1_uop_predRecover_ghr            (io_push_1_payload_uop_predRecover_ghr[6:0]           ), //i
     .io_write_payload_data_1_uop_wbAddr                     (io_push_1_payload_uop_wbAddr[4:0]                    ), //i
     .io_write_payload_data_1_uop_doRegWrite                 (io_push_1_payload_uop_doRegWrite                     ), //i
     .io_write_payload_data_1_uop_isLoad                     (io_push_1_payload_uop_isLoad                         ), //i
@@ -114150,7 +114151,7 @@ module unamed_2 (
     .io_write_payload_data_2_uop_predInfo_predictTaken      (io_push_2_payload_uop_predInfo_predictTaken          ), //i
     .io_write_payload_data_2_uop_predRecover_recoverTop     (io_push_2_payload_uop_predRecover_recoverTop[2:0]    ), //i
     .io_write_payload_data_2_uop_predRecover_predictCounter (io_push_2_payload_uop_predRecover_predictCounter[1:0]), //i
-    .io_write_payload_data_2_uop_predRecover_ghr            (io_push_2_payload_uop_predRecover_ghr[4:0]           ), //i
+    .io_write_payload_data_2_uop_predRecover_ghr            (io_push_2_payload_uop_predRecover_ghr[6:0]           ), //i
     .io_write_payload_data_2_uop_wbAddr                     (io_push_2_payload_uop_wbAddr[4:0]                    ), //i
     .io_write_payload_data_2_uop_doRegWrite                 (io_push_2_payload_uop_doRegWrite                     ), //i
     .io_write_payload_data_2_uop_isLoad                     (io_push_2_payload_uop_isLoad                         ), //i
@@ -115806,45 +115807,45 @@ module CorrelatingPredictor (
   output     [1:0]    io_read_predCounters_2,
   output     [1:0]    io_read_predCounters_3,
   output reg [3:0]    io_read_predTaken,
-  output     [4:0]    io_read_globalHistory,
+  output     [6:0]    io_read_globalHistory,
   input               io_updateGHR_valid,
-  input      [4:0]    io_updateGHR_payload,
+  input      [6:0]    io_updateGHR_payload,
   input               io_write_valid,
   input      [31:0]   io_write_payload_pc,
-  input      [4:0]    io_write_payload_ghr,
+  input      [6:0]    io_write_payload_ghr,
   input      [1:0]    io_write_payload_newCounter,
   input               aclk,
   input               aresetn
 );
 
-  wire       [12:0]   pht_io_read_cmd_payload;
-  wire       [12:0]   pht_io_write_payload_address;
+  wire       [14:0]   pht_io_read_cmd_payload;
+  wire       [14:0]   pht_io_write_payload_address;
   reg        [1:0]    pht_io_write_payload_data_0;
   wire       [1:0]    pht_io_read_rsp_0;
   wire       [1:0]    pht_io_read_rsp_1;
   wire       [1:0]    pht_io_read_rsp_2;
   wire       [1:0]    pht_io_read_rsp_3;
-  reg        [4:0]    ghr;
-  wire       [4:0]    nextGHR;
+  reg        [6:0]    ghr;
+  wire       [6:0]    nextGHR;
 
   ReorderCacheRAM_1 pht (
     .aclk                     (aclk                              ), //i
     .aresetn                  (aresetn                           ), //i
     .io_read_cmd_valid        (io_read_enable                    ), //i
-    .io_read_cmd_payload      (pht_io_read_cmd_payload[12:0]     ), //i
+    .io_read_cmd_payload      (pht_io_read_cmd_payload[14:0]     ), //i
     .io_read_rsp_0            (pht_io_read_rsp_0[1:0]            ), //o
     .io_read_rsp_1            (pht_io_read_rsp_1[1:0]            ), //o
     .io_read_rsp_2            (pht_io_read_rsp_2[1:0]            ), //o
     .io_read_rsp_3            (pht_io_read_rsp_3[1:0]            ), //o
     .io_write_valid           (io_write_valid                    ), //i
-    .io_write_payload_address (pht_io_write_payload_address[12:0]), //i
+    .io_write_payload_address (pht_io_write_payload_address[14:0]), //i
     .io_write_payload_data_0  (pht_io_write_payload_data_0[1:0]  ), //i
     .io_write_payload_data_1  (2'bxx                             ), //i
     .io_write_payload_data_2  (2'bxx                             ), //i
     .io_write_payload_data_3  (2'bxx                             ), //i
     .io_write_payload_mask    (4'b0001                           )  //i
   );
-  assign io_read_globalHistory = ghr;
+  assign io_read_globalHistory = nextGHR;
   assign nextGHR = (io_updateGHR_valid ? io_updateGHR_payload : ghr);
   assign pht_io_read_cmd_payload = {nextGHR,io_read_nextPC[9 : 2]};
   assign io_read_predCounters_0 = pht_io_read_rsp_0;
@@ -115866,7 +115867,7 @@ module CorrelatingPredictor (
 
   always @(posedge aclk or negedge aresetn) begin
     if(!aresetn) begin
-      ghr <= 5'h0;
+      ghr <= 7'h0;
     end else begin
       if(io_updateGHR_valid) begin
         ghr <= io_updateGHR_payload;
@@ -116614,7 +116615,7 @@ module unamed (
   input      [31:0]   io_push_0_payload_predInfo_predictAddr,
   input      [2:0]    io_push_0_payload_predRecover_recoverTop,
   input      [1:0]    io_push_0_payload_predRecover_predictCounter,
-  input      [4:0]    io_push_0_payload_predRecover_ghr,
+  input      [6:0]    io_push_0_payload_predRecover_ghr,
   input               io_push_1_valid,
   output              io_push_1_ready,
   input      [31:0]   io_push_1_payload_pc,
@@ -116628,7 +116629,7 @@ module unamed (
   input      [31:0]   io_push_1_payload_predInfo_predictAddr,
   input      [2:0]    io_push_1_payload_predRecover_recoverTop,
   input      [1:0]    io_push_1_payload_predRecover_predictCounter,
-  input      [4:0]    io_push_1_payload_predRecover_ghr,
+  input      [6:0]    io_push_1_payload_predRecover_ghr,
   input               io_push_2_valid,
   output              io_push_2_ready,
   input      [31:0]   io_push_2_payload_pc,
@@ -116642,7 +116643,7 @@ module unamed (
   input      [31:0]   io_push_2_payload_predInfo_predictAddr,
   input      [2:0]    io_push_2_payload_predRecover_recoverTop,
   input      [1:0]    io_push_2_payload_predRecover_predictCounter,
-  input      [4:0]    io_push_2_payload_predRecover_ghr,
+  input      [6:0]    io_push_2_payload_predRecover_ghr,
   input               io_push_3_valid,
   output              io_push_3_ready,
   input      [31:0]   io_push_3_payload_pc,
@@ -116656,7 +116657,7 @@ module unamed (
   input      [31:0]   io_push_3_payload_predInfo_predictAddr,
   input      [2:0]    io_push_3_payload_predRecover_recoverTop,
   input      [1:0]    io_push_3_payload_predRecover_predictCounter,
-  input      [4:0]    io_push_3_payload_predRecover_ghr,
+  input      [6:0]    io_push_3_payload_predRecover_ghr,
   output              io_pop_0_valid,
   input               io_pop_0_ready,
   output     [31:0]   io_pop_0_payload_pc,
@@ -116670,7 +116671,7 @@ module unamed (
   output     [31:0]   io_pop_0_payload_predInfo_predictAddr,
   output     [2:0]    io_pop_0_payload_predRecover_recoverTop,
   output     [1:0]    io_pop_0_payload_predRecover_predictCounter,
-  output     [4:0]    io_pop_0_payload_predRecover_ghr,
+  output     [6:0]    io_pop_0_payload_predRecover_ghr,
   output              io_pop_1_valid,
   input               io_pop_1_ready,
   output     [31:0]   io_pop_1_payload_pc,
@@ -116684,7 +116685,7 @@ module unamed (
   output     [31:0]   io_pop_1_payload_predInfo_predictAddr,
   output     [2:0]    io_pop_1_payload_predRecover_recoverTop,
   output     [1:0]    io_pop_1_payload_predRecover_predictCounter,
-  output     [4:0]    io_pop_1_payload_predRecover_ghr,
+  output     [6:0]    io_pop_1_payload_predRecover_ghr,
   output              io_pop_2_valid,
   input               io_pop_2_ready,
   output     [31:0]   io_pop_2_payload_pc,
@@ -116698,7 +116699,7 @@ module unamed (
   output     [31:0]   io_pop_2_payload_predInfo_predictAddr,
   output     [2:0]    io_pop_2_payload_predRecover_recoverTop,
   output     [1:0]    io_pop_2_payload_predRecover_predictCounter,
-  output     [4:0]    io_pop_2_payload_predRecover_ghr,
+  output     [6:0]    io_pop_2_payload_predRecover_ghr,
   input               flush,
   input               aclk,
   input               aresetn
@@ -116718,7 +116719,7 @@ module unamed (
   reg        [31:0]   dataVec_0_predInfo_predictAddr;
   reg        [2:0]    dataVec_0_predRecover_recoverTop;
   reg        [1:0]    dataVec_0_predRecover_predictCounter;
-  reg        [4:0]    dataVec_0_predRecover_ghr;
+  reg        [6:0]    dataVec_0_predRecover_ghr;
   reg        [31:0]   dataVec_1_pc;
   reg        [31:0]   dataVec_1_inst;
   reg                 dataVec_1_except_valid;
@@ -116730,7 +116731,7 @@ module unamed (
   reg        [31:0]   dataVec_1_predInfo_predictAddr;
   reg        [2:0]    dataVec_1_predRecover_recoverTop;
   reg        [1:0]    dataVec_1_predRecover_predictCounter;
-  reg        [4:0]    dataVec_1_predRecover_ghr;
+  reg        [6:0]    dataVec_1_predRecover_ghr;
   reg        [31:0]   dataVec_2_pc;
   reg        [31:0]   dataVec_2_inst;
   reg                 dataVec_2_except_valid;
@@ -116742,7 +116743,7 @@ module unamed (
   reg        [31:0]   dataVec_2_predInfo_predictAddr;
   reg        [2:0]    dataVec_2_predRecover_recoverTop;
   reg        [1:0]    dataVec_2_predRecover_predictCounter;
-  reg        [4:0]    dataVec_2_predRecover_ghr;
+  reg        [6:0]    dataVec_2_predRecover_ghr;
   reg        [31:0]   dataVec_3_pc;
   reg        [31:0]   dataVec_3_inst;
   reg                 dataVec_3_except_valid;
@@ -116754,7 +116755,7 @@ module unamed (
   reg        [31:0]   dataVec_3_predInfo_predictAddr;
   reg        [2:0]    dataVec_3_predRecover_recoverTop;
   reg        [1:0]    dataVec_3_predRecover_predictCounter;
-  reg        [4:0]    dataVec_3_predRecover_ghr;
+  reg        [6:0]    dataVec_3_predRecover_ghr;
   reg        [31:0]   dataVec_4_pc;
   reg        [31:0]   dataVec_4_inst;
   reg                 dataVec_4_except_valid;
@@ -116766,7 +116767,7 @@ module unamed (
   reg        [31:0]   dataVec_4_predInfo_predictAddr;
   reg        [2:0]    dataVec_4_predRecover_recoverTop;
   reg        [1:0]    dataVec_4_predRecover_predictCounter;
-  reg        [4:0]    dataVec_4_predRecover_ghr;
+  reg        [6:0]    dataVec_4_predRecover_ghr;
   reg        [31:0]   dataVec_5_pc;
   reg        [31:0]   dataVec_5_inst;
   reg                 dataVec_5_except_valid;
@@ -116778,7 +116779,7 @@ module unamed (
   reg        [31:0]   dataVec_5_predInfo_predictAddr;
   reg        [2:0]    dataVec_5_predRecover_recoverTop;
   reg        [1:0]    dataVec_5_predRecover_predictCounter;
-  reg        [4:0]    dataVec_5_predRecover_ghr;
+  reg        [6:0]    dataVec_5_predRecover_ghr;
   reg        [31:0]   dataVec_6_pc;
   reg        [31:0]   dataVec_6_inst;
   reg                 dataVec_6_except_valid;
@@ -116790,7 +116791,7 @@ module unamed (
   reg        [31:0]   dataVec_6_predInfo_predictAddr;
   reg        [2:0]    dataVec_6_predRecover_recoverTop;
   reg        [1:0]    dataVec_6_predRecover_predictCounter;
-  reg        [4:0]    dataVec_6_predRecover_ghr;
+  reg        [6:0]    dataVec_6_predRecover_ghr;
   reg        [31:0]   dataVec_7_pc;
   reg        [31:0]   dataVec_7_inst;
   reg                 dataVec_7_except_valid;
@@ -116802,7 +116803,7 @@ module unamed (
   reg        [31:0]   dataVec_7_predInfo_predictAddr;
   reg        [2:0]    dataVec_7_predRecover_recoverTop;
   reg        [1:0]    dataVec_7_predRecover_predictCounter;
-  reg        [4:0]    dataVec_7_predRecover_ghr;
+  reg        [6:0]    dataVec_7_predRecover_ghr;
   wire                pushEquals_0;
   wire                pushEquals_1;
   wire                pushEquals_2;
@@ -116848,7 +116849,7 @@ module unamed (
   reg        [31:0]   dataVec_readPort_predInfo_predictAddr;
   reg        [2:0]    dataVec_readPort_predRecover_recoverTop;
   reg        [1:0]    dataVec_readPort_predRecover_predictCounter;
-  reg        [4:0]    dataVec_readPort_predRecover_ghr;
+  reg        [6:0]    dataVec_readPort_predRecover_ghr;
   reg        [31:0]   dataVec_readPort_pc_1;
   reg        [31:0]   dataVec_readPort_inst_1;
   reg                 dataVec_readPort_except_valid_1;
@@ -116860,7 +116861,7 @@ module unamed (
   reg        [31:0]   dataVec_readPort_predInfo_predictAddr_1;
   reg        [2:0]    dataVec_readPort_predRecover_recoverTop_1;
   reg        [1:0]    dataVec_readPort_predRecover_predictCounter_1;
-  reg        [4:0]    dataVec_readPort_predRecover_ghr_1;
+  reg        [6:0]    dataVec_readPort_predRecover_ghr_1;
   reg        [31:0]   dataVec_readPort_pc_2;
   reg        [31:0]   dataVec_readPort_inst_2;
   reg                 dataVec_readPort_except_valid_2;
@@ -116872,7 +116873,7 @@ module unamed (
   reg        [31:0]   dataVec_readPort_predInfo_predictAddr_2;
   reg        [2:0]    dataVec_readPort_predRecover_recoverTop_2;
   reg        [1:0]    dataVec_readPort_predRecover_predictCounter_2;
-  reg        [4:0]    dataVec_readPort_predRecover_ghr_2;
+  reg        [6:0]    dataVec_readPort_predRecover_ghr_2;
   wire                when_MultiPortFIFOVec_l88;
 
   assign _zz_popPtr = {1'd0, popCount};
@@ -117225,7 +117226,7 @@ module unamed (
   end
 
   always @(*) begin
-    dataVec_readPort_predRecover_ghr = 5'bxxxxx;
+    dataVec_readPort_predRecover_ghr = 7'bxxxxxxx;
     if(popEquals_0) begin
       dataVec_readPort_predRecover_ghr = dataVec_0_predRecover_ghr;
     end
@@ -117574,7 +117575,7 @@ module unamed (
   end
 
   always @(*) begin
-    dataVec_readPort_predRecover_ghr_1 = 5'bxxxxx;
+    dataVec_readPort_predRecover_ghr_1 = 7'bxxxxxxx;
     if(popEquals_7) begin
       dataVec_readPort_predRecover_ghr_1 = dataVec_0_predRecover_ghr;
     end
@@ -117923,7 +117924,7 @@ module unamed (
   end
 
   always @(*) begin
-    dataVec_readPort_predRecover_ghr_2 = 5'bxxxxx;
+    dataVec_readPort_predRecover_ghr_2 = 7'bxxxxxxx;
     if(popEquals_6) begin
       dataVec_readPort_predRecover_ghr_2 = dataVec_0_predRecover_ghr;
     end
@@ -118455,7 +118456,7 @@ module ReorderCacheRAMOutReg (
   output reg          io_read_rsp_0_uop_predInfo_predictTaken,
   output reg [2:0]    io_read_rsp_0_uop_predRecover_recoverTop,
   output reg [1:0]    io_read_rsp_0_uop_predRecover_predictCounter,
-  output reg [4:0]    io_read_rsp_0_uop_predRecover_ghr,
+  output reg [6:0]    io_read_rsp_0_uop_predRecover_ghr,
   output reg [4:0]    io_read_rsp_0_uop_wbAddr,
   output reg          io_read_rsp_0_uop_doRegWrite,
   output reg          io_read_rsp_0_uop_isLoad,
@@ -118487,7 +118488,7 @@ module ReorderCacheRAMOutReg (
   output reg          io_read_rsp_1_uop_predInfo_predictTaken,
   output reg [2:0]    io_read_rsp_1_uop_predRecover_recoverTop,
   output reg [1:0]    io_read_rsp_1_uop_predRecover_predictCounter,
-  output reg [4:0]    io_read_rsp_1_uop_predRecover_ghr,
+  output reg [6:0]    io_read_rsp_1_uop_predRecover_ghr,
   output reg [4:0]    io_read_rsp_1_uop_wbAddr,
   output reg          io_read_rsp_1_uop_doRegWrite,
   output reg          io_read_rsp_1_uop_isLoad,
@@ -118519,7 +118520,7 @@ module ReorderCacheRAMOutReg (
   output reg          io_read_rsp_2_uop_predInfo_predictTaken,
   output reg [2:0]    io_read_rsp_2_uop_predRecover_recoverTop,
   output reg [1:0]    io_read_rsp_2_uop_predRecover_predictCounter,
-  output reg [4:0]    io_read_rsp_2_uop_predRecover_ghr,
+  output reg [6:0]    io_read_rsp_2_uop_predRecover_ghr,
   output reg [4:0]    io_read_rsp_2_uop_wbAddr,
   output reg          io_read_rsp_2_uop_doRegWrite,
   output reg          io_read_rsp_2_uop_isLoad,
@@ -118553,7 +118554,7 @@ module ReorderCacheRAMOutReg (
   input               io_write_payload_data_0_uop_predInfo_predictTaken,
   input      [2:0]    io_write_payload_data_0_uop_predRecover_recoverTop,
   input      [1:0]    io_write_payload_data_0_uop_predRecover_predictCounter,
-  input      [4:0]    io_write_payload_data_0_uop_predRecover_ghr,
+  input      [6:0]    io_write_payload_data_0_uop_predRecover_ghr,
   input      [4:0]    io_write_payload_data_0_uop_wbAddr,
   input               io_write_payload_data_0_uop_doRegWrite,
   input               io_write_payload_data_0_uop_isLoad,
@@ -118585,7 +118586,7 @@ module ReorderCacheRAMOutReg (
   input               io_write_payload_data_1_uop_predInfo_predictTaken,
   input      [2:0]    io_write_payload_data_1_uop_predRecover_recoverTop,
   input      [1:0]    io_write_payload_data_1_uop_predRecover_predictCounter,
-  input      [4:0]    io_write_payload_data_1_uop_predRecover_ghr,
+  input      [6:0]    io_write_payload_data_1_uop_predRecover_ghr,
   input      [4:0]    io_write_payload_data_1_uop_wbAddr,
   input               io_write_payload_data_1_uop_doRegWrite,
   input               io_write_payload_data_1_uop_isLoad,
@@ -118617,7 +118618,7 @@ module ReorderCacheRAMOutReg (
   input               io_write_payload_data_2_uop_predInfo_predictTaken,
   input      [2:0]    io_write_payload_data_2_uop_predRecover_recoverTop,
   input      [1:0]    io_write_payload_data_2_uop_predRecover_predictCounter,
-  input      [4:0]    io_write_payload_data_2_uop_predRecover_ghr,
+  input      [6:0]    io_write_payload_data_2_uop_predRecover_ghr,
   input      [4:0]    io_write_payload_data_2_uop_wbAddr,
   input               io_write_payload_data_2_uop_doRegWrite,
   input               io_write_payload_data_2_uop_isLoad,
@@ -118682,7 +118683,7 @@ module ReorderCacheRAMOutReg (
   wire                rams_0_io_read_rsp_uop_predInfo_predictTaken;
   wire       [2:0]    rams_0_io_read_rsp_uop_predRecover_recoverTop;
   wire       [1:0]    rams_0_io_read_rsp_uop_predRecover_predictCounter;
-  wire       [4:0]    rams_0_io_read_rsp_uop_predRecover_ghr;
+  wire       [6:0]    rams_0_io_read_rsp_uop_predRecover_ghr;
   wire       [4:0]    rams_0_io_read_rsp_uop_wbAddr;
   wire                rams_0_io_read_rsp_uop_doRegWrite;
   wire                rams_0_io_read_rsp_uop_isLoad;
@@ -118714,7 +118715,7 @@ module ReorderCacheRAMOutReg (
   wire                rams_1_io_read_rsp_uop_predInfo_predictTaken;
   wire       [2:0]    rams_1_io_read_rsp_uop_predRecover_recoverTop;
   wire       [1:0]    rams_1_io_read_rsp_uop_predRecover_predictCounter;
-  wire       [4:0]    rams_1_io_read_rsp_uop_predRecover_ghr;
+  wire       [6:0]    rams_1_io_read_rsp_uop_predRecover_ghr;
   wire       [4:0]    rams_1_io_read_rsp_uop_wbAddr;
   wire                rams_1_io_read_rsp_uop_doRegWrite;
   wire                rams_1_io_read_rsp_uop_isLoad;
@@ -118746,7 +118747,7 @@ module ReorderCacheRAMOutReg (
   wire                rams_2_io_read_rsp_uop_predInfo_predictTaken;
   wire       [2:0]    rams_2_io_read_rsp_uop_predRecover_recoverTop;
   wire       [1:0]    rams_2_io_read_rsp_uop_predRecover_predictCounter;
-  wire       [4:0]    rams_2_io_read_rsp_uop_predRecover_ghr;
+  wire       [6:0]    rams_2_io_read_rsp_uop_predRecover_ghr;
   wire       [4:0]    rams_2_io_read_rsp_uop_wbAddr;
   wire                rams_2_io_read_rsp_uop_doRegWrite;
   wire                rams_2_io_read_rsp_uop_isLoad;
@@ -118778,7 +118779,7 @@ module ReorderCacheRAMOutReg (
   wire                rams_3_io_read_rsp_uop_predInfo_predictTaken;
   wire       [2:0]    rams_3_io_read_rsp_uop_predRecover_recoverTop;
   wire       [1:0]    rams_3_io_read_rsp_uop_predRecover_predictCounter;
-  wire       [4:0]    rams_3_io_read_rsp_uop_predRecover_ghr;
+  wire       [6:0]    rams_3_io_read_rsp_uop_predRecover_ghr;
   wire       [4:0]    rams_3_io_read_rsp_uop_wbAddr;
   wire                rams_3_io_read_rsp_uop_doRegWrite;
   wire                rams_3_io_read_rsp_uop_isLoad;
@@ -118820,7 +118821,7 @@ module ReorderCacheRAMOutReg (
   reg                 _zz_io_read_rsp_0_uop_predInfo_predictTaken;
   reg        [2:0]    _zz_io_read_rsp_0_uop_predRecover_recoverTop;
   reg        [1:0]    _zz_io_read_rsp_0_uop_predRecover_predictCounter;
-  reg        [4:0]    _zz_io_read_rsp_0_uop_predRecover_ghr;
+  reg        [6:0]    _zz_io_read_rsp_0_uop_predRecover_ghr;
   reg        [4:0]    _zz_io_read_rsp_0_uop_wbAddr;
   reg                 _zz_io_read_rsp_0_uop_doRegWrite;
   reg                 _zz_io_read_rsp_0_uop_isLoad;
@@ -118852,7 +118853,7 @@ module ReorderCacheRAMOutReg (
   reg                 _zz_io_read_rsp_1_uop_predInfo_predictTaken;
   reg        [2:0]    _zz_io_read_rsp_1_uop_predRecover_recoverTop;
   reg        [1:0]    _zz_io_read_rsp_1_uop_predRecover_predictCounter;
-  reg        [4:0]    _zz_io_read_rsp_1_uop_predRecover_ghr;
+  reg        [6:0]    _zz_io_read_rsp_1_uop_predRecover_ghr;
   reg        [4:0]    _zz_io_read_rsp_1_uop_wbAddr;
   reg                 _zz_io_read_rsp_1_uop_doRegWrite;
   reg                 _zz_io_read_rsp_1_uop_isLoad;
@@ -118884,7 +118885,7 @@ module ReorderCacheRAMOutReg (
   reg                 _zz_io_read_rsp_2_uop_predInfo_predictTaken;
   reg        [2:0]    _zz_io_read_rsp_2_uop_predRecover_recoverTop;
   reg        [1:0]    _zz_io_read_rsp_2_uop_predRecover_predictCounter;
-  reg        [4:0]    _zz_io_read_rsp_2_uop_predRecover_ghr;
+  reg        [6:0]    _zz_io_read_rsp_2_uop_predRecover_ghr;
   reg        [4:0]    _zz_io_read_rsp_2_uop_wbAddr;
   reg                 _zz_io_read_rsp_2_uop_doRegWrite;
   reg                 _zz_io_read_rsp_2_uop_isLoad;
@@ -118936,7 +118937,7 @@ module ReorderCacheRAMOutReg (
   reg                 _zz_io_write_payload_data_uop_predInfo_predictTaken;
   reg        [2:0]    _zz_io_write_payload_data_uop_predRecover_recoverTop;
   reg        [1:0]    _zz_io_write_payload_data_uop_predRecover_predictCounter;
-  reg        [4:0]    _zz_io_write_payload_data_uop_predRecover_ghr;
+  reg        [6:0]    _zz_io_write_payload_data_uop_predRecover_ghr;
   reg        [4:0]    _zz_io_write_payload_data_uop_wbAddr;
   reg                 _zz_io_write_payload_data_uop_doRegWrite;
   reg                 _zz_io_write_payload_data_uop_isLoad;
@@ -118972,7 +118973,7 @@ module ReorderCacheRAMOutReg (
   reg                 _zz_io_write_payload_data_uop_predInfo_predictTaken_1;
   reg        [2:0]    _zz_io_write_payload_data_uop_predRecover_recoverTop_1;
   reg        [1:0]    _zz_io_write_payload_data_uop_predRecover_predictCounter_1;
-  reg        [4:0]    _zz_io_write_payload_data_uop_predRecover_ghr_1;
+  reg        [6:0]    _zz_io_write_payload_data_uop_predRecover_ghr_1;
   reg        [4:0]    _zz_io_write_payload_data_uop_wbAddr_1;
   reg                 _zz_io_write_payload_data_uop_doRegWrite_1;
   reg                 _zz_io_write_payload_data_uop_isLoad_1;
@@ -119008,7 +119009,7 @@ module ReorderCacheRAMOutReg (
   reg                 _zz_io_write_payload_data_uop_predInfo_predictTaken_2;
   reg        [2:0]    _zz_io_write_payload_data_uop_predRecover_recoverTop_2;
   reg        [1:0]    _zz_io_write_payload_data_uop_predRecover_predictCounter_2;
-  reg        [4:0]    _zz_io_write_payload_data_uop_predRecover_ghr_2;
+  reg        [6:0]    _zz_io_write_payload_data_uop_predRecover_ghr_2;
   reg        [4:0]    _zz_io_write_payload_data_uop_wbAddr_2;
   reg                 _zz_io_write_payload_data_uop_doRegWrite_2;
   reg                 _zz_io_write_payload_data_uop_isLoad_2;
@@ -119044,7 +119045,7 @@ module ReorderCacheRAMOutReg (
   reg                 _zz_io_write_payload_data_uop_predInfo_predictTaken_3;
   reg        [2:0]    _zz_io_write_payload_data_uop_predRecover_recoverTop_3;
   reg        [1:0]    _zz_io_write_payload_data_uop_predRecover_predictCounter_3;
-  reg        [4:0]    _zz_io_write_payload_data_uop_predRecover_ghr_3;
+  reg        [6:0]    _zz_io_write_payload_data_uop_predRecover_ghr_3;
   reg        [4:0]    _zz_io_write_payload_data_uop_wbAddr_3;
   reg                 _zz_io_write_payload_data_uop_doRegWrite_3;
   reg                 _zz_io_write_payload_data_uop_isLoad_3;
@@ -119130,7 +119131,7 @@ module ReorderCacheRAMOutReg (
     .io_read_rsp_uop_predInfo_predictTaken                (rams_0_io_read_rsp_uop_predInfo_predictTaken                 ), //o
     .io_read_rsp_uop_predRecover_recoverTop               (rams_0_io_read_rsp_uop_predRecover_recoverTop[2:0]           ), //o
     .io_read_rsp_uop_predRecover_predictCounter           (rams_0_io_read_rsp_uop_predRecover_predictCounter[1:0]       ), //o
-    .io_read_rsp_uop_predRecover_ghr                      (rams_0_io_read_rsp_uop_predRecover_ghr[4:0]                  ), //o
+    .io_read_rsp_uop_predRecover_ghr                      (rams_0_io_read_rsp_uop_predRecover_ghr[6:0]                  ), //o
     .io_read_rsp_uop_wbAddr                               (rams_0_io_read_rsp_uop_wbAddr[4:0]                           ), //o
     .io_read_rsp_uop_doRegWrite                           (rams_0_io_read_rsp_uop_doRegWrite                            ), //o
     .io_read_rsp_uop_isLoad                               (rams_0_io_read_rsp_uop_isLoad                                ), //o
@@ -119164,7 +119165,7 @@ module ReorderCacheRAMOutReg (
     .io_write_payload_data_uop_predInfo_predictTaken      (_zz_io_write_payload_data_uop_predInfo_predictTaken          ), //i
     .io_write_payload_data_uop_predRecover_recoverTop     (_zz_io_write_payload_data_uop_predRecover_recoverTop[2:0]    ), //i
     .io_write_payload_data_uop_predRecover_predictCounter (_zz_io_write_payload_data_uop_predRecover_predictCounter[1:0]), //i
-    .io_write_payload_data_uop_predRecover_ghr            (_zz_io_write_payload_data_uop_predRecover_ghr[4:0]           ), //i
+    .io_write_payload_data_uop_predRecover_ghr            (_zz_io_write_payload_data_uop_predRecover_ghr[6:0]           ), //i
     .io_write_payload_data_uop_wbAddr                     (_zz_io_write_payload_data_uop_wbAddr[4:0]                    ), //i
     .io_write_payload_data_uop_doRegWrite                 (_zz_io_write_payload_data_uop_doRegWrite                     ), //i
     .io_write_payload_data_uop_isLoad                     (_zz_io_write_payload_data_uop_isLoad                         ), //i
@@ -119202,7 +119203,7 @@ module ReorderCacheRAMOutReg (
     .io_read_rsp_uop_predInfo_predictTaken                (rams_1_io_read_rsp_uop_predInfo_predictTaken                   ), //o
     .io_read_rsp_uop_predRecover_recoverTop               (rams_1_io_read_rsp_uop_predRecover_recoverTop[2:0]             ), //o
     .io_read_rsp_uop_predRecover_predictCounter           (rams_1_io_read_rsp_uop_predRecover_predictCounter[1:0]         ), //o
-    .io_read_rsp_uop_predRecover_ghr                      (rams_1_io_read_rsp_uop_predRecover_ghr[4:0]                    ), //o
+    .io_read_rsp_uop_predRecover_ghr                      (rams_1_io_read_rsp_uop_predRecover_ghr[6:0]                    ), //o
     .io_read_rsp_uop_wbAddr                               (rams_1_io_read_rsp_uop_wbAddr[4:0]                             ), //o
     .io_read_rsp_uop_doRegWrite                           (rams_1_io_read_rsp_uop_doRegWrite                              ), //o
     .io_read_rsp_uop_isLoad                               (rams_1_io_read_rsp_uop_isLoad                                  ), //o
@@ -119236,7 +119237,7 @@ module ReorderCacheRAMOutReg (
     .io_write_payload_data_uop_predInfo_predictTaken      (_zz_io_write_payload_data_uop_predInfo_predictTaken_1          ), //i
     .io_write_payload_data_uop_predRecover_recoverTop     (_zz_io_write_payload_data_uop_predRecover_recoverTop_1[2:0]    ), //i
     .io_write_payload_data_uop_predRecover_predictCounter (_zz_io_write_payload_data_uop_predRecover_predictCounter_1[1:0]), //i
-    .io_write_payload_data_uop_predRecover_ghr            (_zz_io_write_payload_data_uop_predRecover_ghr_1[4:0]           ), //i
+    .io_write_payload_data_uop_predRecover_ghr            (_zz_io_write_payload_data_uop_predRecover_ghr_1[6:0]           ), //i
     .io_write_payload_data_uop_wbAddr                     (_zz_io_write_payload_data_uop_wbAddr_1[4:0]                    ), //i
     .io_write_payload_data_uop_doRegWrite                 (_zz_io_write_payload_data_uop_doRegWrite_1                     ), //i
     .io_write_payload_data_uop_isLoad                     (_zz_io_write_payload_data_uop_isLoad_1                         ), //i
@@ -119274,7 +119275,7 @@ module ReorderCacheRAMOutReg (
     .io_read_rsp_uop_predInfo_predictTaken                (rams_2_io_read_rsp_uop_predInfo_predictTaken                   ), //o
     .io_read_rsp_uop_predRecover_recoverTop               (rams_2_io_read_rsp_uop_predRecover_recoverTop[2:0]             ), //o
     .io_read_rsp_uop_predRecover_predictCounter           (rams_2_io_read_rsp_uop_predRecover_predictCounter[1:0]         ), //o
-    .io_read_rsp_uop_predRecover_ghr                      (rams_2_io_read_rsp_uop_predRecover_ghr[4:0]                    ), //o
+    .io_read_rsp_uop_predRecover_ghr                      (rams_2_io_read_rsp_uop_predRecover_ghr[6:0]                    ), //o
     .io_read_rsp_uop_wbAddr                               (rams_2_io_read_rsp_uop_wbAddr[4:0]                             ), //o
     .io_read_rsp_uop_doRegWrite                           (rams_2_io_read_rsp_uop_doRegWrite                              ), //o
     .io_read_rsp_uop_isLoad                               (rams_2_io_read_rsp_uop_isLoad                                  ), //o
@@ -119308,7 +119309,7 @@ module ReorderCacheRAMOutReg (
     .io_write_payload_data_uop_predInfo_predictTaken      (_zz_io_write_payload_data_uop_predInfo_predictTaken_2          ), //i
     .io_write_payload_data_uop_predRecover_recoverTop     (_zz_io_write_payload_data_uop_predRecover_recoverTop_2[2:0]    ), //i
     .io_write_payload_data_uop_predRecover_predictCounter (_zz_io_write_payload_data_uop_predRecover_predictCounter_2[1:0]), //i
-    .io_write_payload_data_uop_predRecover_ghr            (_zz_io_write_payload_data_uop_predRecover_ghr_2[4:0]           ), //i
+    .io_write_payload_data_uop_predRecover_ghr            (_zz_io_write_payload_data_uop_predRecover_ghr_2[6:0]           ), //i
     .io_write_payload_data_uop_wbAddr                     (_zz_io_write_payload_data_uop_wbAddr_2[4:0]                    ), //i
     .io_write_payload_data_uop_doRegWrite                 (_zz_io_write_payload_data_uop_doRegWrite_2                     ), //i
     .io_write_payload_data_uop_isLoad                     (_zz_io_write_payload_data_uop_isLoad_2                         ), //i
@@ -119346,7 +119347,7 @@ module ReorderCacheRAMOutReg (
     .io_read_rsp_uop_predInfo_predictTaken                (rams_3_io_read_rsp_uop_predInfo_predictTaken                   ), //o
     .io_read_rsp_uop_predRecover_recoverTop               (rams_3_io_read_rsp_uop_predRecover_recoverTop[2:0]             ), //o
     .io_read_rsp_uop_predRecover_predictCounter           (rams_3_io_read_rsp_uop_predRecover_predictCounter[1:0]         ), //o
-    .io_read_rsp_uop_predRecover_ghr                      (rams_3_io_read_rsp_uop_predRecover_ghr[4:0]                    ), //o
+    .io_read_rsp_uop_predRecover_ghr                      (rams_3_io_read_rsp_uop_predRecover_ghr[6:0]                    ), //o
     .io_read_rsp_uop_wbAddr                               (rams_3_io_read_rsp_uop_wbAddr[4:0]                             ), //o
     .io_read_rsp_uop_doRegWrite                           (rams_3_io_read_rsp_uop_doRegWrite                              ), //o
     .io_read_rsp_uop_isLoad                               (rams_3_io_read_rsp_uop_isLoad                                  ), //o
@@ -119380,7 +119381,7 @@ module ReorderCacheRAMOutReg (
     .io_write_payload_data_uop_predInfo_predictTaken      (_zz_io_write_payload_data_uop_predInfo_predictTaken_3          ), //i
     .io_write_payload_data_uop_predRecover_recoverTop     (_zz_io_write_payload_data_uop_predRecover_recoverTop_3[2:0]    ), //i
     .io_write_payload_data_uop_predRecover_predictCounter (_zz_io_write_payload_data_uop_predRecover_predictCounter_3[1:0]), //i
-    .io_write_payload_data_uop_predRecover_ghr            (_zz_io_write_payload_data_uop_predRecover_ghr_3[4:0]           ), //i
+    .io_write_payload_data_uop_predRecover_ghr            (_zz_io_write_payload_data_uop_predRecover_ghr_3[6:0]           ), //i
     .io_write_payload_data_uop_wbAddr                     (_zz_io_write_payload_data_uop_wbAddr_3[4:0]                    ), //i
     .io_write_payload_data_uop_doRegWrite                 (_zz_io_write_payload_data_uop_doRegWrite_3                     ), //i
     .io_write_payload_data_uop_isLoad                     (_zz_io_write_payload_data_uop_isLoad_3                         ), //i
@@ -120306,7 +120307,7 @@ module ReorderCacheRAMOutReg (
   end
 
   always @(*) begin
-    _zz_io_write_payload_data_uop_predRecover_ghr = 5'bxxxxx;
+    _zz_io_write_payload_data_uop_predRecover_ghr = 7'bxxxxxxx;
     if(when_ReorderCacheRAM_l177) begin
       _zz_io_write_payload_data_uop_predRecover_ghr = io_write_payload_data_0_uop_predRecover_ghr;
     end
@@ -120740,7 +120741,7 @@ module ReorderCacheRAMOutReg (
   end
 
   always @(*) begin
-    _zz_io_write_payload_data_uop_predRecover_ghr_1 = 5'bxxxxx;
+    _zz_io_write_payload_data_uop_predRecover_ghr_1 = 7'bxxxxxxx;
     if(when_ReorderCacheRAM_l177_3) begin
       _zz_io_write_payload_data_uop_predRecover_ghr_1 = io_write_payload_data_0_uop_predRecover_ghr;
     end
@@ -121174,7 +121175,7 @@ module ReorderCacheRAMOutReg (
   end
 
   always @(*) begin
-    _zz_io_write_payload_data_uop_predRecover_ghr_2 = 5'bxxxxx;
+    _zz_io_write_payload_data_uop_predRecover_ghr_2 = 7'bxxxxxxx;
     if(when_ReorderCacheRAM_l177_6) begin
       _zz_io_write_payload_data_uop_predRecover_ghr_2 = io_write_payload_data_0_uop_predRecover_ghr;
     end
@@ -121608,7 +121609,7 @@ module ReorderCacheRAMOutReg (
   end
 
   always @(*) begin
-    _zz_io_write_payload_data_uop_predRecover_ghr_3 = 5'bxxxxx;
+    _zz_io_write_payload_data_uop_predRecover_ghr_3 = 7'bxxxxxxx;
     if(when_ReorderCacheRAM_l177_9) begin
       _zz_io_write_payload_data_uop_predRecover_ghr_3 = io_write_payload_data_0_uop_predRecover_ghr;
     end
@@ -122056,13 +122057,13 @@ module ReorderCacheRAM_1 (
   input               aclk,
   input               aresetn,
   input               io_read_cmd_valid,
-  input      [12:0]   io_read_cmd_payload,
+  input      [14:0]   io_read_cmd_payload,
   output     [1:0]    io_read_rsp_0,
   output     [1:0]    io_read_rsp_1,
   output     [1:0]    io_read_rsp_2,
   output     [1:0]    io_read_rsp_3,
   input               io_write_valid,
-  input      [12:0]   io_write_payload_address,
+  input      [14:0]   io_write_payload_address,
   input      [1:0]    io_write_payload_data_0,
   input      [1:0]    io_write_payload_data_1,
   input      [1:0]    io_write_payload_data_2,
@@ -122070,33 +122071,33 @@ module ReorderCacheRAM_1 (
   input      [3:0]    io_write_payload_mask
 );
 
-  wire       [10:0]   rams_0_io_read_cmd_payload;
+  wire       [12:0]   rams_0_io_read_cmd_payload;
   wire                rams_0_io_write_valid;
-  wire       [10:0]   rams_0_io_write_payload_address;
+  wire       [12:0]   rams_0_io_write_payload_address;
   wire       [1:0]    rams_0_io_write_payload_data;
-  wire       [10:0]   rams_1_io_read_cmd_payload;
+  wire       [12:0]   rams_1_io_read_cmd_payload;
   wire                rams_1_io_write_valid;
-  wire       [10:0]   rams_1_io_write_payload_address;
+  wire       [12:0]   rams_1_io_write_payload_address;
   wire       [1:0]    rams_1_io_write_payload_data;
-  wire       [10:0]   rams_2_io_read_cmd_payload;
+  wire       [12:0]   rams_2_io_read_cmd_payload;
   wire                rams_2_io_write_valid;
-  wire       [10:0]   rams_2_io_write_payload_address;
+  wire       [12:0]   rams_2_io_write_payload_address;
   wire       [1:0]    rams_2_io_write_payload_data;
-  wire       [10:0]   rams_3_io_read_cmd_payload;
+  wire       [12:0]   rams_3_io_read_cmd_payload;
   wire                rams_3_io_write_valid;
-  wire       [10:0]   rams_3_io_write_payload_address;
+  wire       [12:0]   rams_3_io_write_payload_address;
   wire       [1:0]    rams_3_io_write_payload_data;
   wire       [1:0]    rams_0_io_read_rsp;
   wire       [1:0]    rams_1_io_read_rsp;
   wire       [1:0]    rams_2_io_read_rsp;
   wire       [1:0]    rams_3_io_read_rsp;
-  wire       [10:0]   _zz_io_read_cmd_payload;
+  wire       [12:0]   _zz_io_read_cmd_payload;
   wire       [0:0]    _zz_io_read_cmd_payload_1;
-  wire       [10:0]   _zz_io_read_cmd_payload_2;
+  wire       [12:0]   _zz_io_read_cmd_payload_2;
   wire       [0:0]    _zz_io_read_cmd_payload_3;
-  wire       [10:0]   _zz_io_read_cmd_payload_4;
+  wire       [12:0]   _zz_io_read_cmd_payload_4;
   wire       [0:0]    _zz_io_read_cmd_payload_5;
-  wire       [10:0]   _zz_io_read_cmd_payload_6;
+  wire       [12:0]   _zz_io_read_cmd_payload_6;
   wire       [0:0]    _zz_io_read_cmd_payload_7;
   reg        [1:0]    _zz_io_read_rsp_0;
   wire       [1:0]    _zz_io_read_rsp_0_1;
@@ -122107,97 +122108,97 @@ module ReorderCacheRAM_1 (
   reg        [1:0]    _zz_io_read_rsp_3;
   wire       [1:0]    _zz_io_read_rsp_3_1;
   wire       [1:0]    _zz_io_write_valid;
-  wire       [10:0]   _zz_io_write_payload_address;
+  wire       [12:0]   _zz_io_write_payload_address;
   wire       [0:0]    _zz_io_write_payload_address_1;
   reg        [1:0]    _zz_io_write_payload_data;
   wire       [1:0]    _zz_io_write_payload_data_1;
   wire       [1:0]    _zz_io_write_valid_1;
-  wire       [10:0]   _zz_io_write_payload_address_2;
+  wire       [12:0]   _zz_io_write_payload_address_2;
   wire       [0:0]    _zz_io_write_payload_address_3;
   reg        [1:0]    _zz_io_write_payload_data_2;
   wire       [1:0]    _zz_io_write_payload_data_3;
   wire       [1:0]    _zz_io_write_valid_2;
-  wire       [10:0]   _zz_io_write_payload_address_4;
+  wire       [12:0]   _zz_io_write_payload_address_4;
   wire       [0:0]    _zz_io_write_payload_address_5;
   reg        [1:0]    _zz_io_write_payload_data_4;
   wire       [1:0]    _zz_io_write_payload_data_5;
   wire       [1:0]    _zz_io_write_valid_3;
-  wire       [10:0]   _zz_io_write_payload_address_6;
+  wire       [12:0]   _zz_io_write_payload_address_6;
   wire       [0:0]    _zz_io_write_payload_address_7;
   reg        [1:0]    _zz_io_write_payload_data_6;
   wire       [1:0]    _zz_io_write_payload_data_7;
-  wire       [10:0]   readLogic_addrHi;
+  wire       [12:0]   readLogic_addrHi;
   wire       [1:0]    readLogic_offset;
   reg        [1:0]    readLogic_regAddr;
-  wire       [10:0]   writeLogic_addrHi;
+  wire       [12:0]   writeLogic_addrHi;
   wire       [1:0]    writeLogic_offset;
 
   assign _zz_io_read_cmd_payload_1 = (2'b00 < readLogic_offset);
-  assign _zz_io_read_cmd_payload = {10'd0, _zz_io_read_cmd_payload_1};
+  assign _zz_io_read_cmd_payload = {12'd0, _zz_io_read_cmd_payload_1};
   assign _zz_io_read_cmd_payload_3 = (2'b01 < readLogic_offset);
-  assign _zz_io_read_cmd_payload_2 = {10'd0, _zz_io_read_cmd_payload_3};
+  assign _zz_io_read_cmd_payload_2 = {12'd0, _zz_io_read_cmd_payload_3};
   assign _zz_io_read_cmd_payload_5 = (2'b10 < readLogic_offset);
-  assign _zz_io_read_cmd_payload_4 = {10'd0, _zz_io_read_cmd_payload_5};
+  assign _zz_io_read_cmd_payload_4 = {12'd0, _zz_io_read_cmd_payload_5};
   assign _zz_io_read_cmd_payload_7 = (2'b11 < readLogic_offset);
-  assign _zz_io_read_cmd_payload_6 = {10'd0, _zz_io_read_cmd_payload_7};
+  assign _zz_io_read_cmd_payload_6 = {12'd0, _zz_io_read_cmd_payload_7};
   assign _zz_io_read_rsp_0_1 = (readLogic_regAddr + 2'b00);
   assign _zz_io_read_rsp_1_1 = (readLogic_regAddr + 2'b01);
   assign _zz_io_read_rsp_2_1 = (readLogic_regAddr + 2'b10);
   assign _zz_io_read_rsp_3_1 = (readLogic_regAddr + 2'b11);
   assign _zz_io_write_valid = (2'b00 - writeLogic_offset);
   assign _zz_io_write_payload_address_1 = (2'b00 < writeLogic_offset);
-  assign _zz_io_write_payload_address = {10'd0, _zz_io_write_payload_address_1};
+  assign _zz_io_write_payload_address = {12'd0, _zz_io_write_payload_address_1};
   assign _zz_io_write_payload_data_1 = (2'b00 - writeLogic_offset);
   assign _zz_io_write_valid_1 = (2'b01 - writeLogic_offset);
   assign _zz_io_write_payload_address_3 = (2'b01 < writeLogic_offset);
-  assign _zz_io_write_payload_address_2 = {10'd0, _zz_io_write_payload_address_3};
+  assign _zz_io_write_payload_address_2 = {12'd0, _zz_io_write_payload_address_3};
   assign _zz_io_write_payload_data_3 = (2'b01 - writeLogic_offset);
   assign _zz_io_write_valid_2 = (2'b10 - writeLogic_offset);
   assign _zz_io_write_payload_address_5 = (2'b10 < writeLogic_offset);
-  assign _zz_io_write_payload_address_4 = {10'd0, _zz_io_write_payload_address_5};
+  assign _zz_io_write_payload_address_4 = {12'd0, _zz_io_write_payload_address_5};
   assign _zz_io_write_payload_data_5 = (2'b10 - writeLogic_offset);
   assign _zz_io_write_valid_3 = (2'b11 - writeLogic_offset);
   assign _zz_io_write_payload_address_7 = (2'b11 < writeLogic_offset);
-  assign _zz_io_write_payload_address_6 = {10'd0, _zz_io_write_payload_address_7};
+  assign _zz_io_write_payload_address_6 = {12'd0, _zz_io_write_payload_address_7};
   assign _zz_io_write_payload_data_7 = (2'b11 - writeLogic_offset);
   SDPRAM_10 rams_0 (
     .aclk                     (aclk                                 ), //i
     .aresetn                  (aresetn                              ), //i
     .io_read_cmd_valid        (io_read_cmd_valid                    ), //i
-    .io_read_cmd_payload      (rams_0_io_read_cmd_payload[10:0]     ), //i
+    .io_read_cmd_payload      (rams_0_io_read_cmd_payload[12:0]     ), //i
     .io_read_rsp              (rams_0_io_read_rsp[1:0]              ), //o
     .io_write_valid           (rams_0_io_write_valid                ), //i
-    .io_write_payload_address (rams_0_io_write_payload_address[10:0]), //i
+    .io_write_payload_address (rams_0_io_write_payload_address[12:0]), //i
     .io_write_payload_data    (rams_0_io_write_payload_data[1:0]    )  //i
   );
   SDPRAM_10 rams_1 (
     .aclk                     (aclk                                 ), //i
     .aresetn                  (aresetn                              ), //i
     .io_read_cmd_valid        (io_read_cmd_valid                    ), //i
-    .io_read_cmd_payload      (rams_1_io_read_cmd_payload[10:0]     ), //i
+    .io_read_cmd_payload      (rams_1_io_read_cmd_payload[12:0]     ), //i
     .io_read_rsp              (rams_1_io_read_rsp[1:0]              ), //o
     .io_write_valid           (rams_1_io_write_valid                ), //i
-    .io_write_payload_address (rams_1_io_write_payload_address[10:0]), //i
+    .io_write_payload_address (rams_1_io_write_payload_address[12:0]), //i
     .io_write_payload_data    (rams_1_io_write_payload_data[1:0]    )  //i
   );
   SDPRAM_10 rams_2 (
     .aclk                     (aclk                                 ), //i
     .aresetn                  (aresetn                              ), //i
     .io_read_cmd_valid        (io_read_cmd_valid                    ), //i
-    .io_read_cmd_payload      (rams_2_io_read_cmd_payload[10:0]     ), //i
+    .io_read_cmd_payload      (rams_2_io_read_cmd_payload[12:0]     ), //i
     .io_read_rsp              (rams_2_io_read_rsp[1:0]              ), //o
     .io_write_valid           (rams_2_io_write_valid                ), //i
-    .io_write_payload_address (rams_2_io_write_payload_address[10:0]), //i
+    .io_write_payload_address (rams_2_io_write_payload_address[12:0]), //i
     .io_write_payload_data    (rams_2_io_write_payload_data[1:0]    )  //i
   );
   SDPRAM_10 rams_3 (
     .aclk                     (aclk                                 ), //i
     .aresetn                  (aresetn                              ), //i
     .io_read_cmd_valid        (io_read_cmd_valid                    ), //i
-    .io_read_cmd_payload      (rams_3_io_read_cmd_payload[10:0]     ), //i
+    .io_read_cmd_payload      (rams_3_io_read_cmd_payload[12:0]     ), //i
     .io_read_rsp              (rams_3_io_read_rsp[1:0]              ), //o
     .io_write_valid           (rams_3_io_write_valid                ), //i
-    .io_write_payload_address (rams_3_io_write_payload_address[10:0]), //i
+    .io_write_payload_address (rams_3_io_write_payload_address[12:0]), //i
     .io_write_payload_data    (rams_3_io_write_payload_data[1:0]    )  //i
   );
   always @(*) begin
@@ -122272,7 +122273,7 @@ module ReorderCacheRAM_1 (
     endcase
   end
 
-  assign readLogic_addrHi = io_read_cmd_payload[12 : 2];
+  assign readLogic_addrHi = io_read_cmd_payload[14 : 2];
   assign readLogic_offset = io_read_cmd_payload[1 : 0];
   assign rams_0_io_read_cmd_payload = (readLogic_addrHi + _zz_io_read_cmd_payload);
   assign rams_1_io_read_cmd_payload = (readLogic_addrHi + _zz_io_read_cmd_payload_2);
@@ -122282,7 +122283,7 @@ module ReorderCacheRAM_1 (
   assign io_read_rsp_1 = _zz_io_read_rsp_1;
   assign io_read_rsp_2 = _zz_io_read_rsp_2;
   assign io_read_rsp_3 = _zz_io_read_rsp_3;
-  assign writeLogic_addrHi = io_write_payload_address[12 : 2];
+  assign writeLogic_addrHi = io_write_payload_address[14 : 2];
   assign writeLogic_offset = io_write_payload_address[1 : 0];
   assign rams_0_io_write_valid = (io_write_valid && io_write_payload_mask[_zz_io_write_valid]);
   assign rams_0_io_write_payload_address = (writeLogic_addrHi + _zz_io_write_payload_address);
@@ -122405,7 +122406,7 @@ module SDPRAMAsyncToSyncWriteFirst (
   output reg          io_read_rsp_uop_predInfo_predictTaken,
   output reg [2:0]    io_read_rsp_uop_predRecover_recoverTop,
   output reg [1:0]    io_read_rsp_uop_predRecover_predictCounter,
-  output reg [4:0]    io_read_rsp_uop_predRecover_ghr,
+  output reg [6:0]    io_read_rsp_uop_predRecover_ghr,
   output reg [4:0]    io_read_rsp_uop_wbAddr,
   output reg          io_read_rsp_uop_doRegWrite,
   output reg          io_read_rsp_uop_isLoad,
@@ -122439,7 +122440,7 @@ module SDPRAMAsyncToSyncWriteFirst (
   input               io_write_payload_data_uop_predInfo_predictTaken,
   input      [2:0]    io_write_payload_data_uop_predRecover_recoverTop,
   input      [1:0]    io_write_payload_data_uop_predRecover_predictCounter,
-  input      [4:0]    io_write_payload_data_uop_predRecover_ghr,
+  input      [6:0]    io_write_payload_data_uop_predRecover_ghr,
   input      [4:0]    io_write_payload_data_uop_wbAddr,
   input               io_write_payload_data_uop_doRegWrite,
   input               io_write_payload_data_uop_isLoad,
@@ -122486,18 +122487,18 @@ module SDPRAMAsyncToSyncWriteFirst (
   localparam TLBOpType_INVTLB6 = 4'd10;
 
   wire                mem_rstb;
-  wire       [119:0]  mem_dina;
-  wire       [119:0]  mem_doutb;
+  wire       [121:0]  mem_dina;
+  wire       [121:0]  mem_doutb;
   wire                mem_sbiterrb;
   wire                mem_dbiterrb;
   wire       [0:0]    _zz_dina;
-  wire       [98:0]   _zz_dina_1;
+  wire       [100:0]  _zz_dina_1;
   wire       [0:0]    _zz_dina_2;
-  wire       [82:0]   _zz_dina_3;
+  wire       [84:0]   _zz_dina_3;
   wire                when_SDPRAM_l152;
-  wire       [106:0]  _zz_io_read_rsp_uop_pc;
+  wire       [108:0]  _zz_io_read_rsp_uop_pc;
   wire       [1:0]    _zz_io_read_rsp_uop_predInfo_predictBranch;
-  wire       [9:0]    _zz_io_read_rsp_uop_predRecover_recoverTop;
+  wire       [11:0]   _zz_io_read_rsp_uop_predRecover_recoverTop;
   wire       [2:0]    _zz_io_read_rsp_uop_lsType;
   wire       [3:0]    _zz_io_read_rsp_uop_tlbOp;
   wire       [11:0]   _zz_io_read_rsp_rename_wReg;
@@ -122519,7 +122520,7 @@ module SDPRAMAsyncToSyncWriteFirst (
     .ADDR_WIDTH_A(3),
     .ADDR_WIDTH_B(3),
     .AUTO_SLEEP_TIME(0),
-    .BYTE_WRITE_WIDTH_A(120),
+    .BYTE_WRITE_WIDTH_A(122),
     .CASCADE_HEIGHT(0),
     .CLOCKING_MODE("common_clock"),
     .ECC_MODE("no_ecc"),
@@ -122527,9 +122528,9 @@ module SDPRAMAsyncToSyncWriteFirst (
     .MEMORY_INIT_PARAM("0"),
     .MEMORY_OPTIMIZATION("true"),
     .MEMORY_PRIMITIVE("auto"),
-    .MEMORY_SIZE(960),
+    .MEMORY_SIZE(976),
     .MESSAGE_CONTROL(0),
-    .READ_DATA_WIDTH_B(120),
+    .READ_DATA_WIDTH_B(122),
     .READ_LATENCY_B(0),
     .READ_RESET_VALUE_B("0"),
     .RST_MODE_A("SYNC"),
@@ -122538,7 +122539,7 @@ module SDPRAMAsyncToSyncWriteFirst (
     .USE_EMBEDDED_CONSTRAINT(0),
     .USE_MEM_INIT(0),
     .WAKEUP_TIME("disable_sleep"),
-    .WRITE_DATA_WIDTH_A(120),
+    .WRITE_DATA_WIDTH_A(122),
     .WRITE_MODE_B("read_first")
   ) mem (
     .clkb           (aclk                         ), //i
@@ -122546,14 +122547,14 @@ module SDPRAMAsyncToSyncWriteFirst (
     .enb            (1'b1                         ), //i
     .regceb         (1'b1                         ), //i
     .addrb          (io_read_cmd_payload[2:0]     ), //i
-    .doutb          (mem_doutb[119:0]             ), //o
+    .doutb          (mem_doutb[121:0]             ), //o
     .sbiterrb       (mem_sbiterrb                 ), //o
     .dbiterrb       (mem_dbiterrb                 ), //o
     .clka           (aclk                         ), //i
     .ena            (io_write_valid               ), //i
     .wea            (1'b1                         ), //i
     .addra          (io_write_payload_address[2:0]), //i
-    .dina           (mem_dina[119:0]              ), //i
+    .dina           (mem_dina[121:0]              ), //i
     .injectsbiterra (1'b0                         ), //i
     .injectdbiterra (1'b0                         ), //i
     .sleep          (1'b0                         )  //i
@@ -122700,7 +122701,7 @@ module SDPRAMAsyncToSyncWriteFirst (
     if(when_SDPRAM_l152) begin
       io_read_rsp_uop_predRecover_ghr = io_write_payload_data_uop_predRecover_ghr;
     end else begin
-      io_read_rsp_uop_predRecover_ghr = _zz_io_read_rsp_uop_predRecover_recoverTop[9 : 5];
+      io_read_rsp_uop_predRecover_ghr = _zz_io_read_rsp_uop_predRecover_recoverTop[11 : 5];
     end
   end
 
@@ -122708,7 +122709,7 @@ module SDPRAMAsyncToSyncWriteFirst (
     if(when_SDPRAM_l152) begin
       io_read_rsp_uop_wbAddr = io_write_payload_data_uop_wbAddr;
     end else begin
-      io_read_rsp_uop_wbAddr = _zz_io_read_rsp_uop_pc[80 : 76];
+      io_read_rsp_uop_wbAddr = _zz_io_read_rsp_uop_pc[82 : 78];
     end
   end
 
@@ -122716,7 +122717,7 @@ module SDPRAMAsyncToSyncWriteFirst (
     if(when_SDPRAM_l152) begin
       io_read_rsp_uop_doRegWrite = io_write_payload_data_uop_doRegWrite;
     end else begin
-      io_read_rsp_uop_doRegWrite = _zz_io_read_rsp_uop_pc[81];
+      io_read_rsp_uop_doRegWrite = _zz_io_read_rsp_uop_pc[83];
     end
   end
 
@@ -122724,7 +122725,7 @@ module SDPRAMAsyncToSyncWriteFirst (
     if(when_SDPRAM_l152) begin
       io_read_rsp_uop_isLoad = io_write_payload_data_uop_isLoad;
     end else begin
-      io_read_rsp_uop_isLoad = _zz_io_read_rsp_uop_pc[82];
+      io_read_rsp_uop_isLoad = _zz_io_read_rsp_uop_pc[84];
     end
   end
 
@@ -122732,7 +122733,7 @@ module SDPRAMAsyncToSyncWriteFirst (
     if(when_SDPRAM_l152) begin
       io_read_rsp_uop_isStore = io_write_payload_data_uop_isStore;
     end else begin
-      io_read_rsp_uop_isStore = _zz_io_read_rsp_uop_pc[83];
+      io_read_rsp_uop_isStore = _zz_io_read_rsp_uop_pc[85];
     end
   end
 
@@ -122748,7 +122749,7 @@ module SDPRAMAsyncToSyncWriteFirst (
     if(when_SDPRAM_l152) begin
       io_read_rsp_uop_readTimer64L = io_write_payload_data_uop_readTimer64L;
     end else begin
-      io_read_rsp_uop_readTimer64L = _zz_io_read_rsp_uop_pc[87];
+      io_read_rsp_uop_readTimer64L = _zz_io_read_rsp_uop_pc[89];
     end
   end
 
@@ -122756,7 +122757,7 @@ module SDPRAMAsyncToSyncWriteFirst (
     if(when_SDPRAM_l152) begin
       io_read_rsp_uop_readTimer64H = io_write_payload_data_uop_readTimer64H;
     end else begin
-      io_read_rsp_uop_readTimer64H = _zz_io_read_rsp_uop_pc[88];
+      io_read_rsp_uop_readTimer64H = _zz_io_read_rsp_uop_pc[90];
     end
   end
 
@@ -122764,7 +122765,7 @@ module SDPRAMAsyncToSyncWriteFirst (
     if(when_SDPRAM_l152) begin
       io_read_rsp_uop_readTimer64ID = io_write_payload_data_uop_readTimer64ID;
     end else begin
-      io_read_rsp_uop_readTimer64ID = _zz_io_read_rsp_uop_pc[89];
+      io_read_rsp_uop_readTimer64ID = _zz_io_read_rsp_uop_pc[91];
     end
   end
 
@@ -122772,7 +122773,7 @@ module SDPRAMAsyncToSyncWriteFirst (
     if(when_SDPRAM_l152) begin
       io_read_rsp_uop_isBranch = io_write_payload_data_uop_isBranch;
     end else begin
-      io_read_rsp_uop_isBranch = _zz_io_read_rsp_uop_pc[90];
+      io_read_rsp_uop_isBranch = _zz_io_read_rsp_uop_pc[92];
     end
   end
 
@@ -122780,7 +122781,7 @@ module SDPRAMAsyncToSyncWriteFirst (
     if(when_SDPRAM_l152) begin
       io_read_rsp_uop_isJump = io_write_payload_data_uop_isJump;
     end else begin
-      io_read_rsp_uop_isJump = _zz_io_read_rsp_uop_pc[91];
+      io_read_rsp_uop_isJump = _zz_io_read_rsp_uop_pc[93];
     end
   end
 
@@ -122788,7 +122789,7 @@ module SDPRAMAsyncToSyncWriteFirst (
     if(when_SDPRAM_l152) begin
       io_read_rsp_uop_isJR = io_write_payload_data_uop_isJR;
     end else begin
-      io_read_rsp_uop_isJR = _zz_io_read_rsp_uop_pc[92];
+      io_read_rsp_uop_isJR = _zz_io_read_rsp_uop_pc[94];
     end
   end
 
@@ -122796,7 +122797,7 @@ module SDPRAMAsyncToSyncWriteFirst (
     if(when_SDPRAM_l152) begin
       io_read_rsp_uop_branchLike = io_write_payload_data_uop_branchLike;
     end else begin
-      io_read_rsp_uop_branchLike = _zz_io_read_rsp_uop_pc[93];
+      io_read_rsp_uop_branchLike = _zz_io_read_rsp_uop_pc[95];
     end
   end
 
@@ -122812,7 +122813,7 @@ module SDPRAMAsyncToSyncWriteFirst (
     if(when_SDPRAM_l152) begin
       io_read_rsp_uop_operateCache = io_write_payload_data_uop_operateCache;
     end else begin
-      io_read_rsp_uop_operateCache = _zz_io_read_rsp_uop_pc[98];
+      io_read_rsp_uop_operateCache = _zz_io_read_rsp_uop_pc[100];
     end
   end
 
@@ -122820,7 +122821,7 @@ module SDPRAMAsyncToSyncWriteFirst (
     if(when_SDPRAM_l152) begin
       io_read_rsp_uop_writeCSR = io_write_payload_data_uop_writeCSR;
     end else begin
-      io_read_rsp_uop_writeCSR = _zz_io_read_rsp_uop_pc[99];
+      io_read_rsp_uop_writeCSR = _zz_io_read_rsp_uop_pc[101];
     end
   end
 
@@ -122828,7 +122829,7 @@ module SDPRAMAsyncToSyncWriteFirst (
     if(when_SDPRAM_l152) begin
       io_read_rsp_uop_readCSR = io_write_payload_data_uop_readCSR;
     end else begin
-      io_read_rsp_uop_readCSR = _zz_io_read_rsp_uop_pc[100];
+      io_read_rsp_uop_readCSR = _zz_io_read_rsp_uop_pc[102];
     end
   end
 
@@ -122836,7 +122837,7 @@ module SDPRAMAsyncToSyncWriteFirst (
     if(when_SDPRAM_l152) begin
       io_read_rsp_uop_isWait = io_write_payload_data_uop_isWait;
     end else begin
-      io_read_rsp_uop_isWait = _zz_io_read_rsp_uop_pc[101];
+      io_read_rsp_uop_isWait = _zz_io_read_rsp_uop_pc[103];
     end
   end
 
@@ -122844,7 +122845,7 @@ module SDPRAMAsyncToSyncWriteFirst (
     if(when_SDPRAM_l152) begin
       io_read_rsp_uop_isLL = io_write_payload_data_uop_isLL;
     end else begin
-      io_read_rsp_uop_isLL = _zz_io_read_rsp_uop_pc[102];
+      io_read_rsp_uop_isLL = _zz_io_read_rsp_uop_pc[104];
     end
   end
 
@@ -122852,7 +122853,7 @@ module SDPRAMAsyncToSyncWriteFirst (
     if(when_SDPRAM_l152) begin
       io_read_rsp_uop_isSC = io_write_payload_data_uop_isSC;
     end else begin
-      io_read_rsp_uop_isSC = _zz_io_read_rsp_uop_pc[103];
+      io_read_rsp_uop_isSC = _zz_io_read_rsp_uop_pc[105];
     end
   end
 
@@ -122860,7 +122861,7 @@ module SDPRAMAsyncToSyncWriteFirst (
     if(when_SDPRAM_l152) begin
       io_read_rsp_uop_uniqueRetire = io_write_payload_data_uop_uniqueRetire;
     end else begin
-      io_read_rsp_uop_uniqueRetire = _zz_io_read_rsp_uop_pc[104];
+      io_read_rsp_uop_uniqueRetire = _zz_io_read_rsp_uop_pc[106];
     end
   end
 
@@ -122868,7 +122869,7 @@ module SDPRAMAsyncToSyncWriteFirst (
     if(when_SDPRAM_l152) begin
       io_read_rsp_uop_isErtn = io_write_payload_data_uop_isErtn;
     end else begin
-      io_read_rsp_uop_isErtn = _zz_io_read_rsp_uop_pc[105];
+      io_read_rsp_uop_isErtn = _zz_io_read_rsp_uop_pc[107];
     end
   end
 
@@ -122876,7 +122877,7 @@ module SDPRAMAsyncToSyncWriteFirst (
     if(when_SDPRAM_l152) begin
       io_read_rsp_uop_flushState = io_write_payload_data_uop_flushState;
     end else begin
-      io_read_rsp_uop_flushState = _zz_io_read_rsp_uop_pc[106];
+      io_read_rsp_uop_flushState = _zz_io_read_rsp_uop_pc[108];
     end
   end
 
@@ -122900,16 +122901,16 @@ module SDPRAMAsyncToSyncWriteFirst (
     if(when_SDPRAM_l152) begin
       io_read_rsp_frontendExc = io_write_payload_data_frontendExc;
     end else begin
-      io_read_rsp_frontendExc = mem_doutb[119];
+      io_read_rsp_frontendExc = mem_doutb[121];
     end
   end
 
-  assign _zz_io_read_rsp_uop_pc = mem_doutb[106 : 0];
+  assign _zz_io_read_rsp_uop_pc = mem_doutb[108 : 0];
   assign _zz_io_read_rsp_uop_predInfo_predictBranch = _zz_io_read_rsp_uop_pc[65 : 64];
-  assign _zz_io_read_rsp_uop_predRecover_recoverTop = _zz_io_read_rsp_uop_pc[75 : 66];
-  assign _zz_io_read_rsp_uop_lsType = _zz_io_read_rsp_uop_pc[86 : 84];
-  assign _zz_io_read_rsp_uop_tlbOp = _zz_io_read_rsp_uop_pc[97 : 94];
-  assign _zz_io_read_rsp_rename_wReg = mem_doutb[118 : 107];
+  assign _zz_io_read_rsp_uop_predRecover_recoverTop = _zz_io_read_rsp_uop_pc[77 : 66];
+  assign _zz_io_read_rsp_uop_lsType = _zz_io_read_rsp_uop_pc[88 : 86];
+  assign _zz_io_read_rsp_uop_tlbOp = _zz_io_read_rsp_uop_pc[99 : 96];
+  assign _zz_io_read_rsp_rename_wReg = mem_doutb[120 : 109];
 
 endmodule
 
@@ -122923,10 +122924,10 @@ module SDPRAM_10 (
   input               aclk,
   input               aresetn,
   input               io_read_cmd_valid,
-  input      [10:0]   io_read_cmd_payload,
+  input      [12:0]   io_read_cmd_payload,
   output     [1:0]    io_read_rsp,
   input               io_write_valid,
-  input      [10:0]   io_write_payload_address,
+  input      [12:0]   io_write_payload_address,
   input      [1:0]    io_write_payload_data
 );
 
@@ -122937,18 +122938,18 @@ module SDPRAM_10 (
   wire                mem_dbiterrb;
 
   xpm_memory_sdpram #(
-    .ADDR_WIDTH_A(11),
-    .ADDR_WIDTH_B(11),
+    .ADDR_WIDTH_A(13),
+    .ADDR_WIDTH_B(13),
     .AUTO_SLEEP_TIME(0),
     .BYTE_WRITE_WIDTH_A(2),
     .CASCADE_HEIGHT(0),
     .CLOCKING_MODE("common_clock"),
     .ECC_MODE("no_ecc"),
     .MEMORY_INIT_FILE("none"),
-    .MEMORY_INIT_PARAM("1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1"),
+    .MEMORY_INIT_PARAM("1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1"),
     .MEMORY_OPTIMIZATION("true"),
     .MEMORY_PRIMITIVE("auto"),
-    .MEMORY_SIZE(4096),
+    .MEMORY_SIZE(16384),
     .MESSAGE_CONTROL(0),
     .READ_DATA_WIDTH_B(2),
     .READ_LATENCY_B(1),
@@ -122966,14 +122967,14 @@ module SDPRAM_10 (
     .rstb           (mem_rstb                      ), //i
     .enb            (io_read_cmd_valid             ), //i
     .regceb         (io_read_cmd_valid             ), //i
-    .addrb          (io_read_cmd_payload[10:0]     ), //i
+    .addrb          (io_read_cmd_payload[12:0]     ), //i
     .doutb          (mem_doutb[1:0]                ), //o
     .sbiterrb       (mem_sbiterrb                  ), //o
     .dbiterrb       (mem_dbiterrb                  ), //o
     .clka           (aclk                          ), //i
     .ena            (io_write_valid                ), //i
     .wea            (1'b1                          ), //i
-    .addra          (io_write_payload_address[10:0]), //i
+    .addra          (io_write_payload_address[12:0]), //i
     .dina           (mem_dina[1:0]                 ), //i
     .injectsbiterra (1'b0                          ), //i
     .injectdbiterra (1'b0                          ), //i

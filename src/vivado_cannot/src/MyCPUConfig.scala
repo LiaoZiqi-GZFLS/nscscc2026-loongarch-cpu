@@ -49,8 +49,8 @@ final case class BTBConfig(
 
 final case class BPUConfig(
     sets: Int = 1024,
-    phtSets: Int = 8192,
-    historyWidth: Int = 5,
+    phtSets: Int = 32768,
+    historyWidth: Int = 7,
     counterWidth: Int = 2
 ) {
   val indexWidth = log2Up(sets)
