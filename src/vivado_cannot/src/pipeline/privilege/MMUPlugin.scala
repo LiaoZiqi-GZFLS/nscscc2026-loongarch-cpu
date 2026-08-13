@@ -36,6 +36,34 @@ final case class TranslateCSRBundle() extends Bundle {
   val CRMD_DATM = Bits(2 bits)
 }
 
+// TLB 查找快照:命中向量 + 命中项全字段(纯组合,字段顺序与 TLBEntry 严格一致)。
+// 快照随流水寄存器传递,保证命中选择与入口数据在同一时钟沿冻结——
+// TLBWR/TLBFILL/INVTLB 在下一拍改写表项时不会造成"旧命中+新表项"的不一致。
+final case class TLBEntrySnapshot() extends Bundle {
+  val E = Bool()
+  val ASID = Bits(10 bits)
+  val G = Bool()
+  val PS = UInt(6 bits)
+  val VPPN = Bits(19 bits)
+
+  val V0 = Bool()
+  val D0 = Bool()
+  val MAT0 = Bits(2 bits)
+  val PLV0 = Bits(2 bits)
+  val PPN0 = Bits(20 bits)
+
+  val V1 = Bool()
+  val D1 = Bool()
+  val MAT1 = Bits(2 bits)
+  val PLV1 = Bits(2 bits)
+  val PPN1 = Bits(20 bits)
+}
+
+final case class TLBLookupSnapshot() extends Bundle {
+  val hit = Bool()
+  val entry = TLBEntrySnapshot()
+}
+
 class MMUPlugin(config: MyCPUConfig) extends Plugin[MyCPUCore] {
   val tlbConfig = config.tlbConfig
   var CSRMan: CSRPlugin = null
@@ -251,12 +279,9 @@ class MMUPlugin(config: MyCPUConfig) extends Plugin[MyCPUCore] {
   })
   // TODO: [NOP] Remove debug signals
 
-  def tlbTranslate(virtAddr: UInt, memOperation: NOP.constants.enum.MemOperationType.C) = new Area {
-    val resultValid = True
-    val resultPhysAddr = UInt(32 bits)
-    val resultCached = Bool()
-    val resultExceptionBundle = new TranslateResultExceptionBundle
-
+  // Stage 1:CAM 比较(E/ASID/VPPN)+ 命中项全字段 16:1 选择。
+  // 结果快照由调用方放入流水寄存器(IF1→IF2 / MEMADDR→MEM1)。
+  def tlbTranslateStage1(virtAddr: UInt) = new Area {
     val EntryEnabled = TLBTable.map { entry => entry.E }
     val ASIDMatches = TLBTable.map { entry => entry.G || entry.ASID === ASID_ASID }
     val VPPNMatches = Vec(TLBTable.map { entry =>
@@ -272,8 +297,24 @@ class MMUPlugin(config: MyCPUConfig) extends Plugin[MyCPUCore] {
       EntryHits(i) := EntryEnabled(i) && ASIDMatches(i) && VPPNMatches(i)
     }
 
-    val TLBHit = EntryHits.orR
-    val TLBHitEntry = MuxOH(Vec(EntryHits), TLBTable)
+    val snapshot = TLBLookupSnapshot()
+    snapshot.hit := EntryHits.orR
+    snapshot.entry.assignFromBits(MuxOH(Vec(EntryHits), TLBTable).asBits)
+  }
+
+  // Stage 2:由快照组装 physAddr/cached/异常(原 tlbTranslate 的后半段)。
+  def tlbTranslateStage2(
+      virtAddr: UInt,
+      memOperation: NOP.constants.enum.MemOperationType.C,
+      snapshot: TLBLookupSnapshot
+  ) = new Area {
+    val resultValid = True
+    val resultPhysAddr = UInt(32 bits)
+    val resultCached = Bool()
+    val resultExceptionBundle = new TranslateResultExceptionBundle
+
+    val TLBHit = snapshot.hit
+    val TLBHitEntry = snapshot.entry
 
     // Extract entry. Use (virtAddr[TLBHitEntry.PS]) as mux.
     val TLBHitEntry_v = Mux(virtAddr(TLBHitEntry.PS(4 downto 0)), TLBHitEntry.V1, TLBHitEntry.V0)

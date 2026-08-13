@@ -1,6 +1,7 @@
 // Generator : SpinalHDL v1.8.1    git head : 2a7592004363e5b40ec43e1f122ed8641cd8965b
 // Component : mycpu_top
-// Date      : 04/08/2026, 02:16:30
+// Git hash  : 0fbfaa1b0ced9bd44ea821b41ab8baf7be141b98
+// Date      : 13/08/2026, 18:02:30
 
 `timescale 1ns/1ps
 
@@ -8837,8 +8838,8 @@ module MyCPUCore (
   wire                _zz_when_ExceptionHandlerPlugin_l222_4;
   wire       [0:0]    _zz_when_ExceptionHandlerPlugin_l222_5;
   wire       [2:0]    _zz_when_ExceptionHandlerPlugin_l222_6;
-  wire       [0:0]    _zz_when_MMUPlugin_l404_15;
-  wire       [5:0]    _zz_when_MMUPlugin_l404_16;
+  wire       [0:0]    _zz_when_MMUPlugin_l445_15;
+  wire       [5:0]    _zz_when_MMUPlugin_l445_16;
   reg        [3:0]    _zz_MMUPlugin_TLBIDX_INDEX_4;
   wire       [3:0]    _zz_MMUPlugin_TLBIDX_INDEX_5;
   reg                 _zz__zz_MMUPlugin_TLBELO0_G;
@@ -8864,23 +8865,23 @@ module MyCPUCore (
   wire       [3:0]    _zz_when_ICachePlugin_l154_1;
   wire       [3:0]    _zz_when_ICachePlugin_l154_2;
   wire       [3:0]    _zz_when_ICachePlugin_l154_3;
-  wire       [0:0]    _zz_IF1_InstAddrTranslatePlugin_tlbTranslateResult_TLBHit;
-  wire       [5:0]    _zz_IF1_InstAddrTranslatePlugin_tlbTranslateResult_TLBHit_1;
-  reg                 _zz_IF1_InstAddrTranslatePlugin_tlbTranslateResult_TLBHitEntry_E_5;
-  reg        [9:0]    _zz_IF1_InstAddrTranslatePlugin_tlbTranslateResult_TLBHitEntry_ASID;
-  reg                 _zz_IF1_InstAddrTranslatePlugin_tlbTranslateResult_TLBHitEntry_G;
-  reg        [5:0]    _zz_IF1_InstAddrTranslatePlugin_tlbTranslateResult_TLBHitEntry_PS;
-  reg        [18:0]   _zz_IF1_InstAddrTranslatePlugin_tlbTranslateResult_TLBHitEntry_VPPN;
-  reg                 _zz_IF1_InstAddrTranslatePlugin_tlbTranslateResult_TLBHitEntry_V0;
-  reg                 _zz_IF1_InstAddrTranslatePlugin_tlbTranslateResult_TLBHitEntry_D0;
-  reg        [1:0]    _zz_IF1_InstAddrTranslatePlugin_tlbTranslateResult_TLBHitEntry_MAT0;
-  reg        [1:0]    _zz_IF1_InstAddrTranslatePlugin_tlbTranslateResult_TLBHitEntry_PLV0;
-  reg        [19:0]   _zz_IF1_InstAddrTranslatePlugin_tlbTranslateResult_TLBHitEntry_PPN0;
-  reg                 _zz_IF1_InstAddrTranslatePlugin_tlbTranslateResult_TLBHitEntry_V1;
-  reg                 _zz_IF1_InstAddrTranslatePlugin_tlbTranslateResult_TLBHitEntry_D1;
-  reg        [1:0]    _zz_IF1_InstAddrTranslatePlugin_tlbTranslateResult_TLBHitEntry_MAT1;
-  reg        [1:0]    _zz_IF1_InstAddrTranslatePlugin_tlbTranslateResult_TLBHitEntry_PLV1;
-  reg        [19:0]   _zz_IF1_InstAddrTranslatePlugin_tlbTranslateResult_TLBHitEntry_PPN1;
+  wire       [0:0]    _zz_IF1_InstAddrTranslatePlugin_tlbLookup_snapshot_hit;
+  wire       [5:0]    _zz_IF1_InstAddrTranslatePlugin_tlbLookup_snapshot_hit_1;
+  reg        [19:0]   _zz__zz_IF1_InstAddrTranslatePlugin_tlbLookup_snapshot_entry_E_5;
+  reg        [1:0]    _zz__zz_IF1_InstAddrTranslatePlugin_tlbLookup_snapshot_entry_E_5_1;
+  reg        [1:0]    _zz__zz_IF1_InstAddrTranslatePlugin_tlbLookup_snapshot_entry_E_5_2;
+  reg                 _zz__zz_IF1_InstAddrTranslatePlugin_tlbLookup_snapshot_entry_E_5_3;
+  reg                 _zz__zz_IF1_InstAddrTranslatePlugin_tlbLookup_snapshot_entry_E_5_4;
+  reg        [19:0]   _zz__zz_IF1_InstAddrTranslatePlugin_tlbLookup_snapshot_entry_E_5_5;
+  reg        [1:0]    _zz__zz_IF1_InstAddrTranslatePlugin_tlbLookup_snapshot_entry_E_5_6;
+  reg        [1:0]    _zz__zz_IF1_InstAddrTranslatePlugin_tlbLookup_snapshot_entry_E_5_7;
+  reg                 _zz__zz_IF1_InstAddrTranslatePlugin_tlbLookup_snapshot_entry_E_5_8;
+  reg                 _zz__zz_IF1_InstAddrTranslatePlugin_tlbLookup_snapshot_entry_E_5_9;
+  reg        [18:0]   _zz__zz_IF1_InstAddrTranslatePlugin_tlbLookup_snapshot_entry_E_5_10;
+  reg        [5:0]    _zz__zz_IF1_InstAddrTranslatePlugin_tlbLookup_snapshot_entry_E_5_11;
+  reg                 _zz__zz_IF1_InstAddrTranslatePlugin_tlbLookup_snapshot_entry_E_5_12;
+  reg        [9:0]    _zz__zz_IF1_InstAddrTranslatePlugin_tlbLookup_snapshot_entry_E_5_13;
+  reg                 _zz__zz_IF1_InstAddrTranslatePlugin_tlbLookup_snapshot_entry_E_5_14;
   wire       [3:0]    _zz_when_GlobalPredictorBTBPlugin_l112;
   reg                 _zz_when_GlobalPredictorBTBPlugin_l115;
   wire       [9:0]    _zz_when_GlobalPredictorBTBPlugin_l115_1;
@@ -9093,23 +9094,23 @@ module MyCPUCore (
   wire       [32:0]   _zz_MULDIV_EXE_MulDivExecutePlugin_remainder_5;
   wire       [0:0]    _zz_MULDIV_EXE_MulDivExecutePlugin_remainder_6;
   wire       [31:0]   _zz_MEM_ADDR_AddressGenerationPlugin_memWData_1;
-  wire       [0:0]    _zz_MEM_ADDR_AddressGenerationPlugin_tlbTranslateResult_TLBHit;
-  wire       [5:0]    _zz_MEM_ADDR_AddressGenerationPlugin_tlbTranslateResult_TLBHit_1;
-  reg                 _zz_MEM_ADDR_AddressGenerationPlugin_tlbTranslateResult_TLBHitEntry_E_5;
-  reg        [9:0]    _zz_MEM_ADDR_AddressGenerationPlugin_tlbTranslateResult_TLBHitEntry_ASID;
-  reg                 _zz_MEM_ADDR_AddressGenerationPlugin_tlbTranslateResult_TLBHitEntry_G;
-  reg        [5:0]    _zz_MEM_ADDR_AddressGenerationPlugin_tlbTranslateResult_TLBHitEntry_PS;
-  reg        [18:0]   _zz_MEM_ADDR_AddressGenerationPlugin_tlbTranslateResult_TLBHitEntry_VPPN;
-  reg                 _zz_MEM_ADDR_AddressGenerationPlugin_tlbTranslateResult_TLBHitEntry_V0;
-  reg                 _zz_MEM_ADDR_AddressGenerationPlugin_tlbTranslateResult_TLBHitEntry_D0;
-  reg        [1:0]    _zz_MEM_ADDR_AddressGenerationPlugin_tlbTranslateResult_TLBHitEntry_MAT0;
-  reg        [1:0]    _zz_MEM_ADDR_AddressGenerationPlugin_tlbTranslateResult_TLBHitEntry_PLV0;
-  reg        [19:0]   _zz_MEM_ADDR_AddressGenerationPlugin_tlbTranslateResult_TLBHitEntry_PPN0;
-  reg                 _zz_MEM_ADDR_AddressGenerationPlugin_tlbTranslateResult_TLBHitEntry_V1;
-  reg                 _zz_MEM_ADDR_AddressGenerationPlugin_tlbTranslateResult_TLBHitEntry_D1;
-  reg        [1:0]    _zz_MEM_ADDR_AddressGenerationPlugin_tlbTranslateResult_TLBHitEntry_MAT1;
-  reg        [1:0]    _zz_MEM_ADDR_AddressGenerationPlugin_tlbTranslateResult_TLBHitEntry_PLV1;
-  reg        [19:0]   _zz_MEM_ADDR_AddressGenerationPlugin_tlbTranslateResult_TLBHitEntry_PPN1;
+  wire       [0:0]    _zz_MEM_ADDR_AddressGenerationPlugin_tlbLookup_snapshot_hit;
+  wire       [5:0]    _zz_MEM_ADDR_AddressGenerationPlugin_tlbLookup_snapshot_hit_1;
+  reg        [19:0]   _zz__zz_MEM_ADDR_AddressGenerationPlugin_tlbLookup_snapshot_entry_E_5;
+  reg        [1:0]    _zz__zz_MEM_ADDR_AddressGenerationPlugin_tlbLookup_snapshot_entry_E_5_1;
+  reg        [1:0]    _zz__zz_MEM_ADDR_AddressGenerationPlugin_tlbLookup_snapshot_entry_E_5_2;
+  reg                 _zz__zz_MEM_ADDR_AddressGenerationPlugin_tlbLookup_snapshot_entry_E_5_3;
+  reg                 _zz__zz_MEM_ADDR_AddressGenerationPlugin_tlbLookup_snapshot_entry_E_5_4;
+  reg        [19:0]   _zz__zz_MEM_ADDR_AddressGenerationPlugin_tlbLookup_snapshot_entry_E_5_5;
+  reg        [1:0]    _zz__zz_MEM_ADDR_AddressGenerationPlugin_tlbLookup_snapshot_entry_E_5_6;
+  reg        [1:0]    _zz__zz_MEM_ADDR_AddressGenerationPlugin_tlbLookup_snapshot_entry_E_5_7;
+  reg                 _zz__zz_MEM_ADDR_AddressGenerationPlugin_tlbLookup_snapshot_entry_E_5_8;
+  reg                 _zz__zz_MEM_ADDR_AddressGenerationPlugin_tlbLookup_snapshot_entry_E_5_9;
+  reg        [18:0]   _zz__zz_MEM_ADDR_AddressGenerationPlugin_tlbLookup_snapshot_entry_E_5_10;
+  reg        [5:0]    _zz__zz_MEM_ADDR_AddressGenerationPlugin_tlbLookup_snapshot_entry_E_5_11;
+  reg                 _zz__zz_MEM_ADDR_AddressGenerationPlugin_tlbLookup_snapshot_entry_E_5_12;
+  reg        [9:0]    _zz__zz_MEM_ADDR_AddressGenerationPlugin_tlbLookup_snapshot_entry_E_5_13;
+  reg                 _zz__zz_MEM_ADDR_AddressGenerationPlugin_tlbLookup_snapshot_entry_E_5_14;
   wire       [3:0]    _zz_MEM_MEM2_DCachePlugin_dirtyLineWritebackFSM_rspId_valueNext;
   wire       [0:0]    _zz_MEM_MEM2_DCachePlugin_dirtyLineWritebackFSM_rspId_valueNext_1;
   reg                 _zz_MEM_MEM2_DCachePlugin_fixUncacheFSM_dirty;
@@ -9170,15 +9171,22 @@ module MyCPUCore (
   wire                MEM_ADDR_TRANSLATE_SAVED_CSR_CRMD_PG;
   wire       [1:0]    MEM_ADDR_TRANSLATE_SAVED_CSR_CRMD_DATF;
   wire       [1:0]    MEM_ADDR_TRANSLATE_SAVED_CSR_CRMD_DATM;
-  wire                MEM_ADDR_TLB_TRANSLATE_RESULT_valid;
-  wire       [31:0]   MEM_ADDR_TLB_TRANSLATE_RESULT_payload_physAddr;
-  wire                MEM_ADDR_TLB_TRANSLATE_RESULT_payload_cached;
-  wire                MEM_ADDR_TLB_TRANSLATE_RESULT_payload_exception_raisePIL;
-  wire                MEM_ADDR_TLB_TRANSLATE_RESULT_payload_exception_raisePIS;
-  wire                MEM_ADDR_TLB_TRANSLATE_RESULT_payload_exception_raisePIF;
-  wire                MEM_ADDR_TLB_TRANSLATE_RESULT_payload_exception_raisePME;
-  wire                MEM_ADDR_TLB_TRANSLATE_RESULT_payload_exception_raisePPI;
-  wire                MEM_ADDR_TLB_TRANSLATE_RESULT_payload_exception_raiseTLBR;
+  wire                MEM_ADDR_TLB_LOOKUP_SNAPSHOT_hit;
+  wire                MEM_ADDR_TLB_LOOKUP_SNAPSHOT_entry_E;
+  wire       [9:0]    MEM_ADDR_TLB_LOOKUP_SNAPSHOT_entry_ASID;
+  wire                MEM_ADDR_TLB_LOOKUP_SNAPSHOT_entry_G;
+  wire       [5:0]    MEM_ADDR_TLB_LOOKUP_SNAPSHOT_entry_PS;
+  wire       [18:0]   MEM_ADDR_TLB_LOOKUP_SNAPSHOT_entry_VPPN;
+  wire                MEM_ADDR_TLB_LOOKUP_SNAPSHOT_entry_V0;
+  wire                MEM_ADDR_TLB_LOOKUP_SNAPSHOT_entry_D0;
+  wire       [1:0]    MEM_ADDR_TLB_LOOKUP_SNAPSHOT_entry_MAT0;
+  wire       [1:0]    MEM_ADDR_TLB_LOOKUP_SNAPSHOT_entry_PLV0;
+  wire       [19:0]   MEM_ADDR_TLB_LOOKUP_SNAPSHOT_entry_PPN0;
+  wire                MEM_ADDR_TLB_LOOKUP_SNAPSHOT_entry_V1;
+  wire                MEM_ADDR_TLB_LOOKUP_SNAPSHOT_entry_D1;
+  wire       [1:0]    MEM_ADDR_TLB_LOOKUP_SNAPSHOT_entry_MAT1;
+  wire       [1:0]    MEM_ADDR_TLB_LOOKUP_SNAPSHOT_entry_PLV1;
+  wire       [19:0]   MEM_ADDR_TLB_LOOKUP_SNAPSHOT_entry_PPN1;
   wire                MEM_ADDR_DIRECT_TRANSLATE_RESULT_valid;
   wire       [31:0]   MEM_ADDR_DIRECT_TRANSLATE_RESULT_payload_physAddr;
   wire                MEM_ADDR_DIRECT_TRANSLATE_RESULT_payload_cached;
@@ -9738,15 +9746,22 @@ module MyCPUCore (
   wire                IF1_TRANSLATE_SAVED_CSR_CRMD_PG;
   wire       [1:0]    IF1_TRANSLATE_SAVED_CSR_CRMD_DATF;
   wire       [1:0]    IF1_TRANSLATE_SAVED_CSR_CRMD_DATM;
-  wire                IF1_TLB_TRANSLATE_RESULT_valid;
-  wire       [31:0]   IF1_TLB_TRANSLATE_RESULT_payload_physAddr;
-  wire                IF1_TLB_TRANSLATE_RESULT_payload_cached;
-  wire                IF1_TLB_TRANSLATE_RESULT_payload_exception_raisePIL;
-  wire                IF1_TLB_TRANSLATE_RESULT_payload_exception_raisePIS;
-  wire                IF1_TLB_TRANSLATE_RESULT_payload_exception_raisePIF;
-  wire                IF1_TLB_TRANSLATE_RESULT_payload_exception_raisePME;
-  wire                IF1_TLB_TRANSLATE_RESULT_payload_exception_raisePPI;
-  wire                IF1_TLB_TRANSLATE_RESULT_payload_exception_raiseTLBR;
+  wire                IF1_TLB_LOOKUP_SNAPSHOT_hit;
+  wire                IF1_TLB_LOOKUP_SNAPSHOT_entry_E;
+  wire       [9:0]    IF1_TLB_LOOKUP_SNAPSHOT_entry_ASID;
+  wire                IF1_TLB_LOOKUP_SNAPSHOT_entry_G;
+  wire       [5:0]    IF1_TLB_LOOKUP_SNAPSHOT_entry_PS;
+  wire       [18:0]   IF1_TLB_LOOKUP_SNAPSHOT_entry_VPPN;
+  wire                IF1_TLB_LOOKUP_SNAPSHOT_entry_V0;
+  wire                IF1_TLB_LOOKUP_SNAPSHOT_entry_D0;
+  wire       [1:0]    IF1_TLB_LOOKUP_SNAPSHOT_entry_MAT0;
+  wire       [1:0]    IF1_TLB_LOOKUP_SNAPSHOT_entry_PLV0;
+  wire       [19:0]   IF1_TLB_LOOKUP_SNAPSHOT_entry_PPN0;
+  wire                IF1_TLB_LOOKUP_SNAPSHOT_entry_V1;
+  wire                IF1_TLB_LOOKUP_SNAPSHOT_entry_D1;
+  wire       [1:0]    IF1_TLB_LOOKUP_SNAPSHOT_entry_MAT1;
+  wire       [1:0]    IF1_TLB_LOOKUP_SNAPSHOT_entry_PLV1;
+  wire       [19:0]   IF1_TLB_LOOKUP_SNAPSHOT_entry_PPN1;
   wire                IF1_DIRECT_TRANSLATE_RESULT_valid;
   wire       [31:0]   IF1_DIRECT_TRANSLATE_RESULT_payload_physAddr;
   wire                IF1_DIRECT_TRANSLATE_RESULT_payload_cached;
@@ -10005,15 +10020,6 @@ module MyCPUCore (
   wire                MEM_MEM1_TRANSLATE_SAVED_CSR_CRMD_PG;
   wire       [1:0]    MEM_MEM1_TRANSLATE_SAVED_CSR_CRMD_DATF;
   wire       [1:0]    MEM_MEM1_TRANSLATE_SAVED_CSR_CRMD_DATM;
-  wire                MEM_MEM1_TLB_TRANSLATE_RESULT_valid;
-  wire       [31:0]   MEM_MEM1_TLB_TRANSLATE_RESULT_payload_physAddr;
-  wire                MEM_MEM1_TLB_TRANSLATE_RESULT_payload_cached;
-  wire                MEM_MEM1_TLB_TRANSLATE_RESULT_payload_exception_raisePIL;
-  wire                MEM_MEM1_TLB_TRANSLATE_RESULT_payload_exception_raisePIS;
-  wire                MEM_MEM1_TLB_TRANSLATE_RESULT_payload_exception_raisePIF;
-  wire                MEM_MEM1_TLB_TRANSLATE_RESULT_payload_exception_raisePME;
-  wire                MEM_MEM1_TLB_TRANSLATE_RESULT_payload_exception_raisePPI;
-  wire                MEM_MEM1_TLB_TRANSLATE_RESULT_payload_exception_raiseTLBR;
   wire                MEM_MEM1_DIRECT_TRANSLATE_RESULT_valid;
   wire       [31:0]   MEM_MEM1_DIRECT_TRANSLATE_RESULT_payload_physAddr;
   wire                MEM_MEM1_DIRECT_TRANSLATE_RESULT_payload_cached;
@@ -10023,6 +10029,22 @@ module MyCPUCore (
   wire                MEM_MEM1_DIRECT_TRANSLATE_RESULT_payload_exception_raisePME;
   wire                MEM_MEM1_DIRECT_TRANSLATE_RESULT_payload_exception_raisePPI;
   wire                MEM_MEM1_DIRECT_TRANSLATE_RESULT_payload_exception_raiseTLBR;
+  wire                MEM_MEM1_TLB_LOOKUP_SNAPSHOT_hit;
+  wire                MEM_MEM1_TLB_LOOKUP_SNAPSHOT_entry_E;
+  wire       [9:0]    MEM_MEM1_TLB_LOOKUP_SNAPSHOT_entry_ASID;
+  wire                MEM_MEM1_TLB_LOOKUP_SNAPSHOT_entry_G;
+  wire       [5:0]    MEM_MEM1_TLB_LOOKUP_SNAPSHOT_entry_PS;
+  wire       [18:0]   MEM_MEM1_TLB_LOOKUP_SNAPSHOT_entry_VPPN;
+  wire                MEM_MEM1_TLB_LOOKUP_SNAPSHOT_entry_V0;
+  wire                MEM_MEM1_TLB_LOOKUP_SNAPSHOT_entry_D0;
+  wire       [1:0]    MEM_MEM1_TLB_LOOKUP_SNAPSHOT_entry_MAT0;
+  wire       [1:0]    MEM_MEM1_TLB_LOOKUP_SNAPSHOT_entry_PLV0;
+  wire       [19:0]   MEM_MEM1_TLB_LOOKUP_SNAPSHOT_entry_PPN0;
+  wire                MEM_MEM1_TLB_LOOKUP_SNAPSHOT_entry_V1;
+  wire                MEM_MEM1_TLB_LOOKUP_SNAPSHOT_entry_D1;
+  wire       [1:0]    MEM_MEM1_TLB_LOOKUP_SNAPSHOT_entry_MAT1;
+  wire       [1:0]    MEM_MEM1_TLB_LOOKUP_SNAPSHOT_entry_PLV1;
+  wire       [19:0]   MEM_MEM1_TLB_LOOKUP_SNAPSHOT_entry_PPN1;
   wire       [31:0]   MEM_MEM1_AddressGenerationPlugin_physAddr;
   wire       [31:0]   MEM_MEM1_MEMORY_ADDRESS;
   wire                MEM_MEM1_ISSUE_SLOT_rRegs_0_valid;
@@ -10645,15 +10667,6 @@ module MyCPUCore (
   wire                IF2_TRANSLATE_SAVED_CSR_CRMD_PG;
   wire       [1:0]    IF2_TRANSLATE_SAVED_CSR_CRMD_DATF;
   wire       [1:0]    IF2_TRANSLATE_SAVED_CSR_CRMD_DATM;
-  wire                IF2_TLB_TRANSLATE_RESULT_valid;
-  wire       [31:0]   IF2_TLB_TRANSLATE_RESULT_payload_physAddr;
-  wire                IF2_TLB_TRANSLATE_RESULT_payload_cached;
-  wire                IF2_TLB_TRANSLATE_RESULT_payload_exception_raisePIL;
-  wire                IF2_TLB_TRANSLATE_RESULT_payload_exception_raisePIS;
-  wire                IF2_TLB_TRANSLATE_RESULT_payload_exception_raisePIF;
-  wire                IF2_TLB_TRANSLATE_RESULT_payload_exception_raisePME;
-  wire                IF2_TLB_TRANSLATE_RESULT_payload_exception_raisePPI;
-  wire                IF2_TLB_TRANSLATE_RESULT_payload_exception_raiseTLBR;
   wire                IF2_DIRECT_TRANSLATE_RESULT_valid;
   wire       [31:0]   IF2_DIRECT_TRANSLATE_RESULT_payload_physAddr;
   wire                IF2_DIRECT_TRANSLATE_RESULT_payload_cached;
@@ -10663,6 +10676,22 @@ module MyCPUCore (
   wire                IF2_DIRECT_TRANSLATE_RESULT_payload_exception_raisePME;
   wire                IF2_DIRECT_TRANSLATE_RESULT_payload_exception_raisePPI;
   wire                IF2_DIRECT_TRANSLATE_RESULT_payload_exception_raiseTLBR;
+  wire                IF2_TLB_LOOKUP_SNAPSHOT_hit;
+  wire                IF2_TLB_LOOKUP_SNAPSHOT_entry_E;
+  wire       [9:0]    IF2_TLB_LOOKUP_SNAPSHOT_entry_ASID;
+  wire                IF2_TLB_LOOKUP_SNAPSHOT_entry_G;
+  wire       [5:0]    IF2_TLB_LOOKUP_SNAPSHOT_entry_PS;
+  wire       [18:0]   IF2_TLB_LOOKUP_SNAPSHOT_entry_VPPN;
+  wire                IF2_TLB_LOOKUP_SNAPSHOT_entry_V0;
+  wire                IF2_TLB_LOOKUP_SNAPSHOT_entry_D0;
+  wire       [1:0]    IF2_TLB_LOOKUP_SNAPSHOT_entry_MAT0;
+  wire       [1:0]    IF2_TLB_LOOKUP_SNAPSHOT_entry_PLV0;
+  wire       [19:0]   IF2_TLB_LOOKUP_SNAPSHOT_entry_PPN0;
+  wire                IF2_TLB_LOOKUP_SNAPSHOT_entry_V1;
+  wire                IF2_TLB_LOOKUP_SNAPSHOT_entry_D1;
+  wire       [1:0]    IF2_TLB_LOOKUP_SNAPSHOT_entry_MAT1;
+  wire       [1:0]    IF2_TLB_LOOKUP_SNAPSHOT_entry_PLV1;
+  wire       [19:0]   IF2_TLB_LOOKUP_SNAPSHOT_entry_PPN1;
   wire                IF2_InstAddrTranslatePlugin_tlbRefill;
   wire                IF2_InstAddrTranslatePlugin_pcCached;
   wire       [31:0]   IF2_InstAddrTranslatePlugin_physPC;
@@ -16772,22 +16801,22 @@ module MyCPUCore (
   wire                when_InterruptHandlerPlugin_l87;
   wire                when_InterruptHandlerPlugin_l93;
   wire                when_InterruptHandlerPlugin_l97;
-  wire                _zz_when_MMUPlugin_l404;
-  wire                _zz_when_MMUPlugin_l404_1;
-  wire                _zz_when_MMUPlugin_l404_2;
-  wire                _zz_when_MMUPlugin_l404_3;
-  wire                _zz_when_MMUPlugin_l404_4;
-  wire                _zz_when_MMUPlugin_l404_5;
-  wire                _zz_when_MMUPlugin_l404_6;
-  wire                _zz_when_MMUPlugin_l404_7;
-  wire                _zz_when_MMUPlugin_l404_8;
-  wire                _zz_when_MMUPlugin_l404_9;
-  wire                _zz_when_MMUPlugin_l404_10;
-  wire                _zz_when_MMUPlugin_l404_11;
-  wire                _zz_when_MMUPlugin_l404_12;
-  wire                _zz_when_MMUPlugin_l404_13;
-  wire                _zz_when_MMUPlugin_l404_14;
-  wire                when_MMUPlugin_l404;
+  wire                _zz_when_MMUPlugin_l445;
+  wire                _zz_when_MMUPlugin_l445_1;
+  wire                _zz_when_MMUPlugin_l445_2;
+  wire                _zz_when_MMUPlugin_l445_3;
+  wire                _zz_when_MMUPlugin_l445_4;
+  wire                _zz_when_MMUPlugin_l445_5;
+  wire                _zz_when_MMUPlugin_l445_6;
+  wire                _zz_when_MMUPlugin_l445_7;
+  wire                _zz_when_MMUPlugin_l445_8;
+  wire                _zz_when_MMUPlugin_l445_9;
+  wire                _zz_when_MMUPlugin_l445_10;
+  wire                _zz_when_MMUPlugin_l445_11;
+  wire                _zz_when_MMUPlugin_l445_12;
+  wire                _zz_when_MMUPlugin_l445_13;
+  wire                _zz_when_MMUPlugin_l445_14;
+  wire                when_MMUPlugin_l445;
   wire                _zz_MMUPlugin_TLBIDX_INDEX;
   wire                _zz_MMUPlugin_TLBIDX_INDEX_1;
   wire                _zz_MMUPlugin_TLBIDX_INDEX_2;
@@ -16811,7 +16840,7 @@ module MyCPUCore (
   wire                _zz_292;
   wire                _zz_293;
   wire                _zz_294;
-  wire                when_MMUPlugin_l455;
+  wire                when_MMUPlugin_l496;
   wire                _zz_MMUPlugin_TLBTable_0_E;
   wire                _zz_MMUPlugin_TLBTable_0_G;
   wire       [5:0]    _zz_MMUPlugin_TLBTable_0_PS;
@@ -16832,7 +16861,7 @@ module MyCPUCore (
   wire                _zz_309;
   wire                _zz_310;
   wire                _zz_311;
-  wire                when_MMUPlugin_l479;
+  wire                when_MMUPlugin_l520;
   wire                _zz_MMUPlugin_TLBTable_0_E_1;
   wire       [5:0]    _zz_MMUPlugin_TLBTable_0_PS_1;
   wire                _zz_MMUPlugin_TLBTable_0_G_1;
@@ -17077,107 +17106,108 @@ module MyCPUCore (
   wire                IF1_InstAddrTranslatePlugin_directTranslateResult_resultBundle_payload_exception_raisePME;
   wire                IF1_InstAddrTranslatePlugin_directTranslateResult_resultBundle_payload_exception_raisePPI;
   wire                IF1_InstAddrTranslatePlugin_directTranslateResult_resultBundle_payload_exception_raiseTLBR;
-  wire       [1:0]    switch_MMUPlugin_l290;
-  wire                IF1_InstAddrTranslatePlugin_tlbTranslateResult_resultValid;
-  wire       [31:0]   IF1_InstAddrTranslatePlugin_tlbTranslateResult_resultPhysAddr;
-  wire                IF1_InstAddrTranslatePlugin_tlbTranslateResult_resultCached;
-  reg                 IF1_InstAddrTranslatePlugin_tlbTranslateResult_resultExceptionBundle_raisePIL;
-  reg                 IF1_InstAddrTranslatePlugin_tlbTranslateResult_resultExceptionBundle_raisePIS;
-  reg                 IF1_InstAddrTranslatePlugin_tlbTranslateResult_resultExceptionBundle_raisePIF;
-  reg                 IF1_InstAddrTranslatePlugin_tlbTranslateResult_resultExceptionBundle_raisePME;
-  reg                 IF1_InstAddrTranslatePlugin_tlbTranslateResult_resultExceptionBundle_raisePPI;
-  reg                 IF1_InstAddrTranslatePlugin_tlbTranslateResult_resultExceptionBundle_raiseTLBR;
-  wire                IF1_InstAddrTranslatePlugin_tlbTranslateResult_ASIDMatches_0;
-  wire                IF1_InstAddrTranslatePlugin_tlbTranslateResult_ASIDMatches_1;
-  wire                IF1_InstAddrTranslatePlugin_tlbTranslateResult_ASIDMatches_2;
-  wire                IF1_InstAddrTranslatePlugin_tlbTranslateResult_ASIDMatches_3;
-  wire                IF1_InstAddrTranslatePlugin_tlbTranslateResult_ASIDMatches_4;
-  wire                IF1_InstAddrTranslatePlugin_tlbTranslateResult_ASIDMatches_5;
-  wire                IF1_InstAddrTranslatePlugin_tlbTranslateResult_ASIDMatches_6;
-  wire                IF1_InstAddrTranslatePlugin_tlbTranslateResult_ASIDMatches_7;
-  wire                IF1_InstAddrTranslatePlugin_tlbTranslateResult_ASIDMatches_8;
-  wire                IF1_InstAddrTranslatePlugin_tlbTranslateResult_ASIDMatches_9;
-  wire                IF1_InstAddrTranslatePlugin_tlbTranslateResult_ASIDMatches_10;
-  wire                IF1_InstAddrTranslatePlugin_tlbTranslateResult_ASIDMatches_11;
-  wire                IF1_InstAddrTranslatePlugin_tlbTranslateResult_ASIDMatches_12;
-  wire                IF1_InstAddrTranslatePlugin_tlbTranslateResult_ASIDMatches_13;
-  wire                IF1_InstAddrTranslatePlugin_tlbTranslateResult_ASIDMatches_14;
-  wire                IF1_InstAddrTranslatePlugin_tlbTranslateResult_ASIDMatches_15;
-  wire                IF1_InstAddrTranslatePlugin_tlbTranslateResult_VPPNMatches_0;
-  wire                IF1_InstAddrTranslatePlugin_tlbTranslateResult_VPPNMatches_1;
-  wire                IF1_InstAddrTranslatePlugin_tlbTranslateResult_VPPNMatches_2;
-  wire                IF1_InstAddrTranslatePlugin_tlbTranslateResult_VPPNMatches_3;
-  wire                IF1_InstAddrTranslatePlugin_tlbTranslateResult_VPPNMatches_4;
-  wire                IF1_InstAddrTranslatePlugin_tlbTranslateResult_VPPNMatches_5;
-  wire                IF1_InstAddrTranslatePlugin_tlbTranslateResult_VPPNMatches_6;
-  wire                IF1_InstAddrTranslatePlugin_tlbTranslateResult_VPPNMatches_7;
-  wire                IF1_InstAddrTranslatePlugin_tlbTranslateResult_VPPNMatches_8;
-  wire                IF1_InstAddrTranslatePlugin_tlbTranslateResult_VPPNMatches_9;
-  wire                IF1_InstAddrTranslatePlugin_tlbTranslateResult_VPPNMatches_10;
-  wire                IF1_InstAddrTranslatePlugin_tlbTranslateResult_VPPNMatches_11;
-  wire                IF1_InstAddrTranslatePlugin_tlbTranslateResult_VPPNMatches_12;
-  wire                IF1_InstAddrTranslatePlugin_tlbTranslateResult_VPPNMatches_13;
-  wire                IF1_InstAddrTranslatePlugin_tlbTranslateResult_VPPNMatches_14;
-  wire                IF1_InstAddrTranslatePlugin_tlbTranslateResult_VPPNMatches_15;
-  wire                IF1_InstAddrTranslatePlugin_tlbTranslateResult_EntryHits_0;
-  wire                IF1_InstAddrTranslatePlugin_tlbTranslateResult_EntryHits_1;
-  wire                IF1_InstAddrTranslatePlugin_tlbTranslateResult_EntryHits_2;
-  wire                IF1_InstAddrTranslatePlugin_tlbTranslateResult_EntryHits_3;
-  wire                IF1_InstAddrTranslatePlugin_tlbTranslateResult_EntryHits_4;
-  wire                IF1_InstAddrTranslatePlugin_tlbTranslateResult_EntryHits_5;
-  wire                IF1_InstAddrTranslatePlugin_tlbTranslateResult_EntryHits_6;
-  wire                IF1_InstAddrTranslatePlugin_tlbTranslateResult_EntryHits_7;
-  wire                IF1_InstAddrTranslatePlugin_tlbTranslateResult_EntryHits_8;
-  wire                IF1_InstAddrTranslatePlugin_tlbTranslateResult_EntryHits_9;
-  wire                IF1_InstAddrTranslatePlugin_tlbTranslateResult_EntryHits_10;
-  wire                IF1_InstAddrTranslatePlugin_tlbTranslateResult_EntryHits_11;
-  wire                IF1_InstAddrTranslatePlugin_tlbTranslateResult_EntryHits_12;
-  wire                IF1_InstAddrTranslatePlugin_tlbTranslateResult_EntryHits_13;
-  wire                IF1_InstAddrTranslatePlugin_tlbTranslateResult_EntryHits_14;
-  wire                IF1_InstAddrTranslatePlugin_tlbTranslateResult_EntryHits_15;
-  wire                IF1_InstAddrTranslatePlugin_tlbTranslateResult_TLBHit;
-  wire                _zz_IF1_InstAddrTranslatePlugin_tlbTranslateResult_TLBHitEntry_E;
-  wire                _zz_IF1_InstAddrTranslatePlugin_tlbTranslateResult_TLBHitEntry_E_1;
-  wire                _zz_IF1_InstAddrTranslatePlugin_tlbTranslateResult_TLBHitEntry_E_2;
-  wire                _zz_IF1_InstAddrTranslatePlugin_tlbTranslateResult_TLBHitEntry_E_3;
-  wire       [3:0]    _zz_IF1_InstAddrTranslatePlugin_tlbTranslateResult_TLBHitEntry_E_4;
-  wire                IF1_InstAddrTranslatePlugin_tlbTranslateResult_TLBHitEntry_E;
-  wire       [9:0]    IF1_InstAddrTranslatePlugin_tlbTranslateResult_TLBHitEntry_ASID;
-  wire                IF1_InstAddrTranslatePlugin_tlbTranslateResult_TLBHitEntry_G;
-  wire       [5:0]    IF1_InstAddrTranslatePlugin_tlbTranslateResult_TLBHitEntry_PS;
-  wire       [18:0]   IF1_InstAddrTranslatePlugin_tlbTranslateResult_TLBHitEntry_VPPN;
-  wire                IF1_InstAddrTranslatePlugin_tlbTranslateResult_TLBHitEntry_V0;
-  wire                IF1_InstAddrTranslatePlugin_tlbTranslateResult_TLBHitEntry_D0;
-  wire       [1:0]    IF1_InstAddrTranslatePlugin_tlbTranslateResult_TLBHitEntry_MAT0;
-  wire       [1:0]    IF1_InstAddrTranslatePlugin_tlbTranslateResult_TLBHitEntry_PLV0;
-  wire       [19:0]   IF1_InstAddrTranslatePlugin_tlbTranslateResult_TLBHitEntry_PPN0;
-  wire                IF1_InstAddrTranslatePlugin_tlbTranslateResult_TLBHitEntry_V1;
-  wire                IF1_InstAddrTranslatePlugin_tlbTranslateResult_TLBHitEntry_D1;
-  wire       [1:0]    IF1_InstAddrTranslatePlugin_tlbTranslateResult_TLBHitEntry_MAT1;
-  wire       [1:0]    IF1_InstAddrTranslatePlugin_tlbTranslateResult_TLBHitEntry_PLV1;
-  wire       [19:0]   IF1_InstAddrTranslatePlugin_tlbTranslateResult_TLBHitEntry_PPN1;
-  wire                IF1_InstAddrTranslatePlugin_tlbTranslateResult_TLBHitEntry_v;
-  wire                IF1_InstAddrTranslatePlugin_tlbTranslateResult_TLBHitEntry_d;
-  wire       [1:0]    IF1_InstAddrTranslatePlugin_tlbTranslateResult_TLBHitEntry_mat;
-  wire       [1:0]    IF1_InstAddrTranslatePlugin_tlbTranslateResult_TLBHitEntry_plv;
-  wire       [19:0]   IF1_InstAddrTranslatePlugin_tlbTranslateResult_TLBHitEntry_ppn;
-  wire                when_MMUPlugin_l285;
-  wire                when_MMUPlugin_l289;
-  wire                when_MMUPlugin_l303;
-  wire                when_MMUPlugin_l307;
-  wire                IF1_InstAddrTranslatePlugin_tlbTranslateResult_resultBundle_valid;
-  wire       [31:0]   IF1_InstAddrTranslatePlugin_tlbTranslateResult_resultBundle_payload_physAddr;
-  wire                IF1_InstAddrTranslatePlugin_tlbTranslateResult_resultBundle_payload_cached;
-  wire                IF1_InstAddrTranslatePlugin_tlbTranslateResult_resultBundle_payload_exception_raisePIL;
-  wire                IF1_InstAddrTranslatePlugin_tlbTranslateResult_resultBundle_payload_exception_raisePIS;
-  wire                IF1_InstAddrTranslatePlugin_tlbTranslateResult_resultBundle_payload_exception_raisePIF;
-  wire                IF1_InstAddrTranslatePlugin_tlbTranslateResult_resultBundle_payload_exception_raisePME;
-  wire                IF1_InstAddrTranslatePlugin_tlbTranslateResult_resultBundle_payload_exception_raisePPI;
-  wire                IF1_InstAddrTranslatePlugin_tlbTranslateResult_resultBundle_payload_exception_raiseTLBR;
+  wire                IF1_InstAddrTranslatePlugin_tlbLookup_ASIDMatches_0;
+  wire                IF1_InstAddrTranslatePlugin_tlbLookup_ASIDMatches_1;
+  wire                IF1_InstAddrTranslatePlugin_tlbLookup_ASIDMatches_2;
+  wire                IF1_InstAddrTranslatePlugin_tlbLookup_ASIDMatches_3;
+  wire                IF1_InstAddrTranslatePlugin_tlbLookup_ASIDMatches_4;
+  wire                IF1_InstAddrTranslatePlugin_tlbLookup_ASIDMatches_5;
+  wire                IF1_InstAddrTranslatePlugin_tlbLookup_ASIDMatches_6;
+  wire                IF1_InstAddrTranslatePlugin_tlbLookup_ASIDMatches_7;
+  wire                IF1_InstAddrTranslatePlugin_tlbLookup_ASIDMatches_8;
+  wire                IF1_InstAddrTranslatePlugin_tlbLookup_ASIDMatches_9;
+  wire                IF1_InstAddrTranslatePlugin_tlbLookup_ASIDMatches_10;
+  wire                IF1_InstAddrTranslatePlugin_tlbLookup_ASIDMatches_11;
+  wire                IF1_InstAddrTranslatePlugin_tlbLookup_ASIDMatches_12;
+  wire                IF1_InstAddrTranslatePlugin_tlbLookup_ASIDMatches_13;
+  wire                IF1_InstAddrTranslatePlugin_tlbLookup_ASIDMatches_14;
+  wire                IF1_InstAddrTranslatePlugin_tlbLookup_ASIDMatches_15;
+  wire                IF1_InstAddrTranslatePlugin_tlbLookup_VPPNMatches_0;
+  wire                IF1_InstAddrTranslatePlugin_tlbLookup_VPPNMatches_1;
+  wire                IF1_InstAddrTranslatePlugin_tlbLookup_VPPNMatches_2;
+  wire                IF1_InstAddrTranslatePlugin_tlbLookup_VPPNMatches_3;
+  wire                IF1_InstAddrTranslatePlugin_tlbLookup_VPPNMatches_4;
+  wire                IF1_InstAddrTranslatePlugin_tlbLookup_VPPNMatches_5;
+  wire                IF1_InstAddrTranslatePlugin_tlbLookup_VPPNMatches_6;
+  wire                IF1_InstAddrTranslatePlugin_tlbLookup_VPPNMatches_7;
+  wire                IF1_InstAddrTranslatePlugin_tlbLookup_VPPNMatches_8;
+  wire                IF1_InstAddrTranslatePlugin_tlbLookup_VPPNMatches_9;
+  wire                IF1_InstAddrTranslatePlugin_tlbLookup_VPPNMatches_10;
+  wire                IF1_InstAddrTranslatePlugin_tlbLookup_VPPNMatches_11;
+  wire                IF1_InstAddrTranslatePlugin_tlbLookup_VPPNMatches_12;
+  wire                IF1_InstAddrTranslatePlugin_tlbLookup_VPPNMatches_13;
+  wire                IF1_InstAddrTranslatePlugin_tlbLookup_VPPNMatches_14;
+  wire                IF1_InstAddrTranslatePlugin_tlbLookup_VPPNMatches_15;
+  wire                IF1_InstAddrTranslatePlugin_tlbLookup_EntryHits_0;
+  wire                IF1_InstAddrTranslatePlugin_tlbLookup_EntryHits_1;
+  wire                IF1_InstAddrTranslatePlugin_tlbLookup_EntryHits_2;
+  wire                IF1_InstAddrTranslatePlugin_tlbLookup_EntryHits_3;
+  wire                IF1_InstAddrTranslatePlugin_tlbLookup_EntryHits_4;
+  wire                IF1_InstAddrTranslatePlugin_tlbLookup_EntryHits_5;
+  wire                IF1_InstAddrTranslatePlugin_tlbLookup_EntryHits_6;
+  wire                IF1_InstAddrTranslatePlugin_tlbLookup_EntryHits_7;
+  wire                IF1_InstAddrTranslatePlugin_tlbLookup_EntryHits_8;
+  wire                IF1_InstAddrTranslatePlugin_tlbLookup_EntryHits_9;
+  wire                IF1_InstAddrTranslatePlugin_tlbLookup_EntryHits_10;
+  wire                IF1_InstAddrTranslatePlugin_tlbLookup_EntryHits_11;
+  wire                IF1_InstAddrTranslatePlugin_tlbLookup_EntryHits_12;
+  wire                IF1_InstAddrTranslatePlugin_tlbLookup_EntryHits_13;
+  wire                IF1_InstAddrTranslatePlugin_tlbLookup_EntryHits_14;
+  wire                IF1_InstAddrTranslatePlugin_tlbLookup_EntryHits_15;
+  wire                IF1_InstAddrTranslatePlugin_tlbLookup_snapshot_hit;
+  wire                IF1_InstAddrTranslatePlugin_tlbLookup_snapshot_entry_E;
+  wire       [9:0]    IF1_InstAddrTranslatePlugin_tlbLookup_snapshot_entry_ASID;
+  wire                IF1_InstAddrTranslatePlugin_tlbLookup_snapshot_entry_G;
+  wire       [5:0]    IF1_InstAddrTranslatePlugin_tlbLookup_snapshot_entry_PS;
+  wire       [18:0]   IF1_InstAddrTranslatePlugin_tlbLookup_snapshot_entry_VPPN;
+  wire                IF1_InstAddrTranslatePlugin_tlbLookup_snapshot_entry_V0;
+  wire                IF1_InstAddrTranslatePlugin_tlbLookup_snapshot_entry_D0;
+  wire       [1:0]    IF1_InstAddrTranslatePlugin_tlbLookup_snapshot_entry_MAT0;
+  wire       [1:0]    IF1_InstAddrTranslatePlugin_tlbLookup_snapshot_entry_PLV0;
+  wire       [19:0]   IF1_InstAddrTranslatePlugin_tlbLookup_snapshot_entry_PPN0;
+  wire                IF1_InstAddrTranslatePlugin_tlbLookup_snapshot_entry_V1;
+  wire                IF1_InstAddrTranslatePlugin_tlbLookup_snapshot_entry_D1;
+  wire       [1:0]    IF1_InstAddrTranslatePlugin_tlbLookup_snapshot_entry_MAT1;
+  wire       [1:0]    IF1_InstAddrTranslatePlugin_tlbLookup_snapshot_entry_PLV1;
+  wire       [19:0]   IF1_InstAddrTranslatePlugin_tlbLookup_snapshot_entry_PPN1;
+  wire                _zz_IF1_InstAddrTranslatePlugin_tlbLookup_snapshot_entry_E;
+  wire                _zz_IF1_InstAddrTranslatePlugin_tlbLookup_snapshot_entry_E_1;
+  wire                _zz_IF1_InstAddrTranslatePlugin_tlbLookup_snapshot_entry_E_2;
+  wire                _zz_IF1_InstAddrTranslatePlugin_tlbLookup_snapshot_entry_E_3;
+  wire       [3:0]    _zz_IF1_InstAddrTranslatePlugin_tlbLookup_snapshot_entry_E_4;
+  wire       [88:0]   _zz_IF1_InstAddrTranslatePlugin_tlbLookup_snapshot_entry_E_5;
   wire                IF1_InstAddrTranslatePlugin_savedCSR_CRMD_DA;
   wire                IF1_InstAddrTranslatePlugin_savedCSR_CRMD_PG;
   wire       [1:0]    IF1_InstAddrTranslatePlugin_savedCSR_CRMD_DATF;
   wire       [1:0]    IF1_InstAddrTranslatePlugin_savedCSR_CRMD_DATM;
+  wire       [1:0]    switch_MMUPlugin_l331;
+  wire                IF2_InstAddrTranslatePlugin_tlbTranslateResult_resultValid;
+  wire       [31:0]   IF2_InstAddrTranslatePlugin_tlbTranslateResult_resultPhysAddr;
+  wire                IF2_InstAddrTranslatePlugin_tlbTranslateResult_resultCached;
+  reg                 IF2_InstAddrTranslatePlugin_tlbTranslateResult_resultExceptionBundle_raisePIL;
+  reg                 IF2_InstAddrTranslatePlugin_tlbTranslateResult_resultExceptionBundle_raisePIS;
+  reg                 IF2_InstAddrTranslatePlugin_tlbTranslateResult_resultExceptionBundle_raisePIF;
+  reg                 IF2_InstAddrTranslatePlugin_tlbTranslateResult_resultExceptionBundle_raisePME;
+  reg                 IF2_InstAddrTranslatePlugin_tlbTranslateResult_resultExceptionBundle_raisePPI;
+  reg                 IF2_InstAddrTranslatePlugin_tlbTranslateResult_resultExceptionBundle_raiseTLBR;
+  wire                IF2_InstAddrTranslatePlugin_tlbTranslateResult_TLBHitEntry_v;
+  wire                IF2_InstAddrTranslatePlugin_tlbTranslateResult_TLBHitEntry_d;
+  wire       [1:0]    IF2_InstAddrTranslatePlugin_tlbTranslateResult_TLBHitEntry_mat;
+  wire       [1:0]    IF2_InstAddrTranslatePlugin_tlbTranslateResult_TLBHitEntry_plv;
+  wire       [19:0]   IF2_InstAddrTranslatePlugin_tlbTranslateResult_TLBHitEntry_ppn;
+  wire                when_MMUPlugin_l326;
+  wire                when_MMUPlugin_l330;
+  wire                when_MMUPlugin_l344;
+  wire                when_MMUPlugin_l348;
+  wire                IF2_InstAddrTranslatePlugin_tlbTranslateResult_resultBundle_valid;
+  wire       [31:0]   IF2_InstAddrTranslatePlugin_tlbTranslateResult_resultBundle_payload_physAddr;
+  wire                IF2_InstAddrTranslatePlugin_tlbTranslateResult_resultBundle_payload_cached;
+  wire                IF2_InstAddrTranslatePlugin_tlbTranslateResult_resultBundle_payload_exception_raisePIL;
+  wire                IF2_InstAddrTranslatePlugin_tlbTranslateResult_resultBundle_payload_exception_raisePIS;
+  wire                IF2_InstAddrTranslatePlugin_tlbTranslateResult_resultBundle_payload_exception_raisePIF;
+  wire                IF2_InstAddrTranslatePlugin_tlbTranslateResult_resultBundle_payload_exception_raisePME;
+  wire                IF2_InstAddrTranslatePlugin_tlbTranslateResult_resultBundle_payload_exception_raisePPI;
+  wire                IF2_InstAddrTranslatePlugin_tlbTranslateResult_resultBundle_payload_exception_raiseTLBR;
   reg                 IF2_InstAddrTranslatePlugin_translateResult_resultValid;
   reg        [31:0]   IF2_InstAddrTranslatePlugin_translateResult_resultPhysAddr;
   reg                 IF2_InstAddrTranslatePlugin_translateResult_resultCached;
@@ -17187,10 +17217,10 @@ module MyCPUCore (
   reg                 IF2_InstAddrTranslatePlugin_translateResult_resultExceptionBundle_raisePME;
   reg                 IF2_InstAddrTranslatePlugin_translateResult_resultExceptionBundle_raisePPI;
   reg                 IF2_InstAddrTranslatePlugin_translateResult_resultExceptionBundle_raiseTLBR;
-  wire                when_MMUPlugin_l339;
-  wire                when_MMUPlugin_l347;
-  wire                when_MMUPlugin_l355;
-  wire                when_MMUPlugin_l359;
+  wire                when_MMUPlugin_l380;
+  wire                when_MMUPlugin_l388;
+  wire                when_MMUPlugin_l396;
+  wire                when_MMUPlugin_l400;
   wire                IF2_InstAddrTranslatePlugin_translateResult_resultBundle_valid;
   wire       [31:0]   IF2_InstAddrTranslatePlugin_translateResult_resultBundle_payload_physAddr;
   wire                IF2_InstAddrTranslatePlugin_translateResult_resultBundle_payload_cached;
@@ -19063,109 +19093,110 @@ module MyCPUCore (
   wire                MEM_ADDR_AddressGenerationPlugin_directTranslateResult_resultBundle_payload_exception_raisePME;
   wire                MEM_ADDR_AddressGenerationPlugin_directTranslateResult_resultBundle_payload_exception_raisePPI;
   wire                MEM_ADDR_AddressGenerationPlugin_directTranslateResult_resultBundle_payload_exception_raiseTLBR;
-  wire       [1:0]    switch_MMUPlugin_l290_1;
-  wire                MEM_ADDR_AddressGenerationPlugin_tlbTranslateResult_resultValid;
-  wire       [31:0]   MEM_ADDR_AddressGenerationPlugin_tlbTranslateResult_resultPhysAddr;
-  wire                MEM_ADDR_AddressGenerationPlugin_tlbTranslateResult_resultCached;
-  reg                 MEM_ADDR_AddressGenerationPlugin_tlbTranslateResult_resultExceptionBundle_raisePIL;
-  reg                 MEM_ADDR_AddressGenerationPlugin_tlbTranslateResult_resultExceptionBundle_raisePIS;
-  reg                 MEM_ADDR_AddressGenerationPlugin_tlbTranslateResult_resultExceptionBundle_raisePIF;
-  reg                 MEM_ADDR_AddressGenerationPlugin_tlbTranslateResult_resultExceptionBundle_raisePME;
-  reg                 MEM_ADDR_AddressGenerationPlugin_tlbTranslateResult_resultExceptionBundle_raisePPI;
-  reg                 MEM_ADDR_AddressGenerationPlugin_tlbTranslateResult_resultExceptionBundle_raiseTLBR;
-  wire                MEM_ADDR_AddressGenerationPlugin_tlbTranslateResult_ASIDMatches_0;
-  wire                MEM_ADDR_AddressGenerationPlugin_tlbTranslateResult_ASIDMatches_1;
-  wire                MEM_ADDR_AddressGenerationPlugin_tlbTranslateResult_ASIDMatches_2;
-  wire                MEM_ADDR_AddressGenerationPlugin_tlbTranslateResult_ASIDMatches_3;
-  wire                MEM_ADDR_AddressGenerationPlugin_tlbTranslateResult_ASIDMatches_4;
-  wire                MEM_ADDR_AddressGenerationPlugin_tlbTranslateResult_ASIDMatches_5;
-  wire                MEM_ADDR_AddressGenerationPlugin_tlbTranslateResult_ASIDMatches_6;
-  wire                MEM_ADDR_AddressGenerationPlugin_tlbTranslateResult_ASIDMatches_7;
-  wire                MEM_ADDR_AddressGenerationPlugin_tlbTranslateResult_ASIDMatches_8;
-  wire                MEM_ADDR_AddressGenerationPlugin_tlbTranslateResult_ASIDMatches_9;
-  wire                MEM_ADDR_AddressGenerationPlugin_tlbTranslateResult_ASIDMatches_10;
-  wire                MEM_ADDR_AddressGenerationPlugin_tlbTranslateResult_ASIDMatches_11;
-  wire                MEM_ADDR_AddressGenerationPlugin_tlbTranslateResult_ASIDMatches_12;
-  wire                MEM_ADDR_AddressGenerationPlugin_tlbTranslateResult_ASIDMatches_13;
-  wire                MEM_ADDR_AddressGenerationPlugin_tlbTranslateResult_ASIDMatches_14;
-  wire                MEM_ADDR_AddressGenerationPlugin_tlbTranslateResult_ASIDMatches_15;
-  wire                MEM_ADDR_AddressGenerationPlugin_tlbTranslateResult_VPPNMatches_0;
-  wire                MEM_ADDR_AddressGenerationPlugin_tlbTranslateResult_VPPNMatches_1;
-  wire                MEM_ADDR_AddressGenerationPlugin_tlbTranslateResult_VPPNMatches_2;
-  wire                MEM_ADDR_AddressGenerationPlugin_tlbTranslateResult_VPPNMatches_3;
-  wire                MEM_ADDR_AddressGenerationPlugin_tlbTranslateResult_VPPNMatches_4;
-  wire                MEM_ADDR_AddressGenerationPlugin_tlbTranslateResult_VPPNMatches_5;
-  wire                MEM_ADDR_AddressGenerationPlugin_tlbTranslateResult_VPPNMatches_6;
-  wire                MEM_ADDR_AddressGenerationPlugin_tlbTranslateResult_VPPNMatches_7;
-  wire                MEM_ADDR_AddressGenerationPlugin_tlbTranslateResult_VPPNMatches_8;
-  wire                MEM_ADDR_AddressGenerationPlugin_tlbTranslateResult_VPPNMatches_9;
-  wire                MEM_ADDR_AddressGenerationPlugin_tlbTranslateResult_VPPNMatches_10;
-  wire                MEM_ADDR_AddressGenerationPlugin_tlbTranslateResult_VPPNMatches_11;
-  wire                MEM_ADDR_AddressGenerationPlugin_tlbTranslateResult_VPPNMatches_12;
-  wire                MEM_ADDR_AddressGenerationPlugin_tlbTranslateResult_VPPNMatches_13;
-  wire                MEM_ADDR_AddressGenerationPlugin_tlbTranslateResult_VPPNMatches_14;
-  wire                MEM_ADDR_AddressGenerationPlugin_tlbTranslateResult_VPPNMatches_15;
-  wire                MEM_ADDR_AddressGenerationPlugin_tlbTranslateResult_EntryHits_0;
-  wire                MEM_ADDR_AddressGenerationPlugin_tlbTranslateResult_EntryHits_1;
-  wire                MEM_ADDR_AddressGenerationPlugin_tlbTranslateResult_EntryHits_2;
-  wire                MEM_ADDR_AddressGenerationPlugin_tlbTranslateResult_EntryHits_3;
-  wire                MEM_ADDR_AddressGenerationPlugin_tlbTranslateResult_EntryHits_4;
-  wire                MEM_ADDR_AddressGenerationPlugin_tlbTranslateResult_EntryHits_5;
-  wire                MEM_ADDR_AddressGenerationPlugin_tlbTranslateResult_EntryHits_6;
-  wire                MEM_ADDR_AddressGenerationPlugin_tlbTranslateResult_EntryHits_7;
-  wire                MEM_ADDR_AddressGenerationPlugin_tlbTranslateResult_EntryHits_8;
-  wire                MEM_ADDR_AddressGenerationPlugin_tlbTranslateResult_EntryHits_9;
-  wire                MEM_ADDR_AddressGenerationPlugin_tlbTranslateResult_EntryHits_10;
-  wire                MEM_ADDR_AddressGenerationPlugin_tlbTranslateResult_EntryHits_11;
-  wire                MEM_ADDR_AddressGenerationPlugin_tlbTranslateResult_EntryHits_12;
-  wire                MEM_ADDR_AddressGenerationPlugin_tlbTranslateResult_EntryHits_13;
-  wire                MEM_ADDR_AddressGenerationPlugin_tlbTranslateResult_EntryHits_14;
-  wire                MEM_ADDR_AddressGenerationPlugin_tlbTranslateResult_EntryHits_15;
-  wire                MEM_ADDR_AddressGenerationPlugin_tlbTranslateResult_TLBHit;
-  wire                _zz_MEM_ADDR_AddressGenerationPlugin_tlbTranslateResult_TLBHitEntry_E;
-  wire                _zz_MEM_ADDR_AddressGenerationPlugin_tlbTranslateResult_TLBHitEntry_E_1;
-  wire                _zz_MEM_ADDR_AddressGenerationPlugin_tlbTranslateResult_TLBHitEntry_E_2;
-  wire                _zz_MEM_ADDR_AddressGenerationPlugin_tlbTranslateResult_TLBHitEntry_E_3;
-  wire       [3:0]    _zz_MEM_ADDR_AddressGenerationPlugin_tlbTranslateResult_TLBHitEntry_E_4;
-  wire                MEM_ADDR_AddressGenerationPlugin_tlbTranslateResult_TLBHitEntry_E;
-  wire       [9:0]    MEM_ADDR_AddressGenerationPlugin_tlbTranslateResult_TLBHitEntry_ASID;
-  wire                MEM_ADDR_AddressGenerationPlugin_tlbTranslateResult_TLBHitEntry_G;
-  wire       [5:0]    MEM_ADDR_AddressGenerationPlugin_tlbTranslateResult_TLBHitEntry_PS;
-  wire       [18:0]   MEM_ADDR_AddressGenerationPlugin_tlbTranslateResult_TLBHitEntry_VPPN;
-  wire                MEM_ADDR_AddressGenerationPlugin_tlbTranslateResult_TLBHitEntry_V0;
-  wire                MEM_ADDR_AddressGenerationPlugin_tlbTranslateResult_TLBHitEntry_D0;
-  wire       [1:0]    MEM_ADDR_AddressGenerationPlugin_tlbTranslateResult_TLBHitEntry_MAT0;
-  wire       [1:0]    MEM_ADDR_AddressGenerationPlugin_tlbTranslateResult_TLBHitEntry_PLV0;
-  wire       [19:0]   MEM_ADDR_AddressGenerationPlugin_tlbTranslateResult_TLBHitEntry_PPN0;
-  wire                MEM_ADDR_AddressGenerationPlugin_tlbTranslateResult_TLBHitEntry_V1;
-  wire                MEM_ADDR_AddressGenerationPlugin_tlbTranslateResult_TLBHitEntry_D1;
-  wire       [1:0]    MEM_ADDR_AddressGenerationPlugin_tlbTranslateResult_TLBHitEntry_MAT1;
-  wire       [1:0]    MEM_ADDR_AddressGenerationPlugin_tlbTranslateResult_TLBHitEntry_PLV1;
-  wire       [19:0]   MEM_ADDR_AddressGenerationPlugin_tlbTranslateResult_TLBHitEntry_PPN1;
-  wire                MEM_ADDR_AddressGenerationPlugin_tlbTranslateResult_TLBHitEntry_v;
-  wire                MEM_ADDR_AddressGenerationPlugin_tlbTranslateResult_TLBHitEntry_d;
-  wire       [1:0]    MEM_ADDR_AddressGenerationPlugin_tlbTranslateResult_TLBHitEntry_mat;
-  wire       [1:0]    MEM_ADDR_AddressGenerationPlugin_tlbTranslateResult_TLBHitEntry_plv;
-  wire       [19:0]   MEM_ADDR_AddressGenerationPlugin_tlbTranslateResult_TLBHitEntry_ppn;
-  wire                when_MMUPlugin_l285_1;
-  wire                when_MMUPlugin_l289_1;
-  wire                when_MMUPlugin_l303_1;
-  wire                when_MMUPlugin_l307_1;
-  wire                MEM_ADDR_AddressGenerationPlugin_tlbTranslateResult_resultBundle_valid;
-  wire       [31:0]   MEM_ADDR_AddressGenerationPlugin_tlbTranslateResult_resultBundle_payload_physAddr;
-  wire                MEM_ADDR_AddressGenerationPlugin_tlbTranslateResult_resultBundle_payload_cached;
-  wire                MEM_ADDR_AddressGenerationPlugin_tlbTranslateResult_resultBundle_payload_exception_raisePIL;
-  wire                MEM_ADDR_AddressGenerationPlugin_tlbTranslateResult_resultBundle_payload_exception_raisePIS;
-  wire                MEM_ADDR_AddressGenerationPlugin_tlbTranslateResult_resultBundle_payload_exception_raisePIF;
-  wire                MEM_ADDR_AddressGenerationPlugin_tlbTranslateResult_resultBundle_payload_exception_raisePME;
-  wire                MEM_ADDR_AddressGenerationPlugin_tlbTranslateResult_resultBundle_payload_exception_raisePPI;
-  wire                MEM_ADDR_AddressGenerationPlugin_tlbTranslateResult_resultBundle_payload_exception_raiseTLBR;
+  wire                MEM_ADDR_AddressGenerationPlugin_tlbLookup_ASIDMatches_0;
+  wire                MEM_ADDR_AddressGenerationPlugin_tlbLookup_ASIDMatches_1;
+  wire                MEM_ADDR_AddressGenerationPlugin_tlbLookup_ASIDMatches_2;
+  wire                MEM_ADDR_AddressGenerationPlugin_tlbLookup_ASIDMatches_3;
+  wire                MEM_ADDR_AddressGenerationPlugin_tlbLookup_ASIDMatches_4;
+  wire                MEM_ADDR_AddressGenerationPlugin_tlbLookup_ASIDMatches_5;
+  wire                MEM_ADDR_AddressGenerationPlugin_tlbLookup_ASIDMatches_6;
+  wire                MEM_ADDR_AddressGenerationPlugin_tlbLookup_ASIDMatches_7;
+  wire                MEM_ADDR_AddressGenerationPlugin_tlbLookup_ASIDMatches_8;
+  wire                MEM_ADDR_AddressGenerationPlugin_tlbLookup_ASIDMatches_9;
+  wire                MEM_ADDR_AddressGenerationPlugin_tlbLookup_ASIDMatches_10;
+  wire                MEM_ADDR_AddressGenerationPlugin_tlbLookup_ASIDMatches_11;
+  wire                MEM_ADDR_AddressGenerationPlugin_tlbLookup_ASIDMatches_12;
+  wire                MEM_ADDR_AddressGenerationPlugin_tlbLookup_ASIDMatches_13;
+  wire                MEM_ADDR_AddressGenerationPlugin_tlbLookup_ASIDMatches_14;
+  wire                MEM_ADDR_AddressGenerationPlugin_tlbLookup_ASIDMatches_15;
+  wire                MEM_ADDR_AddressGenerationPlugin_tlbLookup_VPPNMatches_0;
+  wire                MEM_ADDR_AddressGenerationPlugin_tlbLookup_VPPNMatches_1;
+  wire                MEM_ADDR_AddressGenerationPlugin_tlbLookup_VPPNMatches_2;
+  wire                MEM_ADDR_AddressGenerationPlugin_tlbLookup_VPPNMatches_3;
+  wire                MEM_ADDR_AddressGenerationPlugin_tlbLookup_VPPNMatches_4;
+  wire                MEM_ADDR_AddressGenerationPlugin_tlbLookup_VPPNMatches_5;
+  wire                MEM_ADDR_AddressGenerationPlugin_tlbLookup_VPPNMatches_6;
+  wire                MEM_ADDR_AddressGenerationPlugin_tlbLookup_VPPNMatches_7;
+  wire                MEM_ADDR_AddressGenerationPlugin_tlbLookup_VPPNMatches_8;
+  wire                MEM_ADDR_AddressGenerationPlugin_tlbLookup_VPPNMatches_9;
+  wire                MEM_ADDR_AddressGenerationPlugin_tlbLookup_VPPNMatches_10;
+  wire                MEM_ADDR_AddressGenerationPlugin_tlbLookup_VPPNMatches_11;
+  wire                MEM_ADDR_AddressGenerationPlugin_tlbLookup_VPPNMatches_12;
+  wire                MEM_ADDR_AddressGenerationPlugin_tlbLookup_VPPNMatches_13;
+  wire                MEM_ADDR_AddressGenerationPlugin_tlbLookup_VPPNMatches_14;
+  wire                MEM_ADDR_AddressGenerationPlugin_tlbLookup_VPPNMatches_15;
+  wire                MEM_ADDR_AddressGenerationPlugin_tlbLookup_EntryHits_0;
+  wire                MEM_ADDR_AddressGenerationPlugin_tlbLookup_EntryHits_1;
+  wire                MEM_ADDR_AddressGenerationPlugin_tlbLookup_EntryHits_2;
+  wire                MEM_ADDR_AddressGenerationPlugin_tlbLookup_EntryHits_3;
+  wire                MEM_ADDR_AddressGenerationPlugin_tlbLookup_EntryHits_4;
+  wire                MEM_ADDR_AddressGenerationPlugin_tlbLookup_EntryHits_5;
+  wire                MEM_ADDR_AddressGenerationPlugin_tlbLookup_EntryHits_6;
+  wire                MEM_ADDR_AddressGenerationPlugin_tlbLookup_EntryHits_7;
+  wire                MEM_ADDR_AddressGenerationPlugin_tlbLookup_EntryHits_8;
+  wire                MEM_ADDR_AddressGenerationPlugin_tlbLookup_EntryHits_9;
+  wire                MEM_ADDR_AddressGenerationPlugin_tlbLookup_EntryHits_10;
+  wire                MEM_ADDR_AddressGenerationPlugin_tlbLookup_EntryHits_11;
+  wire                MEM_ADDR_AddressGenerationPlugin_tlbLookup_EntryHits_12;
+  wire                MEM_ADDR_AddressGenerationPlugin_tlbLookup_EntryHits_13;
+  wire                MEM_ADDR_AddressGenerationPlugin_tlbLookup_EntryHits_14;
+  wire                MEM_ADDR_AddressGenerationPlugin_tlbLookup_EntryHits_15;
+  wire                MEM_ADDR_AddressGenerationPlugin_tlbLookup_snapshot_hit;
+  wire                MEM_ADDR_AddressGenerationPlugin_tlbLookup_snapshot_entry_E;
+  wire       [9:0]    MEM_ADDR_AddressGenerationPlugin_tlbLookup_snapshot_entry_ASID;
+  wire                MEM_ADDR_AddressGenerationPlugin_tlbLookup_snapshot_entry_G;
+  wire       [5:0]    MEM_ADDR_AddressGenerationPlugin_tlbLookup_snapshot_entry_PS;
+  wire       [18:0]   MEM_ADDR_AddressGenerationPlugin_tlbLookup_snapshot_entry_VPPN;
+  wire                MEM_ADDR_AddressGenerationPlugin_tlbLookup_snapshot_entry_V0;
+  wire                MEM_ADDR_AddressGenerationPlugin_tlbLookup_snapshot_entry_D0;
+  wire       [1:0]    MEM_ADDR_AddressGenerationPlugin_tlbLookup_snapshot_entry_MAT0;
+  wire       [1:0]    MEM_ADDR_AddressGenerationPlugin_tlbLookup_snapshot_entry_PLV0;
+  wire       [19:0]   MEM_ADDR_AddressGenerationPlugin_tlbLookup_snapshot_entry_PPN0;
+  wire                MEM_ADDR_AddressGenerationPlugin_tlbLookup_snapshot_entry_V1;
+  wire                MEM_ADDR_AddressGenerationPlugin_tlbLookup_snapshot_entry_D1;
+  wire       [1:0]    MEM_ADDR_AddressGenerationPlugin_tlbLookup_snapshot_entry_MAT1;
+  wire       [1:0]    MEM_ADDR_AddressGenerationPlugin_tlbLookup_snapshot_entry_PLV1;
+  wire       [19:0]   MEM_ADDR_AddressGenerationPlugin_tlbLookup_snapshot_entry_PPN1;
+  wire                _zz_MEM_ADDR_AddressGenerationPlugin_tlbLookup_snapshot_entry_E;
+  wire                _zz_MEM_ADDR_AddressGenerationPlugin_tlbLookup_snapshot_entry_E_1;
+  wire                _zz_MEM_ADDR_AddressGenerationPlugin_tlbLookup_snapshot_entry_E_2;
+  wire                _zz_MEM_ADDR_AddressGenerationPlugin_tlbLookup_snapshot_entry_E_3;
+  wire       [3:0]    _zz_MEM_ADDR_AddressGenerationPlugin_tlbLookup_snapshot_entry_E_4;
+  wire       [88:0]   _zz_MEM_ADDR_AddressGenerationPlugin_tlbLookup_snapshot_entry_E_5;
   wire                MEM_ADDR_AddressGenerationPlugin_savedCSR_CRMD_DA;
   wire                MEM_ADDR_AddressGenerationPlugin_savedCSR_CRMD_PG;
   wire       [1:0]    MEM_ADDR_AddressGenerationPlugin_savedCSR_CRMD_DATF;
   wire       [1:0]    MEM_ADDR_AddressGenerationPlugin_savedCSR_CRMD_DATM;
   wire                MEM_MEM1_AddressGenerationPlugin_excAsLoad;
-  wire       [1:0]    _zz_when_MMUPlugin_l359;
+  wire       [1:0]    switch_MMUPlugin_l331_1;
+  wire                MEM_MEM1_AddressGenerationPlugin_tlbTranslateResult_resultValid;
+  wire       [31:0]   MEM_MEM1_AddressGenerationPlugin_tlbTranslateResult_resultPhysAddr;
+  wire                MEM_MEM1_AddressGenerationPlugin_tlbTranslateResult_resultCached;
+  reg                 MEM_MEM1_AddressGenerationPlugin_tlbTranslateResult_resultExceptionBundle_raisePIL;
+  reg                 MEM_MEM1_AddressGenerationPlugin_tlbTranslateResult_resultExceptionBundle_raisePIS;
+  reg                 MEM_MEM1_AddressGenerationPlugin_tlbTranslateResult_resultExceptionBundle_raisePIF;
+  reg                 MEM_MEM1_AddressGenerationPlugin_tlbTranslateResult_resultExceptionBundle_raisePME;
+  reg                 MEM_MEM1_AddressGenerationPlugin_tlbTranslateResult_resultExceptionBundle_raisePPI;
+  reg                 MEM_MEM1_AddressGenerationPlugin_tlbTranslateResult_resultExceptionBundle_raiseTLBR;
+  wire                MEM_MEM1_AddressGenerationPlugin_tlbTranslateResult_TLBHitEntry_v;
+  wire                MEM_MEM1_AddressGenerationPlugin_tlbTranslateResult_TLBHitEntry_d;
+  wire       [1:0]    MEM_MEM1_AddressGenerationPlugin_tlbTranslateResult_TLBHitEntry_mat;
+  wire       [1:0]    MEM_MEM1_AddressGenerationPlugin_tlbTranslateResult_TLBHitEntry_plv;
+  wire       [19:0]   MEM_MEM1_AddressGenerationPlugin_tlbTranslateResult_TLBHitEntry_ppn;
+  wire                when_MMUPlugin_l326_1;
+  wire                when_MMUPlugin_l330_1;
+  wire                when_MMUPlugin_l344_1;
+  wire                when_MMUPlugin_l348_1;
+  wire                MEM_MEM1_AddressGenerationPlugin_tlbTranslateResult_resultBundle_valid;
+  wire       [31:0]   MEM_MEM1_AddressGenerationPlugin_tlbTranslateResult_resultBundle_payload_physAddr;
+  wire                MEM_MEM1_AddressGenerationPlugin_tlbTranslateResult_resultBundle_payload_cached;
+  wire                MEM_MEM1_AddressGenerationPlugin_tlbTranslateResult_resultBundle_payload_exception_raisePIL;
+  wire                MEM_MEM1_AddressGenerationPlugin_tlbTranslateResult_resultBundle_payload_exception_raisePIS;
+  wire                MEM_MEM1_AddressGenerationPlugin_tlbTranslateResult_resultBundle_payload_exception_raisePIF;
+  wire                MEM_MEM1_AddressGenerationPlugin_tlbTranslateResult_resultBundle_payload_exception_raisePME;
+  wire                MEM_MEM1_AddressGenerationPlugin_tlbTranslateResult_resultBundle_payload_exception_raisePPI;
+  wire                MEM_MEM1_AddressGenerationPlugin_tlbTranslateResult_resultBundle_payload_exception_raiseTLBR;
+  wire       [1:0]    _zz_when_MMUPlugin_l400;
   reg                 MEM_MEM1_AddressGenerationPlugin_translateResult_resultValid;
   reg        [31:0]   MEM_MEM1_AddressGenerationPlugin_translateResult_resultPhysAddr;
   reg                 MEM_MEM1_AddressGenerationPlugin_translateResult_resultCached;
@@ -19175,10 +19206,10 @@ module MyCPUCore (
   reg                 MEM_MEM1_AddressGenerationPlugin_translateResult_resultExceptionBundle_raisePME;
   reg                 MEM_MEM1_AddressGenerationPlugin_translateResult_resultExceptionBundle_raisePPI;
   reg                 MEM_MEM1_AddressGenerationPlugin_translateResult_resultExceptionBundle_raiseTLBR;
-  wire                when_MMUPlugin_l339_1;
-  wire                when_MMUPlugin_l347_1;
-  wire                when_MMUPlugin_l355_1;
-  wire                when_MMUPlugin_l359_1;
+  wire                when_MMUPlugin_l380_1;
+  wire                when_MMUPlugin_l388_1;
+  wire                when_MMUPlugin_l396_1;
+  wire                when_MMUPlugin_l400_1;
   wire                MEM_MEM1_AddressGenerationPlugin_translateResult_resultBundle_valid;
   wire       [31:0]   MEM_MEM1_AddressGenerationPlugin_translateResult_resultBundle_payload_physAddr;
   wire                MEM_MEM1_AddressGenerationPlugin_translateResult_resultBundle_payload_cached;
@@ -19455,15 +19486,22 @@ module MyCPUCore (
   reg                 IF1_to_IF2_DIRECT_TRANSLATE_RESULT_payload_exception_raisePPI;
   reg                 IF1_to_IF2_DIRECT_TRANSLATE_RESULT_payload_exception_raiseTLBR;
   wire                when_Pipeline_l158_9;
-  reg                 IF1_to_IF2_TLB_TRANSLATE_RESULT_valid;
-  reg        [31:0]   IF1_to_IF2_TLB_TRANSLATE_RESULT_payload_physAddr;
-  reg                 IF1_to_IF2_TLB_TRANSLATE_RESULT_payload_cached;
-  reg                 IF1_to_IF2_TLB_TRANSLATE_RESULT_payload_exception_raisePIL;
-  reg                 IF1_to_IF2_TLB_TRANSLATE_RESULT_payload_exception_raisePIS;
-  reg                 IF1_to_IF2_TLB_TRANSLATE_RESULT_payload_exception_raisePIF;
-  reg                 IF1_to_IF2_TLB_TRANSLATE_RESULT_payload_exception_raisePME;
-  reg                 IF1_to_IF2_TLB_TRANSLATE_RESULT_payload_exception_raisePPI;
-  reg                 IF1_to_IF2_TLB_TRANSLATE_RESULT_payload_exception_raiseTLBR;
+  reg                 IF1_to_IF2_TLB_LOOKUP_SNAPSHOT_hit;
+  reg                 IF1_to_IF2_TLB_LOOKUP_SNAPSHOT_entry_E;
+  reg        [9:0]    IF1_to_IF2_TLB_LOOKUP_SNAPSHOT_entry_ASID;
+  reg                 IF1_to_IF2_TLB_LOOKUP_SNAPSHOT_entry_G;
+  reg        [5:0]    IF1_to_IF2_TLB_LOOKUP_SNAPSHOT_entry_PS;
+  reg        [18:0]   IF1_to_IF2_TLB_LOOKUP_SNAPSHOT_entry_VPPN;
+  reg                 IF1_to_IF2_TLB_LOOKUP_SNAPSHOT_entry_V0;
+  reg                 IF1_to_IF2_TLB_LOOKUP_SNAPSHOT_entry_D0;
+  reg        [1:0]    IF1_to_IF2_TLB_LOOKUP_SNAPSHOT_entry_MAT0;
+  reg        [1:0]    IF1_to_IF2_TLB_LOOKUP_SNAPSHOT_entry_PLV0;
+  reg        [19:0]   IF1_to_IF2_TLB_LOOKUP_SNAPSHOT_entry_PPN0;
+  reg                 IF1_to_IF2_TLB_LOOKUP_SNAPSHOT_entry_V1;
+  reg                 IF1_to_IF2_TLB_LOOKUP_SNAPSHOT_entry_D1;
+  reg        [1:0]    IF1_to_IF2_TLB_LOOKUP_SNAPSHOT_entry_MAT1;
+  reg        [1:0]    IF1_to_IF2_TLB_LOOKUP_SNAPSHOT_entry_PLV1;
+  reg        [19:0]   IF1_to_IF2_TLB_LOOKUP_SNAPSHOT_entry_PPN1;
   wire                when_Pipeline_l158_10;
   reg                 IF1_to_IF2_TRANSLATE_SAVED_CSR_CRMD_DA;
   reg                 IF1_to_IF2_TRANSLATE_SAVED_CSR_CRMD_PG;
@@ -20353,15 +20391,22 @@ module MyCPUCore (
   reg                 MEM_ADDR_to_MEM_MEM1_DIRECT_TRANSLATE_RESULT_payload_exception_raisePPI;
   reg                 MEM_ADDR_to_MEM_MEM1_DIRECT_TRANSLATE_RESULT_payload_exception_raiseTLBR;
   wire                when_Pipeline_l158_90;
-  reg                 MEM_ADDR_to_MEM_MEM1_TLB_TRANSLATE_RESULT_valid;
-  reg        [31:0]   MEM_ADDR_to_MEM_MEM1_TLB_TRANSLATE_RESULT_payload_physAddr;
-  reg                 MEM_ADDR_to_MEM_MEM1_TLB_TRANSLATE_RESULT_payload_cached;
-  reg                 MEM_ADDR_to_MEM_MEM1_TLB_TRANSLATE_RESULT_payload_exception_raisePIL;
-  reg                 MEM_ADDR_to_MEM_MEM1_TLB_TRANSLATE_RESULT_payload_exception_raisePIS;
-  reg                 MEM_ADDR_to_MEM_MEM1_TLB_TRANSLATE_RESULT_payload_exception_raisePIF;
-  reg                 MEM_ADDR_to_MEM_MEM1_TLB_TRANSLATE_RESULT_payload_exception_raisePME;
-  reg                 MEM_ADDR_to_MEM_MEM1_TLB_TRANSLATE_RESULT_payload_exception_raisePPI;
-  reg                 MEM_ADDR_to_MEM_MEM1_TLB_TRANSLATE_RESULT_payload_exception_raiseTLBR;
+  reg                 MEM_ADDR_to_MEM_MEM1_TLB_LOOKUP_SNAPSHOT_hit;
+  reg                 MEM_ADDR_to_MEM_MEM1_TLB_LOOKUP_SNAPSHOT_entry_E;
+  reg        [9:0]    MEM_ADDR_to_MEM_MEM1_TLB_LOOKUP_SNAPSHOT_entry_ASID;
+  reg                 MEM_ADDR_to_MEM_MEM1_TLB_LOOKUP_SNAPSHOT_entry_G;
+  reg        [5:0]    MEM_ADDR_to_MEM_MEM1_TLB_LOOKUP_SNAPSHOT_entry_PS;
+  reg        [18:0]   MEM_ADDR_to_MEM_MEM1_TLB_LOOKUP_SNAPSHOT_entry_VPPN;
+  reg                 MEM_ADDR_to_MEM_MEM1_TLB_LOOKUP_SNAPSHOT_entry_V0;
+  reg                 MEM_ADDR_to_MEM_MEM1_TLB_LOOKUP_SNAPSHOT_entry_D0;
+  reg        [1:0]    MEM_ADDR_to_MEM_MEM1_TLB_LOOKUP_SNAPSHOT_entry_MAT0;
+  reg        [1:0]    MEM_ADDR_to_MEM_MEM1_TLB_LOOKUP_SNAPSHOT_entry_PLV0;
+  reg        [19:0]   MEM_ADDR_to_MEM_MEM1_TLB_LOOKUP_SNAPSHOT_entry_PPN0;
+  reg                 MEM_ADDR_to_MEM_MEM1_TLB_LOOKUP_SNAPSHOT_entry_V1;
+  reg                 MEM_ADDR_to_MEM_MEM1_TLB_LOOKUP_SNAPSHOT_entry_D1;
+  reg        [1:0]    MEM_ADDR_to_MEM_MEM1_TLB_LOOKUP_SNAPSHOT_entry_MAT1;
+  reg        [1:0]    MEM_ADDR_to_MEM_MEM1_TLB_LOOKUP_SNAPSHOT_entry_PLV1;
+  reg        [19:0]   MEM_ADDR_to_MEM_MEM1_TLB_LOOKUP_SNAPSHOT_entry_PPN1;
   wire                when_Pipeline_l158_91;
   reg                 MEM_ADDR_to_MEM_MEM1_TRANSLATE_SAVED_CSR_CRMD_DA;
   reg                 MEM_ADDR_to_MEM_MEM1_TRANSLATE_SAVED_CSR_CRMD_PG;
@@ -21527,7 +21572,7 @@ module MyCPUCore (
   reg [47:0] _zz_MemIssueQueuePlugin_queueIO_pushPorts_0_payload_uop_lsType_2_string;
   reg [119:0] _zz_MemIssueQueuePlugin_queueIO_pushPorts_0_payload_uop_cacheOp_2_string;
   reg [87:0] _zz_MemIssueQueuePlugin_queueIO_pushPorts_0_payload_uop_cacheSel_2_string;
-  reg [39:0] switch_MMUPlugin_l290_string;
+  reg [39:0] switch_MMUPlugin_l331_string;
   reg [47:0] ID_DecoderArray_decoders_0_uop_fuType_string;
   reg [31:0] ID_DecoderArray_decoders_0_uop_immExtendType_string;
   reg [71:0] ID_DecoderArray_decoders_0_uop_aluOp_string;
@@ -21561,8 +21606,8 @@ module MyCPUCore (
   reg [71:0] _zz_INT0_ISS_IntExecutePlugin_issSlot_uop_aluOp_string;
   reg [23:0] _zz_INT0_ISS_IntExecutePlugin_issSlot_uop_cmpOp_string;
   reg [55:0] _zz_INT0_ISS_IntExecutePlugin_issSlot_uop_tlbOp_string;
-  reg [39:0] switch_MMUPlugin_l290_1_string;
-  reg [39:0] _zz_when_MMUPlugin_l359_string;
+  reg [39:0] switch_MMUPlugin_l331_1_string;
+  reg [39:0] _zz_when_MMUPlugin_l400_string;
   reg [47:0] MEM_MEM2_UncachedAccessPlugin_uncachedStoreFSM_regSTD_lsType_string;
   reg [47:0] MEM_MEM2_LoadPostprocessPlugin_accessType_string;
   reg [47:0] ID_to_RENAME_DECODE_PACKET_0_payload_fuType_string;
@@ -22395,10 +22440,10 @@ module MyCPUCore (
   assign _zz_when_ExceptionHandlerPlugin_l222_4 = ((CommitPlugin_except_payload_code == 6'h01) && (CommitPlugin_except_payload_subcode == 9'h0));
   assign _zz_when_ExceptionHandlerPlugin_l222_5 = ((CommitPlugin_except_payload_code == 6'h09) && (CommitPlugin_except_payload_subcode == 9'h0));
   assign _zz_when_ExceptionHandlerPlugin_l222_6 = {((CommitPlugin_except_payload_code == 6'h08) && (CommitPlugin_except_payload_subcode == 9'h001)),{((CommitPlugin_except_payload_code == 6'h08) && (CommitPlugin_except_payload_subcode == 9'h0)),((CommitPlugin_except_payload_code == 6'h3f) && (CommitPlugin_except_payload_subcode == 9'h0))}};
-  assign _zz_when_MMUPlugin_l404_15 = _zz_when_MMUPlugin_l404_5;
-  assign _zz_when_MMUPlugin_l404_16 = {_zz_when_MMUPlugin_l404_4,{_zz_when_MMUPlugin_l404_3,{_zz_when_MMUPlugin_l404_2,{_zz_when_MMUPlugin_l404_1,{_zz_when_MMUPlugin_l404,((MMUPlugin_TLBTable_0_E && ((MMUPlugin_TLBTable_0_ASID == MMUPlugin_ASID_ASID) || MMUPlugin_TLBTable_0_G)) && ((MMUPlugin_TLBTable_0_PS == 6'h0c) ? (MMUPlugin_TLBTable_0_VPPN == MMUPlugin_TLBEHI_VPPN) : (MMUPlugin_TLBTable_0_VPPN[18 : 9] == MMUPlugin_TLBEHI_VPPN[18 : 9])))}}}}};
-  assign _zz_IF1_InstAddrTranslatePlugin_tlbTranslateResult_TLBHit = IF1_InstAddrTranslatePlugin_tlbTranslateResult_EntryHits_6;
-  assign _zz_IF1_InstAddrTranslatePlugin_tlbTranslateResult_TLBHit_1 = {IF1_InstAddrTranslatePlugin_tlbTranslateResult_EntryHits_5,{IF1_InstAddrTranslatePlugin_tlbTranslateResult_EntryHits_4,{IF1_InstAddrTranslatePlugin_tlbTranslateResult_EntryHits_3,{IF1_InstAddrTranslatePlugin_tlbTranslateResult_EntryHits_2,{IF1_InstAddrTranslatePlugin_tlbTranslateResult_EntryHits_1,IF1_InstAddrTranslatePlugin_tlbTranslateResult_EntryHits_0}}}}};
+  assign _zz_when_MMUPlugin_l445_15 = _zz_when_MMUPlugin_l445_5;
+  assign _zz_when_MMUPlugin_l445_16 = {_zz_when_MMUPlugin_l445_4,{_zz_when_MMUPlugin_l445_3,{_zz_when_MMUPlugin_l445_2,{_zz_when_MMUPlugin_l445_1,{_zz_when_MMUPlugin_l445,((MMUPlugin_TLBTable_0_E && ((MMUPlugin_TLBTable_0_ASID == MMUPlugin_ASID_ASID) || MMUPlugin_TLBTable_0_G)) && ((MMUPlugin_TLBTable_0_PS == 6'h0c) ? (MMUPlugin_TLBTable_0_VPPN == MMUPlugin_TLBEHI_VPPN) : (MMUPlugin_TLBTable_0_VPPN[18 : 9] == MMUPlugin_TLBEHI_VPPN[18 : 9])))}}}}};
+  assign _zz_IF1_InstAddrTranslatePlugin_tlbLookup_snapshot_hit = IF1_InstAddrTranslatePlugin_tlbLookup_EntryHits_6;
+  assign _zz_IF1_InstAddrTranslatePlugin_tlbLookup_snapshot_hit_1 = {IF1_InstAddrTranslatePlugin_tlbLookup_EntryHits_5,{IF1_InstAddrTranslatePlugin_tlbLookup_EntryHits_4,{IF1_InstAddrTranslatePlugin_tlbLookup_EntryHits_3,{IF1_InstAddrTranslatePlugin_tlbLookup_EntryHits_2,{IF1_InstAddrTranslatePlugin_tlbLookup_EntryHits_1,IF1_InstAddrTranslatePlugin_tlbLookup_EntryHits_0}}}}};
   assign _zz_when_DecoderArrayPlugin_l309 = (((FetchBufferPlugin_bufferFIFO_io_pop_0_payload_inst & 32'hff000000) == 32'h04000000) || ((FetchBufferPlugin_bufferFIFO_io_pop_0_payload_inst & 32'hffc00000) == 32'h06000000));
   assign _zz_when_DecoderArrayPlugin_l309_1 = ((FetchBufferPlugin_bufferFIFO_io_pop_0_payload_inst & 32'hffffffff) == 32'h06483800);
   assign _zz_when_DecoderArrayPlugin_l309_2 = (FetchBufferPlugin_bufferFIFO_io_pop_0_payload_inst & 32'hffff8000);
@@ -22422,8 +22467,8 @@ module MyCPUCore (
   assign _zz_RENAME_RenamePlugin_debug_aRAT_1 = {RenamePlugin_aRAT_19,{RenamePlugin_aRAT_18,{RenamePlugin_aRAT_17,{RenamePlugin_aRAT_16,{RenamePlugin_aRAT_15,{RenamePlugin_aRAT_14,{RenamePlugin_aRAT_13,{RenamePlugin_aRAT_12,{RenamePlugin_aRAT_11,{RenamePlugin_aRAT_10,{_zz_RENAME_RenamePlugin_debug_aRAT_2,_zz_RENAME_RenamePlugin_debug_aRAT_3}}}}}}}}}}};
   assign _zz_RENAME_RenamePlugin_debug_aRAT_2 = RenamePlugin_aRAT_9;
   assign _zz_RENAME_RenamePlugin_debug_aRAT_3 = {RenamePlugin_aRAT_8,{RenamePlugin_aRAT_7,{RenamePlugin_aRAT_6,{RenamePlugin_aRAT_5,{RenamePlugin_aRAT_4,{RenamePlugin_aRAT_3,{RenamePlugin_aRAT_2,{RenamePlugin_aRAT_1,RenamePlugin_aRAT_0}}}}}}}};
-  assign _zz_MEM_ADDR_AddressGenerationPlugin_tlbTranslateResult_TLBHit = MEM_ADDR_AddressGenerationPlugin_tlbTranslateResult_EntryHits_6;
-  assign _zz_MEM_ADDR_AddressGenerationPlugin_tlbTranslateResult_TLBHit_1 = {MEM_ADDR_AddressGenerationPlugin_tlbTranslateResult_EntryHits_5,{MEM_ADDR_AddressGenerationPlugin_tlbTranslateResult_EntryHits_4,{MEM_ADDR_AddressGenerationPlugin_tlbTranslateResult_EntryHits_3,{MEM_ADDR_AddressGenerationPlugin_tlbTranslateResult_EntryHits_2,{MEM_ADDR_AddressGenerationPlugin_tlbTranslateResult_EntryHits_1,MEM_ADDR_AddressGenerationPlugin_tlbTranslateResult_EntryHits_0}}}}};
+  assign _zz_MEM_ADDR_AddressGenerationPlugin_tlbLookup_snapshot_hit = MEM_ADDR_AddressGenerationPlugin_tlbLookup_EntryHits_6;
+  assign _zz_MEM_ADDR_AddressGenerationPlugin_tlbLookup_snapshot_hit_1 = {MEM_ADDR_AddressGenerationPlugin_tlbLookup_EntryHits_5,{MEM_ADDR_AddressGenerationPlugin_tlbLookup_EntryHits_4,{MEM_ADDR_AddressGenerationPlugin_tlbLookup_EntryHits_3,{MEM_ADDR_AddressGenerationPlugin_tlbLookup_EntryHits_2,{MEM_ADDR_AddressGenerationPlugin_tlbLookup_EntryHits_1,MEM_ADDR_AddressGenerationPlugin_tlbLookup_EntryHits_0}}}}};
   assign _zz_MEM_ISS_arbitration_isFlushed = MEM_ADDR_arbitration_flushNext;
   assign _zz_MEM_ISS_arbitration_isFlushed_1 = MEM_RRD_arbitration_flushNext;
   assign _zz_MEM_ISS_arbitration_isFlushed_2 = MEM_ADDR_arbitration_flushIt;
@@ -29668,278 +29713,278 @@ module MyCPUCore (
   end
 
   always @(*) begin
-    case(_zz_IF1_InstAddrTranslatePlugin_tlbTranslateResult_TLBHitEntry_E_4)
+    case(_zz_IF1_InstAddrTranslatePlugin_tlbLookup_snapshot_entry_E_4)
       4'b0000 : begin
-        _zz_IF1_InstAddrTranslatePlugin_tlbTranslateResult_TLBHitEntry_E_5 = MMUPlugin_TLBTable_0_E;
-        _zz_IF1_InstAddrTranslatePlugin_tlbTranslateResult_TLBHitEntry_ASID = MMUPlugin_TLBTable_0_ASID;
-        _zz_IF1_InstAddrTranslatePlugin_tlbTranslateResult_TLBHitEntry_G = MMUPlugin_TLBTable_0_G;
-        _zz_IF1_InstAddrTranslatePlugin_tlbTranslateResult_TLBHitEntry_PS = MMUPlugin_TLBTable_0_PS;
-        _zz_IF1_InstAddrTranslatePlugin_tlbTranslateResult_TLBHitEntry_VPPN = MMUPlugin_TLBTable_0_VPPN;
-        _zz_IF1_InstAddrTranslatePlugin_tlbTranslateResult_TLBHitEntry_V0 = MMUPlugin_TLBTable_0_V0;
-        _zz_IF1_InstAddrTranslatePlugin_tlbTranslateResult_TLBHitEntry_D0 = MMUPlugin_TLBTable_0_D0;
-        _zz_IF1_InstAddrTranslatePlugin_tlbTranslateResult_TLBHitEntry_MAT0 = MMUPlugin_TLBTable_0_MAT0;
-        _zz_IF1_InstAddrTranslatePlugin_tlbTranslateResult_TLBHitEntry_PLV0 = MMUPlugin_TLBTable_0_PLV0;
-        _zz_IF1_InstAddrTranslatePlugin_tlbTranslateResult_TLBHitEntry_PPN0 = MMUPlugin_TLBTable_0_PPN0;
-        _zz_IF1_InstAddrTranslatePlugin_tlbTranslateResult_TLBHitEntry_V1 = MMUPlugin_TLBTable_0_V1;
-        _zz_IF1_InstAddrTranslatePlugin_tlbTranslateResult_TLBHitEntry_D1 = MMUPlugin_TLBTable_0_D1;
-        _zz_IF1_InstAddrTranslatePlugin_tlbTranslateResult_TLBHitEntry_MAT1 = MMUPlugin_TLBTable_0_MAT1;
-        _zz_IF1_InstAddrTranslatePlugin_tlbTranslateResult_TLBHitEntry_PLV1 = MMUPlugin_TLBTable_0_PLV1;
-        _zz_IF1_InstAddrTranslatePlugin_tlbTranslateResult_TLBHitEntry_PPN1 = MMUPlugin_TLBTable_0_PPN1;
+        _zz__zz_IF1_InstAddrTranslatePlugin_tlbLookup_snapshot_entry_E_5 = MMUPlugin_TLBTable_0_PPN1;
+        _zz__zz_IF1_InstAddrTranslatePlugin_tlbLookup_snapshot_entry_E_5_1 = MMUPlugin_TLBTable_0_PLV1;
+        _zz__zz_IF1_InstAddrTranslatePlugin_tlbLookup_snapshot_entry_E_5_2 = MMUPlugin_TLBTable_0_MAT1;
+        _zz__zz_IF1_InstAddrTranslatePlugin_tlbLookup_snapshot_entry_E_5_3 = MMUPlugin_TLBTable_0_D1;
+        _zz__zz_IF1_InstAddrTranslatePlugin_tlbLookup_snapshot_entry_E_5_4 = MMUPlugin_TLBTable_0_V1;
+        _zz__zz_IF1_InstAddrTranslatePlugin_tlbLookup_snapshot_entry_E_5_5 = MMUPlugin_TLBTable_0_PPN0;
+        _zz__zz_IF1_InstAddrTranslatePlugin_tlbLookup_snapshot_entry_E_5_6 = MMUPlugin_TLBTable_0_PLV0;
+        _zz__zz_IF1_InstAddrTranslatePlugin_tlbLookup_snapshot_entry_E_5_7 = MMUPlugin_TLBTable_0_MAT0;
+        _zz__zz_IF1_InstAddrTranslatePlugin_tlbLookup_snapshot_entry_E_5_8 = MMUPlugin_TLBTable_0_D0;
+        _zz__zz_IF1_InstAddrTranslatePlugin_tlbLookup_snapshot_entry_E_5_9 = MMUPlugin_TLBTable_0_V0;
+        _zz__zz_IF1_InstAddrTranslatePlugin_tlbLookup_snapshot_entry_E_5_10 = MMUPlugin_TLBTable_0_VPPN;
+        _zz__zz_IF1_InstAddrTranslatePlugin_tlbLookup_snapshot_entry_E_5_11 = MMUPlugin_TLBTable_0_PS;
+        _zz__zz_IF1_InstAddrTranslatePlugin_tlbLookup_snapshot_entry_E_5_12 = MMUPlugin_TLBTable_0_G;
+        _zz__zz_IF1_InstAddrTranslatePlugin_tlbLookup_snapshot_entry_E_5_13 = MMUPlugin_TLBTable_0_ASID;
+        _zz__zz_IF1_InstAddrTranslatePlugin_tlbLookup_snapshot_entry_E_5_14 = MMUPlugin_TLBTable_0_E;
       end
       4'b0001 : begin
-        _zz_IF1_InstAddrTranslatePlugin_tlbTranslateResult_TLBHitEntry_E_5 = MMUPlugin_TLBTable_1_E;
-        _zz_IF1_InstAddrTranslatePlugin_tlbTranslateResult_TLBHitEntry_ASID = MMUPlugin_TLBTable_1_ASID;
-        _zz_IF1_InstAddrTranslatePlugin_tlbTranslateResult_TLBHitEntry_G = MMUPlugin_TLBTable_1_G;
-        _zz_IF1_InstAddrTranslatePlugin_tlbTranslateResult_TLBHitEntry_PS = MMUPlugin_TLBTable_1_PS;
-        _zz_IF1_InstAddrTranslatePlugin_tlbTranslateResult_TLBHitEntry_VPPN = MMUPlugin_TLBTable_1_VPPN;
-        _zz_IF1_InstAddrTranslatePlugin_tlbTranslateResult_TLBHitEntry_V0 = MMUPlugin_TLBTable_1_V0;
-        _zz_IF1_InstAddrTranslatePlugin_tlbTranslateResult_TLBHitEntry_D0 = MMUPlugin_TLBTable_1_D0;
-        _zz_IF1_InstAddrTranslatePlugin_tlbTranslateResult_TLBHitEntry_MAT0 = MMUPlugin_TLBTable_1_MAT0;
-        _zz_IF1_InstAddrTranslatePlugin_tlbTranslateResult_TLBHitEntry_PLV0 = MMUPlugin_TLBTable_1_PLV0;
-        _zz_IF1_InstAddrTranslatePlugin_tlbTranslateResult_TLBHitEntry_PPN0 = MMUPlugin_TLBTable_1_PPN0;
-        _zz_IF1_InstAddrTranslatePlugin_tlbTranslateResult_TLBHitEntry_V1 = MMUPlugin_TLBTable_1_V1;
-        _zz_IF1_InstAddrTranslatePlugin_tlbTranslateResult_TLBHitEntry_D1 = MMUPlugin_TLBTable_1_D1;
-        _zz_IF1_InstAddrTranslatePlugin_tlbTranslateResult_TLBHitEntry_MAT1 = MMUPlugin_TLBTable_1_MAT1;
-        _zz_IF1_InstAddrTranslatePlugin_tlbTranslateResult_TLBHitEntry_PLV1 = MMUPlugin_TLBTable_1_PLV1;
-        _zz_IF1_InstAddrTranslatePlugin_tlbTranslateResult_TLBHitEntry_PPN1 = MMUPlugin_TLBTable_1_PPN1;
+        _zz__zz_IF1_InstAddrTranslatePlugin_tlbLookup_snapshot_entry_E_5 = MMUPlugin_TLBTable_1_PPN1;
+        _zz__zz_IF1_InstAddrTranslatePlugin_tlbLookup_snapshot_entry_E_5_1 = MMUPlugin_TLBTable_1_PLV1;
+        _zz__zz_IF1_InstAddrTranslatePlugin_tlbLookup_snapshot_entry_E_5_2 = MMUPlugin_TLBTable_1_MAT1;
+        _zz__zz_IF1_InstAddrTranslatePlugin_tlbLookup_snapshot_entry_E_5_3 = MMUPlugin_TLBTable_1_D1;
+        _zz__zz_IF1_InstAddrTranslatePlugin_tlbLookup_snapshot_entry_E_5_4 = MMUPlugin_TLBTable_1_V1;
+        _zz__zz_IF1_InstAddrTranslatePlugin_tlbLookup_snapshot_entry_E_5_5 = MMUPlugin_TLBTable_1_PPN0;
+        _zz__zz_IF1_InstAddrTranslatePlugin_tlbLookup_snapshot_entry_E_5_6 = MMUPlugin_TLBTable_1_PLV0;
+        _zz__zz_IF1_InstAddrTranslatePlugin_tlbLookup_snapshot_entry_E_5_7 = MMUPlugin_TLBTable_1_MAT0;
+        _zz__zz_IF1_InstAddrTranslatePlugin_tlbLookup_snapshot_entry_E_5_8 = MMUPlugin_TLBTable_1_D0;
+        _zz__zz_IF1_InstAddrTranslatePlugin_tlbLookup_snapshot_entry_E_5_9 = MMUPlugin_TLBTable_1_V0;
+        _zz__zz_IF1_InstAddrTranslatePlugin_tlbLookup_snapshot_entry_E_5_10 = MMUPlugin_TLBTable_1_VPPN;
+        _zz__zz_IF1_InstAddrTranslatePlugin_tlbLookup_snapshot_entry_E_5_11 = MMUPlugin_TLBTable_1_PS;
+        _zz__zz_IF1_InstAddrTranslatePlugin_tlbLookup_snapshot_entry_E_5_12 = MMUPlugin_TLBTable_1_G;
+        _zz__zz_IF1_InstAddrTranslatePlugin_tlbLookup_snapshot_entry_E_5_13 = MMUPlugin_TLBTable_1_ASID;
+        _zz__zz_IF1_InstAddrTranslatePlugin_tlbLookup_snapshot_entry_E_5_14 = MMUPlugin_TLBTable_1_E;
       end
       4'b0010 : begin
-        _zz_IF1_InstAddrTranslatePlugin_tlbTranslateResult_TLBHitEntry_E_5 = MMUPlugin_TLBTable_2_E;
-        _zz_IF1_InstAddrTranslatePlugin_tlbTranslateResult_TLBHitEntry_ASID = MMUPlugin_TLBTable_2_ASID;
-        _zz_IF1_InstAddrTranslatePlugin_tlbTranslateResult_TLBHitEntry_G = MMUPlugin_TLBTable_2_G;
-        _zz_IF1_InstAddrTranslatePlugin_tlbTranslateResult_TLBHitEntry_PS = MMUPlugin_TLBTable_2_PS;
-        _zz_IF1_InstAddrTranslatePlugin_tlbTranslateResult_TLBHitEntry_VPPN = MMUPlugin_TLBTable_2_VPPN;
-        _zz_IF1_InstAddrTranslatePlugin_tlbTranslateResult_TLBHitEntry_V0 = MMUPlugin_TLBTable_2_V0;
-        _zz_IF1_InstAddrTranslatePlugin_tlbTranslateResult_TLBHitEntry_D0 = MMUPlugin_TLBTable_2_D0;
-        _zz_IF1_InstAddrTranslatePlugin_tlbTranslateResult_TLBHitEntry_MAT0 = MMUPlugin_TLBTable_2_MAT0;
-        _zz_IF1_InstAddrTranslatePlugin_tlbTranslateResult_TLBHitEntry_PLV0 = MMUPlugin_TLBTable_2_PLV0;
-        _zz_IF1_InstAddrTranslatePlugin_tlbTranslateResult_TLBHitEntry_PPN0 = MMUPlugin_TLBTable_2_PPN0;
-        _zz_IF1_InstAddrTranslatePlugin_tlbTranslateResult_TLBHitEntry_V1 = MMUPlugin_TLBTable_2_V1;
-        _zz_IF1_InstAddrTranslatePlugin_tlbTranslateResult_TLBHitEntry_D1 = MMUPlugin_TLBTable_2_D1;
-        _zz_IF1_InstAddrTranslatePlugin_tlbTranslateResult_TLBHitEntry_MAT1 = MMUPlugin_TLBTable_2_MAT1;
-        _zz_IF1_InstAddrTranslatePlugin_tlbTranslateResult_TLBHitEntry_PLV1 = MMUPlugin_TLBTable_2_PLV1;
-        _zz_IF1_InstAddrTranslatePlugin_tlbTranslateResult_TLBHitEntry_PPN1 = MMUPlugin_TLBTable_2_PPN1;
+        _zz__zz_IF1_InstAddrTranslatePlugin_tlbLookup_snapshot_entry_E_5 = MMUPlugin_TLBTable_2_PPN1;
+        _zz__zz_IF1_InstAddrTranslatePlugin_tlbLookup_snapshot_entry_E_5_1 = MMUPlugin_TLBTable_2_PLV1;
+        _zz__zz_IF1_InstAddrTranslatePlugin_tlbLookup_snapshot_entry_E_5_2 = MMUPlugin_TLBTable_2_MAT1;
+        _zz__zz_IF1_InstAddrTranslatePlugin_tlbLookup_snapshot_entry_E_5_3 = MMUPlugin_TLBTable_2_D1;
+        _zz__zz_IF1_InstAddrTranslatePlugin_tlbLookup_snapshot_entry_E_5_4 = MMUPlugin_TLBTable_2_V1;
+        _zz__zz_IF1_InstAddrTranslatePlugin_tlbLookup_snapshot_entry_E_5_5 = MMUPlugin_TLBTable_2_PPN0;
+        _zz__zz_IF1_InstAddrTranslatePlugin_tlbLookup_snapshot_entry_E_5_6 = MMUPlugin_TLBTable_2_PLV0;
+        _zz__zz_IF1_InstAddrTranslatePlugin_tlbLookup_snapshot_entry_E_5_7 = MMUPlugin_TLBTable_2_MAT0;
+        _zz__zz_IF1_InstAddrTranslatePlugin_tlbLookup_snapshot_entry_E_5_8 = MMUPlugin_TLBTable_2_D0;
+        _zz__zz_IF1_InstAddrTranslatePlugin_tlbLookup_snapshot_entry_E_5_9 = MMUPlugin_TLBTable_2_V0;
+        _zz__zz_IF1_InstAddrTranslatePlugin_tlbLookup_snapshot_entry_E_5_10 = MMUPlugin_TLBTable_2_VPPN;
+        _zz__zz_IF1_InstAddrTranslatePlugin_tlbLookup_snapshot_entry_E_5_11 = MMUPlugin_TLBTable_2_PS;
+        _zz__zz_IF1_InstAddrTranslatePlugin_tlbLookup_snapshot_entry_E_5_12 = MMUPlugin_TLBTable_2_G;
+        _zz__zz_IF1_InstAddrTranslatePlugin_tlbLookup_snapshot_entry_E_5_13 = MMUPlugin_TLBTable_2_ASID;
+        _zz__zz_IF1_InstAddrTranslatePlugin_tlbLookup_snapshot_entry_E_5_14 = MMUPlugin_TLBTable_2_E;
       end
       4'b0011 : begin
-        _zz_IF1_InstAddrTranslatePlugin_tlbTranslateResult_TLBHitEntry_E_5 = MMUPlugin_TLBTable_3_E;
-        _zz_IF1_InstAddrTranslatePlugin_tlbTranslateResult_TLBHitEntry_ASID = MMUPlugin_TLBTable_3_ASID;
-        _zz_IF1_InstAddrTranslatePlugin_tlbTranslateResult_TLBHitEntry_G = MMUPlugin_TLBTable_3_G;
-        _zz_IF1_InstAddrTranslatePlugin_tlbTranslateResult_TLBHitEntry_PS = MMUPlugin_TLBTable_3_PS;
-        _zz_IF1_InstAddrTranslatePlugin_tlbTranslateResult_TLBHitEntry_VPPN = MMUPlugin_TLBTable_3_VPPN;
-        _zz_IF1_InstAddrTranslatePlugin_tlbTranslateResult_TLBHitEntry_V0 = MMUPlugin_TLBTable_3_V0;
-        _zz_IF1_InstAddrTranslatePlugin_tlbTranslateResult_TLBHitEntry_D0 = MMUPlugin_TLBTable_3_D0;
-        _zz_IF1_InstAddrTranslatePlugin_tlbTranslateResult_TLBHitEntry_MAT0 = MMUPlugin_TLBTable_3_MAT0;
-        _zz_IF1_InstAddrTranslatePlugin_tlbTranslateResult_TLBHitEntry_PLV0 = MMUPlugin_TLBTable_3_PLV0;
-        _zz_IF1_InstAddrTranslatePlugin_tlbTranslateResult_TLBHitEntry_PPN0 = MMUPlugin_TLBTable_3_PPN0;
-        _zz_IF1_InstAddrTranslatePlugin_tlbTranslateResult_TLBHitEntry_V1 = MMUPlugin_TLBTable_3_V1;
-        _zz_IF1_InstAddrTranslatePlugin_tlbTranslateResult_TLBHitEntry_D1 = MMUPlugin_TLBTable_3_D1;
-        _zz_IF1_InstAddrTranslatePlugin_tlbTranslateResult_TLBHitEntry_MAT1 = MMUPlugin_TLBTable_3_MAT1;
-        _zz_IF1_InstAddrTranslatePlugin_tlbTranslateResult_TLBHitEntry_PLV1 = MMUPlugin_TLBTable_3_PLV1;
-        _zz_IF1_InstAddrTranslatePlugin_tlbTranslateResult_TLBHitEntry_PPN1 = MMUPlugin_TLBTable_3_PPN1;
+        _zz__zz_IF1_InstAddrTranslatePlugin_tlbLookup_snapshot_entry_E_5 = MMUPlugin_TLBTable_3_PPN1;
+        _zz__zz_IF1_InstAddrTranslatePlugin_tlbLookup_snapshot_entry_E_5_1 = MMUPlugin_TLBTable_3_PLV1;
+        _zz__zz_IF1_InstAddrTranslatePlugin_tlbLookup_snapshot_entry_E_5_2 = MMUPlugin_TLBTable_3_MAT1;
+        _zz__zz_IF1_InstAddrTranslatePlugin_tlbLookup_snapshot_entry_E_5_3 = MMUPlugin_TLBTable_3_D1;
+        _zz__zz_IF1_InstAddrTranslatePlugin_tlbLookup_snapshot_entry_E_5_4 = MMUPlugin_TLBTable_3_V1;
+        _zz__zz_IF1_InstAddrTranslatePlugin_tlbLookup_snapshot_entry_E_5_5 = MMUPlugin_TLBTable_3_PPN0;
+        _zz__zz_IF1_InstAddrTranslatePlugin_tlbLookup_snapshot_entry_E_5_6 = MMUPlugin_TLBTable_3_PLV0;
+        _zz__zz_IF1_InstAddrTranslatePlugin_tlbLookup_snapshot_entry_E_5_7 = MMUPlugin_TLBTable_3_MAT0;
+        _zz__zz_IF1_InstAddrTranslatePlugin_tlbLookup_snapshot_entry_E_5_8 = MMUPlugin_TLBTable_3_D0;
+        _zz__zz_IF1_InstAddrTranslatePlugin_tlbLookup_snapshot_entry_E_5_9 = MMUPlugin_TLBTable_3_V0;
+        _zz__zz_IF1_InstAddrTranslatePlugin_tlbLookup_snapshot_entry_E_5_10 = MMUPlugin_TLBTable_3_VPPN;
+        _zz__zz_IF1_InstAddrTranslatePlugin_tlbLookup_snapshot_entry_E_5_11 = MMUPlugin_TLBTable_3_PS;
+        _zz__zz_IF1_InstAddrTranslatePlugin_tlbLookup_snapshot_entry_E_5_12 = MMUPlugin_TLBTable_3_G;
+        _zz__zz_IF1_InstAddrTranslatePlugin_tlbLookup_snapshot_entry_E_5_13 = MMUPlugin_TLBTable_3_ASID;
+        _zz__zz_IF1_InstAddrTranslatePlugin_tlbLookup_snapshot_entry_E_5_14 = MMUPlugin_TLBTable_3_E;
       end
       4'b0100 : begin
-        _zz_IF1_InstAddrTranslatePlugin_tlbTranslateResult_TLBHitEntry_E_5 = MMUPlugin_TLBTable_4_E;
-        _zz_IF1_InstAddrTranslatePlugin_tlbTranslateResult_TLBHitEntry_ASID = MMUPlugin_TLBTable_4_ASID;
-        _zz_IF1_InstAddrTranslatePlugin_tlbTranslateResult_TLBHitEntry_G = MMUPlugin_TLBTable_4_G;
-        _zz_IF1_InstAddrTranslatePlugin_tlbTranslateResult_TLBHitEntry_PS = MMUPlugin_TLBTable_4_PS;
-        _zz_IF1_InstAddrTranslatePlugin_tlbTranslateResult_TLBHitEntry_VPPN = MMUPlugin_TLBTable_4_VPPN;
-        _zz_IF1_InstAddrTranslatePlugin_tlbTranslateResult_TLBHitEntry_V0 = MMUPlugin_TLBTable_4_V0;
-        _zz_IF1_InstAddrTranslatePlugin_tlbTranslateResult_TLBHitEntry_D0 = MMUPlugin_TLBTable_4_D0;
-        _zz_IF1_InstAddrTranslatePlugin_tlbTranslateResult_TLBHitEntry_MAT0 = MMUPlugin_TLBTable_4_MAT0;
-        _zz_IF1_InstAddrTranslatePlugin_tlbTranslateResult_TLBHitEntry_PLV0 = MMUPlugin_TLBTable_4_PLV0;
-        _zz_IF1_InstAddrTranslatePlugin_tlbTranslateResult_TLBHitEntry_PPN0 = MMUPlugin_TLBTable_4_PPN0;
-        _zz_IF1_InstAddrTranslatePlugin_tlbTranslateResult_TLBHitEntry_V1 = MMUPlugin_TLBTable_4_V1;
-        _zz_IF1_InstAddrTranslatePlugin_tlbTranslateResult_TLBHitEntry_D1 = MMUPlugin_TLBTable_4_D1;
-        _zz_IF1_InstAddrTranslatePlugin_tlbTranslateResult_TLBHitEntry_MAT1 = MMUPlugin_TLBTable_4_MAT1;
-        _zz_IF1_InstAddrTranslatePlugin_tlbTranslateResult_TLBHitEntry_PLV1 = MMUPlugin_TLBTable_4_PLV1;
-        _zz_IF1_InstAddrTranslatePlugin_tlbTranslateResult_TLBHitEntry_PPN1 = MMUPlugin_TLBTable_4_PPN1;
+        _zz__zz_IF1_InstAddrTranslatePlugin_tlbLookup_snapshot_entry_E_5 = MMUPlugin_TLBTable_4_PPN1;
+        _zz__zz_IF1_InstAddrTranslatePlugin_tlbLookup_snapshot_entry_E_5_1 = MMUPlugin_TLBTable_4_PLV1;
+        _zz__zz_IF1_InstAddrTranslatePlugin_tlbLookup_snapshot_entry_E_5_2 = MMUPlugin_TLBTable_4_MAT1;
+        _zz__zz_IF1_InstAddrTranslatePlugin_tlbLookup_snapshot_entry_E_5_3 = MMUPlugin_TLBTable_4_D1;
+        _zz__zz_IF1_InstAddrTranslatePlugin_tlbLookup_snapshot_entry_E_5_4 = MMUPlugin_TLBTable_4_V1;
+        _zz__zz_IF1_InstAddrTranslatePlugin_tlbLookup_snapshot_entry_E_5_5 = MMUPlugin_TLBTable_4_PPN0;
+        _zz__zz_IF1_InstAddrTranslatePlugin_tlbLookup_snapshot_entry_E_5_6 = MMUPlugin_TLBTable_4_PLV0;
+        _zz__zz_IF1_InstAddrTranslatePlugin_tlbLookup_snapshot_entry_E_5_7 = MMUPlugin_TLBTable_4_MAT0;
+        _zz__zz_IF1_InstAddrTranslatePlugin_tlbLookup_snapshot_entry_E_5_8 = MMUPlugin_TLBTable_4_D0;
+        _zz__zz_IF1_InstAddrTranslatePlugin_tlbLookup_snapshot_entry_E_5_9 = MMUPlugin_TLBTable_4_V0;
+        _zz__zz_IF1_InstAddrTranslatePlugin_tlbLookup_snapshot_entry_E_5_10 = MMUPlugin_TLBTable_4_VPPN;
+        _zz__zz_IF1_InstAddrTranslatePlugin_tlbLookup_snapshot_entry_E_5_11 = MMUPlugin_TLBTable_4_PS;
+        _zz__zz_IF1_InstAddrTranslatePlugin_tlbLookup_snapshot_entry_E_5_12 = MMUPlugin_TLBTable_4_G;
+        _zz__zz_IF1_InstAddrTranslatePlugin_tlbLookup_snapshot_entry_E_5_13 = MMUPlugin_TLBTable_4_ASID;
+        _zz__zz_IF1_InstAddrTranslatePlugin_tlbLookup_snapshot_entry_E_5_14 = MMUPlugin_TLBTable_4_E;
       end
       4'b0101 : begin
-        _zz_IF1_InstAddrTranslatePlugin_tlbTranslateResult_TLBHitEntry_E_5 = MMUPlugin_TLBTable_5_E;
-        _zz_IF1_InstAddrTranslatePlugin_tlbTranslateResult_TLBHitEntry_ASID = MMUPlugin_TLBTable_5_ASID;
-        _zz_IF1_InstAddrTranslatePlugin_tlbTranslateResult_TLBHitEntry_G = MMUPlugin_TLBTable_5_G;
-        _zz_IF1_InstAddrTranslatePlugin_tlbTranslateResult_TLBHitEntry_PS = MMUPlugin_TLBTable_5_PS;
-        _zz_IF1_InstAddrTranslatePlugin_tlbTranslateResult_TLBHitEntry_VPPN = MMUPlugin_TLBTable_5_VPPN;
-        _zz_IF1_InstAddrTranslatePlugin_tlbTranslateResult_TLBHitEntry_V0 = MMUPlugin_TLBTable_5_V0;
-        _zz_IF1_InstAddrTranslatePlugin_tlbTranslateResult_TLBHitEntry_D0 = MMUPlugin_TLBTable_5_D0;
-        _zz_IF1_InstAddrTranslatePlugin_tlbTranslateResult_TLBHitEntry_MAT0 = MMUPlugin_TLBTable_5_MAT0;
-        _zz_IF1_InstAddrTranslatePlugin_tlbTranslateResult_TLBHitEntry_PLV0 = MMUPlugin_TLBTable_5_PLV0;
-        _zz_IF1_InstAddrTranslatePlugin_tlbTranslateResult_TLBHitEntry_PPN0 = MMUPlugin_TLBTable_5_PPN0;
-        _zz_IF1_InstAddrTranslatePlugin_tlbTranslateResult_TLBHitEntry_V1 = MMUPlugin_TLBTable_5_V1;
-        _zz_IF1_InstAddrTranslatePlugin_tlbTranslateResult_TLBHitEntry_D1 = MMUPlugin_TLBTable_5_D1;
-        _zz_IF1_InstAddrTranslatePlugin_tlbTranslateResult_TLBHitEntry_MAT1 = MMUPlugin_TLBTable_5_MAT1;
-        _zz_IF1_InstAddrTranslatePlugin_tlbTranslateResult_TLBHitEntry_PLV1 = MMUPlugin_TLBTable_5_PLV1;
-        _zz_IF1_InstAddrTranslatePlugin_tlbTranslateResult_TLBHitEntry_PPN1 = MMUPlugin_TLBTable_5_PPN1;
+        _zz__zz_IF1_InstAddrTranslatePlugin_tlbLookup_snapshot_entry_E_5 = MMUPlugin_TLBTable_5_PPN1;
+        _zz__zz_IF1_InstAddrTranslatePlugin_tlbLookup_snapshot_entry_E_5_1 = MMUPlugin_TLBTable_5_PLV1;
+        _zz__zz_IF1_InstAddrTranslatePlugin_tlbLookup_snapshot_entry_E_5_2 = MMUPlugin_TLBTable_5_MAT1;
+        _zz__zz_IF1_InstAddrTranslatePlugin_tlbLookup_snapshot_entry_E_5_3 = MMUPlugin_TLBTable_5_D1;
+        _zz__zz_IF1_InstAddrTranslatePlugin_tlbLookup_snapshot_entry_E_5_4 = MMUPlugin_TLBTable_5_V1;
+        _zz__zz_IF1_InstAddrTranslatePlugin_tlbLookup_snapshot_entry_E_5_5 = MMUPlugin_TLBTable_5_PPN0;
+        _zz__zz_IF1_InstAddrTranslatePlugin_tlbLookup_snapshot_entry_E_5_6 = MMUPlugin_TLBTable_5_PLV0;
+        _zz__zz_IF1_InstAddrTranslatePlugin_tlbLookup_snapshot_entry_E_5_7 = MMUPlugin_TLBTable_5_MAT0;
+        _zz__zz_IF1_InstAddrTranslatePlugin_tlbLookup_snapshot_entry_E_5_8 = MMUPlugin_TLBTable_5_D0;
+        _zz__zz_IF1_InstAddrTranslatePlugin_tlbLookup_snapshot_entry_E_5_9 = MMUPlugin_TLBTable_5_V0;
+        _zz__zz_IF1_InstAddrTranslatePlugin_tlbLookup_snapshot_entry_E_5_10 = MMUPlugin_TLBTable_5_VPPN;
+        _zz__zz_IF1_InstAddrTranslatePlugin_tlbLookup_snapshot_entry_E_5_11 = MMUPlugin_TLBTable_5_PS;
+        _zz__zz_IF1_InstAddrTranslatePlugin_tlbLookup_snapshot_entry_E_5_12 = MMUPlugin_TLBTable_5_G;
+        _zz__zz_IF1_InstAddrTranslatePlugin_tlbLookup_snapshot_entry_E_5_13 = MMUPlugin_TLBTable_5_ASID;
+        _zz__zz_IF1_InstAddrTranslatePlugin_tlbLookup_snapshot_entry_E_5_14 = MMUPlugin_TLBTable_5_E;
       end
       4'b0110 : begin
-        _zz_IF1_InstAddrTranslatePlugin_tlbTranslateResult_TLBHitEntry_E_5 = MMUPlugin_TLBTable_6_E;
-        _zz_IF1_InstAddrTranslatePlugin_tlbTranslateResult_TLBHitEntry_ASID = MMUPlugin_TLBTable_6_ASID;
-        _zz_IF1_InstAddrTranslatePlugin_tlbTranslateResult_TLBHitEntry_G = MMUPlugin_TLBTable_6_G;
-        _zz_IF1_InstAddrTranslatePlugin_tlbTranslateResult_TLBHitEntry_PS = MMUPlugin_TLBTable_6_PS;
-        _zz_IF1_InstAddrTranslatePlugin_tlbTranslateResult_TLBHitEntry_VPPN = MMUPlugin_TLBTable_6_VPPN;
-        _zz_IF1_InstAddrTranslatePlugin_tlbTranslateResult_TLBHitEntry_V0 = MMUPlugin_TLBTable_6_V0;
-        _zz_IF1_InstAddrTranslatePlugin_tlbTranslateResult_TLBHitEntry_D0 = MMUPlugin_TLBTable_6_D0;
-        _zz_IF1_InstAddrTranslatePlugin_tlbTranslateResult_TLBHitEntry_MAT0 = MMUPlugin_TLBTable_6_MAT0;
-        _zz_IF1_InstAddrTranslatePlugin_tlbTranslateResult_TLBHitEntry_PLV0 = MMUPlugin_TLBTable_6_PLV0;
-        _zz_IF1_InstAddrTranslatePlugin_tlbTranslateResult_TLBHitEntry_PPN0 = MMUPlugin_TLBTable_6_PPN0;
-        _zz_IF1_InstAddrTranslatePlugin_tlbTranslateResult_TLBHitEntry_V1 = MMUPlugin_TLBTable_6_V1;
-        _zz_IF1_InstAddrTranslatePlugin_tlbTranslateResult_TLBHitEntry_D1 = MMUPlugin_TLBTable_6_D1;
-        _zz_IF1_InstAddrTranslatePlugin_tlbTranslateResult_TLBHitEntry_MAT1 = MMUPlugin_TLBTable_6_MAT1;
-        _zz_IF1_InstAddrTranslatePlugin_tlbTranslateResult_TLBHitEntry_PLV1 = MMUPlugin_TLBTable_6_PLV1;
-        _zz_IF1_InstAddrTranslatePlugin_tlbTranslateResult_TLBHitEntry_PPN1 = MMUPlugin_TLBTable_6_PPN1;
+        _zz__zz_IF1_InstAddrTranslatePlugin_tlbLookup_snapshot_entry_E_5 = MMUPlugin_TLBTable_6_PPN1;
+        _zz__zz_IF1_InstAddrTranslatePlugin_tlbLookup_snapshot_entry_E_5_1 = MMUPlugin_TLBTable_6_PLV1;
+        _zz__zz_IF1_InstAddrTranslatePlugin_tlbLookup_snapshot_entry_E_5_2 = MMUPlugin_TLBTable_6_MAT1;
+        _zz__zz_IF1_InstAddrTranslatePlugin_tlbLookup_snapshot_entry_E_5_3 = MMUPlugin_TLBTable_6_D1;
+        _zz__zz_IF1_InstAddrTranslatePlugin_tlbLookup_snapshot_entry_E_5_4 = MMUPlugin_TLBTable_6_V1;
+        _zz__zz_IF1_InstAddrTranslatePlugin_tlbLookup_snapshot_entry_E_5_5 = MMUPlugin_TLBTable_6_PPN0;
+        _zz__zz_IF1_InstAddrTranslatePlugin_tlbLookup_snapshot_entry_E_5_6 = MMUPlugin_TLBTable_6_PLV0;
+        _zz__zz_IF1_InstAddrTranslatePlugin_tlbLookup_snapshot_entry_E_5_7 = MMUPlugin_TLBTable_6_MAT0;
+        _zz__zz_IF1_InstAddrTranslatePlugin_tlbLookup_snapshot_entry_E_5_8 = MMUPlugin_TLBTable_6_D0;
+        _zz__zz_IF1_InstAddrTranslatePlugin_tlbLookup_snapshot_entry_E_5_9 = MMUPlugin_TLBTable_6_V0;
+        _zz__zz_IF1_InstAddrTranslatePlugin_tlbLookup_snapshot_entry_E_5_10 = MMUPlugin_TLBTable_6_VPPN;
+        _zz__zz_IF1_InstAddrTranslatePlugin_tlbLookup_snapshot_entry_E_5_11 = MMUPlugin_TLBTable_6_PS;
+        _zz__zz_IF1_InstAddrTranslatePlugin_tlbLookup_snapshot_entry_E_5_12 = MMUPlugin_TLBTable_6_G;
+        _zz__zz_IF1_InstAddrTranslatePlugin_tlbLookup_snapshot_entry_E_5_13 = MMUPlugin_TLBTable_6_ASID;
+        _zz__zz_IF1_InstAddrTranslatePlugin_tlbLookup_snapshot_entry_E_5_14 = MMUPlugin_TLBTable_6_E;
       end
       4'b0111 : begin
-        _zz_IF1_InstAddrTranslatePlugin_tlbTranslateResult_TLBHitEntry_E_5 = MMUPlugin_TLBTable_7_E;
-        _zz_IF1_InstAddrTranslatePlugin_tlbTranslateResult_TLBHitEntry_ASID = MMUPlugin_TLBTable_7_ASID;
-        _zz_IF1_InstAddrTranslatePlugin_tlbTranslateResult_TLBHitEntry_G = MMUPlugin_TLBTable_7_G;
-        _zz_IF1_InstAddrTranslatePlugin_tlbTranslateResult_TLBHitEntry_PS = MMUPlugin_TLBTable_7_PS;
-        _zz_IF1_InstAddrTranslatePlugin_tlbTranslateResult_TLBHitEntry_VPPN = MMUPlugin_TLBTable_7_VPPN;
-        _zz_IF1_InstAddrTranslatePlugin_tlbTranslateResult_TLBHitEntry_V0 = MMUPlugin_TLBTable_7_V0;
-        _zz_IF1_InstAddrTranslatePlugin_tlbTranslateResult_TLBHitEntry_D0 = MMUPlugin_TLBTable_7_D0;
-        _zz_IF1_InstAddrTranslatePlugin_tlbTranslateResult_TLBHitEntry_MAT0 = MMUPlugin_TLBTable_7_MAT0;
-        _zz_IF1_InstAddrTranslatePlugin_tlbTranslateResult_TLBHitEntry_PLV0 = MMUPlugin_TLBTable_7_PLV0;
-        _zz_IF1_InstAddrTranslatePlugin_tlbTranslateResult_TLBHitEntry_PPN0 = MMUPlugin_TLBTable_7_PPN0;
-        _zz_IF1_InstAddrTranslatePlugin_tlbTranslateResult_TLBHitEntry_V1 = MMUPlugin_TLBTable_7_V1;
-        _zz_IF1_InstAddrTranslatePlugin_tlbTranslateResult_TLBHitEntry_D1 = MMUPlugin_TLBTable_7_D1;
-        _zz_IF1_InstAddrTranslatePlugin_tlbTranslateResult_TLBHitEntry_MAT1 = MMUPlugin_TLBTable_7_MAT1;
-        _zz_IF1_InstAddrTranslatePlugin_tlbTranslateResult_TLBHitEntry_PLV1 = MMUPlugin_TLBTable_7_PLV1;
-        _zz_IF1_InstAddrTranslatePlugin_tlbTranslateResult_TLBHitEntry_PPN1 = MMUPlugin_TLBTable_7_PPN1;
+        _zz__zz_IF1_InstAddrTranslatePlugin_tlbLookup_snapshot_entry_E_5 = MMUPlugin_TLBTable_7_PPN1;
+        _zz__zz_IF1_InstAddrTranslatePlugin_tlbLookup_snapshot_entry_E_5_1 = MMUPlugin_TLBTable_7_PLV1;
+        _zz__zz_IF1_InstAddrTranslatePlugin_tlbLookup_snapshot_entry_E_5_2 = MMUPlugin_TLBTable_7_MAT1;
+        _zz__zz_IF1_InstAddrTranslatePlugin_tlbLookup_snapshot_entry_E_5_3 = MMUPlugin_TLBTable_7_D1;
+        _zz__zz_IF1_InstAddrTranslatePlugin_tlbLookup_snapshot_entry_E_5_4 = MMUPlugin_TLBTable_7_V1;
+        _zz__zz_IF1_InstAddrTranslatePlugin_tlbLookup_snapshot_entry_E_5_5 = MMUPlugin_TLBTable_7_PPN0;
+        _zz__zz_IF1_InstAddrTranslatePlugin_tlbLookup_snapshot_entry_E_5_6 = MMUPlugin_TLBTable_7_PLV0;
+        _zz__zz_IF1_InstAddrTranslatePlugin_tlbLookup_snapshot_entry_E_5_7 = MMUPlugin_TLBTable_7_MAT0;
+        _zz__zz_IF1_InstAddrTranslatePlugin_tlbLookup_snapshot_entry_E_5_8 = MMUPlugin_TLBTable_7_D0;
+        _zz__zz_IF1_InstAddrTranslatePlugin_tlbLookup_snapshot_entry_E_5_9 = MMUPlugin_TLBTable_7_V0;
+        _zz__zz_IF1_InstAddrTranslatePlugin_tlbLookup_snapshot_entry_E_5_10 = MMUPlugin_TLBTable_7_VPPN;
+        _zz__zz_IF1_InstAddrTranslatePlugin_tlbLookup_snapshot_entry_E_5_11 = MMUPlugin_TLBTable_7_PS;
+        _zz__zz_IF1_InstAddrTranslatePlugin_tlbLookup_snapshot_entry_E_5_12 = MMUPlugin_TLBTable_7_G;
+        _zz__zz_IF1_InstAddrTranslatePlugin_tlbLookup_snapshot_entry_E_5_13 = MMUPlugin_TLBTable_7_ASID;
+        _zz__zz_IF1_InstAddrTranslatePlugin_tlbLookup_snapshot_entry_E_5_14 = MMUPlugin_TLBTable_7_E;
       end
       4'b1000 : begin
-        _zz_IF1_InstAddrTranslatePlugin_tlbTranslateResult_TLBHitEntry_E_5 = MMUPlugin_TLBTable_8_E;
-        _zz_IF1_InstAddrTranslatePlugin_tlbTranslateResult_TLBHitEntry_ASID = MMUPlugin_TLBTable_8_ASID;
-        _zz_IF1_InstAddrTranslatePlugin_tlbTranslateResult_TLBHitEntry_G = MMUPlugin_TLBTable_8_G;
-        _zz_IF1_InstAddrTranslatePlugin_tlbTranslateResult_TLBHitEntry_PS = MMUPlugin_TLBTable_8_PS;
-        _zz_IF1_InstAddrTranslatePlugin_tlbTranslateResult_TLBHitEntry_VPPN = MMUPlugin_TLBTable_8_VPPN;
-        _zz_IF1_InstAddrTranslatePlugin_tlbTranslateResult_TLBHitEntry_V0 = MMUPlugin_TLBTable_8_V0;
-        _zz_IF1_InstAddrTranslatePlugin_tlbTranslateResult_TLBHitEntry_D0 = MMUPlugin_TLBTable_8_D0;
-        _zz_IF1_InstAddrTranslatePlugin_tlbTranslateResult_TLBHitEntry_MAT0 = MMUPlugin_TLBTable_8_MAT0;
-        _zz_IF1_InstAddrTranslatePlugin_tlbTranslateResult_TLBHitEntry_PLV0 = MMUPlugin_TLBTable_8_PLV0;
-        _zz_IF1_InstAddrTranslatePlugin_tlbTranslateResult_TLBHitEntry_PPN0 = MMUPlugin_TLBTable_8_PPN0;
-        _zz_IF1_InstAddrTranslatePlugin_tlbTranslateResult_TLBHitEntry_V1 = MMUPlugin_TLBTable_8_V1;
-        _zz_IF1_InstAddrTranslatePlugin_tlbTranslateResult_TLBHitEntry_D1 = MMUPlugin_TLBTable_8_D1;
-        _zz_IF1_InstAddrTranslatePlugin_tlbTranslateResult_TLBHitEntry_MAT1 = MMUPlugin_TLBTable_8_MAT1;
-        _zz_IF1_InstAddrTranslatePlugin_tlbTranslateResult_TLBHitEntry_PLV1 = MMUPlugin_TLBTable_8_PLV1;
-        _zz_IF1_InstAddrTranslatePlugin_tlbTranslateResult_TLBHitEntry_PPN1 = MMUPlugin_TLBTable_8_PPN1;
+        _zz__zz_IF1_InstAddrTranslatePlugin_tlbLookup_snapshot_entry_E_5 = MMUPlugin_TLBTable_8_PPN1;
+        _zz__zz_IF1_InstAddrTranslatePlugin_tlbLookup_snapshot_entry_E_5_1 = MMUPlugin_TLBTable_8_PLV1;
+        _zz__zz_IF1_InstAddrTranslatePlugin_tlbLookup_snapshot_entry_E_5_2 = MMUPlugin_TLBTable_8_MAT1;
+        _zz__zz_IF1_InstAddrTranslatePlugin_tlbLookup_snapshot_entry_E_5_3 = MMUPlugin_TLBTable_8_D1;
+        _zz__zz_IF1_InstAddrTranslatePlugin_tlbLookup_snapshot_entry_E_5_4 = MMUPlugin_TLBTable_8_V1;
+        _zz__zz_IF1_InstAddrTranslatePlugin_tlbLookup_snapshot_entry_E_5_5 = MMUPlugin_TLBTable_8_PPN0;
+        _zz__zz_IF1_InstAddrTranslatePlugin_tlbLookup_snapshot_entry_E_5_6 = MMUPlugin_TLBTable_8_PLV0;
+        _zz__zz_IF1_InstAddrTranslatePlugin_tlbLookup_snapshot_entry_E_5_7 = MMUPlugin_TLBTable_8_MAT0;
+        _zz__zz_IF1_InstAddrTranslatePlugin_tlbLookup_snapshot_entry_E_5_8 = MMUPlugin_TLBTable_8_D0;
+        _zz__zz_IF1_InstAddrTranslatePlugin_tlbLookup_snapshot_entry_E_5_9 = MMUPlugin_TLBTable_8_V0;
+        _zz__zz_IF1_InstAddrTranslatePlugin_tlbLookup_snapshot_entry_E_5_10 = MMUPlugin_TLBTable_8_VPPN;
+        _zz__zz_IF1_InstAddrTranslatePlugin_tlbLookup_snapshot_entry_E_5_11 = MMUPlugin_TLBTable_8_PS;
+        _zz__zz_IF1_InstAddrTranslatePlugin_tlbLookup_snapshot_entry_E_5_12 = MMUPlugin_TLBTable_8_G;
+        _zz__zz_IF1_InstAddrTranslatePlugin_tlbLookup_snapshot_entry_E_5_13 = MMUPlugin_TLBTable_8_ASID;
+        _zz__zz_IF1_InstAddrTranslatePlugin_tlbLookup_snapshot_entry_E_5_14 = MMUPlugin_TLBTable_8_E;
       end
       4'b1001 : begin
-        _zz_IF1_InstAddrTranslatePlugin_tlbTranslateResult_TLBHitEntry_E_5 = MMUPlugin_TLBTable_9_E;
-        _zz_IF1_InstAddrTranslatePlugin_tlbTranslateResult_TLBHitEntry_ASID = MMUPlugin_TLBTable_9_ASID;
-        _zz_IF1_InstAddrTranslatePlugin_tlbTranslateResult_TLBHitEntry_G = MMUPlugin_TLBTable_9_G;
-        _zz_IF1_InstAddrTranslatePlugin_tlbTranslateResult_TLBHitEntry_PS = MMUPlugin_TLBTable_9_PS;
-        _zz_IF1_InstAddrTranslatePlugin_tlbTranslateResult_TLBHitEntry_VPPN = MMUPlugin_TLBTable_9_VPPN;
-        _zz_IF1_InstAddrTranslatePlugin_tlbTranslateResult_TLBHitEntry_V0 = MMUPlugin_TLBTable_9_V0;
-        _zz_IF1_InstAddrTranslatePlugin_tlbTranslateResult_TLBHitEntry_D0 = MMUPlugin_TLBTable_9_D0;
-        _zz_IF1_InstAddrTranslatePlugin_tlbTranslateResult_TLBHitEntry_MAT0 = MMUPlugin_TLBTable_9_MAT0;
-        _zz_IF1_InstAddrTranslatePlugin_tlbTranslateResult_TLBHitEntry_PLV0 = MMUPlugin_TLBTable_9_PLV0;
-        _zz_IF1_InstAddrTranslatePlugin_tlbTranslateResult_TLBHitEntry_PPN0 = MMUPlugin_TLBTable_9_PPN0;
-        _zz_IF1_InstAddrTranslatePlugin_tlbTranslateResult_TLBHitEntry_V1 = MMUPlugin_TLBTable_9_V1;
-        _zz_IF1_InstAddrTranslatePlugin_tlbTranslateResult_TLBHitEntry_D1 = MMUPlugin_TLBTable_9_D1;
-        _zz_IF1_InstAddrTranslatePlugin_tlbTranslateResult_TLBHitEntry_MAT1 = MMUPlugin_TLBTable_9_MAT1;
-        _zz_IF1_InstAddrTranslatePlugin_tlbTranslateResult_TLBHitEntry_PLV1 = MMUPlugin_TLBTable_9_PLV1;
-        _zz_IF1_InstAddrTranslatePlugin_tlbTranslateResult_TLBHitEntry_PPN1 = MMUPlugin_TLBTable_9_PPN1;
+        _zz__zz_IF1_InstAddrTranslatePlugin_tlbLookup_snapshot_entry_E_5 = MMUPlugin_TLBTable_9_PPN1;
+        _zz__zz_IF1_InstAddrTranslatePlugin_tlbLookup_snapshot_entry_E_5_1 = MMUPlugin_TLBTable_9_PLV1;
+        _zz__zz_IF1_InstAddrTranslatePlugin_tlbLookup_snapshot_entry_E_5_2 = MMUPlugin_TLBTable_9_MAT1;
+        _zz__zz_IF1_InstAddrTranslatePlugin_tlbLookup_snapshot_entry_E_5_3 = MMUPlugin_TLBTable_9_D1;
+        _zz__zz_IF1_InstAddrTranslatePlugin_tlbLookup_snapshot_entry_E_5_4 = MMUPlugin_TLBTable_9_V1;
+        _zz__zz_IF1_InstAddrTranslatePlugin_tlbLookup_snapshot_entry_E_5_5 = MMUPlugin_TLBTable_9_PPN0;
+        _zz__zz_IF1_InstAddrTranslatePlugin_tlbLookup_snapshot_entry_E_5_6 = MMUPlugin_TLBTable_9_PLV0;
+        _zz__zz_IF1_InstAddrTranslatePlugin_tlbLookup_snapshot_entry_E_5_7 = MMUPlugin_TLBTable_9_MAT0;
+        _zz__zz_IF1_InstAddrTranslatePlugin_tlbLookup_snapshot_entry_E_5_8 = MMUPlugin_TLBTable_9_D0;
+        _zz__zz_IF1_InstAddrTranslatePlugin_tlbLookup_snapshot_entry_E_5_9 = MMUPlugin_TLBTable_9_V0;
+        _zz__zz_IF1_InstAddrTranslatePlugin_tlbLookup_snapshot_entry_E_5_10 = MMUPlugin_TLBTable_9_VPPN;
+        _zz__zz_IF1_InstAddrTranslatePlugin_tlbLookup_snapshot_entry_E_5_11 = MMUPlugin_TLBTable_9_PS;
+        _zz__zz_IF1_InstAddrTranslatePlugin_tlbLookup_snapshot_entry_E_5_12 = MMUPlugin_TLBTable_9_G;
+        _zz__zz_IF1_InstAddrTranslatePlugin_tlbLookup_snapshot_entry_E_5_13 = MMUPlugin_TLBTable_9_ASID;
+        _zz__zz_IF1_InstAddrTranslatePlugin_tlbLookup_snapshot_entry_E_5_14 = MMUPlugin_TLBTable_9_E;
       end
       4'b1010 : begin
-        _zz_IF1_InstAddrTranslatePlugin_tlbTranslateResult_TLBHitEntry_E_5 = MMUPlugin_TLBTable_10_E;
-        _zz_IF1_InstAddrTranslatePlugin_tlbTranslateResult_TLBHitEntry_ASID = MMUPlugin_TLBTable_10_ASID;
-        _zz_IF1_InstAddrTranslatePlugin_tlbTranslateResult_TLBHitEntry_G = MMUPlugin_TLBTable_10_G;
-        _zz_IF1_InstAddrTranslatePlugin_tlbTranslateResult_TLBHitEntry_PS = MMUPlugin_TLBTable_10_PS;
-        _zz_IF1_InstAddrTranslatePlugin_tlbTranslateResult_TLBHitEntry_VPPN = MMUPlugin_TLBTable_10_VPPN;
-        _zz_IF1_InstAddrTranslatePlugin_tlbTranslateResult_TLBHitEntry_V0 = MMUPlugin_TLBTable_10_V0;
-        _zz_IF1_InstAddrTranslatePlugin_tlbTranslateResult_TLBHitEntry_D0 = MMUPlugin_TLBTable_10_D0;
-        _zz_IF1_InstAddrTranslatePlugin_tlbTranslateResult_TLBHitEntry_MAT0 = MMUPlugin_TLBTable_10_MAT0;
-        _zz_IF1_InstAddrTranslatePlugin_tlbTranslateResult_TLBHitEntry_PLV0 = MMUPlugin_TLBTable_10_PLV0;
-        _zz_IF1_InstAddrTranslatePlugin_tlbTranslateResult_TLBHitEntry_PPN0 = MMUPlugin_TLBTable_10_PPN0;
-        _zz_IF1_InstAddrTranslatePlugin_tlbTranslateResult_TLBHitEntry_V1 = MMUPlugin_TLBTable_10_V1;
-        _zz_IF1_InstAddrTranslatePlugin_tlbTranslateResult_TLBHitEntry_D1 = MMUPlugin_TLBTable_10_D1;
-        _zz_IF1_InstAddrTranslatePlugin_tlbTranslateResult_TLBHitEntry_MAT1 = MMUPlugin_TLBTable_10_MAT1;
-        _zz_IF1_InstAddrTranslatePlugin_tlbTranslateResult_TLBHitEntry_PLV1 = MMUPlugin_TLBTable_10_PLV1;
-        _zz_IF1_InstAddrTranslatePlugin_tlbTranslateResult_TLBHitEntry_PPN1 = MMUPlugin_TLBTable_10_PPN1;
+        _zz__zz_IF1_InstAddrTranslatePlugin_tlbLookup_snapshot_entry_E_5 = MMUPlugin_TLBTable_10_PPN1;
+        _zz__zz_IF1_InstAddrTranslatePlugin_tlbLookup_snapshot_entry_E_5_1 = MMUPlugin_TLBTable_10_PLV1;
+        _zz__zz_IF1_InstAddrTranslatePlugin_tlbLookup_snapshot_entry_E_5_2 = MMUPlugin_TLBTable_10_MAT1;
+        _zz__zz_IF1_InstAddrTranslatePlugin_tlbLookup_snapshot_entry_E_5_3 = MMUPlugin_TLBTable_10_D1;
+        _zz__zz_IF1_InstAddrTranslatePlugin_tlbLookup_snapshot_entry_E_5_4 = MMUPlugin_TLBTable_10_V1;
+        _zz__zz_IF1_InstAddrTranslatePlugin_tlbLookup_snapshot_entry_E_5_5 = MMUPlugin_TLBTable_10_PPN0;
+        _zz__zz_IF1_InstAddrTranslatePlugin_tlbLookup_snapshot_entry_E_5_6 = MMUPlugin_TLBTable_10_PLV0;
+        _zz__zz_IF1_InstAddrTranslatePlugin_tlbLookup_snapshot_entry_E_5_7 = MMUPlugin_TLBTable_10_MAT0;
+        _zz__zz_IF1_InstAddrTranslatePlugin_tlbLookup_snapshot_entry_E_5_8 = MMUPlugin_TLBTable_10_D0;
+        _zz__zz_IF1_InstAddrTranslatePlugin_tlbLookup_snapshot_entry_E_5_9 = MMUPlugin_TLBTable_10_V0;
+        _zz__zz_IF1_InstAddrTranslatePlugin_tlbLookup_snapshot_entry_E_5_10 = MMUPlugin_TLBTable_10_VPPN;
+        _zz__zz_IF1_InstAddrTranslatePlugin_tlbLookup_snapshot_entry_E_5_11 = MMUPlugin_TLBTable_10_PS;
+        _zz__zz_IF1_InstAddrTranslatePlugin_tlbLookup_snapshot_entry_E_5_12 = MMUPlugin_TLBTable_10_G;
+        _zz__zz_IF1_InstAddrTranslatePlugin_tlbLookup_snapshot_entry_E_5_13 = MMUPlugin_TLBTable_10_ASID;
+        _zz__zz_IF1_InstAddrTranslatePlugin_tlbLookup_snapshot_entry_E_5_14 = MMUPlugin_TLBTable_10_E;
       end
       4'b1011 : begin
-        _zz_IF1_InstAddrTranslatePlugin_tlbTranslateResult_TLBHitEntry_E_5 = MMUPlugin_TLBTable_11_E;
-        _zz_IF1_InstAddrTranslatePlugin_tlbTranslateResult_TLBHitEntry_ASID = MMUPlugin_TLBTable_11_ASID;
-        _zz_IF1_InstAddrTranslatePlugin_tlbTranslateResult_TLBHitEntry_G = MMUPlugin_TLBTable_11_G;
-        _zz_IF1_InstAddrTranslatePlugin_tlbTranslateResult_TLBHitEntry_PS = MMUPlugin_TLBTable_11_PS;
-        _zz_IF1_InstAddrTranslatePlugin_tlbTranslateResult_TLBHitEntry_VPPN = MMUPlugin_TLBTable_11_VPPN;
-        _zz_IF1_InstAddrTranslatePlugin_tlbTranslateResult_TLBHitEntry_V0 = MMUPlugin_TLBTable_11_V0;
-        _zz_IF1_InstAddrTranslatePlugin_tlbTranslateResult_TLBHitEntry_D0 = MMUPlugin_TLBTable_11_D0;
-        _zz_IF1_InstAddrTranslatePlugin_tlbTranslateResult_TLBHitEntry_MAT0 = MMUPlugin_TLBTable_11_MAT0;
-        _zz_IF1_InstAddrTranslatePlugin_tlbTranslateResult_TLBHitEntry_PLV0 = MMUPlugin_TLBTable_11_PLV0;
-        _zz_IF1_InstAddrTranslatePlugin_tlbTranslateResult_TLBHitEntry_PPN0 = MMUPlugin_TLBTable_11_PPN0;
-        _zz_IF1_InstAddrTranslatePlugin_tlbTranslateResult_TLBHitEntry_V1 = MMUPlugin_TLBTable_11_V1;
-        _zz_IF1_InstAddrTranslatePlugin_tlbTranslateResult_TLBHitEntry_D1 = MMUPlugin_TLBTable_11_D1;
-        _zz_IF1_InstAddrTranslatePlugin_tlbTranslateResult_TLBHitEntry_MAT1 = MMUPlugin_TLBTable_11_MAT1;
-        _zz_IF1_InstAddrTranslatePlugin_tlbTranslateResult_TLBHitEntry_PLV1 = MMUPlugin_TLBTable_11_PLV1;
-        _zz_IF1_InstAddrTranslatePlugin_tlbTranslateResult_TLBHitEntry_PPN1 = MMUPlugin_TLBTable_11_PPN1;
+        _zz__zz_IF1_InstAddrTranslatePlugin_tlbLookup_snapshot_entry_E_5 = MMUPlugin_TLBTable_11_PPN1;
+        _zz__zz_IF1_InstAddrTranslatePlugin_tlbLookup_snapshot_entry_E_5_1 = MMUPlugin_TLBTable_11_PLV1;
+        _zz__zz_IF1_InstAddrTranslatePlugin_tlbLookup_snapshot_entry_E_5_2 = MMUPlugin_TLBTable_11_MAT1;
+        _zz__zz_IF1_InstAddrTranslatePlugin_tlbLookup_snapshot_entry_E_5_3 = MMUPlugin_TLBTable_11_D1;
+        _zz__zz_IF1_InstAddrTranslatePlugin_tlbLookup_snapshot_entry_E_5_4 = MMUPlugin_TLBTable_11_V1;
+        _zz__zz_IF1_InstAddrTranslatePlugin_tlbLookup_snapshot_entry_E_5_5 = MMUPlugin_TLBTable_11_PPN0;
+        _zz__zz_IF1_InstAddrTranslatePlugin_tlbLookup_snapshot_entry_E_5_6 = MMUPlugin_TLBTable_11_PLV0;
+        _zz__zz_IF1_InstAddrTranslatePlugin_tlbLookup_snapshot_entry_E_5_7 = MMUPlugin_TLBTable_11_MAT0;
+        _zz__zz_IF1_InstAddrTranslatePlugin_tlbLookup_snapshot_entry_E_5_8 = MMUPlugin_TLBTable_11_D0;
+        _zz__zz_IF1_InstAddrTranslatePlugin_tlbLookup_snapshot_entry_E_5_9 = MMUPlugin_TLBTable_11_V0;
+        _zz__zz_IF1_InstAddrTranslatePlugin_tlbLookup_snapshot_entry_E_5_10 = MMUPlugin_TLBTable_11_VPPN;
+        _zz__zz_IF1_InstAddrTranslatePlugin_tlbLookup_snapshot_entry_E_5_11 = MMUPlugin_TLBTable_11_PS;
+        _zz__zz_IF1_InstAddrTranslatePlugin_tlbLookup_snapshot_entry_E_5_12 = MMUPlugin_TLBTable_11_G;
+        _zz__zz_IF1_InstAddrTranslatePlugin_tlbLookup_snapshot_entry_E_5_13 = MMUPlugin_TLBTable_11_ASID;
+        _zz__zz_IF1_InstAddrTranslatePlugin_tlbLookup_snapshot_entry_E_5_14 = MMUPlugin_TLBTable_11_E;
       end
       4'b1100 : begin
-        _zz_IF1_InstAddrTranslatePlugin_tlbTranslateResult_TLBHitEntry_E_5 = MMUPlugin_TLBTable_12_E;
-        _zz_IF1_InstAddrTranslatePlugin_tlbTranslateResult_TLBHitEntry_ASID = MMUPlugin_TLBTable_12_ASID;
-        _zz_IF1_InstAddrTranslatePlugin_tlbTranslateResult_TLBHitEntry_G = MMUPlugin_TLBTable_12_G;
-        _zz_IF1_InstAddrTranslatePlugin_tlbTranslateResult_TLBHitEntry_PS = MMUPlugin_TLBTable_12_PS;
-        _zz_IF1_InstAddrTranslatePlugin_tlbTranslateResult_TLBHitEntry_VPPN = MMUPlugin_TLBTable_12_VPPN;
-        _zz_IF1_InstAddrTranslatePlugin_tlbTranslateResult_TLBHitEntry_V0 = MMUPlugin_TLBTable_12_V0;
-        _zz_IF1_InstAddrTranslatePlugin_tlbTranslateResult_TLBHitEntry_D0 = MMUPlugin_TLBTable_12_D0;
-        _zz_IF1_InstAddrTranslatePlugin_tlbTranslateResult_TLBHitEntry_MAT0 = MMUPlugin_TLBTable_12_MAT0;
-        _zz_IF1_InstAddrTranslatePlugin_tlbTranslateResult_TLBHitEntry_PLV0 = MMUPlugin_TLBTable_12_PLV0;
-        _zz_IF1_InstAddrTranslatePlugin_tlbTranslateResult_TLBHitEntry_PPN0 = MMUPlugin_TLBTable_12_PPN0;
-        _zz_IF1_InstAddrTranslatePlugin_tlbTranslateResult_TLBHitEntry_V1 = MMUPlugin_TLBTable_12_V1;
-        _zz_IF1_InstAddrTranslatePlugin_tlbTranslateResult_TLBHitEntry_D1 = MMUPlugin_TLBTable_12_D1;
-        _zz_IF1_InstAddrTranslatePlugin_tlbTranslateResult_TLBHitEntry_MAT1 = MMUPlugin_TLBTable_12_MAT1;
-        _zz_IF1_InstAddrTranslatePlugin_tlbTranslateResult_TLBHitEntry_PLV1 = MMUPlugin_TLBTable_12_PLV1;
-        _zz_IF1_InstAddrTranslatePlugin_tlbTranslateResult_TLBHitEntry_PPN1 = MMUPlugin_TLBTable_12_PPN1;
+        _zz__zz_IF1_InstAddrTranslatePlugin_tlbLookup_snapshot_entry_E_5 = MMUPlugin_TLBTable_12_PPN1;
+        _zz__zz_IF1_InstAddrTranslatePlugin_tlbLookup_snapshot_entry_E_5_1 = MMUPlugin_TLBTable_12_PLV1;
+        _zz__zz_IF1_InstAddrTranslatePlugin_tlbLookup_snapshot_entry_E_5_2 = MMUPlugin_TLBTable_12_MAT1;
+        _zz__zz_IF1_InstAddrTranslatePlugin_tlbLookup_snapshot_entry_E_5_3 = MMUPlugin_TLBTable_12_D1;
+        _zz__zz_IF1_InstAddrTranslatePlugin_tlbLookup_snapshot_entry_E_5_4 = MMUPlugin_TLBTable_12_V1;
+        _zz__zz_IF1_InstAddrTranslatePlugin_tlbLookup_snapshot_entry_E_5_5 = MMUPlugin_TLBTable_12_PPN0;
+        _zz__zz_IF1_InstAddrTranslatePlugin_tlbLookup_snapshot_entry_E_5_6 = MMUPlugin_TLBTable_12_PLV0;
+        _zz__zz_IF1_InstAddrTranslatePlugin_tlbLookup_snapshot_entry_E_5_7 = MMUPlugin_TLBTable_12_MAT0;
+        _zz__zz_IF1_InstAddrTranslatePlugin_tlbLookup_snapshot_entry_E_5_8 = MMUPlugin_TLBTable_12_D0;
+        _zz__zz_IF1_InstAddrTranslatePlugin_tlbLookup_snapshot_entry_E_5_9 = MMUPlugin_TLBTable_12_V0;
+        _zz__zz_IF1_InstAddrTranslatePlugin_tlbLookup_snapshot_entry_E_5_10 = MMUPlugin_TLBTable_12_VPPN;
+        _zz__zz_IF1_InstAddrTranslatePlugin_tlbLookup_snapshot_entry_E_5_11 = MMUPlugin_TLBTable_12_PS;
+        _zz__zz_IF1_InstAddrTranslatePlugin_tlbLookup_snapshot_entry_E_5_12 = MMUPlugin_TLBTable_12_G;
+        _zz__zz_IF1_InstAddrTranslatePlugin_tlbLookup_snapshot_entry_E_5_13 = MMUPlugin_TLBTable_12_ASID;
+        _zz__zz_IF1_InstAddrTranslatePlugin_tlbLookup_snapshot_entry_E_5_14 = MMUPlugin_TLBTable_12_E;
       end
       4'b1101 : begin
-        _zz_IF1_InstAddrTranslatePlugin_tlbTranslateResult_TLBHitEntry_E_5 = MMUPlugin_TLBTable_13_E;
-        _zz_IF1_InstAddrTranslatePlugin_tlbTranslateResult_TLBHitEntry_ASID = MMUPlugin_TLBTable_13_ASID;
-        _zz_IF1_InstAddrTranslatePlugin_tlbTranslateResult_TLBHitEntry_G = MMUPlugin_TLBTable_13_G;
-        _zz_IF1_InstAddrTranslatePlugin_tlbTranslateResult_TLBHitEntry_PS = MMUPlugin_TLBTable_13_PS;
-        _zz_IF1_InstAddrTranslatePlugin_tlbTranslateResult_TLBHitEntry_VPPN = MMUPlugin_TLBTable_13_VPPN;
-        _zz_IF1_InstAddrTranslatePlugin_tlbTranslateResult_TLBHitEntry_V0 = MMUPlugin_TLBTable_13_V0;
-        _zz_IF1_InstAddrTranslatePlugin_tlbTranslateResult_TLBHitEntry_D0 = MMUPlugin_TLBTable_13_D0;
-        _zz_IF1_InstAddrTranslatePlugin_tlbTranslateResult_TLBHitEntry_MAT0 = MMUPlugin_TLBTable_13_MAT0;
-        _zz_IF1_InstAddrTranslatePlugin_tlbTranslateResult_TLBHitEntry_PLV0 = MMUPlugin_TLBTable_13_PLV0;
-        _zz_IF1_InstAddrTranslatePlugin_tlbTranslateResult_TLBHitEntry_PPN0 = MMUPlugin_TLBTable_13_PPN0;
-        _zz_IF1_InstAddrTranslatePlugin_tlbTranslateResult_TLBHitEntry_V1 = MMUPlugin_TLBTable_13_V1;
-        _zz_IF1_InstAddrTranslatePlugin_tlbTranslateResult_TLBHitEntry_D1 = MMUPlugin_TLBTable_13_D1;
-        _zz_IF1_InstAddrTranslatePlugin_tlbTranslateResult_TLBHitEntry_MAT1 = MMUPlugin_TLBTable_13_MAT1;
-        _zz_IF1_InstAddrTranslatePlugin_tlbTranslateResult_TLBHitEntry_PLV1 = MMUPlugin_TLBTable_13_PLV1;
-        _zz_IF1_InstAddrTranslatePlugin_tlbTranslateResult_TLBHitEntry_PPN1 = MMUPlugin_TLBTable_13_PPN1;
+        _zz__zz_IF1_InstAddrTranslatePlugin_tlbLookup_snapshot_entry_E_5 = MMUPlugin_TLBTable_13_PPN1;
+        _zz__zz_IF1_InstAddrTranslatePlugin_tlbLookup_snapshot_entry_E_5_1 = MMUPlugin_TLBTable_13_PLV1;
+        _zz__zz_IF1_InstAddrTranslatePlugin_tlbLookup_snapshot_entry_E_5_2 = MMUPlugin_TLBTable_13_MAT1;
+        _zz__zz_IF1_InstAddrTranslatePlugin_tlbLookup_snapshot_entry_E_5_3 = MMUPlugin_TLBTable_13_D1;
+        _zz__zz_IF1_InstAddrTranslatePlugin_tlbLookup_snapshot_entry_E_5_4 = MMUPlugin_TLBTable_13_V1;
+        _zz__zz_IF1_InstAddrTranslatePlugin_tlbLookup_snapshot_entry_E_5_5 = MMUPlugin_TLBTable_13_PPN0;
+        _zz__zz_IF1_InstAddrTranslatePlugin_tlbLookup_snapshot_entry_E_5_6 = MMUPlugin_TLBTable_13_PLV0;
+        _zz__zz_IF1_InstAddrTranslatePlugin_tlbLookup_snapshot_entry_E_5_7 = MMUPlugin_TLBTable_13_MAT0;
+        _zz__zz_IF1_InstAddrTranslatePlugin_tlbLookup_snapshot_entry_E_5_8 = MMUPlugin_TLBTable_13_D0;
+        _zz__zz_IF1_InstAddrTranslatePlugin_tlbLookup_snapshot_entry_E_5_9 = MMUPlugin_TLBTable_13_V0;
+        _zz__zz_IF1_InstAddrTranslatePlugin_tlbLookup_snapshot_entry_E_5_10 = MMUPlugin_TLBTable_13_VPPN;
+        _zz__zz_IF1_InstAddrTranslatePlugin_tlbLookup_snapshot_entry_E_5_11 = MMUPlugin_TLBTable_13_PS;
+        _zz__zz_IF1_InstAddrTranslatePlugin_tlbLookup_snapshot_entry_E_5_12 = MMUPlugin_TLBTable_13_G;
+        _zz__zz_IF1_InstAddrTranslatePlugin_tlbLookup_snapshot_entry_E_5_13 = MMUPlugin_TLBTable_13_ASID;
+        _zz__zz_IF1_InstAddrTranslatePlugin_tlbLookup_snapshot_entry_E_5_14 = MMUPlugin_TLBTable_13_E;
       end
       4'b1110 : begin
-        _zz_IF1_InstAddrTranslatePlugin_tlbTranslateResult_TLBHitEntry_E_5 = MMUPlugin_TLBTable_14_E;
-        _zz_IF1_InstAddrTranslatePlugin_tlbTranslateResult_TLBHitEntry_ASID = MMUPlugin_TLBTable_14_ASID;
-        _zz_IF1_InstAddrTranslatePlugin_tlbTranslateResult_TLBHitEntry_G = MMUPlugin_TLBTable_14_G;
-        _zz_IF1_InstAddrTranslatePlugin_tlbTranslateResult_TLBHitEntry_PS = MMUPlugin_TLBTable_14_PS;
-        _zz_IF1_InstAddrTranslatePlugin_tlbTranslateResult_TLBHitEntry_VPPN = MMUPlugin_TLBTable_14_VPPN;
-        _zz_IF1_InstAddrTranslatePlugin_tlbTranslateResult_TLBHitEntry_V0 = MMUPlugin_TLBTable_14_V0;
-        _zz_IF1_InstAddrTranslatePlugin_tlbTranslateResult_TLBHitEntry_D0 = MMUPlugin_TLBTable_14_D0;
-        _zz_IF1_InstAddrTranslatePlugin_tlbTranslateResult_TLBHitEntry_MAT0 = MMUPlugin_TLBTable_14_MAT0;
-        _zz_IF1_InstAddrTranslatePlugin_tlbTranslateResult_TLBHitEntry_PLV0 = MMUPlugin_TLBTable_14_PLV0;
-        _zz_IF1_InstAddrTranslatePlugin_tlbTranslateResult_TLBHitEntry_PPN0 = MMUPlugin_TLBTable_14_PPN0;
-        _zz_IF1_InstAddrTranslatePlugin_tlbTranslateResult_TLBHitEntry_V1 = MMUPlugin_TLBTable_14_V1;
-        _zz_IF1_InstAddrTranslatePlugin_tlbTranslateResult_TLBHitEntry_D1 = MMUPlugin_TLBTable_14_D1;
-        _zz_IF1_InstAddrTranslatePlugin_tlbTranslateResult_TLBHitEntry_MAT1 = MMUPlugin_TLBTable_14_MAT1;
-        _zz_IF1_InstAddrTranslatePlugin_tlbTranslateResult_TLBHitEntry_PLV1 = MMUPlugin_TLBTable_14_PLV1;
-        _zz_IF1_InstAddrTranslatePlugin_tlbTranslateResult_TLBHitEntry_PPN1 = MMUPlugin_TLBTable_14_PPN1;
+        _zz__zz_IF1_InstAddrTranslatePlugin_tlbLookup_snapshot_entry_E_5 = MMUPlugin_TLBTable_14_PPN1;
+        _zz__zz_IF1_InstAddrTranslatePlugin_tlbLookup_snapshot_entry_E_5_1 = MMUPlugin_TLBTable_14_PLV1;
+        _zz__zz_IF1_InstAddrTranslatePlugin_tlbLookup_snapshot_entry_E_5_2 = MMUPlugin_TLBTable_14_MAT1;
+        _zz__zz_IF1_InstAddrTranslatePlugin_tlbLookup_snapshot_entry_E_5_3 = MMUPlugin_TLBTable_14_D1;
+        _zz__zz_IF1_InstAddrTranslatePlugin_tlbLookup_snapshot_entry_E_5_4 = MMUPlugin_TLBTable_14_V1;
+        _zz__zz_IF1_InstAddrTranslatePlugin_tlbLookup_snapshot_entry_E_5_5 = MMUPlugin_TLBTable_14_PPN0;
+        _zz__zz_IF1_InstAddrTranslatePlugin_tlbLookup_snapshot_entry_E_5_6 = MMUPlugin_TLBTable_14_PLV0;
+        _zz__zz_IF1_InstAddrTranslatePlugin_tlbLookup_snapshot_entry_E_5_7 = MMUPlugin_TLBTable_14_MAT0;
+        _zz__zz_IF1_InstAddrTranslatePlugin_tlbLookup_snapshot_entry_E_5_8 = MMUPlugin_TLBTable_14_D0;
+        _zz__zz_IF1_InstAddrTranslatePlugin_tlbLookup_snapshot_entry_E_5_9 = MMUPlugin_TLBTable_14_V0;
+        _zz__zz_IF1_InstAddrTranslatePlugin_tlbLookup_snapshot_entry_E_5_10 = MMUPlugin_TLBTable_14_VPPN;
+        _zz__zz_IF1_InstAddrTranslatePlugin_tlbLookup_snapshot_entry_E_5_11 = MMUPlugin_TLBTable_14_PS;
+        _zz__zz_IF1_InstAddrTranslatePlugin_tlbLookup_snapshot_entry_E_5_12 = MMUPlugin_TLBTable_14_G;
+        _zz__zz_IF1_InstAddrTranslatePlugin_tlbLookup_snapshot_entry_E_5_13 = MMUPlugin_TLBTable_14_ASID;
+        _zz__zz_IF1_InstAddrTranslatePlugin_tlbLookup_snapshot_entry_E_5_14 = MMUPlugin_TLBTable_14_E;
       end
       default : begin
-        _zz_IF1_InstAddrTranslatePlugin_tlbTranslateResult_TLBHitEntry_E_5 = MMUPlugin_TLBTable_15_E;
-        _zz_IF1_InstAddrTranslatePlugin_tlbTranslateResult_TLBHitEntry_ASID = MMUPlugin_TLBTable_15_ASID;
-        _zz_IF1_InstAddrTranslatePlugin_tlbTranslateResult_TLBHitEntry_G = MMUPlugin_TLBTable_15_G;
-        _zz_IF1_InstAddrTranslatePlugin_tlbTranslateResult_TLBHitEntry_PS = MMUPlugin_TLBTable_15_PS;
-        _zz_IF1_InstAddrTranslatePlugin_tlbTranslateResult_TLBHitEntry_VPPN = MMUPlugin_TLBTable_15_VPPN;
-        _zz_IF1_InstAddrTranslatePlugin_tlbTranslateResult_TLBHitEntry_V0 = MMUPlugin_TLBTable_15_V0;
-        _zz_IF1_InstAddrTranslatePlugin_tlbTranslateResult_TLBHitEntry_D0 = MMUPlugin_TLBTable_15_D0;
-        _zz_IF1_InstAddrTranslatePlugin_tlbTranslateResult_TLBHitEntry_MAT0 = MMUPlugin_TLBTable_15_MAT0;
-        _zz_IF1_InstAddrTranslatePlugin_tlbTranslateResult_TLBHitEntry_PLV0 = MMUPlugin_TLBTable_15_PLV0;
-        _zz_IF1_InstAddrTranslatePlugin_tlbTranslateResult_TLBHitEntry_PPN0 = MMUPlugin_TLBTable_15_PPN0;
-        _zz_IF1_InstAddrTranslatePlugin_tlbTranslateResult_TLBHitEntry_V1 = MMUPlugin_TLBTable_15_V1;
-        _zz_IF1_InstAddrTranslatePlugin_tlbTranslateResult_TLBHitEntry_D1 = MMUPlugin_TLBTable_15_D1;
-        _zz_IF1_InstAddrTranslatePlugin_tlbTranslateResult_TLBHitEntry_MAT1 = MMUPlugin_TLBTable_15_MAT1;
-        _zz_IF1_InstAddrTranslatePlugin_tlbTranslateResult_TLBHitEntry_PLV1 = MMUPlugin_TLBTable_15_PLV1;
-        _zz_IF1_InstAddrTranslatePlugin_tlbTranslateResult_TLBHitEntry_PPN1 = MMUPlugin_TLBTable_15_PPN1;
+        _zz__zz_IF1_InstAddrTranslatePlugin_tlbLookup_snapshot_entry_E_5 = MMUPlugin_TLBTable_15_PPN1;
+        _zz__zz_IF1_InstAddrTranslatePlugin_tlbLookup_snapshot_entry_E_5_1 = MMUPlugin_TLBTable_15_PLV1;
+        _zz__zz_IF1_InstAddrTranslatePlugin_tlbLookup_snapshot_entry_E_5_2 = MMUPlugin_TLBTable_15_MAT1;
+        _zz__zz_IF1_InstAddrTranslatePlugin_tlbLookup_snapshot_entry_E_5_3 = MMUPlugin_TLBTable_15_D1;
+        _zz__zz_IF1_InstAddrTranslatePlugin_tlbLookup_snapshot_entry_E_5_4 = MMUPlugin_TLBTable_15_V1;
+        _zz__zz_IF1_InstAddrTranslatePlugin_tlbLookup_snapshot_entry_E_5_5 = MMUPlugin_TLBTable_15_PPN0;
+        _zz__zz_IF1_InstAddrTranslatePlugin_tlbLookup_snapshot_entry_E_5_6 = MMUPlugin_TLBTable_15_PLV0;
+        _zz__zz_IF1_InstAddrTranslatePlugin_tlbLookup_snapshot_entry_E_5_7 = MMUPlugin_TLBTable_15_MAT0;
+        _zz__zz_IF1_InstAddrTranslatePlugin_tlbLookup_snapshot_entry_E_5_8 = MMUPlugin_TLBTable_15_D0;
+        _zz__zz_IF1_InstAddrTranslatePlugin_tlbLookup_snapshot_entry_E_5_9 = MMUPlugin_TLBTable_15_V0;
+        _zz__zz_IF1_InstAddrTranslatePlugin_tlbLookup_snapshot_entry_E_5_10 = MMUPlugin_TLBTable_15_VPPN;
+        _zz__zz_IF1_InstAddrTranslatePlugin_tlbLookup_snapshot_entry_E_5_11 = MMUPlugin_TLBTable_15_PS;
+        _zz__zz_IF1_InstAddrTranslatePlugin_tlbLookup_snapshot_entry_E_5_12 = MMUPlugin_TLBTable_15_G;
+        _zz__zz_IF1_InstAddrTranslatePlugin_tlbLookup_snapshot_entry_E_5_13 = MMUPlugin_TLBTable_15_ASID;
+        _zz__zz_IF1_InstAddrTranslatePlugin_tlbLookup_snapshot_entry_E_5_14 = MMUPlugin_TLBTable_15_E;
       end
     endcase
   end
@@ -35101,278 +35146,278 @@ module MyCPUCore (
   end
 
   always @(*) begin
-    case(_zz_MEM_ADDR_AddressGenerationPlugin_tlbTranslateResult_TLBHitEntry_E_4)
+    case(_zz_MEM_ADDR_AddressGenerationPlugin_tlbLookup_snapshot_entry_E_4)
       4'b0000 : begin
-        _zz_MEM_ADDR_AddressGenerationPlugin_tlbTranslateResult_TLBHitEntry_E_5 = MMUPlugin_TLBTable_0_E;
-        _zz_MEM_ADDR_AddressGenerationPlugin_tlbTranslateResult_TLBHitEntry_ASID = MMUPlugin_TLBTable_0_ASID;
-        _zz_MEM_ADDR_AddressGenerationPlugin_tlbTranslateResult_TLBHitEntry_G = MMUPlugin_TLBTable_0_G;
-        _zz_MEM_ADDR_AddressGenerationPlugin_tlbTranslateResult_TLBHitEntry_PS = MMUPlugin_TLBTable_0_PS;
-        _zz_MEM_ADDR_AddressGenerationPlugin_tlbTranslateResult_TLBHitEntry_VPPN = MMUPlugin_TLBTable_0_VPPN;
-        _zz_MEM_ADDR_AddressGenerationPlugin_tlbTranslateResult_TLBHitEntry_V0 = MMUPlugin_TLBTable_0_V0;
-        _zz_MEM_ADDR_AddressGenerationPlugin_tlbTranslateResult_TLBHitEntry_D0 = MMUPlugin_TLBTable_0_D0;
-        _zz_MEM_ADDR_AddressGenerationPlugin_tlbTranslateResult_TLBHitEntry_MAT0 = MMUPlugin_TLBTable_0_MAT0;
-        _zz_MEM_ADDR_AddressGenerationPlugin_tlbTranslateResult_TLBHitEntry_PLV0 = MMUPlugin_TLBTable_0_PLV0;
-        _zz_MEM_ADDR_AddressGenerationPlugin_tlbTranslateResult_TLBHitEntry_PPN0 = MMUPlugin_TLBTable_0_PPN0;
-        _zz_MEM_ADDR_AddressGenerationPlugin_tlbTranslateResult_TLBHitEntry_V1 = MMUPlugin_TLBTable_0_V1;
-        _zz_MEM_ADDR_AddressGenerationPlugin_tlbTranslateResult_TLBHitEntry_D1 = MMUPlugin_TLBTable_0_D1;
-        _zz_MEM_ADDR_AddressGenerationPlugin_tlbTranslateResult_TLBHitEntry_MAT1 = MMUPlugin_TLBTable_0_MAT1;
-        _zz_MEM_ADDR_AddressGenerationPlugin_tlbTranslateResult_TLBHitEntry_PLV1 = MMUPlugin_TLBTable_0_PLV1;
-        _zz_MEM_ADDR_AddressGenerationPlugin_tlbTranslateResult_TLBHitEntry_PPN1 = MMUPlugin_TLBTable_0_PPN1;
+        _zz__zz_MEM_ADDR_AddressGenerationPlugin_tlbLookup_snapshot_entry_E_5 = MMUPlugin_TLBTable_0_PPN1;
+        _zz__zz_MEM_ADDR_AddressGenerationPlugin_tlbLookup_snapshot_entry_E_5_1 = MMUPlugin_TLBTable_0_PLV1;
+        _zz__zz_MEM_ADDR_AddressGenerationPlugin_tlbLookup_snapshot_entry_E_5_2 = MMUPlugin_TLBTable_0_MAT1;
+        _zz__zz_MEM_ADDR_AddressGenerationPlugin_tlbLookup_snapshot_entry_E_5_3 = MMUPlugin_TLBTable_0_D1;
+        _zz__zz_MEM_ADDR_AddressGenerationPlugin_tlbLookup_snapshot_entry_E_5_4 = MMUPlugin_TLBTable_0_V1;
+        _zz__zz_MEM_ADDR_AddressGenerationPlugin_tlbLookup_snapshot_entry_E_5_5 = MMUPlugin_TLBTable_0_PPN0;
+        _zz__zz_MEM_ADDR_AddressGenerationPlugin_tlbLookup_snapshot_entry_E_5_6 = MMUPlugin_TLBTable_0_PLV0;
+        _zz__zz_MEM_ADDR_AddressGenerationPlugin_tlbLookup_snapshot_entry_E_5_7 = MMUPlugin_TLBTable_0_MAT0;
+        _zz__zz_MEM_ADDR_AddressGenerationPlugin_tlbLookup_snapshot_entry_E_5_8 = MMUPlugin_TLBTable_0_D0;
+        _zz__zz_MEM_ADDR_AddressGenerationPlugin_tlbLookup_snapshot_entry_E_5_9 = MMUPlugin_TLBTable_0_V0;
+        _zz__zz_MEM_ADDR_AddressGenerationPlugin_tlbLookup_snapshot_entry_E_5_10 = MMUPlugin_TLBTable_0_VPPN;
+        _zz__zz_MEM_ADDR_AddressGenerationPlugin_tlbLookup_snapshot_entry_E_5_11 = MMUPlugin_TLBTable_0_PS;
+        _zz__zz_MEM_ADDR_AddressGenerationPlugin_tlbLookup_snapshot_entry_E_5_12 = MMUPlugin_TLBTable_0_G;
+        _zz__zz_MEM_ADDR_AddressGenerationPlugin_tlbLookup_snapshot_entry_E_5_13 = MMUPlugin_TLBTable_0_ASID;
+        _zz__zz_MEM_ADDR_AddressGenerationPlugin_tlbLookup_snapshot_entry_E_5_14 = MMUPlugin_TLBTable_0_E;
       end
       4'b0001 : begin
-        _zz_MEM_ADDR_AddressGenerationPlugin_tlbTranslateResult_TLBHitEntry_E_5 = MMUPlugin_TLBTable_1_E;
-        _zz_MEM_ADDR_AddressGenerationPlugin_tlbTranslateResult_TLBHitEntry_ASID = MMUPlugin_TLBTable_1_ASID;
-        _zz_MEM_ADDR_AddressGenerationPlugin_tlbTranslateResult_TLBHitEntry_G = MMUPlugin_TLBTable_1_G;
-        _zz_MEM_ADDR_AddressGenerationPlugin_tlbTranslateResult_TLBHitEntry_PS = MMUPlugin_TLBTable_1_PS;
-        _zz_MEM_ADDR_AddressGenerationPlugin_tlbTranslateResult_TLBHitEntry_VPPN = MMUPlugin_TLBTable_1_VPPN;
-        _zz_MEM_ADDR_AddressGenerationPlugin_tlbTranslateResult_TLBHitEntry_V0 = MMUPlugin_TLBTable_1_V0;
-        _zz_MEM_ADDR_AddressGenerationPlugin_tlbTranslateResult_TLBHitEntry_D0 = MMUPlugin_TLBTable_1_D0;
-        _zz_MEM_ADDR_AddressGenerationPlugin_tlbTranslateResult_TLBHitEntry_MAT0 = MMUPlugin_TLBTable_1_MAT0;
-        _zz_MEM_ADDR_AddressGenerationPlugin_tlbTranslateResult_TLBHitEntry_PLV0 = MMUPlugin_TLBTable_1_PLV0;
-        _zz_MEM_ADDR_AddressGenerationPlugin_tlbTranslateResult_TLBHitEntry_PPN0 = MMUPlugin_TLBTable_1_PPN0;
-        _zz_MEM_ADDR_AddressGenerationPlugin_tlbTranslateResult_TLBHitEntry_V1 = MMUPlugin_TLBTable_1_V1;
-        _zz_MEM_ADDR_AddressGenerationPlugin_tlbTranslateResult_TLBHitEntry_D1 = MMUPlugin_TLBTable_1_D1;
-        _zz_MEM_ADDR_AddressGenerationPlugin_tlbTranslateResult_TLBHitEntry_MAT1 = MMUPlugin_TLBTable_1_MAT1;
-        _zz_MEM_ADDR_AddressGenerationPlugin_tlbTranslateResult_TLBHitEntry_PLV1 = MMUPlugin_TLBTable_1_PLV1;
-        _zz_MEM_ADDR_AddressGenerationPlugin_tlbTranslateResult_TLBHitEntry_PPN1 = MMUPlugin_TLBTable_1_PPN1;
+        _zz__zz_MEM_ADDR_AddressGenerationPlugin_tlbLookup_snapshot_entry_E_5 = MMUPlugin_TLBTable_1_PPN1;
+        _zz__zz_MEM_ADDR_AddressGenerationPlugin_tlbLookup_snapshot_entry_E_5_1 = MMUPlugin_TLBTable_1_PLV1;
+        _zz__zz_MEM_ADDR_AddressGenerationPlugin_tlbLookup_snapshot_entry_E_5_2 = MMUPlugin_TLBTable_1_MAT1;
+        _zz__zz_MEM_ADDR_AddressGenerationPlugin_tlbLookup_snapshot_entry_E_5_3 = MMUPlugin_TLBTable_1_D1;
+        _zz__zz_MEM_ADDR_AddressGenerationPlugin_tlbLookup_snapshot_entry_E_5_4 = MMUPlugin_TLBTable_1_V1;
+        _zz__zz_MEM_ADDR_AddressGenerationPlugin_tlbLookup_snapshot_entry_E_5_5 = MMUPlugin_TLBTable_1_PPN0;
+        _zz__zz_MEM_ADDR_AddressGenerationPlugin_tlbLookup_snapshot_entry_E_5_6 = MMUPlugin_TLBTable_1_PLV0;
+        _zz__zz_MEM_ADDR_AddressGenerationPlugin_tlbLookup_snapshot_entry_E_5_7 = MMUPlugin_TLBTable_1_MAT0;
+        _zz__zz_MEM_ADDR_AddressGenerationPlugin_tlbLookup_snapshot_entry_E_5_8 = MMUPlugin_TLBTable_1_D0;
+        _zz__zz_MEM_ADDR_AddressGenerationPlugin_tlbLookup_snapshot_entry_E_5_9 = MMUPlugin_TLBTable_1_V0;
+        _zz__zz_MEM_ADDR_AddressGenerationPlugin_tlbLookup_snapshot_entry_E_5_10 = MMUPlugin_TLBTable_1_VPPN;
+        _zz__zz_MEM_ADDR_AddressGenerationPlugin_tlbLookup_snapshot_entry_E_5_11 = MMUPlugin_TLBTable_1_PS;
+        _zz__zz_MEM_ADDR_AddressGenerationPlugin_tlbLookup_snapshot_entry_E_5_12 = MMUPlugin_TLBTable_1_G;
+        _zz__zz_MEM_ADDR_AddressGenerationPlugin_tlbLookup_snapshot_entry_E_5_13 = MMUPlugin_TLBTable_1_ASID;
+        _zz__zz_MEM_ADDR_AddressGenerationPlugin_tlbLookup_snapshot_entry_E_5_14 = MMUPlugin_TLBTable_1_E;
       end
       4'b0010 : begin
-        _zz_MEM_ADDR_AddressGenerationPlugin_tlbTranslateResult_TLBHitEntry_E_5 = MMUPlugin_TLBTable_2_E;
-        _zz_MEM_ADDR_AddressGenerationPlugin_tlbTranslateResult_TLBHitEntry_ASID = MMUPlugin_TLBTable_2_ASID;
-        _zz_MEM_ADDR_AddressGenerationPlugin_tlbTranslateResult_TLBHitEntry_G = MMUPlugin_TLBTable_2_G;
-        _zz_MEM_ADDR_AddressGenerationPlugin_tlbTranslateResult_TLBHitEntry_PS = MMUPlugin_TLBTable_2_PS;
-        _zz_MEM_ADDR_AddressGenerationPlugin_tlbTranslateResult_TLBHitEntry_VPPN = MMUPlugin_TLBTable_2_VPPN;
-        _zz_MEM_ADDR_AddressGenerationPlugin_tlbTranslateResult_TLBHitEntry_V0 = MMUPlugin_TLBTable_2_V0;
-        _zz_MEM_ADDR_AddressGenerationPlugin_tlbTranslateResult_TLBHitEntry_D0 = MMUPlugin_TLBTable_2_D0;
-        _zz_MEM_ADDR_AddressGenerationPlugin_tlbTranslateResult_TLBHitEntry_MAT0 = MMUPlugin_TLBTable_2_MAT0;
-        _zz_MEM_ADDR_AddressGenerationPlugin_tlbTranslateResult_TLBHitEntry_PLV0 = MMUPlugin_TLBTable_2_PLV0;
-        _zz_MEM_ADDR_AddressGenerationPlugin_tlbTranslateResult_TLBHitEntry_PPN0 = MMUPlugin_TLBTable_2_PPN0;
-        _zz_MEM_ADDR_AddressGenerationPlugin_tlbTranslateResult_TLBHitEntry_V1 = MMUPlugin_TLBTable_2_V1;
-        _zz_MEM_ADDR_AddressGenerationPlugin_tlbTranslateResult_TLBHitEntry_D1 = MMUPlugin_TLBTable_2_D1;
-        _zz_MEM_ADDR_AddressGenerationPlugin_tlbTranslateResult_TLBHitEntry_MAT1 = MMUPlugin_TLBTable_2_MAT1;
-        _zz_MEM_ADDR_AddressGenerationPlugin_tlbTranslateResult_TLBHitEntry_PLV1 = MMUPlugin_TLBTable_2_PLV1;
-        _zz_MEM_ADDR_AddressGenerationPlugin_tlbTranslateResult_TLBHitEntry_PPN1 = MMUPlugin_TLBTable_2_PPN1;
+        _zz__zz_MEM_ADDR_AddressGenerationPlugin_tlbLookup_snapshot_entry_E_5 = MMUPlugin_TLBTable_2_PPN1;
+        _zz__zz_MEM_ADDR_AddressGenerationPlugin_tlbLookup_snapshot_entry_E_5_1 = MMUPlugin_TLBTable_2_PLV1;
+        _zz__zz_MEM_ADDR_AddressGenerationPlugin_tlbLookup_snapshot_entry_E_5_2 = MMUPlugin_TLBTable_2_MAT1;
+        _zz__zz_MEM_ADDR_AddressGenerationPlugin_tlbLookup_snapshot_entry_E_5_3 = MMUPlugin_TLBTable_2_D1;
+        _zz__zz_MEM_ADDR_AddressGenerationPlugin_tlbLookup_snapshot_entry_E_5_4 = MMUPlugin_TLBTable_2_V1;
+        _zz__zz_MEM_ADDR_AddressGenerationPlugin_tlbLookup_snapshot_entry_E_5_5 = MMUPlugin_TLBTable_2_PPN0;
+        _zz__zz_MEM_ADDR_AddressGenerationPlugin_tlbLookup_snapshot_entry_E_5_6 = MMUPlugin_TLBTable_2_PLV0;
+        _zz__zz_MEM_ADDR_AddressGenerationPlugin_tlbLookup_snapshot_entry_E_5_7 = MMUPlugin_TLBTable_2_MAT0;
+        _zz__zz_MEM_ADDR_AddressGenerationPlugin_tlbLookup_snapshot_entry_E_5_8 = MMUPlugin_TLBTable_2_D0;
+        _zz__zz_MEM_ADDR_AddressGenerationPlugin_tlbLookup_snapshot_entry_E_5_9 = MMUPlugin_TLBTable_2_V0;
+        _zz__zz_MEM_ADDR_AddressGenerationPlugin_tlbLookup_snapshot_entry_E_5_10 = MMUPlugin_TLBTable_2_VPPN;
+        _zz__zz_MEM_ADDR_AddressGenerationPlugin_tlbLookup_snapshot_entry_E_5_11 = MMUPlugin_TLBTable_2_PS;
+        _zz__zz_MEM_ADDR_AddressGenerationPlugin_tlbLookup_snapshot_entry_E_5_12 = MMUPlugin_TLBTable_2_G;
+        _zz__zz_MEM_ADDR_AddressGenerationPlugin_tlbLookup_snapshot_entry_E_5_13 = MMUPlugin_TLBTable_2_ASID;
+        _zz__zz_MEM_ADDR_AddressGenerationPlugin_tlbLookup_snapshot_entry_E_5_14 = MMUPlugin_TLBTable_2_E;
       end
       4'b0011 : begin
-        _zz_MEM_ADDR_AddressGenerationPlugin_tlbTranslateResult_TLBHitEntry_E_5 = MMUPlugin_TLBTable_3_E;
-        _zz_MEM_ADDR_AddressGenerationPlugin_tlbTranslateResult_TLBHitEntry_ASID = MMUPlugin_TLBTable_3_ASID;
-        _zz_MEM_ADDR_AddressGenerationPlugin_tlbTranslateResult_TLBHitEntry_G = MMUPlugin_TLBTable_3_G;
-        _zz_MEM_ADDR_AddressGenerationPlugin_tlbTranslateResult_TLBHitEntry_PS = MMUPlugin_TLBTable_3_PS;
-        _zz_MEM_ADDR_AddressGenerationPlugin_tlbTranslateResult_TLBHitEntry_VPPN = MMUPlugin_TLBTable_3_VPPN;
-        _zz_MEM_ADDR_AddressGenerationPlugin_tlbTranslateResult_TLBHitEntry_V0 = MMUPlugin_TLBTable_3_V0;
-        _zz_MEM_ADDR_AddressGenerationPlugin_tlbTranslateResult_TLBHitEntry_D0 = MMUPlugin_TLBTable_3_D0;
-        _zz_MEM_ADDR_AddressGenerationPlugin_tlbTranslateResult_TLBHitEntry_MAT0 = MMUPlugin_TLBTable_3_MAT0;
-        _zz_MEM_ADDR_AddressGenerationPlugin_tlbTranslateResult_TLBHitEntry_PLV0 = MMUPlugin_TLBTable_3_PLV0;
-        _zz_MEM_ADDR_AddressGenerationPlugin_tlbTranslateResult_TLBHitEntry_PPN0 = MMUPlugin_TLBTable_3_PPN0;
-        _zz_MEM_ADDR_AddressGenerationPlugin_tlbTranslateResult_TLBHitEntry_V1 = MMUPlugin_TLBTable_3_V1;
-        _zz_MEM_ADDR_AddressGenerationPlugin_tlbTranslateResult_TLBHitEntry_D1 = MMUPlugin_TLBTable_3_D1;
-        _zz_MEM_ADDR_AddressGenerationPlugin_tlbTranslateResult_TLBHitEntry_MAT1 = MMUPlugin_TLBTable_3_MAT1;
-        _zz_MEM_ADDR_AddressGenerationPlugin_tlbTranslateResult_TLBHitEntry_PLV1 = MMUPlugin_TLBTable_3_PLV1;
-        _zz_MEM_ADDR_AddressGenerationPlugin_tlbTranslateResult_TLBHitEntry_PPN1 = MMUPlugin_TLBTable_3_PPN1;
+        _zz__zz_MEM_ADDR_AddressGenerationPlugin_tlbLookup_snapshot_entry_E_5 = MMUPlugin_TLBTable_3_PPN1;
+        _zz__zz_MEM_ADDR_AddressGenerationPlugin_tlbLookup_snapshot_entry_E_5_1 = MMUPlugin_TLBTable_3_PLV1;
+        _zz__zz_MEM_ADDR_AddressGenerationPlugin_tlbLookup_snapshot_entry_E_5_2 = MMUPlugin_TLBTable_3_MAT1;
+        _zz__zz_MEM_ADDR_AddressGenerationPlugin_tlbLookup_snapshot_entry_E_5_3 = MMUPlugin_TLBTable_3_D1;
+        _zz__zz_MEM_ADDR_AddressGenerationPlugin_tlbLookup_snapshot_entry_E_5_4 = MMUPlugin_TLBTable_3_V1;
+        _zz__zz_MEM_ADDR_AddressGenerationPlugin_tlbLookup_snapshot_entry_E_5_5 = MMUPlugin_TLBTable_3_PPN0;
+        _zz__zz_MEM_ADDR_AddressGenerationPlugin_tlbLookup_snapshot_entry_E_5_6 = MMUPlugin_TLBTable_3_PLV0;
+        _zz__zz_MEM_ADDR_AddressGenerationPlugin_tlbLookup_snapshot_entry_E_5_7 = MMUPlugin_TLBTable_3_MAT0;
+        _zz__zz_MEM_ADDR_AddressGenerationPlugin_tlbLookup_snapshot_entry_E_5_8 = MMUPlugin_TLBTable_3_D0;
+        _zz__zz_MEM_ADDR_AddressGenerationPlugin_tlbLookup_snapshot_entry_E_5_9 = MMUPlugin_TLBTable_3_V0;
+        _zz__zz_MEM_ADDR_AddressGenerationPlugin_tlbLookup_snapshot_entry_E_5_10 = MMUPlugin_TLBTable_3_VPPN;
+        _zz__zz_MEM_ADDR_AddressGenerationPlugin_tlbLookup_snapshot_entry_E_5_11 = MMUPlugin_TLBTable_3_PS;
+        _zz__zz_MEM_ADDR_AddressGenerationPlugin_tlbLookup_snapshot_entry_E_5_12 = MMUPlugin_TLBTable_3_G;
+        _zz__zz_MEM_ADDR_AddressGenerationPlugin_tlbLookup_snapshot_entry_E_5_13 = MMUPlugin_TLBTable_3_ASID;
+        _zz__zz_MEM_ADDR_AddressGenerationPlugin_tlbLookup_snapshot_entry_E_5_14 = MMUPlugin_TLBTable_3_E;
       end
       4'b0100 : begin
-        _zz_MEM_ADDR_AddressGenerationPlugin_tlbTranslateResult_TLBHitEntry_E_5 = MMUPlugin_TLBTable_4_E;
-        _zz_MEM_ADDR_AddressGenerationPlugin_tlbTranslateResult_TLBHitEntry_ASID = MMUPlugin_TLBTable_4_ASID;
-        _zz_MEM_ADDR_AddressGenerationPlugin_tlbTranslateResult_TLBHitEntry_G = MMUPlugin_TLBTable_4_G;
-        _zz_MEM_ADDR_AddressGenerationPlugin_tlbTranslateResult_TLBHitEntry_PS = MMUPlugin_TLBTable_4_PS;
-        _zz_MEM_ADDR_AddressGenerationPlugin_tlbTranslateResult_TLBHitEntry_VPPN = MMUPlugin_TLBTable_4_VPPN;
-        _zz_MEM_ADDR_AddressGenerationPlugin_tlbTranslateResult_TLBHitEntry_V0 = MMUPlugin_TLBTable_4_V0;
-        _zz_MEM_ADDR_AddressGenerationPlugin_tlbTranslateResult_TLBHitEntry_D0 = MMUPlugin_TLBTable_4_D0;
-        _zz_MEM_ADDR_AddressGenerationPlugin_tlbTranslateResult_TLBHitEntry_MAT0 = MMUPlugin_TLBTable_4_MAT0;
-        _zz_MEM_ADDR_AddressGenerationPlugin_tlbTranslateResult_TLBHitEntry_PLV0 = MMUPlugin_TLBTable_4_PLV0;
-        _zz_MEM_ADDR_AddressGenerationPlugin_tlbTranslateResult_TLBHitEntry_PPN0 = MMUPlugin_TLBTable_4_PPN0;
-        _zz_MEM_ADDR_AddressGenerationPlugin_tlbTranslateResult_TLBHitEntry_V1 = MMUPlugin_TLBTable_4_V1;
-        _zz_MEM_ADDR_AddressGenerationPlugin_tlbTranslateResult_TLBHitEntry_D1 = MMUPlugin_TLBTable_4_D1;
-        _zz_MEM_ADDR_AddressGenerationPlugin_tlbTranslateResult_TLBHitEntry_MAT1 = MMUPlugin_TLBTable_4_MAT1;
-        _zz_MEM_ADDR_AddressGenerationPlugin_tlbTranslateResult_TLBHitEntry_PLV1 = MMUPlugin_TLBTable_4_PLV1;
-        _zz_MEM_ADDR_AddressGenerationPlugin_tlbTranslateResult_TLBHitEntry_PPN1 = MMUPlugin_TLBTable_4_PPN1;
+        _zz__zz_MEM_ADDR_AddressGenerationPlugin_tlbLookup_snapshot_entry_E_5 = MMUPlugin_TLBTable_4_PPN1;
+        _zz__zz_MEM_ADDR_AddressGenerationPlugin_tlbLookup_snapshot_entry_E_5_1 = MMUPlugin_TLBTable_4_PLV1;
+        _zz__zz_MEM_ADDR_AddressGenerationPlugin_tlbLookup_snapshot_entry_E_5_2 = MMUPlugin_TLBTable_4_MAT1;
+        _zz__zz_MEM_ADDR_AddressGenerationPlugin_tlbLookup_snapshot_entry_E_5_3 = MMUPlugin_TLBTable_4_D1;
+        _zz__zz_MEM_ADDR_AddressGenerationPlugin_tlbLookup_snapshot_entry_E_5_4 = MMUPlugin_TLBTable_4_V1;
+        _zz__zz_MEM_ADDR_AddressGenerationPlugin_tlbLookup_snapshot_entry_E_5_5 = MMUPlugin_TLBTable_4_PPN0;
+        _zz__zz_MEM_ADDR_AddressGenerationPlugin_tlbLookup_snapshot_entry_E_5_6 = MMUPlugin_TLBTable_4_PLV0;
+        _zz__zz_MEM_ADDR_AddressGenerationPlugin_tlbLookup_snapshot_entry_E_5_7 = MMUPlugin_TLBTable_4_MAT0;
+        _zz__zz_MEM_ADDR_AddressGenerationPlugin_tlbLookup_snapshot_entry_E_5_8 = MMUPlugin_TLBTable_4_D0;
+        _zz__zz_MEM_ADDR_AddressGenerationPlugin_tlbLookup_snapshot_entry_E_5_9 = MMUPlugin_TLBTable_4_V0;
+        _zz__zz_MEM_ADDR_AddressGenerationPlugin_tlbLookup_snapshot_entry_E_5_10 = MMUPlugin_TLBTable_4_VPPN;
+        _zz__zz_MEM_ADDR_AddressGenerationPlugin_tlbLookup_snapshot_entry_E_5_11 = MMUPlugin_TLBTable_4_PS;
+        _zz__zz_MEM_ADDR_AddressGenerationPlugin_tlbLookup_snapshot_entry_E_5_12 = MMUPlugin_TLBTable_4_G;
+        _zz__zz_MEM_ADDR_AddressGenerationPlugin_tlbLookup_snapshot_entry_E_5_13 = MMUPlugin_TLBTable_4_ASID;
+        _zz__zz_MEM_ADDR_AddressGenerationPlugin_tlbLookup_snapshot_entry_E_5_14 = MMUPlugin_TLBTable_4_E;
       end
       4'b0101 : begin
-        _zz_MEM_ADDR_AddressGenerationPlugin_tlbTranslateResult_TLBHitEntry_E_5 = MMUPlugin_TLBTable_5_E;
-        _zz_MEM_ADDR_AddressGenerationPlugin_tlbTranslateResult_TLBHitEntry_ASID = MMUPlugin_TLBTable_5_ASID;
-        _zz_MEM_ADDR_AddressGenerationPlugin_tlbTranslateResult_TLBHitEntry_G = MMUPlugin_TLBTable_5_G;
-        _zz_MEM_ADDR_AddressGenerationPlugin_tlbTranslateResult_TLBHitEntry_PS = MMUPlugin_TLBTable_5_PS;
-        _zz_MEM_ADDR_AddressGenerationPlugin_tlbTranslateResult_TLBHitEntry_VPPN = MMUPlugin_TLBTable_5_VPPN;
-        _zz_MEM_ADDR_AddressGenerationPlugin_tlbTranslateResult_TLBHitEntry_V0 = MMUPlugin_TLBTable_5_V0;
-        _zz_MEM_ADDR_AddressGenerationPlugin_tlbTranslateResult_TLBHitEntry_D0 = MMUPlugin_TLBTable_5_D0;
-        _zz_MEM_ADDR_AddressGenerationPlugin_tlbTranslateResult_TLBHitEntry_MAT0 = MMUPlugin_TLBTable_5_MAT0;
-        _zz_MEM_ADDR_AddressGenerationPlugin_tlbTranslateResult_TLBHitEntry_PLV0 = MMUPlugin_TLBTable_5_PLV0;
-        _zz_MEM_ADDR_AddressGenerationPlugin_tlbTranslateResult_TLBHitEntry_PPN0 = MMUPlugin_TLBTable_5_PPN0;
-        _zz_MEM_ADDR_AddressGenerationPlugin_tlbTranslateResult_TLBHitEntry_V1 = MMUPlugin_TLBTable_5_V1;
-        _zz_MEM_ADDR_AddressGenerationPlugin_tlbTranslateResult_TLBHitEntry_D1 = MMUPlugin_TLBTable_5_D1;
-        _zz_MEM_ADDR_AddressGenerationPlugin_tlbTranslateResult_TLBHitEntry_MAT1 = MMUPlugin_TLBTable_5_MAT1;
-        _zz_MEM_ADDR_AddressGenerationPlugin_tlbTranslateResult_TLBHitEntry_PLV1 = MMUPlugin_TLBTable_5_PLV1;
-        _zz_MEM_ADDR_AddressGenerationPlugin_tlbTranslateResult_TLBHitEntry_PPN1 = MMUPlugin_TLBTable_5_PPN1;
+        _zz__zz_MEM_ADDR_AddressGenerationPlugin_tlbLookup_snapshot_entry_E_5 = MMUPlugin_TLBTable_5_PPN1;
+        _zz__zz_MEM_ADDR_AddressGenerationPlugin_tlbLookup_snapshot_entry_E_5_1 = MMUPlugin_TLBTable_5_PLV1;
+        _zz__zz_MEM_ADDR_AddressGenerationPlugin_tlbLookup_snapshot_entry_E_5_2 = MMUPlugin_TLBTable_5_MAT1;
+        _zz__zz_MEM_ADDR_AddressGenerationPlugin_tlbLookup_snapshot_entry_E_5_3 = MMUPlugin_TLBTable_5_D1;
+        _zz__zz_MEM_ADDR_AddressGenerationPlugin_tlbLookup_snapshot_entry_E_5_4 = MMUPlugin_TLBTable_5_V1;
+        _zz__zz_MEM_ADDR_AddressGenerationPlugin_tlbLookup_snapshot_entry_E_5_5 = MMUPlugin_TLBTable_5_PPN0;
+        _zz__zz_MEM_ADDR_AddressGenerationPlugin_tlbLookup_snapshot_entry_E_5_6 = MMUPlugin_TLBTable_5_PLV0;
+        _zz__zz_MEM_ADDR_AddressGenerationPlugin_tlbLookup_snapshot_entry_E_5_7 = MMUPlugin_TLBTable_5_MAT0;
+        _zz__zz_MEM_ADDR_AddressGenerationPlugin_tlbLookup_snapshot_entry_E_5_8 = MMUPlugin_TLBTable_5_D0;
+        _zz__zz_MEM_ADDR_AddressGenerationPlugin_tlbLookup_snapshot_entry_E_5_9 = MMUPlugin_TLBTable_5_V0;
+        _zz__zz_MEM_ADDR_AddressGenerationPlugin_tlbLookup_snapshot_entry_E_5_10 = MMUPlugin_TLBTable_5_VPPN;
+        _zz__zz_MEM_ADDR_AddressGenerationPlugin_tlbLookup_snapshot_entry_E_5_11 = MMUPlugin_TLBTable_5_PS;
+        _zz__zz_MEM_ADDR_AddressGenerationPlugin_tlbLookup_snapshot_entry_E_5_12 = MMUPlugin_TLBTable_5_G;
+        _zz__zz_MEM_ADDR_AddressGenerationPlugin_tlbLookup_snapshot_entry_E_5_13 = MMUPlugin_TLBTable_5_ASID;
+        _zz__zz_MEM_ADDR_AddressGenerationPlugin_tlbLookup_snapshot_entry_E_5_14 = MMUPlugin_TLBTable_5_E;
       end
       4'b0110 : begin
-        _zz_MEM_ADDR_AddressGenerationPlugin_tlbTranslateResult_TLBHitEntry_E_5 = MMUPlugin_TLBTable_6_E;
-        _zz_MEM_ADDR_AddressGenerationPlugin_tlbTranslateResult_TLBHitEntry_ASID = MMUPlugin_TLBTable_6_ASID;
-        _zz_MEM_ADDR_AddressGenerationPlugin_tlbTranslateResult_TLBHitEntry_G = MMUPlugin_TLBTable_6_G;
-        _zz_MEM_ADDR_AddressGenerationPlugin_tlbTranslateResult_TLBHitEntry_PS = MMUPlugin_TLBTable_6_PS;
-        _zz_MEM_ADDR_AddressGenerationPlugin_tlbTranslateResult_TLBHitEntry_VPPN = MMUPlugin_TLBTable_6_VPPN;
-        _zz_MEM_ADDR_AddressGenerationPlugin_tlbTranslateResult_TLBHitEntry_V0 = MMUPlugin_TLBTable_6_V0;
-        _zz_MEM_ADDR_AddressGenerationPlugin_tlbTranslateResult_TLBHitEntry_D0 = MMUPlugin_TLBTable_6_D0;
-        _zz_MEM_ADDR_AddressGenerationPlugin_tlbTranslateResult_TLBHitEntry_MAT0 = MMUPlugin_TLBTable_6_MAT0;
-        _zz_MEM_ADDR_AddressGenerationPlugin_tlbTranslateResult_TLBHitEntry_PLV0 = MMUPlugin_TLBTable_6_PLV0;
-        _zz_MEM_ADDR_AddressGenerationPlugin_tlbTranslateResult_TLBHitEntry_PPN0 = MMUPlugin_TLBTable_6_PPN0;
-        _zz_MEM_ADDR_AddressGenerationPlugin_tlbTranslateResult_TLBHitEntry_V1 = MMUPlugin_TLBTable_6_V1;
-        _zz_MEM_ADDR_AddressGenerationPlugin_tlbTranslateResult_TLBHitEntry_D1 = MMUPlugin_TLBTable_6_D1;
-        _zz_MEM_ADDR_AddressGenerationPlugin_tlbTranslateResult_TLBHitEntry_MAT1 = MMUPlugin_TLBTable_6_MAT1;
-        _zz_MEM_ADDR_AddressGenerationPlugin_tlbTranslateResult_TLBHitEntry_PLV1 = MMUPlugin_TLBTable_6_PLV1;
-        _zz_MEM_ADDR_AddressGenerationPlugin_tlbTranslateResult_TLBHitEntry_PPN1 = MMUPlugin_TLBTable_6_PPN1;
+        _zz__zz_MEM_ADDR_AddressGenerationPlugin_tlbLookup_snapshot_entry_E_5 = MMUPlugin_TLBTable_6_PPN1;
+        _zz__zz_MEM_ADDR_AddressGenerationPlugin_tlbLookup_snapshot_entry_E_5_1 = MMUPlugin_TLBTable_6_PLV1;
+        _zz__zz_MEM_ADDR_AddressGenerationPlugin_tlbLookup_snapshot_entry_E_5_2 = MMUPlugin_TLBTable_6_MAT1;
+        _zz__zz_MEM_ADDR_AddressGenerationPlugin_tlbLookup_snapshot_entry_E_5_3 = MMUPlugin_TLBTable_6_D1;
+        _zz__zz_MEM_ADDR_AddressGenerationPlugin_tlbLookup_snapshot_entry_E_5_4 = MMUPlugin_TLBTable_6_V1;
+        _zz__zz_MEM_ADDR_AddressGenerationPlugin_tlbLookup_snapshot_entry_E_5_5 = MMUPlugin_TLBTable_6_PPN0;
+        _zz__zz_MEM_ADDR_AddressGenerationPlugin_tlbLookup_snapshot_entry_E_5_6 = MMUPlugin_TLBTable_6_PLV0;
+        _zz__zz_MEM_ADDR_AddressGenerationPlugin_tlbLookup_snapshot_entry_E_5_7 = MMUPlugin_TLBTable_6_MAT0;
+        _zz__zz_MEM_ADDR_AddressGenerationPlugin_tlbLookup_snapshot_entry_E_5_8 = MMUPlugin_TLBTable_6_D0;
+        _zz__zz_MEM_ADDR_AddressGenerationPlugin_tlbLookup_snapshot_entry_E_5_9 = MMUPlugin_TLBTable_6_V0;
+        _zz__zz_MEM_ADDR_AddressGenerationPlugin_tlbLookup_snapshot_entry_E_5_10 = MMUPlugin_TLBTable_6_VPPN;
+        _zz__zz_MEM_ADDR_AddressGenerationPlugin_tlbLookup_snapshot_entry_E_5_11 = MMUPlugin_TLBTable_6_PS;
+        _zz__zz_MEM_ADDR_AddressGenerationPlugin_tlbLookup_snapshot_entry_E_5_12 = MMUPlugin_TLBTable_6_G;
+        _zz__zz_MEM_ADDR_AddressGenerationPlugin_tlbLookup_snapshot_entry_E_5_13 = MMUPlugin_TLBTable_6_ASID;
+        _zz__zz_MEM_ADDR_AddressGenerationPlugin_tlbLookup_snapshot_entry_E_5_14 = MMUPlugin_TLBTable_6_E;
       end
       4'b0111 : begin
-        _zz_MEM_ADDR_AddressGenerationPlugin_tlbTranslateResult_TLBHitEntry_E_5 = MMUPlugin_TLBTable_7_E;
-        _zz_MEM_ADDR_AddressGenerationPlugin_tlbTranslateResult_TLBHitEntry_ASID = MMUPlugin_TLBTable_7_ASID;
-        _zz_MEM_ADDR_AddressGenerationPlugin_tlbTranslateResult_TLBHitEntry_G = MMUPlugin_TLBTable_7_G;
-        _zz_MEM_ADDR_AddressGenerationPlugin_tlbTranslateResult_TLBHitEntry_PS = MMUPlugin_TLBTable_7_PS;
-        _zz_MEM_ADDR_AddressGenerationPlugin_tlbTranslateResult_TLBHitEntry_VPPN = MMUPlugin_TLBTable_7_VPPN;
-        _zz_MEM_ADDR_AddressGenerationPlugin_tlbTranslateResult_TLBHitEntry_V0 = MMUPlugin_TLBTable_7_V0;
-        _zz_MEM_ADDR_AddressGenerationPlugin_tlbTranslateResult_TLBHitEntry_D0 = MMUPlugin_TLBTable_7_D0;
-        _zz_MEM_ADDR_AddressGenerationPlugin_tlbTranslateResult_TLBHitEntry_MAT0 = MMUPlugin_TLBTable_7_MAT0;
-        _zz_MEM_ADDR_AddressGenerationPlugin_tlbTranslateResult_TLBHitEntry_PLV0 = MMUPlugin_TLBTable_7_PLV0;
-        _zz_MEM_ADDR_AddressGenerationPlugin_tlbTranslateResult_TLBHitEntry_PPN0 = MMUPlugin_TLBTable_7_PPN0;
-        _zz_MEM_ADDR_AddressGenerationPlugin_tlbTranslateResult_TLBHitEntry_V1 = MMUPlugin_TLBTable_7_V1;
-        _zz_MEM_ADDR_AddressGenerationPlugin_tlbTranslateResult_TLBHitEntry_D1 = MMUPlugin_TLBTable_7_D1;
-        _zz_MEM_ADDR_AddressGenerationPlugin_tlbTranslateResult_TLBHitEntry_MAT1 = MMUPlugin_TLBTable_7_MAT1;
-        _zz_MEM_ADDR_AddressGenerationPlugin_tlbTranslateResult_TLBHitEntry_PLV1 = MMUPlugin_TLBTable_7_PLV1;
-        _zz_MEM_ADDR_AddressGenerationPlugin_tlbTranslateResult_TLBHitEntry_PPN1 = MMUPlugin_TLBTable_7_PPN1;
+        _zz__zz_MEM_ADDR_AddressGenerationPlugin_tlbLookup_snapshot_entry_E_5 = MMUPlugin_TLBTable_7_PPN1;
+        _zz__zz_MEM_ADDR_AddressGenerationPlugin_tlbLookup_snapshot_entry_E_5_1 = MMUPlugin_TLBTable_7_PLV1;
+        _zz__zz_MEM_ADDR_AddressGenerationPlugin_tlbLookup_snapshot_entry_E_5_2 = MMUPlugin_TLBTable_7_MAT1;
+        _zz__zz_MEM_ADDR_AddressGenerationPlugin_tlbLookup_snapshot_entry_E_5_3 = MMUPlugin_TLBTable_7_D1;
+        _zz__zz_MEM_ADDR_AddressGenerationPlugin_tlbLookup_snapshot_entry_E_5_4 = MMUPlugin_TLBTable_7_V1;
+        _zz__zz_MEM_ADDR_AddressGenerationPlugin_tlbLookup_snapshot_entry_E_5_5 = MMUPlugin_TLBTable_7_PPN0;
+        _zz__zz_MEM_ADDR_AddressGenerationPlugin_tlbLookup_snapshot_entry_E_5_6 = MMUPlugin_TLBTable_7_PLV0;
+        _zz__zz_MEM_ADDR_AddressGenerationPlugin_tlbLookup_snapshot_entry_E_5_7 = MMUPlugin_TLBTable_7_MAT0;
+        _zz__zz_MEM_ADDR_AddressGenerationPlugin_tlbLookup_snapshot_entry_E_5_8 = MMUPlugin_TLBTable_7_D0;
+        _zz__zz_MEM_ADDR_AddressGenerationPlugin_tlbLookup_snapshot_entry_E_5_9 = MMUPlugin_TLBTable_7_V0;
+        _zz__zz_MEM_ADDR_AddressGenerationPlugin_tlbLookup_snapshot_entry_E_5_10 = MMUPlugin_TLBTable_7_VPPN;
+        _zz__zz_MEM_ADDR_AddressGenerationPlugin_tlbLookup_snapshot_entry_E_5_11 = MMUPlugin_TLBTable_7_PS;
+        _zz__zz_MEM_ADDR_AddressGenerationPlugin_tlbLookup_snapshot_entry_E_5_12 = MMUPlugin_TLBTable_7_G;
+        _zz__zz_MEM_ADDR_AddressGenerationPlugin_tlbLookup_snapshot_entry_E_5_13 = MMUPlugin_TLBTable_7_ASID;
+        _zz__zz_MEM_ADDR_AddressGenerationPlugin_tlbLookup_snapshot_entry_E_5_14 = MMUPlugin_TLBTable_7_E;
       end
       4'b1000 : begin
-        _zz_MEM_ADDR_AddressGenerationPlugin_tlbTranslateResult_TLBHitEntry_E_5 = MMUPlugin_TLBTable_8_E;
-        _zz_MEM_ADDR_AddressGenerationPlugin_tlbTranslateResult_TLBHitEntry_ASID = MMUPlugin_TLBTable_8_ASID;
-        _zz_MEM_ADDR_AddressGenerationPlugin_tlbTranslateResult_TLBHitEntry_G = MMUPlugin_TLBTable_8_G;
-        _zz_MEM_ADDR_AddressGenerationPlugin_tlbTranslateResult_TLBHitEntry_PS = MMUPlugin_TLBTable_8_PS;
-        _zz_MEM_ADDR_AddressGenerationPlugin_tlbTranslateResult_TLBHitEntry_VPPN = MMUPlugin_TLBTable_8_VPPN;
-        _zz_MEM_ADDR_AddressGenerationPlugin_tlbTranslateResult_TLBHitEntry_V0 = MMUPlugin_TLBTable_8_V0;
-        _zz_MEM_ADDR_AddressGenerationPlugin_tlbTranslateResult_TLBHitEntry_D0 = MMUPlugin_TLBTable_8_D0;
-        _zz_MEM_ADDR_AddressGenerationPlugin_tlbTranslateResult_TLBHitEntry_MAT0 = MMUPlugin_TLBTable_8_MAT0;
-        _zz_MEM_ADDR_AddressGenerationPlugin_tlbTranslateResult_TLBHitEntry_PLV0 = MMUPlugin_TLBTable_8_PLV0;
-        _zz_MEM_ADDR_AddressGenerationPlugin_tlbTranslateResult_TLBHitEntry_PPN0 = MMUPlugin_TLBTable_8_PPN0;
-        _zz_MEM_ADDR_AddressGenerationPlugin_tlbTranslateResult_TLBHitEntry_V1 = MMUPlugin_TLBTable_8_V1;
-        _zz_MEM_ADDR_AddressGenerationPlugin_tlbTranslateResult_TLBHitEntry_D1 = MMUPlugin_TLBTable_8_D1;
-        _zz_MEM_ADDR_AddressGenerationPlugin_tlbTranslateResult_TLBHitEntry_MAT1 = MMUPlugin_TLBTable_8_MAT1;
-        _zz_MEM_ADDR_AddressGenerationPlugin_tlbTranslateResult_TLBHitEntry_PLV1 = MMUPlugin_TLBTable_8_PLV1;
-        _zz_MEM_ADDR_AddressGenerationPlugin_tlbTranslateResult_TLBHitEntry_PPN1 = MMUPlugin_TLBTable_8_PPN1;
+        _zz__zz_MEM_ADDR_AddressGenerationPlugin_tlbLookup_snapshot_entry_E_5 = MMUPlugin_TLBTable_8_PPN1;
+        _zz__zz_MEM_ADDR_AddressGenerationPlugin_tlbLookup_snapshot_entry_E_5_1 = MMUPlugin_TLBTable_8_PLV1;
+        _zz__zz_MEM_ADDR_AddressGenerationPlugin_tlbLookup_snapshot_entry_E_5_2 = MMUPlugin_TLBTable_8_MAT1;
+        _zz__zz_MEM_ADDR_AddressGenerationPlugin_tlbLookup_snapshot_entry_E_5_3 = MMUPlugin_TLBTable_8_D1;
+        _zz__zz_MEM_ADDR_AddressGenerationPlugin_tlbLookup_snapshot_entry_E_5_4 = MMUPlugin_TLBTable_8_V1;
+        _zz__zz_MEM_ADDR_AddressGenerationPlugin_tlbLookup_snapshot_entry_E_5_5 = MMUPlugin_TLBTable_8_PPN0;
+        _zz__zz_MEM_ADDR_AddressGenerationPlugin_tlbLookup_snapshot_entry_E_5_6 = MMUPlugin_TLBTable_8_PLV0;
+        _zz__zz_MEM_ADDR_AddressGenerationPlugin_tlbLookup_snapshot_entry_E_5_7 = MMUPlugin_TLBTable_8_MAT0;
+        _zz__zz_MEM_ADDR_AddressGenerationPlugin_tlbLookup_snapshot_entry_E_5_8 = MMUPlugin_TLBTable_8_D0;
+        _zz__zz_MEM_ADDR_AddressGenerationPlugin_tlbLookup_snapshot_entry_E_5_9 = MMUPlugin_TLBTable_8_V0;
+        _zz__zz_MEM_ADDR_AddressGenerationPlugin_tlbLookup_snapshot_entry_E_5_10 = MMUPlugin_TLBTable_8_VPPN;
+        _zz__zz_MEM_ADDR_AddressGenerationPlugin_tlbLookup_snapshot_entry_E_5_11 = MMUPlugin_TLBTable_8_PS;
+        _zz__zz_MEM_ADDR_AddressGenerationPlugin_tlbLookup_snapshot_entry_E_5_12 = MMUPlugin_TLBTable_8_G;
+        _zz__zz_MEM_ADDR_AddressGenerationPlugin_tlbLookup_snapshot_entry_E_5_13 = MMUPlugin_TLBTable_8_ASID;
+        _zz__zz_MEM_ADDR_AddressGenerationPlugin_tlbLookup_snapshot_entry_E_5_14 = MMUPlugin_TLBTable_8_E;
       end
       4'b1001 : begin
-        _zz_MEM_ADDR_AddressGenerationPlugin_tlbTranslateResult_TLBHitEntry_E_5 = MMUPlugin_TLBTable_9_E;
-        _zz_MEM_ADDR_AddressGenerationPlugin_tlbTranslateResult_TLBHitEntry_ASID = MMUPlugin_TLBTable_9_ASID;
-        _zz_MEM_ADDR_AddressGenerationPlugin_tlbTranslateResult_TLBHitEntry_G = MMUPlugin_TLBTable_9_G;
-        _zz_MEM_ADDR_AddressGenerationPlugin_tlbTranslateResult_TLBHitEntry_PS = MMUPlugin_TLBTable_9_PS;
-        _zz_MEM_ADDR_AddressGenerationPlugin_tlbTranslateResult_TLBHitEntry_VPPN = MMUPlugin_TLBTable_9_VPPN;
-        _zz_MEM_ADDR_AddressGenerationPlugin_tlbTranslateResult_TLBHitEntry_V0 = MMUPlugin_TLBTable_9_V0;
-        _zz_MEM_ADDR_AddressGenerationPlugin_tlbTranslateResult_TLBHitEntry_D0 = MMUPlugin_TLBTable_9_D0;
-        _zz_MEM_ADDR_AddressGenerationPlugin_tlbTranslateResult_TLBHitEntry_MAT0 = MMUPlugin_TLBTable_9_MAT0;
-        _zz_MEM_ADDR_AddressGenerationPlugin_tlbTranslateResult_TLBHitEntry_PLV0 = MMUPlugin_TLBTable_9_PLV0;
-        _zz_MEM_ADDR_AddressGenerationPlugin_tlbTranslateResult_TLBHitEntry_PPN0 = MMUPlugin_TLBTable_9_PPN0;
-        _zz_MEM_ADDR_AddressGenerationPlugin_tlbTranslateResult_TLBHitEntry_V1 = MMUPlugin_TLBTable_9_V1;
-        _zz_MEM_ADDR_AddressGenerationPlugin_tlbTranslateResult_TLBHitEntry_D1 = MMUPlugin_TLBTable_9_D1;
-        _zz_MEM_ADDR_AddressGenerationPlugin_tlbTranslateResult_TLBHitEntry_MAT1 = MMUPlugin_TLBTable_9_MAT1;
-        _zz_MEM_ADDR_AddressGenerationPlugin_tlbTranslateResult_TLBHitEntry_PLV1 = MMUPlugin_TLBTable_9_PLV1;
-        _zz_MEM_ADDR_AddressGenerationPlugin_tlbTranslateResult_TLBHitEntry_PPN1 = MMUPlugin_TLBTable_9_PPN1;
+        _zz__zz_MEM_ADDR_AddressGenerationPlugin_tlbLookup_snapshot_entry_E_5 = MMUPlugin_TLBTable_9_PPN1;
+        _zz__zz_MEM_ADDR_AddressGenerationPlugin_tlbLookup_snapshot_entry_E_5_1 = MMUPlugin_TLBTable_9_PLV1;
+        _zz__zz_MEM_ADDR_AddressGenerationPlugin_tlbLookup_snapshot_entry_E_5_2 = MMUPlugin_TLBTable_9_MAT1;
+        _zz__zz_MEM_ADDR_AddressGenerationPlugin_tlbLookup_snapshot_entry_E_5_3 = MMUPlugin_TLBTable_9_D1;
+        _zz__zz_MEM_ADDR_AddressGenerationPlugin_tlbLookup_snapshot_entry_E_5_4 = MMUPlugin_TLBTable_9_V1;
+        _zz__zz_MEM_ADDR_AddressGenerationPlugin_tlbLookup_snapshot_entry_E_5_5 = MMUPlugin_TLBTable_9_PPN0;
+        _zz__zz_MEM_ADDR_AddressGenerationPlugin_tlbLookup_snapshot_entry_E_5_6 = MMUPlugin_TLBTable_9_PLV0;
+        _zz__zz_MEM_ADDR_AddressGenerationPlugin_tlbLookup_snapshot_entry_E_5_7 = MMUPlugin_TLBTable_9_MAT0;
+        _zz__zz_MEM_ADDR_AddressGenerationPlugin_tlbLookup_snapshot_entry_E_5_8 = MMUPlugin_TLBTable_9_D0;
+        _zz__zz_MEM_ADDR_AddressGenerationPlugin_tlbLookup_snapshot_entry_E_5_9 = MMUPlugin_TLBTable_9_V0;
+        _zz__zz_MEM_ADDR_AddressGenerationPlugin_tlbLookup_snapshot_entry_E_5_10 = MMUPlugin_TLBTable_9_VPPN;
+        _zz__zz_MEM_ADDR_AddressGenerationPlugin_tlbLookup_snapshot_entry_E_5_11 = MMUPlugin_TLBTable_9_PS;
+        _zz__zz_MEM_ADDR_AddressGenerationPlugin_tlbLookup_snapshot_entry_E_5_12 = MMUPlugin_TLBTable_9_G;
+        _zz__zz_MEM_ADDR_AddressGenerationPlugin_tlbLookup_snapshot_entry_E_5_13 = MMUPlugin_TLBTable_9_ASID;
+        _zz__zz_MEM_ADDR_AddressGenerationPlugin_tlbLookup_snapshot_entry_E_5_14 = MMUPlugin_TLBTable_9_E;
       end
       4'b1010 : begin
-        _zz_MEM_ADDR_AddressGenerationPlugin_tlbTranslateResult_TLBHitEntry_E_5 = MMUPlugin_TLBTable_10_E;
-        _zz_MEM_ADDR_AddressGenerationPlugin_tlbTranslateResult_TLBHitEntry_ASID = MMUPlugin_TLBTable_10_ASID;
-        _zz_MEM_ADDR_AddressGenerationPlugin_tlbTranslateResult_TLBHitEntry_G = MMUPlugin_TLBTable_10_G;
-        _zz_MEM_ADDR_AddressGenerationPlugin_tlbTranslateResult_TLBHitEntry_PS = MMUPlugin_TLBTable_10_PS;
-        _zz_MEM_ADDR_AddressGenerationPlugin_tlbTranslateResult_TLBHitEntry_VPPN = MMUPlugin_TLBTable_10_VPPN;
-        _zz_MEM_ADDR_AddressGenerationPlugin_tlbTranslateResult_TLBHitEntry_V0 = MMUPlugin_TLBTable_10_V0;
-        _zz_MEM_ADDR_AddressGenerationPlugin_tlbTranslateResult_TLBHitEntry_D0 = MMUPlugin_TLBTable_10_D0;
-        _zz_MEM_ADDR_AddressGenerationPlugin_tlbTranslateResult_TLBHitEntry_MAT0 = MMUPlugin_TLBTable_10_MAT0;
-        _zz_MEM_ADDR_AddressGenerationPlugin_tlbTranslateResult_TLBHitEntry_PLV0 = MMUPlugin_TLBTable_10_PLV0;
-        _zz_MEM_ADDR_AddressGenerationPlugin_tlbTranslateResult_TLBHitEntry_PPN0 = MMUPlugin_TLBTable_10_PPN0;
-        _zz_MEM_ADDR_AddressGenerationPlugin_tlbTranslateResult_TLBHitEntry_V1 = MMUPlugin_TLBTable_10_V1;
-        _zz_MEM_ADDR_AddressGenerationPlugin_tlbTranslateResult_TLBHitEntry_D1 = MMUPlugin_TLBTable_10_D1;
-        _zz_MEM_ADDR_AddressGenerationPlugin_tlbTranslateResult_TLBHitEntry_MAT1 = MMUPlugin_TLBTable_10_MAT1;
-        _zz_MEM_ADDR_AddressGenerationPlugin_tlbTranslateResult_TLBHitEntry_PLV1 = MMUPlugin_TLBTable_10_PLV1;
-        _zz_MEM_ADDR_AddressGenerationPlugin_tlbTranslateResult_TLBHitEntry_PPN1 = MMUPlugin_TLBTable_10_PPN1;
+        _zz__zz_MEM_ADDR_AddressGenerationPlugin_tlbLookup_snapshot_entry_E_5 = MMUPlugin_TLBTable_10_PPN1;
+        _zz__zz_MEM_ADDR_AddressGenerationPlugin_tlbLookup_snapshot_entry_E_5_1 = MMUPlugin_TLBTable_10_PLV1;
+        _zz__zz_MEM_ADDR_AddressGenerationPlugin_tlbLookup_snapshot_entry_E_5_2 = MMUPlugin_TLBTable_10_MAT1;
+        _zz__zz_MEM_ADDR_AddressGenerationPlugin_tlbLookup_snapshot_entry_E_5_3 = MMUPlugin_TLBTable_10_D1;
+        _zz__zz_MEM_ADDR_AddressGenerationPlugin_tlbLookup_snapshot_entry_E_5_4 = MMUPlugin_TLBTable_10_V1;
+        _zz__zz_MEM_ADDR_AddressGenerationPlugin_tlbLookup_snapshot_entry_E_5_5 = MMUPlugin_TLBTable_10_PPN0;
+        _zz__zz_MEM_ADDR_AddressGenerationPlugin_tlbLookup_snapshot_entry_E_5_6 = MMUPlugin_TLBTable_10_PLV0;
+        _zz__zz_MEM_ADDR_AddressGenerationPlugin_tlbLookup_snapshot_entry_E_5_7 = MMUPlugin_TLBTable_10_MAT0;
+        _zz__zz_MEM_ADDR_AddressGenerationPlugin_tlbLookup_snapshot_entry_E_5_8 = MMUPlugin_TLBTable_10_D0;
+        _zz__zz_MEM_ADDR_AddressGenerationPlugin_tlbLookup_snapshot_entry_E_5_9 = MMUPlugin_TLBTable_10_V0;
+        _zz__zz_MEM_ADDR_AddressGenerationPlugin_tlbLookup_snapshot_entry_E_5_10 = MMUPlugin_TLBTable_10_VPPN;
+        _zz__zz_MEM_ADDR_AddressGenerationPlugin_tlbLookup_snapshot_entry_E_5_11 = MMUPlugin_TLBTable_10_PS;
+        _zz__zz_MEM_ADDR_AddressGenerationPlugin_tlbLookup_snapshot_entry_E_5_12 = MMUPlugin_TLBTable_10_G;
+        _zz__zz_MEM_ADDR_AddressGenerationPlugin_tlbLookup_snapshot_entry_E_5_13 = MMUPlugin_TLBTable_10_ASID;
+        _zz__zz_MEM_ADDR_AddressGenerationPlugin_tlbLookup_snapshot_entry_E_5_14 = MMUPlugin_TLBTable_10_E;
       end
       4'b1011 : begin
-        _zz_MEM_ADDR_AddressGenerationPlugin_tlbTranslateResult_TLBHitEntry_E_5 = MMUPlugin_TLBTable_11_E;
-        _zz_MEM_ADDR_AddressGenerationPlugin_tlbTranslateResult_TLBHitEntry_ASID = MMUPlugin_TLBTable_11_ASID;
-        _zz_MEM_ADDR_AddressGenerationPlugin_tlbTranslateResult_TLBHitEntry_G = MMUPlugin_TLBTable_11_G;
-        _zz_MEM_ADDR_AddressGenerationPlugin_tlbTranslateResult_TLBHitEntry_PS = MMUPlugin_TLBTable_11_PS;
-        _zz_MEM_ADDR_AddressGenerationPlugin_tlbTranslateResult_TLBHitEntry_VPPN = MMUPlugin_TLBTable_11_VPPN;
-        _zz_MEM_ADDR_AddressGenerationPlugin_tlbTranslateResult_TLBHitEntry_V0 = MMUPlugin_TLBTable_11_V0;
-        _zz_MEM_ADDR_AddressGenerationPlugin_tlbTranslateResult_TLBHitEntry_D0 = MMUPlugin_TLBTable_11_D0;
-        _zz_MEM_ADDR_AddressGenerationPlugin_tlbTranslateResult_TLBHitEntry_MAT0 = MMUPlugin_TLBTable_11_MAT0;
-        _zz_MEM_ADDR_AddressGenerationPlugin_tlbTranslateResult_TLBHitEntry_PLV0 = MMUPlugin_TLBTable_11_PLV0;
-        _zz_MEM_ADDR_AddressGenerationPlugin_tlbTranslateResult_TLBHitEntry_PPN0 = MMUPlugin_TLBTable_11_PPN0;
-        _zz_MEM_ADDR_AddressGenerationPlugin_tlbTranslateResult_TLBHitEntry_V1 = MMUPlugin_TLBTable_11_V1;
-        _zz_MEM_ADDR_AddressGenerationPlugin_tlbTranslateResult_TLBHitEntry_D1 = MMUPlugin_TLBTable_11_D1;
-        _zz_MEM_ADDR_AddressGenerationPlugin_tlbTranslateResult_TLBHitEntry_MAT1 = MMUPlugin_TLBTable_11_MAT1;
-        _zz_MEM_ADDR_AddressGenerationPlugin_tlbTranslateResult_TLBHitEntry_PLV1 = MMUPlugin_TLBTable_11_PLV1;
-        _zz_MEM_ADDR_AddressGenerationPlugin_tlbTranslateResult_TLBHitEntry_PPN1 = MMUPlugin_TLBTable_11_PPN1;
+        _zz__zz_MEM_ADDR_AddressGenerationPlugin_tlbLookup_snapshot_entry_E_5 = MMUPlugin_TLBTable_11_PPN1;
+        _zz__zz_MEM_ADDR_AddressGenerationPlugin_tlbLookup_snapshot_entry_E_5_1 = MMUPlugin_TLBTable_11_PLV1;
+        _zz__zz_MEM_ADDR_AddressGenerationPlugin_tlbLookup_snapshot_entry_E_5_2 = MMUPlugin_TLBTable_11_MAT1;
+        _zz__zz_MEM_ADDR_AddressGenerationPlugin_tlbLookup_snapshot_entry_E_5_3 = MMUPlugin_TLBTable_11_D1;
+        _zz__zz_MEM_ADDR_AddressGenerationPlugin_tlbLookup_snapshot_entry_E_5_4 = MMUPlugin_TLBTable_11_V1;
+        _zz__zz_MEM_ADDR_AddressGenerationPlugin_tlbLookup_snapshot_entry_E_5_5 = MMUPlugin_TLBTable_11_PPN0;
+        _zz__zz_MEM_ADDR_AddressGenerationPlugin_tlbLookup_snapshot_entry_E_5_6 = MMUPlugin_TLBTable_11_PLV0;
+        _zz__zz_MEM_ADDR_AddressGenerationPlugin_tlbLookup_snapshot_entry_E_5_7 = MMUPlugin_TLBTable_11_MAT0;
+        _zz__zz_MEM_ADDR_AddressGenerationPlugin_tlbLookup_snapshot_entry_E_5_8 = MMUPlugin_TLBTable_11_D0;
+        _zz__zz_MEM_ADDR_AddressGenerationPlugin_tlbLookup_snapshot_entry_E_5_9 = MMUPlugin_TLBTable_11_V0;
+        _zz__zz_MEM_ADDR_AddressGenerationPlugin_tlbLookup_snapshot_entry_E_5_10 = MMUPlugin_TLBTable_11_VPPN;
+        _zz__zz_MEM_ADDR_AddressGenerationPlugin_tlbLookup_snapshot_entry_E_5_11 = MMUPlugin_TLBTable_11_PS;
+        _zz__zz_MEM_ADDR_AddressGenerationPlugin_tlbLookup_snapshot_entry_E_5_12 = MMUPlugin_TLBTable_11_G;
+        _zz__zz_MEM_ADDR_AddressGenerationPlugin_tlbLookup_snapshot_entry_E_5_13 = MMUPlugin_TLBTable_11_ASID;
+        _zz__zz_MEM_ADDR_AddressGenerationPlugin_tlbLookup_snapshot_entry_E_5_14 = MMUPlugin_TLBTable_11_E;
       end
       4'b1100 : begin
-        _zz_MEM_ADDR_AddressGenerationPlugin_tlbTranslateResult_TLBHitEntry_E_5 = MMUPlugin_TLBTable_12_E;
-        _zz_MEM_ADDR_AddressGenerationPlugin_tlbTranslateResult_TLBHitEntry_ASID = MMUPlugin_TLBTable_12_ASID;
-        _zz_MEM_ADDR_AddressGenerationPlugin_tlbTranslateResult_TLBHitEntry_G = MMUPlugin_TLBTable_12_G;
-        _zz_MEM_ADDR_AddressGenerationPlugin_tlbTranslateResult_TLBHitEntry_PS = MMUPlugin_TLBTable_12_PS;
-        _zz_MEM_ADDR_AddressGenerationPlugin_tlbTranslateResult_TLBHitEntry_VPPN = MMUPlugin_TLBTable_12_VPPN;
-        _zz_MEM_ADDR_AddressGenerationPlugin_tlbTranslateResult_TLBHitEntry_V0 = MMUPlugin_TLBTable_12_V0;
-        _zz_MEM_ADDR_AddressGenerationPlugin_tlbTranslateResult_TLBHitEntry_D0 = MMUPlugin_TLBTable_12_D0;
-        _zz_MEM_ADDR_AddressGenerationPlugin_tlbTranslateResult_TLBHitEntry_MAT0 = MMUPlugin_TLBTable_12_MAT0;
-        _zz_MEM_ADDR_AddressGenerationPlugin_tlbTranslateResult_TLBHitEntry_PLV0 = MMUPlugin_TLBTable_12_PLV0;
-        _zz_MEM_ADDR_AddressGenerationPlugin_tlbTranslateResult_TLBHitEntry_PPN0 = MMUPlugin_TLBTable_12_PPN0;
-        _zz_MEM_ADDR_AddressGenerationPlugin_tlbTranslateResult_TLBHitEntry_V1 = MMUPlugin_TLBTable_12_V1;
-        _zz_MEM_ADDR_AddressGenerationPlugin_tlbTranslateResult_TLBHitEntry_D1 = MMUPlugin_TLBTable_12_D1;
-        _zz_MEM_ADDR_AddressGenerationPlugin_tlbTranslateResult_TLBHitEntry_MAT1 = MMUPlugin_TLBTable_12_MAT1;
-        _zz_MEM_ADDR_AddressGenerationPlugin_tlbTranslateResult_TLBHitEntry_PLV1 = MMUPlugin_TLBTable_12_PLV1;
-        _zz_MEM_ADDR_AddressGenerationPlugin_tlbTranslateResult_TLBHitEntry_PPN1 = MMUPlugin_TLBTable_12_PPN1;
+        _zz__zz_MEM_ADDR_AddressGenerationPlugin_tlbLookup_snapshot_entry_E_5 = MMUPlugin_TLBTable_12_PPN1;
+        _zz__zz_MEM_ADDR_AddressGenerationPlugin_tlbLookup_snapshot_entry_E_5_1 = MMUPlugin_TLBTable_12_PLV1;
+        _zz__zz_MEM_ADDR_AddressGenerationPlugin_tlbLookup_snapshot_entry_E_5_2 = MMUPlugin_TLBTable_12_MAT1;
+        _zz__zz_MEM_ADDR_AddressGenerationPlugin_tlbLookup_snapshot_entry_E_5_3 = MMUPlugin_TLBTable_12_D1;
+        _zz__zz_MEM_ADDR_AddressGenerationPlugin_tlbLookup_snapshot_entry_E_5_4 = MMUPlugin_TLBTable_12_V1;
+        _zz__zz_MEM_ADDR_AddressGenerationPlugin_tlbLookup_snapshot_entry_E_5_5 = MMUPlugin_TLBTable_12_PPN0;
+        _zz__zz_MEM_ADDR_AddressGenerationPlugin_tlbLookup_snapshot_entry_E_5_6 = MMUPlugin_TLBTable_12_PLV0;
+        _zz__zz_MEM_ADDR_AddressGenerationPlugin_tlbLookup_snapshot_entry_E_5_7 = MMUPlugin_TLBTable_12_MAT0;
+        _zz__zz_MEM_ADDR_AddressGenerationPlugin_tlbLookup_snapshot_entry_E_5_8 = MMUPlugin_TLBTable_12_D0;
+        _zz__zz_MEM_ADDR_AddressGenerationPlugin_tlbLookup_snapshot_entry_E_5_9 = MMUPlugin_TLBTable_12_V0;
+        _zz__zz_MEM_ADDR_AddressGenerationPlugin_tlbLookup_snapshot_entry_E_5_10 = MMUPlugin_TLBTable_12_VPPN;
+        _zz__zz_MEM_ADDR_AddressGenerationPlugin_tlbLookup_snapshot_entry_E_5_11 = MMUPlugin_TLBTable_12_PS;
+        _zz__zz_MEM_ADDR_AddressGenerationPlugin_tlbLookup_snapshot_entry_E_5_12 = MMUPlugin_TLBTable_12_G;
+        _zz__zz_MEM_ADDR_AddressGenerationPlugin_tlbLookup_snapshot_entry_E_5_13 = MMUPlugin_TLBTable_12_ASID;
+        _zz__zz_MEM_ADDR_AddressGenerationPlugin_tlbLookup_snapshot_entry_E_5_14 = MMUPlugin_TLBTable_12_E;
       end
       4'b1101 : begin
-        _zz_MEM_ADDR_AddressGenerationPlugin_tlbTranslateResult_TLBHitEntry_E_5 = MMUPlugin_TLBTable_13_E;
-        _zz_MEM_ADDR_AddressGenerationPlugin_tlbTranslateResult_TLBHitEntry_ASID = MMUPlugin_TLBTable_13_ASID;
-        _zz_MEM_ADDR_AddressGenerationPlugin_tlbTranslateResult_TLBHitEntry_G = MMUPlugin_TLBTable_13_G;
-        _zz_MEM_ADDR_AddressGenerationPlugin_tlbTranslateResult_TLBHitEntry_PS = MMUPlugin_TLBTable_13_PS;
-        _zz_MEM_ADDR_AddressGenerationPlugin_tlbTranslateResult_TLBHitEntry_VPPN = MMUPlugin_TLBTable_13_VPPN;
-        _zz_MEM_ADDR_AddressGenerationPlugin_tlbTranslateResult_TLBHitEntry_V0 = MMUPlugin_TLBTable_13_V0;
-        _zz_MEM_ADDR_AddressGenerationPlugin_tlbTranslateResult_TLBHitEntry_D0 = MMUPlugin_TLBTable_13_D0;
-        _zz_MEM_ADDR_AddressGenerationPlugin_tlbTranslateResult_TLBHitEntry_MAT0 = MMUPlugin_TLBTable_13_MAT0;
-        _zz_MEM_ADDR_AddressGenerationPlugin_tlbTranslateResult_TLBHitEntry_PLV0 = MMUPlugin_TLBTable_13_PLV0;
-        _zz_MEM_ADDR_AddressGenerationPlugin_tlbTranslateResult_TLBHitEntry_PPN0 = MMUPlugin_TLBTable_13_PPN0;
-        _zz_MEM_ADDR_AddressGenerationPlugin_tlbTranslateResult_TLBHitEntry_V1 = MMUPlugin_TLBTable_13_V1;
-        _zz_MEM_ADDR_AddressGenerationPlugin_tlbTranslateResult_TLBHitEntry_D1 = MMUPlugin_TLBTable_13_D1;
-        _zz_MEM_ADDR_AddressGenerationPlugin_tlbTranslateResult_TLBHitEntry_MAT1 = MMUPlugin_TLBTable_13_MAT1;
-        _zz_MEM_ADDR_AddressGenerationPlugin_tlbTranslateResult_TLBHitEntry_PLV1 = MMUPlugin_TLBTable_13_PLV1;
-        _zz_MEM_ADDR_AddressGenerationPlugin_tlbTranslateResult_TLBHitEntry_PPN1 = MMUPlugin_TLBTable_13_PPN1;
+        _zz__zz_MEM_ADDR_AddressGenerationPlugin_tlbLookup_snapshot_entry_E_5 = MMUPlugin_TLBTable_13_PPN1;
+        _zz__zz_MEM_ADDR_AddressGenerationPlugin_tlbLookup_snapshot_entry_E_5_1 = MMUPlugin_TLBTable_13_PLV1;
+        _zz__zz_MEM_ADDR_AddressGenerationPlugin_tlbLookup_snapshot_entry_E_5_2 = MMUPlugin_TLBTable_13_MAT1;
+        _zz__zz_MEM_ADDR_AddressGenerationPlugin_tlbLookup_snapshot_entry_E_5_3 = MMUPlugin_TLBTable_13_D1;
+        _zz__zz_MEM_ADDR_AddressGenerationPlugin_tlbLookup_snapshot_entry_E_5_4 = MMUPlugin_TLBTable_13_V1;
+        _zz__zz_MEM_ADDR_AddressGenerationPlugin_tlbLookup_snapshot_entry_E_5_5 = MMUPlugin_TLBTable_13_PPN0;
+        _zz__zz_MEM_ADDR_AddressGenerationPlugin_tlbLookup_snapshot_entry_E_5_6 = MMUPlugin_TLBTable_13_PLV0;
+        _zz__zz_MEM_ADDR_AddressGenerationPlugin_tlbLookup_snapshot_entry_E_5_7 = MMUPlugin_TLBTable_13_MAT0;
+        _zz__zz_MEM_ADDR_AddressGenerationPlugin_tlbLookup_snapshot_entry_E_5_8 = MMUPlugin_TLBTable_13_D0;
+        _zz__zz_MEM_ADDR_AddressGenerationPlugin_tlbLookup_snapshot_entry_E_5_9 = MMUPlugin_TLBTable_13_V0;
+        _zz__zz_MEM_ADDR_AddressGenerationPlugin_tlbLookup_snapshot_entry_E_5_10 = MMUPlugin_TLBTable_13_VPPN;
+        _zz__zz_MEM_ADDR_AddressGenerationPlugin_tlbLookup_snapshot_entry_E_5_11 = MMUPlugin_TLBTable_13_PS;
+        _zz__zz_MEM_ADDR_AddressGenerationPlugin_tlbLookup_snapshot_entry_E_5_12 = MMUPlugin_TLBTable_13_G;
+        _zz__zz_MEM_ADDR_AddressGenerationPlugin_tlbLookup_snapshot_entry_E_5_13 = MMUPlugin_TLBTable_13_ASID;
+        _zz__zz_MEM_ADDR_AddressGenerationPlugin_tlbLookup_snapshot_entry_E_5_14 = MMUPlugin_TLBTable_13_E;
       end
       4'b1110 : begin
-        _zz_MEM_ADDR_AddressGenerationPlugin_tlbTranslateResult_TLBHitEntry_E_5 = MMUPlugin_TLBTable_14_E;
-        _zz_MEM_ADDR_AddressGenerationPlugin_tlbTranslateResult_TLBHitEntry_ASID = MMUPlugin_TLBTable_14_ASID;
-        _zz_MEM_ADDR_AddressGenerationPlugin_tlbTranslateResult_TLBHitEntry_G = MMUPlugin_TLBTable_14_G;
-        _zz_MEM_ADDR_AddressGenerationPlugin_tlbTranslateResult_TLBHitEntry_PS = MMUPlugin_TLBTable_14_PS;
-        _zz_MEM_ADDR_AddressGenerationPlugin_tlbTranslateResult_TLBHitEntry_VPPN = MMUPlugin_TLBTable_14_VPPN;
-        _zz_MEM_ADDR_AddressGenerationPlugin_tlbTranslateResult_TLBHitEntry_V0 = MMUPlugin_TLBTable_14_V0;
-        _zz_MEM_ADDR_AddressGenerationPlugin_tlbTranslateResult_TLBHitEntry_D0 = MMUPlugin_TLBTable_14_D0;
-        _zz_MEM_ADDR_AddressGenerationPlugin_tlbTranslateResult_TLBHitEntry_MAT0 = MMUPlugin_TLBTable_14_MAT0;
-        _zz_MEM_ADDR_AddressGenerationPlugin_tlbTranslateResult_TLBHitEntry_PLV0 = MMUPlugin_TLBTable_14_PLV0;
-        _zz_MEM_ADDR_AddressGenerationPlugin_tlbTranslateResult_TLBHitEntry_PPN0 = MMUPlugin_TLBTable_14_PPN0;
-        _zz_MEM_ADDR_AddressGenerationPlugin_tlbTranslateResult_TLBHitEntry_V1 = MMUPlugin_TLBTable_14_V1;
-        _zz_MEM_ADDR_AddressGenerationPlugin_tlbTranslateResult_TLBHitEntry_D1 = MMUPlugin_TLBTable_14_D1;
-        _zz_MEM_ADDR_AddressGenerationPlugin_tlbTranslateResult_TLBHitEntry_MAT1 = MMUPlugin_TLBTable_14_MAT1;
-        _zz_MEM_ADDR_AddressGenerationPlugin_tlbTranslateResult_TLBHitEntry_PLV1 = MMUPlugin_TLBTable_14_PLV1;
-        _zz_MEM_ADDR_AddressGenerationPlugin_tlbTranslateResult_TLBHitEntry_PPN1 = MMUPlugin_TLBTable_14_PPN1;
+        _zz__zz_MEM_ADDR_AddressGenerationPlugin_tlbLookup_snapshot_entry_E_5 = MMUPlugin_TLBTable_14_PPN1;
+        _zz__zz_MEM_ADDR_AddressGenerationPlugin_tlbLookup_snapshot_entry_E_5_1 = MMUPlugin_TLBTable_14_PLV1;
+        _zz__zz_MEM_ADDR_AddressGenerationPlugin_tlbLookup_snapshot_entry_E_5_2 = MMUPlugin_TLBTable_14_MAT1;
+        _zz__zz_MEM_ADDR_AddressGenerationPlugin_tlbLookup_snapshot_entry_E_5_3 = MMUPlugin_TLBTable_14_D1;
+        _zz__zz_MEM_ADDR_AddressGenerationPlugin_tlbLookup_snapshot_entry_E_5_4 = MMUPlugin_TLBTable_14_V1;
+        _zz__zz_MEM_ADDR_AddressGenerationPlugin_tlbLookup_snapshot_entry_E_5_5 = MMUPlugin_TLBTable_14_PPN0;
+        _zz__zz_MEM_ADDR_AddressGenerationPlugin_tlbLookup_snapshot_entry_E_5_6 = MMUPlugin_TLBTable_14_PLV0;
+        _zz__zz_MEM_ADDR_AddressGenerationPlugin_tlbLookup_snapshot_entry_E_5_7 = MMUPlugin_TLBTable_14_MAT0;
+        _zz__zz_MEM_ADDR_AddressGenerationPlugin_tlbLookup_snapshot_entry_E_5_8 = MMUPlugin_TLBTable_14_D0;
+        _zz__zz_MEM_ADDR_AddressGenerationPlugin_tlbLookup_snapshot_entry_E_5_9 = MMUPlugin_TLBTable_14_V0;
+        _zz__zz_MEM_ADDR_AddressGenerationPlugin_tlbLookup_snapshot_entry_E_5_10 = MMUPlugin_TLBTable_14_VPPN;
+        _zz__zz_MEM_ADDR_AddressGenerationPlugin_tlbLookup_snapshot_entry_E_5_11 = MMUPlugin_TLBTable_14_PS;
+        _zz__zz_MEM_ADDR_AddressGenerationPlugin_tlbLookup_snapshot_entry_E_5_12 = MMUPlugin_TLBTable_14_G;
+        _zz__zz_MEM_ADDR_AddressGenerationPlugin_tlbLookup_snapshot_entry_E_5_13 = MMUPlugin_TLBTable_14_ASID;
+        _zz__zz_MEM_ADDR_AddressGenerationPlugin_tlbLookup_snapshot_entry_E_5_14 = MMUPlugin_TLBTable_14_E;
       end
       default : begin
-        _zz_MEM_ADDR_AddressGenerationPlugin_tlbTranslateResult_TLBHitEntry_E_5 = MMUPlugin_TLBTable_15_E;
-        _zz_MEM_ADDR_AddressGenerationPlugin_tlbTranslateResult_TLBHitEntry_ASID = MMUPlugin_TLBTable_15_ASID;
-        _zz_MEM_ADDR_AddressGenerationPlugin_tlbTranslateResult_TLBHitEntry_G = MMUPlugin_TLBTable_15_G;
-        _zz_MEM_ADDR_AddressGenerationPlugin_tlbTranslateResult_TLBHitEntry_PS = MMUPlugin_TLBTable_15_PS;
-        _zz_MEM_ADDR_AddressGenerationPlugin_tlbTranslateResult_TLBHitEntry_VPPN = MMUPlugin_TLBTable_15_VPPN;
-        _zz_MEM_ADDR_AddressGenerationPlugin_tlbTranslateResult_TLBHitEntry_V0 = MMUPlugin_TLBTable_15_V0;
-        _zz_MEM_ADDR_AddressGenerationPlugin_tlbTranslateResult_TLBHitEntry_D0 = MMUPlugin_TLBTable_15_D0;
-        _zz_MEM_ADDR_AddressGenerationPlugin_tlbTranslateResult_TLBHitEntry_MAT0 = MMUPlugin_TLBTable_15_MAT0;
-        _zz_MEM_ADDR_AddressGenerationPlugin_tlbTranslateResult_TLBHitEntry_PLV0 = MMUPlugin_TLBTable_15_PLV0;
-        _zz_MEM_ADDR_AddressGenerationPlugin_tlbTranslateResult_TLBHitEntry_PPN0 = MMUPlugin_TLBTable_15_PPN0;
-        _zz_MEM_ADDR_AddressGenerationPlugin_tlbTranslateResult_TLBHitEntry_V1 = MMUPlugin_TLBTable_15_V1;
-        _zz_MEM_ADDR_AddressGenerationPlugin_tlbTranslateResult_TLBHitEntry_D1 = MMUPlugin_TLBTable_15_D1;
-        _zz_MEM_ADDR_AddressGenerationPlugin_tlbTranslateResult_TLBHitEntry_MAT1 = MMUPlugin_TLBTable_15_MAT1;
-        _zz_MEM_ADDR_AddressGenerationPlugin_tlbTranslateResult_TLBHitEntry_PLV1 = MMUPlugin_TLBTable_15_PLV1;
-        _zz_MEM_ADDR_AddressGenerationPlugin_tlbTranslateResult_TLBHitEntry_PPN1 = MMUPlugin_TLBTable_15_PPN1;
+        _zz__zz_MEM_ADDR_AddressGenerationPlugin_tlbLookup_snapshot_entry_E_5 = MMUPlugin_TLBTable_15_PPN1;
+        _zz__zz_MEM_ADDR_AddressGenerationPlugin_tlbLookup_snapshot_entry_E_5_1 = MMUPlugin_TLBTable_15_PLV1;
+        _zz__zz_MEM_ADDR_AddressGenerationPlugin_tlbLookup_snapshot_entry_E_5_2 = MMUPlugin_TLBTable_15_MAT1;
+        _zz__zz_MEM_ADDR_AddressGenerationPlugin_tlbLookup_snapshot_entry_E_5_3 = MMUPlugin_TLBTable_15_D1;
+        _zz__zz_MEM_ADDR_AddressGenerationPlugin_tlbLookup_snapshot_entry_E_5_4 = MMUPlugin_TLBTable_15_V1;
+        _zz__zz_MEM_ADDR_AddressGenerationPlugin_tlbLookup_snapshot_entry_E_5_5 = MMUPlugin_TLBTable_15_PPN0;
+        _zz__zz_MEM_ADDR_AddressGenerationPlugin_tlbLookup_snapshot_entry_E_5_6 = MMUPlugin_TLBTable_15_PLV0;
+        _zz__zz_MEM_ADDR_AddressGenerationPlugin_tlbLookup_snapshot_entry_E_5_7 = MMUPlugin_TLBTable_15_MAT0;
+        _zz__zz_MEM_ADDR_AddressGenerationPlugin_tlbLookup_snapshot_entry_E_5_8 = MMUPlugin_TLBTable_15_D0;
+        _zz__zz_MEM_ADDR_AddressGenerationPlugin_tlbLookup_snapshot_entry_E_5_9 = MMUPlugin_TLBTable_15_V0;
+        _zz__zz_MEM_ADDR_AddressGenerationPlugin_tlbLookup_snapshot_entry_E_5_10 = MMUPlugin_TLBTable_15_VPPN;
+        _zz__zz_MEM_ADDR_AddressGenerationPlugin_tlbLookup_snapshot_entry_E_5_11 = MMUPlugin_TLBTable_15_PS;
+        _zz__zz_MEM_ADDR_AddressGenerationPlugin_tlbLookup_snapshot_entry_E_5_12 = MMUPlugin_TLBTable_15_G;
+        _zz__zz_MEM_ADDR_AddressGenerationPlugin_tlbLookup_snapshot_entry_E_5_13 = MMUPlugin_TLBTable_15_ASID;
+        _zz__zz_MEM_ADDR_AddressGenerationPlugin_tlbLookup_snapshot_entry_E_5_14 = MMUPlugin_TLBTable_15_E;
       end
     endcase
   end
@@ -46914,11 +46959,11 @@ module MyCPUCore (
     endcase
   end
   always @(*) begin
-    case(switch_MMUPlugin_l290)
-      MemOperationType_FETCH : switch_MMUPlugin_l290_string = "FETCH";
-      MemOperationType_LOAD : switch_MMUPlugin_l290_string = "LOAD ";
-      MemOperationType_STORE : switch_MMUPlugin_l290_string = "STORE";
-      default : switch_MMUPlugin_l290_string = "?????";
+    case(switch_MMUPlugin_l331)
+      MemOperationType_FETCH : switch_MMUPlugin_l331_string = "FETCH";
+      MemOperationType_LOAD : switch_MMUPlugin_l331_string = "LOAD ";
+      MemOperationType_STORE : switch_MMUPlugin_l331_string = "STORE";
+      default : switch_MMUPlugin_l331_string = "?????";
     endcase
   end
   always @(*) begin
@@ -47450,19 +47495,19 @@ module MyCPUCore (
     endcase
   end
   always @(*) begin
-    case(switch_MMUPlugin_l290_1)
-      MemOperationType_FETCH : switch_MMUPlugin_l290_1_string = "FETCH";
-      MemOperationType_LOAD : switch_MMUPlugin_l290_1_string = "LOAD ";
-      MemOperationType_STORE : switch_MMUPlugin_l290_1_string = "STORE";
-      default : switch_MMUPlugin_l290_1_string = "?????";
+    case(switch_MMUPlugin_l331_1)
+      MemOperationType_FETCH : switch_MMUPlugin_l331_1_string = "FETCH";
+      MemOperationType_LOAD : switch_MMUPlugin_l331_1_string = "LOAD ";
+      MemOperationType_STORE : switch_MMUPlugin_l331_1_string = "STORE";
+      default : switch_MMUPlugin_l331_1_string = "?????";
     endcase
   end
   always @(*) begin
-    case(_zz_when_MMUPlugin_l359)
-      MemOperationType_FETCH : _zz_when_MMUPlugin_l359_string = "FETCH";
-      MemOperationType_LOAD : _zz_when_MMUPlugin_l359_string = "LOAD ";
-      MemOperationType_STORE : _zz_when_MMUPlugin_l359_string = "STORE";
-      default : _zz_when_MMUPlugin_l359_string = "?????";
+    case(_zz_when_MMUPlugin_l400)
+      MemOperationType_FETCH : _zz_when_MMUPlugin_l400_string = "FETCH";
+      MemOperationType_LOAD : _zz_when_MMUPlugin_l400_string = "LOAD ";
+      MemOperationType_STORE : _zz_when_MMUPlugin_l400_string = "STORE";
+      default : _zz_when_MMUPlugin_l400_string = "?????";
     endcase
   end
   always @(*) begin
@@ -49142,15 +49187,22 @@ module MyCPUCore (
   assign MEM_ADDR_TRANSLATE_SAVED_CSR_CRMD_PG = MEM_ADDR_AddressGenerationPlugin_savedCSR_CRMD_PG;
   assign MEM_ADDR_TRANSLATE_SAVED_CSR_CRMD_DATF = MEM_ADDR_AddressGenerationPlugin_savedCSR_CRMD_DATF;
   assign MEM_ADDR_TRANSLATE_SAVED_CSR_CRMD_DATM = MEM_ADDR_AddressGenerationPlugin_savedCSR_CRMD_DATM;
-  assign MEM_ADDR_TLB_TRANSLATE_RESULT_valid = MEM_ADDR_AddressGenerationPlugin_tlbTranslateResult_resultBundle_valid;
-  assign MEM_ADDR_TLB_TRANSLATE_RESULT_payload_physAddr = MEM_ADDR_AddressGenerationPlugin_tlbTranslateResult_resultBundle_payload_physAddr;
-  assign MEM_ADDR_TLB_TRANSLATE_RESULT_payload_cached = MEM_ADDR_AddressGenerationPlugin_tlbTranslateResult_resultBundle_payload_cached;
-  assign MEM_ADDR_TLB_TRANSLATE_RESULT_payload_exception_raisePIL = MEM_ADDR_AddressGenerationPlugin_tlbTranslateResult_resultBundle_payload_exception_raisePIL;
-  assign MEM_ADDR_TLB_TRANSLATE_RESULT_payload_exception_raisePIS = MEM_ADDR_AddressGenerationPlugin_tlbTranslateResult_resultBundle_payload_exception_raisePIS;
-  assign MEM_ADDR_TLB_TRANSLATE_RESULT_payload_exception_raisePIF = MEM_ADDR_AddressGenerationPlugin_tlbTranslateResult_resultBundle_payload_exception_raisePIF;
-  assign MEM_ADDR_TLB_TRANSLATE_RESULT_payload_exception_raisePME = MEM_ADDR_AddressGenerationPlugin_tlbTranslateResult_resultBundle_payload_exception_raisePME;
-  assign MEM_ADDR_TLB_TRANSLATE_RESULT_payload_exception_raisePPI = MEM_ADDR_AddressGenerationPlugin_tlbTranslateResult_resultBundle_payload_exception_raisePPI;
-  assign MEM_ADDR_TLB_TRANSLATE_RESULT_payload_exception_raiseTLBR = MEM_ADDR_AddressGenerationPlugin_tlbTranslateResult_resultBundle_payload_exception_raiseTLBR;
+  assign MEM_ADDR_TLB_LOOKUP_SNAPSHOT_hit = MEM_ADDR_AddressGenerationPlugin_tlbLookup_snapshot_hit;
+  assign MEM_ADDR_TLB_LOOKUP_SNAPSHOT_entry_E = MEM_ADDR_AddressGenerationPlugin_tlbLookup_snapshot_entry_E;
+  assign MEM_ADDR_TLB_LOOKUP_SNAPSHOT_entry_ASID = MEM_ADDR_AddressGenerationPlugin_tlbLookup_snapshot_entry_ASID;
+  assign MEM_ADDR_TLB_LOOKUP_SNAPSHOT_entry_G = MEM_ADDR_AddressGenerationPlugin_tlbLookup_snapshot_entry_G;
+  assign MEM_ADDR_TLB_LOOKUP_SNAPSHOT_entry_PS = MEM_ADDR_AddressGenerationPlugin_tlbLookup_snapshot_entry_PS;
+  assign MEM_ADDR_TLB_LOOKUP_SNAPSHOT_entry_VPPN = MEM_ADDR_AddressGenerationPlugin_tlbLookup_snapshot_entry_VPPN;
+  assign MEM_ADDR_TLB_LOOKUP_SNAPSHOT_entry_V0 = MEM_ADDR_AddressGenerationPlugin_tlbLookup_snapshot_entry_V0;
+  assign MEM_ADDR_TLB_LOOKUP_SNAPSHOT_entry_D0 = MEM_ADDR_AddressGenerationPlugin_tlbLookup_snapshot_entry_D0;
+  assign MEM_ADDR_TLB_LOOKUP_SNAPSHOT_entry_MAT0 = MEM_ADDR_AddressGenerationPlugin_tlbLookup_snapshot_entry_MAT0;
+  assign MEM_ADDR_TLB_LOOKUP_SNAPSHOT_entry_PLV0 = MEM_ADDR_AddressGenerationPlugin_tlbLookup_snapshot_entry_PLV0;
+  assign MEM_ADDR_TLB_LOOKUP_SNAPSHOT_entry_PPN0 = MEM_ADDR_AddressGenerationPlugin_tlbLookup_snapshot_entry_PPN0;
+  assign MEM_ADDR_TLB_LOOKUP_SNAPSHOT_entry_V1 = MEM_ADDR_AddressGenerationPlugin_tlbLookup_snapshot_entry_V1;
+  assign MEM_ADDR_TLB_LOOKUP_SNAPSHOT_entry_D1 = MEM_ADDR_AddressGenerationPlugin_tlbLookup_snapshot_entry_D1;
+  assign MEM_ADDR_TLB_LOOKUP_SNAPSHOT_entry_MAT1 = MEM_ADDR_AddressGenerationPlugin_tlbLookup_snapshot_entry_MAT1;
+  assign MEM_ADDR_TLB_LOOKUP_SNAPSHOT_entry_PLV1 = MEM_ADDR_AddressGenerationPlugin_tlbLookup_snapshot_entry_PLV1;
+  assign MEM_ADDR_TLB_LOOKUP_SNAPSHOT_entry_PPN1 = MEM_ADDR_AddressGenerationPlugin_tlbLookup_snapshot_entry_PPN1;
   assign MEM_ADDR_DIRECT_TRANSLATE_RESULT_valid = MEM_ADDR_AddressGenerationPlugin_directTranslateResult_resultBundle_valid;
   assign MEM_ADDR_DIRECT_TRANSLATE_RESULT_payload_physAddr = MEM_ADDR_AddressGenerationPlugin_directTranslateResult_resultBundle_payload_physAddr;
   assign MEM_ADDR_DIRECT_TRANSLATE_RESULT_payload_cached = MEM_ADDR_AddressGenerationPlugin_directTranslateResult_resultBundle_payload_cached;
@@ -49578,15 +49630,22 @@ module MyCPUCore (
   assign IF1_TRANSLATE_SAVED_CSR_CRMD_PG = IF1_InstAddrTranslatePlugin_savedCSR_CRMD_PG;
   assign IF1_TRANSLATE_SAVED_CSR_CRMD_DATF = IF1_InstAddrTranslatePlugin_savedCSR_CRMD_DATF;
   assign IF1_TRANSLATE_SAVED_CSR_CRMD_DATM = IF1_InstAddrTranslatePlugin_savedCSR_CRMD_DATM;
-  assign IF1_TLB_TRANSLATE_RESULT_valid = IF1_InstAddrTranslatePlugin_tlbTranslateResult_resultBundle_valid;
-  assign IF1_TLB_TRANSLATE_RESULT_payload_physAddr = IF1_InstAddrTranslatePlugin_tlbTranslateResult_resultBundle_payload_physAddr;
-  assign IF1_TLB_TRANSLATE_RESULT_payload_cached = IF1_InstAddrTranslatePlugin_tlbTranslateResult_resultBundle_payload_cached;
-  assign IF1_TLB_TRANSLATE_RESULT_payload_exception_raisePIL = IF1_InstAddrTranslatePlugin_tlbTranslateResult_resultBundle_payload_exception_raisePIL;
-  assign IF1_TLB_TRANSLATE_RESULT_payload_exception_raisePIS = IF1_InstAddrTranslatePlugin_tlbTranslateResult_resultBundle_payload_exception_raisePIS;
-  assign IF1_TLB_TRANSLATE_RESULT_payload_exception_raisePIF = IF1_InstAddrTranslatePlugin_tlbTranslateResult_resultBundle_payload_exception_raisePIF;
-  assign IF1_TLB_TRANSLATE_RESULT_payload_exception_raisePME = IF1_InstAddrTranslatePlugin_tlbTranslateResult_resultBundle_payload_exception_raisePME;
-  assign IF1_TLB_TRANSLATE_RESULT_payload_exception_raisePPI = IF1_InstAddrTranslatePlugin_tlbTranslateResult_resultBundle_payload_exception_raisePPI;
-  assign IF1_TLB_TRANSLATE_RESULT_payload_exception_raiseTLBR = IF1_InstAddrTranslatePlugin_tlbTranslateResult_resultBundle_payload_exception_raiseTLBR;
+  assign IF1_TLB_LOOKUP_SNAPSHOT_hit = IF1_InstAddrTranslatePlugin_tlbLookup_snapshot_hit;
+  assign IF1_TLB_LOOKUP_SNAPSHOT_entry_E = IF1_InstAddrTranslatePlugin_tlbLookup_snapshot_entry_E;
+  assign IF1_TLB_LOOKUP_SNAPSHOT_entry_ASID = IF1_InstAddrTranslatePlugin_tlbLookup_snapshot_entry_ASID;
+  assign IF1_TLB_LOOKUP_SNAPSHOT_entry_G = IF1_InstAddrTranslatePlugin_tlbLookup_snapshot_entry_G;
+  assign IF1_TLB_LOOKUP_SNAPSHOT_entry_PS = IF1_InstAddrTranslatePlugin_tlbLookup_snapshot_entry_PS;
+  assign IF1_TLB_LOOKUP_SNAPSHOT_entry_VPPN = IF1_InstAddrTranslatePlugin_tlbLookup_snapshot_entry_VPPN;
+  assign IF1_TLB_LOOKUP_SNAPSHOT_entry_V0 = IF1_InstAddrTranslatePlugin_tlbLookup_snapshot_entry_V0;
+  assign IF1_TLB_LOOKUP_SNAPSHOT_entry_D0 = IF1_InstAddrTranslatePlugin_tlbLookup_snapshot_entry_D0;
+  assign IF1_TLB_LOOKUP_SNAPSHOT_entry_MAT0 = IF1_InstAddrTranslatePlugin_tlbLookup_snapshot_entry_MAT0;
+  assign IF1_TLB_LOOKUP_SNAPSHOT_entry_PLV0 = IF1_InstAddrTranslatePlugin_tlbLookup_snapshot_entry_PLV0;
+  assign IF1_TLB_LOOKUP_SNAPSHOT_entry_PPN0 = IF1_InstAddrTranslatePlugin_tlbLookup_snapshot_entry_PPN0;
+  assign IF1_TLB_LOOKUP_SNAPSHOT_entry_V1 = IF1_InstAddrTranslatePlugin_tlbLookup_snapshot_entry_V1;
+  assign IF1_TLB_LOOKUP_SNAPSHOT_entry_D1 = IF1_InstAddrTranslatePlugin_tlbLookup_snapshot_entry_D1;
+  assign IF1_TLB_LOOKUP_SNAPSHOT_entry_MAT1 = IF1_InstAddrTranslatePlugin_tlbLookup_snapshot_entry_MAT1;
+  assign IF1_TLB_LOOKUP_SNAPSHOT_entry_PLV1 = IF1_InstAddrTranslatePlugin_tlbLookup_snapshot_entry_PLV1;
+  assign IF1_TLB_LOOKUP_SNAPSHOT_entry_PPN1 = IF1_InstAddrTranslatePlugin_tlbLookup_snapshot_entry_PPN1;
   assign IF1_DIRECT_TRANSLATE_RESULT_valid = IF1_InstAddrTranslatePlugin_directTranslateResult_resultBundle_valid;
   assign IF1_DIRECT_TRANSLATE_RESULT_payload_physAddr = IF1_InstAddrTranslatePlugin_directTranslateResult_resultBundle_payload_physAddr;
   assign IF1_DIRECT_TRANSLATE_RESULT_payload_cached = IF1_InstAddrTranslatePlugin_directTranslateResult_resultBundle_payload_cached;
@@ -49950,15 +50009,6 @@ module MyCPUCore (
   assign MEM_MEM1_TRANSLATE_SAVED_CSR_CRMD_PG = MEM_ADDR_to_MEM_MEM1_TRANSLATE_SAVED_CSR_CRMD_PG;
   assign MEM_MEM1_TRANSLATE_SAVED_CSR_CRMD_DATF = MEM_ADDR_to_MEM_MEM1_TRANSLATE_SAVED_CSR_CRMD_DATF;
   assign MEM_MEM1_TRANSLATE_SAVED_CSR_CRMD_DATM = MEM_ADDR_to_MEM_MEM1_TRANSLATE_SAVED_CSR_CRMD_DATM;
-  assign MEM_MEM1_TLB_TRANSLATE_RESULT_valid = MEM_ADDR_to_MEM_MEM1_TLB_TRANSLATE_RESULT_valid;
-  assign MEM_MEM1_TLB_TRANSLATE_RESULT_payload_physAddr = MEM_ADDR_to_MEM_MEM1_TLB_TRANSLATE_RESULT_payload_physAddr;
-  assign MEM_MEM1_TLB_TRANSLATE_RESULT_payload_cached = MEM_ADDR_to_MEM_MEM1_TLB_TRANSLATE_RESULT_payload_cached;
-  assign MEM_MEM1_TLB_TRANSLATE_RESULT_payload_exception_raisePIL = MEM_ADDR_to_MEM_MEM1_TLB_TRANSLATE_RESULT_payload_exception_raisePIL;
-  assign MEM_MEM1_TLB_TRANSLATE_RESULT_payload_exception_raisePIS = MEM_ADDR_to_MEM_MEM1_TLB_TRANSLATE_RESULT_payload_exception_raisePIS;
-  assign MEM_MEM1_TLB_TRANSLATE_RESULT_payload_exception_raisePIF = MEM_ADDR_to_MEM_MEM1_TLB_TRANSLATE_RESULT_payload_exception_raisePIF;
-  assign MEM_MEM1_TLB_TRANSLATE_RESULT_payload_exception_raisePME = MEM_ADDR_to_MEM_MEM1_TLB_TRANSLATE_RESULT_payload_exception_raisePME;
-  assign MEM_MEM1_TLB_TRANSLATE_RESULT_payload_exception_raisePPI = MEM_ADDR_to_MEM_MEM1_TLB_TRANSLATE_RESULT_payload_exception_raisePPI;
-  assign MEM_MEM1_TLB_TRANSLATE_RESULT_payload_exception_raiseTLBR = MEM_ADDR_to_MEM_MEM1_TLB_TRANSLATE_RESULT_payload_exception_raiseTLBR;
   assign MEM_MEM1_DIRECT_TRANSLATE_RESULT_valid = MEM_ADDR_to_MEM_MEM1_DIRECT_TRANSLATE_RESULT_valid;
   assign MEM_MEM1_DIRECT_TRANSLATE_RESULT_payload_physAddr = MEM_ADDR_to_MEM_MEM1_DIRECT_TRANSLATE_RESULT_payload_physAddr;
   assign MEM_MEM1_DIRECT_TRANSLATE_RESULT_payload_cached = MEM_ADDR_to_MEM_MEM1_DIRECT_TRANSLATE_RESULT_payload_cached;
@@ -49968,6 +50018,22 @@ module MyCPUCore (
   assign MEM_MEM1_DIRECT_TRANSLATE_RESULT_payload_exception_raisePME = MEM_ADDR_to_MEM_MEM1_DIRECT_TRANSLATE_RESULT_payload_exception_raisePME;
   assign MEM_MEM1_DIRECT_TRANSLATE_RESULT_payload_exception_raisePPI = MEM_ADDR_to_MEM_MEM1_DIRECT_TRANSLATE_RESULT_payload_exception_raisePPI;
   assign MEM_MEM1_DIRECT_TRANSLATE_RESULT_payload_exception_raiseTLBR = MEM_ADDR_to_MEM_MEM1_DIRECT_TRANSLATE_RESULT_payload_exception_raiseTLBR;
+  assign MEM_MEM1_TLB_LOOKUP_SNAPSHOT_hit = MEM_ADDR_to_MEM_MEM1_TLB_LOOKUP_SNAPSHOT_hit;
+  assign MEM_MEM1_TLB_LOOKUP_SNAPSHOT_entry_E = MEM_ADDR_to_MEM_MEM1_TLB_LOOKUP_SNAPSHOT_entry_E;
+  assign MEM_MEM1_TLB_LOOKUP_SNAPSHOT_entry_ASID = MEM_ADDR_to_MEM_MEM1_TLB_LOOKUP_SNAPSHOT_entry_ASID;
+  assign MEM_MEM1_TLB_LOOKUP_SNAPSHOT_entry_G = MEM_ADDR_to_MEM_MEM1_TLB_LOOKUP_SNAPSHOT_entry_G;
+  assign MEM_MEM1_TLB_LOOKUP_SNAPSHOT_entry_PS = MEM_ADDR_to_MEM_MEM1_TLB_LOOKUP_SNAPSHOT_entry_PS;
+  assign MEM_MEM1_TLB_LOOKUP_SNAPSHOT_entry_VPPN = MEM_ADDR_to_MEM_MEM1_TLB_LOOKUP_SNAPSHOT_entry_VPPN;
+  assign MEM_MEM1_TLB_LOOKUP_SNAPSHOT_entry_V0 = MEM_ADDR_to_MEM_MEM1_TLB_LOOKUP_SNAPSHOT_entry_V0;
+  assign MEM_MEM1_TLB_LOOKUP_SNAPSHOT_entry_D0 = MEM_ADDR_to_MEM_MEM1_TLB_LOOKUP_SNAPSHOT_entry_D0;
+  assign MEM_MEM1_TLB_LOOKUP_SNAPSHOT_entry_MAT0 = MEM_ADDR_to_MEM_MEM1_TLB_LOOKUP_SNAPSHOT_entry_MAT0;
+  assign MEM_MEM1_TLB_LOOKUP_SNAPSHOT_entry_PLV0 = MEM_ADDR_to_MEM_MEM1_TLB_LOOKUP_SNAPSHOT_entry_PLV0;
+  assign MEM_MEM1_TLB_LOOKUP_SNAPSHOT_entry_PPN0 = MEM_ADDR_to_MEM_MEM1_TLB_LOOKUP_SNAPSHOT_entry_PPN0;
+  assign MEM_MEM1_TLB_LOOKUP_SNAPSHOT_entry_V1 = MEM_ADDR_to_MEM_MEM1_TLB_LOOKUP_SNAPSHOT_entry_V1;
+  assign MEM_MEM1_TLB_LOOKUP_SNAPSHOT_entry_D1 = MEM_ADDR_to_MEM_MEM1_TLB_LOOKUP_SNAPSHOT_entry_D1;
+  assign MEM_MEM1_TLB_LOOKUP_SNAPSHOT_entry_MAT1 = MEM_ADDR_to_MEM_MEM1_TLB_LOOKUP_SNAPSHOT_entry_MAT1;
+  assign MEM_MEM1_TLB_LOOKUP_SNAPSHOT_entry_PLV1 = MEM_ADDR_to_MEM_MEM1_TLB_LOOKUP_SNAPSHOT_entry_PLV1;
+  assign MEM_MEM1_TLB_LOOKUP_SNAPSHOT_entry_PPN1 = MEM_ADDR_to_MEM_MEM1_TLB_LOOKUP_SNAPSHOT_entry_PPN1;
   assign MEM_MEM1_MEMORY_ADDRESS = MEM_ADDR_to_MEM_MEM1_MEMORY_ADDRESS;
   assign MEM_MEM1_ISSUE_SLOT_rRegs_0_valid = MEM_ADDR_to_MEM_MEM1_ISSUE_SLOT_rRegs_0_valid;
   assign MEM_MEM1_ISSUE_SLOT_rRegs_0_payload = MEM_ADDR_to_MEM_MEM1_ISSUE_SLOT_rRegs_0_payload;
@@ -50329,15 +50395,6 @@ module MyCPUCore (
   assign IF2_TRANSLATE_SAVED_CSR_CRMD_PG = IF1_to_IF2_TRANSLATE_SAVED_CSR_CRMD_PG;
   assign IF2_TRANSLATE_SAVED_CSR_CRMD_DATF = IF1_to_IF2_TRANSLATE_SAVED_CSR_CRMD_DATF;
   assign IF2_TRANSLATE_SAVED_CSR_CRMD_DATM = IF1_to_IF2_TRANSLATE_SAVED_CSR_CRMD_DATM;
-  assign IF2_TLB_TRANSLATE_RESULT_valid = IF1_to_IF2_TLB_TRANSLATE_RESULT_valid;
-  assign IF2_TLB_TRANSLATE_RESULT_payload_physAddr = IF1_to_IF2_TLB_TRANSLATE_RESULT_payload_physAddr;
-  assign IF2_TLB_TRANSLATE_RESULT_payload_cached = IF1_to_IF2_TLB_TRANSLATE_RESULT_payload_cached;
-  assign IF2_TLB_TRANSLATE_RESULT_payload_exception_raisePIL = IF1_to_IF2_TLB_TRANSLATE_RESULT_payload_exception_raisePIL;
-  assign IF2_TLB_TRANSLATE_RESULT_payload_exception_raisePIS = IF1_to_IF2_TLB_TRANSLATE_RESULT_payload_exception_raisePIS;
-  assign IF2_TLB_TRANSLATE_RESULT_payload_exception_raisePIF = IF1_to_IF2_TLB_TRANSLATE_RESULT_payload_exception_raisePIF;
-  assign IF2_TLB_TRANSLATE_RESULT_payload_exception_raisePME = IF1_to_IF2_TLB_TRANSLATE_RESULT_payload_exception_raisePME;
-  assign IF2_TLB_TRANSLATE_RESULT_payload_exception_raisePPI = IF1_to_IF2_TLB_TRANSLATE_RESULT_payload_exception_raisePPI;
-  assign IF2_TLB_TRANSLATE_RESULT_payload_exception_raiseTLBR = IF1_to_IF2_TLB_TRANSLATE_RESULT_payload_exception_raiseTLBR;
   assign IF2_DIRECT_TRANSLATE_RESULT_valid = IF1_to_IF2_DIRECT_TRANSLATE_RESULT_valid;
   assign IF2_DIRECT_TRANSLATE_RESULT_payload_physAddr = IF1_to_IF2_DIRECT_TRANSLATE_RESULT_payload_physAddr;
   assign IF2_DIRECT_TRANSLATE_RESULT_payload_cached = IF1_to_IF2_DIRECT_TRANSLATE_RESULT_payload_cached;
@@ -50347,6 +50404,22 @@ module MyCPUCore (
   assign IF2_DIRECT_TRANSLATE_RESULT_payload_exception_raisePME = IF1_to_IF2_DIRECT_TRANSLATE_RESULT_payload_exception_raisePME;
   assign IF2_DIRECT_TRANSLATE_RESULT_payload_exception_raisePPI = IF1_to_IF2_DIRECT_TRANSLATE_RESULT_payload_exception_raisePPI;
   assign IF2_DIRECT_TRANSLATE_RESULT_payload_exception_raiseTLBR = IF1_to_IF2_DIRECT_TRANSLATE_RESULT_payload_exception_raiseTLBR;
+  assign IF2_TLB_LOOKUP_SNAPSHOT_hit = IF1_to_IF2_TLB_LOOKUP_SNAPSHOT_hit;
+  assign IF2_TLB_LOOKUP_SNAPSHOT_entry_E = IF1_to_IF2_TLB_LOOKUP_SNAPSHOT_entry_E;
+  assign IF2_TLB_LOOKUP_SNAPSHOT_entry_ASID = IF1_to_IF2_TLB_LOOKUP_SNAPSHOT_entry_ASID;
+  assign IF2_TLB_LOOKUP_SNAPSHOT_entry_G = IF1_to_IF2_TLB_LOOKUP_SNAPSHOT_entry_G;
+  assign IF2_TLB_LOOKUP_SNAPSHOT_entry_PS = IF1_to_IF2_TLB_LOOKUP_SNAPSHOT_entry_PS;
+  assign IF2_TLB_LOOKUP_SNAPSHOT_entry_VPPN = IF1_to_IF2_TLB_LOOKUP_SNAPSHOT_entry_VPPN;
+  assign IF2_TLB_LOOKUP_SNAPSHOT_entry_V0 = IF1_to_IF2_TLB_LOOKUP_SNAPSHOT_entry_V0;
+  assign IF2_TLB_LOOKUP_SNAPSHOT_entry_D0 = IF1_to_IF2_TLB_LOOKUP_SNAPSHOT_entry_D0;
+  assign IF2_TLB_LOOKUP_SNAPSHOT_entry_MAT0 = IF1_to_IF2_TLB_LOOKUP_SNAPSHOT_entry_MAT0;
+  assign IF2_TLB_LOOKUP_SNAPSHOT_entry_PLV0 = IF1_to_IF2_TLB_LOOKUP_SNAPSHOT_entry_PLV0;
+  assign IF2_TLB_LOOKUP_SNAPSHOT_entry_PPN0 = IF1_to_IF2_TLB_LOOKUP_SNAPSHOT_entry_PPN0;
+  assign IF2_TLB_LOOKUP_SNAPSHOT_entry_V1 = IF1_to_IF2_TLB_LOOKUP_SNAPSHOT_entry_V1;
+  assign IF2_TLB_LOOKUP_SNAPSHOT_entry_D1 = IF1_to_IF2_TLB_LOOKUP_SNAPSHOT_entry_D1;
+  assign IF2_TLB_LOOKUP_SNAPSHOT_entry_MAT1 = IF1_to_IF2_TLB_LOOKUP_SNAPSHOT_entry_MAT1;
+  assign IF2_TLB_LOOKUP_SNAPSHOT_entry_PLV1 = IF1_to_IF2_TLB_LOOKUP_SNAPSHOT_entry_PLV1;
+  assign IF2_TLB_LOOKUP_SNAPSHOT_entry_PPN1 = IF1_to_IF2_TLB_LOOKUP_SNAPSHOT_entry_PPN1;
   always @(*) begin
     _zz_IF1_to_IF2_BAD_VADDR = IF1_BAD_VADDR;
     if(when_ExceptionMuxPlugin_l45_3) begin
@@ -62160,26 +62233,26 @@ module MyCPUCore (
   end
 
   assign CSRPlugin_DifftestCSRRegStateDMW1 = _zz_CSRPlugin_DifftestCSRRegStateDMW1;
-  assign _zz_when_MMUPlugin_l404 = ((MMUPlugin_TLBTable_1_E && ((MMUPlugin_TLBTable_1_ASID == MMUPlugin_ASID_ASID) || MMUPlugin_TLBTable_1_G)) && ((MMUPlugin_TLBTable_1_PS == 6'h0c) ? (MMUPlugin_TLBTable_1_VPPN == MMUPlugin_TLBEHI_VPPN) : (MMUPlugin_TLBTable_1_VPPN[18 : 9] == MMUPlugin_TLBEHI_VPPN[18 : 9])));
-  assign _zz_when_MMUPlugin_l404_1 = ((MMUPlugin_TLBTable_2_E && ((MMUPlugin_TLBTable_2_ASID == MMUPlugin_ASID_ASID) || MMUPlugin_TLBTable_2_G)) && ((MMUPlugin_TLBTable_2_PS == 6'h0c) ? (MMUPlugin_TLBTable_2_VPPN == MMUPlugin_TLBEHI_VPPN) : (MMUPlugin_TLBTable_2_VPPN[18 : 9] == MMUPlugin_TLBEHI_VPPN[18 : 9])));
-  assign _zz_when_MMUPlugin_l404_2 = ((MMUPlugin_TLBTable_3_E && ((MMUPlugin_TLBTable_3_ASID == MMUPlugin_ASID_ASID) || MMUPlugin_TLBTable_3_G)) && ((MMUPlugin_TLBTable_3_PS == 6'h0c) ? (MMUPlugin_TLBTable_3_VPPN == MMUPlugin_TLBEHI_VPPN) : (MMUPlugin_TLBTable_3_VPPN[18 : 9] == MMUPlugin_TLBEHI_VPPN[18 : 9])));
-  assign _zz_when_MMUPlugin_l404_3 = ((MMUPlugin_TLBTable_4_E && ((MMUPlugin_TLBTable_4_ASID == MMUPlugin_ASID_ASID) || MMUPlugin_TLBTable_4_G)) && ((MMUPlugin_TLBTable_4_PS == 6'h0c) ? (MMUPlugin_TLBTable_4_VPPN == MMUPlugin_TLBEHI_VPPN) : (MMUPlugin_TLBTable_4_VPPN[18 : 9] == MMUPlugin_TLBEHI_VPPN[18 : 9])));
-  assign _zz_when_MMUPlugin_l404_4 = ((MMUPlugin_TLBTable_5_E && ((MMUPlugin_TLBTable_5_ASID == MMUPlugin_ASID_ASID) || MMUPlugin_TLBTable_5_G)) && ((MMUPlugin_TLBTable_5_PS == 6'h0c) ? (MMUPlugin_TLBTable_5_VPPN == MMUPlugin_TLBEHI_VPPN) : (MMUPlugin_TLBTable_5_VPPN[18 : 9] == MMUPlugin_TLBEHI_VPPN[18 : 9])));
-  assign _zz_when_MMUPlugin_l404_5 = ((MMUPlugin_TLBTable_6_E && ((MMUPlugin_TLBTable_6_ASID == MMUPlugin_ASID_ASID) || MMUPlugin_TLBTable_6_G)) && ((MMUPlugin_TLBTable_6_PS == 6'h0c) ? (MMUPlugin_TLBTable_6_VPPN == MMUPlugin_TLBEHI_VPPN) : (MMUPlugin_TLBTable_6_VPPN[18 : 9] == MMUPlugin_TLBEHI_VPPN[18 : 9])));
-  assign _zz_when_MMUPlugin_l404_6 = ((MMUPlugin_TLBTable_7_E && ((MMUPlugin_TLBTable_7_ASID == MMUPlugin_ASID_ASID) || MMUPlugin_TLBTable_7_G)) && ((MMUPlugin_TLBTable_7_PS == 6'h0c) ? (MMUPlugin_TLBTable_7_VPPN == MMUPlugin_TLBEHI_VPPN) : (MMUPlugin_TLBTable_7_VPPN[18 : 9] == MMUPlugin_TLBEHI_VPPN[18 : 9])));
-  assign _zz_when_MMUPlugin_l404_7 = ((MMUPlugin_TLBTable_8_E && ((MMUPlugin_TLBTable_8_ASID == MMUPlugin_ASID_ASID) || MMUPlugin_TLBTable_8_G)) && ((MMUPlugin_TLBTable_8_PS == 6'h0c) ? (MMUPlugin_TLBTable_8_VPPN == MMUPlugin_TLBEHI_VPPN) : (MMUPlugin_TLBTable_8_VPPN[18 : 9] == MMUPlugin_TLBEHI_VPPN[18 : 9])));
-  assign _zz_when_MMUPlugin_l404_8 = ((MMUPlugin_TLBTable_9_E && ((MMUPlugin_TLBTable_9_ASID == MMUPlugin_ASID_ASID) || MMUPlugin_TLBTable_9_G)) && ((MMUPlugin_TLBTable_9_PS == 6'h0c) ? (MMUPlugin_TLBTable_9_VPPN == MMUPlugin_TLBEHI_VPPN) : (MMUPlugin_TLBTable_9_VPPN[18 : 9] == MMUPlugin_TLBEHI_VPPN[18 : 9])));
-  assign _zz_when_MMUPlugin_l404_9 = ((MMUPlugin_TLBTable_10_E && ((MMUPlugin_TLBTable_10_ASID == MMUPlugin_ASID_ASID) || MMUPlugin_TLBTable_10_G)) && ((MMUPlugin_TLBTable_10_PS == 6'h0c) ? (MMUPlugin_TLBTable_10_VPPN == MMUPlugin_TLBEHI_VPPN) : (MMUPlugin_TLBTable_10_VPPN[18 : 9] == MMUPlugin_TLBEHI_VPPN[18 : 9])));
-  assign _zz_when_MMUPlugin_l404_10 = ((MMUPlugin_TLBTable_11_E && ((MMUPlugin_TLBTable_11_ASID == MMUPlugin_ASID_ASID) || MMUPlugin_TLBTable_11_G)) && ((MMUPlugin_TLBTable_11_PS == 6'h0c) ? (MMUPlugin_TLBTable_11_VPPN == MMUPlugin_TLBEHI_VPPN) : (MMUPlugin_TLBTable_11_VPPN[18 : 9] == MMUPlugin_TLBEHI_VPPN[18 : 9])));
-  assign _zz_when_MMUPlugin_l404_11 = ((MMUPlugin_TLBTable_12_E && ((MMUPlugin_TLBTable_12_ASID == MMUPlugin_ASID_ASID) || MMUPlugin_TLBTable_12_G)) && ((MMUPlugin_TLBTable_12_PS == 6'h0c) ? (MMUPlugin_TLBTable_12_VPPN == MMUPlugin_TLBEHI_VPPN) : (MMUPlugin_TLBTable_12_VPPN[18 : 9] == MMUPlugin_TLBEHI_VPPN[18 : 9])));
-  assign _zz_when_MMUPlugin_l404_12 = ((MMUPlugin_TLBTable_13_E && ((MMUPlugin_TLBTable_13_ASID == MMUPlugin_ASID_ASID) || MMUPlugin_TLBTable_13_G)) && ((MMUPlugin_TLBTable_13_PS == 6'h0c) ? (MMUPlugin_TLBTable_13_VPPN == MMUPlugin_TLBEHI_VPPN) : (MMUPlugin_TLBTable_13_VPPN[18 : 9] == MMUPlugin_TLBEHI_VPPN[18 : 9])));
-  assign _zz_when_MMUPlugin_l404_13 = ((MMUPlugin_TLBTable_14_E && ((MMUPlugin_TLBTable_14_ASID == MMUPlugin_ASID_ASID) || MMUPlugin_TLBTable_14_G)) && ((MMUPlugin_TLBTable_14_PS == 6'h0c) ? (MMUPlugin_TLBTable_14_VPPN == MMUPlugin_TLBEHI_VPPN) : (MMUPlugin_TLBTable_14_VPPN[18 : 9] == MMUPlugin_TLBEHI_VPPN[18 : 9])));
-  assign _zz_when_MMUPlugin_l404_14 = ((MMUPlugin_TLBTable_15_E && ((MMUPlugin_TLBTable_15_ASID == MMUPlugin_ASID_ASID) || MMUPlugin_TLBTable_15_G)) && ((MMUPlugin_TLBTable_15_PS == 6'h0c) ? (MMUPlugin_TLBTable_15_VPPN == MMUPlugin_TLBEHI_VPPN) : (MMUPlugin_TLBTable_15_VPPN[18 : 9] == MMUPlugin_TLBEHI_VPPN[18 : 9])));
-  assign when_MMUPlugin_l404 = ({_zz_when_MMUPlugin_l404_14,{_zz_when_MMUPlugin_l404_13,{_zz_when_MMUPlugin_l404_12,{_zz_when_MMUPlugin_l404_11,{_zz_when_MMUPlugin_l404_10,{_zz_when_MMUPlugin_l404_9,{_zz_when_MMUPlugin_l404_8,{_zz_when_MMUPlugin_l404_7,{_zz_when_MMUPlugin_l404_6,{_zz_when_MMUPlugin_l404_15,_zz_when_MMUPlugin_l404_16}}}}}}}}}} != 16'h0);
-  assign _zz_MMUPlugin_TLBIDX_INDEX = (((((((_zz_when_MMUPlugin_l404 || _zz_when_MMUPlugin_l404_2) || _zz_when_MMUPlugin_l404_4) || _zz_when_MMUPlugin_l404_6) || _zz_when_MMUPlugin_l404_8) || _zz_when_MMUPlugin_l404_10) || _zz_when_MMUPlugin_l404_12) || _zz_when_MMUPlugin_l404_14);
-  assign _zz_MMUPlugin_TLBIDX_INDEX_1 = (((((((_zz_when_MMUPlugin_l404_1 || _zz_when_MMUPlugin_l404_2) || _zz_when_MMUPlugin_l404_5) || _zz_when_MMUPlugin_l404_6) || _zz_when_MMUPlugin_l404_9) || _zz_when_MMUPlugin_l404_10) || _zz_when_MMUPlugin_l404_13) || _zz_when_MMUPlugin_l404_14);
-  assign _zz_MMUPlugin_TLBIDX_INDEX_2 = (((((((_zz_when_MMUPlugin_l404_3 || _zz_when_MMUPlugin_l404_4) || _zz_when_MMUPlugin_l404_5) || _zz_when_MMUPlugin_l404_6) || _zz_when_MMUPlugin_l404_11) || _zz_when_MMUPlugin_l404_12) || _zz_when_MMUPlugin_l404_13) || _zz_when_MMUPlugin_l404_14);
-  assign _zz_MMUPlugin_TLBIDX_INDEX_3 = (((((((_zz_when_MMUPlugin_l404_7 || _zz_when_MMUPlugin_l404_8) || _zz_when_MMUPlugin_l404_9) || _zz_when_MMUPlugin_l404_10) || _zz_when_MMUPlugin_l404_11) || _zz_when_MMUPlugin_l404_12) || _zz_when_MMUPlugin_l404_13) || _zz_when_MMUPlugin_l404_14);
+  assign _zz_when_MMUPlugin_l445 = ((MMUPlugin_TLBTable_1_E && ((MMUPlugin_TLBTable_1_ASID == MMUPlugin_ASID_ASID) || MMUPlugin_TLBTable_1_G)) && ((MMUPlugin_TLBTable_1_PS == 6'h0c) ? (MMUPlugin_TLBTable_1_VPPN == MMUPlugin_TLBEHI_VPPN) : (MMUPlugin_TLBTable_1_VPPN[18 : 9] == MMUPlugin_TLBEHI_VPPN[18 : 9])));
+  assign _zz_when_MMUPlugin_l445_1 = ((MMUPlugin_TLBTable_2_E && ((MMUPlugin_TLBTable_2_ASID == MMUPlugin_ASID_ASID) || MMUPlugin_TLBTable_2_G)) && ((MMUPlugin_TLBTable_2_PS == 6'h0c) ? (MMUPlugin_TLBTable_2_VPPN == MMUPlugin_TLBEHI_VPPN) : (MMUPlugin_TLBTable_2_VPPN[18 : 9] == MMUPlugin_TLBEHI_VPPN[18 : 9])));
+  assign _zz_when_MMUPlugin_l445_2 = ((MMUPlugin_TLBTable_3_E && ((MMUPlugin_TLBTable_3_ASID == MMUPlugin_ASID_ASID) || MMUPlugin_TLBTable_3_G)) && ((MMUPlugin_TLBTable_3_PS == 6'h0c) ? (MMUPlugin_TLBTable_3_VPPN == MMUPlugin_TLBEHI_VPPN) : (MMUPlugin_TLBTable_3_VPPN[18 : 9] == MMUPlugin_TLBEHI_VPPN[18 : 9])));
+  assign _zz_when_MMUPlugin_l445_3 = ((MMUPlugin_TLBTable_4_E && ((MMUPlugin_TLBTable_4_ASID == MMUPlugin_ASID_ASID) || MMUPlugin_TLBTable_4_G)) && ((MMUPlugin_TLBTable_4_PS == 6'h0c) ? (MMUPlugin_TLBTable_4_VPPN == MMUPlugin_TLBEHI_VPPN) : (MMUPlugin_TLBTable_4_VPPN[18 : 9] == MMUPlugin_TLBEHI_VPPN[18 : 9])));
+  assign _zz_when_MMUPlugin_l445_4 = ((MMUPlugin_TLBTable_5_E && ((MMUPlugin_TLBTable_5_ASID == MMUPlugin_ASID_ASID) || MMUPlugin_TLBTable_5_G)) && ((MMUPlugin_TLBTable_5_PS == 6'h0c) ? (MMUPlugin_TLBTable_5_VPPN == MMUPlugin_TLBEHI_VPPN) : (MMUPlugin_TLBTable_5_VPPN[18 : 9] == MMUPlugin_TLBEHI_VPPN[18 : 9])));
+  assign _zz_when_MMUPlugin_l445_5 = ((MMUPlugin_TLBTable_6_E && ((MMUPlugin_TLBTable_6_ASID == MMUPlugin_ASID_ASID) || MMUPlugin_TLBTable_6_G)) && ((MMUPlugin_TLBTable_6_PS == 6'h0c) ? (MMUPlugin_TLBTable_6_VPPN == MMUPlugin_TLBEHI_VPPN) : (MMUPlugin_TLBTable_6_VPPN[18 : 9] == MMUPlugin_TLBEHI_VPPN[18 : 9])));
+  assign _zz_when_MMUPlugin_l445_6 = ((MMUPlugin_TLBTable_7_E && ((MMUPlugin_TLBTable_7_ASID == MMUPlugin_ASID_ASID) || MMUPlugin_TLBTable_7_G)) && ((MMUPlugin_TLBTable_7_PS == 6'h0c) ? (MMUPlugin_TLBTable_7_VPPN == MMUPlugin_TLBEHI_VPPN) : (MMUPlugin_TLBTable_7_VPPN[18 : 9] == MMUPlugin_TLBEHI_VPPN[18 : 9])));
+  assign _zz_when_MMUPlugin_l445_7 = ((MMUPlugin_TLBTable_8_E && ((MMUPlugin_TLBTable_8_ASID == MMUPlugin_ASID_ASID) || MMUPlugin_TLBTable_8_G)) && ((MMUPlugin_TLBTable_8_PS == 6'h0c) ? (MMUPlugin_TLBTable_8_VPPN == MMUPlugin_TLBEHI_VPPN) : (MMUPlugin_TLBTable_8_VPPN[18 : 9] == MMUPlugin_TLBEHI_VPPN[18 : 9])));
+  assign _zz_when_MMUPlugin_l445_8 = ((MMUPlugin_TLBTable_9_E && ((MMUPlugin_TLBTable_9_ASID == MMUPlugin_ASID_ASID) || MMUPlugin_TLBTable_9_G)) && ((MMUPlugin_TLBTable_9_PS == 6'h0c) ? (MMUPlugin_TLBTable_9_VPPN == MMUPlugin_TLBEHI_VPPN) : (MMUPlugin_TLBTable_9_VPPN[18 : 9] == MMUPlugin_TLBEHI_VPPN[18 : 9])));
+  assign _zz_when_MMUPlugin_l445_9 = ((MMUPlugin_TLBTable_10_E && ((MMUPlugin_TLBTable_10_ASID == MMUPlugin_ASID_ASID) || MMUPlugin_TLBTable_10_G)) && ((MMUPlugin_TLBTable_10_PS == 6'h0c) ? (MMUPlugin_TLBTable_10_VPPN == MMUPlugin_TLBEHI_VPPN) : (MMUPlugin_TLBTable_10_VPPN[18 : 9] == MMUPlugin_TLBEHI_VPPN[18 : 9])));
+  assign _zz_when_MMUPlugin_l445_10 = ((MMUPlugin_TLBTable_11_E && ((MMUPlugin_TLBTable_11_ASID == MMUPlugin_ASID_ASID) || MMUPlugin_TLBTable_11_G)) && ((MMUPlugin_TLBTable_11_PS == 6'h0c) ? (MMUPlugin_TLBTable_11_VPPN == MMUPlugin_TLBEHI_VPPN) : (MMUPlugin_TLBTable_11_VPPN[18 : 9] == MMUPlugin_TLBEHI_VPPN[18 : 9])));
+  assign _zz_when_MMUPlugin_l445_11 = ((MMUPlugin_TLBTable_12_E && ((MMUPlugin_TLBTable_12_ASID == MMUPlugin_ASID_ASID) || MMUPlugin_TLBTable_12_G)) && ((MMUPlugin_TLBTable_12_PS == 6'h0c) ? (MMUPlugin_TLBTable_12_VPPN == MMUPlugin_TLBEHI_VPPN) : (MMUPlugin_TLBTable_12_VPPN[18 : 9] == MMUPlugin_TLBEHI_VPPN[18 : 9])));
+  assign _zz_when_MMUPlugin_l445_12 = ((MMUPlugin_TLBTable_13_E && ((MMUPlugin_TLBTable_13_ASID == MMUPlugin_ASID_ASID) || MMUPlugin_TLBTable_13_G)) && ((MMUPlugin_TLBTable_13_PS == 6'h0c) ? (MMUPlugin_TLBTable_13_VPPN == MMUPlugin_TLBEHI_VPPN) : (MMUPlugin_TLBTable_13_VPPN[18 : 9] == MMUPlugin_TLBEHI_VPPN[18 : 9])));
+  assign _zz_when_MMUPlugin_l445_13 = ((MMUPlugin_TLBTable_14_E && ((MMUPlugin_TLBTable_14_ASID == MMUPlugin_ASID_ASID) || MMUPlugin_TLBTable_14_G)) && ((MMUPlugin_TLBTable_14_PS == 6'h0c) ? (MMUPlugin_TLBTable_14_VPPN == MMUPlugin_TLBEHI_VPPN) : (MMUPlugin_TLBTable_14_VPPN[18 : 9] == MMUPlugin_TLBEHI_VPPN[18 : 9])));
+  assign _zz_when_MMUPlugin_l445_14 = ((MMUPlugin_TLBTable_15_E && ((MMUPlugin_TLBTable_15_ASID == MMUPlugin_ASID_ASID) || MMUPlugin_TLBTable_15_G)) && ((MMUPlugin_TLBTable_15_PS == 6'h0c) ? (MMUPlugin_TLBTable_15_VPPN == MMUPlugin_TLBEHI_VPPN) : (MMUPlugin_TLBTable_15_VPPN[18 : 9] == MMUPlugin_TLBEHI_VPPN[18 : 9])));
+  assign when_MMUPlugin_l445 = ({_zz_when_MMUPlugin_l445_14,{_zz_when_MMUPlugin_l445_13,{_zz_when_MMUPlugin_l445_12,{_zz_when_MMUPlugin_l445_11,{_zz_when_MMUPlugin_l445_10,{_zz_when_MMUPlugin_l445_9,{_zz_when_MMUPlugin_l445_8,{_zz_when_MMUPlugin_l445_7,{_zz_when_MMUPlugin_l445_6,{_zz_when_MMUPlugin_l445_15,_zz_when_MMUPlugin_l445_16}}}}}}}}}} != 16'h0);
+  assign _zz_MMUPlugin_TLBIDX_INDEX = (((((((_zz_when_MMUPlugin_l445 || _zz_when_MMUPlugin_l445_2) || _zz_when_MMUPlugin_l445_4) || _zz_when_MMUPlugin_l445_6) || _zz_when_MMUPlugin_l445_8) || _zz_when_MMUPlugin_l445_10) || _zz_when_MMUPlugin_l445_12) || _zz_when_MMUPlugin_l445_14);
+  assign _zz_MMUPlugin_TLBIDX_INDEX_1 = (((((((_zz_when_MMUPlugin_l445_1 || _zz_when_MMUPlugin_l445_2) || _zz_when_MMUPlugin_l445_5) || _zz_when_MMUPlugin_l445_6) || _zz_when_MMUPlugin_l445_9) || _zz_when_MMUPlugin_l445_10) || _zz_when_MMUPlugin_l445_13) || _zz_when_MMUPlugin_l445_14);
+  assign _zz_MMUPlugin_TLBIDX_INDEX_2 = (((((((_zz_when_MMUPlugin_l445_3 || _zz_when_MMUPlugin_l445_4) || _zz_when_MMUPlugin_l445_5) || _zz_when_MMUPlugin_l445_6) || _zz_when_MMUPlugin_l445_11) || _zz_when_MMUPlugin_l445_12) || _zz_when_MMUPlugin_l445_13) || _zz_when_MMUPlugin_l445_14);
+  assign _zz_MMUPlugin_TLBIDX_INDEX_3 = (((((((_zz_when_MMUPlugin_l445_7 || _zz_when_MMUPlugin_l445_8) || _zz_when_MMUPlugin_l445_9) || _zz_when_MMUPlugin_l445_10) || _zz_when_MMUPlugin_l445_11) || _zz_when_MMUPlugin_l445_12) || _zz_when_MMUPlugin_l445_13) || _zz_when_MMUPlugin_l445_14);
   assign _zz_MMUPlugin_TLBIDX_PS = MMUPlugin_TLBIDX_INDEX;
   assign _zz_MMUPlugin_TLBELO0_G = _zz__zz_MMUPlugin_TLBELO0_G;
   assign _zz_278 = ({15'd0,1'b1} <<< MMUPlugin_TLBIDX_INDEX);
@@ -62199,7 +62272,7 @@ module MyCPUCore (
   assign _zz_292 = _zz_278[13];
   assign _zz_293 = _zz_278[14];
   assign _zz_294 = _zz_278[15];
-  assign when_MMUPlugin_l455 = (ExceptionHandlerPlugin_ESTAT_ECODE == 6'h3f);
+  assign when_MMUPlugin_l496 = (ExceptionHandlerPlugin_ESTAT_ECODE == 6'h3f);
   assign _zz_MMUPlugin_TLBTable_0_E = (! MMUPlugin_TLBIDX_NE);
   assign _zz_MMUPlugin_TLBTable_0_G = (MMUPlugin_TLBELO0_G && MMUPlugin_TLBELO1_G);
   assign _zz_MMUPlugin_TLBTable_0_PS = MMUPlugin_TLBIDX_PS;
@@ -62220,7 +62293,7 @@ module MyCPUCore (
   assign _zz_309 = _zz_295[13];
   assign _zz_310 = _zz_295[14];
   assign _zz_311 = _zz_295[15];
-  assign when_MMUPlugin_l479 = (ExceptionHandlerPlugin_ESTAT_ECODE == 6'h3f);
+  assign when_MMUPlugin_l520 = (ExceptionHandlerPlugin_ESTAT_ECODE == 6'h3f);
   assign _zz_MMUPlugin_TLBTable_0_E_1 = (! MMUPlugin_TLBIDX_NE);
   assign _zz_MMUPlugin_TLBTable_0_PS_1 = MMUPlugin_TLBIDX_PS;
   assign _zz_MMUPlugin_TLBTable_0_G_1 = (MMUPlugin_TLBELO0_G && MMUPlugin_TLBELO1_G);
@@ -64268,204 +64341,205 @@ module MyCPUCore (
   assign IF1_InstAddrTranslatePlugin_directTranslateResult_resultBundle_payload_exception_raisePME = IF1_InstAddrTranslatePlugin_directTranslateResult_resultExceptionBundle_raisePME;
   assign IF1_InstAddrTranslatePlugin_directTranslateResult_resultBundle_payload_exception_raisePPI = IF1_InstAddrTranslatePlugin_directTranslateResult_resultExceptionBundle_raisePPI;
   assign IF1_InstAddrTranslatePlugin_directTranslateResult_resultBundle_payload_exception_raiseTLBR = IF1_InstAddrTranslatePlugin_directTranslateResult_resultExceptionBundle_raiseTLBR;
-  assign switch_MMUPlugin_l290 = MemOperationType_FETCH;
-  assign IF1_InstAddrTranslatePlugin_tlbTranslateResult_resultValid = 1'b1;
-  always @(*) begin
-    IF1_InstAddrTranslatePlugin_tlbTranslateResult_resultExceptionBundle_raisePIL = 1'b0;
-    if(when_MMUPlugin_l289) begin
-      case(switch_MMUPlugin_l290)
-        MemOperationType_FETCH : begin
-        end
-        MemOperationType_LOAD : begin
-          IF1_InstAddrTranslatePlugin_tlbTranslateResult_resultExceptionBundle_raisePIL = 1'b1;
-        end
-        default : begin
-        end
-      endcase
-    end
-  end
-
-  always @(*) begin
-    IF1_InstAddrTranslatePlugin_tlbTranslateResult_resultExceptionBundle_raisePIS = 1'b0;
-    if(when_MMUPlugin_l289) begin
-      case(switch_MMUPlugin_l290)
-        MemOperationType_FETCH : begin
-        end
-        MemOperationType_LOAD : begin
-        end
-        default : begin
-          IF1_InstAddrTranslatePlugin_tlbTranslateResult_resultExceptionBundle_raisePIS = 1'b1;
-        end
-      endcase
-    end
-  end
-
-  always @(*) begin
-    IF1_InstAddrTranslatePlugin_tlbTranslateResult_resultExceptionBundle_raisePIF = 1'b0;
-    if(when_MMUPlugin_l289) begin
-      case(switch_MMUPlugin_l290)
-        MemOperationType_FETCH : begin
-          IF1_InstAddrTranslatePlugin_tlbTranslateResult_resultExceptionBundle_raisePIF = 1'b1;
-        end
-        MemOperationType_LOAD : begin
-        end
-        default : begin
-        end
-      endcase
-    end
-  end
-
-  always @(*) begin
-    IF1_InstAddrTranslatePlugin_tlbTranslateResult_resultExceptionBundle_raisePME = 1'b0;
-    if(when_MMUPlugin_l307) begin
-      IF1_InstAddrTranslatePlugin_tlbTranslateResult_resultExceptionBundle_raisePME = 1'b1;
-    end
-  end
-
-  always @(*) begin
-    IF1_InstAddrTranslatePlugin_tlbTranslateResult_resultExceptionBundle_raisePPI = 1'b0;
-    if(when_MMUPlugin_l303) begin
-      IF1_InstAddrTranslatePlugin_tlbTranslateResult_resultExceptionBundle_raisePPI = 1'b1;
-    end
-  end
-
-  always @(*) begin
-    IF1_InstAddrTranslatePlugin_tlbTranslateResult_resultExceptionBundle_raiseTLBR = 1'b0;
-    if(when_MMUPlugin_l285) begin
-      IF1_InstAddrTranslatePlugin_tlbTranslateResult_resultExceptionBundle_raiseTLBR = 1'b1;
-    end
-  end
-
-  assign IF1_InstAddrTranslatePlugin_tlbTranslateResult_ASIDMatches_0 = (MMUPlugin_TLBTable_0_G || (MMUPlugin_TLBTable_0_ASID == MMUPlugin_ASID_ASID));
-  assign IF1_InstAddrTranslatePlugin_tlbTranslateResult_ASIDMatches_1 = (MMUPlugin_TLBTable_1_G || (MMUPlugin_TLBTable_1_ASID == MMUPlugin_ASID_ASID));
-  assign IF1_InstAddrTranslatePlugin_tlbTranslateResult_ASIDMatches_2 = (MMUPlugin_TLBTable_2_G || (MMUPlugin_TLBTable_2_ASID == MMUPlugin_ASID_ASID));
-  assign IF1_InstAddrTranslatePlugin_tlbTranslateResult_ASIDMatches_3 = (MMUPlugin_TLBTable_3_G || (MMUPlugin_TLBTable_3_ASID == MMUPlugin_ASID_ASID));
-  assign IF1_InstAddrTranslatePlugin_tlbTranslateResult_ASIDMatches_4 = (MMUPlugin_TLBTable_4_G || (MMUPlugin_TLBTable_4_ASID == MMUPlugin_ASID_ASID));
-  assign IF1_InstAddrTranslatePlugin_tlbTranslateResult_ASIDMatches_5 = (MMUPlugin_TLBTable_5_G || (MMUPlugin_TLBTable_5_ASID == MMUPlugin_ASID_ASID));
-  assign IF1_InstAddrTranslatePlugin_tlbTranslateResult_ASIDMatches_6 = (MMUPlugin_TLBTable_6_G || (MMUPlugin_TLBTable_6_ASID == MMUPlugin_ASID_ASID));
-  assign IF1_InstAddrTranslatePlugin_tlbTranslateResult_ASIDMatches_7 = (MMUPlugin_TLBTable_7_G || (MMUPlugin_TLBTable_7_ASID == MMUPlugin_ASID_ASID));
-  assign IF1_InstAddrTranslatePlugin_tlbTranslateResult_ASIDMatches_8 = (MMUPlugin_TLBTable_8_G || (MMUPlugin_TLBTable_8_ASID == MMUPlugin_ASID_ASID));
-  assign IF1_InstAddrTranslatePlugin_tlbTranslateResult_ASIDMatches_9 = (MMUPlugin_TLBTable_9_G || (MMUPlugin_TLBTable_9_ASID == MMUPlugin_ASID_ASID));
-  assign IF1_InstAddrTranslatePlugin_tlbTranslateResult_ASIDMatches_10 = (MMUPlugin_TLBTable_10_G || (MMUPlugin_TLBTable_10_ASID == MMUPlugin_ASID_ASID));
-  assign IF1_InstAddrTranslatePlugin_tlbTranslateResult_ASIDMatches_11 = (MMUPlugin_TLBTable_11_G || (MMUPlugin_TLBTable_11_ASID == MMUPlugin_ASID_ASID));
-  assign IF1_InstAddrTranslatePlugin_tlbTranslateResult_ASIDMatches_12 = (MMUPlugin_TLBTable_12_G || (MMUPlugin_TLBTable_12_ASID == MMUPlugin_ASID_ASID));
-  assign IF1_InstAddrTranslatePlugin_tlbTranslateResult_ASIDMatches_13 = (MMUPlugin_TLBTable_13_G || (MMUPlugin_TLBTable_13_ASID == MMUPlugin_ASID_ASID));
-  assign IF1_InstAddrTranslatePlugin_tlbTranslateResult_ASIDMatches_14 = (MMUPlugin_TLBTable_14_G || (MMUPlugin_TLBTable_14_ASID == MMUPlugin_ASID_ASID));
-  assign IF1_InstAddrTranslatePlugin_tlbTranslateResult_ASIDMatches_15 = (MMUPlugin_TLBTable_15_G || (MMUPlugin_TLBTable_15_ASID == MMUPlugin_ASID_ASID));
-  assign IF1_InstAddrTranslatePlugin_tlbTranslateResult_VPPNMatches_0 = ((MMUPlugin_TLBTable_0_PS == 6'h0c) ? (MMUPlugin_TLBTable_0_VPPN == IF1_PC[31 : 13]) : (MMUPlugin_TLBTable_0_VPPN[18 : 9] == IF1_PC[31 : 22]));
-  assign IF1_InstAddrTranslatePlugin_tlbTranslateResult_VPPNMatches_1 = ((MMUPlugin_TLBTable_1_PS == 6'h0c) ? (MMUPlugin_TLBTable_1_VPPN == IF1_PC[31 : 13]) : (MMUPlugin_TLBTable_1_VPPN[18 : 9] == IF1_PC[31 : 22]));
-  assign IF1_InstAddrTranslatePlugin_tlbTranslateResult_VPPNMatches_2 = ((MMUPlugin_TLBTable_2_PS == 6'h0c) ? (MMUPlugin_TLBTable_2_VPPN == IF1_PC[31 : 13]) : (MMUPlugin_TLBTable_2_VPPN[18 : 9] == IF1_PC[31 : 22]));
-  assign IF1_InstAddrTranslatePlugin_tlbTranslateResult_VPPNMatches_3 = ((MMUPlugin_TLBTable_3_PS == 6'h0c) ? (MMUPlugin_TLBTable_3_VPPN == IF1_PC[31 : 13]) : (MMUPlugin_TLBTable_3_VPPN[18 : 9] == IF1_PC[31 : 22]));
-  assign IF1_InstAddrTranslatePlugin_tlbTranslateResult_VPPNMatches_4 = ((MMUPlugin_TLBTable_4_PS == 6'h0c) ? (MMUPlugin_TLBTable_4_VPPN == IF1_PC[31 : 13]) : (MMUPlugin_TLBTable_4_VPPN[18 : 9] == IF1_PC[31 : 22]));
-  assign IF1_InstAddrTranslatePlugin_tlbTranslateResult_VPPNMatches_5 = ((MMUPlugin_TLBTable_5_PS == 6'h0c) ? (MMUPlugin_TLBTable_5_VPPN == IF1_PC[31 : 13]) : (MMUPlugin_TLBTable_5_VPPN[18 : 9] == IF1_PC[31 : 22]));
-  assign IF1_InstAddrTranslatePlugin_tlbTranslateResult_VPPNMatches_6 = ((MMUPlugin_TLBTable_6_PS == 6'h0c) ? (MMUPlugin_TLBTable_6_VPPN == IF1_PC[31 : 13]) : (MMUPlugin_TLBTable_6_VPPN[18 : 9] == IF1_PC[31 : 22]));
-  assign IF1_InstAddrTranslatePlugin_tlbTranslateResult_VPPNMatches_7 = ((MMUPlugin_TLBTable_7_PS == 6'h0c) ? (MMUPlugin_TLBTable_7_VPPN == IF1_PC[31 : 13]) : (MMUPlugin_TLBTable_7_VPPN[18 : 9] == IF1_PC[31 : 22]));
-  assign IF1_InstAddrTranslatePlugin_tlbTranslateResult_VPPNMatches_8 = ((MMUPlugin_TLBTable_8_PS == 6'h0c) ? (MMUPlugin_TLBTable_8_VPPN == IF1_PC[31 : 13]) : (MMUPlugin_TLBTable_8_VPPN[18 : 9] == IF1_PC[31 : 22]));
-  assign IF1_InstAddrTranslatePlugin_tlbTranslateResult_VPPNMatches_9 = ((MMUPlugin_TLBTable_9_PS == 6'h0c) ? (MMUPlugin_TLBTable_9_VPPN == IF1_PC[31 : 13]) : (MMUPlugin_TLBTable_9_VPPN[18 : 9] == IF1_PC[31 : 22]));
-  assign IF1_InstAddrTranslatePlugin_tlbTranslateResult_VPPNMatches_10 = ((MMUPlugin_TLBTable_10_PS == 6'h0c) ? (MMUPlugin_TLBTable_10_VPPN == IF1_PC[31 : 13]) : (MMUPlugin_TLBTable_10_VPPN[18 : 9] == IF1_PC[31 : 22]));
-  assign IF1_InstAddrTranslatePlugin_tlbTranslateResult_VPPNMatches_11 = ((MMUPlugin_TLBTable_11_PS == 6'h0c) ? (MMUPlugin_TLBTable_11_VPPN == IF1_PC[31 : 13]) : (MMUPlugin_TLBTable_11_VPPN[18 : 9] == IF1_PC[31 : 22]));
-  assign IF1_InstAddrTranslatePlugin_tlbTranslateResult_VPPNMatches_12 = ((MMUPlugin_TLBTable_12_PS == 6'h0c) ? (MMUPlugin_TLBTable_12_VPPN == IF1_PC[31 : 13]) : (MMUPlugin_TLBTable_12_VPPN[18 : 9] == IF1_PC[31 : 22]));
-  assign IF1_InstAddrTranslatePlugin_tlbTranslateResult_VPPNMatches_13 = ((MMUPlugin_TLBTable_13_PS == 6'h0c) ? (MMUPlugin_TLBTable_13_VPPN == IF1_PC[31 : 13]) : (MMUPlugin_TLBTable_13_VPPN[18 : 9] == IF1_PC[31 : 22]));
-  assign IF1_InstAddrTranslatePlugin_tlbTranslateResult_VPPNMatches_14 = ((MMUPlugin_TLBTable_14_PS == 6'h0c) ? (MMUPlugin_TLBTable_14_VPPN == IF1_PC[31 : 13]) : (MMUPlugin_TLBTable_14_VPPN[18 : 9] == IF1_PC[31 : 22]));
-  assign IF1_InstAddrTranslatePlugin_tlbTranslateResult_VPPNMatches_15 = ((MMUPlugin_TLBTable_15_PS == 6'h0c) ? (MMUPlugin_TLBTable_15_VPPN == IF1_PC[31 : 13]) : (MMUPlugin_TLBTable_15_VPPN[18 : 9] == IF1_PC[31 : 22]));
-  assign IF1_InstAddrTranslatePlugin_tlbTranslateResult_EntryHits_0 = ((MMUPlugin_TLBTable_0_E && IF1_InstAddrTranslatePlugin_tlbTranslateResult_ASIDMatches_0) && IF1_InstAddrTranslatePlugin_tlbTranslateResult_VPPNMatches_0);
-  assign IF1_InstAddrTranslatePlugin_tlbTranslateResult_EntryHits_1 = ((MMUPlugin_TLBTable_1_E && IF1_InstAddrTranslatePlugin_tlbTranslateResult_ASIDMatches_1) && IF1_InstAddrTranslatePlugin_tlbTranslateResult_VPPNMatches_1);
-  assign IF1_InstAddrTranslatePlugin_tlbTranslateResult_EntryHits_2 = ((MMUPlugin_TLBTable_2_E && IF1_InstAddrTranslatePlugin_tlbTranslateResult_ASIDMatches_2) && IF1_InstAddrTranslatePlugin_tlbTranslateResult_VPPNMatches_2);
-  assign IF1_InstAddrTranslatePlugin_tlbTranslateResult_EntryHits_3 = ((MMUPlugin_TLBTable_3_E && IF1_InstAddrTranslatePlugin_tlbTranslateResult_ASIDMatches_3) && IF1_InstAddrTranslatePlugin_tlbTranslateResult_VPPNMatches_3);
-  assign IF1_InstAddrTranslatePlugin_tlbTranslateResult_EntryHits_4 = ((MMUPlugin_TLBTable_4_E && IF1_InstAddrTranslatePlugin_tlbTranslateResult_ASIDMatches_4) && IF1_InstAddrTranslatePlugin_tlbTranslateResult_VPPNMatches_4);
-  assign IF1_InstAddrTranslatePlugin_tlbTranslateResult_EntryHits_5 = ((MMUPlugin_TLBTable_5_E && IF1_InstAddrTranslatePlugin_tlbTranslateResult_ASIDMatches_5) && IF1_InstAddrTranslatePlugin_tlbTranslateResult_VPPNMatches_5);
-  assign IF1_InstAddrTranslatePlugin_tlbTranslateResult_EntryHits_6 = ((MMUPlugin_TLBTable_6_E && IF1_InstAddrTranslatePlugin_tlbTranslateResult_ASIDMatches_6) && IF1_InstAddrTranslatePlugin_tlbTranslateResult_VPPNMatches_6);
-  assign IF1_InstAddrTranslatePlugin_tlbTranslateResult_EntryHits_7 = ((MMUPlugin_TLBTable_7_E && IF1_InstAddrTranslatePlugin_tlbTranslateResult_ASIDMatches_7) && IF1_InstAddrTranslatePlugin_tlbTranslateResult_VPPNMatches_7);
-  assign IF1_InstAddrTranslatePlugin_tlbTranslateResult_EntryHits_8 = ((MMUPlugin_TLBTable_8_E && IF1_InstAddrTranslatePlugin_tlbTranslateResult_ASIDMatches_8) && IF1_InstAddrTranslatePlugin_tlbTranslateResult_VPPNMatches_8);
-  assign IF1_InstAddrTranslatePlugin_tlbTranslateResult_EntryHits_9 = ((MMUPlugin_TLBTable_9_E && IF1_InstAddrTranslatePlugin_tlbTranslateResult_ASIDMatches_9) && IF1_InstAddrTranslatePlugin_tlbTranslateResult_VPPNMatches_9);
-  assign IF1_InstAddrTranslatePlugin_tlbTranslateResult_EntryHits_10 = ((MMUPlugin_TLBTable_10_E && IF1_InstAddrTranslatePlugin_tlbTranslateResult_ASIDMatches_10) && IF1_InstAddrTranslatePlugin_tlbTranslateResult_VPPNMatches_10);
-  assign IF1_InstAddrTranslatePlugin_tlbTranslateResult_EntryHits_11 = ((MMUPlugin_TLBTable_11_E && IF1_InstAddrTranslatePlugin_tlbTranslateResult_ASIDMatches_11) && IF1_InstAddrTranslatePlugin_tlbTranslateResult_VPPNMatches_11);
-  assign IF1_InstAddrTranslatePlugin_tlbTranslateResult_EntryHits_12 = ((MMUPlugin_TLBTable_12_E && IF1_InstAddrTranslatePlugin_tlbTranslateResult_ASIDMatches_12) && IF1_InstAddrTranslatePlugin_tlbTranslateResult_VPPNMatches_12);
-  assign IF1_InstAddrTranslatePlugin_tlbTranslateResult_EntryHits_13 = ((MMUPlugin_TLBTable_13_E && IF1_InstAddrTranslatePlugin_tlbTranslateResult_ASIDMatches_13) && IF1_InstAddrTranslatePlugin_tlbTranslateResult_VPPNMatches_13);
-  assign IF1_InstAddrTranslatePlugin_tlbTranslateResult_EntryHits_14 = ((MMUPlugin_TLBTable_14_E && IF1_InstAddrTranslatePlugin_tlbTranslateResult_ASIDMatches_14) && IF1_InstAddrTranslatePlugin_tlbTranslateResult_VPPNMatches_14);
-  assign IF1_InstAddrTranslatePlugin_tlbTranslateResult_EntryHits_15 = ((MMUPlugin_TLBTable_15_E && IF1_InstAddrTranslatePlugin_tlbTranslateResult_ASIDMatches_15) && IF1_InstAddrTranslatePlugin_tlbTranslateResult_VPPNMatches_15);
-  assign IF1_InstAddrTranslatePlugin_tlbTranslateResult_TLBHit = ({IF1_InstAddrTranslatePlugin_tlbTranslateResult_EntryHits_15,{IF1_InstAddrTranslatePlugin_tlbTranslateResult_EntryHits_14,{IF1_InstAddrTranslatePlugin_tlbTranslateResult_EntryHits_13,{IF1_InstAddrTranslatePlugin_tlbTranslateResult_EntryHits_12,{IF1_InstAddrTranslatePlugin_tlbTranslateResult_EntryHits_11,{IF1_InstAddrTranslatePlugin_tlbTranslateResult_EntryHits_10,{IF1_InstAddrTranslatePlugin_tlbTranslateResult_EntryHits_9,{IF1_InstAddrTranslatePlugin_tlbTranslateResult_EntryHits_8,{IF1_InstAddrTranslatePlugin_tlbTranslateResult_EntryHits_7,{_zz_IF1_InstAddrTranslatePlugin_tlbTranslateResult_TLBHit,_zz_IF1_InstAddrTranslatePlugin_tlbTranslateResult_TLBHit_1}}}}}}}}}} != 16'h0);
-  assign _zz_IF1_InstAddrTranslatePlugin_tlbTranslateResult_TLBHitEntry_E = (((((((IF1_InstAddrTranslatePlugin_tlbTranslateResult_EntryHits_1 || IF1_InstAddrTranslatePlugin_tlbTranslateResult_EntryHits_3) || IF1_InstAddrTranslatePlugin_tlbTranslateResult_EntryHits_5) || IF1_InstAddrTranslatePlugin_tlbTranslateResult_EntryHits_7) || IF1_InstAddrTranslatePlugin_tlbTranslateResult_EntryHits_9) || IF1_InstAddrTranslatePlugin_tlbTranslateResult_EntryHits_11) || IF1_InstAddrTranslatePlugin_tlbTranslateResult_EntryHits_13) || IF1_InstAddrTranslatePlugin_tlbTranslateResult_EntryHits_15);
-  assign _zz_IF1_InstAddrTranslatePlugin_tlbTranslateResult_TLBHitEntry_E_1 = (((((((IF1_InstAddrTranslatePlugin_tlbTranslateResult_EntryHits_2 || IF1_InstAddrTranslatePlugin_tlbTranslateResult_EntryHits_3) || IF1_InstAddrTranslatePlugin_tlbTranslateResult_EntryHits_6) || IF1_InstAddrTranslatePlugin_tlbTranslateResult_EntryHits_7) || IF1_InstAddrTranslatePlugin_tlbTranslateResult_EntryHits_10) || IF1_InstAddrTranslatePlugin_tlbTranslateResult_EntryHits_11) || IF1_InstAddrTranslatePlugin_tlbTranslateResult_EntryHits_14) || IF1_InstAddrTranslatePlugin_tlbTranslateResult_EntryHits_15);
-  assign _zz_IF1_InstAddrTranslatePlugin_tlbTranslateResult_TLBHitEntry_E_2 = (((((((IF1_InstAddrTranslatePlugin_tlbTranslateResult_EntryHits_4 || IF1_InstAddrTranslatePlugin_tlbTranslateResult_EntryHits_5) || IF1_InstAddrTranslatePlugin_tlbTranslateResult_EntryHits_6) || IF1_InstAddrTranslatePlugin_tlbTranslateResult_EntryHits_7) || IF1_InstAddrTranslatePlugin_tlbTranslateResult_EntryHits_12) || IF1_InstAddrTranslatePlugin_tlbTranslateResult_EntryHits_13) || IF1_InstAddrTranslatePlugin_tlbTranslateResult_EntryHits_14) || IF1_InstAddrTranslatePlugin_tlbTranslateResult_EntryHits_15);
-  assign _zz_IF1_InstAddrTranslatePlugin_tlbTranslateResult_TLBHitEntry_E_3 = (((((((IF1_InstAddrTranslatePlugin_tlbTranslateResult_EntryHits_8 || IF1_InstAddrTranslatePlugin_tlbTranslateResult_EntryHits_9) || IF1_InstAddrTranslatePlugin_tlbTranslateResult_EntryHits_10) || IF1_InstAddrTranslatePlugin_tlbTranslateResult_EntryHits_11) || IF1_InstAddrTranslatePlugin_tlbTranslateResult_EntryHits_12) || IF1_InstAddrTranslatePlugin_tlbTranslateResult_EntryHits_13) || IF1_InstAddrTranslatePlugin_tlbTranslateResult_EntryHits_14) || IF1_InstAddrTranslatePlugin_tlbTranslateResult_EntryHits_15);
-  assign _zz_IF1_InstAddrTranslatePlugin_tlbTranslateResult_TLBHitEntry_E_4 = {_zz_IF1_InstAddrTranslatePlugin_tlbTranslateResult_TLBHitEntry_E_3,{_zz_IF1_InstAddrTranslatePlugin_tlbTranslateResult_TLBHitEntry_E_2,{_zz_IF1_InstAddrTranslatePlugin_tlbTranslateResult_TLBHitEntry_E_1,_zz_IF1_InstAddrTranslatePlugin_tlbTranslateResult_TLBHitEntry_E}}};
-  assign IF1_InstAddrTranslatePlugin_tlbTranslateResult_TLBHitEntry_E = _zz_IF1_InstAddrTranslatePlugin_tlbTranslateResult_TLBHitEntry_E_5;
-  assign IF1_InstAddrTranslatePlugin_tlbTranslateResult_TLBHitEntry_ASID = _zz_IF1_InstAddrTranslatePlugin_tlbTranslateResult_TLBHitEntry_ASID;
-  assign IF1_InstAddrTranslatePlugin_tlbTranslateResult_TLBHitEntry_G = _zz_IF1_InstAddrTranslatePlugin_tlbTranslateResult_TLBHitEntry_G;
-  assign IF1_InstAddrTranslatePlugin_tlbTranslateResult_TLBHitEntry_PS = _zz_IF1_InstAddrTranslatePlugin_tlbTranslateResult_TLBHitEntry_PS;
-  assign IF1_InstAddrTranslatePlugin_tlbTranslateResult_TLBHitEntry_VPPN = _zz_IF1_InstAddrTranslatePlugin_tlbTranslateResult_TLBHitEntry_VPPN;
-  assign IF1_InstAddrTranslatePlugin_tlbTranslateResult_TLBHitEntry_V0 = _zz_IF1_InstAddrTranslatePlugin_tlbTranslateResult_TLBHitEntry_V0;
-  assign IF1_InstAddrTranslatePlugin_tlbTranslateResult_TLBHitEntry_D0 = _zz_IF1_InstAddrTranslatePlugin_tlbTranslateResult_TLBHitEntry_D0;
-  assign IF1_InstAddrTranslatePlugin_tlbTranslateResult_TLBHitEntry_MAT0 = _zz_IF1_InstAddrTranslatePlugin_tlbTranslateResult_TLBHitEntry_MAT0;
-  assign IF1_InstAddrTranslatePlugin_tlbTranslateResult_TLBHitEntry_PLV0 = _zz_IF1_InstAddrTranslatePlugin_tlbTranslateResult_TLBHitEntry_PLV0;
-  assign IF1_InstAddrTranslatePlugin_tlbTranslateResult_TLBHitEntry_PPN0 = _zz_IF1_InstAddrTranslatePlugin_tlbTranslateResult_TLBHitEntry_PPN0;
-  assign IF1_InstAddrTranslatePlugin_tlbTranslateResult_TLBHitEntry_V1 = _zz_IF1_InstAddrTranslatePlugin_tlbTranslateResult_TLBHitEntry_V1;
-  assign IF1_InstAddrTranslatePlugin_tlbTranslateResult_TLBHitEntry_D1 = _zz_IF1_InstAddrTranslatePlugin_tlbTranslateResult_TLBHitEntry_D1;
-  assign IF1_InstAddrTranslatePlugin_tlbTranslateResult_TLBHitEntry_MAT1 = _zz_IF1_InstAddrTranslatePlugin_tlbTranslateResult_TLBHitEntry_MAT1;
-  assign IF1_InstAddrTranslatePlugin_tlbTranslateResult_TLBHitEntry_PLV1 = _zz_IF1_InstAddrTranslatePlugin_tlbTranslateResult_TLBHitEntry_PLV1;
-  assign IF1_InstAddrTranslatePlugin_tlbTranslateResult_TLBHitEntry_PPN1 = _zz_IF1_InstAddrTranslatePlugin_tlbTranslateResult_TLBHitEntry_PPN1;
-  assign IF1_InstAddrTranslatePlugin_tlbTranslateResult_TLBHitEntry_v = (IF1_PC[IF1_InstAddrTranslatePlugin_tlbTranslateResult_TLBHitEntry_PS[4 : 0]] ? IF1_InstAddrTranslatePlugin_tlbTranslateResult_TLBHitEntry_V1 : IF1_InstAddrTranslatePlugin_tlbTranslateResult_TLBHitEntry_V0);
-  assign IF1_InstAddrTranslatePlugin_tlbTranslateResult_TLBHitEntry_d = (IF1_PC[IF1_InstAddrTranslatePlugin_tlbTranslateResult_TLBHitEntry_PS[4 : 0]] ? IF1_InstAddrTranslatePlugin_tlbTranslateResult_TLBHitEntry_D1 : IF1_InstAddrTranslatePlugin_tlbTranslateResult_TLBHitEntry_D0);
-  assign IF1_InstAddrTranslatePlugin_tlbTranslateResult_TLBHitEntry_mat = (IF1_PC[IF1_InstAddrTranslatePlugin_tlbTranslateResult_TLBHitEntry_PS[4 : 0]] ? IF1_InstAddrTranslatePlugin_tlbTranslateResult_TLBHitEntry_MAT1 : IF1_InstAddrTranslatePlugin_tlbTranslateResult_TLBHitEntry_MAT0);
-  assign IF1_InstAddrTranslatePlugin_tlbTranslateResult_TLBHitEntry_plv = (IF1_PC[IF1_InstAddrTranslatePlugin_tlbTranslateResult_TLBHitEntry_PS[4 : 0]] ? IF1_InstAddrTranslatePlugin_tlbTranslateResult_TLBHitEntry_PLV1 : IF1_InstAddrTranslatePlugin_tlbTranslateResult_TLBHitEntry_PLV0);
-  assign IF1_InstAddrTranslatePlugin_tlbTranslateResult_TLBHitEntry_ppn = (IF1_PC[IF1_InstAddrTranslatePlugin_tlbTranslateResult_TLBHitEntry_PS[4 : 0]] ? IF1_InstAddrTranslatePlugin_tlbTranslateResult_TLBHitEntry_PPN1 : IF1_InstAddrTranslatePlugin_tlbTranslateResult_TLBHitEntry_PPN0);
-  assign when_MMUPlugin_l285 = (! IF1_InstAddrTranslatePlugin_tlbTranslateResult_TLBHit);
-  assign when_MMUPlugin_l289 = (! IF1_InstAddrTranslatePlugin_tlbTranslateResult_TLBHitEntry_v);
-  assign when_MMUPlugin_l303 = (IF1_InstAddrTranslatePlugin_tlbTranslateResult_TLBHitEntry_plv < ExceptionHandlerPlugin_CRMD_PLV);
-  assign when_MMUPlugin_l307 = ((switch_MMUPlugin_l290 == MemOperationType_STORE) && (! IF1_InstAddrTranslatePlugin_tlbTranslateResult_TLBHitEntry_d));
-  assign IF1_InstAddrTranslatePlugin_tlbTranslateResult_resultPhysAddr = ((IF1_InstAddrTranslatePlugin_tlbTranslateResult_TLBHitEntry_PS == 6'h0c) ? {IF1_InstAddrTranslatePlugin_tlbTranslateResult_TLBHitEntry_ppn,IF1_PC[11 : 0]} : {IF1_InstAddrTranslatePlugin_tlbTranslateResult_TLBHitEntry_ppn[19 : 9],IF1_PC[20 : 0]});
-  assign IF1_InstAddrTranslatePlugin_tlbTranslateResult_resultCached = IF1_InstAddrTranslatePlugin_tlbTranslateResult_TLBHitEntry_mat[0];
-  assign IF1_InstAddrTranslatePlugin_tlbTranslateResult_resultBundle_valid = IF1_InstAddrTranslatePlugin_tlbTranslateResult_resultValid;
-  assign IF1_InstAddrTranslatePlugin_tlbTranslateResult_resultBundle_payload_physAddr = IF1_InstAddrTranslatePlugin_tlbTranslateResult_resultPhysAddr;
-  assign IF1_InstAddrTranslatePlugin_tlbTranslateResult_resultBundle_payload_cached = IF1_InstAddrTranslatePlugin_tlbTranslateResult_resultCached;
-  assign IF1_InstAddrTranslatePlugin_tlbTranslateResult_resultBundle_payload_exception_raisePIL = IF1_InstAddrTranslatePlugin_tlbTranslateResult_resultExceptionBundle_raisePIL;
-  assign IF1_InstAddrTranslatePlugin_tlbTranslateResult_resultBundle_payload_exception_raisePIS = IF1_InstAddrTranslatePlugin_tlbTranslateResult_resultExceptionBundle_raisePIS;
-  assign IF1_InstAddrTranslatePlugin_tlbTranslateResult_resultBundle_payload_exception_raisePIF = IF1_InstAddrTranslatePlugin_tlbTranslateResult_resultExceptionBundle_raisePIF;
-  assign IF1_InstAddrTranslatePlugin_tlbTranslateResult_resultBundle_payload_exception_raisePME = IF1_InstAddrTranslatePlugin_tlbTranslateResult_resultExceptionBundle_raisePME;
-  assign IF1_InstAddrTranslatePlugin_tlbTranslateResult_resultBundle_payload_exception_raisePPI = IF1_InstAddrTranslatePlugin_tlbTranslateResult_resultExceptionBundle_raisePPI;
-  assign IF1_InstAddrTranslatePlugin_tlbTranslateResult_resultBundle_payload_exception_raiseTLBR = IF1_InstAddrTranslatePlugin_tlbTranslateResult_resultExceptionBundle_raiseTLBR;
+  assign IF1_InstAddrTranslatePlugin_tlbLookup_ASIDMatches_0 = (MMUPlugin_TLBTable_0_G || (MMUPlugin_TLBTable_0_ASID == MMUPlugin_ASID_ASID));
+  assign IF1_InstAddrTranslatePlugin_tlbLookup_ASIDMatches_1 = (MMUPlugin_TLBTable_1_G || (MMUPlugin_TLBTable_1_ASID == MMUPlugin_ASID_ASID));
+  assign IF1_InstAddrTranslatePlugin_tlbLookup_ASIDMatches_2 = (MMUPlugin_TLBTable_2_G || (MMUPlugin_TLBTable_2_ASID == MMUPlugin_ASID_ASID));
+  assign IF1_InstAddrTranslatePlugin_tlbLookup_ASIDMatches_3 = (MMUPlugin_TLBTable_3_G || (MMUPlugin_TLBTable_3_ASID == MMUPlugin_ASID_ASID));
+  assign IF1_InstAddrTranslatePlugin_tlbLookup_ASIDMatches_4 = (MMUPlugin_TLBTable_4_G || (MMUPlugin_TLBTable_4_ASID == MMUPlugin_ASID_ASID));
+  assign IF1_InstAddrTranslatePlugin_tlbLookup_ASIDMatches_5 = (MMUPlugin_TLBTable_5_G || (MMUPlugin_TLBTable_5_ASID == MMUPlugin_ASID_ASID));
+  assign IF1_InstAddrTranslatePlugin_tlbLookup_ASIDMatches_6 = (MMUPlugin_TLBTable_6_G || (MMUPlugin_TLBTable_6_ASID == MMUPlugin_ASID_ASID));
+  assign IF1_InstAddrTranslatePlugin_tlbLookup_ASIDMatches_7 = (MMUPlugin_TLBTable_7_G || (MMUPlugin_TLBTable_7_ASID == MMUPlugin_ASID_ASID));
+  assign IF1_InstAddrTranslatePlugin_tlbLookup_ASIDMatches_8 = (MMUPlugin_TLBTable_8_G || (MMUPlugin_TLBTable_8_ASID == MMUPlugin_ASID_ASID));
+  assign IF1_InstAddrTranslatePlugin_tlbLookup_ASIDMatches_9 = (MMUPlugin_TLBTable_9_G || (MMUPlugin_TLBTable_9_ASID == MMUPlugin_ASID_ASID));
+  assign IF1_InstAddrTranslatePlugin_tlbLookup_ASIDMatches_10 = (MMUPlugin_TLBTable_10_G || (MMUPlugin_TLBTable_10_ASID == MMUPlugin_ASID_ASID));
+  assign IF1_InstAddrTranslatePlugin_tlbLookup_ASIDMatches_11 = (MMUPlugin_TLBTable_11_G || (MMUPlugin_TLBTable_11_ASID == MMUPlugin_ASID_ASID));
+  assign IF1_InstAddrTranslatePlugin_tlbLookup_ASIDMatches_12 = (MMUPlugin_TLBTable_12_G || (MMUPlugin_TLBTable_12_ASID == MMUPlugin_ASID_ASID));
+  assign IF1_InstAddrTranslatePlugin_tlbLookup_ASIDMatches_13 = (MMUPlugin_TLBTable_13_G || (MMUPlugin_TLBTable_13_ASID == MMUPlugin_ASID_ASID));
+  assign IF1_InstAddrTranslatePlugin_tlbLookup_ASIDMatches_14 = (MMUPlugin_TLBTable_14_G || (MMUPlugin_TLBTable_14_ASID == MMUPlugin_ASID_ASID));
+  assign IF1_InstAddrTranslatePlugin_tlbLookup_ASIDMatches_15 = (MMUPlugin_TLBTable_15_G || (MMUPlugin_TLBTable_15_ASID == MMUPlugin_ASID_ASID));
+  assign IF1_InstAddrTranslatePlugin_tlbLookup_VPPNMatches_0 = ((MMUPlugin_TLBTable_0_PS == 6'h0c) ? (MMUPlugin_TLBTable_0_VPPN == IF1_PC[31 : 13]) : (MMUPlugin_TLBTable_0_VPPN[18 : 9] == IF1_PC[31 : 22]));
+  assign IF1_InstAddrTranslatePlugin_tlbLookup_VPPNMatches_1 = ((MMUPlugin_TLBTable_1_PS == 6'h0c) ? (MMUPlugin_TLBTable_1_VPPN == IF1_PC[31 : 13]) : (MMUPlugin_TLBTable_1_VPPN[18 : 9] == IF1_PC[31 : 22]));
+  assign IF1_InstAddrTranslatePlugin_tlbLookup_VPPNMatches_2 = ((MMUPlugin_TLBTable_2_PS == 6'h0c) ? (MMUPlugin_TLBTable_2_VPPN == IF1_PC[31 : 13]) : (MMUPlugin_TLBTable_2_VPPN[18 : 9] == IF1_PC[31 : 22]));
+  assign IF1_InstAddrTranslatePlugin_tlbLookup_VPPNMatches_3 = ((MMUPlugin_TLBTable_3_PS == 6'h0c) ? (MMUPlugin_TLBTable_3_VPPN == IF1_PC[31 : 13]) : (MMUPlugin_TLBTable_3_VPPN[18 : 9] == IF1_PC[31 : 22]));
+  assign IF1_InstAddrTranslatePlugin_tlbLookup_VPPNMatches_4 = ((MMUPlugin_TLBTable_4_PS == 6'h0c) ? (MMUPlugin_TLBTable_4_VPPN == IF1_PC[31 : 13]) : (MMUPlugin_TLBTable_4_VPPN[18 : 9] == IF1_PC[31 : 22]));
+  assign IF1_InstAddrTranslatePlugin_tlbLookup_VPPNMatches_5 = ((MMUPlugin_TLBTable_5_PS == 6'h0c) ? (MMUPlugin_TLBTable_5_VPPN == IF1_PC[31 : 13]) : (MMUPlugin_TLBTable_5_VPPN[18 : 9] == IF1_PC[31 : 22]));
+  assign IF1_InstAddrTranslatePlugin_tlbLookup_VPPNMatches_6 = ((MMUPlugin_TLBTable_6_PS == 6'h0c) ? (MMUPlugin_TLBTable_6_VPPN == IF1_PC[31 : 13]) : (MMUPlugin_TLBTable_6_VPPN[18 : 9] == IF1_PC[31 : 22]));
+  assign IF1_InstAddrTranslatePlugin_tlbLookup_VPPNMatches_7 = ((MMUPlugin_TLBTable_7_PS == 6'h0c) ? (MMUPlugin_TLBTable_7_VPPN == IF1_PC[31 : 13]) : (MMUPlugin_TLBTable_7_VPPN[18 : 9] == IF1_PC[31 : 22]));
+  assign IF1_InstAddrTranslatePlugin_tlbLookup_VPPNMatches_8 = ((MMUPlugin_TLBTable_8_PS == 6'h0c) ? (MMUPlugin_TLBTable_8_VPPN == IF1_PC[31 : 13]) : (MMUPlugin_TLBTable_8_VPPN[18 : 9] == IF1_PC[31 : 22]));
+  assign IF1_InstAddrTranslatePlugin_tlbLookup_VPPNMatches_9 = ((MMUPlugin_TLBTable_9_PS == 6'h0c) ? (MMUPlugin_TLBTable_9_VPPN == IF1_PC[31 : 13]) : (MMUPlugin_TLBTable_9_VPPN[18 : 9] == IF1_PC[31 : 22]));
+  assign IF1_InstAddrTranslatePlugin_tlbLookup_VPPNMatches_10 = ((MMUPlugin_TLBTable_10_PS == 6'h0c) ? (MMUPlugin_TLBTable_10_VPPN == IF1_PC[31 : 13]) : (MMUPlugin_TLBTable_10_VPPN[18 : 9] == IF1_PC[31 : 22]));
+  assign IF1_InstAddrTranslatePlugin_tlbLookup_VPPNMatches_11 = ((MMUPlugin_TLBTable_11_PS == 6'h0c) ? (MMUPlugin_TLBTable_11_VPPN == IF1_PC[31 : 13]) : (MMUPlugin_TLBTable_11_VPPN[18 : 9] == IF1_PC[31 : 22]));
+  assign IF1_InstAddrTranslatePlugin_tlbLookup_VPPNMatches_12 = ((MMUPlugin_TLBTable_12_PS == 6'h0c) ? (MMUPlugin_TLBTable_12_VPPN == IF1_PC[31 : 13]) : (MMUPlugin_TLBTable_12_VPPN[18 : 9] == IF1_PC[31 : 22]));
+  assign IF1_InstAddrTranslatePlugin_tlbLookup_VPPNMatches_13 = ((MMUPlugin_TLBTable_13_PS == 6'h0c) ? (MMUPlugin_TLBTable_13_VPPN == IF1_PC[31 : 13]) : (MMUPlugin_TLBTable_13_VPPN[18 : 9] == IF1_PC[31 : 22]));
+  assign IF1_InstAddrTranslatePlugin_tlbLookup_VPPNMatches_14 = ((MMUPlugin_TLBTable_14_PS == 6'h0c) ? (MMUPlugin_TLBTable_14_VPPN == IF1_PC[31 : 13]) : (MMUPlugin_TLBTable_14_VPPN[18 : 9] == IF1_PC[31 : 22]));
+  assign IF1_InstAddrTranslatePlugin_tlbLookup_VPPNMatches_15 = ((MMUPlugin_TLBTable_15_PS == 6'h0c) ? (MMUPlugin_TLBTable_15_VPPN == IF1_PC[31 : 13]) : (MMUPlugin_TLBTable_15_VPPN[18 : 9] == IF1_PC[31 : 22]));
+  assign IF1_InstAddrTranslatePlugin_tlbLookup_EntryHits_0 = ((MMUPlugin_TLBTable_0_E && IF1_InstAddrTranslatePlugin_tlbLookup_ASIDMatches_0) && IF1_InstAddrTranslatePlugin_tlbLookup_VPPNMatches_0);
+  assign IF1_InstAddrTranslatePlugin_tlbLookup_EntryHits_1 = ((MMUPlugin_TLBTable_1_E && IF1_InstAddrTranslatePlugin_tlbLookup_ASIDMatches_1) && IF1_InstAddrTranslatePlugin_tlbLookup_VPPNMatches_1);
+  assign IF1_InstAddrTranslatePlugin_tlbLookup_EntryHits_2 = ((MMUPlugin_TLBTable_2_E && IF1_InstAddrTranslatePlugin_tlbLookup_ASIDMatches_2) && IF1_InstAddrTranslatePlugin_tlbLookup_VPPNMatches_2);
+  assign IF1_InstAddrTranslatePlugin_tlbLookup_EntryHits_3 = ((MMUPlugin_TLBTable_3_E && IF1_InstAddrTranslatePlugin_tlbLookup_ASIDMatches_3) && IF1_InstAddrTranslatePlugin_tlbLookup_VPPNMatches_3);
+  assign IF1_InstAddrTranslatePlugin_tlbLookup_EntryHits_4 = ((MMUPlugin_TLBTable_4_E && IF1_InstAddrTranslatePlugin_tlbLookup_ASIDMatches_4) && IF1_InstAddrTranslatePlugin_tlbLookup_VPPNMatches_4);
+  assign IF1_InstAddrTranslatePlugin_tlbLookup_EntryHits_5 = ((MMUPlugin_TLBTable_5_E && IF1_InstAddrTranslatePlugin_tlbLookup_ASIDMatches_5) && IF1_InstAddrTranslatePlugin_tlbLookup_VPPNMatches_5);
+  assign IF1_InstAddrTranslatePlugin_tlbLookup_EntryHits_6 = ((MMUPlugin_TLBTable_6_E && IF1_InstAddrTranslatePlugin_tlbLookup_ASIDMatches_6) && IF1_InstAddrTranslatePlugin_tlbLookup_VPPNMatches_6);
+  assign IF1_InstAddrTranslatePlugin_tlbLookup_EntryHits_7 = ((MMUPlugin_TLBTable_7_E && IF1_InstAddrTranslatePlugin_tlbLookup_ASIDMatches_7) && IF1_InstAddrTranslatePlugin_tlbLookup_VPPNMatches_7);
+  assign IF1_InstAddrTranslatePlugin_tlbLookup_EntryHits_8 = ((MMUPlugin_TLBTable_8_E && IF1_InstAddrTranslatePlugin_tlbLookup_ASIDMatches_8) && IF1_InstAddrTranslatePlugin_tlbLookup_VPPNMatches_8);
+  assign IF1_InstAddrTranslatePlugin_tlbLookup_EntryHits_9 = ((MMUPlugin_TLBTable_9_E && IF1_InstAddrTranslatePlugin_tlbLookup_ASIDMatches_9) && IF1_InstAddrTranslatePlugin_tlbLookup_VPPNMatches_9);
+  assign IF1_InstAddrTranslatePlugin_tlbLookup_EntryHits_10 = ((MMUPlugin_TLBTable_10_E && IF1_InstAddrTranslatePlugin_tlbLookup_ASIDMatches_10) && IF1_InstAddrTranslatePlugin_tlbLookup_VPPNMatches_10);
+  assign IF1_InstAddrTranslatePlugin_tlbLookup_EntryHits_11 = ((MMUPlugin_TLBTable_11_E && IF1_InstAddrTranslatePlugin_tlbLookup_ASIDMatches_11) && IF1_InstAddrTranslatePlugin_tlbLookup_VPPNMatches_11);
+  assign IF1_InstAddrTranslatePlugin_tlbLookup_EntryHits_12 = ((MMUPlugin_TLBTable_12_E && IF1_InstAddrTranslatePlugin_tlbLookup_ASIDMatches_12) && IF1_InstAddrTranslatePlugin_tlbLookup_VPPNMatches_12);
+  assign IF1_InstAddrTranslatePlugin_tlbLookup_EntryHits_13 = ((MMUPlugin_TLBTable_13_E && IF1_InstAddrTranslatePlugin_tlbLookup_ASIDMatches_13) && IF1_InstAddrTranslatePlugin_tlbLookup_VPPNMatches_13);
+  assign IF1_InstAddrTranslatePlugin_tlbLookup_EntryHits_14 = ((MMUPlugin_TLBTable_14_E && IF1_InstAddrTranslatePlugin_tlbLookup_ASIDMatches_14) && IF1_InstAddrTranslatePlugin_tlbLookup_VPPNMatches_14);
+  assign IF1_InstAddrTranslatePlugin_tlbLookup_EntryHits_15 = ((MMUPlugin_TLBTable_15_E && IF1_InstAddrTranslatePlugin_tlbLookup_ASIDMatches_15) && IF1_InstAddrTranslatePlugin_tlbLookup_VPPNMatches_15);
+  assign IF1_InstAddrTranslatePlugin_tlbLookup_snapshot_hit = ({IF1_InstAddrTranslatePlugin_tlbLookup_EntryHits_15,{IF1_InstAddrTranslatePlugin_tlbLookup_EntryHits_14,{IF1_InstAddrTranslatePlugin_tlbLookup_EntryHits_13,{IF1_InstAddrTranslatePlugin_tlbLookup_EntryHits_12,{IF1_InstAddrTranslatePlugin_tlbLookup_EntryHits_11,{IF1_InstAddrTranslatePlugin_tlbLookup_EntryHits_10,{IF1_InstAddrTranslatePlugin_tlbLookup_EntryHits_9,{IF1_InstAddrTranslatePlugin_tlbLookup_EntryHits_8,{IF1_InstAddrTranslatePlugin_tlbLookup_EntryHits_7,{_zz_IF1_InstAddrTranslatePlugin_tlbLookup_snapshot_hit,_zz_IF1_InstAddrTranslatePlugin_tlbLookup_snapshot_hit_1}}}}}}}}}} != 16'h0);
+  assign _zz_IF1_InstAddrTranslatePlugin_tlbLookup_snapshot_entry_E = (((((((IF1_InstAddrTranslatePlugin_tlbLookup_EntryHits_1 || IF1_InstAddrTranslatePlugin_tlbLookup_EntryHits_3) || IF1_InstAddrTranslatePlugin_tlbLookup_EntryHits_5) || IF1_InstAddrTranslatePlugin_tlbLookup_EntryHits_7) || IF1_InstAddrTranslatePlugin_tlbLookup_EntryHits_9) || IF1_InstAddrTranslatePlugin_tlbLookup_EntryHits_11) || IF1_InstAddrTranslatePlugin_tlbLookup_EntryHits_13) || IF1_InstAddrTranslatePlugin_tlbLookup_EntryHits_15);
+  assign _zz_IF1_InstAddrTranslatePlugin_tlbLookup_snapshot_entry_E_1 = (((((((IF1_InstAddrTranslatePlugin_tlbLookup_EntryHits_2 || IF1_InstAddrTranslatePlugin_tlbLookup_EntryHits_3) || IF1_InstAddrTranslatePlugin_tlbLookup_EntryHits_6) || IF1_InstAddrTranslatePlugin_tlbLookup_EntryHits_7) || IF1_InstAddrTranslatePlugin_tlbLookup_EntryHits_10) || IF1_InstAddrTranslatePlugin_tlbLookup_EntryHits_11) || IF1_InstAddrTranslatePlugin_tlbLookup_EntryHits_14) || IF1_InstAddrTranslatePlugin_tlbLookup_EntryHits_15);
+  assign _zz_IF1_InstAddrTranslatePlugin_tlbLookup_snapshot_entry_E_2 = (((((((IF1_InstAddrTranslatePlugin_tlbLookup_EntryHits_4 || IF1_InstAddrTranslatePlugin_tlbLookup_EntryHits_5) || IF1_InstAddrTranslatePlugin_tlbLookup_EntryHits_6) || IF1_InstAddrTranslatePlugin_tlbLookup_EntryHits_7) || IF1_InstAddrTranslatePlugin_tlbLookup_EntryHits_12) || IF1_InstAddrTranslatePlugin_tlbLookup_EntryHits_13) || IF1_InstAddrTranslatePlugin_tlbLookup_EntryHits_14) || IF1_InstAddrTranslatePlugin_tlbLookup_EntryHits_15);
+  assign _zz_IF1_InstAddrTranslatePlugin_tlbLookup_snapshot_entry_E_3 = (((((((IF1_InstAddrTranslatePlugin_tlbLookup_EntryHits_8 || IF1_InstAddrTranslatePlugin_tlbLookup_EntryHits_9) || IF1_InstAddrTranslatePlugin_tlbLookup_EntryHits_10) || IF1_InstAddrTranslatePlugin_tlbLookup_EntryHits_11) || IF1_InstAddrTranslatePlugin_tlbLookup_EntryHits_12) || IF1_InstAddrTranslatePlugin_tlbLookup_EntryHits_13) || IF1_InstAddrTranslatePlugin_tlbLookup_EntryHits_14) || IF1_InstAddrTranslatePlugin_tlbLookup_EntryHits_15);
+  assign _zz_IF1_InstAddrTranslatePlugin_tlbLookup_snapshot_entry_E_4 = {_zz_IF1_InstAddrTranslatePlugin_tlbLookup_snapshot_entry_E_3,{_zz_IF1_InstAddrTranslatePlugin_tlbLookup_snapshot_entry_E_2,{_zz_IF1_InstAddrTranslatePlugin_tlbLookup_snapshot_entry_E_1,_zz_IF1_InstAddrTranslatePlugin_tlbLookup_snapshot_entry_E}}};
+  assign _zz_IF1_InstAddrTranslatePlugin_tlbLookup_snapshot_entry_E_5 = {_zz__zz_IF1_InstAddrTranslatePlugin_tlbLookup_snapshot_entry_E_5,{_zz__zz_IF1_InstAddrTranslatePlugin_tlbLookup_snapshot_entry_E_5_1,{_zz__zz_IF1_InstAddrTranslatePlugin_tlbLookup_snapshot_entry_E_5_2,{_zz__zz_IF1_InstAddrTranslatePlugin_tlbLookup_snapshot_entry_E_5_3,{_zz__zz_IF1_InstAddrTranslatePlugin_tlbLookup_snapshot_entry_E_5_4,{_zz__zz_IF1_InstAddrTranslatePlugin_tlbLookup_snapshot_entry_E_5_5,{_zz__zz_IF1_InstAddrTranslatePlugin_tlbLookup_snapshot_entry_E_5_6,{_zz__zz_IF1_InstAddrTranslatePlugin_tlbLookup_snapshot_entry_E_5_7,{_zz__zz_IF1_InstAddrTranslatePlugin_tlbLookup_snapshot_entry_E_5_8,{_zz__zz_IF1_InstAddrTranslatePlugin_tlbLookup_snapshot_entry_E_5_9,{_zz__zz_IF1_InstAddrTranslatePlugin_tlbLookup_snapshot_entry_E_5_10,{_zz__zz_IF1_InstAddrTranslatePlugin_tlbLookup_snapshot_entry_E_5_11,{_zz__zz_IF1_InstAddrTranslatePlugin_tlbLookup_snapshot_entry_E_5_12,{_zz__zz_IF1_InstAddrTranslatePlugin_tlbLookup_snapshot_entry_E_5_13,_zz__zz_IF1_InstAddrTranslatePlugin_tlbLookup_snapshot_entry_E_5_14}}}}}}}}}}}}}};
+  assign IF1_InstAddrTranslatePlugin_tlbLookup_snapshot_entry_E = _zz_IF1_InstAddrTranslatePlugin_tlbLookup_snapshot_entry_E_5[0];
+  assign IF1_InstAddrTranslatePlugin_tlbLookup_snapshot_entry_ASID = _zz_IF1_InstAddrTranslatePlugin_tlbLookup_snapshot_entry_E_5[10 : 1];
+  assign IF1_InstAddrTranslatePlugin_tlbLookup_snapshot_entry_G = _zz_IF1_InstAddrTranslatePlugin_tlbLookup_snapshot_entry_E_5[11];
+  assign IF1_InstAddrTranslatePlugin_tlbLookup_snapshot_entry_PS = _zz_IF1_InstAddrTranslatePlugin_tlbLookup_snapshot_entry_E_5[17 : 12];
+  assign IF1_InstAddrTranslatePlugin_tlbLookup_snapshot_entry_VPPN = _zz_IF1_InstAddrTranslatePlugin_tlbLookup_snapshot_entry_E_5[36 : 18];
+  assign IF1_InstAddrTranslatePlugin_tlbLookup_snapshot_entry_V0 = _zz_IF1_InstAddrTranslatePlugin_tlbLookup_snapshot_entry_E_5[37];
+  assign IF1_InstAddrTranslatePlugin_tlbLookup_snapshot_entry_D0 = _zz_IF1_InstAddrTranslatePlugin_tlbLookup_snapshot_entry_E_5[38];
+  assign IF1_InstAddrTranslatePlugin_tlbLookup_snapshot_entry_MAT0 = _zz_IF1_InstAddrTranslatePlugin_tlbLookup_snapshot_entry_E_5[40 : 39];
+  assign IF1_InstAddrTranslatePlugin_tlbLookup_snapshot_entry_PLV0 = _zz_IF1_InstAddrTranslatePlugin_tlbLookup_snapshot_entry_E_5[42 : 41];
+  assign IF1_InstAddrTranslatePlugin_tlbLookup_snapshot_entry_PPN0 = _zz_IF1_InstAddrTranslatePlugin_tlbLookup_snapshot_entry_E_5[62 : 43];
+  assign IF1_InstAddrTranslatePlugin_tlbLookup_snapshot_entry_V1 = _zz_IF1_InstAddrTranslatePlugin_tlbLookup_snapshot_entry_E_5[63];
+  assign IF1_InstAddrTranslatePlugin_tlbLookup_snapshot_entry_D1 = _zz_IF1_InstAddrTranslatePlugin_tlbLookup_snapshot_entry_E_5[64];
+  assign IF1_InstAddrTranslatePlugin_tlbLookup_snapshot_entry_MAT1 = _zz_IF1_InstAddrTranslatePlugin_tlbLookup_snapshot_entry_E_5[66 : 65];
+  assign IF1_InstAddrTranslatePlugin_tlbLookup_snapshot_entry_PLV1 = _zz_IF1_InstAddrTranslatePlugin_tlbLookup_snapshot_entry_E_5[68 : 67];
+  assign IF1_InstAddrTranslatePlugin_tlbLookup_snapshot_entry_PPN1 = _zz_IF1_InstAddrTranslatePlugin_tlbLookup_snapshot_entry_E_5[88 : 69];
   assign IF1_InstAddrTranslatePlugin_savedCSR_CRMD_DA = ExceptionHandlerPlugin_CRMD_DA;
   assign IF1_InstAddrTranslatePlugin_savedCSR_CRMD_PG = ExceptionHandlerPlugin_CRMD_PG;
   assign IF1_InstAddrTranslatePlugin_savedCSR_CRMD_DATF = ExceptionHandlerPlugin_CRMD_DATF;
   assign IF1_InstAddrTranslatePlugin_savedCSR_CRMD_DATM = ExceptionHandlerPlugin_CRMD_DATM;
   assign InstAddrTranslatePlugin_badVaddr2 = IF2_PC;
+  assign switch_MMUPlugin_l331 = MemOperationType_FETCH;
+  assign IF2_InstAddrTranslatePlugin_tlbTranslateResult_resultValid = 1'b1;
+  always @(*) begin
+    IF2_InstAddrTranslatePlugin_tlbTranslateResult_resultExceptionBundle_raisePIL = 1'b0;
+    if(when_MMUPlugin_l330) begin
+      case(switch_MMUPlugin_l331)
+        MemOperationType_FETCH : begin
+        end
+        MemOperationType_LOAD : begin
+          IF2_InstAddrTranslatePlugin_tlbTranslateResult_resultExceptionBundle_raisePIL = 1'b1;
+        end
+        default : begin
+        end
+      endcase
+    end
+  end
+
+  always @(*) begin
+    IF2_InstAddrTranslatePlugin_tlbTranslateResult_resultExceptionBundle_raisePIS = 1'b0;
+    if(when_MMUPlugin_l330) begin
+      case(switch_MMUPlugin_l331)
+        MemOperationType_FETCH : begin
+        end
+        MemOperationType_LOAD : begin
+        end
+        default : begin
+          IF2_InstAddrTranslatePlugin_tlbTranslateResult_resultExceptionBundle_raisePIS = 1'b1;
+        end
+      endcase
+    end
+  end
+
+  always @(*) begin
+    IF2_InstAddrTranslatePlugin_tlbTranslateResult_resultExceptionBundle_raisePIF = 1'b0;
+    if(when_MMUPlugin_l330) begin
+      case(switch_MMUPlugin_l331)
+        MemOperationType_FETCH : begin
+          IF2_InstAddrTranslatePlugin_tlbTranslateResult_resultExceptionBundle_raisePIF = 1'b1;
+        end
+        MemOperationType_LOAD : begin
+        end
+        default : begin
+        end
+      endcase
+    end
+  end
+
+  always @(*) begin
+    IF2_InstAddrTranslatePlugin_tlbTranslateResult_resultExceptionBundle_raisePME = 1'b0;
+    if(when_MMUPlugin_l348) begin
+      IF2_InstAddrTranslatePlugin_tlbTranslateResult_resultExceptionBundle_raisePME = 1'b1;
+    end
+  end
+
+  always @(*) begin
+    IF2_InstAddrTranslatePlugin_tlbTranslateResult_resultExceptionBundle_raisePPI = 1'b0;
+    if(when_MMUPlugin_l344) begin
+      IF2_InstAddrTranslatePlugin_tlbTranslateResult_resultExceptionBundle_raisePPI = 1'b1;
+    end
+  end
+
+  always @(*) begin
+    IF2_InstAddrTranslatePlugin_tlbTranslateResult_resultExceptionBundle_raiseTLBR = 1'b0;
+    if(when_MMUPlugin_l326) begin
+      IF2_InstAddrTranslatePlugin_tlbTranslateResult_resultExceptionBundle_raiseTLBR = 1'b1;
+    end
+  end
+
+  assign IF2_InstAddrTranslatePlugin_tlbTranslateResult_TLBHitEntry_v = (IF2_PC[IF2_TLB_LOOKUP_SNAPSHOT_entry_PS[4 : 0]] ? IF2_TLB_LOOKUP_SNAPSHOT_entry_V1 : IF2_TLB_LOOKUP_SNAPSHOT_entry_V0);
+  assign IF2_InstAddrTranslatePlugin_tlbTranslateResult_TLBHitEntry_d = (IF2_PC[IF2_TLB_LOOKUP_SNAPSHOT_entry_PS[4 : 0]] ? IF2_TLB_LOOKUP_SNAPSHOT_entry_D1 : IF2_TLB_LOOKUP_SNAPSHOT_entry_D0);
+  assign IF2_InstAddrTranslatePlugin_tlbTranslateResult_TLBHitEntry_mat = (IF2_PC[IF2_TLB_LOOKUP_SNAPSHOT_entry_PS[4 : 0]] ? IF2_TLB_LOOKUP_SNAPSHOT_entry_MAT1 : IF2_TLB_LOOKUP_SNAPSHOT_entry_MAT0);
+  assign IF2_InstAddrTranslatePlugin_tlbTranslateResult_TLBHitEntry_plv = (IF2_PC[IF2_TLB_LOOKUP_SNAPSHOT_entry_PS[4 : 0]] ? IF2_TLB_LOOKUP_SNAPSHOT_entry_PLV1 : IF2_TLB_LOOKUP_SNAPSHOT_entry_PLV0);
+  assign IF2_InstAddrTranslatePlugin_tlbTranslateResult_TLBHitEntry_ppn = (IF2_PC[IF2_TLB_LOOKUP_SNAPSHOT_entry_PS[4 : 0]] ? IF2_TLB_LOOKUP_SNAPSHOT_entry_PPN1 : IF2_TLB_LOOKUP_SNAPSHOT_entry_PPN0);
+  assign when_MMUPlugin_l326 = (! IF2_TLB_LOOKUP_SNAPSHOT_hit);
+  assign when_MMUPlugin_l330 = (! IF2_InstAddrTranslatePlugin_tlbTranslateResult_TLBHitEntry_v);
+  assign when_MMUPlugin_l344 = (IF2_InstAddrTranslatePlugin_tlbTranslateResult_TLBHitEntry_plv < ExceptionHandlerPlugin_CRMD_PLV);
+  assign when_MMUPlugin_l348 = ((switch_MMUPlugin_l331 == MemOperationType_STORE) && (! IF2_InstAddrTranslatePlugin_tlbTranslateResult_TLBHitEntry_d));
+  assign IF2_InstAddrTranslatePlugin_tlbTranslateResult_resultPhysAddr = ((IF2_TLB_LOOKUP_SNAPSHOT_entry_PS == 6'h0c) ? {IF2_InstAddrTranslatePlugin_tlbTranslateResult_TLBHitEntry_ppn,IF2_PC[11 : 0]} : {IF2_InstAddrTranslatePlugin_tlbTranslateResult_TLBHitEntry_ppn[19 : 9],IF2_PC[20 : 0]});
+  assign IF2_InstAddrTranslatePlugin_tlbTranslateResult_resultCached = IF2_InstAddrTranslatePlugin_tlbTranslateResult_TLBHitEntry_mat[0];
+  assign IF2_InstAddrTranslatePlugin_tlbTranslateResult_resultBundle_valid = IF2_InstAddrTranslatePlugin_tlbTranslateResult_resultValid;
+  assign IF2_InstAddrTranslatePlugin_tlbTranslateResult_resultBundle_payload_physAddr = IF2_InstAddrTranslatePlugin_tlbTranslateResult_resultPhysAddr;
+  assign IF2_InstAddrTranslatePlugin_tlbTranslateResult_resultBundle_payload_cached = IF2_InstAddrTranslatePlugin_tlbTranslateResult_resultCached;
+  assign IF2_InstAddrTranslatePlugin_tlbTranslateResult_resultBundle_payload_exception_raisePIL = IF2_InstAddrTranslatePlugin_tlbTranslateResult_resultExceptionBundle_raisePIL;
+  assign IF2_InstAddrTranslatePlugin_tlbTranslateResult_resultBundle_payload_exception_raisePIS = IF2_InstAddrTranslatePlugin_tlbTranslateResult_resultExceptionBundle_raisePIS;
+  assign IF2_InstAddrTranslatePlugin_tlbTranslateResult_resultBundle_payload_exception_raisePIF = IF2_InstAddrTranslatePlugin_tlbTranslateResult_resultExceptionBundle_raisePIF;
+  assign IF2_InstAddrTranslatePlugin_tlbTranslateResult_resultBundle_payload_exception_raisePME = IF2_InstAddrTranslatePlugin_tlbTranslateResult_resultExceptionBundle_raisePME;
+  assign IF2_InstAddrTranslatePlugin_tlbTranslateResult_resultBundle_payload_exception_raisePPI = IF2_InstAddrTranslatePlugin_tlbTranslateResult_resultExceptionBundle_raisePPI;
+  assign IF2_InstAddrTranslatePlugin_tlbTranslateResult_resultBundle_payload_exception_raiseTLBR = IF2_InstAddrTranslatePlugin_tlbTranslateResult_resultExceptionBundle_raiseTLBR;
   always @(*) begin
     IF2_InstAddrTranslatePlugin_translateResult_resultValid = 1'b0;
-    if(when_MMUPlugin_l339) begin
-      IF2_InstAddrTranslatePlugin_translateResult_resultValid = IF2_TLB_TRANSLATE_RESULT_valid;
+    if(when_MMUPlugin_l380) begin
+      IF2_InstAddrTranslatePlugin_translateResult_resultValid = IF2_InstAddrTranslatePlugin_tlbTranslateResult_resultBundle_valid;
     end
-    if(when_MMUPlugin_l347) begin
+    if(when_MMUPlugin_l388) begin
       IF2_InstAddrTranslatePlugin_translateResult_resultValid = IF2_DIRECT_TRANSLATE_RESULT_valid;
     end
-    if(when_MMUPlugin_l355) begin
+    if(when_MMUPlugin_l396) begin
       IF2_InstAddrTranslatePlugin_translateResult_resultValid = 1'b1;
     end
   end
 
   always @(*) begin
     IF2_InstAddrTranslatePlugin_translateResult_resultPhysAddr = 32'h0;
-    if(when_MMUPlugin_l339) begin
-      IF2_InstAddrTranslatePlugin_translateResult_resultPhysAddr = IF2_TLB_TRANSLATE_RESULT_payload_physAddr;
+    if(when_MMUPlugin_l380) begin
+      IF2_InstAddrTranslatePlugin_translateResult_resultPhysAddr = IF2_InstAddrTranslatePlugin_tlbTranslateResult_resultBundle_payload_physAddr;
     end
-    if(when_MMUPlugin_l347) begin
+    if(when_MMUPlugin_l388) begin
       IF2_InstAddrTranslatePlugin_translateResult_resultPhysAddr = IF2_DIRECT_TRANSLATE_RESULT_payload_physAddr;
     end
-    if(when_MMUPlugin_l355) begin
+    if(when_MMUPlugin_l396) begin
       IF2_InstAddrTranslatePlugin_translateResult_resultPhysAddr = IF2_PC;
     end
   end
 
   always @(*) begin
     IF2_InstAddrTranslatePlugin_translateResult_resultCached = 1'b0;
-    if(when_MMUPlugin_l339) begin
-      IF2_InstAddrTranslatePlugin_translateResult_resultCached = IF2_TLB_TRANSLATE_RESULT_payload_cached;
+    if(when_MMUPlugin_l380) begin
+      IF2_InstAddrTranslatePlugin_translateResult_resultCached = IF2_InstAddrTranslatePlugin_tlbTranslateResult_resultBundle_payload_cached;
     end
-    if(when_MMUPlugin_l347) begin
+    if(when_MMUPlugin_l388) begin
       IF2_InstAddrTranslatePlugin_translateResult_resultCached = IF2_DIRECT_TRANSLATE_RESULT_payload_cached;
     end
-    if(when_MMUPlugin_l355) begin
-      if(when_MMUPlugin_l359) begin
+    if(when_MMUPlugin_l396) begin
+      if(when_MMUPlugin_l400) begin
         IF2_InstAddrTranslatePlugin_translateResult_resultCached = IF2_TRANSLATE_SAVED_CSR_CRMD_DATF[0];
       end else begin
         IF2_InstAddrTranslatePlugin_translateResult_resultCached = IF2_TRANSLATE_SAVED_CSR_CRMD_DATM[0];
@@ -64475,86 +64549,86 @@ module MyCPUCore (
 
   always @(*) begin
     IF2_InstAddrTranslatePlugin_translateResult_resultExceptionBundle_raisePIL = 1'b0;
-    if(when_MMUPlugin_l339) begin
-      IF2_InstAddrTranslatePlugin_translateResult_resultExceptionBundle_raisePIL = IF2_TLB_TRANSLATE_RESULT_payload_exception_raisePIL;
+    if(when_MMUPlugin_l380) begin
+      IF2_InstAddrTranslatePlugin_translateResult_resultExceptionBundle_raisePIL = IF2_InstAddrTranslatePlugin_tlbTranslateResult_resultBundle_payload_exception_raisePIL;
     end
-    if(when_MMUPlugin_l347) begin
+    if(when_MMUPlugin_l388) begin
       IF2_InstAddrTranslatePlugin_translateResult_resultExceptionBundle_raisePIL = IF2_DIRECT_TRANSLATE_RESULT_payload_exception_raisePIL;
     end
-    if(when_MMUPlugin_l355) begin
+    if(when_MMUPlugin_l396) begin
       IF2_InstAddrTranslatePlugin_translateResult_resultExceptionBundle_raisePIL = 1'b0;
     end
   end
 
   always @(*) begin
     IF2_InstAddrTranslatePlugin_translateResult_resultExceptionBundle_raisePIS = 1'b0;
-    if(when_MMUPlugin_l339) begin
-      IF2_InstAddrTranslatePlugin_translateResult_resultExceptionBundle_raisePIS = IF2_TLB_TRANSLATE_RESULT_payload_exception_raisePIS;
+    if(when_MMUPlugin_l380) begin
+      IF2_InstAddrTranslatePlugin_translateResult_resultExceptionBundle_raisePIS = IF2_InstAddrTranslatePlugin_tlbTranslateResult_resultBundle_payload_exception_raisePIS;
     end
-    if(when_MMUPlugin_l347) begin
+    if(when_MMUPlugin_l388) begin
       IF2_InstAddrTranslatePlugin_translateResult_resultExceptionBundle_raisePIS = IF2_DIRECT_TRANSLATE_RESULT_payload_exception_raisePIS;
     end
-    if(when_MMUPlugin_l355) begin
+    if(when_MMUPlugin_l396) begin
       IF2_InstAddrTranslatePlugin_translateResult_resultExceptionBundle_raisePIS = 1'b0;
     end
   end
 
   always @(*) begin
     IF2_InstAddrTranslatePlugin_translateResult_resultExceptionBundle_raisePIF = 1'b0;
-    if(when_MMUPlugin_l339) begin
-      IF2_InstAddrTranslatePlugin_translateResult_resultExceptionBundle_raisePIF = IF2_TLB_TRANSLATE_RESULT_payload_exception_raisePIF;
+    if(when_MMUPlugin_l380) begin
+      IF2_InstAddrTranslatePlugin_translateResult_resultExceptionBundle_raisePIF = IF2_InstAddrTranslatePlugin_tlbTranslateResult_resultBundle_payload_exception_raisePIF;
     end
-    if(when_MMUPlugin_l347) begin
+    if(when_MMUPlugin_l388) begin
       IF2_InstAddrTranslatePlugin_translateResult_resultExceptionBundle_raisePIF = IF2_DIRECT_TRANSLATE_RESULT_payload_exception_raisePIF;
     end
-    if(when_MMUPlugin_l355) begin
+    if(when_MMUPlugin_l396) begin
       IF2_InstAddrTranslatePlugin_translateResult_resultExceptionBundle_raisePIF = 1'b0;
     end
   end
 
   always @(*) begin
     IF2_InstAddrTranslatePlugin_translateResult_resultExceptionBundle_raisePME = 1'b0;
-    if(when_MMUPlugin_l339) begin
-      IF2_InstAddrTranslatePlugin_translateResult_resultExceptionBundle_raisePME = IF2_TLB_TRANSLATE_RESULT_payload_exception_raisePME;
+    if(when_MMUPlugin_l380) begin
+      IF2_InstAddrTranslatePlugin_translateResult_resultExceptionBundle_raisePME = IF2_InstAddrTranslatePlugin_tlbTranslateResult_resultBundle_payload_exception_raisePME;
     end
-    if(when_MMUPlugin_l347) begin
+    if(when_MMUPlugin_l388) begin
       IF2_InstAddrTranslatePlugin_translateResult_resultExceptionBundle_raisePME = IF2_DIRECT_TRANSLATE_RESULT_payload_exception_raisePME;
     end
-    if(when_MMUPlugin_l355) begin
+    if(when_MMUPlugin_l396) begin
       IF2_InstAddrTranslatePlugin_translateResult_resultExceptionBundle_raisePME = 1'b0;
     end
   end
 
   always @(*) begin
     IF2_InstAddrTranslatePlugin_translateResult_resultExceptionBundle_raisePPI = 1'b0;
-    if(when_MMUPlugin_l339) begin
-      IF2_InstAddrTranslatePlugin_translateResult_resultExceptionBundle_raisePPI = IF2_TLB_TRANSLATE_RESULT_payload_exception_raisePPI;
+    if(when_MMUPlugin_l380) begin
+      IF2_InstAddrTranslatePlugin_translateResult_resultExceptionBundle_raisePPI = IF2_InstAddrTranslatePlugin_tlbTranslateResult_resultBundle_payload_exception_raisePPI;
     end
-    if(when_MMUPlugin_l347) begin
+    if(when_MMUPlugin_l388) begin
       IF2_InstAddrTranslatePlugin_translateResult_resultExceptionBundle_raisePPI = IF2_DIRECT_TRANSLATE_RESULT_payload_exception_raisePPI;
     end
-    if(when_MMUPlugin_l355) begin
+    if(when_MMUPlugin_l396) begin
       IF2_InstAddrTranslatePlugin_translateResult_resultExceptionBundle_raisePPI = 1'b0;
     end
   end
 
   always @(*) begin
     IF2_InstAddrTranslatePlugin_translateResult_resultExceptionBundle_raiseTLBR = 1'b0;
-    if(when_MMUPlugin_l339) begin
-      IF2_InstAddrTranslatePlugin_translateResult_resultExceptionBundle_raiseTLBR = IF2_TLB_TRANSLATE_RESULT_payload_exception_raiseTLBR;
+    if(when_MMUPlugin_l380) begin
+      IF2_InstAddrTranslatePlugin_translateResult_resultExceptionBundle_raiseTLBR = IF2_InstAddrTranslatePlugin_tlbTranslateResult_resultBundle_payload_exception_raiseTLBR;
     end
-    if(when_MMUPlugin_l347) begin
+    if(when_MMUPlugin_l388) begin
       IF2_InstAddrTranslatePlugin_translateResult_resultExceptionBundle_raiseTLBR = IF2_DIRECT_TRANSLATE_RESULT_payload_exception_raiseTLBR;
     end
-    if(when_MMUPlugin_l355) begin
+    if(when_MMUPlugin_l396) begin
       IF2_InstAddrTranslatePlugin_translateResult_resultExceptionBundle_raiseTLBR = 1'b0;
     end
   end
 
-  assign when_MMUPlugin_l339 = (((! IF2_TRANSLATE_SAVED_CSR_CRMD_DA) && IF2_TRANSLATE_SAVED_CSR_CRMD_PG) && IF2_TLB_TRANSLATE_RESULT_valid);
-  assign when_MMUPlugin_l347 = (((! IF2_TRANSLATE_SAVED_CSR_CRMD_DA) && IF2_TRANSLATE_SAVED_CSR_CRMD_PG) && IF2_DIRECT_TRANSLATE_RESULT_valid);
-  assign when_MMUPlugin_l355 = (IF2_TRANSLATE_SAVED_CSR_CRMD_DA && (! IF2_TRANSLATE_SAVED_CSR_CRMD_PG));
-  assign when_MMUPlugin_l359 = (MemOperationType_FETCH == MemOperationType_FETCH);
+  assign when_MMUPlugin_l380 = (((! IF2_TRANSLATE_SAVED_CSR_CRMD_DA) && IF2_TRANSLATE_SAVED_CSR_CRMD_PG) && IF2_InstAddrTranslatePlugin_tlbTranslateResult_resultBundle_valid);
+  assign when_MMUPlugin_l388 = (((! IF2_TRANSLATE_SAVED_CSR_CRMD_DA) && IF2_TRANSLATE_SAVED_CSR_CRMD_PG) && IF2_DIRECT_TRANSLATE_RESULT_valid);
+  assign when_MMUPlugin_l396 = (IF2_TRANSLATE_SAVED_CSR_CRMD_DA && (! IF2_TRANSLATE_SAVED_CSR_CRMD_PG));
+  assign when_MMUPlugin_l400 = (MemOperationType_FETCH == MemOperationType_FETCH);
   assign IF2_InstAddrTranslatePlugin_translateResult_resultBundle_valid = IF2_InstAddrTranslatePlugin_translateResult_resultValid;
   assign IF2_InstAddrTranslatePlugin_translateResult_resultBundle_payload_physAddr = IF2_InstAddrTranslatePlugin_translateResult_resultPhysAddr;
   assign IF2_InstAddrTranslatePlugin_translateResult_resultBundle_payload_cached = IF2_InstAddrTranslatePlugin_translateResult_resultCached;
@@ -71635,205 +71709,206 @@ module MyCPUCore (
   assign MEM_ADDR_AddressGenerationPlugin_directTranslateResult_resultBundle_payload_exception_raisePME = MEM_ADDR_AddressGenerationPlugin_directTranslateResult_resultExceptionBundle_raisePME;
   assign MEM_ADDR_AddressGenerationPlugin_directTranslateResult_resultBundle_payload_exception_raisePPI = MEM_ADDR_AddressGenerationPlugin_directTranslateResult_resultExceptionBundle_raisePPI;
   assign MEM_ADDR_AddressGenerationPlugin_directTranslateResult_resultBundle_payload_exception_raiseTLBR = MEM_ADDR_AddressGenerationPlugin_directTranslateResult_resultExceptionBundle_raiseTLBR;
-  assign switch_MMUPlugin_l290_1 = (MEM_ADDR_ISSUE_SLOT_uop_isStore ? MemOperationType_STORE : MemOperationType_LOAD);
-  assign MEM_ADDR_AddressGenerationPlugin_tlbTranslateResult_resultValid = 1'b1;
-  always @(*) begin
-    MEM_ADDR_AddressGenerationPlugin_tlbTranslateResult_resultExceptionBundle_raisePIL = 1'b0;
-    if(when_MMUPlugin_l289_1) begin
-      case(switch_MMUPlugin_l290_1)
-        MemOperationType_FETCH : begin
-        end
-        MemOperationType_LOAD : begin
-          MEM_ADDR_AddressGenerationPlugin_tlbTranslateResult_resultExceptionBundle_raisePIL = 1'b1;
-        end
-        default : begin
-        end
-      endcase
-    end
-  end
-
-  always @(*) begin
-    MEM_ADDR_AddressGenerationPlugin_tlbTranslateResult_resultExceptionBundle_raisePIS = 1'b0;
-    if(when_MMUPlugin_l289_1) begin
-      case(switch_MMUPlugin_l290_1)
-        MemOperationType_FETCH : begin
-        end
-        MemOperationType_LOAD : begin
-        end
-        default : begin
-          MEM_ADDR_AddressGenerationPlugin_tlbTranslateResult_resultExceptionBundle_raisePIS = 1'b1;
-        end
-      endcase
-    end
-  end
-
-  always @(*) begin
-    MEM_ADDR_AddressGenerationPlugin_tlbTranslateResult_resultExceptionBundle_raisePIF = 1'b0;
-    if(when_MMUPlugin_l289_1) begin
-      case(switch_MMUPlugin_l290_1)
-        MemOperationType_FETCH : begin
-          MEM_ADDR_AddressGenerationPlugin_tlbTranslateResult_resultExceptionBundle_raisePIF = 1'b1;
-        end
-        MemOperationType_LOAD : begin
-        end
-        default : begin
-        end
-      endcase
-    end
-  end
-
-  always @(*) begin
-    MEM_ADDR_AddressGenerationPlugin_tlbTranslateResult_resultExceptionBundle_raisePME = 1'b0;
-    if(when_MMUPlugin_l307_1) begin
-      MEM_ADDR_AddressGenerationPlugin_tlbTranslateResult_resultExceptionBundle_raisePME = 1'b1;
-    end
-  end
-
-  always @(*) begin
-    MEM_ADDR_AddressGenerationPlugin_tlbTranslateResult_resultExceptionBundle_raisePPI = 1'b0;
-    if(when_MMUPlugin_l303_1) begin
-      MEM_ADDR_AddressGenerationPlugin_tlbTranslateResult_resultExceptionBundle_raisePPI = 1'b1;
-    end
-  end
-
-  always @(*) begin
-    MEM_ADDR_AddressGenerationPlugin_tlbTranslateResult_resultExceptionBundle_raiseTLBR = 1'b0;
-    if(when_MMUPlugin_l285_1) begin
-      MEM_ADDR_AddressGenerationPlugin_tlbTranslateResult_resultExceptionBundle_raiseTLBR = 1'b1;
-    end
-  end
-
-  assign MEM_ADDR_AddressGenerationPlugin_tlbTranslateResult_ASIDMatches_0 = (MMUPlugin_TLBTable_0_G || (MMUPlugin_TLBTable_0_ASID == MMUPlugin_ASID_ASID));
-  assign MEM_ADDR_AddressGenerationPlugin_tlbTranslateResult_ASIDMatches_1 = (MMUPlugin_TLBTable_1_G || (MMUPlugin_TLBTable_1_ASID == MMUPlugin_ASID_ASID));
-  assign MEM_ADDR_AddressGenerationPlugin_tlbTranslateResult_ASIDMatches_2 = (MMUPlugin_TLBTable_2_G || (MMUPlugin_TLBTable_2_ASID == MMUPlugin_ASID_ASID));
-  assign MEM_ADDR_AddressGenerationPlugin_tlbTranslateResult_ASIDMatches_3 = (MMUPlugin_TLBTable_3_G || (MMUPlugin_TLBTable_3_ASID == MMUPlugin_ASID_ASID));
-  assign MEM_ADDR_AddressGenerationPlugin_tlbTranslateResult_ASIDMatches_4 = (MMUPlugin_TLBTable_4_G || (MMUPlugin_TLBTable_4_ASID == MMUPlugin_ASID_ASID));
-  assign MEM_ADDR_AddressGenerationPlugin_tlbTranslateResult_ASIDMatches_5 = (MMUPlugin_TLBTable_5_G || (MMUPlugin_TLBTable_5_ASID == MMUPlugin_ASID_ASID));
-  assign MEM_ADDR_AddressGenerationPlugin_tlbTranslateResult_ASIDMatches_6 = (MMUPlugin_TLBTable_6_G || (MMUPlugin_TLBTable_6_ASID == MMUPlugin_ASID_ASID));
-  assign MEM_ADDR_AddressGenerationPlugin_tlbTranslateResult_ASIDMatches_7 = (MMUPlugin_TLBTable_7_G || (MMUPlugin_TLBTable_7_ASID == MMUPlugin_ASID_ASID));
-  assign MEM_ADDR_AddressGenerationPlugin_tlbTranslateResult_ASIDMatches_8 = (MMUPlugin_TLBTable_8_G || (MMUPlugin_TLBTable_8_ASID == MMUPlugin_ASID_ASID));
-  assign MEM_ADDR_AddressGenerationPlugin_tlbTranslateResult_ASIDMatches_9 = (MMUPlugin_TLBTable_9_G || (MMUPlugin_TLBTable_9_ASID == MMUPlugin_ASID_ASID));
-  assign MEM_ADDR_AddressGenerationPlugin_tlbTranslateResult_ASIDMatches_10 = (MMUPlugin_TLBTable_10_G || (MMUPlugin_TLBTable_10_ASID == MMUPlugin_ASID_ASID));
-  assign MEM_ADDR_AddressGenerationPlugin_tlbTranslateResult_ASIDMatches_11 = (MMUPlugin_TLBTable_11_G || (MMUPlugin_TLBTable_11_ASID == MMUPlugin_ASID_ASID));
-  assign MEM_ADDR_AddressGenerationPlugin_tlbTranslateResult_ASIDMatches_12 = (MMUPlugin_TLBTable_12_G || (MMUPlugin_TLBTable_12_ASID == MMUPlugin_ASID_ASID));
-  assign MEM_ADDR_AddressGenerationPlugin_tlbTranslateResult_ASIDMatches_13 = (MMUPlugin_TLBTable_13_G || (MMUPlugin_TLBTable_13_ASID == MMUPlugin_ASID_ASID));
-  assign MEM_ADDR_AddressGenerationPlugin_tlbTranslateResult_ASIDMatches_14 = (MMUPlugin_TLBTable_14_G || (MMUPlugin_TLBTable_14_ASID == MMUPlugin_ASID_ASID));
-  assign MEM_ADDR_AddressGenerationPlugin_tlbTranslateResult_ASIDMatches_15 = (MMUPlugin_TLBTable_15_G || (MMUPlugin_TLBTable_15_ASID == MMUPlugin_ASID_ASID));
-  assign MEM_ADDR_AddressGenerationPlugin_tlbTranslateResult_VPPNMatches_0 = ((MMUPlugin_TLBTable_0_PS == 6'h0c) ? (MMUPlugin_TLBTable_0_VPPN == MEM_ADDR_MEMORY_ADDRESS[31 : 13]) : (MMUPlugin_TLBTable_0_VPPN[18 : 9] == MEM_ADDR_MEMORY_ADDRESS[31 : 22]));
-  assign MEM_ADDR_AddressGenerationPlugin_tlbTranslateResult_VPPNMatches_1 = ((MMUPlugin_TLBTable_1_PS == 6'h0c) ? (MMUPlugin_TLBTable_1_VPPN == MEM_ADDR_MEMORY_ADDRESS[31 : 13]) : (MMUPlugin_TLBTable_1_VPPN[18 : 9] == MEM_ADDR_MEMORY_ADDRESS[31 : 22]));
-  assign MEM_ADDR_AddressGenerationPlugin_tlbTranslateResult_VPPNMatches_2 = ((MMUPlugin_TLBTable_2_PS == 6'h0c) ? (MMUPlugin_TLBTable_2_VPPN == MEM_ADDR_MEMORY_ADDRESS[31 : 13]) : (MMUPlugin_TLBTable_2_VPPN[18 : 9] == MEM_ADDR_MEMORY_ADDRESS[31 : 22]));
-  assign MEM_ADDR_AddressGenerationPlugin_tlbTranslateResult_VPPNMatches_3 = ((MMUPlugin_TLBTable_3_PS == 6'h0c) ? (MMUPlugin_TLBTable_3_VPPN == MEM_ADDR_MEMORY_ADDRESS[31 : 13]) : (MMUPlugin_TLBTable_3_VPPN[18 : 9] == MEM_ADDR_MEMORY_ADDRESS[31 : 22]));
-  assign MEM_ADDR_AddressGenerationPlugin_tlbTranslateResult_VPPNMatches_4 = ((MMUPlugin_TLBTable_4_PS == 6'h0c) ? (MMUPlugin_TLBTable_4_VPPN == MEM_ADDR_MEMORY_ADDRESS[31 : 13]) : (MMUPlugin_TLBTable_4_VPPN[18 : 9] == MEM_ADDR_MEMORY_ADDRESS[31 : 22]));
-  assign MEM_ADDR_AddressGenerationPlugin_tlbTranslateResult_VPPNMatches_5 = ((MMUPlugin_TLBTable_5_PS == 6'h0c) ? (MMUPlugin_TLBTable_5_VPPN == MEM_ADDR_MEMORY_ADDRESS[31 : 13]) : (MMUPlugin_TLBTable_5_VPPN[18 : 9] == MEM_ADDR_MEMORY_ADDRESS[31 : 22]));
-  assign MEM_ADDR_AddressGenerationPlugin_tlbTranslateResult_VPPNMatches_6 = ((MMUPlugin_TLBTable_6_PS == 6'h0c) ? (MMUPlugin_TLBTable_6_VPPN == MEM_ADDR_MEMORY_ADDRESS[31 : 13]) : (MMUPlugin_TLBTable_6_VPPN[18 : 9] == MEM_ADDR_MEMORY_ADDRESS[31 : 22]));
-  assign MEM_ADDR_AddressGenerationPlugin_tlbTranslateResult_VPPNMatches_7 = ((MMUPlugin_TLBTable_7_PS == 6'h0c) ? (MMUPlugin_TLBTable_7_VPPN == MEM_ADDR_MEMORY_ADDRESS[31 : 13]) : (MMUPlugin_TLBTable_7_VPPN[18 : 9] == MEM_ADDR_MEMORY_ADDRESS[31 : 22]));
-  assign MEM_ADDR_AddressGenerationPlugin_tlbTranslateResult_VPPNMatches_8 = ((MMUPlugin_TLBTable_8_PS == 6'h0c) ? (MMUPlugin_TLBTable_8_VPPN == MEM_ADDR_MEMORY_ADDRESS[31 : 13]) : (MMUPlugin_TLBTable_8_VPPN[18 : 9] == MEM_ADDR_MEMORY_ADDRESS[31 : 22]));
-  assign MEM_ADDR_AddressGenerationPlugin_tlbTranslateResult_VPPNMatches_9 = ((MMUPlugin_TLBTable_9_PS == 6'h0c) ? (MMUPlugin_TLBTable_9_VPPN == MEM_ADDR_MEMORY_ADDRESS[31 : 13]) : (MMUPlugin_TLBTable_9_VPPN[18 : 9] == MEM_ADDR_MEMORY_ADDRESS[31 : 22]));
-  assign MEM_ADDR_AddressGenerationPlugin_tlbTranslateResult_VPPNMatches_10 = ((MMUPlugin_TLBTable_10_PS == 6'h0c) ? (MMUPlugin_TLBTable_10_VPPN == MEM_ADDR_MEMORY_ADDRESS[31 : 13]) : (MMUPlugin_TLBTable_10_VPPN[18 : 9] == MEM_ADDR_MEMORY_ADDRESS[31 : 22]));
-  assign MEM_ADDR_AddressGenerationPlugin_tlbTranslateResult_VPPNMatches_11 = ((MMUPlugin_TLBTable_11_PS == 6'h0c) ? (MMUPlugin_TLBTable_11_VPPN == MEM_ADDR_MEMORY_ADDRESS[31 : 13]) : (MMUPlugin_TLBTable_11_VPPN[18 : 9] == MEM_ADDR_MEMORY_ADDRESS[31 : 22]));
-  assign MEM_ADDR_AddressGenerationPlugin_tlbTranslateResult_VPPNMatches_12 = ((MMUPlugin_TLBTable_12_PS == 6'h0c) ? (MMUPlugin_TLBTable_12_VPPN == MEM_ADDR_MEMORY_ADDRESS[31 : 13]) : (MMUPlugin_TLBTable_12_VPPN[18 : 9] == MEM_ADDR_MEMORY_ADDRESS[31 : 22]));
-  assign MEM_ADDR_AddressGenerationPlugin_tlbTranslateResult_VPPNMatches_13 = ((MMUPlugin_TLBTable_13_PS == 6'h0c) ? (MMUPlugin_TLBTable_13_VPPN == MEM_ADDR_MEMORY_ADDRESS[31 : 13]) : (MMUPlugin_TLBTable_13_VPPN[18 : 9] == MEM_ADDR_MEMORY_ADDRESS[31 : 22]));
-  assign MEM_ADDR_AddressGenerationPlugin_tlbTranslateResult_VPPNMatches_14 = ((MMUPlugin_TLBTable_14_PS == 6'h0c) ? (MMUPlugin_TLBTable_14_VPPN == MEM_ADDR_MEMORY_ADDRESS[31 : 13]) : (MMUPlugin_TLBTable_14_VPPN[18 : 9] == MEM_ADDR_MEMORY_ADDRESS[31 : 22]));
-  assign MEM_ADDR_AddressGenerationPlugin_tlbTranslateResult_VPPNMatches_15 = ((MMUPlugin_TLBTable_15_PS == 6'h0c) ? (MMUPlugin_TLBTable_15_VPPN == MEM_ADDR_MEMORY_ADDRESS[31 : 13]) : (MMUPlugin_TLBTable_15_VPPN[18 : 9] == MEM_ADDR_MEMORY_ADDRESS[31 : 22]));
-  assign MEM_ADDR_AddressGenerationPlugin_tlbTranslateResult_EntryHits_0 = ((MMUPlugin_TLBTable_0_E && MEM_ADDR_AddressGenerationPlugin_tlbTranslateResult_ASIDMatches_0) && MEM_ADDR_AddressGenerationPlugin_tlbTranslateResult_VPPNMatches_0);
-  assign MEM_ADDR_AddressGenerationPlugin_tlbTranslateResult_EntryHits_1 = ((MMUPlugin_TLBTable_1_E && MEM_ADDR_AddressGenerationPlugin_tlbTranslateResult_ASIDMatches_1) && MEM_ADDR_AddressGenerationPlugin_tlbTranslateResult_VPPNMatches_1);
-  assign MEM_ADDR_AddressGenerationPlugin_tlbTranslateResult_EntryHits_2 = ((MMUPlugin_TLBTable_2_E && MEM_ADDR_AddressGenerationPlugin_tlbTranslateResult_ASIDMatches_2) && MEM_ADDR_AddressGenerationPlugin_tlbTranslateResult_VPPNMatches_2);
-  assign MEM_ADDR_AddressGenerationPlugin_tlbTranslateResult_EntryHits_3 = ((MMUPlugin_TLBTable_3_E && MEM_ADDR_AddressGenerationPlugin_tlbTranslateResult_ASIDMatches_3) && MEM_ADDR_AddressGenerationPlugin_tlbTranslateResult_VPPNMatches_3);
-  assign MEM_ADDR_AddressGenerationPlugin_tlbTranslateResult_EntryHits_4 = ((MMUPlugin_TLBTable_4_E && MEM_ADDR_AddressGenerationPlugin_tlbTranslateResult_ASIDMatches_4) && MEM_ADDR_AddressGenerationPlugin_tlbTranslateResult_VPPNMatches_4);
-  assign MEM_ADDR_AddressGenerationPlugin_tlbTranslateResult_EntryHits_5 = ((MMUPlugin_TLBTable_5_E && MEM_ADDR_AddressGenerationPlugin_tlbTranslateResult_ASIDMatches_5) && MEM_ADDR_AddressGenerationPlugin_tlbTranslateResult_VPPNMatches_5);
-  assign MEM_ADDR_AddressGenerationPlugin_tlbTranslateResult_EntryHits_6 = ((MMUPlugin_TLBTable_6_E && MEM_ADDR_AddressGenerationPlugin_tlbTranslateResult_ASIDMatches_6) && MEM_ADDR_AddressGenerationPlugin_tlbTranslateResult_VPPNMatches_6);
-  assign MEM_ADDR_AddressGenerationPlugin_tlbTranslateResult_EntryHits_7 = ((MMUPlugin_TLBTable_7_E && MEM_ADDR_AddressGenerationPlugin_tlbTranslateResult_ASIDMatches_7) && MEM_ADDR_AddressGenerationPlugin_tlbTranslateResult_VPPNMatches_7);
-  assign MEM_ADDR_AddressGenerationPlugin_tlbTranslateResult_EntryHits_8 = ((MMUPlugin_TLBTable_8_E && MEM_ADDR_AddressGenerationPlugin_tlbTranslateResult_ASIDMatches_8) && MEM_ADDR_AddressGenerationPlugin_tlbTranslateResult_VPPNMatches_8);
-  assign MEM_ADDR_AddressGenerationPlugin_tlbTranslateResult_EntryHits_9 = ((MMUPlugin_TLBTable_9_E && MEM_ADDR_AddressGenerationPlugin_tlbTranslateResult_ASIDMatches_9) && MEM_ADDR_AddressGenerationPlugin_tlbTranslateResult_VPPNMatches_9);
-  assign MEM_ADDR_AddressGenerationPlugin_tlbTranslateResult_EntryHits_10 = ((MMUPlugin_TLBTable_10_E && MEM_ADDR_AddressGenerationPlugin_tlbTranslateResult_ASIDMatches_10) && MEM_ADDR_AddressGenerationPlugin_tlbTranslateResult_VPPNMatches_10);
-  assign MEM_ADDR_AddressGenerationPlugin_tlbTranslateResult_EntryHits_11 = ((MMUPlugin_TLBTable_11_E && MEM_ADDR_AddressGenerationPlugin_tlbTranslateResult_ASIDMatches_11) && MEM_ADDR_AddressGenerationPlugin_tlbTranslateResult_VPPNMatches_11);
-  assign MEM_ADDR_AddressGenerationPlugin_tlbTranslateResult_EntryHits_12 = ((MMUPlugin_TLBTable_12_E && MEM_ADDR_AddressGenerationPlugin_tlbTranslateResult_ASIDMatches_12) && MEM_ADDR_AddressGenerationPlugin_tlbTranslateResult_VPPNMatches_12);
-  assign MEM_ADDR_AddressGenerationPlugin_tlbTranslateResult_EntryHits_13 = ((MMUPlugin_TLBTable_13_E && MEM_ADDR_AddressGenerationPlugin_tlbTranslateResult_ASIDMatches_13) && MEM_ADDR_AddressGenerationPlugin_tlbTranslateResult_VPPNMatches_13);
-  assign MEM_ADDR_AddressGenerationPlugin_tlbTranslateResult_EntryHits_14 = ((MMUPlugin_TLBTable_14_E && MEM_ADDR_AddressGenerationPlugin_tlbTranslateResult_ASIDMatches_14) && MEM_ADDR_AddressGenerationPlugin_tlbTranslateResult_VPPNMatches_14);
-  assign MEM_ADDR_AddressGenerationPlugin_tlbTranslateResult_EntryHits_15 = ((MMUPlugin_TLBTable_15_E && MEM_ADDR_AddressGenerationPlugin_tlbTranslateResult_ASIDMatches_15) && MEM_ADDR_AddressGenerationPlugin_tlbTranslateResult_VPPNMatches_15);
-  assign MEM_ADDR_AddressGenerationPlugin_tlbTranslateResult_TLBHit = ({MEM_ADDR_AddressGenerationPlugin_tlbTranslateResult_EntryHits_15,{MEM_ADDR_AddressGenerationPlugin_tlbTranslateResult_EntryHits_14,{MEM_ADDR_AddressGenerationPlugin_tlbTranslateResult_EntryHits_13,{MEM_ADDR_AddressGenerationPlugin_tlbTranslateResult_EntryHits_12,{MEM_ADDR_AddressGenerationPlugin_tlbTranslateResult_EntryHits_11,{MEM_ADDR_AddressGenerationPlugin_tlbTranslateResult_EntryHits_10,{MEM_ADDR_AddressGenerationPlugin_tlbTranslateResult_EntryHits_9,{MEM_ADDR_AddressGenerationPlugin_tlbTranslateResult_EntryHits_8,{MEM_ADDR_AddressGenerationPlugin_tlbTranslateResult_EntryHits_7,{_zz_MEM_ADDR_AddressGenerationPlugin_tlbTranslateResult_TLBHit,_zz_MEM_ADDR_AddressGenerationPlugin_tlbTranslateResult_TLBHit_1}}}}}}}}}} != 16'h0);
-  assign _zz_MEM_ADDR_AddressGenerationPlugin_tlbTranslateResult_TLBHitEntry_E = (((((((MEM_ADDR_AddressGenerationPlugin_tlbTranslateResult_EntryHits_1 || MEM_ADDR_AddressGenerationPlugin_tlbTranslateResult_EntryHits_3) || MEM_ADDR_AddressGenerationPlugin_tlbTranslateResult_EntryHits_5) || MEM_ADDR_AddressGenerationPlugin_tlbTranslateResult_EntryHits_7) || MEM_ADDR_AddressGenerationPlugin_tlbTranslateResult_EntryHits_9) || MEM_ADDR_AddressGenerationPlugin_tlbTranslateResult_EntryHits_11) || MEM_ADDR_AddressGenerationPlugin_tlbTranslateResult_EntryHits_13) || MEM_ADDR_AddressGenerationPlugin_tlbTranslateResult_EntryHits_15);
-  assign _zz_MEM_ADDR_AddressGenerationPlugin_tlbTranslateResult_TLBHitEntry_E_1 = (((((((MEM_ADDR_AddressGenerationPlugin_tlbTranslateResult_EntryHits_2 || MEM_ADDR_AddressGenerationPlugin_tlbTranslateResult_EntryHits_3) || MEM_ADDR_AddressGenerationPlugin_tlbTranslateResult_EntryHits_6) || MEM_ADDR_AddressGenerationPlugin_tlbTranslateResult_EntryHits_7) || MEM_ADDR_AddressGenerationPlugin_tlbTranslateResult_EntryHits_10) || MEM_ADDR_AddressGenerationPlugin_tlbTranslateResult_EntryHits_11) || MEM_ADDR_AddressGenerationPlugin_tlbTranslateResult_EntryHits_14) || MEM_ADDR_AddressGenerationPlugin_tlbTranslateResult_EntryHits_15);
-  assign _zz_MEM_ADDR_AddressGenerationPlugin_tlbTranslateResult_TLBHitEntry_E_2 = (((((((MEM_ADDR_AddressGenerationPlugin_tlbTranslateResult_EntryHits_4 || MEM_ADDR_AddressGenerationPlugin_tlbTranslateResult_EntryHits_5) || MEM_ADDR_AddressGenerationPlugin_tlbTranslateResult_EntryHits_6) || MEM_ADDR_AddressGenerationPlugin_tlbTranslateResult_EntryHits_7) || MEM_ADDR_AddressGenerationPlugin_tlbTranslateResult_EntryHits_12) || MEM_ADDR_AddressGenerationPlugin_tlbTranslateResult_EntryHits_13) || MEM_ADDR_AddressGenerationPlugin_tlbTranslateResult_EntryHits_14) || MEM_ADDR_AddressGenerationPlugin_tlbTranslateResult_EntryHits_15);
-  assign _zz_MEM_ADDR_AddressGenerationPlugin_tlbTranslateResult_TLBHitEntry_E_3 = (((((((MEM_ADDR_AddressGenerationPlugin_tlbTranslateResult_EntryHits_8 || MEM_ADDR_AddressGenerationPlugin_tlbTranslateResult_EntryHits_9) || MEM_ADDR_AddressGenerationPlugin_tlbTranslateResult_EntryHits_10) || MEM_ADDR_AddressGenerationPlugin_tlbTranslateResult_EntryHits_11) || MEM_ADDR_AddressGenerationPlugin_tlbTranslateResult_EntryHits_12) || MEM_ADDR_AddressGenerationPlugin_tlbTranslateResult_EntryHits_13) || MEM_ADDR_AddressGenerationPlugin_tlbTranslateResult_EntryHits_14) || MEM_ADDR_AddressGenerationPlugin_tlbTranslateResult_EntryHits_15);
-  assign _zz_MEM_ADDR_AddressGenerationPlugin_tlbTranslateResult_TLBHitEntry_E_4 = {_zz_MEM_ADDR_AddressGenerationPlugin_tlbTranslateResult_TLBHitEntry_E_3,{_zz_MEM_ADDR_AddressGenerationPlugin_tlbTranslateResult_TLBHitEntry_E_2,{_zz_MEM_ADDR_AddressGenerationPlugin_tlbTranslateResult_TLBHitEntry_E_1,_zz_MEM_ADDR_AddressGenerationPlugin_tlbTranslateResult_TLBHitEntry_E}}};
-  assign MEM_ADDR_AddressGenerationPlugin_tlbTranslateResult_TLBHitEntry_E = _zz_MEM_ADDR_AddressGenerationPlugin_tlbTranslateResult_TLBHitEntry_E_5;
-  assign MEM_ADDR_AddressGenerationPlugin_tlbTranslateResult_TLBHitEntry_ASID = _zz_MEM_ADDR_AddressGenerationPlugin_tlbTranslateResult_TLBHitEntry_ASID;
-  assign MEM_ADDR_AddressGenerationPlugin_tlbTranslateResult_TLBHitEntry_G = _zz_MEM_ADDR_AddressGenerationPlugin_tlbTranslateResult_TLBHitEntry_G;
-  assign MEM_ADDR_AddressGenerationPlugin_tlbTranslateResult_TLBHitEntry_PS = _zz_MEM_ADDR_AddressGenerationPlugin_tlbTranslateResult_TLBHitEntry_PS;
-  assign MEM_ADDR_AddressGenerationPlugin_tlbTranslateResult_TLBHitEntry_VPPN = _zz_MEM_ADDR_AddressGenerationPlugin_tlbTranslateResult_TLBHitEntry_VPPN;
-  assign MEM_ADDR_AddressGenerationPlugin_tlbTranslateResult_TLBHitEntry_V0 = _zz_MEM_ADDR_AddressGenerationPlugin_tlbTranslateResult_TLBHitEntry_V0;
-  assign MEM_ADDR_AddressGenerationPlugin_tlbTranslateResult_TLBHitEntry_D0 = _zz_MEM_ADDR_AddressGenerationPlugin_tlbTranslateResult_TLBHitEntry_D0;
-  assign MEM_ADDR_AddressGenerationPlugin_tlbTranslateResult_TLBHitEntry_MAT0 = _zz_MEM_ADDR_AddressGenerationPlugin_tlbTranslateResult_TLBHitEntry_MAT0;
-  assign MEM_ADDR_AddressGenerationPlugin_tlbTranslateResult_TLBHitEntry_PLV0 = _zz_MEM_ADDR_AddressGenerationPlugin_tlbTranslateResult_TLBHitEntry_PLV0;
-  assign MEM_ADDR_AddressGenerationPlugin_tlbTranslateResult_TLBHitEntry_PPN0 = _zz_MEM_ADDR_AddressGenerationPlugin_tlbTranslateResult_TLBHitEntry_PPN0;
-  assign MEM_ADDR_AddressGenerationPlugin_tlbTranslateResult_TLBHitEntry_V1 = _zz_MEM_ADDR_AddressGenerationPlugin_tlbTranslateResult_TLBHitEntry_V1;
-  assign MEM_ADDR_AddressGenerationPlugin_tlbTranslateResult_TLBHitEntry_D1 = _zz_MEM_ADDR_AddressGenerationPlugin_tlbTranslateResult_TLBHitEntry_D1;
-  assign MEM_ADDR_AddressGenerationPlugin_tlbTranslateResult_TLBHitEntry_MAT1 = _zz_MEM_ADDR_AddressGenerationPlugin_tlbTranslateResult_TLBHitEntry_MAT1;
-  assign MEM_ADDR_AddressGenerationPlugin_tlbTranslateResult_TLBHitEntry_PLV1 = _zz_MEM_ADDR_AddressGenerationPlugin_tlbTranslateResult_TLBHitEntry_PLV1;
-  assign MEM_ADDR_AddressGenerationPlugin_tlbTranslateResult_TLBHitEntry_PPN1 = _zz_MEM_ADDR_AddressGenerationPlugin_tlbTranslateResult_TLBHitEntry_PPN1;
-  assign MEM_ADDR_AddressGenerationPlugin_tlbTranslateResult_TLBHitEntry_v = (MEM_ADDR_MEMORY_ADDRESS[MEM_ADDR_AddressGenerationPlugin_tlbTranslateResult_TLBHitEntry_PS[4 : 0]] ? MEM_ADDR_AddressGenerationPlugin_tlbTranslateResult_TLBHitEntry_V1 : MEM_ADDR_AddressGenerationPlugin_tlbTranslateResult_TLBHitEntry_V0);
-  assign MEM_ADDR_AddressGenerationPlugin_tlbTranslateResult_TLBHitEntry_d = (MEM_ADDR_MEMORY_ADDRESS[MEM_ADDR_AddressGenerationPlugin_tlbTranslateResult_TLBHitEntry_PS[4 : 0]] ? MEM_ADDR_AddressGenerationPlugin_tlbTranslateResult_TLBHitEntry_D1 : MEM_ADDR_AddressGenerationPlugin_tlbTranslateResult_TLBHitEntry_D0);
-  assign MEM_ADDR_AddressGenerationPlugin_tlbTranslateResult_TLBHitEntry_mat = (MEM_ADDR_MEMORY_ADDRESS[MEM_ADDR_AddressGenerationPlugin_tlbTranslateResult_TLBHitEntry_PS[4 : 0]] ? MEM_ADDR_AddressGenerationPlugin_tlbTranslateResult_TLBHitEntry_MAT1 : MEM_ADDR_AddressGenerationPlugin_tlbTranslateResult_TLBHitEntry_MAT0);
-  assign MEM_ADDR_AddressGenerationPlugin_tlbTranslateResult_TLBHitEntry_plv = (MEM_ADDR_MEMORY_ADDRESS[MEM_ADDR_AddressGenerationPlugin_tlbTranslateResult_TLBHitEntry_PS[4 : 0]] ? MEM_ADDR_AddressGenerationPlugin_tlbTranslateResult_TLBHitEntry_PLV1 : MEM_ADDR_AddressGenerationPlugin_tlbTranslateResult_TLBHitEntry_PLV0);
-  assign MEM_ADDR_AddressGenerationPlugin_tlbTranslateResult_TLBHitEntry_ppn = (MEM_ADDR_MEMORY_ADDRESS[MEM_ADDR_AddressGenerationPlugin_tlbTranslateResult_TLBHitEntry_PS[4 : 0]] ? MEM_ADDR_AddressGenerationPlugin_tlbTranslateResult_TLBHitEntry_PPN1 : MEM_ADDR_AddressGenerationPlugin_tlbTranslateResult_TLBHitEntry_PPN0);
-  assign when_MMUPlugin_l285_1 = (! MEM_ADDR_AddressGenerationPlugin_tlbTranslateResult_TLBHit);
-  assign when_MMUPlugin_l289_1 = (! MEM_ADDR_AddressGenerationPlugin_tlbTranslateResult_TLBHitEntry_v);
-  assign when_MMUPlugin_l303_1 = (MEM_ADDR_AddressGenerationPlugin_tlbTranslateResult_TLBHitEntry_plv < ExceptionHandlerPlugin_CRMD_PLV);
-  assign when_MMUPlugin_l307_1 = ((switch_MMUPlugin_l290_1 == MemOperationType_STORE) && (! MEM_ADDR_AddressGenerationPlugin_tlbTranslateResult_TLBHitEntry_d));
-  assign MEM_ADDR_AddressGenerationPlugin_tlbTranslateResult_resultPhysAddr = ((MEM_ADDR_AddressGenerationPlugin_tlbTranslateResult_TLBHitEntry_PS == 6'h0c) ? {MEM_ADDR_AddressGenerationPlugin_tlbTranslateResult_TLBHitEntry_ppn,MEM_ADDR_MEMORY_ADDRESS[11 : 0]} : {MEM_ADDR_AddressGenerationPlugin_tlbTranslateResult_TLBHitEntry_ppn[19 : 9],MEM_ADDR_MEMORY_ADDRESS[20 : 0]});
-  assign MEM_ADDR_AddressGenerationPlugin_tlbTranslateResult_resultCached = MEM_ADDR_AddressGenerationPlugin_tlbTranslateResult_TLBHitEntry_mat[0];
-  assign MEM_ADDR_AddressGenerationPlugin_tlbTranslateResult_resultBundle_valid = MEM_ADDR_AddressGenerationPlugin_tlbTranslateResult_resultValid;
-  assign MEM_ADDR_AddressGenerationPlugin_tlbTranslateResult_resultBundle_payload_physAddr = MEM_ADDR_AddressGenerationPlugin_tlbTranslateResult_resultPhysAddr;
-  assign MEM_ADDR_AddressGenerationPlugin_tlbTranslateResult_resultBundle_payload_cached = MEM_ADDR_AddressGenerationPlugin_tlbTranslateResult_resultCached;
-  assign MEM_ADDR_AddressGenerationPlugin_tlbTranslateResult_resultBundle_payload_exception_raisePIL = MEM_ADDR_AddressGenerationPlugin_tlbTranslateResult_resultExceptionBundle_raisePIL;
-  assign MEM_ADDR_AddressGenerationPlugin_tlbTranslateResult_resultBundle_payload_exception_raisePIS = MEM_ADDR_AddressGenerationPlugin_tlbTranslateResult_resultExceptionBundle_raisePIS;
-  assign MEM_ADDR_AddressGenerationPlugin_tlbTranslateResult_resultBundle_payload_exception_raisePIF = MEM_ADDR_AddressGenerationPlugin_tlbTranslateResult_resultExceptionBundle_raisePIF;
-  assign MEM_ADDR_AddressGenerationPlugin_tlbTranslateResult_resultBundle_payload_exception_raisePME = MEM_ADDR_AddressGenerationPlugin_tlbTranslateResult_resultExceptionBundle_raisePME;
-  assign MEM_ADDR_AddressGenerationPlugin_tlbTranslateResult_resultBundle_payload_exception_raisePPI = MEM_ADDR_AddressGenerationPlugin_tlbTranslateResult_resultExceptionBundle_raisePPI;
-  assign MEM_ADDR_AddressGenerationPlugin_tlbTranslateResult_resultBundle_payload_exception_raiseTLBR = MEM_ADDR_AddressGenerationPlugin_tlbTranslateResult_resultExceptionBundle_raiseTLBR;
+  assign MEM_ADDR_AddressGenerationPlugin_tlbLookup_ASIDMatches_0 = (MMUPlugin_TLBTable_0_G || (MMUPlugin_TLBTable_0_ASID == MMUPlugin_ASID_ASID));
+  assign MEM_ADDR_AddressGenerationPlugin_tlbLookup_ASIDMatches_1 = (MMUPlugin_TLBTable_1_G || (MMUPlugin_TLBTable_1_ASID == MMUPlugin_ASID_ASID));
+  assign MEM_ADDR_AddressGenerationPlugin_tlbLookup_ASIDMatches_2 = (MMUPlugin_TLBTable_2_G || (MMUPlugin_TLBTable_2_ASID == MMUPlugin_ASID_ASID));
+  assign MEM_ADDR_AddressGenerationPlugin_tlbLookup_ASIDMatches_3 = (MMUPlugin_TLBTable_3_G || (MMUPlugin_TLBTable_3_ASID == MMUPlugin_ASID_ASID));
+  assign MEM_ADDR_AddressGenerationPlugin_tlbLookup_ASIDMatches_4 = (MMUPlugin_TLBTable_4_G || (MMUPlugin_TLBTable_4_ASID == MMUPlugin_ASID_ASID));
+  assign MEM_ADDR_AddressGenerationPlugin_tlbLookup_ASIDMatches_5 = (MMUPlugin_TLBTable_5_G || (MMUPlugin_TLBTable_5_ASID == MMUPlugin_ASID_ASID));
+  assign MEM_ADDR_AddressGenerationPlugin_tlbLookup_ASIDMatches_6 = (MMUPlugin_TLBTable_6_G || (MMUPlugin_TLBTable_6_ASID == MMUPlugin_ASID_ASID));
+  assign MEM_ADDR_AddressGenerationPlugin_tlbLookup_ASIDMatches_7 = (MMUPlugin_TLBTable_7_G || (MMUPlugin_TLBTable_7_ASID == MMUPlugin_ASID_ASID));
+  assign MEM_ADDR_AddressGenerationPlugin_tlbLookup_ASIDMatches_8 = (MMUPlugin_TLBTable_8_G || (MMUPlugin_TLBTable_8_ASID == MMUPlugin_ASID_ASID));
+  assign MEM_ADDR_AddressGenerationPlugin_tlbLookup_ASIDMatches_9 = (MMUPlugin_TLBTable_9_G || (MMUPlugin_TLBTable_9_ASID == MMUPlugin_ASID_ASID));
+  assign MEM_ADDR_AddressGenerationPlugin_tlbLookup_ASIDMatches_10 = (MMUPlugin_TLBTable_10_G || (MMUPlugin_TLBTable_10_ASID == MMUPlugin_ASID_ASID));
+  assign MEM_ADDR_AddressGenerationPlugin_tlbLookup_ASIDMatches_11 = (MMUPlugin_TLBTable_11_G || (MMUPlugin_TLBTable_11_ASID == MMUPlugin_ASID_ASID));
+  assign MEM_ADDR_AddressGenerationPlugin_tlbLookup_ASIDMatches_12 = (MMUPlugin_TLBTable_12_G || (MMUPlugin_TLBTable_12_ASID == MMUPlugin_ASID_ASID));
+  assign MEM_ADDR_AddressGenerationPlugin_tlbLookup_ASIDMatches_13 = (MMUPlugin_TLBTable_13_G || (MMUPlugin_TLBTable_13_ASID == MMUPlugin_ASID_ASID));
+  assign MEM_ADDR_AddressGenerationPlugin_tlbLookup_ASIDMatches_14 = (MMUPlugin_TLBTable_14_G || (MMUPlugin_TLBTable_14_ASID == MMUPlugin_ASID_ASID));
+  assign MEM_ADDR_AddressGenerationPlugin_tlbLookup_ASIDMatches_15 = (MMUPlugin_TLBTable_15_G || (MMUPlugin_TLBTable_15_ASID == MMUPlugin_ASID_ASID));
+  assign MEM_ADDR_AddressGenerationPlugin_tlbLookup_VPPNMatches_0 = ((MMUPlugin_TLBTable_0_PS == 6'h0c) ? (MMUPlugin_TLBTable_0_VPPN == MEM_ADDR_MEMORY_ADDRESS[31 : 13]) : (MMUPlugin_TLBTable_0_VPPN[18 : 9] == MEM_ADDR_MEMORY_ADDRESS[31 : 22]));
+  assign MEM_ADDR_AddressGenerationPlugin_tlbLookup_VPPNMatches_1 = ((MMUPlugin_TLBTable_1_PS == 6'h0c) ? (MMUPlugin_TLBTable_1_VPPN == MEM_ADDR_MEMORY_ADDRESS[31 : 13]) : (MMUPlugin_TLBTable_1_VPPN[18 : 9] == MEM_ADDR_MEMORY_ADDRESS[31 : 22]));
+  assign MEM_ADDR_AddressGenerationPlugin_tlbLookup_VPPNMatches_2 = ((MMUPlugin_TLBTable_2_PS == 6'h0c) ? (MMUPlugin_TLBTable_2_VPPN == MEM_ADDR_MEMORY_ADDRESS[31 : 13]) : (MMUPlugin_TLBTable_2_VPPN[18 : 9] == MEM_ADDR_MEMORY_ADDRESS[31 : 22]));
+  assign MEM_ADDR_AddressGenerationPlugin_tlbLookup_VPPNMatches_3 = ((MMUPlugin_TLBTable_3_PS == 6'h0c) ? (MMUPlugin_TLBTable_3_VPPN == MEM_ADDR_MEMORY_ADDRESS[31 : 13]) : (MMUPlugin_TLBTable_3_VPPN[18 : 9] == MEM_ADDR_MEMORY_ADDRESS[31 : 22]));
+  assign MEM_ADDR_AddressGenerationPlugin_tlbLookup_VPPNMatches_4 = ((MMUPlugin_TLBTable_4_PS == 6'h0c) ? (MMUPlugin_TLBTable_4_VPPN == MEM_ADDR_MEMORY_ADDRESS[31 : 13]) : (MMUPlugin_TLBTable_4_VPPN[18 : 9] == MEM_ADDR_MEMORY_ADDRESS[31 : 22]));
+  assign MEM_ADDR_AddressGenerationPlugin_tlbLookup_VPPNMatches_5 = ((MMUPlugin_TLBTable_5_PS == 6'h0c) ? (MMUPlugin_TLBTable_5_VPPN == MEM_ADDR_MEMORY_ADDRESS[31 : 13]) : (MMUPlugin_TLBTable_5_VPPN[18 : 9] == MEM_ADDR_MEMORY_ADDRESS[31 : 22]));
+  assign MEM_ADDR_AddressGenerationPlugin_tlbLookup_VPPNMatches_6 = ((MMUPlugin_TLBTable_6_PS == 6'h0c) ? (MMUPlugin_TLBTable_6_VPPN == MEM_ADDR_MEMORY_ADDRESS[31 : 13]) : (MMUPlugin_TLBTable_6_VPPN[18 : 9] == MEM_ADDR_MEMORY_ADDRESS[31 : 22]));
+  assign MEM_ADDR_AddressGenerationPlugin_tlbLookup_VPPNMatches_7 = ((MMUPlugin_TLBTable_7_PS == 6'h0c) ? (MMUPlugin_TLBTable_7_VPPN == MEM_ADDR_MEMORY_ADDRESS[31 : 13]) : (MMUPlugin_TLBTable_7_VPPN[18 : 9] == MEM_ADDR_MEMORY_ADDRESS[31 : 22]));
+  assign MEM_ADDR_AddressGenerationPlugin_tlbLookup_VPPNMatches_8 = ((MMUPlugin_TLBTable_8_PS == 6'h0c) ? (MMUPlugin_TLBTable_8_VPPN == MEM_ADDR_MEMORY_ADDRESS[31 : 13]) : (MMUPlugin_TLBTable_8_VPPN[18 : 9] == MEM_ADDR_MEMORY_ADDRESS[31 : 22]));
+  assign MEM_ADDR_AddressGenerationPlugin_tlbLookup_VPPNMatches_9 = ((MMUPlugin_TLBTable_9_PS == 6'h0c) ? (MMUPlugin_TLBTable_9_VPPN == MEM_ADDR_MEMORY_ADDRESS[31 : 13]) : (MMUPlugin_TLBTable_9_VPPN[18 : 9] == MEM_ADDR_MEMORY_ADDRESS[31 : 22]));
+  assign MEM_ADDR_AddressGenerationPlugin_tlbLookup_VPPNMatches_10 = ((MMUPlugin_TLBTable_10_PS == 6'h0c) ? (MMUPlugin_TLBTable_10_VPPN == MEM_ADDR_MEMORY_ADDRESS[31 : 13]) : (MMUPlugin_TLBTable_10_VPPN[18 : 9] == MEM_ADDR_MEMORY_ADDRESS[31 : 22]));
+  assign MEM_ADDR_AddressGenerationPlugin_tlbLookup_VPPNMatches_11 = ((MMUPlugin_TLBTable_11_PS == 6'h0c) ? (MMUPlugin_TLBTable_11_VPPN == MEM_ADDR_MEMORY_ADDRESS[31 : 13]) : (MMUPlugin_TLBTable_11_VPPN[18 : 9] == MEM_ADDR_MEMORY_ADDRESS[31 : 22]));
+  assign MEM_ADDR_AddressGenerationPlugin_tlbLookup_VPPNMatches_12 = ((MMUPlugin_TLBTable_12_PS == 6'h0c) ? (MMUPlugin_TLBTable_12_VPPN == MEM_ADDR_MEMORY_ADDRESS[31 : 13]) : (MMUPlugin_TLBTable_12_VPPN[18 : 9] == MEM_ADDR_MEMORY_ADDRESS[31 : 22]));
+  assign MEM_ADDR_AddressGenerationPlugin_tlbLookup_VPPNMatches_13 = ((MMUPlugin_TLBTable_13_PS == 6'h0c) ? (MMUPlugin_TLBTable_13_VPPN == MEM_ADDR_MEMORY_ADDRESS[31 : 13]) : (MMUPlugin_TLBTable_13_VPPN[18 : 9] == MEM_ADDR_MEMORY_ADDRESS[31 : 22]));
+  assign MEM_ADDR_AddressGenerationPlugin_tlbLookup_VPPNMatches_14 = ((MMUPlugin_TLBTable_14_PS == 6'h0c) ? (MMUPlugin_TLBTable_14_VPPN == MEM_ADDR_MEMORY_ADDRESS[31 : 13]) : (MMUPlugin_TLBTable_14_VPPN[18 : 9] == MEM_ADDR_MEMORY_ADDRESS[31 : 22]));
+  assign MEM_ADDR_AddressGenerationPlugin_tlbLookup_VPPNMatches_15 = ((MMUPlugin_TLBTable_15_PS == 6'h0c) ? (MMUPlugin_TLBTable_15_VPPN == MEM_ADDR_MEMORY_ADDRESS[31 : 13]) : (MMUPlugin_TLBTable_15_VPPN[18 : 9] == MEM_ADDR_MEMORY_ADDRESS[31 : 22]));
+  assign MEM_ADDR_AddressGenerationPlugin_tlbLookup_EntryHits_0 = ((MMUPlugin_TLBTable_0_E && MEM_ADDR_AddressGenerationPlugin_tlbLookup_ASIDMatches_0) && MEM_ADDR_AddressGenerationPlugin_tlbLookup_VPPNMatches_0);
+  assign MEM_ADDR_AddressGenerationPlugin_tlbLookup_EntryHits_1 = ((MMUPlugin_TLBTable_1_E && MEM_ADDR_AddressGenerationPlugin_tlbLookup_ASIDMatches_1) && MEM_ADDR_AddressGenerationPlugin_tlbLookup_VPPNMatches_1);
+  assign MEM_ADDR_AddressGenerationPlugin_tlbLookup_EntryHits_2 = ((MMUPlugin_TLBTable_2_E && MEM_ADDR_AddressGenerationPlugin_tlbLookup_ASIDMatches_2) && MEM_ADDR_AddressGenerationPlugin_tlbLookup_VPPNMatches_2);
+  assign MEM_ADDR_AddressGenerationPlugin_tlbLookup_EntryHits_3 = ((MMUPlugin_TLBTable_3_E && MEM_ADDR_AddressGenerationPlugin_tlbLookup_ASIDMatches_3) && MEM_ADDR_AddressGenerationPlugin_tlbLookup_VPPNMatches_3);
+  assign MEM_ADDR_AddressGenerationPlugin_tlbLookup_EntryHits_4 = ((MMUPlugin_TLBTable_4_E && MEM_ADDR_AddressGenerationPlugin_tlbLookup_ASIDMatches_4) && MEM_ADDR_AddressGenerationPlugin_tlbLookup_VPPNMatches_4);
+  assign MEM_ADDR_AddressGenerationPlugin_tlbLookup_EntryHits_5 = ((MMUPlugin_TLBTable_5_E && MEM_ADDR_AddressGenerationPlugin_tlbLookup_ASIDMatches_5) && MEM_ADDR_AddressGenerationPlugin_tlbLookup_VPPNMatches_5);
+  assign MEM_ADDR_AddressGenerationPlugin_tlbLookup_EntryHits_6 = ((MMUPlugin_TLBTable_6_E && MEM_ADDR_AddressGenerationPlugin_tlbLookup_ASIDMatches_6) && MEM_ADDR_AddressGenerationPlugin_tlbLookup_VPPNMatches_6);
+  assign MEM_ADDR_AddressGenerationPlugin_tlbLookup_EntryHits_7 = ((MMUPlugin_TLBTable_7_E && MEM_ADDR_AddressGenerationPlugin_tlbLookup_ASIDMatches_7) && MEM_ADDR_AddressGenerationPlugin_tlbLookup_VPPNMatches_7);
+  assign MEM_ADDR_AddressGenerationPlugin_tlbLookup_EntryHits_8 = ((MMUPlugin_TLBTable_8_E && MEM_ADDR_AddressGenerationPlugin_tlbLookup_ASIDMatches_8) && MEM_ADDR_AddressGenerationPlugin_tlbLookup_VPPNMatches_8);
+  assign MEM_ADDR_AddressGenerationPlugin_tlbLookup_EntryHits_9 = ((MMUPlugin_TLBTable_9_E && MEM_ADDR_AddressGenerationPlugin_tlbLookup_ASIDMatches_9) && MEM_ADDR_AddressGenerationPlugin_tlbLookup_VPPNMatches_9);
+  assign MEM_ADDR_AddressGenerationPlugin_tlbLookup_EntryHits_10 = ((MMUPlugin_TLBTable_10_E && MEM_ADDR_AddressGenerationPlugin_tlbLookup_ASIDMatches_10) && MEM_ADDR_AddressGenerationPlugin_tlbLookup_VPPNMatches_10);
+  assign MEM_ADDR_AddressGenerationPlugin_tlbLookup_EntryHits_11 = ((MMUPlugin_TLBTable_11_E && MEM_ADDR_AddressGenerationPlugin_tlbLookup_ASIDMatches_11) && MEM_ADDR_AddressGenerationPlugin_tlbLookup_VPPNMatches_11);
+  assign MEM_ADDR_AddressGenerationPlugin_tlbLookup_EntryHits_12 = ((MMUPlugin_TLBTable_12_E && MEM_ADDR_AddressGenerationPlugin_tlbLookup_ASIDMatches_12) && MEM_ADDR_AddressGenerationPlugin_tlbLookup_VPPNMatches_12);
+  assign MEM_ADDR_AddressGenerationPlugin_tlbLookup_EntryHits_13 = ((MMUPlugin_TLBTable_13_E && MEM_ADDR_AddressGenerationPlugin_tlbLookup_ASIDMatches_13) && MEM_ADDR_AddressGenerationPlugin_tlbLookup_VPPNMatches_13);
+  assign MEM_ADDR_AddressGenerationPlugin_tlbLookup_EntryHits_14 = ((MMUPlugin_TLBTable_14_E && MEM_ADDR_AddressGenerationPlugin_tlbLookup_ASIDMatches_14) && MEM_ADDR_AddressGenerationPlugin_tlbLookup_VPPNMatches_14);
+  assign MEM_ADDR_AddressGenerationPlugin_tlbLookup_EntryHits_15 = ((MMUPlugin_TLBTable_15_E && MEM_ADDR_AddressGenerationPlugin_tlbLookup_ASIDMatches_15) && MEM_ADDR_AddressGenerationPlugin_tlbLookup_VPPNMatches_15);
+  assign MEM_ADDR_AddressGenerationPlugin_tlbLookup_snapshot_hit = ({MEM_ADDR_AddressGenerationPlugin_tlbLookup_EntryHits_15,{MEM_ADDR_AddressGenerationPlugin_tlbLookup_EntryHits_14,{MEM_ADDR_AddressGenerationPlugin_tlbLookup_EntryHits_13,{MEM_ADDR_AddressGenerationPlugin_tlbLookup_EntryHits_12,{MEM_ADDR_AddressGenerationPlugin_tlbLookup_EntryHits_11,{MEM_ADDR_AddressGenerationPlugin_tlbLookup_EntryHits_10,{MEM_ADDR_AddressGenerationPlugin_tlbLookup_EntryHits_9,{MEM_ADDR_AddressGenerationPlugin_tlbLookup_EntryHits_8,{MEM_ADDR_AddressGenerationPlugin_tlbLookup_EntryHits_7,{_zz_MEM_ADDR_AddressGenerationPlugin_tlbLookup_snapshot_hit,_zz_MEM_ADDR_AddressGenerationPlugin_tlbLookup_snapshot_hit_1}}}}}}}}}} != 16'h0);
+  assign _zz_MEM_ADDR_AddressGenerationPlugin_tlbLookup_snapshot_entry_E = (((((((MEM_ADDR_AddressGenerationPlugin_tlbLookup_EntryHits_1 || MEM_ADDR_AddressGenerationPlugin_tlbLookup_EntryHits_3) || MEM_ADDR_AddressGenerationPlugin_tlbLookup_EntryHits_5) || MEM_ADDR_AddressGenerationPlugin_tlbLookup_EntryHits_7) || MEM_ADDR_AddressGenerationPlugin_tlbLookup_EntryHits_9) || MEM_ADDR_AddressGenerationPlugin_tlbLookup_EntryHits_11) || MEM_ADDR_AddressGenerationPlugin_tlbLookup_EntryHits_13) || MEM_ADDR_AddressGenerationPlugin_tlbLookup_EntryHits_15);
+  assign _zz_MEM_ADDR_AddressGenerationPlugin_tlbLookup_snapshot_entry_E_1 = (((((((MEM_ADDR_AddressGenerationPlugin_tlbLookup_EntryHits_2 || MEM_ADDR_AddressGenerationPlugin_tlbLookup_EntryHits_3) || MEM_ADDR_AddressGenerationPlugin_tlbLookup_EntryHits_6) || MEM_ADDR_AddressGenerationPlugin_tlbLookup_EntryHits_7) || MEM_ADDR_AddressGenerationPlugin_tlbLookup_EntryHits_10) || MEM_ADDR_AddressGenerationPlugin_tlbLookup_EntryHits_11) || MEM_ADDR_AddressGenerationPlugin_tlbLookup_EntryHits_14) || MEM_ADDR_AddressGenerationPlugin_tlbLookup_EntryHits_15);
+  assign _zz_MEM_ADDR_AddressGenerationPlugin_tlbLookup_snapshot_entry_E_2 = (((((((MEM_ADDR_AddressGenerationPlugin_tlbLookup_EntryHits_4 || MEM_ADDR_AddressGenerationPlugin_tlbLookup_EntryHits_5) || MEM_ADDR_AddressGenerationPlugin_tlbLookup_EntryHits_6) || MEM_ADDR_AddressGenerationPlugin_tlbLookup_EntryHits_7) || MEM_ADDR_AddressGenerationPlugin_tlbLookup_EntryHits_12) || MEM_ADDR_AddressGenerationPlugin_tlbLookup_EntryHits_13) || MEM_ADDR_AddressGenerationPlugin_tlbLookup_EntryHits_14) || MEM_ADDR_AddressGenerationPlugin_tlbLookup_EntryHits_15);
+  assign _zz_MEM_ADDR_AddressGenerationPlugin_tlbLookup_snapshot_entry_E_3 = (((((((MEM_ADDR_AddressGenerationPlugin_tlbLookup_EntryHits_8 || MEM_ADDR_AddressGenerationPlugin_tlbLookup_EntryHits_9) || MEM_ADDR_AddressGenerationPlugin_tlbLookup_EntryHits_10) || MEM_ADDR_AddressGenerationPlugin_tlbLookup_EntryHits_11) || MEM_ADDR_AddressGenerationPlugin_tlbLookup_EntryHits_12) || MEM_ADDR_AddressGenerationPlugin_tlbLookup_EntryHits_13) || MEM_ADDR_AddressGenerationPlugin_tlbLookup_EntryHits_14) || MEM_ADDR_AddressGenerationPlugin_tlbLookup_EntryHits_15);
+  assign _zz_MEM_ADDR_AddressGenerationPlugin_tlbLookup_snapshot_entry_E_4 = {_zz_MEM_ADDR_AddressGenerationPlugin_tlbLookup_snapshot_entry_E_3,{_zz_MEM_ADDR_AddressGenerationPlugin_tlbLookup_snapshot_entry_E_2,{_zz_MEM_ADDR_AddressGenerationPlugin_tlbLookup_snapshot_entry_E_1,_zz_MEM_ADDR_AddressGenerationPlugin_tlbLookup_snapshot_entry_E}}};
+  assign _zz_MEM_ADDR_AddressGenerationPlugin_tlbLookup_snapshot_entry_E_5 = {_zz__zz_MEM_ADDR_AddressGenerationPlugin_tlbLookup_snapshot_entry_E_5,{_zz__zz_MEM_ADDR_AddressGenerationPlugin_tlbLookup_snapshot_entry_E_5_1,{_zz__zz_MEM_ADDR_AddressGenerationPlugin_tlbLookup_snapshot_entry_E_5_2,{_zz__zz_MEM_ADDR_AddressGenerationPlugin_tlbLookup_snapshot_entry_E_5_3,{_zz__zz_MEM_ADDR_AddressGenerationPlugin_tlbLookup_snapshot_entry_E_5_4,{_zz__zz_MEM_ADDR_AddressGenerationPlugin_tlbLookup_snapshot_entry_E_5_5,{_zz__zz_MEM_ADDR_AddressGenerationPlugin_tlbLookup_snapshot_entry_E_5_6,{_zz__zz_MEM_ADDR_AddressGenerationPlugin_tlbLookup_snapshot_entry_E_5_7,{_zz__zz_MEM_ADDR_AddressGenerationPlugin_tlbLookup_snapshot_entry_E_5_8,{_zz__zz_MEM_ADDR_AddressGenerationPlugin_tlbLookup_snapshot_entry_E_5_9,{_zz__zz_MEM_ADDR_AddressGenerationPlugin_tlbLookup_snapshot_entry_E_5_10,{_zz__zz_MEM_ADDR_AddressGenerationPlugin_tlbLookup_snapshot_entry_E_5_11,{_zz__zz_MEM_ADDR_AddressGenerationPlugin_tlbLookup_snapshot_entry_E_5_12,{_zz__zz_MEM_ADDR_AddressGenerationPlugin_tlbLookup_snapshot_entry_E_5_13,_zz__zz_MEM_ADDR_AddressGenerationPlugin_tlbLookup_snapshot_entry_E_5_14}}}}}}}}}}}}}};
+  assign MEM_ADDR_AddressGenerationPlugin_tlbLookup_snapshot_entry_E = _zz_MEM_ADDR_AddressGenerationPlugin_tlbLookup_snapshot_entry_E_5[0];
+  assign MEM_ADDR_AddressGenerationPlugin_tlbLookup_snapshot_entry_ASID = _zz_MEM_ADDR_AddressGenerationPlugin_tlbLookup_snapshot_entry_E_5[10 : 1];
+  assign MEM_ADDR_AddressGenerationPlugin_tlbLookup_snapshot_entry_G = _zz_MEM_ADDR_AddressGenerationPlugin_tlbLookup_snapshot_entry_E_5[11];
+  assign MEM_ADDR_AddressGenerationPlugin_tlbLookup_snapshot_entry_PS = _zz_MEM_ADDR_AddressGenerationPlugin_tlbLookup_snapshot_entry_E_5[17 : 12];
+  assign MEM_ADDR_AddressGenerationPlugin_tlbLookup_snapshot_entry_VPPN = _zz_MEM_ADDR_AddressGenerationPlugin_tlbLookup_snapshot_entry_E_5[36 : 18];
+  assign MEM_ADDR_AddressGenerationPlugin_tlbLookup_snapshot_entry_V0 = _zz_MEM_ADDR_AddressGenerationPlugin_tlbLookup_snapshot_entry_E_5[37];
+  assign MEM_ADDR_AddressGenerationPlugin_tlbLookup_snapshot_entry_D0 = _zz_MEM_ADDR_AddressGenerationPlugin_tlbLookup_snapshot_entry_E_5[38];
+  assign MEM_ADDR_AddressGenerationPlugin_tlbLookup_snapshot_entry_MAT0 = _zz_MEM_ADDR_AddressGenerationPlugin_tlbLookup_snapshot_entry_E_5[40 : 39];
+  assign MEM_ADDR_AddressGenerationPlugin_tlbLookup_snapshot_entry_PLV0 = _zz_MEM_ADDR_AddressGenerationPlugin_tlbLookup_snapshot_entry_E_5[42 : 41];
+  assign MEM_ADDR_AddressGenerationPlugin_tlbLookup_snapshot_entry_PPN0 = _zz_MEM_ADDR_AddressGenerationPlugin_tlbLookup_snapshot_entry_E_5[62 : 43];
+  assign MEM_ADDR_AddressGenerationPlugin_tlbLookup_snapshot_entry_V1 = _zz_MEM_ADDR_AddressGenerationPlugin_tlbLookup_snapshot_entry_E_5[63];
+  assign MEM_ADDR_AddressGenerationPlugin_tlbLookup_snapshot_entry_D1 = _zz_MEM_ADDR_AddressGenerationPlugin_tlbLookup_snapshot_entry_E_5[64];
+  assign MEM_ADDR_AddressGenerationPlugin_tlbLookup_snapshot_entry_MAT1 = _zz_MEM_ADDR_AddressGenerationPlugin_tlbLookup_snapshot_entry_E_5[66 : 65];
+  assign MEM_ADDR_AddressGenerationPlugin_tlbLookup_snapshot_entry_PLV1 = _zz_MEM_ADDR_AddressGenerationPlugin_tlbLookup_snapshot_entry_E_5[68 : 67];
+  assign MEM_ADDR_AddressGenerationPlugin_tlbLookup_snapshot_entry_PPN1 = _zz_MEM_ADDR_AddressGenerationPlugin_tlbLookup_snapshot_entry_E_5[88 : 69];
   assign MEM_ADDR_AddressGenerationPlugin_savedCSR_CRMD_DA = ExceptionHandlerPlugin_CRMD_DA;
   assign MEM_ADDR_AddressGenerationPlugin_savedCSR_CRMD_PG = ExceptionHandlerPlugin_CRMD_PG;
   assign MEM_ADDR_AddressGenerationPlugin_savedCSR_CRMD_DATF = ExceptionHandlerPlugin_CRMD_DATF;
   assign MEM_ADDR_AddressGenerationPlugin_savedCSR_CRMD_DATM = ExceptionHandlerPlugin_CRMD_DATM;
   assign MEM_MEM1_AddressGenerationPlugin_excAsLoad = (! MEM_MEM1_ISSUE_SLOT_uop_isStore);
-  assign _zz_when_MMUPlugin_l359 = (MEM_MEM1_ISSUE_SLOT_uop_isStore ? MemOperationType_STORE : MemOperationType_LOAD);
+  assign switch_MMUPlugin_l331_1 = (MEM_MEM1_ISSUE_SLOT_uop_isStore ? MemOperationType_STORE : MemOperationType_LOAD);
+  assign MEM_MEM1_AddressGenerationPlugin_tlbTranslateResult_resultValid = 1'b1;
+  always @(*) begin
+    MEM_MEM1_AddressGenerationPlugin_tlbTranslateResult_resultExceptionBundle_raisePIL = 1'b0;
+    if(when_MMUPlugin_l330_1) begin
+      case(switch_MMUPlugin_l331_1)
+        MemOperationType_FETCH : begin
+        end
+        MemOperationType_LOAD : begin
+          MEM_MEM1_AddressGenerationPlugin_tlbTranslateResult_resultExceptionBundle_raisePIL = 1'b1;
+        end
+        default : begin
+        end
+      endcase
+    end
+  end
+
+  always @(*) begin
+    MEM_MEM1_AddressGenerationPlugin_tlbTranslateResult_resultExceptionBundle_raisePIS = 1'b0;
+    if(when_MMUPlugin_l330_1) begin
+      case(switch_MMUPlugin_l331_1)
+        MemOperationType_FETCH : begin
+        end
+        MemOperationType_LOAD : begin
+        end
+        default : begin
+          MEM_MEM1_AddressGenerationPlugin_tlbTranslateResult_resultExceptionBundle_raisePIS = 1'b1;
+        end
+      endcase
+    end
+  end
+
+  always @(*) begin
+    MEM_MEM1_AddressGenerationPlugin_tlbTranslateResult_resultExceptionBundle_raisePIF = 1'b0;
+    if(when_MMUPlugin_l330_1) begin
+      case(switch_MMUPlugin_l331_1)
+        MemOperationType_FETCH : begin
+          MEM_MEM1_AddressGenerationPlugin_tlbTranslateResult_resultExceptionBundle_raisePIF = 1'b1;
+        end
+        MemOperationType_LOAD : begin
+        end
+        default : begin
+        end
+      endcase
+    end
+  end
+
+  always @(*) begin
+    MEM_MEM1_AddressGenerationPlugin_tlbTranslateResult_resultExceptionBundle_raisePME = 1'b0;
+    if(when_MMUPlugin_l348_1) begin
+      MEM_MEM1_AddressGenerationPlugin_tlbTranslateResult_resultExceptionBundle_raisePME = 1'b1;
+    end
+  end
+
+  always @(*) begin
+    MEM_MEM1_AddressGenerationPlugin_tlbTranslateResult_resultExceptionBundle_raisePPI = 1'b0;
+    if(when_MMUPlugin_l344_1) begin
+      MEM_MEM1_AddressGenerationPlugin_tlbTranslateResult_resultExceptionBundle_raisePPI = 1'b1;
+    end
+  end
+
+  always @(*) begin
+    MEM_MEM1_AddressGenerationPlugin_tlbTranslateResult_resultExceptionBundle_raiseTLBR = 1'b0;
+    if(when_MMUPlugin_l326_1) begin
+      MEM_MEM1_AddressGenerationPlugin_tlbTranslateResult_resultExceptionBundle_raiseTLBR = 1'b1;
+    end
+  end
+
+  assign MEM_MEM1_AddressGenerationPlugin_tlbTranslateResult_TLBHitEntry_v = (MEM_MEM1_MEMORY_ADDRESS[MEM_MEM1_TLB_LOOKUP_SNAPSHOT_entry_PS[4 : 0]] ? MEM_MEM1_TLB_LOOKUP_SNAPSHOT_entry_V1 : MEM_MEM1_TLB_LOOKUP_SNAPSHOT_entry_V0);
+  assign MEM_MEM1_AddressGenerationPlugin_tlbTranslateResult_TLBHitEntry_d = (MEM_MEM1_MEMORY_ADDRESS[MEM_MEM1_TLB_LOOKUP_SNAPSHOT_entry_PS[4 : 0]] ? MEM_MEM1_TLB_LOOKUP_SNAPSHOT_entry_D1 : MEM_MEM1_TLB_LOOKUP_SNAPSHOT_entry_D0);
+  assign MEM_MEM1_AddressGenerationPlugin_tlbTranslateResult_TLBHitEntry_mat = (MEM_MEM1_MEMORY_ADDRESS[MEM_MEM1_TLB_LOOKUP_SNAPSHOT_entry_PS[4 : 0]] ? MEM_MEM1_TLB_LOOKUP_SNAPSHOT_entry_MAT1 : MEM_MEM1_TLB_LOOKUP_SNAPSHOT_entry_MAT0);
+  assign MEM_MEM1_AddressGenerationPlugin_tlbTranslateResult_TLBHitEntry_plv = (MEM_MEM1_MEMORY_ADDRESS[MEM_MEM1_TLB_LOOKUP_SNAPSHOT_entry_PS[4 : 0]] ? MEM_MEM1_TLB_LOOKUP_SNAPSHOT_entry_PLV1 : MEM_MEM1_TLB_LOOKUP_SNAPSHOT_entry_PLV0);
+  assign MEM_MEM1_AddressGenerationPlugin_tlbTranslateResult_TLBHitEntry_ppn = (MEM_MEM1_MEMORY_ADDRESS[MEM_MEM1_TLB_LOOKUP_SNAPSHOT_entry_PS[4 : 0]] ? MEM_MEM1_TLB_LOOKUP_SNAPSHOT_entry_PPN1 : MEM_MEM1_TLB_LOOKUP_SNAPSHOT_entry_PPN0);
+  assign when_MMUPlugin_l326_1 = (! MEM_MEM1_TLB_LOOKUP_SNAPSHOT_hit);
+  assign when_MMUPlugin_l330_1 = (! MEM_MEM1_AddressGenerationPlugin_tlbTranslateResult_TLBHitEntry_v);
+  assign when_MMUPlugin_l344_1 = (MEM_MEM1_AddressGenerationPlugin_tlbTranslateResult_TLBHitEntry_plv < ExceptionHandlerPlugin_CRMD_PLV);
+  assign when_MMUPlugin_l348_1 = ((switch_MMUPlugin_l331_1 == MemOperationType_STORE) && (! MEM_MEM1_AddressGenerationPlugin_tlbTranslateResult_TLBHitEntry_d));
+  assign MEM_MEM1_AddressGenerationPlugin_tlbTranslateResult_resultPhysAddr = ((MEM_MEM1_TLB_LOOKUP_SNAPSHOT_entry_PS == 6'h0c) ? {MEM_MEM1_AddressGenerationPlugin_tlbTranslateResult_TLBHitEntry_ppn,MEM_MEM1_MEMORY_ADDRESS[11 : 0]} : {MEM_MEM1_AddressGenerationPlugin_tlbTranslateResult_TLBHitEntry_ppn[19 : 9],MEM_MEM1_MEMORY_ADDRESS[20 : 0]});
+  assign MEM_MEM1_AddressGenerationPlugin_tlbTranslateResult_resultCached = MEM_MEM1_AddressGenerationPlugin_tlbTranslateResult_TLBHitEntry_mat[0];
+  assign MEM_MEM1_AddressGenerationPlugin_tlbTranslateResult_resultBundle_valid = MEM_MEM1_AddressGenerationPlugin_tlbTranslateResult_resultValid;
+  assign MEM_MEM1_AddressGenerationPlugin_tlbTranslateResult_resultBundle_payload_physAddr = MEM_MEM1_AddressGenerationPlugin_tlbTranslateResult_resultPhysAddr;
+  assign MEM_MEM1_AddressGenerationPlugin_tlbTranslateResult_resultBundle_payload_cached = MEM_MEM1_AddressGenerationPlugin_tlbTranslateResult_resultCached;
+  assign MEM_MEM1_AddressGenerationPlugin_tlbTranslateResult_resultBundle_payload_exception_raisePIL = MEM_MEM1_AddressGenerationPlugin_tlbTranslateResult_resultExceptionBundle_raisePIL;
+  assign MEM_MEM1_AddressGenerationPlugin_tlbTranslateResult_resultBundle_payload_exception_raisePIS = MEM_MEM1_AddressGenerationPlugin_tlbTranslateResult_resultExceptionBundle_raisePIS;
+  assign MEM_MEM1_AddressGenerationPlugin_tlbTranslateResult_resultBundle_payload_exception_raisePIF = MEM_MEM1_AddressGenerationPlugin_tlbTranslateResult_resultExceptionBundle_raisePIF;
+  assign MEM_MEM1_AddressGenerationPlugin_tlbTranslateResult_resultBundle_payload_exception_raisePME = MEM_MEM1_AddressGenerationPlugin_tlbTranslateResult_resultExceptionBundle_raisePME;
+  assign MEM_MEM1_AddressGenerationPlugin_tlbTranslateResult_resultBundle_payload_exception_raisePPI = MEM_MEM1_AddressGenerationPlugin_tlbTranslateResult_resultExceptionBundle_raisePPI;
+  assign MEM_MEM1_AddressGenerationPlugin_tlbTranslateResult_resultBundle_payload_exception_raiseTLBR = MEM_MEM1_AddressGenerationPlugin_tlbTranslateResult_resultExceptionBundle_raiseTLBR;
+  assign _zz_when_MMUPlugin_l400 = (MEM_MEM1_ISSUE_SLOT_uop_isStore ? MemOperationType_STORE : MemOperationType_LOAD);
   always @(*) begin
     MEM_MEM1_AddressGenerationPlugin_translateResult_resultValid = 1'b0;
-    if(when_MMUPlugin_l339_1) begin
-      MEM_MEM1_AddressGenerationPlugin_translateResult_resultValid = MEM_MEM1_TLB_TRANSLATE_RESULT_valid;
+    if(when_MMUPlugin_l380_1) begin
+      MEM_MEM1_AddressGenerationPlugin_translateResult_resultValid = MEM_MEM1_AddressGenerationPlugin_tlbTranslateResult_resultBundle_valid;
     end
-    if(when_MMUPlugin_l347_1) begin
+    if(when_MMUPlugin_l388_1) begin
       MEM_MEM1_AddressGenerationPlugin_translateResult_resultValid = MEM_MEM1_DIRECT_TRANSLATE_RESULT_valid;
     end
-    if(when_MMUPlugin_l355_1) begin
+    if(when_MMUPlugin_l396_1) begin
       MEM_MEM1_AddressGenerationPlugin_translateResult_resultValid = 1'b1;
     end
   end
 
   always @(*) begin
     MEM_MEM1_AddressGenerationPlugin_translateResult_resultPhysAddr = 32'h0;
-    if(when_MMUPlugin_l339_1) begin
-      MEM_MEM1_AddressGenerationPlugin_translateResult_resultPhysAddr = MEM_MEM1_TLB_TRANSLATE_RESULT_payload_physAddr;
+    if(when_MMUPlugin_l380_1) begin
+      MEM_MEM1_AddressGenerationPlugin_translateResult_resultPhysAddr = MEM_MEM1_AddressGenerationPlugin_tlbTranslateResult_resultBundle_payload_physAddr;
     end
-    if(when_MMUPlugin_l347_1) begin
+    if(when_MMUPlugin_l388_1) begin
       MEM_MEM1_AddressGenerationPlugin_translateResult_resultPhysAddr = MEM_MEM1_DIRECT_TRANSLATE_RESULT_payload_physAddr;
     end
-    if(when_MMUPlugin_l355_1) begin
+    if(when_MMUPlugin_l396_1) begin
       MEM_MEM1_AddressGenerationPlugin_translateResult_resultPhysAddr = MEM_MEM1_MEMORY_ADDRESS;
     end
   end
 
   always @(*) begin
     MEM_MEM1_AddressGenerationPlugin_translateResult_resultCached = 1'b0;
-    if(when_MMUPlugin_l339_1) begin
-      MEM_MEM1_AddressGenerationPlugin_translateResult_resultCached = MEM_MEM1_TLB_TRANSLATE_RESULT_payload_cached;
+    if(when_MMUPlugin_l380_1) begin
+      MEM_MEM1_AddressGenerationPlugin_translateResult_resultCached = MEM_MEM1_AddressGenerationPlugin_tlbTranslateResult_resultBundle_payload_cached;
     end
-    if(when_MMUPlugin_l347_1) begin
+    if(when_MMUPlugin_l388_1) begin
       MEM_MEM1_AddressGenerationPlugin_translateResult_resultCached = MEM_MEM1_DIRECT_TRANSLATE_RESULT_payload_cached;
     end
-    if(when_MMUPlugin_l355_1) begin
-      if(when_MMUPlugin_l359_1) begin
+    if(when_MMUPlugin_l396_1) begin
+      if(when_MMUPlugin_l400_1) begin
         MEM_MEM1_AddressGenerationPlugin_translateResult_resultCached = MEM_MEM1_TRANSLATE_SAVED_CSR_CRMD_DATF[0];
       end else begin
         MEM_MEM1_AddressGenerationPlugin_translateResult_resultCached = MEM_MEM1_TRANSLATE_SAVED_CSR_CRMD_DATM[0];
@@ -71843,86 +71918,86 @@ module MyCPUCore (
 
   always @(*) begin
     MEM_MEM1_AddressGenerationPlugin_translateResult_resultExceptionBundle_raisePIL = 1'b0;
-    if(when_MMUPlugin_l339_1) begin
-      MEM_MEM1_AddressGenerationPlugin_translateResult_resultExceptionBundle_raisePIL = MEM_MEM1_TLB_TRANSLATE_RESULT_payload_exception_raisePIL;
+    if(when_MMUPlugin_l380_1) begin
+      MEM_MEM1_AddressGenerationPlugin_translateResult_resultExceptionBundle_raisePIL = MEM_MEM1_AddressGenerationPlugin_tlbTranslateResult_resultBundle_payload_exception_raisePIL;
     end
-    if(when_MMUPlugin_l347_1) begin
+    if(when_MMUPlugin_l388_1) begin
       MEM_MEM1_AddressGenerationPlugin_translateResult_resultExceptionBundle_raisePIL = MEM_MEM1_DIRECT_TRANSLATE_RESULT_payload_exception_raisePIL;
     end
-    if(when_MMUPlugin_l355_1) begin
+    if(when_MMUPlugin_l396_1) begin
       MEM_MEM1_AddressGenerationPlugin_translateResult_resultExceptionBundle_raisePIL = 1'b0;
     end
   end
 
   always @(*) begin
     MEM_MEM1_AddressGenerationPlugin_translateResult_resultExceptionBundle_raisePIS = 1'b0;
-    if(when_MMUPlugin_l339_1) begin
-      MEM_MEM1_AddressGenerationPlugin_translateResult_resultExceptionBundle_raisePIS = MEM_MEM1_TLB_TRANSLATE_RESULT_payload_exception_raisePIS;
+    if(when_MMUPlugin_l380_1) begin
+      MEM_MEM1_AddressGenerationPlugin_translateResult_resultExceptionBundle_raisePIS = MEM_MEM1_AddressGenerationPlugin_tlbTranslateResult_resultBundle_payload_exception_raisePIS;
     end
-    if(when_MMUPlugin_l347_1) begin
+    if(when_MMUPlugin_l388_1) begin
       MEM_MEM1_AddressGenerationPlugin_translateResult_resultExceptionBundle_raisePIS = MEM_MEM1_DIRECT_TRANSLATE_RESULT_payload_exception_raisePIS;
     end
-    if(when_MMUPlugin_l355_1) begin
+    if(when_MMUPlugin_l396_1) begin
       MEM_MEM1_AddressGenerationPlugin_translateResult_resultExceptionBundle_raisePIS = 1'b0;
     end
   end
 
   always @(*) begin
     MEM_MEM1_AddressGenerationPlugin_translateResult_resultExceptionBundle_raisePIF = 1'b0;
-    if(when_MMUPlugin_l339_1) begin
-      MEM_MEM1_AddressGenerationPlugin_translateResult_resultExceptionBundle_raisePIF = MEM_MEM1_TLB_TRANSLATE_RESULT_payload_exception_raisePIF;
+    if(when_MMUPlugin_l380_1) begin
+      MEM_MEM1_AddressGenerationPlugin_translateResult_resultExceptionBundle_raisePIF = MEM_MEM1_AddressGenerationPlugin_tlbTranslateResult_resultBundle_payload_exception_raisePIF;
     end
-    if(when_MMUPlugin_l347_1) begin
+    if(when_MMUPlugin_l388_1) begin
       MEM_MEM1_AddressGenerationPlugin_translateResult_resultExceptionBundle_raisePIF = MEM_MEM1_DIRECT_TRANSLATE_RESULT_payload_exception_raisePIF;
     end
-    if(when_MMUPlugin_l355_1) begin
+    if(when_MMUPlugin_l396_1) begin
       MEM_MEM1_AddressGenerationPlugin_translateResult_resultExceptionBundle_raisePIF = 1'b0;
     end
   end
 
   always @(*) begin
     MEM_MEM1_AddressGenerationPlugin_translateResult_resultExceptionBundle_raisePME = 1'b0;
-    if(when_MMUPlugin_l339_1) begin
-      MEM_MEM1_AddressGenerationPlugin_translateResult_resultExceptionBundle_raisePME = MEM_MEM1_TLB_TRANSLATE_RESULT_payload_exception_raisePME;
+    if(when_MMUPlugin_l380_1) begin
+      MEM_MEM1_AddressGenerationPlugin_translateResult_resultExceptionBundle_raisePME = MEM_MEM1_AddressGenerationPlugin_tlbTranslateResult_resultBundle_payload_exception_raisePME;
     end
-    if(when_MMUPlugin_l347_1) begin
+    if(when_MMUPlugin_l388_1) begin
       MEM_MEM1_AddressGenerationPlugin_translateResult_resultExceptionBundle_raisePME = MEM_MEM1_DIRECT_TRANSLATE_RESULT_payload_exception_raisePME;
     end
-    if(when_MMUPlugin_l355_1) begin
+    if(when_MMUPlugin_l396_1) begin
       MEM_MEM1_AddressGenerationPlugin_translateResult_resultExceptionBundle_raisePME = 1'b0;
     end
   end
 
   always @(*) begin
     MEM_MEM1_AddressGenerationPlugin_translateResult_resultExceptionBundle_raisePPI = 1'b0;
-    if(when_MMUPlugin_l339_1) begin
-      MEM_MEM1_AddressGenerationPlugin_translateResult_resultExceptionBundle_raisePPI = MEM_MEM1_TLB_TRANSLATE_RESULT_payload_exception_raisePPI;
+    if(when_MMUPlugin_l380_1) begin
+      MEM_MEM1_AddressGenerationPlugin_translateResult_resultExceptionBundle_raisePPI = MEM_MEM1_AddressGenerationPlugin_tlbTranslateResult_resultBundle_payload_exception_raisePPI;
     end
-    if(when_MMUPlugin_l347_1) begin
+    if(when_MMUPlugin_l388_1) begin
       MEM_MEM1_AddressGenerationPlugin_translateResult_resultExceptionBundle_raisePPI = MEM_MEM1_DIRECT_TRANSLATE_RESULT_payload_exception_raisePPI;
     end
-    if(when_MMUPlugin_l355_1) begin
+    if(when_MMUPlugin_l396_1) begin
       MEM_MEM1_AddressGenerationPlugin_translateResult_resultExceptionBundle_raisePPI = 1'b0;
     end
   end
 
   always @(*) begin
     MEM_MEM1_AddressGenerationPlugin_translateResult_resultExceptionBundle_raiseTLBR = 1'b0;
-    if(when_MMUPlugin_l339_1) begin
-      MEM_MEM1_AddressGenerationPlugin_translateResult_resultExceptionBundle_raiseTLBR = MEM_MEM1_TLB_TRANSLATE_RESULT_payload_exception_raiseTLBR;
+    if(when_MMUPlugin_l380_1) begin
+      MEM_MEM1_AddressGenerationPlugin_translateResult_resultExceptionBundle_raiseTLBR = MEM_MEM1_AddressGenerationPlugin_tlbTranslateResult_resultBundle_payload_exception_raiseTLBR;
     end
-    if(when_MMUPlugin_l347_1) begin
+    if(when_MMUPlugin_l388_1) begin
       MEM_MEM1_AddressGenerationPlugin_translateResult_resultExceptionBundle_raiseTLBR = MEM_MEM1_DIRECT_TRANSLATE_RESULT_payload_exception_raiseTLBR;
     end
-    if(when_MMUPlugin_l355_1) begin
+    if(when_MMUPlugin_l396_1) begin
       MEM_MEM1_AddressGenerationPlugin_translateResult_resultExceptionBundle_raiseTLBR = 1'b0;
     end
   end
 
-  assign when_MMUPlugin_l339_1 = (((! MEM_MEM1_TRANSLATE_SAVED_CSR_CRMD_DA) && MEM_MEM1_TRANSLATE_SAVED_CSR_CRMD_PG) && MEM_MEM1_TLB_TRANSLATE_RESULT_valid);
-  assign when_MMUPlugin_l347_1 = (((! MEM_MEM1_TRANSLATE_SAVED_CSR_CRMD_DA) && MEM_MEM1_TRANSLATE_SAVED_CSR_CRMD_PG) && MEM_MEM1_DIRECT_TRANSLATE_RESULT_valid);
-  assign when_MMUPlugin_l355_1 = (MEM_MEM1_TRANSLATE_SAVED_CSR_CRMD_DA && (! MEM_MEM1_TRANSLATE_SAVED_CSR_CRMD_PG));
-  assign when_MMUPlugin_l359_1 = (_zz_when_MMUPlugin_l359 == MemOperationType_FETCH);
+  assign when_MMUPlugin_l380_1 = (((! MEM_MEM1_TRANSLATE_SAVED_CSR_CRMD_DA) && MEM_MEM1_TRANSLATE_SAVED_CSR_CRMD_PG) && MEM_MEM1_AddressGenerationPlugin_tlbTranslateResult_resultBundle_valid);
+  assign when_MMUPlugin_l388_1 = (((! MEM_MEM1_TRANSLATE_SAVED_CSR_CRMD_DA) && MEM_MEM1_TRANSLATE_SAVED_CSR_CRMD_PG) && MEM_MEM1_DIRECT_TRANSLATE_RESULT_valid);
+  assign when_MMUPlugin_l396_1 = (MEM_MEM1_TRANSLATE_SAVED_CSR_CRMD_DA && (! MEM_MEM1_TRANSLATE_SAVED_CSR_CRMD_PG));
+  assign when_MMUPlugin_l400_1 = (_zz_when_MMUPlugin_l400 == MemOperationType_FETCH);
   assign MEM_MEM1_AddressGenerationPlugin_translateResult_resultBundle_valid = MEM_MEM1_AddressGenerationPlugin_translateResult_resultValid;
   assign MEM_MEM1_AddressGenerationPlugin_translateResult_resultBundle_payload_physAddr = MEM_MEM1_AddressGenerationPlugin_translateResult_resultPhysAddr;
   assign MEM_MEM1_AddressGenerationPlugin_translateResult_resultBundle_payload_cached = MEM_MEM1_AddressGenerationPlugin_translateResult_resultCached;
@@ -78945,7 +79020,7 @@ module MyCPUCore (
         TLBOpType_NONE : begin
         end
         TLBOpType_TLBSRCH : begin
-          if(when_MMUPlugin_l404) begin
+          if(when_MMUPlugin_l445) begin
             MMUPlugin_TLBIDX_INDEX <= _zz_MMUPlugin_TLBIDX_INDEX_4;
             MMUPlugin_TLBIDX_NE <= 1'b0;
           end else begin
@@ -78990,7 +79065,7 @@ module MyCPUCore (
           end
         end
         TLBOpType_TLBWR : begin
-          if(when_MMUPlugin_l455) begin
+          if(when_MMUPlugin_l496) begin
             if(_zz_279) begin
               MMUPlugin_TLBTable_0_E <= 1'b1;
             end
@@ -79764,7 +79839,7 @@ module MyCPUCore (
         end
         TLBOpType_TLBFILL : begin
           MMUPlugin_victim_idx <= (MMUPlugin_victim_idx + 4'b0001);
-          if(when_MMUPlugin_l479) begin
+          if(when_MMUPlugin_l520) begin
             if(_zz_296) begin
               MMUPlugin_TLBTable_0_E <= 1'b1;
             end
@@ -110511,15 +110586,22 @@ module MyCPUCore (
       IF1_to_IF2_DIRECT_TRANSLATE_RESULT_payload_exception_raiseTLBR <= IF1_DIRECT_TRANSLATE_RESULT_payload_exception_raiseTLBR;
     end
     if(when_Pipeline_l158_9) begin
-      IF1_to_IF2_TLB_TRANSLATE_RESULT_valid <= IF1_TLB_TRANSLATE_RESULT_valid;
-      IF1_to_IF2_TLB_TRANSLATE_RESULT_payload_physAddr <= IF1_TLB_TRANSLATE_RESULT_payload_physAddr;
-      IF1_to_IF2_TLB_TRANSLATE_RESULT_payload_cached <= IF1_TLB_TRANSLATE_RESULT_payload_cached;
-      IF1_to_IF2_TLB_TRANSLATE_RESULT_payload_exception_raisePIL <= IF1_TLB_TRANSLATE_RESULT_payload_exception_raisePIL;
-      IF1_to_IF2_TLB_TRANSLATE_RESULT_payload_exception_raisePIS <= IF1_TLB_TRANSLATE_RESULT_payload_exception_raisePIS;
-      IF1_to_IF2_TLB_TRANSLATE_RESULT_payload_exception_raisePIF <= IF1_TLB_TRANSLATE_RESULT_payload_exception_raisePIF;
-      IF1_to_IF2_TLB_TRANSLATE_RESULT_payload_exception_raisePME <= IF1_TLB_TRANSLATE_RESULT_payload_exception_raisePME;
-      IF1_to_IF2_TLB_TRANSLATE_RESULT_payload_exception_raisePPI <= IF1_TLB_TRANSLATE_RESULT_payload_exception_raisePPI;
-      IF1_to_IF2_TLB_TRANSLATE_RESULT_payload_exception_raiseTLBR <= IF1_TLB_TRANSLATE_RESULT_payload_exception_raiseTLBR;
+      IF1_to_IF2_TLB_LOOKUP_SNAPSHOT_hit <= IF1_TLB_LOOKUP_SNAPSHOT_hit;
+      IF1_to_IF2_TLB_LOOKUP_SNAPSHOT_entry_E <= IF1_TLB_LOOKUP_SNAPSHOT_entry_E;
+      IF1_to_IF2_TLB_LOOKUP_SNAPSHOT_entry_ASID <= IF1_TLB_LOOKUP_SNAPSHOT_entry_ASID;
+      IF1_to_IF2_TLB_LOOKUP_SNAPSHOT_entry_G <= IF1_TLB_LOOKUP_SNAPSHOT_entry_G;
+      IF1_to_IF2_TLB_LOOKUP_SNAPSHOT_entry_PS <= IF1_TLB_LOOKUP_SNAPSHOT_entry_PS;
+      IF1_to_IF2_TLB_LOOKUP_SNAPSHOT_entry_VPPN <= IF1_TLB_LOOKUP_SNAPSHOT_entry_VPPN;
+      IF1_to_IF2_TLB_LOOKUP_SNAPSHOT_entry_V0 <= IF1_TLB_LOOKUP_SNAPSHOT_entry_V0;
+      IF1_to_IF2_TLB_LOOKUP_SNAPSHOT_entry_D0 <= IF1_TLB_LOOKUP_SNAPSHOT_entry_D0;
+      IF1_to_IF2_TLB_LOOKUP_SNAPSHOT_entry_MAT0 <= IF1_TLB_LOOKUP_SNAPSHOT_entry_MAT0;
+      IF1_to_IF2_TLB_LOOKUP_SNAPSHOT_entry_PLV0 <= IF1_TLB_LOOKUP_SNAPSHOT_entry_PLV0;
+      IF1_to_IF2_TLB_LOOKUP_SNAPSHOT_entry_PPN0 <= IF1_TLB_LOOKUP_SNAPSHOT_entry_PPN0;
+      IF1_to_IF2_TLB_LOOKUP_SNAPSHOT_entry_V1 <= IF1_TLB_LOOKUP_SNAPSHOT_entry_V1;
+      IF1_to_IF2_TLB_LOOKUP_SNAPSHOT_entry_D1 <= IF1_TLB_LOOKUP_SNAPSHOT_entry_D1;
+      IF1_to_IF2_TLB_LOOKUP_SNAPSHOT_entry_MAT1 <= IF1_TLB_LOOKUP_SNAPSHOT_entry_MAT1;
+      IF1_to_IF2_TLB_LOOKUP_SNAPSHOT_entry_PLV1 <= IF1_TLB_LOOKUP_SNAPSHOT_entry_PLV1;
+      IF1_to_IF2_TLB_LOOKUP_SNAPSHOT_entry_PPN1 <= IF1_TLB_LOOKUP_SNAPSHOT_entry_PPN1;
     end
     if(when_Pipeline_l158_10) begin
       IF1_to_IF2_TRANSLATE_SAVED_CSR_CRMD_DA <= IF1_TRANSLATE_SAVED_CSR_CRMD_DA;
@@ -111433,15 +111515,22 @@ module MyCPUCore (
       MEM_ADDR_to_MEM_MEM1_DIRECT_TRANSLATE_RESULT_payload_exception_raiseTLBR <= MEM_ADDR_DIRECT_TRANSLATE_RESULT_payload_exception_raiseTLBR;
     end
     if(when_Pipeline_l158_90) begin
-      MEM_ADDR_to_MEM_MEM1_TLB_TRANSLATE_RESULT_valid <= MEM_ADDR_TLB_TRANSLATE_RESULT_valid;
-      MEM_ADDR_to_MEM_MEM1_TLB_TRANSLATE_RESULT_payload_physAddr <= MEM_ADDR_TLB_TRANSLATE_RESULT_payload_physAddr;
-      MEM_ADDR_to_MEM_MEM1_TLB_TRANSLATE_RESULT_payload_cached <= MEM_ADDR_TLB_TRANSLATE_RESULT_payload_cached;
-      MEM_ADDR_to_MEM_MEM1_TLB_TRANSLATE_RESULT_payload_exception_raisePIL <= MEM_ADDR_TLB_TRANSLATE_RESULT_payload_exception_raisePIL;
-      MEM_ADDR_to_MEM_MEM1_TLB_TRANSLATE_RESULT_payload_exception_raisePIS <= MEM_ADDR_TLB_TRANSLATE_RESULT_payload_exception_raisePIS;
-      MEM_ADDR_to_MEM_MEM1_TLB_TRANSLATE_RESULT_payload_exception_raisePIF <= MEM_ADDR_TLB_TRANSLATE_RESULT_payload_exception_raisePIF;
-      MEM_ADDR_to_MEM_MEM1_TLB_TRANSLATE_RESULT_payload_exception_raisePME <= MEM_ADDR_TLB_TRANSLATE_RESULT_payload_exception_raisePME;
-      MEM_ADDR_to_MEM_MEM1_TLB_TRANSLATE_RESULT_payload_exception_raisePPI <= MEM_ADDR_TLB_TRANSLATE_RESULT_payload_exception_raisePPI;
-      MEM_ADDR_to_MEM_MEM1_TLB_TRANSLATE_RESULT_payload_exception_raiseTLBR <= MEM_ADDR_TLB_TRANSLATE_RESULT_payload_exception_raiseTLBR;
+      MEM_ADDR_to_MEM_MEM1_TLB_LOOKUP_SNAPSHOT_hit <= MEM_ADDR_TLB_LOOKUP_SNAPSHOT_hit;
+      MEM_ADDR_to_MEM_MEM1_TLB_LOOKUP_SNAPSHOT_entry_E <= MEM_ADDR_TLB_LOOKUP_SNAPSHOT_entry_E;
+      MEM_ADDR_to_MEM_MEM1_TLB_LOOKUP_SNAPSHOT_entry_ASID <= MEM_ADDR_TLB_LOOKUP_SNAPSHOT_entry_ASID;
+      MEM_ADDR_to_MEM_MEM1_TLB_LOOKUP_SNAPSHOT_entry_G <= MEM_ADDR_TLB_LOOKUP_SNAPSHOT_entry_G;
+      MEM_ADDR_to_MEM_MEM1_TLB_LOOKUP_SNAPSHOT_entry_PS <= MEM_ADDR_TLB_LOOKUP_SNAPSHOT_entry_PS;
+      MEM_ADDR_to_MEM_MEM1_TLB_LOOKUP_SNAPSHOT_entry_VPPN <= MEM_ADDR_TLB_LOOKUP_SNAPSHOT_entry_VPPN;
+      MEM_ADDR_to_MEM_MEM1_TLB_LOOKUP_SNAPSHOT_entry_V0 <= MEM_ADDR_TLB_LOOKUP_SNAPSHOT_entry_V0;
+      MEM_ADDR_to_MEM_MEM1_TLB_LOOKUP_SNAPSHOT_entry_D0 <= MEM_ADDR_TLB_LOOKUP_SNAPSHOT_entry_D0;
+      MEM_ADDR_to_MEM_MEM1_TLB_LOOKUP_SNAPSHOT_entry_MAT0 <= MEM_ADDR_TLB_LOOKUP_SNAPSHOT_entry_MAT0;
+      MEM_ADDR_to_MEM_MEM1_TLB_LOOKUP_SNAPSHOT_entry_PLV0 <= MEM_ADDR_TLB_LOOKUP_SNAPSHOT_entry_PLV0;
+      MEM_ADDR_to_MEM_MEM1_TLB_LOOKUP_SNAPSHOT_entry_PPN0 <= MEM_ADDR_TLB_LOOKUP_SNAPSHOT_entry_PPN0;
+      MEM_ADDR_to_MEM_MEM1_TLB_LOOKUP_SNAPSHOT_entry_V1 <= MEM_ADDR_TLB_LOOKUP_SNAPSHOT_entry_V1;
+      MEM_ADDR_to_MEM_MEM1_TLB_LOOKUP_SNAPSHOT_entry_D1 <= MEM_ADDR_TLB_LOOKUP_SNAPSHOT_entry_D1;
+      MEM_ADDR_to_MEM_MEM1_TLB_LOOKUP_SNAPSHOT_entry_MAT1 <= MEM_ADDR_TLB_LOOKUP_SNAPSHOT_entry_MAT1;
+      MEM_ADDR_to_MEM_MEM1_TLB_LOOKUP_SNAPSHOT_entry_PLV1 <= MEM_ADDR_TLB_LOOKUP_SNAPSHOT_entry_PLV1;
+      MEM_ADDR_to_MEM_MEM1_TLB_LOOKUP_SNAPSHOT_entry_PPN1 <= MEM_ADDR_TLB_LOOKUP_SNAPSHOT_entry_PPN1;
     end
     if(when_Pipeline_l158_91) begin
       MEM_ADDR_to_MEM_MEM1_TRANSLATE_SAVED_CSR_CRMD_DA <= MEM_ADDR_TRANSLATE_SAVED_CSR_CRMD_DA;

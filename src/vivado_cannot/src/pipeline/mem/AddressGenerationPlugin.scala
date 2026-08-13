@@ -85,7 +85,7 @@ class AddressGenerationPlugin(config: MyCPUConfig) extends Plugin[MemPipeline] {
       val mmu = pipeline.globalService(classOf[MMUPlugin])
       val directTranslateResult =
         mmu.directTranslate(virtAddr, Mux(isStore, MemOperationType.STORE, MemOperationType.LOAD))
-      val tlbTranslateResult = mmu.tlbTranslate(virtAddr, Mux(isStore, MemOperationType.STORE, MemOperationType.LOAD))
+      val tlbLookup = mmu.tlbTranslateStage1(virtAddr)
       val savedCSR = TranslateCSRBundle()
       savedCSR.CRMD_DA := excHandler.CRMD_DA
       savedCSR.CRMD_PG := excHandler.CRMD_PG
@@ -93,7 +93,7 @@ class AddressGenerationPlugin(config: MyCPUConfig) extends Plugin[MemPipeline] {
       savedCSR.CRMD_DATM := excHandler.CRMD_DATM
 
       insert(DIRECT_TRANSLATE_RESULT) := directTranslateResult.resultBundle
-      insert(TLB_TRANSLATE_RESULT) := tlbTranslateResult.resultBundle
+      insert(TLB_LOOKUP_SNAPSHOT) := tlbLookup.snapshot
       insert(TRANSLATE_SAVED_CSR) := savedCSR
     }
 
@@ -112,11 +112,16 @@ class AddressGenerationPlugin(config: MyCPUConfig) extends Plugin[MemPipeline] {
       val physAddr = insert(MEMORY_ADDRESS_PHYSICAL)
 
       val MMU = pipeline.globalService(classOf[MMUPlugin])
+      val tlbTranslateResult = MMU.tlbTranslateStage2(
+        virtAddr,
+        Mux(isStore, MemOperationType.STORE, MemOperationType.LOAD),
+        input(TLB_LOOKUP_SNAPSHOT)
+      )
       val translateResult = MMU.translate(
         virtAddr,
         Mux(isStore, MemOperationType.STORE, MemOperationType.LOAD),
         input(DIRECT_TRANSLATE_RESULT),
-        input(TLB_TRANSLATE_RESULT),
+        tlbTranslateResult.resultBundle,
         input(TRANSLATE_SAVED_CSR)
       )
       insert(ADDRESS_CACHED) := translateResult.resultBundle.cached
