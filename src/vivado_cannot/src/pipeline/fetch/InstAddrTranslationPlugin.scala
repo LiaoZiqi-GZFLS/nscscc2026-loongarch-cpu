@@ -45,7 +45,7 @@ class InstAddrTranslatePlugin() extends Plugin[FetchPipeline] {
       ADEF := (input(PC)(0) || input(PC)(1))
 
       val directTranslateResult = mmu.directTranslate(virtPC, MemOperationType.FETCH)
-      val tlbTranslateResult = mmu.tlbTranslate(virtPC, MemOperationType.FETCH)
+      val tlbLookup = mmu.tlbTranslateStage1(virtPC)
       val savedCSR = TranslateCSRBundle()
       savedCSR.CRMD_DA := excHandler.CRMD_DA
       savedCSR.CRMD_PG := excHandler.CRMD_PG
@@ -53,7 +53,7 @@ class InstAddrTranslatePlugin() extends Plugin[FetchPipeline] {
       savedCSR.CRMD_DATM := excHandler.CRMD_DATM
 
       insert(DIRECT_TRANSLATE_RESULT) := directTranslateResult.resultBundle
-      insert(TLB_TRANSLATE_RESULT) := tlbTranslateResult.resultBundle
+      insert(TLB_LOOKUP_SNAPSHOT) := tlbLookup.snapshot
       insert(TRANSLATE_SAVED_CSR) := savedCSR
     }
 
@@ -68,11 +68,16 @@ class InstAddrTranslatePlugin() extends Plugin[FetchPipeline] {
       val pcCached = insert(ADDRESS_CACHED)
       val tlbRefill = insert(IS_TLB_REFILL)
 
+      val tlbTranslateResult = mmu.tlbTranslateStage2(
+        virtPC,
+        MemOperationType.FETCH,
+        input(TLB_LOOKUP_SNAPSHOT)
+      )
       val translateResult = mmu.translate(
         virtPC,
         MemOperationType.FETCH,
         input(DIRECT_TRANSLATE_RESULT),
-        input(TLB_TRANSLATE_RESULT),
+        tlbTranslateResult.resultBundle,
         input(TRANSLATE_SAVED_CSR)
       )
       PIF := translateResult.resultExceptionBundle.raisePIF

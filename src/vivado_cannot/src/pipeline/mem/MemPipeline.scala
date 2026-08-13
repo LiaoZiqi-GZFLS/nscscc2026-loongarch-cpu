@@ -31,7 +31,7 @@ class MemSignals(config: MyCPUConfig) {
   object TMP_RESULT extends Stageable(BWord())
 
   object DIRECT_TRANSLATE_RESULT extends Stageable(Flow(TranslateResultBundle()))
-  object TLB_TRANSLATE_RESULT extends Stageable(Flow(TranslateResultBundle()))
+  object TLB_LOOKUP_SNAPSHOT extends Stageable(TLBLookupSnapshot())
   object TRANSLATE_SAVED_CSR extends Stageable(TranslateCSRBundle())
 
   object ADDRESS_CACHED extends Stageable(Bool())

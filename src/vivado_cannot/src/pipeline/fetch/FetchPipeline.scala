@@ -24,7 +24,7 @@ class FetchSignals(config: MyCPUConfig) {
 
   // ADDR
   object DIRECT_TRANSLATE_RESULT extends Stageable(Flow(TranslateResultBundle()))
-  object TLB_TRANSLATE_RESULT extends Stageable(Flow(TranslateResultBundle()))
+  object TLB_LOOKUP_SNAPSHOT extends Stageable(TLBLookupSnapshot())
   object TRANSLATE_SAVED_CSR extends Stageable(TranslateCSRBundle())
 
   // BTB & BPU & RAS

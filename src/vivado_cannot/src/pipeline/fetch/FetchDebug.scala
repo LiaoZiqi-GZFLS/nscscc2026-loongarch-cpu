@@ -5,8 +5,9 @@ import NOP.pipeline._
 import NOP.builder._
 import NOP.utils._
 import NOP._
-import NOP.constants.`enum`.{CacheOpType, CacheSelType}
+import NOP.constants.`enum`.{CacheOpType, CacheSelType, MemOperationType}
 import NOP.pipeline.core.{CommitPlugin, ExceptionMuxPlugin}
+import NOP.pipeline.priviledge.MMUPlugin
 import spinal.core._
 import spinal.lib._
 import spinal.lib.bus.amba4.axi._
@@ -47,7 +48,15 @@ class FetchDebugPlugin(config: MyCPUConfig) extends Plugin[FetchPipeline] {
       .physAddr
       .asBits
     DIF1_directTranslate_enabled := pipeline.IF1.output(pipeline.signals.DIRECT_TRANSLATE_RESULT).valid
-    DIF1_tlbTranslate_physAddr := pipeline.IF1.output(pipeline.signals.TLB_TRANSLATE_RESULT).payload.physAddr.asBits
+    // TLB 查找拆级后,stage1 不再产生完整 physAddr;两个观测口统一改由
+    // IF2 的 stage2 结果驱动(与 DIF2 同周期视图;core_top 未连接这些端口)。
+    val mmuDebug = pipeline.globalService(classOf[MMUPlugin])
+    val tlbStage2Debug = mmuDebug.tlbTranslateStage2(
+      pipeline.IF2.input(pipeline.signals.PC),
+      MemOperationType.FETCH,
+      pipeline.IF2.input(pipeline.signals.TLB_LOOKUP_SNAPSHOT)
+    )
+    DIF1_tlbTranslate_physAddr := tlbStage2Debug.resultPhysAddr.asBits
     DIF2_valid := pipeline.IF2.arbitration.isValid
     DIF2_stuck := pipeline.IF2.arbitration.isStuck
     DIF2_pc := pipeline.IF2.input(pipeline.signals.PC).asBits
@@ -57,7 +66,7 @@ class FetchDebugPlugin(config: MyCPUConfig) extends Plugin[FetchPipeline] {
       .payload
       .physAddr
       .asBits
-    DIF2_tlbTranslate_physAddr := pipeline.IF2.input(pipeline.signals.TLB_TRANSLATE_RESULT).payload.physAddr.asBits
+    DIF2_tlbTranslate_physAddr := tlbStage2Debug.resultPhysAddr.asBits
     DIF2_physAddr := pipeline.IF2.output(pipeline.signals.PC_PHYSICAL).asBits
     DIF2_fetchPacket_payload_valid := pipeline.IF2
       .output(pipeline.signals.FETCH_PACKET)
