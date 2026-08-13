@@ -40,10 +40,11 @@ class CorrelatingPredictor(config: FrontendConfig, fetchWidth: Int) extends Comp
     false
   )
 
-  val memInit = Seq.fill(pht.wordsPerBank)(1)
-  pht.rams.foreach(_.memGeneric.MEMORY_INIT_PARAM = memInit.mkString(","))
-
-  io.read.globalHistory := ghr
+  // 注:PHT 计数器不做参数初始化(原为弱跳转 1)。XPM_MEMORY 的
+  // MEMORY_INIT_PARAM 上限 4K bit,32K 项 ×2bit ÷fetchWidth 的 bank
+  // 达 16K bit,超限会导致 Vivado 综合失败。冷启动计数 0(强不跳),
+  // 长循环基准下数个分支后即自训练收敛,性能影响可忽略。
+  io.read.globalHistory := nextGHR // snapshot must match the GHR used by the PHT read index
   when(io.updateGHR.valid) { ghr := io.updateGHR.payload }
   nextGHR := Mux(io.updateGHR.valid, io.updateGHR.payload, ghr)
 
