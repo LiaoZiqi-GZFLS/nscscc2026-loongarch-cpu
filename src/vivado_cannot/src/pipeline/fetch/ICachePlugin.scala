@@ -88,9 +88,11 @@ class ICachePlugin(config: MyCPUConfig) extends Plugin[FetchPipeline] {
       insert(ICACHE_INFO) := rPort.rsp
     }
 
-    // * Plugin Area into IF2
-    IF2 plug new Area {
-      import IF2._
+    // * Plugin Area into IF3
+    // 三级流水:IF1 发 RAM 读+TLB stage1,IF2 解析出 physPC,IF3 做
+    // VIPT 命中检查/refill/组包。PC/PC_PHYSICAL/ICACHE_* 经级间寄存器流动。
+    IF3 plug new Area {
+      import IF3._
 
       val fetchExcHandler = pipeline.service(classOf[ExceptionMuxPlugin[FetchPipeline]])
       val reqValid = arbitration.isValidOnEntry && !output(fetchExcHandler.ExceptionSignals.EXCEPTION_OCCURRED)

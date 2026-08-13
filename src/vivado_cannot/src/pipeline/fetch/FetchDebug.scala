@@ -68,13 +68,13 @@ class FetchDebugPlugin(config: MyCPUConfig) extends Plugin[FetchPipeline] {
       .asBits
     DIF2_tlbTranslate_physAddr := tlbStage2Debug.resultPhysAddr.asBits
     DIF2_physAddr := pipeline.IF2.output(pipeline.signals.PC_PHYSICAL).asBits
-    DIF2_fetchPacket_payload_valid := pipeline.IF2
+    DIF2_fetchPacket_payload_valid := pipeline.IF3
       .output(pipeline.signals.FETCH_PACKET)
       .insts
       .map { inst => inst.valid }
       .asBits()
     DIF2_fetchPacket_payload_insts := Vec(
-      pipeline.IF2.output(pipeline.signals.FETCH_PACKET).insts.map { inst => inst.payload }
+      pipeline.IF3.output(pipeline.signals.FETCH_PACKET).insts.map { inst => inst.payload }
     )
 
   }

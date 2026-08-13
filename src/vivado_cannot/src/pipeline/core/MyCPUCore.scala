@@ -23,6 +23,7 @@ class MyCPUCore(config: MyCPUConfig) extends Component with MultiPipeline {
     override val signals = new FetchSignals(config)
     override val IF1: Stage = newStage()
     override val IF2: Stage = newStage()
+    override val IF3: Stage = newStage()
 
     plugins ++= List(
       new ProgramCounterPlugin(config.frontend),
@@ -141,6 +142,7 @@ class MyCPUCore(config: MyCPUConfig) extends Component with MultiPipeline {
   // ! Stages
   val IF1: Stage = fetchPipeline.IF1
   val IF2: Stage = fetchPipeline.IF2
+  val IF3: Stage = fetchPipeline.IF3
   val ID: Stage = decodePipeline.ID
   val RENAME: Stage = decodePipeline.RENAME
   val DISPATCH: Stage = decodePipeline.DISPATCH

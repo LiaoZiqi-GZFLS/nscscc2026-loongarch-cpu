@@ -48,5 +48,6 @@ trait FetchPipeline extends Pipeline {
   type T = FetchPipeline
   val IF1: Stage = null
   val IF2: Stage = null
+  val IF3: Stage = null
   val signals: FetchSignals
 }

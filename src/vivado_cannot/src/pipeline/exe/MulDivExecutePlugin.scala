@@ -125,6 +125,17 @@ class MulDivExecutePlugin(val config: MyCPUConfig) extends Plugin[ExecutePipelin
           absRj(31 downto smallDivSize) === 0 && absRk(31 downto smallDivSize) === 0
         else
           False
+      // 时序:in16Bits 是操作数组合逻辑,直接喂 haltItself 会形成
+      // REG_READ_RSP -> |Rj|进位链 -> 提前完成比较 -> notStuck -> PRF busy
+      // 清除 -> 发射队列唤醒的长链。除法期间操作数被 stall 保持稳定,
+      // in16Bits 全程不变,第一拍锁存后唤醒链从寄存器出发(第一拍两个
+      // divider 的 rsp.valid 均为 0,必然 halt,锁存值不参与该拍决策)。
+      val in16BitsHeld =
+        if (useEarlyOut) {
+          val reg = RegInit(False)
+          when(isDivision && isFirstCycle) { reg := in16Bits }
+          reg
+        } else False
       val (quotient, remainder) = {
         val divider = new math.UnsignedDivider(32, 32, false)
         divider.io.flush := False
@@ -144,10 +155,10 @@ class MulDivExecutePlugin(val config: MyCPUConfig) extends Plugin[ExecutePipelin
           divider16.io.rsp.ready := !arbitration.isStuckByOthers
 
           when(isDivision) {
-            arbitration.haltItself setWhen (!in16Bits && !divider.io.rsp.valid)
-            arbitration.haltItself setWhen (in16Bits && !divider16.io.rsp.valid)
+            arbitration.haltItself setWhen (!in16BitsHeld && !divider.io.rsp.valid)
+            arbitration.haltItself setWhen (in16BitsHeld && !divider16.io.rsp.valid)
           }
-          when(in16Bits) {
+          when(in16BitsHeld) {
             absQuotient := divider16.io.rsp.quotient.resized
             absRemainder := divider16.io.rsp.remainder.resized
           } otherwise {

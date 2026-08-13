@@ -147,11 +147,6 @@ class GlobalPredictorBTBPlugin(config: FrontendConfig) extends Plugin[FetchPipel
       val jumpPayload = input(PREDICT_JUMP_PAYLOAD)
       val jumpWay = input(PREDICT_JUMP_WAY)
 
-      val lastValidWay = U(fetchWidth - 1)
-      for (i <- fetchWidth - 1 downto 1) {
-        when(!input(FETCH_PACKET).insts(i).valid) { lastValidWay := i - 1 }
-      }
-
       val payloadTarget = jumpPayload.target @@ U(0, 2 bits)
       insert(PREDICT_ADDR) := payloadTarget
       val rasPredict = pipeline.service(classOf[ReturnAddressStackPlugin]).rasPredict

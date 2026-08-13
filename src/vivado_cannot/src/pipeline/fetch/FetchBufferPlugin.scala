@@ -40,12 +40,12 @@ class FetchBufferPlugin(config: MyCPUConfig) extends Plugin[FetchPipeline] {
       popPtr.asOutput()
     }
   def popPorts = bufferFIFO.io.pop
-  override def build(pipeline: FetchPipeline): Unit = pipeline.IF2 plug new Area {
+  override def build(pipeline: FetchPipeline): Unit = pipeline.IF3 plug new Area {
 
     val flush = pipeline.globalService(classOf[CommitPlugin]).needFlush
     bufferFIFO.flush := flush // clear when need flush. Is this OK??
 
-    import pipeline.IF2._
+    import pipeline.IF3._
     import pipeline.signals._
     // data有效当且仅当不超过cache line
     val pcWordOffset = input(PC)(icache.wordOffsetRange)

@@ -1,6 +1,7 @@
 // Generator : SpinalHDL v1.8.1    git head : 2a7592004363e5b40ec43e1f122ed8641cd8965b
 // Component : mycpu_top
-// Date      : 04/08/2026, 02:16:30
+// Git hash  : 72d7aa12bb8c80d145ee38a090955c0ee7a084c1
+// Date      : 13/08/2026, 19:04:27
 
 `timescale 1ns/1ps
 
@@ -7590,11 +7591,11 @@ module MyCPUCore (
   localparam MemOperationType_STORE = 2'd2;
   localparam CommitPlugin_port0Commit_uncachedProcess_fsm_enumDef_BOOT = 1'd0;
   localparam CommitPlugin_port0Commit_uncachedProcess_fsm_enumDef_execute = 1'd1;
-  localparam IF2_ICachePlugin_cacheRefillFSM_enumDef_BOOT = 3'd0;
-  localparam IF2_ICachePlugin_cacheRefillFSM_enumDef_waitAXI = 3'd1;
-  localparam IF2_ICachePlugin_cacheRefillFSM_enumDef_readMem = 3'd2;
-  localparam IF2_ICachePlugin_cacheRefillFSM_enumDef_commit = 3'd3;
-  localparam IF2_ICachePlugin_cacheRefillFSM_enumDef_finish = 3'd4;
+  localparam IF3_ICachePlugin_cacheRefillFSM_enumDef_BOOT = 3'd0;
+  localparam IF3_ICachePlugin_cacheRefillFSM_enumDef_waitAXI = 3'd1;
+  localparam IF3_ICachePlugin_cacheRefillFSM_enumDef_readMem = 3'd2;
+  localparam IF3_ICachePlugin_cacheRefillFSM_enumDef_commit = 3'd3;
+  localparam IF3_ICachePlugin_cacheRefillFSM_enumDef_finish = 3'd4;
   localparam MEM_MEM2_DCachePlugin_dirtyLineWritebackFSM_enumDef_BOOT = 3'd0;
   localparam MEM_MEM2_DCachePlugin_dirtyLineWritebackFSM_enumDef_fetchCache = 3'd1;
   localparam MEM_MEM2_DCachePlugin_dirtyLineWritebackFSM_enumDef_waitAW = 3'd2;
@@ -8837,8 +8838,8 @@ module MyCPUCore (
   wire                _zz_when_ExceptionHandlerPlugin_l222_4;
   wire       [0:0]    _zz_when_ExceptionHandlerPlugin_l222_5;
   wire       [2:0]    _zz_when_ExceptionHandlerPlugin_l222_6;
-  wire       [0:0]    _zz_when_MMUPlugin_l404_15;
-  wire       [5:0]    _zz_when_MMUPlugin_l404_16;
+  wire       [0:0]    _zz_when_MMUPlugin_l445_15;
+  wire       [5:0]    _zz_when_MMUPlugin_l445_16;
   reg        [3:0]    _zz_MMUPlugin_TLBIDX_INDEX_4;
   wire       [3:0]    _zz_MMUPlugin_TLBIDX_INDEX_5;
   reg                 _zz__zz_MMUPlugin_TLBELO0_G;
@@ -8858,29 +8859,29 @@ module MyCPUCore (
   reg        [1:0]    _zz_MMUPlugin_TLBELO1_MAT;
   wire       [31:0]   _zz_IF1_ProgramCounterPlugin_defaultPC_1;
   wire       [4:0]    _zz_IF1_ProgramCounterPlugin_defaultPC_2;
-  wire       [3:0]    _zz_IF2_ICachePlugin_cacheRefillFSM_rspId_valueNext;
-  wire       [0:0]    _zz_IF2_ICachePlugin_cacheRefillFSM_rspId_valueNext_1;
-  wire       [3:0]    _zz_when_ICachePlugin_l154;
-  wire       [3:0]    _zz_when_ICachePlugin_l154_1;
-  wire       [3:0]    _zz_when_ICachePlugin_l154_2;
-  wire       [3:0]    _zz_when_ICachePlugin_l154_3;
-  wire       [0:0]    _zz_IF1_InstAddrTranslatePlugin_tlbTranslateResult_TLBHit;
-  wire       [5:0]    _zz_IF1_InstAddrTranslatePlugin_tlbTranslateResult_TLBHit_1;
-  reg                 _zz_IF1_InstAddrTranslatePlugin_tlbTranslateResult_TLBHitEntry_E_5;
-  reg        [9:0]    _zz_IF1_InstAddrTranslatePlugin_tlbTranslateResult_TLBHitEntry_ASID;
-  reg                 _zz_IF1_InstAddrTranslatePlugin_tlbTranslateResult_TLBHitEntry_G;
-  reg        [5:0]    _zz_IF1_InstAddrTranslatePlugin_tlbTranslateResult_TLBHitEntry_PS;
-  reg        [18:0]   _zz_IF1_InstAddrTranslatePlugin_tlbTranslateResult_TLBHitEntry_VPPN;
-  reg                 _zz_IF1_InstAddrTranslatePlugin_tlbTranslateResult_TLBHitEntry_V0;
-  reg                 _zz_IF1_InstAddrTranslatePlugin_tlbTranslateResult_TLBHitEntry_D0;
-  reg        [1:0]    _zz_IF1_InstAddrTranslatePlugin_tlbTranslateResult_TLBHitEntry_MAT0;
-  reg        [1:0]    _zz_IF1_InstAddrTranslatePlugin_tlbTranslateResult_TLBHitEntry_PLV0;
-  reg        [19:0]   _zz_IF1_InstAddrTranslatePlugin_tlbTranslateResult_TLBHitEntry_PPN0;
-  reg                 _zz_IF1_InstAddrTranslatePlugin_tlbTranslateResult_TLBHitEntry_V1;
-  reg                 _zz_IF1_InstAddrTranslatePlugin_tlbTranslateResult_TLBHitEntry_D1;
-  reg        [1:0]    _zz_IF1_InstAddrTranslatePlugin_tlbTranslateResult_TLBHitEntry_MAT1;
-  reg        [1:0]    _zz_IF1_InstAddrTranslatePlugin_tlbTranslateResult_TLBHitEntry_PLV1;
-  reg        [19:0]   _zz_IF1_InstAddrTranslatePlugin_tlbTranslateResult_TLBHitEntry_PPN1;
+  wire       [3:0]    _zz_IF3_ICachePlugin_cacheRefillFSM_rspId_valueNext;
+  wire       [0:0]    _zz_IF3_ICachePlugin_cacheRefillFSM_rspId_valueNext_1;
+  wire       [3:0]    _zz_when_ICachePlugin_l156;
+  wire       [3:0]    _zz_when_ICachePlugin_l156_1;
+  wire       [3:0]    _zz_when_ICachePlugin_l156_2;
+  wire       [3:0]    _zz_when_ICachePlugin_l156_3;
+  wire       [0:0]    _zz_IF1_InstAddrTranslatePlugin_tlbLookup_snapshot_hit;
+  wire       [5:0]    _zz_IF1_InstAddrTranslatePlugin_tlbLookup_snapshot_hit_1;
+  reg        [19:0]   _zz__zz_IF1_InstAddrTranslatePlugin_tlbLookup_snapshot_entry_E_5;
+  reg        [1:0]    _zz__zz_IF1_InstAddrTranslatePlugin_tlbLookup_snapshot_entry_E_5_1;
+  reg        [1:0]    _zz__zz_IF1_InstAddrTranslatePlugin_tlbLookup_snapshot_entry_E_5_2;
+  reg                 _zz__zz_IF1_InstAddrTranslatePlugin_tlbLookup_snapshot_entry_E_5_3;
+  reg                 _zz__zz_IF1_InstAddrTranslatePlugin_tlbLookup_snapshot_entry_E_5_4;
+  reg        [19:0]   _zz__zz_IF1_InstAddrTranslatePlugin_tlbLookup_snapshot_entry_E_5_5;
+  reg        [1:0]    _zz__zz_IF1_InstAddrTranslatePlugin_tlbLookup_snapshot_entry_E_5_6;
+  reg        [1:0]    _zz__zz_IF1_InstAddrTranslatePlugin_tlbLookup_snapshot_entry_E_5_7;
+  reg                 _zz__zz_IF1_InstAddrTranslatePlugin_tlbLookup_snapshot_entry_E_5_8;
+  reg                 _zz__zz_IF1_InstAddrTranslatePlugin_tlbLookup_snapshot_entry_E_5_9;
+  reg        [18:0]   _zz__zz_IF1_InstAddrTranslatePlugin_tlbLookup_snapshot_entry_E_5_10;
+  reg        [5:0]    _zz__zz_IF1_InstAddrTranslatePlugin_tlbLookup_snapshot_entry_E_5_11;
+  reg                 _zz__zz_IF1_InstAddrTranslatePlugin_tlbLookup_snapshot_entry_E_5_12;
+  reg        [9:0]    _zz__zz_IF1_InstAddrTranslatePlugin_tlbLookup_snapshot_entry_E_5_13;
+  reg                 _zz__zz_IF1_InstAddrTranslatePlugin_tlbLookup_snapshot_entry_E_5_14;
   wire       [3:0]    _zz_when_GlobalPredictorBTBPlugin_l112;
   reg                 _zz_when_GlobalPredictorBTBPlugin_l115;
   wire       [9:0]    _zz_when_GlobalPredictorBTBPlugin_l115_1;
@@ -9093,23 +9094,23 @@ module MyCPUCore (
   wire       [32:0]   _zz_MULDIV_EXE_MulDivExecutePlugin_remainder_5;
   wire       [0:0]    _zz_MULDIV_EXE_MulDivExecutePlugin_remainder_6;
   wire       [31:0]   _zz_MEM_ADDR_AddressGenerationPlugin_memWData_1;
-  wire       [0:0]    _zz_MEM_ADDR_AddressGenerationPlugin_tlbTranslateResult_TLBHit;
-  wire       [5:0]    _zz_MEM_ADDR_AddressGenerationPlugin_tlbTranslateResult_TLBHit_1;
-  reg                 _zz_MEM_ADDR_AddressGenerationPlugin_tlbTranslateResult_TLBHitEntry_E_5;
-  reg        [9:0]    _zz_MEM_ADDR_AddressGenerationPlugin_tlbTranslateResult_TLBHitEntry_ASID;
-  reg                 _zz_MEM_ADDR_AddressGenerationPlugin_tlbTranslateResult_TLBHitEntry_G;
-  reg        [5:0]    _zz_MEM_ADDR_AddressGenerationPlugin_tlbTranslateResult_TLBHitEntry_PS;
-  reg        [18:0]   _zz_MEM_ADDR_AddressGenerationPlugin_tlbTranslateResult_TLBHitEntry_VPPN;
-  reg                 _zz_MEM_ADDR_AddressGenerationPlugin_tlbTranslateResult_TLBHitEntry_V0;
-  reg                 _zz_MEM_ADDR_AddressGenerationPlugin_tlbTranslateResult_TLBHitEntry_D0;
-  reg        [1:0]    _zz_MEM_ADDR_AddressGenerationPlugin_tlbTranslateResult_TLBHitEntry_MAT0;
-  reg        [1:0]    _zz_MEM_ADDR_AddressGenerationPlugin_tlbTranslateResult_TLBHitEntry_PLV0;
-  reg        [19:0]   _zz_MEM_ADDR_AddressGenerationPlugin_tlbTranslateResult_TLBHitEntry_PPN0;
-  reg                 _zz_MEM_ADDR_AddressGenerationPlugin_tlbTranslateResult_TLBHitEntry_V1;
-  reg                 _zz_MEM_ADDR_AddressGenerationPlugin_tlbTranslateResult_TLBHitEntry_D1;
-  reg        [1:0]    _zz_MEM_ADDR_AddressGenerationPlugin_tlbTranslateResult_TLBHitEntry_MAT1;
-  reg        [1:0]    _zz_MEM_ADDR_AddressGenerationPlugin_tlbTranslateResult_TLBHitEntry_PLV1;
-  reg        [19:0]   _zz_MEM_ADDR_AddressGenerationPlugin_tlbTranslateResult_TLBHitEntry_PPN1;
+  wire       [0:0]    _zz_MEM_ADDR_AddressGenerationPlugin_tlbLookup_snapshot_hit;
+  wire       [5:0]    _zz_MEM_ADDR_AddressGenerationPlugin_tlbLookup_snapshot_hit_1;
+  reg        [19:0]   _zz__zz_MEM_ADDR_AddressGenerationPlugin_tlbLookup_snapshot_entry_E_5;
+  reg        [1:0]    _zz__zz_MEM_ADDR_AddressGenerationPlugin_tlbLookup_snapshot_entry_E_5_1;
+  reg        [1:0]    _zz__zz_MEM_ADDR_AddressGenerationPlugin_tlbLookup_snapshot_entry_E_5_2;
+  reg                 _zz__zz_MEM_ADDR_AddressGenerationPlugin_tlbLookup_snapshot_entry_E_5_3;
+  reg                 _zz__zz_MEM_ADDR_AddressGenerationPlugin_tlbLookup_snapshot_entry_E_5_4;
+  reg        [19:0]   _zz__zz_MEM_ADDR_AddressGenerationPlugin_tlbLookup_snapshot_entry_E_5_5;
+  reg        [1:0]    _zz__zz_MEM_ADDR_AddressGenerationPlugin_tlbLookup_snapshot_entry_E_5_6;
+  reg        [1:0]    _zz__zz_MEM_ADDR_AddressGenerationPlugin_tlbLookup_snapshot_entry_E_5_7;
+  reg                 _zz__zz_MEM_ADDR_AddressGenerationPlugin_tlbLookup_snapshot_entry_E_5_8;
+  reg                 _zz__zz_MEM_ADDR_AddressGenerationPlugin_tlbLookup_snapshot_entry_E_5_9;
+  reg        [18:0]   _zz__zz_MEM_ADDR_AddressGenerationPlugin_tlbLookup_snapshot_entry_E_5_10;
+  reg        [5:0]    _zz__zz_MEM_ADDR_AddressGenerationPlugin_tlbLookup_snapshot_entry_E_5_11;
+  reg                 _zz__zz_MEM_ADDR_AddressGenerationPlugin_tlbLookup_snapshot_entry_E_5_12;
+  reg        [9:0]    _zz__zz_MEM_ADDR_AddressGenerationPlugin_tlbLookup_snapshot_entry_E_5_13;
+  reg                 _zz__zz_MEM_ADDR_AddressGenerationPlugin_tlbLookup_snapshot_entry_E_5_14;
   wire       [3:0]    _zz_MEM_MEM2_DCachePlugin_dirtyLineWritebackFSM_rspId_valueNext;
   wire       [0:0]    _zz_MEM_MEM2_DCachePlugin_dirtyLineWritebackFSM_rspId_valueNext_1;
   reg                 _zz_MEM_MEM2_DCachePlugin_fixUncacheFSM_dirty;
@@ -9170,15 +9171,22 @@ module MyCPUCore (
   wire                MEM_ADDR_TRANSLATE_SAVED_CSR_CRMD_PG;
   wire       [1:0]    MEM_ADDR_TRANSLATE_SAVED_CSR_CRMD_DATF;
   wire       [1:0]    MEM_ADDR_TRANSLATE_SAVED_CSR_CRMD_DATM;
-  wire                MEM_ADDR_TLB_TRANSLATE_RESULT_valid;
-  wire       [31:0]   MEM_ADDR_TLB_TRANSLATE_RESULT_payload_physAddr;
-  wire                MEM_ADDR_TLB_TRANSLATE_RESULT_payload_cached;
-  wire                MEM_ADDR_TLB_TRANSLATE_RESULT_payload_exception_raisePIL;
-  wire                MEM_ADDR_TLB_TRANSLATE_RESULT_payload_exception_raisePIS;
-  wire                MEM_ADDR_TLB_TRANSLATE_RESULT_payload_exception_raisePIF;
-  wire                MEM_ADDR_TLB_TRANSLATE_RESULT_payload_exception_raisePME;
-  wire                MEM_ADDR_TLB_TRANSLATE_RESULT_payload_exception_raisePPI;
-  wire                MEM_ADDR_TLB_TRANSLATE_RESULT_payload_exception_raiseTLBR;
+  wire                MEM_ADDR_TLB_LOOKUP_SNAPSHOT_hit;
+  wire                MEM_ADDR_TLB_LOOKUP_SNAPSHOT_entry_E;
+  wire       [9:0]    MEM_ADDR_TLB_LOOKUP_SNAPSHOT_entry_ASID;
+  wire                MEM_ADDR_TLB_LOOKUP_SNAPSHOT_entry_G;
+  wire       [5:0]    MEM_ADDR_TLB_LOOKUP_SNAPSHOT_entry_PS;
+  wire       [18:0]   MEM_ADDR_TLB_LOOKUP_SNAPSHOT_entry_VPPN;
+  wire                MEM_ADDR_TLB_LOOKUP_SNAPSHOT_entry_V0;
+  wire                MEM_ADDR_TLB_LOOKUP_SNAPSHOT_entry_D0;
+  wire       [1:0]    MEM_ADDR_TLB_LOOKUP_SNAPSHOT_entry_MAT0;
+  wire       [1:0]    MEM_ADDR_TLB_LOOKUP_SNAPSHOT_entry_PLV0;
+  wire       [19:0]   MEM_ADDR_TLB_LOOKUP_SNAPSHOT_entry_PPN0;
+  wire                MEM_ADDR_TLB_LOOKUP_SNAPSHOT_entry_V1;
+  wire                MEM_ADDR_TLB_LOOKUP_SNAPSHOT_entry_D1;
+  wire       [1:0]    MEM_ADDR_TLB_LOOKUP_SNAPSHOT_entry_MAT1;
+  wire       [1:0]    MEM_ADDR_TLB_LOOKUP_SNAPSHOT_entry_PLV1;
+  wire       [19:0]   MEM_ADDR_TLB_LOOKUP_SNAPSHOT_entry_PPN1;
   wire                MEM_ADDR_DIRECT_TRANSLATE_RESULT_valid;
   wire       [31:0]   MEM_ADDR_DIRECT_TRANSLATE_RESULT_payload_physAddr;
   wire                MEM_ADDR_DIRECT_TRANSLATE_RESULT_payload_cached;
@@ -9721,8 +9729,21 @@ module MyCPUCore (
   wire       [2:0]    _zz_ID_to_RENAME_DECODE_PACKET_2_payload_lsType_1;
   wire       [3:0]    _zz_ID_to_RENAME_DECODE_PACKET_2_payload_cmpOp_1;
   wire       [3:0]    _zz_ID_to_RENAME_DECODE_PACKET_2_payload_tlbOp_1;
+  wire       [2:0]    IF2_RECOVER_TOP;
+  wire       [4:0]    IF2_PRIVATE_BRANCH_HISTORY_0;
+  wire       [4:0]    IF2_PRIVATE_BRANCH_HISTORY_1;
+  wire       [4:0]    IF2_PRIVATE_BRANCH_HISTORY_2;
+  wire       [4:0]    IF2_PRIVATE_BRANCH_HISTORY_3;
+  wire       [3:0]    IF2_TAKEN_MASK;
+  wire       [31:0]   IF2_PREDICT_ADDR;
+  wire                IF3_IS_TLB_REFILL;
   wire                IF2_IS_TLB_REFILL;
+  wire       [31:0]   IF2_PC_PHYSICAL;
   wire       [4:0]    IF1_GLOBAL_BRANCH_HISTORY;
+  wire       [1:0]    IF2_PRED_COUNTER_0;
+  wire       [1:0]    IF2_PRED_COUNTER_1;
+  wire       [1:0]    IF2_PRED_COUNTER_2;
+  wire       [1:0]    IF2_PRED_COUNTER_3;
   wire       [1:0]    IF1_PRED_COUNTER_0;
   wire       [1:0]    IF1_PRED_COUNTER_1;
   wire       [1:0]    IF1_PRED_COUNTER_2;
@@ -9738,15 +9759,22 @@ module MyCPUCore (
   wire                IF1_TRANSLATE_SAVED_CSR_CRMD_PG;
   wire       [1:0]    IF1_TRANSLATE_SAVED_CSR_CRMD_DATF;
   wire       [1:0]    IF1_TRANSLATE_SAVED_CSR_CRMD_DATM;
-  wire                IF1_TLB_TRANSLATE_RESULT_valid;
-  wire       [31:0]   IF1_TLB_TRANSLATE_RESULT_payload_physAddr;
-  wire                IF1_TLB_TRANSLATE_RESULT_payload_cached;
-  wire                IF1_TLB_TRANSLATE_RESULT_payload_exception_raisePIL;
-  wire                IF1_TLB_TRANSLATE_RESULT_payload_exception_raisePIS;
-  wire                IF1_TLB_TRANSLATE_RESULT_payload_exception_raisePIF;
-  wire                IF1_TLB_TRANSLATE_RESULT_payload_exception_raisePME;
-  wire                IF1_TLB_TRANSLATE_RESULT_payload_exception_raisePPI;
-  wire                IF1_TLB_TRANSLATE_RESULT_payload_exception_raiseTLBR;
+  wire                IF1_TLB_LOOKUP_SNAPSHOT_hit;
+  wire                IF1_TLB_LOOKUP_SNAPSHOT_entry_E;
+  wire       [9:0]    IF1_TLB_LOOKUP_SNAPSHOT_entry_ASID;
+  wire                IF1_TLB_LOOKUP_SNAPSHOT_entry_G;
+  wire       [5:0]    IF1_TLB_LOOKUP_SNAPSHOT_entry_PS;
+  wire       [18:0]   IF1_TLB_LOOKUP_SNAPSHOT_entry_VPPN;
+  wire                IF1_TLB_LOOKUP_SNAPSHOT_entry_V0;
+  wire                IF1_TLB_LOOKUP_SNAPSHOT_entry_D0;
+  wire       [1:0]    IF1_TLB_LOOKUP_SNAPSHOT_entry_MAT0;
+  wire       [1:0]    IF1_TLB_LOOKUP_SNAPSHOT_entry_PLV0;
+  wire       [19:0]   IF1_TLB_LOOKUP_SNAPSHOT_entry_PPN0;
+  wire                IF1_TLB_LOOKUP_SNAPSHOT_entry_V1;
+  wire                IF1_TLB_LOOKUP_SNAPSHOT_entry_D1;
+  wire       [1:0]    IF1_TLB_LOOKUP_SNAPSHOT_entry_MAT1;
+  wire       [1:0]    IF1_TLB_LOOKUP_SNAPSHOT_entry_PLV1;
+  wire       [19:0]   IF1_TLB_LOOKUP_SNAPSHOT_entry_PPN1;
   wire                IF1_DIRECT_TRANSLATE_RESULT_valid;
   wire       [31:0]   IF1_DIRECT_TRANSLATE_RESULT_payload_physAddr;
   wire                IF1_DIRECT_TRANSLATE_RESULT_payload_cached;
@@ -9758,13 +9786,27 @@ module MyCPUCore (
   wire                IF1_DIRECT_TRANSLATE_RESULT_payload_exception_raiseTLBR;
   wire       [31:0]   IF2_BAD_VADDR;
   wire       [31:0]   IF1_BAD_VADDR;
+  wire       [8:0]    IF3_EXCEPTION_ESUBCODE;
   wire       [8:0]    IF2_EXCEPTION_ESUBCODE;
   wire       [8:0]    IF1_EXCEPTION_ESUBCODE;
+  wire       [5:0]    IF3_EXCEPTION_ECODE;
   wire       [5:0]    IF2_EXCEPTION_ECODE;
   wire       [5:0]    IF1_EXCEPTION_ECODE;
+  wire                IF3_EXCEPTION_OCCURRED;
+  wire       [0:0]    IF2_ICACHE_INFO_lru;
+  wire       [19:0]   IF2_ICACHE_INFO_tags_0;
+  wire       [19:0]   IF2_ICACHE_INFO_tags_1;
   wire       [0:0]    IF1_ICACHE_INFO_lru;
   wire       [19:0]   IF1_ICACHE_INFO_tags_0;
   wire       [19:0]   IF1_ICACHE_INFO_tags_1;
+  wire       [31:0]   IF2_ICACHE_RSPS_0_0;
+  wire       [31:0]   IF2_ICACHE_RSPS_0_1;
+  wire       [31:0]   IF2_ICACHE_RSPS_0_2;
+  wire       [31:0]   IF2_ICACHE_RSPS_0_3;
+  wire       [31:0]   IF2_ICACHE_RSPS_1_0;
+  wire       [31:0]   IF2_ICACHE_RSPS_1_1;
+  wire       [31:0]   IF2_ICACHE_RSPS_1_2;
+  wire       [31:0]   IF2_ICACHE_RSPS_1_3;
   wire       [31:0]   IF1_ICACHE_RSPS_0_0;
   wire       [31:0]   IF1_ICACHE_RSPS_0_1;
   wire       [31:0]   IF1_ICACHE_RSPS_0_2;
@@ -9773,16 +9815,18 @@ module MyCPUCore (
   wire       [31:0]   IF1_ICACHE_RSPS_1_1;
   wire       [31:0]   IF1_ICACHE_RSPS_1_2;
   wire       [31:0]   IF1_ICACHE_RSPS_1_3;
+  wire                IF2_ICACHE_VALIDS_0;
+  wire                IF2_ICACHE_VALIDS_1;
   wire                IF1_ICACHE_VALIDS_0;
   wire                IF1_ICACHE_VALIDS_1;
-  reg        [8:0]    _zz_MEM_ADDR_to_MEM_MEM1_EXCEPTION_ESUBCODE;
-  reg        [5:0]    _zz_MEM_ADDR_to_MEM_MEM1_EXCEPTION_ECODE;
-  wire                MEM_ADDR_EXCEPTION_OCCURRED;
-  reg                 _zz_MEM_ADDR_to_MEM_MEM1_EXCEPTION_OCCURRED;
   reg        [8:0]    _zz_MEM_MEM1_to_MEM_MEM2_EXCEPTION_ESUBCODE;
   reg        [5:0]    _zz_MEM_MEM1_to_MEM_MEM2_EXCEPTION_ECODE;
   wire                MEM_MEM1_EXCEPTION_OCCURRED;
   reg                 _zz_MEM_MEM1_to_MEM_MEM2_EXCEPTION_OCCURRED;
+  reg        [8:0]    _zz_MEM_ADDR_to_MEM_MEM1_EXCEPTION_ESUBCODE;
+  reg        [5:0]    _zz_MEM_ADDR_to_MEM_MEM1_EXCEPTION_ECODE;
+  wire                MEM_ADDR_EXCEPTION_OCCURRED;
+  reg                 _zz_MEM_ADDR_to_MEM_MEM1_EXCEPTION_OCCURRED;
   reg                 _zz_MEM_WB_to_MEM_WB2_STD_SLOT_valid;
   wire       [2:0]    _zz_MEM_WB_to_MEM_WB2_STD_SLOT_payload_lsType;
   wire       [2:0]    _zz_MEM_WB_to_MEM_WB2_STD_SLOT_payload_lsType_1;
@@ -10005,15 +10049,6 @@ module MyCPUCore (
   wire                MEM_MEM1_TRANSLATE_SAVED_CSR_CRMD_PG;
   wire       [1:0]    MEM_MEM1_TRANSLATE_SAVED_CSR_CRMD_DATF;
   wire       [1:0]    MEM_MEM1_TRANSLATE_SAVED_CSR_CRMD_DATM;
-  wire                MEM_MEM1_TLB_TRANSLATE_RESULT_valid;
-  wire       [31:0]   MEM_MEM1_TLB_TRANSLATE_RESULT_payload_physAddr;
-  wire                MEM_MEM1_TLB_TRANSLATE_RESULT_payload_cached;
-  wire                MEM_MEM1_TLB_TRANSLATE_RESULT_payload_exception_raisePIL;
-  wire                MEM_MEM1_TLB_TRANSLATE_RESULT_payload_exception_raisePIS;
-  wire                MEM_MEM1_TLB_TRANSLATE_RESULT_payload_exception_raisePIF;
-  wire                MEM_MEM1_TLB_TRANSLATE_RESULT_payload_exception_raisePME;
-  wire                MEM_MEM1_TLB_TRANSLATE_RESULT_payload_exception_raisePPI;
-  wire                MEM_MEM1_TLB_TRANSLATE_RESULT_payload_exception_raiseTLBR;
   wire                MEM_MEM1_DIRECT_TRANSLATE_RESULT_valid;
   wire       [31:0]   MEM_MEM1_DIRECT_TRANSLATE_RESULT_payload_physAddr;
   wire                MEM_MEM1_DIRECT_TRANSLATE_RESULT_payload_cached;
@@ -10023,6 +10058,22 @@ module MyCPUCore (
   wire                MEM_MEM1_DIRECT_TRANSLATE_RESULT_payload_exception_raisePME;
   wire                MEM_MEM1_DIRECT_TRANSLATE_RESULT_payload_exception_raisePPI;
   wire                MEM_MEM1_DIRECT_TRANSLATE_RESULT_payload_exception_raiseTLBR;
+  wire                MEM_MEM1_TLB_LOOKUP_SNAPSHOT_hit;
+  wire                MEM_MEM1_TLB_LOOKUP_SNAPSHOT_entry_E;
+  wire       [9:0]    MEM_MEM1_TLB_LOOKUP_SNAPSHOT_entry_ASID;
+  wire                MEM_MEM1_TLB_LOOKUP_SNAPSHOT_entry_G;
+  wire       [5:0]    MEM_MEM1_TLB_LOOKUP_SNAPSHOT_entry_PS;
+  wire       [18:0]   MEM_MEM1_TLB_LOOKUP_SNAPSHOT_entry_VPPN;
+  wire                MEM_MEM1_TLB_LOOKUP_SNAPSHOT_entry_V0;
+  wire                MEM_MEM1_TLB_LOOKUP_SNAPSHOT_entry_D0;
+  wire       [1:0]    MEM_MEM1_TLB_LOOKUP_SNAPSHOT_entry_MAT0;
+  wire       [1:0]    MEM_MEM1_TLB_LOOKUP_SNAPSHOT_entry_PLV0;
+  wire       [19:0]   MEM_MEM1_TLB_LOOKUP_SNAPSHOT_entry_PPN0;
+  wire                MEM_MEM1_TLB_LOOKUP_SNAPSHOT_entry_V1;
+  wire                MEM_MEM1_TLB_LOOKUP_SNAPSHOT_entry_D1;
+  wire       [1:0]    MEM_MEM1_TLB_LOOKUP_SNAPSHOT_entry_MAT1;
+  wire       [1:0]    MEM_MEM1_TLB_LOOKUP_SNAPSHOT_entry_PLV1;
+  wire       [19:0]   MEM_MEM1_TLB_LOOKUP_SNAPSHOT_entry_PPN1;
   wire       [31:0]   MEM_MEM1_AddressGenerationPlugin_physAddr;
   wire       [31:0]   MEM_MEM1_MEMORY_ADDRESS;
   wire                MEM_MEM1_ISSUE_SLOT_rRegs_0_valid;
@@ -10624,6 +10675,8 @@ module MyCPUCore (
   wire                ID_DecoderArray_decodePacket_2_payload_isErtn;
   wire                ID_DecoderArray_decodePacket_2_payload_flushState;
   wire       [4:0]    IF2_GLOBAL_BRANCH_HISTORY;
+  wire       [3:0]    IF2_BRANCH_MASK;
+  wire       [3:0]    IF2_INSTRUCTION_MASK;
   reg        [3:0]    _zz_IF2_TAKEN_MASK;
   wire       [1:0]    IF2_PREDICT_JUMP_WAY;
   wire       [29:0]   IF2_PREDICT_JUMP_PAYLOAD_target;
@@ -10645,15 +10698,6 @@ module MyCPUCore (
   wire                IF2_TRANSLATE_SAVED_CSR_CRMD_PG;
   wire       [1:0]    IF2_TRANSLATE_SAVED_CSR_CRMD_DATF;
   wire       [1:0]    IF2_TRANSLATE_SAVED_CSR_CRMD_DATM;
-  wire                IF2_TLB_TRANSLATE_RESULT_valid;
-  wire       [31:0]   IF2_TLB_TRANSLATE_RESULT_payload_physAddr;
-  wire                IF2_TLB_TRANSLATE_RESULT_payload_cached;
-  wire                IF2_TLB_TRANSLATE_RESULT_payload_exception_raisePIL;
-  wire                IF2_TLB_TRANSLATE_RESULT_payload_exception_raisePIS;
-  wire                IF2_TLB_TRANSLATE_RESULT_payload_exception_raisePIF;
-  wire                IF2_TLB_TRANSLATE_RESULT_payload_exception_raisePME;
-  wire                IF2_TLB_TRANSLATE_RESULT_payload_exception_raisePPI;
-  wire                IF2_TLB_TRANSLATE_RESULT_payload_exception_raiseTLBR;
   wire                IF2_DIRECT_TRANSLATE_RESULT_valid;
   wire       [31:0]   IF2_DIRECT_TRANSLATE_RESULT_payload_physAddr;
   wire                IF2_DIRECT_TRANSLATE_RESULT_payload_cached;
@@ -10663,73 +10707,91 @@ module MyCPUCore (
   wire                IF2_DIRECT_TRANSLATE_RESULT_payload_exception_raisePME;
   wire                IF2_DIRECT_TRANSLATE_RESULT_payload_exception_raisePPI;
   wire                IF2_DIRECT_TRANSLATE_RESULT_payload_exception_raiseTLBR;
+  wire                IF2_TLB_LOOKUP_SNAPSHOT_hit;
+  wire                IF2_TLB_LOOKUP_SNAPSHOT_entry_E;
+  wire       [9:0]    IF2_TLB_LOOKUP_SNAPSHOT_entry_ASID;
+  wire                IF2_TLB_LOOKUP_SNAPSHOT_entry_G;
+  wire       [5:0]    IF2_TLB_LOOKUP_SNAPSHOT_entry_PS;
+  wire       [18:0]   IF2_TLB_LOOKUP_SNAPSHOT_entry_VPPN;
+  wire                IF2_TLB_LOOKUP_SNAPSHOT_entry_V0;
+  wire                IF2_TLB_LOOKUP_SNAPSHOT_entry_D0;
+  wire       [1:0]    IF2_TLB_LOOKUP_SNAPSHOT_entry_MAT0;
+  wire       [1:0]    IF2_TLB_LOOKUP_SNAPSHOT_entry_PLV0;
+  wire       [19:0]   IF2_TLB_LOOKUP_SNAPSHOT_entry_PPN0;
+  wire                IF2_TLB_LOOKUP_SNAPSHOT_entry_V1;
+  wire                IF2_TLB_LOOKUP_SNAPSHOT_entry_D1;
+  wire       [1:0]    IF2_TLB_LOOKUP_SNAPSHOT_entry_MAT1;
+  wire       [1:0]    IF2_TLB_LOOKUP_SNAPSHOT_entry_PLV1;
+  wire       [19:0]   IF2_TLB_LOOKUP_SNAPSHOT_entry_PPN1;
   wire                IF2_InstAddrTranslatePlugin_tlbRefill;
   wire                IF2_InstAddrTranslatePlugin_pcCached;
   wire       [31:0]   IF2_InstAddrTranslatePlugin_physPC;
+  wire       [31:0]   IF2_PC;
+  reg        [8:0]    _zz_IF2_to_IF3_EXCEPTION_ESUBCODE;
+  reg        [5:0]    _zz_IF2_to_IF3_EXCEPTION_ECODE;
+  wire                IF2_EXCEPTION_OCCURRED;
+  reg                 _zz_IF2_to_IF3_EXCEPTION_OCCURRED;
   reg        [31:0]   _zz_IF1_to_IF2_BAD_VADDR;
   reg        [8:0]    _zz_IF1_to_IF2_EXCEPTION_ESUBCODE;
   reg        [5:0]    _zz_IF1_to_IF2_EXCEPTION_ECODE;
   wire                IF1_EXCEPTION_OCCURRED;
   reg                 _zz_IF1_to_IF2_EXCEPTION_OCCURRED;
-  wire                IF2_EXCEPTION_OCCURRED;
-  reg        [8:0]    _zz_IF2_ICachePlugin_fetchPacket_except_payload_subcode;
-  reg        [5:0]    _zz_IF2_ICachePlugin_fetchPacket_except_payload_code;
-  wire       [31:0]   IF2_ICachePlugin_fetchPacket_pc;
-  wire                IF2_ICachePlugin_fetchPacket_insts_0_valid;
-  wire       [31:0]   IF2_ICachePlugin_fetchPacket_insts_0_payload;
-  wire                IF2_ICachePlugin_fetchPacket_insts_1_valid;
-  wire       [31:0]   IF2_ICachePlugin_fetchPacket_insts_1_payload;
-  wire                IF2_ICachePlugin_fetchPacket_insts_2_valid;
-  wire       [31:0]   IF2_ICachePlugin_fetchPacket_insts_2_payload;
-  wire                IF2_ICachePlugin_fetchPacket_insts_3_valid;
-  wire       [31:0]   IF2_ICachePlugin_fetchPacket_insts_3_payload;
-  wire                IF2_ICachePlugin_fetchPacket_except_valid;
-  wire       [5:0]    IF2_ICachePlugin_fetchPacket_except_payload_code;
-  wire       [8:0]    IF2_ICachePlugin_fetchPacket_except_payload_subcode;
-  wire                IF2_ICachePlugin_fetchPacket_except_payload_isTLBRefill;
-  wire       [31:0]   IF2_ICACHE_RSPS_0_0;
-  wire       [31:0]   IF2_ICACHE_RSPS_0_1;
-  wire       [31:0]   IF2_ICACHE_RSPS_0_2;
-  wire       [31:0]   IF2_ICACHE_RSPS_0_3;
-  wire       [31:0]   IF2_ICACHE_RSPS_1_0;
-  wire       [31:0]   IF2_ICACHE_RSPS_1_1;
-  wire       [31:0]   IF2_ICACHE_RSPS_1_2;
-  wire       [31:0]   IF2_ICACHE_RSPS_1_3;
-  wire       [0:0]    IF2_ICACHE_INFO_lru;
-  wire       [19:0]   IF2_ICACHE_INFO_tags_0;
-  wire       [19:0]   IF2_ICACHE_INFO_tags_1;
-  wire                IF2_ICACHE_VALIDS_0;
-  wire                IF2_ICACHE_VALIDS_1;
-  wire       [31:0]   IF2_PC_PHYSICAL;
-  reg                 _zz_IF2_ICachePlugin_fetchPacket_except_valid;
+  wire       [31:0]   IF3_ICachePlugin_fetchPacket_pc;
+  wire                IF3_ICachePlugin_fetchPacket_insts_0_valid;
+  wire       [31:0]   IF3_ICachePlugin_fetchPacket_insts_0_payload;
+  wire                IF3_ICachePlugin_fetchPacket_insts_1_valid;
+  wire       [31:0]   IF3_ICachePlugin_fetchPacket_insts_1_payload;
+  wire                IF3_ICachePlugin_fetchPacket_insts_2_valid;
+  wire       [31:0]   IF3_ICachePlugin_fetchPacket_insts_2_payload;
+  wire                IF3_ICachePlugin_fetchPacket_insts_3_valid;
+  wire       [31:0]   IF3_ICachePlugin_fetchPacket_insts_3_payload;
+  wire                IF3_ICachePlugin_fetchPacket_except_valid;
+  wire       [5:0]    IF3_ICachePlugin_fetchPacket_except_payload_code;
+  wire       [8:0]    IF3_ICachePlugin_fetchPacket_except_payload_subcode;
+  wire                IF3_ICachePlugin_fetchPacket_except_payload_isTLBRefill;
+  wire       [31:0]   IF3_ICACHE_RSPS_0_0;
+  wire       [31:0]   IF3_ICACHE_RSPS_0_1;
+  wire       [31:0]   IF3_ICACHE_RSPS_0_2;
+  wire       [31:0]   IF3_ICACHE_RSPS_0_3;
+  wire       [31:0]   IF3_ICACHE_RSPS_1_0;
+  wire       [31:0]   IF3_ICACHE_RSPS_1_1;
+  wire       [31:0]   IF3_ICACHE_RSPS_1_2;
+  wire       [31:0]   IF3_ICACHE_RSPS_1_3;
+  wire       [0:0]    IF3_ICACHE_INFO_lru;
+  wire       [19:0]   IF3_ICACHE_INFO_tags_0;
+  wire       [19:0]   IF3_ICACHE_INFO_tags_1;
+  wire                IF3_ICACHE_VALIDS_0;
+  wire                IF3_ICACHE_VALIDS_1;
+  wire       [31:0]   IF3_PC_PHYSICAL;
+  wire                _zz_IF3_ICachePlugin_fetchPacket_except_valid;
   wire       [31:0]   IF1_PC;
-  wire       [4:0]    IF2_PRIVATE_BRANCH_HISTORY_0;
-  wire       [4:0]    IF2_PRIVATE_BRANCH_HISTORY_1;
-  wire       [4:0]    IF2_PRIVATE_BRANCH_HISTORY_2;
-  wire       [4:0]    IF2_PRIVATE_BRANCH_HISTORY_3;
-  wire       [1:0]    IF2_PRED_COUNTER_0;
-  wire       [1:0]    IF2_PRED_COUNTER_1;
-  wire       [1:0]    IF2_PRED_COUNTER_2;
-  wire       [1:0]    IF2_PRED_COUNTER_3;
-  wire       [2:0]    IF2_RECOVER_TOP;
-  wire       [31:0]   IF2_PREDICT_ADDR;
-  wire       [3:0]    IF2_TAKEN_MASK;
-  wire       [3:0]    IF2_BRANCH_MASK;
-  wire       [3:0]    IF2_INSTRUCTION_MASK;
-  wire       [31:0]   IF2_FETCH_PACKET_pc;
-  wire                IF2_FETCH_PACKET_insts_0_valid;
-  wire       [31:0]   IF2_FETCH_PACKET_insts_0_payload;
-  wire                IF2_FETCH_PACKET_insts_1_valid;
-  wire       [31:0]   IF2_FETCH_PACKET_insts_1_payload;
-  wire                IF2_FETCH_PACKET_insts_2_valid;
-  wire       [31:0]   IF2_FETCH_PACKET_insts_2_payload;
-  wire                IF2_FETCH_PACKET_insts_3_valid;
-  wire       [31:0]   IF2_FETCH_PACKET_insts_3_payload;
-  wire                IF2_FETCH_PACKET_except_valid;
-  wire       [5:0]    IF2_FETCH_PACKET_except_payload_code;
-  wire       [8:0]    IF2_FETCH_PACKET_except_payload_subcode;
-  wire                IF2_FETCH_PACKET_except_payload_isTLBRefill;
-  wire       [31:0]   IF2_PC;
+  wire       [4:0]    IF3_PRIVATE_BRANCH_HISTORY_0;
+  wire       [4:0]    IF3_PRIVATE_BRANCH_HISTORY_1;
+  wire       [4:0]    IF3_PRIVATE_BRANCH_HISTORY_2;
+  wire       [4:0]    IF3_PRIVATE_BRANCH_HISTORY_3;
+  wire       [1:0]    IF3_PRED_COUNTER_0;
+  wire       [1:0]    IF3_PRED_COUNTER_1;
+  wire       [1:0]    IF3_PRED_COUNTER_2;
+  wire       [1:0]    IF3_PRED_COUNTER_3;
+  wire       [2:0]    IF3_RECOVER_TOP;
+  wire       [31:0]   IF3_PREDICT_ADDR;
+  wire       [3:0]    IF3_TAKEN_MASK;
+  wire       [3:0]    IF3_BRANCH_MASK;
+  wire       [3:0]    IF3_INSTRUCTION_MASK;
+  wire       [31:0]   IF3_FETCH_PACKET_pc;
+  wire                IF3_FETCH_PACKET_insts_0_valid;
+  wire       [31:0]   IF3_FETCH_PACKET_insts_0_payload;
+  wire                IF3_FETCH_PACKET_insts_1_valid;
+  wire       [31:0]   IF3_FETCH_PACKET_insts_1_payload;
+  wire                IF3_FETCH_PACKET_insts_2_valid;
+  wire       [31:0]   IF3_FETCH_PACKET_insts_2_payload;
+  wire                IF3_FETCH_PACKET_insts_3_valid;
+  wire       [31:0]   IF3_FETCH_PACKET_insts_3_payload;
+  wire                IF3_FETCH_PACKET_except_valid;
+  wire       [5:0]    IF3_FETCH_PACKET_except_payload_code;
+  wire       [8:0]    IF3_FETCH_PACKET_except_payload_subcode;
+  wire                IF3_FETCH_PACKET_except_payload_isTLBRefill;
+  wire       [31:0]   IF3_PC;
   wire                DISPATCH_PUSH_INDEXES_0_valid;
   wire       [1:0]    DISPATCH_PUSH_INDEXES_0_payload;
   wire                DISPATCH_PUSH_INDEXES_1_valid;
@@ -11079,10 +11141,10 @@ module MyCPUCore (
   wire                IF1_arbitration_isFlushed;
   wire                IF1_arbitration_isMoving;
   wire                IF1_arbitration_isFiring;
-  reg                 IF2_arbitration_haltItself;
+  wire                IF2_arbitration_haltItself;
   wire                IF2_arbitration_haltByOther;
   reg                 IF2_arbitration_removeIt;
-  reg                 IF2_arbitration_flushIt;
+  wire                IF2_arbitration_flushIt;
   reg                 IF2_arbitration_flushNext;
   reg                 IF2_arbitration_isValid;
   reg                 IF2_arbitration_isValidOnEntry;
@@ -11092,6 +11154,19 @@ module MyCPUCore (
   wire                IF2_arbitration_isFlushed;
   wire                IF2_arbitration_isMoving;
   wire                IF2_arbitration_isFiring;
+  reg                 IF3_arbitration_haltItself;
+  wire                IF3_arbitration_haltByOther;
+  reg                 IF3_arbitration_removeIt;
+  reg                 IF3_arbitration_flushIt;
+  wire                IF3_arbitration_flushNext;
+  reg                 IF3_arbitration_isValid;
+  reg                 IF3_arbitration_isValidOnEntry;
+  wire                IF3_arbitration_isStuck;
+  wire                IF3_arbitration_notStuck;
+  wire                IF3_arbitration_isStuckByOthers;
+  wire                IF3_arbitration_isFlushed;
+  wire                IF3_arbitration_isMoving;
+  wire                IF3_arbitration_isFiring;
   reg        [31:0]   ProgramCounterPlugin_nextPC;
   reg                 ProgramCounterPlugin_backendJumpInterface_valid;
   reg                 ProgramCounterPlugin_backendJumpInterface_ready;
@@ -16772,22 +16847,22 @@ module MyCPUCore (
   wire                when_InterruptHandlerPlugin_l87;
   wire                when_InterruptHandlerPlugin_l93;
   wire                when_InterruptHandlerPlugin_l97;
-  wire                _zz_when_MMUPlugin_l404;
-  wire                _zz_when_MMUPlugin_l404_1;
-  wire                _zz_when_MMUPlugin_l404_2;
-  wire                _zz_when_MMUPlugin_l404_3;
-  wire                _zz_when_MMUPlugin_l404_4;
-  wire                _zz_when_MMUPlugin_l404_5;
-  wire                _zz_when_MMUPlugin_l404_6;
-  wire                _zz_when_MMUPlugin_l404_7;
-  wire                _zz_when_MMUPlugin_l404_8;
-  wire                _zz_when_MMUPlugin_l404_9;
-  wire                _zz_when_MMUPlugin_l404_10;
-  wire                _zz_when_MMUPlugin_l404_11;
-  wire                _zz_when_MMUPlugin_l404_12;
-  wire                _zz_when_MMUPlugin_l404_13;
-  wire                _zz_when_MMUPlugin_l404_14;
-  wire                when_MMUPlugin_l404;
+  wire                _zz_when_MMUPlugin_l445;
+  wire                _zz_when_MMUPlugin_l445_1;
+  wire                _zz_when_MMUPlugin_l445_2;
+  wire                _zz_when_MMUPlugin_l445_3;
+  wire                _zz_when_MMUPlugin_l445_4;
+  wire                _zz_when_MMUPlugin_l445_5;
+  wire                _zz_when_MMUPlugin_l445_6;
+  wire                _zz_when_MMUPlugin_l445_7;
+  wire                _zz_when_MMUPlugin_l445_8;
+  wire                _zz_when_MMUPlugin_l445_9;
+  wire                _zz_when_MMUPlugin_l445_10;
+  wire                _zz_when_MMUPlugin_l445_11;
+  wire                _zz_when_MMUPlugin_l445_12;
+  wire                _zz_when_MMUPlugin_l445_13;
+  wire                _zz_when_MMUPlugin_l445_14;
+  wire                when_MMUPlugin_l445;
   wire                _zz_MMUPlugin_TLBIDX_INDEX;
   wire                _zz_MMUPlugin_TLBIDX_INDEX_1;
   wire                _zz_MMUPlugin_TLBIDX_INDEX_2;
@@ -16811,7 +16886,7 @@ module MyCPUCore (
   wire                _zz_292;
   wire                _zz_293;
   wire                _zz_294;
-  wire                when_MMUPlugin_l455;
+  wire                when_MMUPlugin_l496;
   wire                _zz_MMUPlugin_TLBTable_0_E;
   wire                _zz_MMUPlugin_TLBTable_0_G;
   wire       [5:0]    _zz_MMUPlugin_TLBTable_0_PS;
@@ -16832,7 +16907,7 @@ module MyCPUCore (
   wire                _zz_309;
   wire                _zz_310;
   wire                _zz_311;
-  wire                when_MMUPlugin_l479;
+  wire                when_MMUPlugin_l520;
   wire                _zz_MMUPlugin_TLBTable_0_E_1;
   wire       [5:0]    _zz_MMUPlugin_TLBTable_0_PS_1;
   wire                _zz_MMUPlugin_TLBTable_0_G_1;
@@ -16897,8 +16972,8 @@ module MyCPUCore (
   wire       [3:0]    IF1_ProgramCounterPlugin_pcOffset;
   reg        [2:0]    _zz_IF1_ProgramCounterPlugin_defaultPC;
   wire       [31:0]   IF1_ProgramCounterPlugin_defaultPC;
-  wire       [3:0]    IF2_FetchBufferPlugin_pcWordOffset;
-  reg                 IF2_FetchBufferPlugin_isStall;
+  wire       [3:0]    IF3_FetchBufferPlugin_pcWordOffset;
+  reg                 IF3_FetchBufferPlugin_isStall;
   wire                _zz_when_FetchBufferPlugin_l75;
   wire                when_FetchBufferPlugin_l75;
   wire                _zz_when_FetchBufferPlugin_l75_1;
@@ -16912,77 +16987,77 @@ module MyCPUCore (
   wire                ICachePlugin_rValid;
   wire       [31:0]   ICachePlugin_rAddr;
   wire       [5:0]    _zz_IF1_ICACHE_VALIDS_0;
-  wire                IF2_ICachePlugin_reqValid;
-  wire                IF2_ICachePlugin_reqCommit;
-  wire       [3:0]    IF2_ICachePlugin_pcWordOffset;
-  wire       [5:0]    IF2_ICachePlugin_idx;
-  wire       [19:0]   IF2_ICachePlugin_tag;
-  wire       [3:0]    IF2_ICachePlugin_dataMasks_0_0;
-  wire       [3:0]    IF2_ICachePlugin_dataMasks_0_1;
-  wire       [3:0]    IF2_ICachePlugin_dataMasks_0_2;
-  wire       [3:0]    IF2_ICachePlugin_dataMasks_0_3;
-  wire       [3:0]    IF2_ICachePlugin_dataMasks_0_4;
-  wire       [3:0]    IF2_ICachePlugin_dataMasks_0_5;
-  wire       [3:0]    IF2_ICachePlugin_dataMasks_0_6;
-  wire       [3:0]    IF2_ICachePlugin_dataMasks_0_7;
-  wire       [3:0]    IF2_ICachePlugin_dataMasks_0_8;
-  wire       [3:0]    IF2_ICachePlugin_dataMasks_0_9;
-  wire       [3:0]    IF2_ICachePlugin_dataMasks_0_10;
-  wire       [3:0]    IF2_ICachePlugin_dataMasks_0_11;
-  wire       [3:0]    IF2_ICachePlugin_dataMasks_0_12;
-  wire       [3:0]    IF2_ICachePlugin_dataMasks_0_13;
-  wire       [3:0]    IF2_ICachePlugin_dataMasks_0_14;
-  wire       [3:0]    IF2_ICachePlugin_dataMasks_0_15;
-  wire       [3:0]    IF2_ICachePlugin_dataMasks_1_0;
-  wire       [3:0]    IF2_ICachePlugin_dataMasks_1_1;
-  wire       [3:0]    IF2_ICachePlugin_dataMasks_1_2;
-  wire       [3:0]    IF2_ICachePlugin_dataMasks_1_3;
-  wire       [3:0]    IF2_ICachePlugin_dataMasks_1_4;
-  wire       [3:0]    IF2_ICachePlugin_dataMasks_1_5;
-  wire       [3:0]    IF2_ICachePlugin_dataMasks_1_6;
-  wire       [3:0]    IF2_ICachePlugin_dataMasks_1_7;
-  wire       [3:0]    IF2_ICachePlugin_dataMasks_1_8;
-  wire       [3:0]    IF2_ICachePlugin_dataMasks_1_9;
-  wire       [3:0]    IF2_ICachePlugin_dataMasks_1_10;
-  wire       [3:0]    IF2_ICachePlugin_dataMasks_1_11;
-  wire       [3:0]    IF2_ICachePlugin_dataMasks_1_12;
-  wire       [3:0]    IF2_ICachePlugin_dataMasks_1_13;
-  wire       [3:0]    IF2_ICachePlugin_dataMasks_1_14;
-  wire       [3:0]    IF2_ICachePlugin_dataMasks_1_15;
-  wire                IF2_ICachePlugin_hits_0;
-  wire                IF2_ICachePlugin_hits_1;
-  wire                IF2_ICachePlugin_hit;
-  wire       [31:0]   IF2_ICachePlugin_hitData_0;
-  wire       [31:0]   IF2_ICachePlugin_hitData_1;
-  wire       [31:0]   IF2_ICachePlugin_hitData_2;
-  wire       [31:0]   IF2_ICachePlugin_hitData_3;
-  reg        [31:0]   IF2_ICachePlugin_storedPacket_0;
-  reg        [31:0]   IF2_ICachePlugin_storedPacket_1;
-  reg        [31:0]   IF2_ICachePlugin_storedPacket_2;
-  reg        [31:0]   IF2_ICachePlugin_storedPacket_3;
-  wire                when_ICachePlugin_l123;
+  wire                IF3_ICachePlugin_reqValid;
+  wire                IF3_ICachePlugin_reqCommit;
+  wire       [3:0]    IF3_ICachePlugin_pcWordOffset;
+  wire       [5:0]    IF3_ICachePlugin_idx;
+  wire       [19:0]   IF3_ICachePlugin_tag;
+  wire       [3:0]    IF3_ICachePlugin_dataMasks_0_0;
+  wire       [3:0]    IF3_ICachePlugin_dataMasks_0_1;
+  wire       [3:0]    IF3_ICachePlugin_dataMasks_0_2;
+  wire       [3:0]    IF3_ICachePlugin_dataMasks_0_3;
+  wire       [3:0]    IF3_ICachePlugin_dataMasks_0_4;
+  wire       [3:0]    IF3_ICachePlugin_dataMasks_0_5;
+  wire       [3:0]    IF3_ICachePlugin_dataMasks_0_6;
+  wire       [3:0]    IF3_ICachePlugin_dataMasks_0_7;
+  wire       [3:0]    IF3_ICachePlugin_dataMasks_0_8;
+  wire       [3:0]    IF3_ICachePlugin_dataMasks_0_9;
+  wire       [3:0]    IF3_ICachePlugin_dataMasks_0_10;
+  wire       [3:0]    IF3_ICachePlugin_dataMasks_0_11;
+  wire       [3:0]    IF3_ICachePlugin_dataMasks_0_12;
+  wire       [3:0]    IF3_ICachePlugin_dataMasks_0_13;
+  wire       [3:0]    IF3_ICachePlugin_dataMasks_0_14;
+  wire       [3:0]    IF3_ICachePlugin_dataMasks_0_15;
+  wire       [3:0]    IF3_ICachePlugin_dataMasks_1_0;
+  wire       [3:0]    IF3_ICachePlugin_dataMasks_1_1;
+  wire       [3:0]    IF3_ICachePlugin_dataMasks_1_2;
+  wire       [3:0]    IF3_ICachePlugin_dataMasks_1_3;
+  wire       [3:0]    IF3_ICachePlugin_dataMasks_1_4;
+  wire       [3:0]    IF3_ICachePlugin_dataMasks_1_5;
+  wire       [3:0]    IF3_ICachePlugin_dataMasks_1_6;
+  wire       [3:0]    IF3_ICachePlugin_dataMasks_1_7;
+  wire       [3:0]    IF3_ICachePlugin_dataMasks_1_8;
+  wire       [3:0]    IF3_ICachePlugin_dataMasks_1_9;
+  wire       [3:0]    IF3_ICachePlugin_dataMasks_1_10;
+  wire       [3:0]    IF3_ICachePlugin_dataMasks_1_11;
+  wire       [3:0]    IF3_ICachePlugin_dataMasks_1_12;
+  wire       [3:0]    IF3_ICachePlugin_dataMasks_1_13;
+  wire       [3:0]    IF3_ICachePlugin_dataMasks_1_14;
+  wire       [3:0]    IF3_ICachePlugin_dataMasks_1_15;
+  wire                IF3_ICachePlugin_hits_0;
+  wire                IF3_ICachePlugin_hits_1;
+  wire                IF3_ICachePlugin_hit;
+  wire       [31:0]   IF3_ICachePlugin_hitData_0;
+  wire       [31:0]   IF3_ICachePlugin_hitData_1;
+  wire       [31:0]   IF3_ICachePlugin_hitData_2;
+  wire       [31:0]   IF3_ICachePlugin_hitData_3;
+  reg        [31:0]   IF3_ICachePlugin_storedPacket_0;
+  reg        [31:0]   IF3_ICachePlugin_storedPacket_1;
+  reg        [31:0]   IF3_ICachePlugin_storedPacket_2;
+  reg        [31:0]   IF3_ICachePlugin_storedPacket_3;
+  wire                when_ICachePlugin_l125;
   wire       [0:0]    _zz_io_write_payload_data_lru;
-  wire                IF2_ICachePlugin_cacheRefillFSM_wantExit;
-  wire                IF2_ICachePlugin_cacheRefillFSM_wantStart;
-  wire                IF2_ICachePlugin_cacheRefillFSM_wantKill;
-  reg                 IF2_ICachePlugin_cacheRefillFSM_rspId_willIncrement;
-  reg                 IF2_ICachePlugin_cacheRefillFSM_rspId_willClear;
-  reg        [3:0]    IF2_ICachePlugin_cacheRefillFSM_rspId_valueNext;
-  reg        [3:0]    IF2_ICachePlugin_cacheRefillFSM_rspId_value;
-  wire                IF2_ICachePlugin_cacheRefillFSM_rspId_willOverflowIfInc;
-  wire                IF2_ICachePlugin_cacheRefillFSM_rspId_willOverflow;
+  wire                IF3_ICachePlugin_cacheRefillFSM_wantExit;
+  wire                IF3_ICachePlugin_cacheRefillFSM_wantStart;
+  wire                IF3_ICachePlugin_cacheRefillFSM_wantKill;
+  reg                 IF3_ICachePlugin_cacheRefillFSM_rspId_willIncrement;
+  reg                 IF3_ICachePlugin_cacheRefillFSM_rspId_willClear;
+  reg        [3:0]    IF3_ICachePlugin_cacheRefillFSM_rspId_valueNext;
+  reg        [3:0]    IF3_ICachePlugin_cacheRefillFSM_rspId_value;
+  wire                IF3_ICachePlugin_cacheRefillFSM_rspId_willOverflowIfInc;
+  wire                IF3_ICachePlugin_cacheRefillFSM_rspId_willOverflow;
   wire                ICachePlugin_iBus_r_fire;
-  reg                 IF2_ICachePlugin_cacheRefillFSM_refillValid;
-  reg        [31:0]   IF2_ICachePlugin_cacheRefillFSM_refillWord;
-  wire       [0:0]    IF2_ICachePlugin_cacheRefillFSM_replaceWay;
-  wire                when_ICachePlugin_l154;
-  wire                when_ICachePlugin_l154_1;
-  wire                when_ICachePlugin_l154_2;
-  wire                when_ICachePlugin_l154_3;
+  reg                 IF3_ICachePlugin_cacheRefillFSM_refillValid;
+  reg        [31:0]   IF3_ICachePlugin_cacheRefillFSM_refillWord;
+  wire       [0:0]    IF3_ICachePlugin_cacheRefillFSM_replaceWay;
+  wire                when_ICachePlugin_l156;
+  wire                when_ICachePlugin_l156_1;
+  wire                when_ICachePlugin_l156_2;
+  wire                when_ICachePlugin_l156_3;
   wire                ICachePlugin_commit_targetICache;
   wire       [0:0]    ICachePlugin_commit_way;
   wire       [5:0]    ICachePlugin_commit_index;
-  wire                when_ICachePlugin_l263;
+  wire                when_ICachePlugin_l265;
   wire       [63:0]   _zz_360;
   wire                _zz_361;
   wire                _zz_362;
@@ -17077,107 +17152,108 @@ module MyCPUCore (
   wire                IF1_InstAddrTranslatePlugin_directTranslateResult_resultBundle_payload_exception_raisePME;
   wire                IF1_InstAddrTranslatePlugin_directTranslateResult_resultBundle_payload_exception_raisePPI;
   wire                IF1_InstAddrTranslatePlugin_directTranslateResult_resultBundle_payload_exception_raiseTLBR;
-  wire       [1:0]    switch_MMUPlugin_l290;
-  wire                IF1_InstAddrTranslatePlugin_tlbTranslateResult_resultValid;
-  wire       [31:0]   IF1_InstAddrTranslatePlugin_tlbTranslateResult_resultPhysAddr;
-  wire                IF1_InstAddrTranslatePlugin_tlbTranslateResult_resultCached;
-  reg                 IF1_InstAddrTranslatePlugin_tlbTranslateResult_resultExceptionBundle_raisePIL;
-  reg                 IF1_InstAddrTranslatePlugin_tlbTranslateResult_resultExceptionBundle_raisePIS;
-  reg                 IF1_InstAddrTranslatePlugin_tlbTranslateResult_resultExceptionBundle_raisePIF;
-  reg                 IF1_InstAddrTranslatePlugin_tlbTranslateResult_resultExceptionBundle_raisePME;
-  reg                 IF1_InstAddrTranslatePlugin_tlbTranslateResult_resultExceptionBundle_raisePPI;
-  reg                 IF1_InstAddrTranslatePlugin_tlbTranslateResult_resultExceptionBundle_raiseTLBR;
-  wire                IF1_InstAddrTranslatePlugin_tlbTranslateResult_ASIDMatches_0;
-  wire                IF1_InstAddrTranslatePlugin_tlbTranslateResult_ASIDMatches_1;
-  wire                IF1_InstAddrTranslatePlugin_tlbTranslateResult_ASIDMatches_2;
-  wire                IF1_InstAddrTranslatePlugin_tlbTranslateResult_ASIDMatches_3;
-  wire                IF1_InstAddrTranslatePlugin_tlbTranslateResult_ASIDMatches_4;
-  wire                IF1_InstAddrTranslatePlugin_tlbTranslateResult_ASIDMatches_5;
-  wire                IF1_InstAddrTranslatePlugin_tlbTranslateResult_ASIDMatches_6;
-  wire                IF1_InstAddrTranslatePlugin_tlbTranslateResult_ASIDMatches_7;
-  wire                IF1_InstAddrTranslatePlugin_tlbTranslateResult_ASIDMatches_8;
-  wire                IF1_InstAddrTranslatePlugin_tlbTranslateResult_ASIDMatches_9;
-  wire                IF1_InstAddrTranslatePlugin_tlbTranslateResult_ASIDMatches_10;
-  wire                IF1_InstAddrTranslatePlugin_tlbTranslateResult_ASIDMatches_11;
-  wire                IF1_InstAddrTranslatePlugin_tlbTranslateResult_ASIDMatches_12;
-  wire                IF1_InstAddrTranslatePlugin_tlbTranslateResult_ASIDMatches_13;
-  wire                IF1_InstAddrTranslatePlugin_tlbTranslateResult_ASIDMatches_14;
-  wire                IF1_InstAddrTranslatePlugin_tlbTranslateResult_ASIDMatches_15;
-  wire                IF1_InstAddrTranslatePlugin_tlbTranslateResult_VPPNMatches_0;
-  wire                IF1_InstAddrTranslatePlugin_tlbTranslateResult_VPPNMatches_1;
-  wire                IF1_InstAddrTranslatePlugin_tlbTranslateResult_VPPNMatches_2;
-  wire                IF1_InstAddrTranslatePlugin_tlbTranslateResult_VPPNMatches_3;
-  wire                IF1_InstAddrTranslatePlugin_tlbTranslateResult_VPPNMatches_4;
-  wire                IF1_InstAddrTranslatePlugin_tlbTranslateResult_VPPNMatches_5;
-  wire                IF1_InstAddrTranslatePlugin_tlbTranslateResult_VPPNMatches_6;
-  wire                IF1_InstAddrTranslatePlugin_tlbTranslateResult_VPPNMatches_7;
-  wire                IF1_InstAddrTranslatePlugin_tlbTranslateResult_VPPNMatches_8;
-  wire                IF1_InstAddrTranslatePlugin_tlbTranslateResult_VPPNMatches_9;
-  wire                IF1_InstAddrTranslatePlugin_tlbTranslateResult_VPPNMatches_10;
-  wire                IF1_InstAddrTranslatePlugin_tlbTranslateResult_VPPNMatches_11;
-  wire                IF1_InstAddrTranslatePlugin_tlbTranslateResult_VPPNMatches_12;
-  wire                IF1_InstAddrTranslatePlugin_tlbTranslateResult_VPPNMatches_13;
-  wire                IF1_InstAddrTranslatePlugin_tlbTranslateResult_VPPNMatches_14;
-  wire                IF1_InstAddrTranslatePlugin_tlbTranslateResult_VPPNMatches_15;
-  wire                IF1_InstAddrTranslatePlugin_tlbTranslateResult_EntryHits_0;
-  wire                IF1_InstAddrTranslatePlugin_tlbTranslateResult_EntryHits_1;
-  wire                IF1_InstAddrTranslatePlugin_tlbTranslateResult_EntryHits_2;
-  wire                IF1_InstAddrTranslatePlugin_tlbTranslateResult_EntryHits_3;
-  wire                IF1_InstAddrTranslatePlugin_tlbTranslateResult_EntryHits_4;
-  wire                IF1_InstAddrTranslatePlugin_tlbTranslateResult_EntryHits_5;
-  wire                IF1_InstAddrTranslatePlugin_tlbTranslateResult_EntryHits_6;
-  wire                IF1_InstAddrTranslatePlugin_tlbTranslateResult_EntryHits_7;
-  wire                IF1_InstAddrTranslatePlugin_tlbTranslateResult_EntryHits_8;
-  wire                IF1_InstAddrTranslatePlugin_tlbTranslateResult_EntryHits_9;
-  wire                IF1_InstAddrTranslatePlugin_tlbTranslateResult_EntryHits_10;
-  wire                IF1_InstAddrTranslatePlugin_tlbTranslateResult_EntryHits_11;
-  wire                IF1_InstAddrTranslatePlugin_tlbTranslateResult_EntryHits_12;
-  wire                IF1_InstAddrTranslatePlugin_tlbTranslateResult_EntryHits_13;
-  wire                IF1_InstAddrTranslatePlugin_tlbTranslateResult_EntryHits_14;
-  wire                IF1_InstAddrTranslatePlugin_tlbTranslateResult_EntryHits_15;
-  wire                IF1_InstAddrTranslatePlugin_tlbTranslateResult_TLBHit;
-  wire                _zz_IF1_InstAddrTranslatePlugin_tlbTranslateResult_TLBHitEntry_E;
-  wire                _zz_IF1_InstAddrTranslatePlugin_tlbTranslateResult_TLBHitEntry_E_1;
-  wire                _zz_IF1_InstAddrTranslatePlugin_tlbTranslateResult_TLBHitEntry_E_2;
-  wire                _zz_IF1_InstAddrTranslatePlugin_tlbTranslateResult_TLBHitEntry_E_3;
-  wire       [3:0]    _zz_IF1_InstAddrTranslatePlugin_tlbTranslateResult_TLBHitEntry_E_4;
-  wire                IF1_InstAddrTranslatePlugin_tlbTranslateResult_TLBHitEntry_E;
-  wire       [9:0]    IF1_InstAddrTranslatePlugin_tlbTranslateResult_TLBHitEntry_ASID;
-  wire                IF1_InstAddrTranslatePlugin_tlbTranslateResult_TLBHitEntry_G;
-  wire       [5:0]    IF1_InstAddrTranslatePlugin_tlbTranslateResult_TLBHitEntry_PS;
-  wire       [18:0]   IF1_InstAddrTranslatePlugin_tlbTranslateResult_TLBHitEntry_VPPN;
-  wire                IF1_InstAddrTranslatePlugin_tlbTranslateResult_TLBHitEntry_V0;
-  wire                IF1_InstAddrTranslatePlugin_tlbTranslateResult_TLBHitEntry_D0;
-  wire       [1:0]    IF1_InstAddrTranslatePlugin_tlbTranslateResult_TLBHitEntry_MAT0;
-  wire       [1:0]    IF1_InstAddrTranslatePlugin_tlbTranslateResult_TLBHitEntry_PLV0;
-  wire       [19:0]   IF1_InstAddrTranslatePlugin_tlbTranslateResult_TLBHitEntry_PPN0;
-  wire                IF1_InstAddrTranslatePlugin_tlbTranslateResult_TLBHitEntry_V1;
-  wire                IF1_InstAddrTranslatePlugin_tlbTranslateResult_TLBHitEntry_D1;
-  wire       [1:0]    IF1_InstAddrTranslatePlugin_tlbTranslateResult_TLBHitEntry_MAT1;
-  wire       [1:0]    IF1_InstAddrTranslatePlugin_tlbTranslateResult_TLBHitEntry_PLV1;
-  wire       [19:0]   IF1_InstAddrTranslatePlugin_tlbTranslateResult_TLBHitEntry_PPN1;
-  wire                IF1_InstAddrTranslatePlugin_tlbTranslateResult_TLBHitEntry_v;
-  wire                IF1_InstAddrTranslatePlugin_tlbTranslateResult_TLBHitEntry_d;
-  wire       [1:0]    IF1_InstAddrTranslatePlugin_tlbTranslateResult_TLBHitEntry_mat;
-  wire       [1:0]    IF1_InstAddrTranslatePlugin_tlbTranslateResult_TLBHitEntry_plv;
-  wire       [19:0]   IF1_InstAddrTranslatePlugin_tlbTranslateResult_TLBHitEntry_ppn;
-  wire                when_MMUPlugin_l285;
-  wire                when_MMUPlugin_l289;
-  wire                when_MMUPlugin_l303;
-  wire                when_MMUPlugin_l307;
-  wire                IF1_InstAddrTranslatePlugin_tlbTranslateResult_resultBundle_valid;
-  wire       [31:0]   IF1_InstAddrTranslatePlugin_tlbTranslateResult_resultBundle_payload_physAddr;
-  wire                IF1_InstAddrTranslatePlugin_tlbTranslateResult_resultBundle_payload_cached;
-  wire                IF1_InstAddrTranslatePlugin_tlbTranslateResult_resultBundle_payload_exception_raisePIL;
-  wire                IF1_InstAddrTranslatePlugin_tlbTranslateResult_resultBundle_payload_exception_raisePIS;
-  wire                IF1_InstAddrTranslatePlugin_tlbTranslateResult_resultBundle_payload_exception_raisePIF;
-  wire                IF1_InstAddrTranslatePlugin_tlbTranslateResult_resultBundle_payload_exception_raisePME;
-  wire                IF1_InstAddrTranslatePlugin_tlbTranslateResult_resultBundle_payload_exception_raisePPI;
-  wire                IF1_InstAddrTranslatePlugin_tlbTranslateResult_resultBundle_payload_exception_raiseTLBR;
+  wire                IF1_InstAddrTranslatePlugin_tlbLookup_ASIDMatches_0;
+  wire                IF1_InstAddrTranslatePlugin_tlbLookup_ASIDMatches_1;
+  wire                IF1_InstAddrTranslatePlugin_tlbLookup_ASIDMatches_2;
+  wire                IF1_InstAddrTranslatePlugin_tlbLookup_ASIDMatches_3;
+  wire                IF1_InstAddrTranslatePlugin_tlbLookup_ASIDMatches_4;
+  wire                IF1_InstAddrTranslatePlugin_tlbLookup_ASIDMatches_5;
+  wire                IF1_InstAddrTranslatePlugin_tlbLookup_ASIDMatches_6;
+  wire                IF1_InstAddrTranslatePlugin_tlbLookup_ASIDMatches_7;
+  wire                IF1_InstAddrTranslatePlugin_tlbLookup_ASIDMatches_8;
+  wire                IF1_InstAddrTranslatePlugin_tlbLookup_ASIDMatches_9;
+  wire                IF1_InstAddrTranslatePlugin_tlbLookup_ASIDMatches_10;
+  wire                IF1_InstAddrTranslatePlugin_tlbLookup_ASIDMatches_11;
+  wire                IF1_InstAddrTranslatePlugin_tlbLookup_ASIDMatches_12;
+  wire                IF1_InstAddrTranslatePlugin_tlbLookup_ASIDMatches_13;
+  wire                IF1_InstAddrTranslatePlugin_tlbLookup_ASIDMatches_14;
+  wire                IF1_InstAddrTranslatePlugin_tlbLookup_ASIDMatches_15;
+  wire                IF1_InstAddrTranslatePlugin_tlbLookup_VPPNMatches_0;
+  wire                IF1_InstAddrTranslatePlugin_tlbLookup_VPPNMatches_1;
+  wire                IF1_InstAddrTranslatePlugin_tlbLookup_VPPNMatches_2;
+  wire                IF1_InstAddrTranslatePlugin_tlbLookup_VPPNMatches_3;
+  wire                IF1_InstAddrTranslatePlugin_tlbLookup_VPPNMatches_4;
+  wire                IF1_InstAddrTranslatePlugin_tlbLookup_VPPNMatches_5;
+  wire                IF1_InstAddrTranslatePlugin_tlbLookup_VPPNMatches_6;
+  wire                IF1_InstAddrTranslatePlugin_tlbLookup_VPPNMatches_7;
+  wire                IF1_InstAddrTranslatePlugin_tlbLookup_VPPNMatches_8;
+  wire                IF1_InstAddrTranslatePlugin_tlbLookup_VPPNMatches_9;
+  wire                IF1_InstAddrTranslatePlugin_tlbLookup_VPPNMatches_10;
+  wire                IF1_InstAddrTranslatePlugin_tlbLookup_VPPNMatches_11;
+  wire                IF1_InstAddrTranslatePlugin_tlbLookup_VPPNMatches_12;
+  wire                IF1_InstAddrTranslatePlugin_tlbLookup_VPPNMatches_13;
+  wire                IF1_InstAddrTranslatePlugin_tlbLookup_VPPNMatches_14;
+  wire                IF1_InstAddrTranslatePlugin_tlbLookup_VPPNMatches_15;
+  wire                IF1_InstAddrTranslatePlugin_tlbLookup_EntryHits_0;
+  wire                IF1_InstAddrTranslatePlugin_tlbLookup_EntryHits_1;
+  wire                IF1_InstAddrTranslatePlugin_tlbLookup_EntryHits_2;
+  wire                IF1_InstAddrTranslatePlugin_tlbLookup_EntryHits_3;
+  wire                IF1_InstAddrTranslatePlugin_tlbLookup_EntryHits_4;
+  wire                IF1_InstAddrTranslatePlugin_tlbLookup_EntryHits_5;
+  wire                IF1_InstAddrTranslatePlugin_tlbLookup_EntryHits_6;
+  wire                IF1_InstAddrTranslatePlugin_tlbLookup_EntryHits_7;
+  wire                IF1_InstAddrTranslatePlugin_tlbLookup_EntryHits_8;
+  wire                IF1_InstAddrTranslatePlugin_tlbLookup_EntryHits_9;
+  wire                IF1_InstAddrTranslatePlugin_tlbLookup_EntryHits_10;
+  wire                IF1_InstAddrTranslatePlugin_tlbLookup_EntryHits_11;
+  wire                IF1_InstAddrTranslatePlugin_tlbLookup_EntryHits_12;
+  wire                IF1_InstAddrTranslatePlugin_tlbLookup_EntryHits_13;
+  wire                IF1_InstAddrTranslatePlugin_tlbLookup_EntryHits_14;
+  wire                IF1_InstAddrTranslatePlugin_tlbLookup_EntryHits_15;
+  wire                IF1_InstAddrTranslatePlugin_tlbLookup_snapshot_hit;
+  wire                IF1_InstAddrTranslatePlugin_tlbLookup_snapshot_entry_E;
+  wire       [9:0]    IF1_InstAddrTranslatePlugin_tlbLookup_snapshot_entry_ASID;
+  wire                IF1_InstAddrTranslatePlugin_tlbLookup_snapshot_entry_G;
+  wire       [5:0]    IF1_InstAddrTranslatePlugin_tlbLookup_snapshot_entry_PS;
+  wire       [18:0]   IF1_InstAddrTranslatePlugin_tlbLookup_snapshot_entry_VPPN;
+  wire                IF1_InstAddrTranslatePlugin_tlbLookup_snapshot_entry_V0;
+  wire                IF1_InstAddrTranslatePlugin_tlbLookup_snapshot_entry_D0;
+  wire       [1:0]    IF1_InstAddrTranslatePlugin_tlbLookup_snapshot_entry_MAT0;
+  wire       [1:0]    IF1_InstAddrTranslatePlugin_tlbLookup_snapshot_entry_PLV0;
+  wire       [19:0]   IF1_InstAddrTranslatePlugin_tlbLookup_snapshot_entry_PPN0;
+  wire                IF1_InstAddrTranslatePlugin_tlbLookup_snapshot_entry_V1;
+  wire                IF1_InstAddrTranslatePlugin_tlbLookup_snapshot_entry_D1;
+  wire       [1:0]    IF1_InstAddrTranslatePlugin_tlbLookup_snapshot_entry_MAT1;
+  wire       [1:0]    IF1_InstAddrTranslatePlugin_tlbLookup_snapshot_entry_PLV1;
+  wire       [19:0]   IF1_InstAddrTranslatePlugin_tlbLookup_snapshot_entry_PPN1;
+  wire                _zz_IF1_InstAddrTranslatePlugin_tlbLookup_snapshot_entry_E;
+  wire                _zz_IF1_InstAddrTranslatePlugin_tlbLookup_snapshot_entry_E_1;
+  wire                _zz_IF1_InstAddrTranslatePlugin_tlbLookup_snapshot_entry_E_2;
+  wire                _zz_IF1_InstAddrTranslatePlugin_tlbLookup_snapshot_entry_E_3;
+  wire       [3:0]    _zz_IF1_InstAddrTranslatePlugin_tlbLookup_snapshot_entry_E_4;
+  wire       [88:0]   _zz_IF1_InstAddrTranslatePlugin_tlbLookup_snapshot_entry_E_5;
   wire                IF1_InstAddrTranslatePlugin_savedCSR_CRMD_DA;
   wire                IF1_InstAddrTranslatePlugin_savedCSR_CRMD_PG;
   wire       [1:0]    IF1_InstAddrTranslatePlugin_savedCSR_CRMD_DATF;
   wire       [1:0]    IF1_InstAddrTranslatePlugin_savedCSR_CRMD_DATM;
+  wire       [1:0]    switch_MMUPlugin_l331;
+  wire                IF2_InstAddrTranslatePlugin_tlbTranslateResult_resultValid;
+  wire       [31:0]   IF2_InstAddrTranslatePlugin_tlbTranslateResult_resultPhysAddr;
+  wire                IF2_InstAddrTranslatePlugin_tlbTranslateResult_resultCached;
+  reg                 IF2_InstAddrTranslatePlugin_tlbTranslateResult_resultExceptionBundle_raisePIL;
+  reg                 IF2_InstAddrTranslatePlugin_tlbTranslateResult_resultExceptionBundle_raisePIS;
+  reg                 IF2_InstAddrTranslatePlugin_tlbTranslateResult_resultExceptionBundle_raisePIF;
+  reg                 IF2_InstAddrTranslatePlugin_tlbTranslateResult_resultExceptionBundle_raisePME;
+  reg                 IF2_InstAddrTranslatePlugin_tlbTranslateResult_resultExceptionBundle_raisePPI;
+  reg                 IF2_InstAddrTranslatePlugin_tlbTranslateResult_resultExceptionBundle_raiseTLBR;
+  wire                IF2_InstAddrTranslatePlugin_tlbTranslateResult_TLBHitEntry_v;
+  wire                IF2_InstAddrTranslatePlugin_tlbTranslateResult_TLBHitEntry_d;
+  wire       [1:0]    IF2_InstAddrTranslatePlugin_tlbTranslateResult_TLBHitEntry_mat;
+  wire       [1:0]    IF2_InstAddrTranslatePlugin_tlbTranslateResult_TLBHitEntry_plv;
+  wire       [19:0]   IF2_InstAddrTranslatePlugin_tlbTranslateResult_TLBHitEntry_ppn;
+  wire                when_MMUPlugin_l326;
+  wire                when_MMUPlugin_l330;
+  wire                when_MMUPlugin_l344;
+  wire                when_MMUPlugin_l348;
+  wire                IF2_InstAddrTranslatePlugin_tlbTranslateResult_resultBundle_valid;
+  wire       [31:0]   IF2_InstAddrTranslatePlugin_tlbTranslateResult_resultBundle_payload_physAddr;
+  wire                IF2_InstAddrTranslatePlugin_tlbTranslateResult_resultBundle_payload_cached;
+  wire                IF2_InstAddrTranslatePlugin_tlbTranslateResult_resultBundle_payload_exception_raisePIL;
+  wire                IF2_InstAddrTranslatePlugin_tlbTranslateResult_resultBundle_payload_exception_raisePIS;
+  wire                IF2_InstAddrTranslatePlugin_tlbTranslateResult_resultBundle_payload_exception_raisePIF;
+  wire                IF2_InstAddrTranslatePlugin_tlbTranslateResult_resultBundle_payload_exception_raisePME;
+  wire                IF2_InstAddrTranslatePlugin_tlbTranslateResult_resultBundle_payload_exception_raisePPI;
+  wire                IF2_InstAddrTranslatePlugin_tlbTranslateResult_resultBundle_payload_exception_raiseTLBR;
   reg                 IF2_InstAddrTranslatePlugin_translateResult_resultValid;
   reg        [31:0]   IF2_InstAddrTranslatePlugin_translateResult_resultPhysAddr;
   reg                 IF2_InstAddrTranslatePlugin_translateResult_resultCached;
@@ -17187,10 +17263,10 @@ module MyCPUCore (
   reg                 IF2_InstAddrTranslatePlugin_translateResult_resultExceptionBundle_raisePME;
   reg                 IF2_InstAddrTranslatePlugin_translateResult_resultExceptionBundle_raisePPI;
   reg                 IF2_InstAddrTranslatePlugin_translateResult_resultExceptionBundle_raiseTLBR;
-  wire                when_MMUPlugin_l339;
-  wire                when_MMUPlugin_l347;
-  wire                when_MMUPlugin_l355;
-  wire                when_MMUPlugin_l359;
+  wire                when_MMUPlugin_l380;
+  wire                when_MMUPlugin_l388;
+  wire                when_MMUPlugin_l396;
+  wire                when_MMUPlugin_l400;
   wire                IF2_InstAddrTranslatePlugin_translateResult_resultBundle_valid;
   wire       [31:0]   IF2_InstAddrTranslatePlugin_translateResult_resultBundle_payload_physAddr;
   wire                IF2_InstAddrTranslatePlugin_translateResult_resultBundle_payload_cached;
@@ -17219,10 +17295,6 @@ module MyCPUCore (
   wire       [19:0]   IF2_GlobalPredictorBTBPlugin_tag;
   wire       [9:0]    IF2_GlobalPredictorBTBPlugin_index;
   wire       [3:0]    IF2_GlobalPredictorBTBPlugin_fetchWay;
-  reg        [1:0]    IF2_GlobalPredictorBTBPlugin_lastValidWay;
-  wire                when_GlobalPredictorBTBPlugin_l152;
-  wire                when_GlobalPredictorBTBPlugin_l152_1;
-  wire                when_GlobalPredictorBTBPlugin_l152_2;
   reg        [31:0]   IF2_GlobalPredictorBTBPlugin_payloadTarget;
   wire       [3:0]    _zz_IF2_GlobalPredictorBTBPlugin_branchCount;
   wire       [2:0]    _zz_IF2_GlobalPredictorBTBPlugin_branchCount_1;
@@ -17237,7 +17309,7 @@ module MyCPUCore (
   wire       [4:0]    IF2_GlobalPredictorBTBPlugin_shiftedGHR;
   wire       [19:0]   _zz_io_write_payload_data_0_tag;
   wire       [9:0]    _zz_io_write_payload_address;
-  wire                when_GlobalPredictorBTBPlugin_l204;
+  wire                when_GlobalPredictorBTBPlugin_l199;
   wire       [1023:0] _zz_426;
   wire                _zz_427;
   wire                _zz_428;
@@ -18263,11 +18335,11 @@ module MyCPUCore (
   wire                _zz_1448;
   wire                _zz_1449;
   wire                _zz_1450;
-  wire                when_GlobalPredictorBTBPlugin_l213;
-  wire                when_GlobalPredictorBTBPlugin_l230;
-  wire                when_GlobalPredictorBTBPlugin_l232;
-  wire                when_GlobalPredictorBTBPlugin_l207;
-  wire                when_GlobalPredictorBTBPlugin_l223;
+  wire                when_GlobalPredictorBTBPlugin_l208;
+  wire                when_GlobalPredictorBTBPlugin_l225;
+  wire                when_GlobalPredictorBTBPlugin_l227;
+  wire                when_GlobalPredictorBTBPlugin_l202;
+  wire                when_GlobalPredictorBTBPlugin_l218;
   wire                when_ReturnAddressStackPlugin_l31;
   wire       [7:0]    _zz_1451;
   wire       [29:0]   _zz_ReturnAddressStackPlugin_ras_0;
@@ -19024,10 +19096,12 @@ module MyCPUCore (
   wire                MULDIV_EXE_MulDivExecutePlugin_isDivision;
   reg                 MULDIV_EXE_MulDivExecutePlugin_isFirstCycle;
   wire                MULDIV_EXE_MulDivExecutePlugin_in16Bits;
+  reg                 MULDIV_EXE_MulDivExecutePlugin_in16BitsHeld;
+  wire                when_MulDivExecutePlugin_l136;
   reg        [31:0]   _zz_MULDIV_EXE_MulDivExecutePlugin_quotient;
   reg        [31:0]   _zz_MULDIV_EXE_MulDivExecutePlugin_remainder;
-  wire                when_MulDivExecutePlugin_l147;
-  wire                when_MulDivExecutePlugin_l148;
+  wire                when_MulDivExecutePlugin_l158;
+  wire                when_MulDivExecutePlugin_l159;
   wire                _zz_MULDIV_EXE_MulDivExecutePlugin_quotient_1;
   wire       [31:0]   MULDIV_EXE_MulDivExecutePlugin_quotient;
   wire                _zz_MULDIV_EXE_MulDivExecutePlugin_remainder_1;
@@ -19063,109 +19137,110 @@ module MyCPUCore (
   wire                MEM_ADDR_AddressGenerationPlugin_directTranslateResult_resultBundle_payload_exception_raisePME;
   wire                MEM_ADDR_AddressGenerationPlugin_directTranslateResult_resultBundle_payload_exception_raisePPI;
   wire                MEM_ADDR_AddressGenerationPlugin_directTranslateResult_resultBundle_payload_exception_raiseTLBR;
-  wire       [1:0]    switch_MMUPlugin_l290_1;
-  wire                MEM_ADDR_AddressGenerationPlugin_tlbTranslateResult_resultValid;
-  wire       [31:0]   MEM_ADDR_AddressGenerationPlugin_tlbTranslateResult_resultPhysAddr;
-  wire                MEM_ADDR_AddressGenerationPlugin_tlbTranslateResult_resultCached;
-  reg                 MEM_ADDR_AddressGenerationPlugin_tlbTranslateResult_resultExceptionBundle_raisePIL;
-  reg                 MEM_ADDR_AddressGenerationPlugin_tlbTranslateResult_resultExceptionBundle_raisePIS;
-  reg                 MEM_ADDR_AddressGenerationPlugin_tlbTranslateResult_resultExceptionBundle_raisePIF;
-  reg                 MEM_ADDR_AddressGenerationPlugin_tlbTranslateResult_resultExceptionBundle_raisePME;
-  reg                 MEM_ADDR_AddressGenerationPlugin_tlbTranslateResult_resultExceptionBundle_raisePPI;
-  reg                 MEM_ADDR_AddressGenerationPlugin_tlbTranslateResult_resultExceptionBundle_raiseTLBR;
-  wire                MEM_ADDR_AddressGenerationPlugin_tlbTranslateResult_ASIDMatches_0;
-  wire                MEM_ADDR_AddressGenerationPlugin_tlbTranslateResult_ASIDMatches_1;
-  wire                MEM_ADDR_AddressGenerationPlugin_tlbTranslateResult_ASIDMatches_2;
-  wire                MEM_ADDR_AddressGenerationPlugin_tlbTranslateResult_ASIDMatches_3;
-  wire                MEM_ADDR_AddressGenerationPlugin_tlbTranslateResult_ASIDMatches_4;
-  wire                MEM_ADDR_AddressGenerationPlugin_tlbTranslateResult_ASIDMatches_5;
-  wire                MEM_ADDR_AddressGenerationPlugin_tlbTranslateResult_ASIDMatches_6;
-  wire                MEM_ADDR_AddressGenerationPlugin_tlbTranslateResult_ASIDMatches_7;
-  wire                MEM_ADDR_AddressGenerationPlugin_tlbTranslateResult_ASIDMatches_8;
-  wire                MEM_ADDR_AddressGenerationPlugin_tlbTranslateResult_ASIDMatches_9;
-  wire                MEM_ADDR_AddressGenerationPlugin_tlbTranslateResult_ASIDMatches_10;
-  wire                MEM_ADDR_AddressGenerationPlugin_tlbTranslateResult_ASIDMatches_11;
-  wire                MEM_ADDR_AddressGenerationPlugin_tlbTranslateResult_ASIDMatches_12;
-  wire                MEM_ADDR_AddressGenerationPlugin_tlbTranslateResult_ASIDMatches_13;
-  wire                MEM_ADDR_AddressGenerationPlugin_tlbTranslateResult_ASIDMatches_14;
-  wire                MEM_ADDR_AddressGenerationPlugin_tlbTranslateResult_ASIDMatches_15;
-  wire                MEM_ADDR_AddressGenerationPlugin_tlbTranslateResult_VPPNMatches_0;
-  wire                MEM_ADDR_AddressGenerationPlugin_tlbTranslateResult_VPPNMatches_1;
-  wire                MEM_ADDR_AddressGenerationPlugin_tlbTranslateResult_VPPNMatches_2;
-  wire                MEM_ADDR_AddressGenerationPlugin_tlbTranslateResult_VPPNMatches_3;
-  wire                MEM_ADDR_AddressGenerationPlugin_tlbTranslateResult_VPPNMatches_4;
-  wire                MEM_ADDR_AddressGenerationPlugin_tlbTranslateResult_VPPNMatches_5;
-  wire                MEM_ADDR_AddressGenerationPlugin_tlbTranslateResult_VPPNMatches_6;
-  wire                MEM_ADDR_AddressGenerationPlugin_tlbTranslateResult_VPPNMatches_7;
-  wire                MEM_ADDR_AddressGenerationPlugin_tlbTranslateResult_VPPNMatches_8;
-  wire                MEM_ADDR_AddressGenerationPlugin_tlbTranslateResult_VPPNMatches_9;
-  wire                MEM_ADDR_AddressGenerationPlugin_tlbTranslateResult_VPPNMatches_10;
-  wire                MEM_ADDR_AddressGenerationPlugin_tlbTranslateResult_VPPNMatches_11;
-  wire                MEM_ADDR_AddressGenerationPlugin_tlbTranslateResult_VPPNMatches_12;
-  wire                MEM_ADDR_AddressGenerationPlugin_tlbTranslateResult_VPPNMatches_13;
-  wire                MEM_ADDR_AddressGenerationPlugin_tlbTranslateResult_VPPNMatches_14;
-  wire                MEM_ADDR_AddressGenerationPlugin_tlbTranslateResult_VPPNMatches_15;
-  wire                MEM_ADDR_AddressGenerationPlugin_tlbTranslateResult_EntryHits_0;
-  wire                MEM_ADDR_AddressGenerationPlugin_tlbTranslateResult_EntryHits_1;
-  wire                MEM_ADDR_AddressGenerationPlugin_tlbTranslateResult_EntryHits_2;
-  wire                MEM_ADDR_AddressGenerationPlugin_tlbTranslateResult_EntryHits_3;
-  wire                MEM_ADDR_AddressGenerationPlugin_tlbTranslateResult_EntryHits_4;
-  wire                MEM_ADDR_AddressGenerationPlugin_tlbTranslateResult_EntryHits_5;
-  wire                MEM_ADDR_AddressGenerationPlugin_tlbTranslateResult_EntryHits_6;
-  wire                MEM_ADDR_AddressGenerationPlugin_tlbTranslateResult_EntryHits_7;
-  wire                MEM_ADDR_AddressGenerationPlugin_tlbTranslateResult_EntryHits_8;
-  wire                MEM_ADDR_AddressGenerationPlugin_tlbTranslateResult_EntryHits_9;
-  wire                MEM_ADDR_AddressGenerationPlugin_tlbTranslateResult_EntryHits_10;
-  wire                MEM_ADDR_AddressGenerationPlugin_tlbTranslateResult_EntryHits_11;
-  wire                MEM_ADDR_AddressGenerationPlugin_tlbTranslateResult_EntryHits_12;
-  wire                MEM_ADDR_AddressGenerationPlugin_tlbTranslateResult_EntryHits_13;
-  wire                MEM_ADDR_AddressGenerationPlugin_tlbTranslateResult_EntryHits_14;
-  wire                MEM_ADDR_AddressGenerationPlugin_tlbTranslateResult_EntryHits_15;
-  wire                MEM_ADDR_AddressGenerationPlugin_tlbTranslateResult_TLBHit;
-  wire                _zz_MEM_ADDR_AddressGenerationPlugin_tlbTranslateResult_TLBHitEntry_E;
-  wire                _zz_MEM_ADDR_AddressGenerationPlugin_tlbTranslateResult_TLBHitEntry_E_1;
-  wire                _zz_MEM_ADDR_AddressGenerationPlugin_tlbTranslateResult_TLBHitEntry_E_2;
-  wire                _zz_MEM_ADDR_AddressGenerationPlugin_tlbTranslateResult_TLBHitEntry_E_3;
-  wire       [3:0]    _zz_MEM_ADDR_AddressGenerationPlugin_tlbTranslateResult_TLBHitEntry_E_4;
-  wire                MEM_ADDR_AddressGenerationPlugin_tlbTranslateResult_TLBHitEntry_E;
-  wire       [9:0]    MEM_ADDR_AddressGenerationPlugin_tlbTranslateResult_TLBHitEntry_ASID;
-  wire                MEM_ADDR_AddressGenerationPlugin_tlbTranslateResult_TLBHitEntry_G;
-  wire       [5:0]    MEM_ADDR_AddressGenerationPlugin_tlbTranslateResult_TLBHitEntry_PS;
-  wire       [18:0]   MEM_ADDR_AddressGenerationPlugin_tlbTranslateResult_TLBHitEntry_VPPN;
-  wire                MEM_ADDR_AddressGenerationPlugin_tlbTranslateResult_TLBHitEntry_V0;
-  wire                MEM_ADDR_AddressGenerationPlugin_tlbTranslateResult_TLBHitEntry_D0;
-  wire       [1:0]    MEM_ADDR_AddressGenerationPlugin_tlbTranslateResult_TLBHitEntry_MAT0;
-  wire       [1:0]    MEM_ADDR_AddressGenerationPlugin_tlbTranslateResult_TLBHitEntry_PLV0;
-  wire       [19:0]   MEM_ADDR_AddressGenerationPlugin_tlbTranslateResult_TLBHitEntry_PPN0;
-  wire                MEM_ADDR_AddressGenerationPlugin_tlbTranslateResult_TLBHitEntry_V1;
-  wire                MEM_ADDR_AddressGenerationPlugin_tlbTranslateResult_TLBHitEntry_D1;
-  wire       [1:0]    MEM_ADDR_AddressGenerationPlugin_tlbTranslateResult_TLBHitEntry_MAT1;
-  wire       [1:0]    MEM_ADDR_AddressGenerationPlugin_tlbTranslateResult_TLBHitEntry_PLV1;
-  wire       [19:0]   MEM_ADDR_AddressGenerationPlugin_tlbTranslateResult_TLBHitEntry_PPN1;
-  wire                MEM_ADDR_AddressGenerationPlugin_tlbTranslateResult_TLBHitEntry_v;
-  wire                MEM_ADDR_AddressGenerationPlugin_tlbTranslateResult_TLBHitEntry_d;
-  wire       [1:0]    MEM_ADDR_AddressGenerationPlugin_tlbTranslateResult_TLBHitEntry_mat;
-  wire       [1:0]    MEM_ADDR_AddressGenerationPlugin_tlbTranslateResult_TLBHitEntry_plv;
-  wire       [19:0]   MEM_ADDR_AddressGenerationPlugin_tlbTranslateResult_TLBHitEntry_ppn;
-  wire                when_MMUPlugin_l285_1;
-  wire                when_MMUPlugin_l289_1;
-  wire                when_MMUPlugin_l303_1;
-  wire                when_MMUPlugin_l307_1;
-  wire                MEM_ADDR_AddressGenerationPlugin_tlbTranslateResult_resultBundle_valid;
-  wire       [31:0]   MEM_ADDR_AddressGenerationPlugin_tlbTranslateResult_resultBundle_payload_physAddr;
-  wire                MEM_ADDR_AddressGenerationPlugin_tlbTranslateResult_resultBundle_payload_cached;
-  wire                MEM_ADDR_AddressGenerationPlugin_tlbTranslateResult_resultBundle_payload_exception_raisePIL;
-  wire                MEM_ADDR_AddressGenerationPlugin_tlbTranslateResult_resultBundle_payload_exception_raisePIS;
-  wire                MEM_ADDR_AddressGenerationPlugin_tlbTranslateResult_resultBundle_payload_exception_raisePIF;
-  wire                MEM_ADDR_AddressGenerationPlugin_tlbTranslateResult_resultBundle_payload_exception_raisePME;
-  wire                MEM_ADDR_AddressGenerationPlugin_tlbTranslateResult_resultBundle_payload_exception_raisePPI;
-  wire                MEM_ADDR_AddressGenerationPlugin_tlbTranslateResult_resultBundle_payload_exception_raiseTLBR;
+  wire                MEM_ADDR_AddressGenerationPlugin_tlbLookup_ASIDMatches_0;
+  wire                MEM_ADDR_AddressGenerationPlugin_tlbLookup_ASIDMatches_1;
+  wire                MEM_ADDR_AddressGenerationPlugin_tlbLookup_ASIDMatches_2;
+  wire                MEM_ADDR_AddressGenerationPlugin_tlbLookup_ASIDMatches_3;
+  wire                MEM_ADDR_AddressGenerationPlugin_tlbLookup_ASIDMatches_4;
+  wire                MEM_ADDR_AddressGenerationPlugin_tlbLookup_ASIDMatches_5;
+  wire                MEM_ADDR_AddressGenerationPlugin_tlbLookup_ASIDMatches_6;
+  wire                MEM_ADDR_AddressGenerationPlugin_tlbLookup_ASIDMatches_7;
+  wire                MEM_ADDR_AddressGenerationPlugin_tlbLookup_ASIDMatches_8;
+  wire                MEM_ADDR_AddressGenerationPlugin_tlbLookup_ASIDMatches_9;
+  wire                MEM_ADDR_AddressGenerationPlugin_tlbLookup_ASIDMatches_10;
+  wire                MEM_ADDR_AddressGenerationPlugin_tlbLookup_ASIDMatches_11;
+  wire                MEM_ADDR_AddressGenerationPlugin_tlbLookup_ASIDMatches_12;
+  wire                MEM_ADDR_AddressGenerationPlugin_tlbLookup_ASIDMatches_13;
+  wire                MEM_ADDR_AddressGenerationPlugin_tlbLookup_ASIDMatches_14;
+  wire                MEM_ADDR_AddressGenerationPlugin_tlbLookup_ASIDMatches_15;
+  wire                MEM_ADDR_AddressGenerationPlugin_tlbLookup_VPPNMatches_0;
+  wire                MEM_ADDR_AddressGenerationPlugin_tlbLookup_VPPNMatches_1;
+  wire                MEM_ADDR_AddressGenerationPlugin_tlbLookup_VPPNMatches_2;
+  wire                MEM_ADDR_AddressGenerationPlugin_tlbLookup_VPPNMatches_3;
+  wire                MEM_ADDR_AddressGenerationPlugin_tlbLookup_VPPNMatches_4;
+  wire                MEM_ADDR_AddressGenerationPlugin_tlbLookup_VPPNMatches_5;
+  wire                MEM_ADDR_AddressGenerationPlugin_tlbLookup_VPPNMatches_6;
+  wire                MEM_ADDR_AddressGenerationPlugin_tlbLookup_VPPNMatches_7;
+  wire                MEM_ADDR_AddressGenerationPlugin_tlbLookup_VPPNMatches_8;
+  wire                MEM_ADDR_AddressGenerationPlugin_tlbLookup_VPPNMatches_9;
+  wire                MEM_ADDR_AddressGenerationPlugin_tlbLookup_VPPNMatches_10;
+  wire                MEM_ADDR_AddressGenerationPlugin_tlbLookup_VPPNMatches_11;
+  wire                MEM_ADDR_AddressGenerationPlugin_tlbLookup_VPPNMatches_12;
+  wire                MEM_ADDR_AddressGenerationPlugin_tlbLookup_VPPNMatches_13;
+  wire                MEM_ADDR_AddressGenerationPlugin_tlbLookup_VPPNMatches_14;
+  wire                MEM_ADDR_AddressGenerationPlugin_tlbLookup_VPPNMatches_15;
+  wire                MEM_ADDR_AddressGenerationPlugin_tlbLookup_EntryHits_0;
+  wire                MEM_ADDR_AddressGenerationPlugin_tlbLookup_EntryHits_1;
+  wire                MEM_ADDR_AddressGenerationPlugin_tlbLookup_EntryHits_2;
+  wire                MEM_ADDR_AddressGenerationPlugin_tlbLookup_EntryHits_3;
+  wire                MEM_ADDR_AddressGenerationPlugin_tlbLookup_EntryHits_4;
+  wire                MEM_ADDR_AddressGenerationPlugin_tlbLookup_EntryHits_5;
+  wire                MEM_ADDR_AddressGenerationPlugin_tlbLookup_EntryHits_6;
+  wire                MEM_ADDR_AddressGenerationPlugin_tlbLookup_EntryHits_7;
+  wire                MEM_ADDR_AddressGenerationPlugin_tlbLookup_EntryHits_8;
+  wire                MEM_ADDR_AddressGenerationPlugin_tlbLookup_EntryHits_9;
+  wire                MEM_ADDR_AddressGenerationPlugin_tlbLookup_EntryHits_10;
+  wire                MEM_ADDR_AddressGenerationPlugin_tlbLookup_EntryHits_11;
+  wire                MEM_ADDR_AddressGenerationPlugin_tlbLookup_EntryHits_12;
+  wire                MEM_ADDR_AddressGenerationPlugin_tlbLookup_EntryHits_13;
+  wire                MEM_ADDR_AddressGenerationPlugin_tlbLookup_EntryHits_14;
+  wire                MEM_ADDR_AddressGenerationPlugin_tlbLookup_EntryHits_15;
+  wire                MEM_ADDR_AddressGenerationPlugin_tlbLookup_snapshot_hit;
+  wire                MEM_ADDR_AddressGenerationPlugin_tlbLookup_snapshot_entry_E;
+  wire       [9:0]    MEM_ADDR_AddressGenerationPlugin_tlbLookup_snapshot_entry_ASID;
+  wire                MEM_ADDR_AddressGenerationPlugin_tlbLookup_snapshot_entry_G;
+  wire       [5:0]    MEM_ADDR_AddressGenerationPlugin_tlbLookup_snapshot_entry_PS;
+  wire       [18:0]   MEM_ADDR_AddressGenerationPlugin_tlbLookup_snapshot_entry_VPPN;
+  wire                MEM_ADDR_AddressGenerationPlugin_tlbLookup_snapshot_entry_V0;
+  wire                MEM_ADDR_AddressGenerationPlugin_tlbLookup_snapshot_entry_D0;
+  wire       [1:0]    MEM_ADDR_AddressGenerationPlugin_tlbLookup_snapshot_entry_MAT0;
+  wire       [1:0]    MEM_ADDR_AddressGenerationPlugin_tlbLookup_snapshot_entry_PLV0;
+  wire       [19:0]   MEM_ADDR_AddressGenerationPlugin_tlbLookup_snapshot_entry_PPN0;
+  wire                MEM_ADDR_AddressGenerationPlugin_tlbLookup_snapshot_entry_V1;
+  wire                MEM_ADDR_AddressGenerationPlugin_tlbLookup_snapshot_entry_D1;
+  wire       [1:0]    MEM_ADDR_AddressGenerationPlugin_tlbLookup_snapshot_entry_MAT1;
+  wire       [1:0]    MEM_ADDR_AddressGenerationPlugin_tlbLookup_snapshot_entry_PLV1;
+  wire       [19:0]   MEM_ADDR_AddressGenerationPlugin_tlbLookup_snapshot_entry_PPN1;
+  wire                _zz_MEM_ADDR_AddressGenerationPlugin_tlbLookup_snapshot_entry_E;
+  wire                _zz_MEM_ADDR_AddressGenerationPlugin_tlbLookup_snapshot_entry_E_1;
+  wire                _zz_MEM_ADDR_AddressGenerationPlugin_tlbLookup_snapshot_entry_E_2;
+  wire                _zz_MEM_ADDR_AddressGenerationPlugin_tlbLookup_snapshot_entry_E_3;
+  wire       [3:0]    _zz_MEM_ADDR_AddressGenerationPlugin_tlbLookup_snapshot_entry_E_4;
+  wire       [88:0]   _zz_MEM_ADDR_AddressGenerationPlugin_tlbLookup_snapshot_entry_E_5;
   wire                MEM_ADDR_AddressGenerationPlugin_savedCSR_CRMD_DA;
   wire                MEM_ADDR_AddressGenerationPlugin_savedCSR_CRMD_PG;
   wire       [1:0]    MEM_ADDR_AddressGenerationPlugin_savedCSR_CRMD_DATF;
   wire       [1:0]    MEM_ADDR_AddressGenerationPlugin_savedCSR_CRMD_DATM;
   wire                MEM_MEM1_AddressGenerationPlugin_excAsLoad;
-  wire       [1:0]    _zz_when_MMUPlugin_l359;
+  wire       [1:0]    switch_MMUPlugin_l331_1;
+  wire                MEM_MEM1_AddressGenerationPlugin_tlbTranslateResult_resultValid;
+  wire       [31:0]   MEM_MEM1_AddressGenerationPlugin_tlbTranslateResult_resultPhysAddr;
+  wire                MEM_MEM1_AddressGenerationPlugin_tlbTranslateResult_resultCached;
+  reg                 MEM_MEM1_AddressGenerationPlugin_tlbTranslateResult_resultExceptionBundle_raisePIL;
+  reg                 MEM_MEM1_AddressGenerationPlugin_tlbTranslateResult_resultExceptionBundle_raisePIS;
+  reg                 MEM_MEM1_AddressGenerationPlugin_tlbTranslateResult_resultExceptionBundle_raisePIF;
+  reg                 MEM_MEM1_AddressGenerationPlugin_tlbTranslateResult_resultExceptionBundle_raisePME;
+  reg                 MEM_MEM1_AddressGenerationPlugin_tlbTranslateResult_resultExceptionBundle_raisePPI;
+  reg                 MEM_MEM1_AddressGenerationPlugin_tlbTranslateResult_resultExceptionBundle_raiseTLBR;
+  wire                MEM_MEM1_AddressGenerationPlugin_tlbTranslateResult_TLBHitEntry_v;
+  wire                MEM_MEM1_AddressGenerationPlugin_tlbTranslateResult_TLBHitEntry_d;
+  wire       [1:0]    MEM_MEM1_AddressGenerationPlugin_tlbTranslateResult_TLBHitEntry_mat;
+  wire       [1:0]    MEM_MEM1_AddressGenerationPlugin_tlbTranslateResult_TLBHitEntry_plv;
+  wire       [19:0]   MEM_MEM1_AddressGenerationPlugin_tlbTranslateResult_TLBHitEntry_ppn;
+  wire                when_MMUPlugin_l326_1;
+  wire                when_MMUPlugin_l330_1;
+  wire                when_MMUPlugin_l344_1;
+  wire                when_MMUPlugin_l348_1;
+  wire                MEM_MEM1_AddressGenerationPlugin_tlbTranslateResult_resultBundle_valid;
+  wire       [31:0]   MEM_MEM1_AddressGenerationPlugin_tlbTranslateResult_resultBundle_payload_physAddr;
+  wire                MEM_MEM1_AddressGenerationPlugin_tlbTranslateResult_resultBundle_payload_cached;
+  wire                MEM_MEM1_AddressGenerationPlugin_tlbTranslateResult_resultBundle_payload_exception_raisePIL;
+  wire                MEM_MEM1_AddressGenerationPlugin_tlbTranslateResult_resultBundle_payload_exception_raisePIS;
+  wire                MEM_MEM1_AddressGenerationPlugin_tlbTranslateResult_resultBundle_payload_exception_raisePIF;
+  wire                MEM_MEM1_AddressGenerationPlugin_tlbTranslateResult_resultBundle_payload_exception_raisePME;
+  wire                MEM_MEM1_AddressGenerationPlugin_tlbTranslateResult_resultBundle_payload_exception_raisePPI;
+  wire                MEM_MEM1_AddressGenerationPlugin_tlbTranslateResult_resultBundle_payload_exception_raiseTLBR;
+  wire       [1:0]    _zz_when_MMUPlugin_l400;
   reg                 MEM_MEM1_AddressGenerationPlugin_translateResult_resultValid;
   reg        [31:0]   MEM_MEM1_AddressGenerationPlugin_translateResult_resultPhysAddr;
   reg                 MEM_MEM1_AddressGenerationPlugin_translateResult_resultCached;
@@ -19175,10 +19250,10 @@ module MyCPUCore (
   reg                 MEM_MEM1_AddressGenerationPlugin_translateResult_resultExceptionBundle_raisePME;
   reg                 MEM_MEM1_AddressGenerationPlugin_translateResult_resultExceptionBundle_raisePPI;
   reg                 MEM_MEM1_AddressGenerationPlugin_translateResult_resultExceptionBundle_raiseTLBR;
-  wire                when_MMUPlugin_l339_1;
-  wire                when_MMUPlugin_l347_1;
-  wire                when_MMUPlugin_l355_1;
-  wire                when_MMUPlugin_l359_1;
+  wire                when_MMUPlugin_l380_1;
+  wire                when_MMUPlugin_l388_1;
+  wire                when_MMUPlugin_l396_1;
+  wire                when_MMUPlugin_l400_1;
   wire                MEM_MEM1_AddressGenerationPlugin_translateResult_resultBundle_valid;
   wire       [31:0]   MEM_MEM1_AddressGenerationPlugin_translateResult_resultBundle_payload_physAddr;
   wire                MEM_MEM1_AddressGenerationPlugin_translateResult_resultBundle_payload_cached;
@@ -19421,9 +19496,14 @@ module MyCPUCore (
   wire                when_Pipeline_l158;
   reg        [31:0]   IF1_to_IF2_PC;
   wire                when_Pipeline_l158_1;
+  reg        [31:0]   IF2_to_IF3_PC;
+  wire                when_Pipeline_l158_2;
   reg                 IF1_to_IF2_ICACHE_VALIDS_0;
   reg                 IF1_to_IF2_ICACHE_VALIDS_1;
-  wire                when_Pipeline_l158_2;
+  wire                when_Pipeline_l158_3;
+  reg                 IF2_to_IF3_ICACHE_VALIDS_0;
+  reg                 IF2_to_IF3_ICACHE_VALIDS_1;
+  wire                when_Pipeline_l158_4;
   reg        [31:0]   IF1_to_IF2_ICACHE_RSPS_0_0;
   reg        [31:0]   IF1_to_IF2_ICACHE_RSPS_0_1;
   reg        [31:0]   IF1_to_IF2_ICACHE_RSPS_0_2;
@@ -19432,19 +19512,38 @@ module MyCPUCore (
   reg        [31:0]   IF1_to_IF2_ICACHE_RSPS_1_1;
   reg        [31:0]   IF1_to_IF2_ICACHE_RSPS_1_2;
   reg        [31:0]   IF1_to_IF2_ICACHE_RSPS_1_3;
-  wire                when_Pipeline_l158_3;
+  wire                when_Pipeline_l158_5;
+  reg        [31:0]   IF2_to_IF3_ICACHE_RSPS_0_0;
+  reg        [31:0]   IF2_to_IF3_ICACHE_RSPS_0_1;
+  reg        [31:0]   IF2_to_IF3_ICACHE_RSPS_0_2;
+  reg        [31:0]   IF2_to_IF3_ICACHE_RSPS_0_3;
+  reg        [31:0]   IF2_to_IF3_ICACHE_RSPS_1_0;
+  reg        [31:0]   IF2_to_IF3_ICACHE_RSPS_1_1;
+  reg        [31:0]   IF2_to_IF3_ICACHE_RSPS_1_2;
+  reg        [31:0]   IF2_to_IF3_ICACHE_RSPS_1_3;
+  wire                when_Pipeline_l158_6;
   reg        [0:0]    IF1_to_IF2_ICACHE_INFO_lru;
   reg        [19:0]   IF1_to_IF2_ICACHE_INFO_tags_0;
   reg        [19:0]   IF1_to_IF2_ICACHE_INFO_tags_1;
-  wire                when_Pipeline_l158_4;
-  reg                 IF1_to_IF2_EXCEPTION_OCCURRED;
-  wire                when_Pipeline_l158_5;
-  reg        [5:0]    IF1_to_IF2_EXCEPTION_ECODE;
-  wire                when_Pipeline_l158_6;
-  reg        [8:0]    IF1_to_IF2_EXCEPTION_ESUBCODE;
   wire                when_Pipeline_l158_7;
-  reg        [31:0]   IF1_to_IF2_BAD_VADDR;
+  reg        [0:0]    IF2_to_IF3_ICACHE_INFO_lru;
+  reg        [19:0]   IF2_to_IF3_ICACHE_INFO_tags_0;
+  reg        [19:0]   IF2_to_IF3_ICACHE_INFO_tags_1;
   wire                when_Pipeline_l158_8;
+  reg                 IF1_to_IF2_EXCEPTION_OCCURRED;
+  wire                when_Pipeline_l158_9;
+  reg                 IF2_to_IF3_EXCEPTION_OCCURRED;
+  wire                when_Pipeline_l158_10;
+  reg        [5:0]    IF1_to_IF2_EXCEPTION_ECODE;
+  wire                when_Pipeline_l158_11;
+  reg        [5:0]    IF2_to_IF3_EXCEPTION_ECODE;
+  wire                when_Pipeline_l158_12;
+  reg        [8:0]    IF1_to_IF2_EXCEPTION_ESUBCODE;
+  wire                when_Pipeline_l158_13;
+  reg        [8:0]    IF2_to_IF3_EXCEPTION_ESUBCODE;
+  wire                when_Pipeline_l158_14;
+  reg        [31:0]   IF1_to_IF2_BAD_VADDR;
+  wire                when_Pipeline_l158_15;
   reg                 IF1_to_IF2_DIRECT_TRANSLATE_RESULT_valid;
   reg        [31:0]   IF1_to_IF2_DIRECT_TRANSLATE_RESULT_payload_physAddr;
   reg                 IF1_to_IF2_DIRECT_TRANSLATE_RESULT_payload_cached;
@@ -19454,45 +19553,79 @@ module MyCPUCore (
   reg                 IF1_to_IF2_DIRECT_TRANSLATE_RESULT_payload_exception_raisePME;
   reg                 IF1_to_IF2_DIRECT_TRANSLATE_RESULT_payload_exception_raisePPI;
   reg                 IF1_to_IF2_DIRECT_TRANSLATE_RESULT_payload_exception_raiseTLBR;
-  wire                when_Pipeline_l158_9;
-  reg                 IF1_to_IF2_TLB_TRANSLATE_RESULT_valid;
-  reg        [31:0]   IF1_to_IF2_TLB_TRANSLATE_RESULT_payload_physAddr;
-  reg                 IF1_to_IF2_TLB_TRANSLATE_RESULT_payload_cached;
-  reg                 IF1_to_IF2_TLB_TRANSLATE_RESULT_payload_exception_raisePIL;
-  reg                 IF1_to_IF2_TLB_TRANSLATE_RESULT_payload_exception_raisePIS;
-  reg                 IF1_to_IF2_TLB_TRANSLATE_RESULT_payload_exception_raisePIF;
-  reg                 IF1_to_IF2_TLB_TRANSLATE_RESULT_payload_exception_raisePME;
-  reg                 IF1_to_IF2_TLB_TRANSLATE_RESULT_payload_exception_raisePPI;
-  reg                 IF1_to_IF2_TLB_TRANSLATE_RESULT_payload_exception_raiseTLBR;
-  wire                when_Pipeline_l158_10;
+  wire                when_Pipeline_l158_16;
+  reg                 IF1_to_IF2_TLB_LOOKUP_SNAPSHOT_hit;
+  reg                 IF1_to_IF2_TLB_LOOKUP_SNAPSHOT_entry_E;
+  reg        [9:0]    IF1_to_IF2_TLB_LOOKUP_SNAPSHOT_entry_ASID;
+  reg                 IF1_to_IF2_TLB_LOOKUP_SNAPSHOT_entry_G;
+  reg        [5:0]    IF1_to_IF2_TLB_LOOKUP_SNAPSHOT_entry_PS;
+  reg        [18:0]   IF1_to_IF2_TLB_LOOKUP_SNAPSHOT_entry_VPPN;
+  reg                 IF1_to_IF2_TLB_LOOKUP_SNAPSHOT_entry_V0;
+  reg                 IF1_to_IF2_TLB_LOOKUP_SNAPSHOT_entry_D0;
+  reg        [1:0]    IF1_to_IF2_TLB_LOOKUP_SNAPSHOT_entry_MAT0;
+  reg        [1:0]    IF1_to_IF2_TLB_LOOKUP_SNAPSHOT_entry_PLV0;
+  reg        [19:0]   IF1_to_IF2_TLB_LOOKUP_SNAPSHOT_entry_PPN0;
+  reg                 IF1_to_IF2_TLB_LOOKUP_SNAPSHOT_entry_V1;
+  reg                 IF1_to_IF2_TLB_LOOKUP_SNAPSHOT_entry_D1;
+  reg        [1:0]    IF1_to_IF2_TLB_LOOKUP_SNAPSHOT_entry_MAT1;
+  reg        [1:0]    IF1_to_IF2_TLB_LOOKUP_SNAPSHOT_entry_PLV1;
+  reg        [19:0]   IF1_to_IF2_TLB_LOOKUP_SNAPSHOT_entry_PPN1;
+  wire                when_Pipeline_l158_17;
   reg                 IF1_to_IF2_TRANSLATE_SAVED_CSR_CRMD_DA;
   reg                 IF1_to_IF2_TRANSLATE_SAVED_CSR_CRMD_PG;
   reg        [1:0]    IF1_to_IF2_TRANSLATE_SAVED_CSR_CRMD_DATF;
   reg        [1:0]    IF1_to_IF2_TRANSLATE_SAVED_CSR_CRMD_DATM;
-  wire                when_Pipeline_l158_11;
+  wire                when_Pipeline_l158_18;
   reg                 IF1_to_IF2_PREDICT_JUMP_FLAG;
-  wire                when_Pipeline_l158_12;
+  wire                when_Pipeline_l158_19;
   reg        [29:0]   IF1_to_IF2_PREDICT_JUMP_PAYLOAD_target;
   reg                 IF1_to_IF2_PREDICT_JUMP_PAYLOAD_isCall;
   reg                 IF1_to_IF2_PREDICT_JUMP_PAYLOAD_isReturn;
-  wire                when_Pipeline_l158_13;
+  wire                when_Pipeline_l158_20;
   reg        [1:0]    IF1_to_IF2_PREDICT_JUMP_WAY;
-  wire                when_Pipeline_l158_14;
+  wire                when_Pipeline_l158_21;
   reg        [3:0]    IF1_to_IF2_INSTRUCTION_MASK;
-  wire                when_Pipeline_l158_15;
+  wire                when_Pipeline_l158_22;
+  reg        [3:0]    IF2_to_IF3_INSTRUCTION_MASK;
+  wire                when_Pipeline_l158_23;
   reg        [3:0]    IF1_to_IF2_BRANCH_MASK;
-  wire                when_Pipeline_l158_16;
+  wire                when_Pipeline_l158_24;
+  reg        [3:0]    IF2_to_IF3_BRANCH_MASK;
+  wire                when_Pipeline_l158_25;
   reg        [1:0]    IF1_to_IF2_PRED_COUNTER_0;
   reg        [1:0]    IF1_to_IF2_PRED_COUNTER_1;
   reg        [1:0]    IF1_to_IF2_PRED_COUNTER_2;
   reg        [1:0]    IF1_to_IF2_PRED_COUNTER_3;
-  wire                when_Pipeline_l158_17;
+  wire                when_Pipeline_l158_26;
+  reg        [1:0]    IF2_to_IF3_PRED_COUNTER_0;
+  reg        [1:0]    IF2_to_IF3_PRED_COUNTER_1;
+  reg        [1:0]    IF2_to_IF3_PRED_COUNTER_2;
+  reg        [1:0]    IF2_to_IF3_PRED_COUNTER_3;
+  wire                when_Pipeline_l158_27;
   reg        [4:0]    IF1_to_IF2_GLOBAL_BRANCH_HISTORY;
+  wire                when_Pipeline_l158_28;
+  reg        [31:0]   IF2_to_IF3_PC_PHYSICAL;
+  wire                when_Pipeline_l158_29;
+  reg                 IF2_to_IF3_IS_TLB_REFILL;
+  wire                when_Pipeline_l158_30;
+  reg        [31:0]   IF2_to_IF3_PREDICT_ADDR;
+  wire                when_Pipeline_l158_31;
+  reg        [3:0]    IF2_to_IF3_TAKEN_MASK;
+  wire                when_Pipeline_l158_32;
+  reg        [4:0]    IF2_to_IF3_PRIVATE_BRANCH_HISTORY_0;
+  reg        [4:0]    IF2_to_IF3_PRIVATE_BRANCH_HISTORY_1;
+  reg        [4:0]    IF2_to_IF3_PRIVATE_BRANCH_HISTORY_2;
+  reg        [4:0]    IF2_to_IF3_PRIVATE_BRANCH_HISTORY_3;
+  wire                when_Pipeline_l158_33;
+  reg        [2:0]    IF2_to_IF3_RECOVER_TOP;
   wire                when_Pipeline_l198;
   wire                when_Pipeline_l208;
   wire                when_Pipeline_l211;
   wire                when_Pipeline_l213;
-  wire                when_Pipeline_l158_18;
+  wire                when_Pipeline_l208_1;
+  wire                when_Pipeline_l211_1;
+  wire                when_Pipeline_l213_1;
+  wire                when_Pipeline_l158_34;
   reg                 ID_to_RENAME_DECODE_PACKET_0_valid;
   reg        [31:0]   ID_to_RENAME_DECODE_PACKET_0_payload_pc;
   reg        [31:0]   ID_to_RENAME_DECODE_PACKET_0_payload_inst;
@@ -19622,7 +19755,7 @@ module MyCPUCore (
   reg                 ID_to_RENAME_DECODE_PACKET_2_payload_except_payload_isTLBRefill;
   reg                 ID_to_RENAME_DECODE_PACKET_2_payload_isErtn;
   reg                 ID_to_RENAME_DECODE_PACKET_2_payload_flushState;
-  wire                when_Pipeline_l158_19;
+  wire                when_Pipeline_l158_35;
   reg                 RENAME_to_DISPATCH_DECODE_PACKET_0_valid;
   reg        [31:0]   RENAME_to_DISPATCH_DECODE_PACKET_0_payload_pc;
   reg        [31:0]   RENAME_to_DISPATCH_DECODE_PACKET_0_payload_inst;
@@ -19752,18 +19885,18 @@ module MyCPUCore (
   reg                 RENAME_to_DISPATCH_DECODE_PACKET_2_payload_except_payload_isTLBRefill;
   reg                 RENAME_to_DISPATCH_DECODE_PACKET_2_payload_isErtn;
   reg                 RENAME_to_DISPATCH_DECODE_PACKET_2_payload_flushState;
-  wire                when_Pipeline_l158_20;
+  wire                when_Pipeline_l158_36;
   reg        [4:0]    RENAME_to_DISPATCH_ROB_INDEXES_0;
   reg        [4:0]    RENAME_to_DISPATCH_ROB_INDEXES_1;
   reg        [4:0]    RENAME_to_DISPATCH_ROB_INDEXES_2;
-  wire                when_Pipeline_l158_21;
+  wire                when_Pipeline_l158_37;
   reg                 RENAME_to_DISPATCH_PUSH_INDEXES_0_valid;
   reg        [1:0]    RENAME_to_DISPATCH_PUSH_INDEXES_0_payload;
   reg                 RENAME_to_DISPATCH_PUSH_INDEXES_1_valid;
   reg        [1:0]    RENAME_to_DISPATCH_PUSH_INDEXES_1_payload;
   reg                 RENAME_to_DISPATCH_PUSH_INDEXES_2_valid;
   reg        [1:0]    RENAME_to_DISPATCH_PUSH_INDEXES_2_payload;
-  wire                when_Pipeline_l158_22;
+  wire                when_Pipeline_l158_38;
   reg        [5:0]    RENAME_to_DISPATCH_RENAME_RECORDS_0_rRegs_0;
   reg        [5:0]    RENAME_to_DISPATCH_RENAME_RECORDS_0_rRegs_1;
   reg        [5:0]    RENAME_to_DISPATCH_RENAME_RECORDS_0_wReg;
@@ -19777,13 +19910,13 @@ module MyCPUCore (
   reg        [5:0]    RENAME_to_DISPATCH_RENAME_RECORDS_2_wReg;
   reg        [5:0]    RENAME_to_DISPATCH_RENAME_RECORDS_2_wPrevReg;
   wire                when_Pipeline_l198_1;
-  wire                when_Pipeline_l208_1;
-  wire                when_Pipeline_l211_1;
-  wire                when_Pipeline_l213_1;
   wire                when_Pipeline_l208_2;
   wire                when_Pipeline_l211_2;
   wire                when_Pipeline_l213_2;
-  wire                when_Pipeline_l158_23;
+  wire                when_Pipeline_l208_3;
+  wire                when_Pipeline_l211_3;
+  wire                when_Pipeline_l213_3;
+  wire                when_Pipeline_l158_39;
   reg                 INT2_ISS_to_INT2_RRD_ISSUE_SLOT_rRegs_0_valid;
   reg        [5:0]    INT2_ISS_to_INT2_RRD_ISSUE_SLOT_rRegs_0_payload;
   reg                 INT2_ISS_to_INT2_RRD_ISSUE_SLOT_rRegs_1_valid;
@@ -19812,7 +19945,7 @@ module MyCPUCore (
   reg                 INT2_ISS_to_INT2_RRD_ISSUE_SLOT_uop_readTimer64ID;
   reg        [3:0]    INT2_ISS_to_INT2_RRD_ISSUE_SLOT_uop_tlbOp;
   reg        [5:0]    INT2_ISS_to_INT2_RRD_ISSUE_SLOT_wReg;
-  wire                when_Pipeline_l158_24;
+  wire                when_Pipeline_l158_40;
   reg                 INT2_RRD_to_INT2_EXE_ISSUE_SLOT_rRegs_0_valid;
   reg        [5:0]    INT2_RRD_to_INT2_EXE_ISSUE_SLOT_rRegs_0_payload;
   reg                 INT2_RRD_to_INT2_EXE_ISSUE_SLOT_rRegs_1_valid;
@@ -19841,7 +19974,7 @@ module MyCPUCore (
   reg                 INT2_RRD_to_INT2_EXE_ISSUE_SLOT_uop_readTimer64ID;
   reg        [3:0]    INT2_RRD_to_INT2_EXE_ISSUE_SLOT_uop_tlbOp;
   reg        [5:0]    INT2_RRD_to_INT2_EXE_ISSUE_SLOT_wReg;
-  wire                when_Pipeline_l158_25;
+  wire                when_Pipeline_l158_41;
   reg                 INT2_EXE_to_INT2_WB_ISSUE_SLOT_rRegs_0_valid;
   reg        [5:0]    INT2_EXE_to_INT2_WB_ISSUE_SLOT_rRegs_0_payload;
   reg                 INT2_EXE_to_INT2_WB_ISSUE_SLOT_rRegs_1_valid;
@@ -19870,43 +20003,43 @@ module MyCPUCore (
   reg                 INT2_EXE_to_INT2_WB_ISSUE_SLOT_uop_readTimer64ID;
   reg        [3:0]    INT2_EXE_to_INT2_WB_ISSUE_SLOT_uop_tlbOp;
   reg        [5:0]    INT2_EXE_to_INT2_WB_ISSUE_SLOT_wReg;
-  wire                when_Pipeline_l158_26;
+  wire                when_Pipeline_l158_42;
   reg        [31:0]   INT2_RRD_to_INT2_EXE_REG_READ_RSP_0;
   reg        [31:0]   INT2_RRD_to_INT2_EXE_REG_READ_RSP_1;
-  wire                when_Pipeline_l158_27;
+  wire                when_Pipeline_l158_43;
   reg                 INT2_RRD_to_INT2_EXE_DIFF_IS_COUNT;
-  wire                when_Pipeline_l158_28;
+  wire                when_Pipeline_l158_44;
   reg                 INT2_EXE_to_INT2_WB_DIFF_IS_COUNT;
-  wire                when_Pipeline_l158_29;
+  wire                when_Pipeline_l158_45;
   reg        [63:0]   INT2_RRD_to_INT2_EXE_DIFF_COUNT64_value;
-  wire                when_Pipeline_l158_30;
+  wire                when_Pipeline_l158_46;
   reg        [63:0]   INT2_EXE_to_INT2_WB_DIFF_COUNT64_value;
-  wire                when_Pipeline_l158_31;
+  wire                when_Pipeline_l158_47;
   reg                 INT2_RRD_to_INT2_EXE_DIFF_CSR_RSTAT;
-  wire                when_Pipeline_l158_32;
+  wire                when_Pipeline_l158_48;
   reg                 INT2_EXE_to_INT2_WB_DIFF_CSR_RSTAT;
-  wire                when_Pipeline_l158_33;
+  wire                when_Pipeline_l158_49;
   reg        [31:0]   INT2_RRD_to_INT2_EXE_DIFF_CSR_DATA;
-  wire                when_Pipeline_l158_34;
+  wire                when_Pipeline_l158_50;
   reg        [31:0]   INT2_EXE_to_INT2_WB_DIFF_CSR_DATA;
-  wire                when_Pipeline_l158_35;
+  wire                when_Pipeline_l158_51;
   reg        [31:0]   INT2_EXE_to_INT2_WB_EXE_RESULT;
-  wire                when_Pipeline_l158_36;
+  wire                when_Pipeline_l158_52;
   reg                 INT2_EXE_to_INT2_WB_WRITE_REG_valid;
   reg        [5:0]    INT2_EXE_to_INT2_WB_WRITE_REG_payload;
-  wire                when_Pipeline_l158_37;
+  wire                when_Pipeline_l158_53;
   reg        [4:0]    INT2_EXE_to_INT2_WB_ROB_IDX;
   wire                when_Pipeline_l198_2;
-  wire                when_Pipeline_l208_3;
-  wire                when_Pipeline_l211_3;
-  wire                when_Pipeline_l213_3;
   wire                when_Pipeline_l208_4;
   wire                when_Pipeline_l211_4;
   wire                when_Pipeline_l213_4;
   wire                when_Pipeline_l208_5;
   wire                when_Pipeline_l211_5;
   wire                when_Pipeline_l213_5;
-  wire                when_Pipeline_l158_38;
+  wire                when_Pipeline_l208_6;
+  wire                when_Pipeline_l211_6;
+  wire                when_Pipeline_l213_6;
+  wire                when_Pipeline_l158_54;
   reg                 INT1_ISS_to_INT1_RRD_ISSUE_SLOT_rRegs_0_valid;
   reg        [5:0]    INT1_ISS_to_INT1_RRD_ISSUE_SLOT_rRegs_0_payload;
   reg                 INT1_ISS_to_INT1_RRD_ISSUE_SLOT_rRegs_1_valid;
@@ -19935,7 +20068,7 @@ module MyCPUCore (
   reg                 INT1_ISS_to_INT1_RRD_ISSUE_SLOT_uop_readTimer64ID;
   reg        [3:0]    INT1_ISS_to_INT1_RRD_ISSUE_SLOT_uop_tlbOp;
   reg        [5:0]    INT1_ISS_to_INT1_RRD_ISSUE_SLOT_wReg;
-  wire                when_Pipeline_l158_39;
+  wire                when_Pipeline_l158_55;
   reg                 INT1_RRD_to_INT1_EXE_ISSUE_SLOT_rRegs_0_valid;
   reg        [5:0]    INT1_RRD_to_INT1_EXE_ISSUE_SLOT_rRegs_0_payload;
   reg                 INT1_RRD_to_INT1_EXE_ISSUE_SLOT_rRegs_1_valid;
@@ -19964,7 +20097,7 @@ module MyCPUCore (
   reg                 INT1_RRD_to_INT1_EXE_ISSUE_SLOT_uop_readTimer64ID;
   reg        [3:0]    INT1_RRD_to_INT1_EXE_ISSUE_SLOT_uop_tlbOp;
   reg        [5:0]    INT1_RRD_to_INT1_EXE_ISSUE_SLOT_wReg;
-  wire                when_Pipeline_l158_40;
+  wire                when_Pipeline_l158_56;
   reg                 INT1_EXE_to_INT1_WB_ISSUE_SLOT_rRegs_0_valid;
   reg        [5:0]    INT1_EXE_to_INT1_WB_ISSUE_SLOT_rRegs_0_payload;
   reg                 INT1_EXE_to_INT1_WB_ISSUE_SLOT_rRegs_1_valid;
@@ -19993,41 +20126,41 @@ module MyCPUCore (
   reg                 INT1_EXE_to_INT1_WB_ISSUE_SLOT_uop_readTimer64ID;
   reg        [3:0]    INT1_EXE_to_INT1_WB_ISSUE_SLOT_uop_tlbOp;
   reg        [5:0]    INT1_EXE_to_INT1_WB_ISSUE_SLOT_wReg;
-  wire                when_Pipeline_l158_41;
+  wire                when_Pipeline_l158_57;
   reg        [31:0]   INT1_RRD_to_INT1_EXE_REG_READ_RSP_0;
   reg        [31:0]   INT1_RRD_to_INT1_EXE_REG_READ_RSP_1;
-  wire                when_Pipeline_l158_42;
+  wire                when_Pipeline_l158_58;
   reg                 INT1_RRD_to_INT1_EXE_DIFF_IS_COUNT;
-  wire                when_Pipeline_l158_43;
+  wire                when_Pipeline_l158_59;
   reg                 INT1_EXE_to_INT1_WB_DIFF_IS_COUNT;
-  wire                when_Pipeline_l158_44;
+  wire                when_Pipeline_l158_60;
   reg        [63:0]   INT1_EXE_to_INT1_WB_DIFF_COUNT64_value;
-  wire                when_Pipeline_l158_45;
+  wire                when_Pipeline_l158_61;
   reg                 INT1_RRD_to_INT1_EXE_DIFF_CSR_RSTAT;
-  wire                when_Pipeline_l158_46;
+  wire                when_Pipeline_l158_62;
   reg                 INT1_EXE_to_INT1_WB_DIFF_CSR_RSTAT;
-  wire                when_Pipeline_l158_47;
+  wire                when_Pipeline_l158_63;
   reg        [31:0]   INT1_RRD_to_INT1_EXE_DIFF_CSR_DATA;
-  wire                when_Pipeline_l158_48;
+  wire                when_Pipeline_l158_64;
   reg        [31:0]   INT1_EXE_to_INT1_WB_DIFF_CSR_DATA;
-  wire                when_Pipeline_l158_49;
+  wire                when_Pipeline_l158_65;
   reg        [31:0]   INT1_EXE_to_INT1_WB_EXE_RESULT;
-  wire                when_Pipeline_l158_50;
+  wire                when_Pipeline_l158_66;
   reg                 INT1_EXE_to_INT1_WB_WRITE_REG_valid;
   reg        [5:0]    INT1_EXE_to_INT1_WB_WRITE_REG_payload;
-  wire                when_Pipeline_l158_51;
+  wire                when_Pipeline_l158_67;
   reg        [4:0]    INT1_EXE_to_INT1_WB_ROB_IDX;
   wire                when_Pipeline_l198_3;
-  wire                when_Pipeline_l208_6;
-  wire                when_Pipeline_l211_6;
-  wire                when_Pipeline_l213_6;
   wire                when_Pipeline_l208_7;
   wire                when_Pipeline_l211_7;
   wire                when_Pipeline_l213_7;
   wire                when_Pipeline_l208_8;
   wire                when_Pipeline_l211_8;
   wire                when_Pipeline_l213_8;
-  wire                when_Pipeline_l158_52;
+  wire                when_Pipeline_l208_9;
+  wire                when_Pipeline_l211_9;
+  wire                when_Pipeline_l213_9;
+  wire                when_Pipeline_l158_68;
   reg                 INT0_ISS_to_INT0_RRD_ISSUE_SLOT_rRegs_0_valid;
   reg        [5:0]    INT0_ISS_to_INT0_RRD_ISSUE_SLOT_rRegs_0_payload;
   reg                 INT0_ISS_to_INT0_RRD_ISSUE_SLOT_rRegs_1_valid;
@@ -20056,7 +20189,7 @@ module MyCPUCore (
   reg                 INT0_ISS_to_INT0_RRD_ISSUE_SLOT_uop_readTimer64ID;
   reg        [3:0]    INT0_ISS_to_INT0_RRD_ISSUE_SLOT_uop_tlbOp;
   reg        [5:0]    INT0_ISS_to_INT0_RRD_ISSUE_SLOT_wReg;
-  wire                when_Pipeline_l158_53;
+  wire                when_Pipeline_l158_69;
   reg                 INT0_RRD_to_INT0_EXE_ISSUE_SLOT_rRegs_0_valid;
   reg        [5:0]    INT0_RRD_to_INT0_EXE_ISSUE_SLOT_rRegs_0_payload;
   reg                 INT0_RRD_to_INT0_EXE_ISSUE_SLOT_rRegs_1_valid;
@@ -20085,37 +20218,37 @@ module MyCPUCore (
   reg                 INT0_RRD_to_INT0_EXE_ISSUE_SLOT_uop_readTimer64ID;
   reg        [3:0]    INT0_RRD_to_INT0_EXE_ISSUE_SLOT_uop_tlbOp;
   reg        [5:0]    INT0_RRD_to_INT0_EXE_ISSUE_SLOT_wReg;
-  wire                when_Pipeline_l158_54;
+  wire                when_Pipeline_l158_70;
   reg        [31:0]   INT0_RRD_to_INT0_EXE_REG_READ_RSP_0;
   reg        [31:0]   INT0_RRD_to_INT0_EXE_REG_READ_RSP_1;
-  wire                when_Pipeline_l158_55;
+  wire                when_Pipeline_l158_71;
   reg                 INT0_RRD_to_INT0_EXE_DIFF_CSR_RSTAT;
-  wire                when_Pipeline_l158_56;
+  wire                when_Pipeline_l158_72;
   reg        [31:0]   INT0_RRD_to_INT0_EXE_DIFF_CSR_DATA;
-  wire                when_Pipeline_l158_57;
+  wire                when_Pipeline_l158_73;
   reg        [31:0]   INT0_EXE_to_INT0_WB_EXE_RESULT;
-  wire                when_Pipeline_l158_58;
+  wire                when_Pipeline_l158_74;
   reg        [31:0]   INT0_EXE_to_INT0_WB_ACTUAL_TARGET;
-  wire                when_Pipeline_l158_59;
+  wire                when_Pipeline_l158_75;
   reg                 INT0_EXE_to_INT0_WB_ACTUAL_TAKEN;
-  wire                when_Pipeline_l158_60;
+  wire                when_Pipeline_l158_76;
   reg                 INT0_EXE_to_INT0_WB_MISPREDICT;
-  wire                when_Pipeline_l158_61;
+  wire                when_Pipeline_l158_77;
   reg                 INT0_EXE_to_INT0_WB_WRITE_REG_valid;
   reg        [5:0]    INT0_EXE_to_INT0_WB_WRITE_REG_payload;
-  wire                when_Pipeline_l158_62;
+  wire                when_Pipeline_l158_78;
   reg        [4:0]    INT0_EXE_to_INT0_WB_ROB_IDX;
   wire                when_Pipeline_l198_4;
-  wire                when_Pipeline_l208_9;
-  wire                when_Pipeline_l211_9;
-  wire                when_Pipeline_l213_9;
   wire                when_Pipeline_l208_10;
   wire                when_Pipeline_l211_10;
   wire                when_Pipeline_l213_10;
   wire                when_Pipeline_l208_11;
   wire                when_Pipeline_l211_11;
   wire                when_Pipeline_l213_11;
-  wire                when_Pipeline_l158_63;
+  wire                when_Pipeline_l208_12;
+  wire                when_Pipeline_l211_12;
+  wire                when_Pipeline_l213_12;
+  wire                when_Pipeline_l158_79;
   reg                 MULDIV_ISS_to_MULDIV_RRD_ISSUE_SLOT_rRegs_0_valid;
   reg        [5:0]    MULDIV_ISS_to_MULDIV_RRD_ISSUE_SLOT_rRegs_0_payload;
   reg                 MULDIV_ISS_to_MULDIV_RRD_ISSUE_SLOT_rRegs_1_valid;
@@ -20125,7 +20258,7 @@ module MyCPUCore (
   reg                 MULDIV_ISS_to_MULDIV_RRD_ISSUE_SLOT_uop_doRegWrite;
   reg                 MULDIV_ISS_to_MULDIV_RRD_ISSUE_SLOT_uop_signed;
   reg        [5:0]    MULDIV_ISS_to_MULDIV_RRD_ISSUE_SLOT_wReg;
-  wire                when_Pipeline_l158_64;
+  wire                when_Pipeline_l158_80;
   reg                 MULDIV_RRD_to_MULDIV_EXE_ISSUE_SLOT_rRegs_0_valid;
   reg        [5:0]    MULDIV_RRD_to_MULDIV_EXE_ISSUE_SLOT_rRegs_0_payload;
   reg                 MULDIV_RRD_to_MULDIV_EXE_ISSUE_SLOT_rRegs_1_valid;
@@ -20135,7 +20268,7 @@ module MyCPUCore (
   reg                 MULDIV_RRD_to_MULDIV_EXE_ISSUE_SLOT_uop_doRegWrite;
   reg                 MULDIV_RRD_to_MULDIV_EXE_ISSUE_SLOT_uop_signed;
   reg        [5:0]    MULDIV_RRD_to_MULDIV_EXE_ISSUE_SLOT_wReg;
-  wire                when_Pipeline_l158_65;
+  wire                when_Pipeline_l158_81;
   reg                 MULDIV_EXE_to_MULDIV_WB_ISSUE_SLOT_rRegs_0_valid;
   reg        [5:0]    MULDIV_EXE_to_MULDIV_WB_ISSUE_SLOT_rRegs_0_payload;
   reg                 MULDIV_EXE_to_MULDIV_WB_ISSUE_SLOT_rRegs_1_valid;
@@ -20145,22 +20278,22 @@ module MyCPUCore (
   reg                 MULDIV_EXE_to_MULDIV_WB_ISSUE_SLOT_uop_doRegWrite;
   reg                 MULDIV_EXE_to_MULDIV_WB_ISSUE_SLOT_uop_signed;
   reg        [5:0]    MULDIV_EXE_to_MULDIV_WB_ISSUE_SLOT_wReg;
-  wire                when_Pipeline_l158_66;
+  wire                when_Pipeline_l158_82;
   reg        [31:0]   MULDIV_RRD_to_MULDIV_EXE_REG_READ_RSP_0;
   reg        [31:0]   MULDIV_RRD_to_MULDIV_EXE_REG_READ_RSP_1;
-  wire                when_Pipeline_l158_67;
+  wire                when_Pipeline_l158_83;
   reg        [31:0]   MULDIV_EXE_to_MULDIV_WB_EXE_RESULT;
   wire                when_Pipeline_l198_5;
-  wire                when_Pipeline_l208_12;
-  wire                when_Pipeline_l211_12;
-  wire                when_Pipeline_l213_12;
   wire                when_Pipeline_l208_13;
   wire                when_Pipeline_l211_13;
   wire                when_Pipeline_l213_13;
   wire                when_Pipeline_l208_14;
   wire                when_Pipeline_l211_14;
   wire                when_Pipeline_l213_14;
-  wire                when_Pipeline_l158_68;
+  wire                when_Pipeline_l208_15;
+  wire                when_Pipeline_l211_15;
+  wire                when_Pipeline_l213_15;
+  wire                when_Pipeline_l158_84;
   reg                 MEM_ISS_to_MEM_RRD_ISSUE_SLOT_rRegs_0_valid;
   reg        [5:0]    MEM_ISS_to_MEM_RRD_ISSUE_SLOT_rRegs_0_payload;
   reg                 MEM_ISS_to_MEM_RRD_ISSUE_SLOT_rRegs_1_valid;
@@ -20178,7 +20311,7 @@ module MyCPUCore (
   reg        [1:0]    MEM_ISS_to_MEM_RRD_ISSUE_SLOT_uop_cacheOp;
   reg        [1:0]    MEM_ISS_to_MEM_RRD_ISSUE_SLOT_uop_cacheSel;
   reg        [5:0]    MEM_ISS_to_MEM_RRD_ISSUE_SLOT_wReg;
-  wire                when_Pipeline_l158_69;
+  wire                when_Pipeline_l158_85;
   reg                 MEM_RRD_to_MEM_ADDR_ISSUE_SLOT_rRegs_0_valid;
   reg        [5:0]    MEM_RRD_to_MEM_ADDR_ISSUE_SLOT_rRegs_0_payload;
   reg                 MEM_RRD_to_MEM_ADDR_ISSUE_SLOT_rRegs_1_valid;
@@ -20196,7 +20329,7 @@ module MyCPUCore (
   reg        [1:0]    MEM_RRD_to_MEM_ADDR_ISSUE_SLOT_uop_cacheOp;
   reg        [1:0]    MEM_RRD_to_MEM_ADDR_ISSUE_SLOT_uop_cacheSel;
   reg        [5:0]    MEM_RRD_to_MEM_ADDR_ISSUE_SLOT_wReg;
-  wire                when_Pipeline_l158_70;
+  wire                when_Pipeline_l158_86;
   reg                 MEM_ADDR_to_MEM_MEM1_ISSUE_SLOT_rRegs_0_valid;
   reg        [5:0]    MEM_ADDR_to_MEM_MEM1_ISSUE_SLOT_rRegs_0_payload;
   reg                 MEM_ADDR_to_MEM_MEM1_ISSUE_SLOT_rRegs_1_valid;
@@ -20214,7 +20347,7 @@ module MyCPUCore (
   reg        [1:0]    MEM_ADDR_to_MEM_MEM1_ISSUE_SLOT_uop_cacheOp;
   reg        [1:0]    MEM_ADDR_to_MEM_MEM1_ISSUE_SLOT_uop_cacheSel;
   reg        [5:0]    MEM_ADDR_to_MEM_MEM1_ISSUE_SLOT_wReg;
-  wire                when_Pipeline_l158_71;
+  wire                when_Pipeline_l158_87;
   reg                 MEM_MEM1_to_MEM_MEM2_ISSUE_SLOT_rRegs_0_valid;
   reg        [5:0]    MEM_MEM1_to_MEM_MEM2_ISSUE_SLOT_rRegs_0_payload;
   reg                 MEM_MEM1_to_MEM_MEM2_ISSUE_SLOT_rRegs_1_valid;
@@ -20232,7 +20365,7 @@ module MyCPUCore (
   reg        [1:0]    MEM_MEM1_to_MEM_MEM2_ISSUE_SLOT_uop_cacheOp;
   reg        [1:0]    MEM_MEM1_to_MEM_MEM2_ISSUE_SLOT_uop_cacheSel;
   reg        [5:0]    MEM_MEM1_to_MEM_MEM2_ISSUE_SLOT_wReg;
-  wire                when_Pipeline_l158_72;
+  wire                when_Pipeline_l158_88;
   reg                 MEM_MEM2_to_MEM_WB_ISSUE_SLOT_rRegs_0_valid;
   reg        [5:0]    MEM_MEM2_to_MEM_WB_ISSUE_SLOT_rRegs_0_payload;
   reg                 MEM_MEM2_to_MEM_WB_ISSUE_SLOT_rRegs_1_valid;
@@ -20250,7 +20383,7 @@ module MyCPUCore (
   reg        [1:0]    MEM_MEM2_to_MEM_WB_ISSUE_SLOT_uop_cacheOp;
   reg        [1:0]    MEM_MEM2_to_MEM_WB_ISSUE_SLOT_uop_cacheSel;
   reg        [5:0]    MEM_MEM2_to_MEM_WB_ISSUE_SLOT_wReg;
-  wire                when_Pipeline_l158_73;
+  wire                when_Pipeline_l158_89;
   reg                 MEM_ISS_to_MEM_RRD_STD_SLOT_valid;
   reg                 MEM_ISS_to_MEM_RRD_STD_SLOT_payload_retired;
   reg        [31:0]   MEM_ISS_to_MEM_RRD_STD_SLOT_payload_addr;
@@ -20262,7 +20395,7 @@ module MyCPUCore (
   reg        [5:0]    MEM_ISS_to_MEM_RRD_STD_SLOT_payload_wReg_payload;
   reg        [2:0]    MEM_ISS_to_MEM_RRD_STD_SLOT_payload_lsType;
   reg        [4:0]    MEM_ISS_to_MEM_RRD_STD_SLOT_payload_robIdx;
-  wire                when_Pipeline_l158_74;
+  wire                when_Pipeline_l158_90;
   reg                 MEM_RRD_to_MEM_ADDR_STD_SLOT_valid;
   reg                 MEM_RRD_to_MEM_ADDR_STD_SLOT_payload_retired;
   reg        [31:0]   MEM_RRD_to_MEM_ADDR_STD_SLOT_payload_addr;
@@ -20274,7 +20407,7 @@ module MyCPUCore (
   reg        [5:0]    MEM_RRD_to_MEM_ADDR_STD_SLOT_payload_wReg_payload;
   reg        [2:0]    MEM_RRD_to_MEM_ADDR_STD_SLOT_payload_lsType;
   reg        [4:0]    MEM_RRD_to_MEM_ADDR_STD_SLOT_payload_robIdx;
-  wire                when_Pipeline_l158_75;
+  wire                when_Pipeline_l158_91;
   reg                 MEM_ADDR_to_MEM_MEM1_STD_SLOT_valid;
   reg                 MEM_ADDR_to_MEM_MEM1_STD_SLOT_payload_retired;
   reg        [31:0]   MEM_ADDR_to_MEM_MEM1_STD_SLOT_payload_addr;
@@ -20286,7 +20419,7 @@ module MyCPUCore (
   reg        [5:0]    MEM_ADDR_to_MEM_MEM1_STD_SLOT_payload_wReg_payload;
   reg        [2:0]    MEM_ADDR_to_MEM_MEM1_STD_SLOT_payload_lsType;
   reg        [4:0]    MEM_ADDR_to_MEM_MEM1_STD_SLOT_payload_robIdx;
-  wire                when_Pipeline_l158_76;
+  wire                when_Pipeline_l158_92;
   reg                 MEM_MEM1_to_MEM_MEM2_STD_SLOT_valid;
   reg                 MEM_MEM1_to_MEM_MEM2_STD_SLOT_payload_retired;
   reg        [31:0]   MEM_MEM1_to_MEM_MEM2_STD_SLOT_payload_addr;
@@ -20298,7 +20431,7 @@ module MyCPUCore (
   reg        [5:0]    MEM_MEM1_to_MEM_MEM2_STD_SLOT_payload_wReg_payload;
   reg        [2:0]    MEM_MEM1_to_MEM_MEM2_STD_SLOT_payload_lsType;
   reg        [4:0]    MEM_MEM1_to_MEM_MEM2_STD_SLOT_payload_robIdx;
-  wire                when_Pipeline_l158_77;
+  wire                when_Pipeline_l158_93;
   reg                 MEM_MEM2_to_MEM_WB_STD_SLOT_valid;
   reg                 MEM_MEM2_to_MEM_WB_STD_SLOT_payload_retired;
   reg        [31:0]   MEM_MEM2_to_MEM_WB_STD_SLOT_payload_addr;
@@ -20310,7 +20443,7 @@ module MyCPUCore (
   reg        [5:0]    MEM_MEM2_to_MEM_WB_STD_SLOT_payload_wReg_payload;
   reg        [2:0]    MEM_MEM2_to_MEM_WB_STD_SLOT_payload_lsType;
   reg        [4:0]    MEM_MEM2_to_MEM_WB_STD_SLOT_payload_robIdx;
-  wire                when_Pipeline_l158_78;
+  wire                when_Pipeline_l158_94;
   reg                 MEM_WB_to_MEM_WB2_STD_SLOT_valid;
   reg                 MEM_WB_to_MEM_WB2_STD_SLOT_payload_retired;
   reg        [31:0]   MEM_WB_to_MEM_WB2_STD_SLOT_payload_addr;
@@ -20322,27 +20455,27 @@ module MyCPUCore (
   reg        [5:0]    MEM_WB_to_MEM_WB2_STD_SLOT_payload_wReg_payload;
   reg        [2:0]    MEM_WB_to_MEM_WB2_STD_SLOT_payload_lsType;
   reg        [4:0]    MEM_WB_to_MEM_WB2_STD_SLOT_payload_robIdx;
-  wire                when_Pipeline_l158_79;
+  wire                when_Pipeline_l158_95;
   reg        [31:0]   MEM_RRD_to_MEM_ADDR_MEMORY_ADDRESS;
-  wire                when_Pipeline_l158_80;
+  wire                when_Pipeline_l158_96;
   reg        [31:0]   MEM_ADDR_to_MEM_MEM1_MEMORY_ADDRESS;
-  wire                when_Pipeline_l158_81;
+  wire                when_Pipeline_l158_97;
   reg        [31:0]   MEM_MEM1_to_MEM_MEM2_MEMORY_ADDRESS;
-  wire                when_Pipeline_l158_82;
+  wire                when_Pipeline_l158_98;
   reg        [31:0]   MEM_MEM2_to_MEM_WB_MEMORY_ADDRESS;
-  wire                when_Pipeline_l158_83;
+  wire                when_Pipeline_l158_99;
   reg        [31:0]   MEM_RRD_to_MEM_ADDR_MEMORY_WRITE_DATA;
-  wire                when_Pipeline_l158_84;
+  wire                when_Pipeline_l158_100;
   reg        [31:0]   MEM_ADDR_to_MEM_MEM1_MEMORY_WRITE_DATA;
-  wire                when_Pipeline_l158_85;
+  wire                when_Pipeline_l158_101;
   reg        [31:0]   MEM_MEM1_to_MEM_MEM2_MEMORY_WRITE_DATA;
-  wire                when_Pipeline_l158_86;
+  wire                when_Pipeline_l158_102;
   reg        [31:0]   MEM_MEM2_to_MEM_WB_MEMORY_WRITE_DATA;
-  wire                when_Pipeline_l158_87;
+  wire                when_Pipeline_l158_103;
   reg        [3:0]    MEM_ADDR_to_MEM_MEM1_MEMORY_BE;
-  wire                when_Pipeline_l158_88;
+  wire                when_Pipeline_l158_104;
   reg        [3:0]    MEM_MEM1_to_MEM_MEM2_MEMORY_BE;
-  wire                when_Pipeline_l158_89;
+  wire                when_Pipeline_l158_105;
   reg                 MEM_ADDR_to_MEM_MEM1_DIRECT_TRANSLATE_RESULT_valid;
   reg        [31:0]   MEM_ADDR_to_MEM_MEM1_DIRECT_TRANSLATE_RESULT_payload_physAddr;
   reg                 MEM_ADDR_to_MEM_MEM1_DIRECT_TRANSLATE_RESULT_payload_cached;
@@ -20352,88 +20485,92 @@ module MyCPUCore (
   reg                 MEM_ADDR_to_MEM_MEM1_DIRECT_TRANSLATE_RESULT_payload_exception_raisePME;
   reg                 MEM_ADDR_to_MEM_MEM1_DIRECT_TRANSLATE_RESULT_payload_exception_raisePPI;
   reg                 MEM_ADDR_to_MEM_MEM1_DIRECT_TRANSLATE_RESULT_payload_exception_raiseTLBR;
-  wire                when_Pipeline_l158_90;
-  reg                 MEM_ADDR_to_MEM_MEM1_TLB_TRANSLATE_RESULT_valid;
-  reg        [31:0]   MEM_ADDR_to_MEM_MEM1_TLB_TRANSLATE_RESULT_payload_physAddr;
-  reg                 MEM_ADDR_to_MEM_MEM1_TLB_TRANSLATE_RESULT_payload_cached;
-  reg                 MEM_ADDR_to_MEM_MEM1_TLB_TRANSLATE_RESULT_payload_exception_raisePIL;
-  reg                 MEM_ADDR_to_MEM_MEM1_TLB_TRANSLATE_RESULT_payload_exception_raisePIS;
-  reg                 MEM_ADDR_to_MEM_MEM1_TLB_TRANSLATE_RESULT_payload_exception_raisePIF;
-  reg                 MEM_ADDR_to_MEM_MEM1_TLB_TRANSLATE_RESULT_payload_exception_raisePME;
-  reg                 MEM_ADDR_to_MEM_MEM1_TLB_TRANSLATE_RESULT_payload_exception_raisePPI;
-  reg                 MEM_ADDR_to_MEM_MEM1_TLB_TRANSLATE_RESULT_payload_exception_raiseTLBR;
-  wire                when_Pipeline_l158_91;
+  wire                when_Pipeline_l158_106;
+  reg                 MEM_ADDR_to_MEM_MEM1_TLB_LOOKUP_SNAPSHOT_hit;
+  reg                 MEM_ADDR_to_MEM_MEM1_TLB_LOOKUP_SNAPSHOT_entry_E;
+  reg        [9:0]    MEM_ADDR_to_MEM_MEM1_TLB_LOOKUP_SNAPSHOT_entry_ASID;
+  reg                 MEM_ADDR_to_MEM_MEM1_TLB_LOOKUP_SNAPSHOT_entry_G;
+  reg        [5:0]    MEM_ADDR_to_MEM_MEM1_TLB_LOOKUP_SNAPSHOT_entry_PS;
+  reg        [18:0]   MEM_ADDR_to_MEM_MEM1_TLB_LOOKUP_SNAPSHOT_entry_VPPN;
+  reg                 MEM_ADDR_to_MEM_MEM1_TLB_LOOKUP_SNAPSHOT_entry_V0;
+  reg                 MEM_ADDR_to_MEM_MEM1_TLB_LOOKUP_SNAPSHOT_entry_D0;
+  reg        [1:0]    MEM_ADDR_to_MEM_MEM1_TLB_LOOKUP_SNAPSHOT_entry_MAT0;
+  reg        [1:0]    MEM_ADDR_to_MEM_MEM1_TLB_LOOKUP_SNAPSHOT_entry_PLV0;
+  reg        [19:0]   MEM_ADDR_to_MEM_MEM1_TLB_LOOKUP_SNAPSHOT_entry_PPN0;
+  reg                 MEM_ADDR_to_MEM_MEM1_TLB_LOOKUP_SNAPSHOT_entry_V1;
+  reg                 MEM_ADDR_to_MEM_MEM1_TLB_LOOKUP_SNAPSHOT_entry_D1;
+  reg        [1:0]    MEM_ADDR_to_MEM_MEM1_TLB_LOOKUP_SNAPSHOT_entry_MAT1;
+  reg        [1:0]    MEM_ADDR_to_MEM_MEM1_TLB_LOOKUP_SNAPSHOT_entry_PLV1;
+  reg        [19:0]   MEM_ADDR_to_MEM_MEM1_TLB_LOOKUP_SNAPSHOT_entry_PPN1;
+  wire                when_Pipeline_l158_107;
   reg                 MEM_ADDR_to_MEM_MEM1_TRANSLATE_SAVED_CSR_CRMD_DA;
   reg                 MEM_ADDR_to_MEM_MEM1_TRANSLATE_SAVED_CSR_CRMD_PG;
   reg        [1:0]    MEM_ADDR_to_MEM_MEM1_TRANSLATE_SAVED_CSR_CRMD_DATF;
   reg        [1:0]    MEM_ADDR_to_MEM_MEM1_TRANSLATE_SAVED_CSR_CRMD_DATM;
-  wire                when_Pipeline_l158_92;
+  wire                when_Pipeline_l158_108;
   reg                 MEM_ADDR_to_MEM_MEM1_EXCEPTION_OCCURRED;
-  wire                when_Pipeline_l158_93;
+  wire                when_Pipeline_l158_109;
   reg                 MEM_MEM1_to_MEM_MEM2_EXCEPTION_OCCURRED;
-  wire                when_Pipeline_l158_94;
+  wire                when_Pipeline_l158_110;
   reg                 MEM_MEM2_to_MEM_WB_EXCEPTION_OCCURRED;
-  wire                when_Pipeline_l158_95;
+  wire                when_Pipeline_l158_111;
   reg        [5:0]    MEM_ADDR_to_MEM_MEM1_EXCEPTION_ECODE;
-  wire                when_Pipeline_l158_96;
+  wire                when_Pipeline_l158_112;
   reg        [5:0]    MEM_MEM1_to_MEM_MEM2_EXCEPTION_ECODE;
-  wire                when_Pipeline_l158_97;
+  wire                when_Pipeline_l158_113;
   reg        [5:0]    MEM_MEM2_to_MEM_WB_EXCEPTION_ECODE;
-  wire                when_Pipeline_l158_98;
+  wire                when_Pipeline_l158_114;
   reg        [8:0]    MEM_ADDR_to_MEM_MEM1_EXCEPTION_ESUBCODE;
-  wire                when_Pipeline_l158_99;
+  wire                when_Pipeline_l158_115;
   reg        [8:0]    MEM_MEM1_to_MEM_MEM2_EXCEPTION_ESUBCODE;
-  wire                when_Pipeline_l158_100;
+  wire                when_Pipeline_l158_116;
   reg        [8:0]    MEM_MEM2_to_MEM_WB_EXCEPTION_ESUBCODE;
-  wire                when_Pipeline_l158_101;
+  wire                when_Pipeline_l158_117;
   reg        [31:0]   MEM_MEM1_to_MEM_MEM2_MEMORY_ADDRESS_PHYSICAL;
-  wire                when_Pipeline_l158_102;
+  wire                when_Pipeline_l158_118;
   reg        [31:0]   MEM_MEM2_to_MEM_WB_MEMORY_ADDRESS_PHYSICAL;
-  wire                when_Pipeline_l158_103;
+  wire                when_Pipeline_l158_119;
   reg                 MEM_MEM1_to_MEM_MEM2_ADDRESS_CACHED;
-  wire                when_Pipeline_l158_104;
+  wire                when_Pipeline_l158_120;
   reg                 MEM_MEM2_to_MEM_WB_ADDRESS_CACHED;
-  wire                when_Pipeline_l158_105;
+  wire                when_Pipeline_l158_121;
   reg                 MEM_MEM1_to_MEM_MEM2_IS_TLB_REFILL;
-  wire                when_Pipeline_l158_106;
+  wire                when_Pipeline_l158_122;
   reg                 MEM_MEM2_to_MEM_WB_IS_TLB_REFILL;
-  wire                when_Pipeline_l158_107;
+  wire                when_Pipeline_l158_123;
   reg                 MEM_MEM1_to_MEM_MEM2_DCACHE_VALIDS_0;
   reg                 MEM_MEM1_to_MEM_MEM2_DCACHE_VALIDS_1;
-  wire                when_Pipeline_l158_108;
+  wire                when_Pipeline_l158_124;
   reg        [1:0]    MEM_MEM1_to_MEM_MEM2_DCACHE_DIRTY;
-  wire                when_Pipeline_l158_109;
+  wire                when_Pipeline_l158_125;
   reg        [0:0]    MEM_MEM1_to_MEM_MEM2_DCACHE_INFO_lru;
   reg        [19:0]   MEM_MEM1_to_MEM_MEM2_DCACHE_INFO_tags_0;
   reg        [19:0]   MEM_MEM1_to_MEM_MEM2_DCACHE_INFO_tags_1;
-  wire                when_Pipeline_l158_110;
+  wire                when_Pipeline_l158_126;
   reg        [1:0]    MEM_MEM1_to_MEM_MEM2_TAG_MATCHES;
-  wire                when_Pipeline_l158_111;
+  wire                when_Pipeline_l158_127;
   reg        [4:0]    MEM_MEM1_to_MEM_MEM2_ROB_IDX;
-  wire                when_Pipeline_l158_112;
+  wire                when_Pipeline_l158_128;
   reg        [4:0]    MEM_MEM2_to_MEM_WB_ROB_IDX;
-  wire                when_Pipeline_l158_113;
+  wire                when_Pipeline_l158_129;
   reg                 MEM_MEM1_to_MEM_MEM2_IS_LOAD;
-  wire                when_Pipeline_l158_114;
+  wire                when_Pipeline_l158_130;
   reg                 MEM_MEM2_to_MEM_WB_IS_LOAD;
-  wire                when_Pipeline_l158_115;
+  wire                when_Pipeline_l158_131;
   reg                 MEM_MEM1_to_MEM_MEM2_IS_STORE;
-  wire                when_Pipeline_l158_116;
+  wire                when_Pipeline_l158_132;
   reg                 MEM_MEM2_to_MEM_WB_IS_STORE;
-  wire                when_Pipeline_l158_117;
+  wire                when_Pipeline_l158_133;
   reg                 MEM_MEM1_to_MEM_MEM2_WRITE_REG_valid;
   reg        [5:0]    MEM_MEM1_to_MEM_MEM2_WRITE_REG_payload;
-  wire                when_Pipeline_l158_118;
+  wire                when_Pipeline_l158_134;
   reg                 MEM_MEM2_to_MEM_WB_WRITE_REG_valid;
   reg        [5:0]    MEM_MEM2_to_MEM_WB_WRITE_REG_payload;
-  wire                when_Pipeline_l158_119;
+  wire                when_Pipeline_l158_135;
   reg        [2:0]    MEM_MEM1_to_MEM_MEM2_LOAD_STORE_TYPE;
-  wire                when_Pipeline_l158_120;
+  wire                when_Pipeline_l158_136;
   reg        [31:0]   MEM_MEM2_to_MEM_WB_MEMORY_READ_DATA;
   wire                when_Pipeline_l198_6;
-  wire                when_Pipeline_l208_15;
-  wire                when_Pipeline_l211_15;
-  wire                when_Pipeline_l213_15;
   wire                when_Pipeline_l208_16;
   wire                when_Pipeline_l211_16;
   wire                when_Pipeline_l213_16;
@@ -20449,6 +20586,9 @@ module MyCPUCore (
   wire                when_Pipeline_l208_20;
   wire                when_Pipeline_l211_20;
   wire                when_Pipeline_l213_20;
+  wire                when_Pipeline_l208_21;
+  wire                when_Pipeline_l211_21;
+  wire                when_Pipeline_l213_21;
   wire                _zz_when_CompressedFIFO_l59;
   wire                _zz_when_CompressedFIFO_l59_1;
   wire                when_CompressedFIFO_l59;
@@ -20535,8 +20675,8 @@ module MyCPUCore (
   wire                when_CSRPlugin_l93_1;
   wire                when_InterruptHandlerPlugin_l107;
   wire                when_CSRPlugin_l93_2;
-  reg        [2:0]    IF2_ICachePlugin_cacheRefillFSM_stateReg;
-  reg        [2:0]    IF2_ICachePlugin_cacheRefillFSM_stateNext;
+  reg        [2:0]    IF3_ICachePlugin_cacheRefillFSM_stateReg;
+  reg        [2:0]    IF3_ICachePlugin_cacheRefillFSM_stateNext;
   wire       [1:0]    _zz_1463;
   wire                _zz_1464;
   wire                _zz_1465;
@@ -20560,7 +20700,7 @@ module MyCPUCore (
   wire                _zz_1483;
   wire                _zz_1484;
   wire                _zz_1485;
-  wire                when_ICachePlugin_l197;
+  wire                when_ICachePlugin_l199;
   reg        [19:0]   _zz_io_write_payload_data_tags_0;
   reg        [19:0]   _zz_io_write_payload_data_tags_1;
   wire       [1:0]    _zz_1486;
@@ -20630,8 +20770,8 @@ module MyCPUCore (
   wire                _zz_1550;
   wire                _zz_1551;
   wire       [1:0]    _zz_1552;
-  wire                when_ICachePlugin_l228;
-  wire                when_ICachePlugin_l160;
+  wire                when_ICachePlugin_l230;
+  wire                when_ICachePlugin_l162;
   reg        [2:0]    MEM_MEM2_DCachePlugin_dirtyLineWritebackFSM_stateReg;
   reg        [2:0]    MEM_MEM2_DCachePlugin_dirtyLineWritebackFSM_stateNext;
   wire       [15:0]   _zz_1553;
@@ -21527,7 +21667,7 @@ module MyCPUCore (
   reg [47:0] _zz_MemIssueQueuePlugin_queueIO_pushPorts_0_payload_uop_lsType_2_string;
   reg [119:0] _zz_MemIssueQueuePlugin_queueIO_pushPorts_0_payload_uop_cacheOp_2_string;
   reg [87:0] _zz_MemIssueQueuePlugin_queueIO_pushPorts_0_payload_uop_cacheSel_2_string;
-  reg [39:0] switch_MMUPlugin_l290_string;
+  reg [39:0] switch_MMUPlugin_l331_string;
   reg [47:0] ID_DecoderArray_decoders_0_uop_fuType_string;
   reg [31:0] ID_DecoderArray_decoders_0_uop_immExtendType_string;
   reg [71:0] ID_DecoderArray_decoders_0_uop_aluOp_string;
@@ -21561,8 +21701,8 @@ module MyCPUCore (
   reg [71:0] _zz_INT0_ISS_IntExecutePlugin_issSlot_uop_aluOp_string;
   reg [23:0] _zz_INT0_ISS_IntExecutePlugin_issSlot_uop_cmpOp_string;
   reg [55:0] _zz_INT0_ISS_IntExecutePlugin_issSlot_uop_tlbOp_string;
-  reg [39:0] switch_MMUPlugin_l290_1_string;
-  reg [39:0] _zz_when_MMUPlugin_l359_string;
+  reg [39:0] switch_MMUPlugin_l331_1_string;
+  reg [39:0] _zz_when_MMUPlugin_l400_string;
   reg [47:0] MEM_MEM2_UncachedAccessPlugin_uncachedStoreFSM_regSTD_lsType_string;
   reg [47:0] MEM_MEM2_LoadPostprocessPlugin_accessType_string;
   reg [47:0] ID_to_RENAME_DECODE_PACKET_0_payload_fuType_string;
@@ -21668,8 +21808,8 @@ module MyCPUCore (
   reg [47:0] MEM_MEM1_to_MEM_MEM2_LOAD_STORE_TYPE_string;
   reg [55:0] CommitPlugin_port0Commit_uncachedProcess_fsm_stateReg_string;
   reg [55:0] CommitPlugin_port0Commit_uncachedProcess_fsm_stateNext_string;
-  reg [55:0] IF2_ICachePlugin_cacheRefillFSM_stateReg_string;
-  reg [55:0] IF2_ICachePlugin_cacheRefillFSM_stateNext_string;
+  reg [55:0] IF3_ICachePlugin_cacheRefillFSM_stateReg_string;
+  reg [55:0] IF3_ICachePlugin_cacheRefillFSM_stateNext_string;
   reg [79:0] MEM_MEM2_DCachePlugin_dirtyLineWritebackFSM_stateReg_string;
   reg [79:0] MEM_MEM2_DCachePlugin_dirtyLineWritebackFSM_stateNext_string;
   reg [103:0] MEM_MEM2_DCachePlugin_fixUncacheFSM_stateReg_string;
@@ -22164,12 +22304,12 @@ module MyCPUCore (
   assign _zz__zz_MemIssueQueuePlugin_queueIO_pushPorts_0_payload_uop_immField_2_3 = {{16{_zz__zz_MemIssueQueuePlugin_queueIO_pushPorts_0_payload_uop_immField_2_4[15]}}, _zz__zz_MemIssueQueuePlugin_queueIO_pushPorts_0_payload_uop_immField_2_4};
   assign _zz_IF1_ProgramCounterPlugin_defaultPC_2 = {_zz_IF1_ProgramCounterPlugin_defaultPC,2'b00};
   assign _zz_IF1_ProgramCounterPlugin_defaultPC_1 = {27'd0, _zz_IF1_ProgramCounterPlugin_defaultPC_2};
-  assign _zz_IF2_ICachePlugin_cacheRefillFSM_rspId_valueNext_1 = IF2_ICachePlugin_cacheRefillFSM_rspId_willIncrement;
-  assign _zz_IF2_ICachePlugin_cacheRefillFSM_rspId_valueNext = {3'd0, _zz_IF2_ICachePlugin_cacheRefillFSM_rspId_valueNext_1};
-  assign _zz_when_ICachePlugin_l154 = (IF2_ICachePlugin_pcWordOffset + 4'b0000);
-  assign _zz_when_ICachePlugin_l154_1 = (IF2_ICachePlugin_pcWordOffset + 4'b0001);
-  assign _zz_when_ICachePlugin_l154_2 = (IF2_ICachePlugin_pcWordOffset + 4'b0010);
-  assign _zz_when_ICachePlugin_l154_3 = (IF2_ICachePlugin_pcWordOffset + 4'b0011);
+  assign _zz_IF3_ICachePlugin_cacheRefillFSM_rspId_valueNext_1 = IF3_ICachePlugin_cacheRefillFSM_rspId_willIncrement;
+  assign _zz_IF3_ICachePlugin_cacheRefillFSM_rspId_valueNext = {3'd0, _zz_IF3_ICachePlugin_cacheRefillFSM_rspId_valueNext_1};
+  assign _zz_when_ICachePlugin_l156 = (IF3_ICachePlugin_pcWordOffset + 4'b0000);
+  assign _zz_when_ICachePlugin_l156_1 = (IF3_ICachePlugin_pcWordOffset + 4'b0001);
+  assign _zz_when_ICachePlugin_l156_2 = (IF3_ICachePlugin_pcWordOffset + 4'b0010);
+  assign _zz_when_ICachePlugin_l156_3 = (IF3_ICachePlugin_pcWordOffset + 4'b0011);
   assign _zz_when_GlobalPredictorBTBPlugin_l112 = (IF1_GlobalPredictorBTBPlugin_fetchWay + 4'b0011);
   assign _zz_when_GlobalPredictorBTBPlugin_l115_1 = (IF1_GlobalPredictorBTBPlugin_index + 10'h003);
   assign _zz_when_GlobalPredictorBTBPlugin_l112_1 = (IF1_GlobalPredictorBTBPlugin_fetchWay + 4'b0010);
@@ -22395,10 +22535,10 @@ module MyCPUCore (
   assign _zz_when_ExceptionHandlerPlugin_l222_4 = ((CommitPlugin_except_payload_code == 6'h01) && (CommitPlugin_except_payload_subcode == 9'h0));
   assign _zz_when_ExceptionHandlerPlugin_l222_5 = ((CommitPlugin_except_payload_code == 6'h09) && (CommitPlugin_except_payload_subcode == 9'h0));
   assign _zz_when_ExceptionHandlerPlugin_l222_6 = {((CommitPlugin_except_payload_code == 6'h08) && (CommitPlugin_except_payload_subcode == 9'h001)),{((CommitPlugin_except_payload_code == 6'h08) && (CommitPlugin_except_payload_subcode == 9'h0)),((CommitPlugin_except_payload_code == 6'h3f) && (CommitPlugin_except_payload_subcode == 9'h0))}};
-  assign _zz_when_MMUPlugin_l404_15 = _zz_when_MMUPlugin_l404_5;
-  assign _zz_when_MMUPlugin_l404_16 = {_zz_when_MMUPlugin_l404_4,{_zz_when_MMUPlugin_l404_3,{_zz_when_MMUPlugin_l404_2,{_zz_when_MMUPlugin_l404_1,{_zz_when_MMUPlugin_l404,((MMUPlugin_TLBTable_0_E && ((MMUPlugin_TLBTable_0_ASID == MMUPlugin_ASID_ASID) || MMUPlugin_TLBTable_0_G)) && ((MMUPlugin_TLBTable_0_PS == 6'h0c) ? (MMUPlugin_TLBTable_0_VPPN == MMUPlugin_TLBEHI_VPPN) : (MMUPlugin_TLBTable_0_VPPN[18 : 9] == MMUPlugin_TLBEHI_VPPN[18 : 9])))}}}}};
-  assign _zz_IF1_InstAddrTranslatePlugin_tlbTranslateResult_TLBHit = IF1_InstAddrTranslatePlugin_tlbTranslateResult_EntryHits_6;
-  assign _zz_IF1_InstAddrTranslatePlugin_tlbTranslateResult_TLBHit_1 = {IF1_InstAddrTranslatePlugin_tlbTranslateResult_EntryHits_5,{IF1_InstAddrTranslatePlugin_tlbTranslateResult_EntryHits_4,{IF1_InstAddrTranslatePlugin_tlbTranslateResult_EntryHits_3,{IF1_InstAddrTranslatePlugin_tlbTranslateResult_EntryHits_2,{IF1_InstAddrTranslatePlugin_tlbTranslateResult_EntryHits_1,IF1_InstAddrTranslatePlugin_tlbTranslateResult_EntryHits_0}}}}};
+  assign _zz_when_MMUPlugin_l445_15 = _zz_when_MMUPlugin_l445_5;
+  assign _zz_when_MMUPlugin_l445_16 = {_zz_when_MMUPlugin_l445_4,{_zz_when_MMUPlugin_l445_3,{_zz_when_MMUPlugin_l445_2,{_zz_when_MMUPlugin_l445_1,{_zz_when_MMUPlugin_l445,((MMUPlugin_TLBTable_0_E && ((MMUPlugin_TLBTable_0_ASID == MMUPlugin_ASID_ASID) || MMUPlugin_TLBTable_0_G)) && ((MMUPlugin_TLBTable_0_PS == 6'h0c) ? (MMUPlugin_TLBTable_0_VPPN == MMUPlugin_TLBEHI_VPPN) : (MMUPlugin_TLBTable_0_VPPN[18 : 9] == MMUPlugin_TLBEHI_VPPN[18 : 9])))}}}}};
+  assign _zz_IF1_InstAddrTranslatePlugin_tlbLookup_snapshot_hit = IF1_InstAddrTranslatePlugin_tlbLookup_EntryHits_6;
+  assign _zz_IF1_InstAddrTranslatePlugin_tlbLookup_snapshot_hit_1 = {IF1_InstAddrTranslatePlugin_tlbLookup_EntryHits_5,{IF1_InstAddrTranslatePlugin_tlbLookup_EntryHits_4,{IF1_InstAddrTranslatePlugin_tlbLookup_EntryHits_3,{IF1_InstAddrTranslatePlugin_tlbLookup_EntryHits_2,{IF1_InstAddrTranslatePlugin_tlbLookup_EntryHits_1,IF1_InstAddrTranslatePlugin_tlbLookup_EntryHits_0}}}}};
   assign _zz_when_DecoderArrayPlugin_l309 = (((FetchBufferPlugin_bufferFIFO_io_pop_0_payload_inst & 32'hff000000) == 32'h04000000) || ((FetchBufferPlugin_bufferFIFO_io_pop_0_payload_inst & 32'hffc00000) == 32'h06000000));
   assign _zz_when_DecoderArrayPlugin_l309_1 = ((FetchBufferPlugin_bufferFIFO_io_pop_0_payload_inst & 32'hffffffff) == 32'h06483800);
   assign _zz_when_DecoderArrayPlugin_l309_2 = (FetchBufferPlugin_bufferFIFO_io_pop_0_payload_inst & 32'hffff8000);
@@ -22422,8 +22562,8 @@ module MyCPUCore (
   assign _zz_RENAME_RenamePlugin_debug_aRAT_1 = {RenamePlugin_aRAT_19,{RenamePlugin_aRAT_18,{RenamePlugin_aRAT_17,{RenamePlugin_aRAT_16,{RenamePlugin_aRAT_15,{RenamePlugin_aRAT_14,{RenamePlugin_aRAT_13,{RenamePlugin_aRAT_12,{RenamePlugin_aRAT_11,{RenamePlugin_aRAT_10,{_zz_RENAME_RenamePlugin_debug_aRAT_2,_zz_RENAME_RenamePlugin_debug_aRAT_3}}}}}}}}}}};
   assign _zz_RENAME_RenamePlugin_debug_aRAT_2 = RenamePlugin_aRAT_9;
   assign _zz_RENAME_RenamePlugin_debug_aRAT_3 = {RenamePlugin_aRAT_8,{RenamePlugin_aRAT_7,{RenamePlugin_aRAT_6,{RenamePlugin_aRAT_5,{RenamePlugin_aRAT_4,{RenamePlugin_aRAT_3,{RenamePlugin_aRAT_2,{RenamePlugin_aRAT_1,RenamePlugin_aRAT_0}}}}}}}};
-  assign _zz_MEM_ADDR_AddressGenerationPlugin_tlbTranslateResult_TLBHit = MEM_ADDR_AddressGenerationPlugin_tlbTranslateResult_EntryHits_6;
-  assign _zz_MEM_ADDR_AddressGenerationPlugin_tlbTranslateResult_TLBHit_1 = {MEM_ADDR_AddressGenerationPlugin_tlbTranslateResult_EntryHits_5,{MEM_ADDR_AddressGenerationPlugin_tlbTranslateResult_EntryHits_4,{MEM_ADDR_AddressGenerationPlugin_tlbTranslateResult_EntryHits_3,{MEM_ADDR_AddressGenerationPlugin_tlbTranslateResult_EntryHits_2,{MEM_ADDR_AddressGenerationPlugin_tlbTranslateResult_EntryHits_1,MEM_ADDR_AddressGenerationPlugin_tlbTranslateResult_EntryHits_0}}}}};
+  assign _zz_MEM_ADDR_AddressGenerationPlugin_tlbLookup_snapshot_hit = MEM_ADDR_AddressGenerationPlugin_tlbLookup_EntryHits_6;
+  assign _zz_MEM_ADDR_AddressGenerationPlugin_tlbLookup_snapshot_hit_1 = {MEM_ADDR_AddressGenerationPlugin_tlbLookup_EntryHits_5,{MEM_ADDR_AddressGenerationPlugin_tlbLookup_EntryHits_4,{MEM_ADDR_AddressGenerationPlugin_tlbLookup_EntryHits_3,{MEM_ADDR_AddressGenerationPlugin_tlbLookup_EntryHits_2,{MEM_ADDR_AddressGenerationPlugin_tlbLookup_EntryHits_1,MEM_ADDR_AddressGenerationPlugin_tlbLookup_EntryHits_0}}}}};
   assign _zz_MEM_ISS_arbitration_isFlushed = MEM_ADDR_arbitration_flushNext;
   assign _zz_MEM_ISS_arbitration_isFlushed_1 = MEM_RRD_arbitration_flushNext;
   assign _zz_MEM_ISS_arbitration_isFlushed_2 = MEM_ADDR_arbitration_flushIt;
@@ -22436,59 +22576,59 @@ module MyCPUCore (
     .io_push_0_valid                              (FetchBufferPlugin_bufferFIFO_io_push_0_valid                                 ), //i
     .io_push_0_ready                              (FetchBufferPlugin_bufferFIFO_io_push_0_ready                                 ), //o
     .io_push_0_payload_pc                         (FetchBufferPlugin_bufferFIFO_io_push_0_payload_pc[31:0]                      ), //i
-    .io_push_0_payload_inst                       (IF2_FETCH_PACKET_insts_0_payload[31:0]                                       ), //i
-    .io_push_0_payload_except_valid               (IF2_FETCH_PACKET_except_valid                                                ), //i
-    .io_push_0_payload_except_payload_code        (IF2_FETCH_PACKET_except_payload_code[5:0]                                    ), //i
-    .io_push_0_payload_except_payload_subcode     (IF2_FETCH_PACKET_except_payload_subcode[8:0]                                 ), //i
-    .io_push_0_payload_except_payload_isTLBRefill (IF2_FETCH_PACKET_except_payload_isTLBRefill                                  ), //i
+    .io_push_0_payload_inst                       (IF3_FETCH_PACKET_insts_0_payload[31:0]                                       ), //i
+    .io_push_0_payload_except_valid               (IF3_FETCH_PACKET_except_valid                                                ), //i
+    .io_push_0_payload_except_payload_code        (IF3_FETCH_PACKET_except_payload_code[5:0]                                    ), //i
+    .io_push_0_payload_except_payload_subcode     (IF3_FETCH_PACKET_except_payload_subcode[8:0]                                 ), //i
+    .io_push_0_payload_except_payload_isTLBRefill (IF3_FETCH_PACKET_except_payload_isTLBRefill                                  ), //i
     .io_push_0_payload_predInfo_predictBranch     (FetchBufferPlugin_bufferFIFO_io_push_0_payload_predInfo_predictBranch        ), //i
     .io_push_0_payload_predInfo_predictTaken      (FetchBufferPlugin_bufferFIFO_io_push_0_payload_predInfo_predictTaken         ), //i
-    .io_push_0_payload_predInfo_predictAddr       (IF2_PREDICT_ADDR[31:0]                                                       ), //i
-    .io_push_0_payload_predRecover_recoverTop     (IF2_RECOVER_TOP[2:0]                                                         ), //i
-    .io_push_0_payload_predRecover_predictCounter (IF2_PRED_COUNTER_0[1:0]                                                      ), //i
-    .io_push_0_payload_predRecover_ghr            (IF2_PRIVATE_BRANCH_HISTORY_0[4:0]                                            ), //i
+    .io_push_0_payload_predInfo_predictAddr       (IF3_PREDICT_ADDR[31:0]                                                       ), //i
+    .io_push_0_payload_predRecover_recoverTop     (IF3_RECOVER_TOP[2:0]                                                         ), //i
+    .io_push_0_payload_predRecover_predictCounter (IF3_PRED_COUNTER_0[1:0]                                                      ), //i
+    .io_push_0_payload_predRecover_ghr            (IF3_PRIVATE_BRANCH_HISTORY_0[4:0]                                            ), //i
     .io_push_1_valid                              (FetchBufferPlugin_bufferFIFO_io_push_1_valid                                 ), //i
     .io_push_1_ready                              (FetchBufferPlugin_bufferFIFO_io_push_1_ready                                 ), //o
     .io_push_1_payload_pc                         (FetchBufferPlugin_bufferFIFO_io_push_1_payload_pc[31:0]                      ), //i
-    .io_push_1_payload_inst                       (IF2_FETCH_PACKET_insts_1_payload[31:0]                                       ), //i
+    .io_push_1_payload_inst                       (IF3_FETCH_PACKET_insts_1_payload[31:0]                                       ), //i
     .io_push_1_payload_except_valid               (1'b0                                                                         ), //i
     .io_push_1_payload_except_payload_code        (6'bxxxxxx                                                                    ), //i
     .io_push_1_payload_except_payload_subcode     (9'bxxxxxxxxx                                                                 ), //i
     .io_push_1_payload_except_payload_isTLBRefill (1'bx                                                                         ), //i
     .io_push_1_payload_predInfo_predictBranch     (FetchBufferPlugin_bufferFIFO_io_push_1_payload_predInfo_predictBranch        ), //i
     .io_push_1_payload_predInfo_predictTaken      (FetchBufferPlugin_bufferFIFO_io_push_1_payload_predInfo_predictTaken         ), //i
-    .io_push_1_payload_predInfo_predictAddr       (IF2_PREDICT_ADDR[31:0]                                                       ), //i
-    .io_push_1_payload_predRecover_recoverTop     (IF2_RECOVER_TOP[2:0]                                                         ), //i
-    .io_push_1_payload_predRecover_predictCounter (IF2_PRED_COUNTER_1[1:0]                                                      ), //i
-    .io_push_1_payload_predRecover_ghr            (IF2_PRIVATE_BRANCH_HISTORY_1[4:0]                                            ), //i
+    .io_push_1_payload_predInfo_predictAddr       (IF3_PREDICT_ADDR[31:0]                                                       ), //i
+    .io_push_1_payload_predRecover_recoverTop     (IF3_RECOVER_TOP[2:0]                                                         ), //i
+    .io_push_1_payload_predRecover_predictCounter (IF3_PRED_COUNTER_1[1:0]                                                      ), //i
+    .io_push_1_payload_predRecover_ghr            (IF3_PRIVATE_BRANCH_HISTORY_1[4:0]                                            ), //i
     .io_push_2_valid                              (FetchBufferPlugin_bufferFIFO_io_push_2_valid                                 ), //i
     .io_push_2_ready                              (FetchBufferPlugin_bufferFIFO_io_push_2_ready                                 ), //o
     .io_push_2_payload_pc                         (FetchBufferPlugin_bufferFIFO_io_push_2_payload_pc[31:0]                      ), //i
-    .io_push_2_payload_inst                       (IF2_FETCH_PACKET_insts_2_payload[31:0]                                       ), //i
+    .io_push_2_payload_inst                       (IF3_FETCH_PACKET_insts_2_payload[31:0]                                       ), //i
     .io_push_2_payload_except_valid               (1'b0                                                                         ), //i
     .io_push_2_payload_except_payload_code        (6'bxxxxxx                                                                    ), //i
     .io_push_2_payload_except_payload_subcode     (9'bxxxxxxxxx                                                                 ), //i
     .io_push_2_payload_except_payload_isTLBRefill (1'bx                                                                         ), //i
     .io_push_2_payload_predInfo_predictBranch     (FetchBufferPlugin_bufferFIFO_io_push_2_payload_predInfo_predictBranch        ), //i
     .io_push_2_payload_predInfo_predictTaken      (FetchBufferPlugin_bufferFIFO_io_push_2_payload_predInfo_predictTaken         ), //i
-    .io_push_2_payload_predInfo_predictAddr       (IF2_PREDICT_ADDR[31:0]                                                       ), //i
-    .io_push_2_payload_predRecover_recoverTop     (IF2_RECOVER_TOP[2:0]                                                         ), //i
-    .io_push_2_payload_predRecover_predictCounter (IF2_PRED_COUNTER_2[1:0]                                                      ), //i
-    .io_push_2_payload_predRecover_ghr            (IF2_PRIVATE_BRANCH_HISTORY_2[4:0]                                            ), //i
+    .io_push_2_payload_predInfo_predictAddr       (IF3_PREDICT_ADDR[31:0]                                                       ), //i
+    .io_push_2_payload_predRecover_recoverTop     (IF3_RECOVER_TOP[2:0]                                                         ), //i
+    .io_push_2_payload_predRecover_predictCounter (IF3_PRED_COUNTER_2[1:0]                                                      ), //i
+    .io_push_2_payload_predRecover_ghr            (IF3_PRIVATE_BRANCH_HISTORY_2[4:0]                                            ), //i
     .io_push_3_valid                              (FetchBufferPlugin_bufferFIFO_io_push_3_valid                                 ), //i
     .io_push_3_ready                              (FetchBufferPlugin_bufferFIFO_io_push_3_ready                                 ), //o
     .io_push_3_payload_pc                         (FetchBufferPlugin_bufferFIFO_io_push_3_payload_pc[31:0]                      ), //i
-    .io_push_3_payload_inst                       (IF2_FETCH_PACKET_insts_3_payload[31:0]                                       ), //i
+    .io_push_3_payload_inst                       (IF3_FETCH_PACKET_insts_3_payload[31:0]                                       ), //i
     .io_push_3_payload_except_valid               (1'b0                                                                         ), //i
     .io_push_3_payload_except_payload_code        (6'bxxxxxx                                                                    ), //i
     .io_push_3_payload_except_payload_subcode     (9'bxxxxxxxxx                                                                 ), //i
     .io_push_3_payload_except_payload_isTLBRefill (1'bx                                                                         ), //i
     .io_push_3_payload_predInfo_predictBranch     (FetchBufferPlugin_bufferFIFO_io_push_3_payload_predInfo_predictBranch        ), //i
     .io_push_3_payload_predInfo_predictTaken      (FetchBufferPlugin_bufferFIFO_io_push_3_payload_predInfo_predictTaken         ), //i
-    .io_push_3_payload_predInfo_predictAddr       (IF2_PREDICT_ADDR[31:0]                                                       ), //i
-    .io_push_3_payload_predRecover_recoverTop     (IF2_RECOVER_TOP[2:0]                                                         ), //i
-    .io_push_3_payload_predRecover_predictCounter (IF2_PRED_COUNTER_3[1:0]                                                      ), //i
-    .io_push_3_payload_predRecover_ghr            (IF2_PRIVATE_BRANCH_HISTORY_3[4:0]                                            ), //i
+    .io_push_3_payload_predInfo_predictAddr       (IF3_PREDICT_ADDR[31:0]                                                       ), //i
+    .io_push_3_payload_predRecover_recoverTop     (IF3_RECOVER_TOP[2:0]                                                         ), //i
+    .io_push_3_payload_predRecover_predictCounter (IF3_PRED_COUNTER_3[1:0]                                                      ), //i
+    .io_push_3_payload_predRecover_ghr            (IF3_PRIVATE_BRANCH_HISTORY_3[4:0]                                            ), //i
     .io_pop_0_valid                               (FetchBufferPlugin_bufferFIFO_io_pop_0_valid                                  ), //o
     .io_pop_0_ready                               (ID_arbitration_isFiring                                                      ), //i
     .io_pop_0_payload_pc                          (FetchBufferPlugin_bufferFIFO_io_pop_0_payload_pc[31:0]                       ), //o
@@ -29668,278 +29808,278 @@ module MyCPUCore (
   end
 
   always @(*) begin
-    case(_zz_IF1_InstAddrTranslatePlugin_tlbTranslateResult_TLBHitEntry_E_4)
+    case(_zz_IF1_InstAddrTranslatePlugin_tlbLookup_snapshot_entry_E_4)
       4'b0000 : begin
-        _zz_IF1_InstAddrTranslatePlugin_tlbTranslateResult_TLBHitEntry_E_5 = MMUPlugin_TLBTable_0_E;
-        _zz_IF1_InstAddrTranslatePlugin_tlbTranslateResult_TLBHitEntry_ASID = MMUPlugin_TLBTable_0_ASID;
-        _zz_IF1_InstAddrTranslatePlugin_tlbTranslateResult_TLBHitEntry_G = MMUPlugin_TLBTable_0_G;
-        _zz_IF1_InstAddrTranslatePlugin_tlbTranslateResult_TLBHitEntry_PS = MMUPlugin_TLBTable_0_PS;
-        _zz_IF1_InstAddrTranslatePlugin_tlbTranslateResult_TLBHitEntry_VPPN = MMUPlugin_TLBTable_0_VPPN;
-        _zz_IF1_InstAddrTranslatePlugin_tlbTranslateResult_TLBHitEntry_V0 = MMUPlugin_TLBTable_0_V0;
-        _zz_IF1_InstAddrTranslatePlugin_tlbTranslateResult_TLBHitEntry_D0 = MMUPlugin_TLBTable_0_D0;
-        _zz_IF1_InstAddrTranslatePlugin_tlbTranslateResult_TLBHitEntry_MAT0 = MMUPlugin_TLBTable_0_MAT0;
-        _zz_IF1_InstAddrTranslatePlugin_tlbTranslateResult_TLBHitEntry_PLV0 = MMUPlugin_TLBTable_0_PLV0;
-        _zz_IF1_InstAddrTranslatePlugin_tlbTranslateResult_TLBHitEntry_PPN0 = MMUPlugin_TLBTable_0_PPN0;
-        _zz_IF1_InstAddrTranslatePlugin_tlbTranslateResult_TLBHitEntry_V1 = MMUPlugin_TLBTable_0_V1;
-        _zz_IF1_InstAddrTranslatePlugin_tlbTranslateResult_TLBHitEntry_D1 = MMUPlugin_TLBTable_0_D1;
-        _zz_IF1_InstAddrTranslatePlugin_tlbTranslateResult_TLBHitEntry_MAT1 = MMUPlugin_TLBTable_0_MAT1;
-        _zz_IF1_InstAddrTranslatePlugin_tlbTranslateResult_TLBHitEntry_PLV1 = MMUPlugin_TLBTable_0_PLV1;
-        _zz_IF1_InstAddrTranslatePlugin_tlbTranslateResult_TLBHitEntry_PPN1 = MMUPlugin_TLBTable_0_PPN1;
+        _zz__zz_IF1_InstAddrTranslatePlugin_tlbLookup_snapshot_entry_E_5 = MMUPlugin_TLBTable_0_PPN1;
+        _zz__zz_IF1_InstAddrTranslatePlugin_tlbLookup_snapshot_entry_E_5_1 = MMUPlugin_TLBTable_0_PLV1;
+        _zz__zz_IF1_InstAddrTranslatePlugin_tlbLookup_snapshot_entry_E_5_2 = MMUPlugin_TLBTable_0_MAT1;
+        _zz__zz_IF1_InstAddrTranslatePlugin_tlbLookup_snapshot_entry_E_5_3 = MMUPlugin_TLBTable_0_D1;
+        _zz__zz_IF1_InstAddrTranslatePlugin_tlbLookup_snapshot_entry_E_5_4 = MMUPlugin_TLBTable_0_V1;
+        _zz__zz_IF1_InstAddrTranslatePlugin_tlbLookup_snapshot_entry_E_5_5 = MMUPlugin_TLBTable_0_PPN0;
+        _zz__zz_IF1_InstAddrTranslatePlugin_tlbLookup_snapshot_entry_E_5_6 = MMUPlugin_TLBTable_0_PLV0;
+        _zz__zz_IF1_InstAddrTranslatePlugin_tlbLookup_snapshot_entry_E_5_7 = MMUPlugin_TLBTable_0_MAT0;
+        _zz__zz_IF1_InstAddrTranslatePlugin_tlbLookup_snapshot_entry_E_5_8 = MMUPlugin_TLBTable_0_D0;
+        _zz__zz_IF1_InstAddrTranslatePlugin_tlbLookup_snapshot_entry_E_5_9 = MMUPlugin_TLBTable_0_V0;
+        _zz__zz_IF1_InstAddrTranslatePlugin_tlbLookup_snapshot_entry_E_5_10 = MMUPlugin_TLBTable_0_VPPN;
+        _zz__zz_IF1_InstAddrTranslatePlugin_tlbLookup_snapshot_entry_E_5_11 = MMUPlugin_TLBTable_0_PS;
+        _zz__zz_IF1_InstAddrTranslatePlugin_tlbLookup_snapshot_entry_E_5_12 = MMUPlugin_TLBTable_0_G;
+        _zz__zz_IF1_InstAddrTranslatePlugin_tlbLookup_snapshot_entry_E_5_13 = MMUPlugin_TLBTable_0_ASID;
+        _zz__zz_IF1_InstAddrTranslatePlugin_tlbLookup_snapshot_entry_E_5_14 = MMUPlugin_TLBTable_0_E;
       end
       4'b0001 : begin
-        _zz_IF1_InstAddrTranslatePlugin_tlbTranslateResult_TLBHitEntry_E_5 = MMUPlugin_TLBTable_1_E;
-        _zz_IF1_InstAddrTranslatePlugin_tlbTranslateResult_TLBHitEntry_ASID = MMUPlugin_TLBTable_1_ASID;
-        _zz_IF1_InstAddrTranslatePlugin_tlbTranslateResult_TLBHitEntry_G = MMUPlugin_TLBTable_1_G;
-        _zz_IF1_InstAddrTranslatePlugin_tlbTranslateResult_TLBHitEntry_PS = MMUPlugin_TLBTable_1_PS;
-        _zz_IF1_InstAddrTranslatePlugin_tlbTranslateResult_TLBHitEntry_VPPN = MMUPlugin_TLBTable_1_VPPN;
-        _zz_IF1_InstAddrTranslatePlugin_tlbTranslateResult_TLBHitEntry_V0 = MMUPlugin_TLBTable_1_V0;
-        _zz_IF1_InstAddrTranslatePlugin_tlbTranslateResult_TLBHitEntry_D0 = MMUPlugin_TLBTable_1_D0;
-        _zz_IF1_InstAddrTranslatePlugin_tlbTranslateResult_TLBHitEntry_MAT0 = MMUPlugin_TLBTable_1_MAT0;
-        _zz_IF1_InstAddrTranslatePlugin_tlbTranslateResult_TLBHitEntry_PLV0 = MMUPlugin_TLBTable_1_PLV0;
-        _zz_IF1_InstAddrTranslatePlugin_tlbTranslateResult_TLBHitEntry_PPN0 = MMUPlugin_TLBTable_1_PPN0;
-        _zz_IF1_InstAddrTranslatePlugin_tlbTranslateResult_TLBHitEntry_V1 = MMUPlugin_TLBTable_1_V1;
-        _zz_IF1_InstAddrTranslatePlugin_tlbTranslateResult_TLBHitEntry_D1 = MMUPlugin_TLBTable_1_D1;
-        _zz_IF1_InstAddrTranslatePlugin_tlbTranslateResult_TLBHitEntry_MAT1 = MMUPlugin_TLBTable_1_MAT1;
-        _zz_IF1_InstAddrTranslatePlugin_tlbTranslateResult_TLBHitEntry_PLV1 = MMUPlugin_TLBTable_1_PLV1;
-        _zz_IF1_InstAddrTranslatePlugin_tlbTranslateResult_TLBHitEntry_PPN1 = MMUPlugin_TLBTable_1_PPN1;
+        _zz__zz_IF1_InstAddrTranslatePlugin_tlbLookup_snapshot_entry_E_5 = MMUPlugin_TLBTable_1_PPN1;
+        _zz__zz_IF1_InstAddrTranslatePlugin_tlbLookup_snapshot_entry_E_5_1 = MMUPlugin_TLBTable_1_PLV1;
+        _zz__zz_IF1_InstAddrTranslatePlugin_tlbLookup_snapshot_entry_E_5_2 = MMUPlugin_TLBTable_1_MAT1;
+        _zz__zz_IF1_InstAddrTranslatePlugin_tlbLookup_snapshot_entry_E_5_3 = MMUPlugin_TLBTable_1_D1;
+        _zz__zz_IF1_InstAddrTranslatePlugin_tlbLookup_snapshot_entry_E_5_4 = MMUPlugin_TLBTable_1_V1;
+        _zz__zz_IF1_InstAddrTranslatePlugin_tlbLookup_snapshot_entry_E_5_5 = MMUPlugin_TLBTable_1_PPN0;
+        _zz__zz_IF1_InstAddrTranslatePlugin_tlbLookup_snapshot_entry_E_5_6 = MMUPlugin_TLBTable_1_PLV0;
+        _zz__zz_IF1_InstAddrTranslatePlugin_tlbLookup_snapshot_entry_E_5_7 = MMUPlugin_TLBTable_1_MAT0;
+        _zz__zz_IF1_InstAddrTranslatePlugin_tlbLookup_snapshot_entry_E_5_8 = MMUPlugin_TLBTable_1_D0;
+        _zz__zz_IF1_InstAddrTranslatePlugin_tlbLookup_snapshot_entry_E_5_9 = MMUPlugin_TLBTable_1_V0;
+        _zz__zz_IF1_InstAddrTranslatePlugin_tlbLookup_snapshot_entry_E_5_10 = MMUPlugin_TLBTable_1_VPPN;
+        _zz__zz_IF1_InstAddrTranslatePlugin_tlbLookup_snapshot_entry_E_5_11 = MMUPlugin_TLBTable_1_PS;
+        _zz__zz_IF1_InstAddrTranslatePlugin_tlbLookup_snapshot_entry_E_5_12 = MMUPlugin_TLBTable_1_G;
+        _zz__zz_IF1_InstAddrTranslatePlugin_tlbLookup_snapshot_entry_E_5_13 = MMUPlugin_TLBTable_1_ASID;
+        _zz__zz_IF1_InstAddrTranslatePlugin_tlbLookup_snapshot_entry_E_5_14 = MMUPlugin_TLBTable_1_E;
       end
       4'b0010 : begin
-        _zz_IF1_InstAddrTranslatePlugin_tlbTranslateResult_TLBHitEntry_E_5 = MMUPlugin_TLBTable_2_E;
-        _zz_IF1_InstAddrTranslatePlugin_tlbTranslateResult_TLBHitEntry_ASID = MMUPlugin_TLBTable_2_ASID;
-        _zz_IF1_InstAddrTranslatePlugin_tlbTranslateResult_TLBHitEntry_G = MMUPlugin_TLBTable_2_G;
-        _zz_IF1_InstAddrTranslatePlugin_tlbTranslateResult_TLBHitEntry_PS = MMUPlugin_TLBTable_2_PS;
-        _zz_IF1_InstAddrTranslatePlugin_tlbTranslateResult_TLBHitEntry_VPPN = MMUPlugin_TLBTable_2_VPPN;
-        _zz_IF1_InstAddrTranslatePlugin_tlbTranslateResult_TLBHitEntry_V0 = MMUPlugin_TLBTable_2_V0;
-        _zz_IF1_InstAddrTranslatePlugin_tlbTranslateResult_TLBHitEntry_D0 = MMUPlugin_TLBTable_2_D0;
-        _zz_IF1_InstAddrTranslatePlugin_tlbTranslateResult_TLBHitEntry_MAT0 = MMUPlugin_TLBTable_2_MAT0;
-        _zz_IF1_InstAddrTranslatePlugin_tlbTranslateResult_TLBHitEntry_PLV0 = MMUPlugin_TLBTable_2_PLV0;
-        _zz_IF1_InstAddrTranslatePlugin_tlbTranslateResult_TLBHitEntry_PPN0 = MMUPlugin_TLBTable_2_PPN0;
-        _zz_IF1_InstAddrTranslatePlugin_tlbTranslateResult_TLBHitEntry_V1 = MMUPlugin_TLBTable_2_V1;
-        _zz_IF1_InstAddrTranslatePlugin_tlbTranslateResult_TLBHitEntry_D1 = MMUPlugin_TLBTable_2_D1;
-        _zz_IF1_InstAddrTranslatePlugin_tlbTranslateResult_TLBHitEntry_MAT1 = MMUPlugin_TLBTable_2_MAT1;
-        _zz_IF1_InstAddrTranslatePlugin_tlbTranslateResult_TLBHitEntry_PLV1 = MMUPlugin_TLBTable_2_PLV1;
-        _zz_IF1_InstAddrTranslatePlugin_tlbTranslateResult_TLBHitEntry_PPN1 = MMUPlugin_TLBTable_2_PPN1;
+        _zz__zz_IF1_InstAddrTranslatePlugin_tlbLookup_snapshot_entry_E_5 = MMUPlugin_TLBTable_2_PPN1;
+        _zz__zz_IF1_InstAddrTranslatePlugin_tlbLookup_snapshot_entry_E_5_1 = MMUPlugin_TLBTable_2_PLV1;
+        _zz__zz_IF1_InstAddrTranslatePlugin_tlbLookup_snapshot_entry_E_5_2 = MMUPlugin_TLBTable_2_MAT1;
+        _zz__zz_IF1_InstAddrTranslatePlugin_tlbLookup_snapshot_entry_E_5_3 = MMUPlugin_TLBTable_2_D1;
+        _zz__zz_IF1_InstAddrTranslatePlugin_tlbLookup_snapshot_entry_E_5_4 = MMUPlugin_TLBTable_2_V1;
+        _zz__zz_IF1_InstAddrTranslatePlugin_tlbLookup_snapshot_entry_E_5_5 = MMUPlugin_TLBTable_2_PPN0;
+        _zz__zz_IF1_InstAddrTranslatePlugin_tlbLookup_snapshot_entry_E_5_6 = MMUPlugin_TLBTable_2_PLV0;
+        _zz__zz_IF1_InstAddrTranslatePlugin_tlbLookup_snapshot_entry_E_5_7 = MMUPlugin_TLBTable_2_MAT0;
+        _zz__zz_IF1_InstAddrTranslatePlugin_tlbLookup_snapshot_entry_E_5_8 = MMUPlugin_TLBTable_2_D0;
+        _zz__zz_IF1_InstAddrTranslatePlugin_tlbLookup_snapshot_entry_E_5_9 = MMUPlugin_TLBTable_2_V0;
+        _zz__zz_IF1_InstAddrTranslatePlugin_tlbLookup_snapshot_entry_E_5_10 = MMUPlugin_TLBTable_2_VPPN;
+        _zz__zz_IF1_InstAddrTranslatePlugin_tlbLookup_snapshot_entry_E_5_11 = MMUPlugin_TLBTable_2_PS;
+        _zz__zz_IF1_InstAddrTranslatePlugin_tlbLookup_snapshot_entry_E_5_12 = MMUPlugin_TLBTable_2_G;
+        _zz__zz_IF1_InstAddrTranslatePlugin_tlbLookup_snapshot_entry_E_5_13 = MMUPlugin_TLBTable_2_ASID;
+        _zz__zz_IF1_InstAddrTranslatePlugin_tlbLookup_snapshot_entry_E_5_14 = MMUPlugin_TLBTable_2_E;
       end
       4'b0011 : begin
-        _zz_IF1_InstAddrTranslatePlugin_tlbTranslateResult_TLBHitEntry_E_5 = MMUPlugin_TLBTable_3_E;
-        _zz_IF1_InstAddrTranslatePlugin_tlbTranslateResult_TLBHitEntry_ASID = MMUPlugin_TLBTable_3_ASID;
-        _zz_IF1_InstAddrTranslatePlugin_tlbTranslateResult_TLBHitEntry_G = MMUPlugin_TLBTable_3_G;
-        _zz_IF1_InstAddrTranslatePlugin_tlbTranslateResult_TLBHitEntry_PS = MMUPlugin_TLBTable_3_PS;
-        _zz_IF1_InstAddrTranslatePlugin_tlbTranslateResult_TLBHitEntry_VPPN = MMUPlugin_TLBTable_3_VPPN;
-        _zz_IF1_InstAddrTranslatePlugin_tlbTranslateResult_TLBHitEntry_V0 = MMUPlugin_TLBTable_3_V0;
-        _zz_IF1_InstAddrTranslatePlugin_tlbTranslateResult_TLBHitEntry_D0 = MMUPlugin_TLBTable_3_D0;
-        _zz_IF1_InstAddrTranslatePlugin_tlbTranslateResult_TLBHitEntry_MAT0 = MMUPlugin_TLBTable_3_MAT0;
-        _zz_IF1_InstAddrTranslatePlugin_tlbTranslateResult_TLBHitEntry_PLV0 = MMUPlugin_TLBTable_3_PLV0;
-        _zz_IF1_InstAddrTranslatePlugin_tlbTranslateResult_TLBHitEntry_PPN0 = MMUPlugin_TLBTable_3_PPN0;
-        _zz_IF1_InstAddrTranslatePlugin_tlbTranslateResult_TLBHitEntry_V1 = MMUPlugin_TLBTable_3_V1;
-        _zz_IF1_InstAddrTranslatePlugin_tlbTranslateResult_TLBHitEntry_D1 = MMUPlugin_TLBTable_3_D1;
-        _zz_IF1_InstAddrTranslatePlugin_tlbTranslateResult_TLBHitEntry_MAT1 = MMUPlugin_TLBTable_3_MAT1;
-        _zz_IF1_InstAddrTranslatePlugin_tlbTranslateResult_TLBHitEntry_PLV1 = MMUPlugin_TLBTable_3_PLV1;
-        _zz_IF1_InstAddrTranslatePlugin_tlbTranslateResult_TLBHitEntry_PPN1 = MMUPlugin_TLBTable_3_PPN1;
+        _zz__zz_IF1_InstAddrTranslatePlugin_tlbLookup_snapshot_entry_E_5 = MMUPlugin_TLBTable_3_PPN1;
+        _zz__zz_IF1_InstAddrTranslatePlugin_tlbLookup_snapshot_entry_E_5_1 = MMUPlugin_TLBTable_3_PLV1;
+        _zz__zz_IF1_InstAddrTranslatePlugin_tlbLookup_snapshot_entry_E_5_2 = MMUPlugin_TLBTable_3_MAT1;
+        _zz__zz_IF1_InstAddrTranslatePlugin_tlbLookup_snapshot_entry_E_5_3 = MMUPlugin_TLBTable_3_D1;
+        _zz__zz_IF1_InstAddrTranslatePlugin_tlbLookup_snapshot_entry_E_5_4 = MMUPlugin_TLBTable_3_V1;
+        _zz__zz_IF1_InstAddrTranslatePlugin_tlbLookup_snapshot_entry_E_5_5 = MMUPlugin_TLBTable_3_PPN0;
+        _zz__zz_IF1_InstAddrTranslatePlugin_tlbLookup_snapshot_entry_E_5_6 = MMUPlugin_TLBTable_3_PLV0;
+        _zz__zz_IF1_InstAddrTranslatePlugin_tlbLookup_snapshot_entry_E_5_7 = MMUPlugin_TLBTable_3_MAT0;
+        _zz__zz_IF1_InstAddrTranslatePlugin_tlbLookup_snapshot_entry_E_5_8 = MMUPlugin_TLBTable_3_D0;
+        _zz__zz_IF1_InstAddrTranslatePlugin_tlbLookup_snapshot_entry_E_5_9 = MMUPlugin_TLBTable_3_V0;
+        _zz__zz_IF1_InstAddrTranslatePlugin_tlbLookup_snapshot_entry_E_5_10 = MMUPlugin_TLBTable_3_VPPN;
+        _zz__zz_IF1_InstAddrTranslatePlugin_tlbLookup_snapshot_entry_E_5_11 = MMUPlugin_TLBTable_3_PS;
+        _zz__zz_IF1_InstAddrTranslatePlugin_tlbLookup_snapshot_entry_E_5_12 = MMUPlugin_TLBTable_3_G;
+        _zz__zz_IF1_InstAddrTranslatePlugin_tlbLookup_snapshot_entry_E_5_13 = MMUPlugin_TLBTable_3_ASID;
+        _zz__zz_IF1_InstAddrTranslatePlugin_tlbLookup_snapshot_entry_E_5_14 = MMUPlugin_TLBTable_3_E;
       end
       4'b0100 : begin
-        _zz_IF1_InstAddrTranslatePlugin_tlbTranslateResult_TLBHitEntry_E_5 = MMUPlugin_TLBTable_4_E;
-        _zz_IF1_InstAddrTranslatePlugin_tlbTranslateResult_TLBHitEntry_ASID = MMUPlugin_TLBTable_4_ASID;
-        _zz_IF1_InstAddrTranslatePlugin_tlbTranslateResult_TLBHitEntry_G = MMUPlugin_TLBTable_4_G;
-        _zz_IF1_InstAddrTranslatePlugin_tlbTranslateResult_TLBHitEntry_PS = MMUPlugin_TLBTable_4_PS;
-        _zz_IF1_InstAddrTranslatePlugin_tlbTranslateResult_TLBHitEntry_VPPN = MMUPlugin_TLBTable_4_VPPN;
-        _zz_IF1_InstAddrTranslatePlugin_tlbTranslateResult_TLBHitEntry_V0 = MMUPlugin_TLBTable_4_V0;
-        _zz_IF1_InstAddrTranslatePlugin_tlbTranslateResult_TLBHitEntry_D0 = MMUPlugin_TLBTable_4_D0;
-        _zz_IF1_InstAddrTranslatePlugin_tlbTranslateResult_TLBHitEntry_MAT0 = MMUPlugin_TLBTable_4_MAT0;
-        _zz_IF1_InstAddrTranslatePlugin_tlbTranslateResult_TLBHitEntry_PLV0 = MMUPlugin_TLBTable_4_PLV0;
-        _zz_IF1_InstAddrTranslatePlugin_tlbTranslateResult_TLBHitEntry_PPN0 = MMUPlugin_TLBTable_4_PPN0;
-        _zz_IF1_InstAddrTranslatePlugin_tlbTranslateResult_TLBHitEntry_V1 = MMUPlugin_TLBTable_4_V1;
-        _zz_IF1_InstAddrTranslatePlugin_tlbTranslateResult_TLBHitEntry_D1 = MMUPlugin_TLBTable_4_D1;
-        _zz_IF1_InstAddrTranslatePlugin_tlbTranslateResult_TLBHitEntry_MAT1 = MMUPlugin_TLBTable_4_MAT1;
-        _zz_IF1_InstAddrTranslatePlugin_tlbTranslateResult_TLBHitEntry_PLV1 = MMUPlugin_TLBTable_4_PLV1;
-        _zz_IF1_InstAddrTranslatePlugin_tlbTranslateResult_TLBHitEntry_PPN1 = MMUPlugin_TLBTable_4_PPN1;
+        _zz__zz_IF1_InstAddrTranslatePlugin_tlbLookup_snapshot_entry_E_5 = MMUPlugin_TLBTable_4_PPN1;
+        _zz__zz_IF1_InstAddrTranslatePlugin_tlbLookup_snapshot_entry_E_5_1 = MMUPlugin_TLBTable_4_PLV1;
+        _zz__zz_IF1_InstAddrTranslatePlugin_tlbLookup_snapshot_entry_E_5_2 = MMUPlugin_TLBTable_4_MAT1;
+        _zz__zz_IF1_InstAddrTranslatePlugin_tlbLookup_snapshot_entry_E_5_3 = MMUPlugin_TLBTable_4_D1;
+        _zz__zz_IF1_InstAddrTranslatePlugin_tlbLookup_snapshot_entry_E_5_4 = MMUPlugin_TLBTable_4_V1;
+        _zz__zz_IF1_InstAddrTranslatePlugin_tlbLookup_snapshot_entry_E_5_5 = MMUPlugin_TLBTable_4_PPN0;
+        _zz__zz_IF1_InstAddrTranslatePlugin_tlbLookup_snapshot_entry_E_5_6 = MMUPlugin_TLBTable_4_PLV0;
+        _zz__zz_IF1_InstAddrTranslatePlugin_tlbLookup_snapshot_entry_E_5_7 = MMUPlugin_TLBTable_4_MAT0;
+        _zz__zz_IF1_InstAddrTranslatePlugin_tlbLookup_snapshot_entry_E_5_8 = MMUPlugin_TLBTable_4_D0;
+        _zz__zz_IF1_InstAddrTranslatePlugin_tlbLookup_snapshot_entry_E_5_9 = MMUPlugin_TLBTable_4_V0;
+        _zz__zz_IF1_InstAddrTranslatePlugin_tlbLookup_snapshot_entry_E_5_10 = MMUPlugin_TLBTable_4_VPPN;
+        _zz__zz_IF1_InstAddrTranslatePlugin_tlbLookup_snapshot_entry_E_5_11 = MMUPlugin_TLBTable_4_PS;
+        _zz__zz_IF1_InstAddrTranslatePlugin_tlbLookup_snapshot_entry_E_5_12 = MMUPlugin_TLBTable_4_G;
+        _zz__zz_IF1_InstAddrTranslatePlugin_tlbLookup_snapshot_entry_E_5_13 = MMUPlugin_TLBTable_4_ASID;
+        _zz__zz_IF1_InstAddrTranslatePlugin_tlbLookup_snapshot_entry_E_5_14 = MMUPlugin_TLBTable_4_E;
       end
       4'b0101 : begin
-        _zz_IF1_InstAddrTranslatePlugin_tlbTranslateResult_TLBHitEntry_E_5 = MMUPlugin_TLBTable_5_E;
-        _zz_IF1_InstAddrTranslatePlugin_tlbTranslateResult_TLBHitEntry_ASID = MMUPlugin_TLBTable_5_ASID;
-        _zz_IF1_InstAddrTranslatePlugin_tlbTranslateResult_TLBHitEntry_G = MMUPlugin_TLBTable_5_G;
-        _zz_IF1_InstAddrTranslatePlugin_tlbTranslateResult_TLBHitEntry_PS = MMUPlugin_TLBTable_5_PS;
-        _zz_IF1_InstAddrTranslatePlugin_tlbTranslateResult_TLBHitEntry_VPPN = MMUPlugin_TLBTable_5_VPPN;
-        _zz_IF1_InstAddrTranslatePlugin_tlbTranslateResult_TLBHitEntry_V0 = MMUPlugin_TLBTable_5_V0;
-        _zz_IF1_InstAddrTranslatePlugin_tlbTranslateResult_TLBHitEntry_D0 = MMUPlugin_TLBTable_5_D0;
-        _zz_IF1_InstAddrTranslatePlugin_tlbTranslateResult_TLBHitEntry_MAT0 = MMUPlugin_TLBTable_5_MAT0;
-        _zz_IF1_InstAddrTranslatePlugin_tlbTranslateResult_TLBHitEntry_PLV0 = MMUPlugin_TLBTable_5_PLV0;
-        _zz_IF1_InstAddrTranslatePlugin_tlbTranslateResult_TLBHitEntry_PPN0 = MMUPlugin_TLBTable_5_PPN0;
-        _zz_IF1_InstAddrTranslatePlugin_tlbTranslateResult_TLBHitEntry_V1 = MMUPlugin_TLBTable_5_V1;
-        _zz_IF1_InstAddrTranslatePlugin_tlbTranslateResult_TLBHitEntry_D1 = MMUPlugin_TLBTable_5_D1;
-        _zz_IF1_InstAddrTranslatePlugin_tlbTranslateResult_TLBHitEntry_MAT1 = MMUPlugin_TLBTable_5_MAT1;
-        _zz_IF1_InstAddrTranslatePlugin_tlbTranslateResult_TLBHitEntry_PLV1 = MMUPlugin_TLBTable_5_PLV1;
-        _zz_IF1_InstAddrTranslatePlugin_tlbTranslateResult_TLBHitEntry_PPN1 = MMUPlugin_TLBTable_5_PPN1;
+        _zz__zz_IF1_InstAddrTranslatePlugin_tlbLookup_snapshot_entry_E_5 = MMUPlugin_TLBTable_5_PPN1;
+        _zz__zz_IF1_InstAddrTranslatePlugin_tlbLookup_snapshot_entry_E_5_1 = MMUPlugin_TLBTable_5_PLV1;
+        _zz__zz_IF1_InstAddrTranslatePlugin_tlbLookup_snapshot_entry_E_5_2 = MMUPlugin_TLBTable_5_MAT1;
+        _zz__zz_IF1_InstAddrTranslatePlugin_tlbLookup_snapshot_entry_E_5_3 = MMUPlugin_TLBTable_5_D1;
+        _zz__zz_IF1_InstAddrTranslatePlugin_tlbLookup_snapshot_entry_E_5_4 = MMUPlugin_TLBTable_5_V1;
+        _zz__zz_IF1_InstAddrTranslatePlugin_tlbLookup_snapshot_entry_E_5_5 = MMUPlugin_TLBTable_5_PPN0;
+        _zz__zz_IF1_InstAddrTranslatePlugin_tlbLookup_snapshot_entry_E_5_6 = MMUPlugin_TLBTable_5_PLV0;
+        _zz__zz_IF1_InstAddrTranslatePlugin_tlbLookup_snapshot_entry_E_5_7 = MMUPlugin_TLBTable_5_MAT0;
+        _zz__zz_IF1_InstAddrTranslatePlugin_tlbLookup_snapshot_entry_E_5_8 = MMUPlugin_TLBTable_5_D0;
+        _zz__zz_IF1_InstAddrTranslatePlugin_tlbLookup_snapshot_entry_E_5_9 = MMUPlugin_TLBTable_5_V0;
+        _zz__zz_IF1_InstAddrTranslatePlugin_tlbLookup_snapshot_entry_E_5_10 = MMUPlugin_TLBTable_5_VPPN;
+        _zz__zz_IF1_InstAddrTranslatePlugin_tlbLookup_snapshot_entry_E_5_11 = MMUPlugin_TLBTable_5_PS;
+        _zz__zz_IF1_InstAddrTranslatePlugin_tlbLookup_snapshot_entry_E_5_12 = MMUPlugin_TLBTable_5_G;
+        _zz__zz_IF1_InstAddrTranslatePlugin_tlbLookup_snapshot_entry_E_5_13 = MMUPlugin_TLBTable_5_ASID;
+        _zz__zz_IF1_InstAddrTranslatePlugin_tlbLookup_snapshot_entry_E_5_14 = MMUPlugin_TLBTable_5_E;
       end
       4'b0110 : begin
-        _zz_IF1_InstAddrTranslatePlugin_tlbTranslateResult_TLBHitEntry_E_5 = MMUPlugin_TLBTable_6_E;
-        _zz_IF1_InstAddrTranslatePlugin_tlbTranslateResult_TLBHitEntry_ASID = MMUPlugin_TLBTable_6_ASID;
-        _zz_IF1_InstAddrTranslatePlugin_tlbTranslateResult_TLBHitEntry_G = MMUPlugin_TLBTable_6_G;
-        _zz_IF1_InstAddrTranslatePlugin_tlbTranslateResult_TLBHitEntry_PS = MMUPlugin_TLBTable_6_PS;
-        _zz_IF1_InstAddrTranslatePlugin_tlbTranslateResult_TLBHitEntry_VPPN = MMUPlugin_TLBTable_6_VPPN;
-        _zz_IF1_InstAddrTranslatePlugin_tlbTranslateResult_TLBHitEntry_V0 = MMUPlugin_TLBTable_6_V0;
-        _zz_IF1_InstAddrTranslatePlugin_tlbTranslateResult_TLBHitEntry_D0 = MMUPlugin_TLBTable_6_D0;
-        _zz_IF1_InstAddrTranslatePlugin_tlbTranslateResult_TLBHitEntry_MAT0 = MMUPlugin_TLBTable_6_MAT0;
-        _zz_IF1_InstAddrTranslatePlugin_tlbTranslateResult_TLBHitEntry_PLV0 = MMUPlugin_TLBTable_6_PLV0;
-        _zz_IF1_InstAddrTranslatePlugin_tlbTranslateResult_TLBHitEntry_PPN0 = MMUPlugin_TLBTable_6_PPN0;
-        _zz_IF1_InstAddrTranslatePlugin_tlbTranslateResult_TLBHitEntry_V1 = MMUPlugin_TLBTable_6_V1;
-        _zz_IF1_InstAddrTranslatePlugin_tlbTranslateResult_TLBHitEntry_D1 = MMUPlugin_TLBTable_6_D1;
-        _zz_IF1_InstAddrTranslatePlugin_tlbTranslateResult_TLBHitEntry_MAT1 = MMUPlugin_TLBTable_6_MAT1;
-        _zz_IF1_InstAddrTranslatePlugin_tlbTranslateResult_TLBHitEntry_PLV1 = MMUPlugin_TLBTable_6_PLV1;
-        _zz_IF1_InstAddrTranslatePlugin_tlbTranslateResult_TLBHitEntry_PPN1 = MMUPlugin_TLBTable_6_PPN1;
+        _zz__zz_IF1_InstAddrTranslatePlugin_tlbLookup_snapshot_entry_E_5 = MMUPlugin_TLBTable_6_PPN1;
+        _zz__zz_IF1_InstAddrTranslatePlugin_tlbLookup_snapshot_entry_E_5_1 = MMUPlugin_TLBTable_6_PLV1;
+        _zz__zz_IF1_InstAddrTranslatePlugin_tlbLookup_snapshot_entry_E_5_2 = MMUPlugin_TLBTable_6_MAT1;
+        _zz__zz_IF1_InstAddrTranslatePlugin_tlbLookup_snapshot_entry_E_5_3 = MMUPlugin_TLBTable_6_D1;
+        _zz__zz_IF1_InstAddrTranslatePlugin_tlbLookup_snapshot_entry_E_5_4 = MMUPlugin_TLBTable_6_V1;
+        _zz__zz_IF1_InstAddrTranslatePlugin_tlbLookup_snapshot_entry_E_5_5 = MMUPlugin_TLBTable_6_PPN0;
+        _zz__zz_IF1_InstAddrTranslatePlugin_tlbLookup_snapshot_entry_E_5_6 = MMUPlugin_TLBTable_6_PLV0;
+        _zz__zz_IF1_InstAddrTranslatePlugin_tlbLookup_snapshot_entry_E_5_7 = MMUPlugin_TLBTable_6_MAT0;
+        _zz__zz_IF1_InstAddrTranslatePlugin_tlbLookup_snapshot_entry_E_5_8 = MMUPlugin_TLBTable_6_D0;
+        _zz__zz_IF1_InstAddrTranslatePlugin_tlbLookup_snapshot_entry_E_5_9 = MMUPlugin_TLBTable_6_V0;
+        _zz__zz_IF1_InstAddrTranslatePlugin_tlbLookup_snapshot_entry_E_5_10 = MMUPlugin_TLBTable_6_VPPN;
+        _zz__zz_IF1_InstAddrTranslatePlugin_tlbLookup_snapshot_entry_E_5_11 = MMUPlugin_TLBTable_6_PS;
+        _zz__zz_IF1_InstAddrTranslatePlugin_tlbLookup_snapshot_entry_E_5_12 = MMUPlugin_TLBTable_6_G;
+        _zz__zz_IF1_InstAddrTranslatePlugin_tlbLookup_snapshot_entry_E_5_13 = MMUPlugin_TLBTable_6_ASID;
+        _zz__zz_IF1_InstAddrTranslatePlugin_tlbLookup_snapshot_entry_E_5_14 = MMUPlugin_TLBTable_6_E;
       end
       4'b0111 : begin
-        _zz_IF1_InstAddrTranslatePlugin_tlbTranslateResult_TLBHitEntry_E_5 = MMUPlugin_TLBTable_7_E;
-        _zz_IF1_InstAddrTranslatePlugin_tlbTranslateResult_TLBHitEntry_ASID = MMUPlugin_TLBTable_7_ASID;
-        _zz_IF1_InstAddrTranslatePlugin_tlbTranslateResult_TLBHitEntry_G = MMUPlugin_TLBTable_7_G;
-        _zz_IF1_InstAddrTranslatePlugin_tlbTranslateResult_TLBHitEntry_PS = MMUPlugin_TLBTable_7_PS;
-        _zz_IF1_InstAddrTranslatePlugin_tlbTranslateResult_TLBHitEntry_VPPN = MMUPlugin_TLBTable_7_VPPN;
-        _zz_IF1_InstAddrTranslatePlugin_tlbTranslateResult_TLBHitEntry_V0 = MMUPlugin_TLBTable_7_V0;
-        _zz_IF1_InstAddrTranslatePlugin_tlbTranslateResult_TLBHitEntry_D0 = MMUPlugin_TLBTable_7_D0;
-        _zz_IF1_InstAddrTranslatePlugin_tlbTranslateResult_TLBHitEntry_MAT0 = MMUPlugin_TLBTable_7_MAT0;
-        _zz_IF1_InstAddrTranslatePlugin_tlbTranslateResult_TLBHitEntry_PLV0 = MMUPlugin_TLBTable_7_PLV0;
-        _zz_IF1_InstAddrTranslatePlugin_tlbTranslateResult_TLBHitEntry_PPN0 = MMUPlugin_TLBTable_7_PPN0;
-        _zz_IF1_InstAddrTranslatePlugin_tlbTranslateResult_TLBHitEntry_V1 = MMUPlugin_TLBTable_7_V1;
-        _zz_IF1_InstAddrTranslatePlugin_tlbTranslateResult_TLBHitEntry_D1 = MMUPlugin_TLBTable_7_D1;
-        _zz_IF1_InstAddrTranslatePlugin_tlbTranslateResult_TLBHitEntry_MAT1 = MMUPlugin_TLBTable_7_MAT1;
-        _zz_IF1_InstAddrTranslatePlugin_tlbTranslateResult_TLBHitEntry_PLV1 = MMUPlugin_TLBTable_7_PLV1;
-        _zz_IF1_InstAddrTranslatePlugin_tlbTranslateResult_TLBHitEntry_PPN1 = MMUPlugin_TLBTable_7_PPN1;
+        _zz__zz_IF1_InstAddrTranslatePlugin_tlbLookup_snapshot_entry_E_5 = MMUPlugin_TLBTable_7_PPN1;
+        _zz__zz_IF1_InstAddrTranslatePlugin_tlbLookup_snapshot_entry_E_5_1 = MMUPlugin_TLBTable_7_PLV1;
+        _zz__zz_IF1_InstAddrTranslatePlugin_tlbLookup_snapshot_entry_E_5_2 = MMUPlugin_TLBTable_7_MAT1;
+        _zz__zz_IF1_InstAddrTranslatePlugin_tlbLookup_snapshot_entry_E_5_3 = MMUPlugin_TLBTable_7_D1;
+        _zz__zz_IF1_InstAddrTranslatePlugin_tlbLookup_snapshot_entry_E_5_4 = MMUPlugin_TLBTable_7_V1;
+        _zz__zz_IF1_InstAddrTranslatePlugin_tlbLookup_snapshot_entry_E_5_5 = MMUPlugin_TLBTable_7_PPN0;
+        _zz__zz_IF1_InstAddrTranslatePlugin_tlbLookup_snapshot_entry_E_5_6 = MMUPlugin_TLBTable_7_PLV0;
+        _zz__zz_IF1_InstAddrTranslatePlugin_tlbLookup_snapshot_entry_E_5_7 = MMUPlugin_TLBTable_7_MAT0;
+        _zz__zz_IF1_InstAddrTranslatePlugin_tlbLookup_snapshot_entry_E_5_8 = MMUPlugin_TLBTable_7_D0;
+        _zz__zz_IF1_InstAddrTranslatePlugin_tlbLookup_snapshot_entry_E_5_9 = MMUPlugin_TLBTable_7_V0;
+        _zz__zz_IF1_InstAddrTranslatePlugin_tlbLookup_snapshot_entry_E_5_10 = MMUPlugin_TLBTable_7_VPPN;
+        _zz__zz_IF1_InstAddrTranslatePlugin_tlbLookup_snapshot_entry_E_5_11 = MMUPlugin_TLBTable_7_PS;
+        _zz__zz_IF1_InstAddrTranslatePlugin_tlbLookup_snapshot_entry_E_5_12 = MMUPlugin_TLBTable_7_G;
+        _zz__zz_IF1_InstAddrTranslatePlugin_tlbLookup_snapshot_entry_E_5_13 = MMUPlugin_TLBTable_7_ASID;
+        _zz__zz_IF1_InstAddrTranslatePlugin_tlbLookup_snapshot_entry_E_5_14 = MMUPlugin_TLBTable_7_E;
       end
       4'b1000 : begin
-        _zz_IF1_InstAddrTranslatePlugin_tlbTranslateResult_TLBHitEntry_E_5 = MMUPlugin_TLBTable_8_E;
-        _zz_IF1_InstAddrTranslatePlugin_tlbTranslateResult_TLBHitEntry_ASID = MMUPlugin_TLBTable_8_ASID;
-        _zz_IF1_InstAddrTranslatePlugin_tlbTranslateResult_TLBHitEntry_G = MMUPlugin_TLBTable_8_G;
-        _zz_IF1_InstAddrTranslatePlugin_tlbTranslateResult_TLBHitEntry_PS = MMUPlugin_TLBTable_8_PS;
-        _zz_IF1_InstAddrTranslatePlugin_tlbTranslateResult_TLBHitEntry_VPPN = MMUPlugin_TLBTable_8_VPPN;
-        _zz_IF1_InstAddrTranslatePlugin_tlbTranslateResult_TLBHitEntry_V0 = MMUPlugin_TLBTable_8_V0;
-        _zz_IF1_InstAddrTranslatePlugin_tlbTranslateResult_TLBHitEntry_D0 = MMUPlugin_TLBTable_8_D0;
-        _zz_IF1_InstAddrTranslatePlugin_tlbTranslateResult_TLBHitEntry_MAT0 = MMUPlugin_TLBTable_8_MAT0;
-        _zz_IF1_InstAddrTranslatePlugin_tlbTranslateResult_TLBHitEntry_PLV0 = MMUPlugin_TLBTable_8_PLV0;
-        _zz_IF1_InstAddrTranslatePlugin_tlbTranslateResult_TLBHitEntry_PPN0 = MMUPlugin_TLBTable_8_PPN0;
-        _zz_IF1_InstAddrTranslatePlugin_tlbTranslateResult_TLBHitEntry_V1 = MMUPlugin_TLBTable_8_V1;
-        _zz_IF1_InstAddrTranslatePlugin_tlbTranslateResult_TLBHitEntry_D1 = MMUPlugin_TLBTable_8_D1;
-        _zz_IF1_InstAddrTranslatePlugin_tlbTranslateResult_TLBHitEntry_MAT1 = MMUPlugin_TLBTable_8_MAT1;
-        _zz_IF1_InstAddrTranslatePlugin_tlbTranslateResult_TLBHitEntry_PLV1 = MMUPlugin_TLBTable_8_PLV1;
-        _zz_IF1_InstAddrTranslatePlugin_tlbTranslateResult_TLBHitEntry_PPN1 = MMUPlugin_TLBTable_8_PPN1;
+        _zz__zz_IF1_InstAddrTranslatePlugin_tlbLookup_snapshot_entry_E_5 = MMUPlugin_TLBTable_8_PPN1;
+        _zz__zz_IF1_InstAddrTranslatePlugin_tlbLookup_snapshot_entry_E_5_1 = MMUPlugin_TLBTable_8_PLV1;
+        _zz__zz_IF1_InstAddrTranslatePlugin_tlbLookup_snapshot_entry_E_5_2 = MMUPlugin_TLBTable_8_MAT1;
+        _zz__zz_IF1_InstAddrTranslatePlugin_tlbLookup_snapshot_entry_E_5_3 = MMUPlugin_TLBTable_8_D1;
+        _zz__zz_IF1_InstAddrTranslatePlugin_tlbLookup_snapshot_entry_E_5_4 = MMUPlugin_TLBTable_8_V1;
+        _zz__zz_IF1_InstAddrTranslatePlugin_tlbLookup_snapshot_entry_E_5_5 = MMUPlugin_TLBTable_8_PPN0;
+        _zz__zz_IF1_InstAddrTranslatePlugin_tlbLookup_snapshot_entry_E_5_6 = MMUPlugin_TLBTable_8_PLV0;
+        _zz__zz_IF1_InstAddrTranslatePlugin_tlbLookup_snapshot_entry_E_5_7 = MMUPlugin_TLBTable_8_MAT0;
+        _zz__zz_IF1_InstAddrTranslatePlugin_tlbLookup_snapshot_entry_E_5_8 = MMUPlugin_TLBTable_8_D0;
+        _zz__zz_IF1_InstAddrTranslatePlugin_tlbLookup_snapshot_entry_E_5_9 = MMUPlugin_TLBTable_8_V0;
+        _zz__zz_IF1_InstAddrTranslatePlugin_tlbLookup_snapshot_entry_E_5_10 = MMUPlugin_TLBTable_8_VPPN;
+        _zz__zz_IF1_InstAddrTranslatePlugin_tlbLookup_snapshot_entry_E_5_11 = MMUPlugin_TLBTable_8_PS;
+        _zz__zz_IF1_InstAddrTranslatePlugin_tlbLookup_snapshot_entry_E_5_12 = MMUPlugin_TLBTable_8_G;
+        _zz__zz_IF1_InstAddrTranslatePlugin_tlbLookup_snapshot_entry_E_5_13 = MMUPlugin_TLBTable_8_ASID;
+        _zz__zz_IF1_InstAddrTranslatePlugin_tlbLookup_snapshot_entry_E_5_14 = MMUPlugin_TLBTable_8_E;
       end
       4'b1001 : begin
-        _zz_IF1_InstAddrTranslatePlugin_tlbTranslateResult_TLBHitEntry_E_5 = MMUPlugin_TLBTable_9_E;
-        _zz_IF1_InstAddrTranslatePlugin_tlbTranslateResult_TLBHitEntry_ASID = MMUPlugin_TLBTable_9_ASID;
-        _zz_IF1_InstAddrTranslatePlugin_tlbTranslateResult_TLBHitEntry_G = MMUPlugin_TLBTable_9_G;
-        _zz_IF1_InstAddrTranslatePlugin_tlbTranslateResult_TLBHitEntry_PS = MMUPlugin_TLBTable_9_PS;
-        _zz_IF1_InstAddrTranslatePlugin_tlbTranslateResult_TLBHitEntry_VPPN = MMUPlugin_TLBTable_9_VPPN;
-        _zz_IF1_InstAddrTranslatePlugin_tlbTranslateResult_TLBHitEntry_V0 = MMUPlugin_TLBTable_9_V0;
-        _zz_IF1_InstAddrTranslatePlugin_tlbTranslateResult_TLBHitEntry_D0 = MMUPlugin_TLBTable_9_D0;
-        _zz_IF1_InstAddrTranslatePlugin_tlbTranslateResult_TLBHitEntry_MAT0 = MMUPlugin_TLBTable_9_MAT0;
-        _zz_IF1_InstAddrTranslatePlugin_tlbTranslateResult_TLBHitEntry_PLV0 = MMUPlugin_TLBTable_9_PLV0;
-        _zz_IF1_InstAddrTranslatePlugin_tlbTranslateResult_TLBHitEntry_PPN0 = MMUPlugin_TLBTable_9_PPN0;
-        _zz_IF1_InstAddrTranslatePlugin_tlbTranslateResult_TLBHitEntry_V1 = MMUPlugin_TLBTable_9_V1;
-        _zz_IF1_InstAddrTranslatePlugin_tlbTranslateResult_TLBHitEntry_D1 = MMUPlugin_TLBTable_9_D1;
-        _zz_IF1_InstAddrTranslatePlugin_tlbTranslateResult_TLBHitEntry_MAT1 = MMUPlugin_TLBTable_9_MAT1;
-        _zz_IF1_InstAddrTranslatePlugin_tlbTranslateResult_TLBHitEntry_PLV1 = MMUPlugin_TLBTable_9_PLV1;
-        _zz_IF1_InstAddrTranslatePlugin_tlbTranslateResult_TLBHitEntry_PPN1 = MMUPlugin_TLBTable_9_PPN1;
+        _zz__zz_IF1_InstAddrTranslatePlugin_tlbLookup_snapshot_entry_E_5 = MMUPlugin_TLBTable_9_PPN1;
+        _zz__zz_IF1_InstAddrTranslatePlugin_tlbLookup_snapshot_entry_E_5_1 = MMUPlugin_TLBTable_9_PLV1;
+        _zz__zz_IF1_InstAddrTranslatePlugin_tlbLookup_snapshot_entry_E_5_2 = MMUPlugin_TLBTable_9_MAT1;
+        _zz__zz_IF1_InstAddrTranslatePlugin_tlbLookup_snapshot_entry_E_5_3 = MMUPlugin_TLBTable_9_D1;
+        _zz__zz_IF1_InstAddrTranslatePlugin_tlbLookup_snapshot_entry_E_5_4 = MMUPlugin_TLBTable_9_V1;
+        _zz__zz_IF1_InstAddrTranslatePlugin_tlbLookup_snapshot_entry_E_5_5 = MMUPlugin_TLBTable_9_PPN0;
+        _zz__zz_IF1_InstAddrTranslatePlugin_tlbLookup_snapshot_entry_E_5_6 = MMUPlugin_TLBTable_9_PLV0;
+        _zz__zz_IF1_InstAddrTranslatePlugin_tlbLookup_snapshot_entry_E_5_7 = MMUPlugin_TLBTable_9_MAT0;
+        _zz__zz_IF1_InstAddrTranslatePlugin_tlbLookup_snapshot_entry_E_5_8 = MMUPlugin_TLBTable_9_D0;
+        _zz__zz_IF1_InstAddrTranslatePlugin_tlbLookup_snapshot_entry_E_5_9 = MMUPlugin_TLBTable_9_V0;
+        _zz__zz_IF1_InstAddrTranslatePlugin_tlbLookup_snapshot_entry_E_5_10 = MMUPlugin_TLBTable_9_VPPN;
+        _zz__zz_IF1_InstAddrTranslatePlugin_tlbLookup_snapshot_entry_E_5_11 = MMUPlugin_TLBTable_9_PS;
+        _zz__zz_IF1_InstAddrTranslatePlugin_tlbLookup_snapshot_entry_E_5_12 = MMUPlugin_TLBTable_9_G;
+        _zz__zz_IF1_InstAddrTranslatePlugin_tlbLookup_snapshot_entry_E_5_13 = MMUPlugin_TLBTable_9_ASID;
+        _zz__zz_IF1_InstAddrTranslatePlugin_tlbLookup_snapshot_entry_E_5_14 = MMUPlugin_TLBTable_9_E;
       end
       4'b1010 : begin
-        _zz_IF1_InstAddrTranslatePlugin_tlbTranslateResult_TLBHitEntry_E_5 = MMUPlugin_TLBTable_10_E;
-        _zz_IF1_InstAddrTranslatePlugin_tlbTranslateResult_TLBHitEntry_ASID = MMUPlugin_TLBTable_10_ASID;
-        _zz_IF1_InstAddrTranslatePlugin_tlbTranslateResult_TLBHitEntry_G = MMUPlugin_TLBTable_10_G;
-        _zz_IF1_InstAddrTranslatePlugin_tlbTranslateResult_TLBHitEntry_PS = MMUPlugin_TLBTable_10_PS;
-        _zz_IF1_InstAddrTranslatePlugin_tlbTranslateResult_TLBHitEntry_VPPN = MMUPlugin_TLBTable_10_VPPN;
-        _zz_IF1_InstAddrTranslatePlugin_tlbTranslateResult_TLBHitEntry_V0 = MMUPlugin_TLBTable_10_V0;
-        _zz_IF1_InstAddrTranslatePlugin_tlbTranslateResult_TLBHitEntry_D0 = MMUPlugin_TLBTable_10_D0;
-        _zz_IF1_InstAddrTranslatePlugin_tlbTranslateResult_TLBHitEntry_MAT0 = MMUPlugin_TLBTable_10_MAT0;
-        _zz_IF1_InstAddrTranslatePlugin_tlbTranslateResult_TLBHitEntry_PLV0 = MMUPlugin_TLBTable_10_PLV0;
-        _zz_IF1_InstAddrTranslatePlugin_tlbTranslateResult_TLBHitEntry_PPN0 = MMUPlugin_TLBTable_10_PPN0;
-        _zz_IF1_InstAddrTranslatePlugin_tlbTranslateResult_TLBHitEntry_V1 = MMUPlugin_TLBTable_10_V1;
-        _zz_IF1_InstAddrTranslatePlugin_tlbTranslateResult_TLBHitEntry_D1 = MMUPlugin_TLBTable_10_D1;
-        _zz_IF1_InstAddrTranslatePlugin_tlbTranslateResult_TLBHitEntry_MAT1 = MMUPlugin_TLBTable_10_MAT1;
-        _zz_IF1_InstAddrTranslatePlugin_tlbTranslateResult_TLBHitEntry_PLV1 = MMUPlugin_TLBTable_10_PLV1;
-        _zz_IF1_InstAddrTranslatePlugin_tlbTranslateResult_TLBHitEntry_PPN1 = MMUPlugin_TLBTable_10_PPN1;
+        _zz__zz_IF1_InstAddrTranslatePlugin_tlbLookup_snapshot_entry_E_5 = MMUPlugin_TLBTable_10_PPN1;
+        _zz__zz_IF1_InstAddrTranslatePlugin_tlbLookup_snapshot_entry_E_5_1 = MMUPlugin_TLBTable_10_PLV1;
+        _zz__zz_IF1_InstAddrTranslatePlugin_tlbLookup_snapshot_entry_E_5_2 = MMUPlugin_TLBTable_10_MAT1;
+        _zz__zz_IF1_InstAddrTranslatePlugin_tlbLookup_snapshot_entry_E_5_3 = MMUPlugin_TLBTable_10_D1;
+        _zz__zz_IF1_InstAddrTranslatePlugin_tlbLookup_snapshot_entry_E_5_4 = MMUPlugin_TLBTable_10_V1;
+        _zz__zz_IF1_InstAddrTranslatePlugin_tlbLookup_snapshot_entry_E_5_5 = MMUPlugin_TLBTable_10_PPN0;
+        _zz__zz_IF1_InstAddrTranslatePlugin_tlbLookup_snapshot_entry_E_5_6 = MMUPlugin_TLBTable_10_PLV0;
+        _zz__zz_IF1_InstAddrTranslatePlugin_tlbLookup_snapshot_entry_E_5_7 = MMUPlugin_TLBTable_10_MAT0;
+        _zz__zz_IF1_InstAddrTranslatePlugin_tlbLookup_snapshot_entry_E_5_8 = MMUPlugin_TLBTable_10_D0;
+        _zz__zz_IF1_InstAddrTranslatePlugin_tlbLookup_snapshot_entry_E_5_9 = MMUPlugin_TLBTable_10_V0;
+        _zz__zz_IF1_InstAddrTranslatePlugin_tlbLookup_snapshot_entry_E_5_10 = MMUPlugin_TLBTable_10_VPPN;
+        _zz__zz_IF1_InstAddrTranslatePlugin_tlbLookup_snapshot_entry_E_5_11 = MMUPlugin_TLBTable_10_PS;
+        _zz__zz_IF1_InstAddrTranslatePlugin_tlbLookup_snapshot_entry_E_5_12 = MMUPlugin_TLBTable_10_G;
+        _zz__zz_IF1_InstAddrTranslatePlugin_tlbLookup_snapshot_entry_E_5_13 = MMUPlugin_TLBTable_10_ASID;
+        _zz__zz_IF1_InstAddrTranslatePlugin_tlbLookup_snapshot_entry_E_5_14 = MMUPlugin_TLBTable_10_E;
       end
       4'b1011 : begin
-        _zz_IF1_InstAddrTranslatePlugin_tlbTranslateResult_TLBHitEntry_E_5 = MMUPlugin_TLBTable_11_E;
-        _zz_IF1_InstAddrTranslatePlugin_tlbTranslateResult_TLBHitEntry_ASID = MMUPlugin_TLBTable_11_ASID;
-        _zz_IF1_InstAddrTranslatePlugin_tlbTranslateResult_TLBHitEntry_G = MMUPlugin_TLBTable_11_G;
-        _zz_IF1_InstAddrTranslatePlugin_tlbTranslateResult_TLBHitEntry_PS = MMUPlugin_TLBTable_11_PS;
-        _zz_IF1_InstAddrTranslatePlugin_tlbTranslateResult_TLBHitEntry_VPPN = MMUPlugin_TLBTable_11_VPPN;
-        _zz_IF1_InstAddrTranslatePlugin_tlbTranslateResult_TLBHitEntry_V0 = MMUPlugin_TLBTable_11_V0;
-        _zz_IF1_InstAddrTranslatePlugin_tlbTranslateResult_TLBHitEntry_D0 = MMUPlugin_TLBTable_11_D0;
-        _zz_IF1_InstAddrTranslatePlugin_tlbTranslateResult_TLBHitEntry_MAT0 = MMUPlugin_TLBTable_11_MAT0;
-        _zz_IF1_InstAddrTranslatePlugin_tlbTranslateResult_TLBHitEntry_PLV0 = MMUPlugin_TLBTable_11_PLV0;
-        _zz_IF1_InstAddrTranslatePlugin_tlbTranslateResult_TLBHitEntry_PPN0 = MMUPlugin_TLBTable_11_PPN0;
-        _zz_IF1_InstAddrTranslatePlugin_tlbTranslateResult_TLBHitEntry_V1 = MMUPlugin_TLBTable_11_V1;
-        _zz_IF1_InstAddrTranslatePlugin_tlbTranslateResult_TLBHitEntry_D1 = MMUPlugin_TLBTable_11_D1;
-        _zz_IF1_InstAddrTranslatePlugin_tlbTranslateResult_TLBHitEntry_MAT1 = MMUPlugin_TLBTable_11_MAT1;
-        _zz_IF1_InstAddrTranslatePlugin_tlbTranslateResult_TLBHitEntry_PLV1 = MMUPlugin_TLBTable_11_PLV1;
-        _zz_IF1_InstAddrTranslatePlugin_tlbTranslateResult_TLBHitEntry_PPN1 = MMUPlugin_TLBTable_11_PPN1;
+        _zz__zz_IF1_InstAddrTranslatePlugin_tlbLookup_snapshot_entry_E_5 = MMUPlugin_TLBTable_11_PPN1;
+        _zz__zz_IF1_InstAddrTranslatePlugin_tlbLookup_snapshot_entry_E_5_1 = MMUPlugin_TLBTable_11_PLV1;
+        _zz__zz_IF1_InstAddrTranslatePlugin_tlbLookup_snapshot_entry_E_5_2 = MMUPlugin_TLBTable_11_MAT1;
+        _zz__zz_IF1_InstAddrTranslatePlugin_tlbLookup_snapshot_entry_E_5_3 = MMUPlugin_TLBTable_11_D1;
+        _zz__zz_IF1_InstAddrTranslatePlugin_tlbLookup_snapshot_entry_E_5_4 = MMUPlugin_TLBTable_11_V1;
+        _zz__zz_IF1_InstAddrTranslatePlugin_tlbLookup_snapshot_entry_E_5_5 = MMUPlugin_TLBTable_11_PPN0;
+        _zz__zz_IF1_InstAddrTranslatePlugin_tlbLookup_snapshot_entry_E_5_6 = MMUPlugin_TLBTable_11_PLV0;
+        _zz__zz_IF1_InstAddrTranslatePlugin_tlbLookup_snapshot_entry_E_5_7 = MMUPlugin_TLBTable_11_MAT0;
+        _zz__zz_IF1_InstAddrTranslatePlugin_tlbLookup_snapshot_entry_E_5_8 = MMUPlugin_TLBTable_11_D0;
+        _zz__zz_IF1_InstAddrTranslatePlugin_tlbLookup_snapshot_entry_E_5_9 = MMUPlugin_TLBTable_11_V0;
+        _zz__zz_IF1_InstAddrTranslatePlugin_tlbLookup_snapshot_entry_E_5_10 = MMUPlugin_TLBTable_11_VPPN;
+        _zz__zz_IF1_InstAddrTranslatePlugin_tlbLookup_snapshot_entry_E_5_11 = MMUPlugin_TLBTable_11_PS;
+        _zz__zz_IF1_InstAddrTranslatePlugin_tlbLookup_snapshot_entry_E_5_12 = MMUPlugin_TLBTable_11_G;
+        _zz__zz_IF1_InstAddrTranslatePlugin_tlbLookup_snapshot_entry_E_5_13 = MMUPlugin_TLBTable_11_ASID;
+        _zz__zz_IF1_InstAddrTranslatePlugin_tlbLookup_snapshot_entry_E_5_14 = MMUPlugin_TLBTable_11_E;
       end
       4'b1100 : begin
-        _zz_IF1_InstAddrTranslatePlugin_tlbTranslateResult_TLBHitEntry_E_5 = MMUPlugin_TLBTable_12_E;
-        _zz_IF1_InstAddrTranslatePlugin_tlbTranslateResult_TLBHitEntry_ASID = MMUPlugin_TLBTable_12_ASID;
-        _zz_IF1_InstAddrTranslatePlugin_tlbTranslateResult_TLBHitEntry_G = MMUPlugin_TLBTable_12_G;
-        _zz_IF1_InstAddrTranslatePlugin_tlbTranslateResult_TLBHitEntry_PS = MMUPlugin_TLBTable_12_PS;
-        _zz_IF1_InstAddrTranslatePlugin_tlbTranslateResult_TLBHitEntry_VPPN = MMUPlugin_TLBTable_12_VPPN;
-        _zz_IF1_InstAddrTranslatePlugin_tlbTranslateResult_TLBHitEntry_V0 = MMUPlugin_TLBTable_12_V0;
-        _zz_IF1_InstAddrTranslatePlugin_tlbTranslateResult_TLBHitEntry_D0 = MMUPlugin_TLBTable_12_D0;
-        _zz_IF1_InstAddrTranslatePlugin_tlbTranslateResult_TLBHitEntry_MAT0 = MMUPlugin_TLBTable_12_MAT0;
-        _zz_IF1_InstAddrTranslatePlugin_tlbTranslateResult_TLBHitEntry_PLV0 = MMUPlugin_TLBTable_12_PLV0;
-        _zz_IF1_InstAddrTranslatePlugin_tlbTranslateResult_TLBHitEntry_PPN0 = MMUPlugin_TLBTable_12_PPN0;
-        _zz_IF1_InstAddrTranslatePlugin_tlbTranslateResult_TLBHitEntry_V1 = MMUPlugin_TLBTable_12_V1;
-        _zz_IF1_InstAddrTranslatePlugin_tlbTranslateResult_TLBHitEntry_D1 = MMUPlugin_TLBTable_12_D1;
-        _zz_IF1_InstAddrTranslatePlugin_tlbTranslateResult_TLBHitEntry_MAT1 = MMUPlugin_TLBTable_12_MAT1;
-        _zz_IF1_InstAddrTranslatePlugin_tlbTranslateResult_TLBHitEntry_PLV1 = MMUPlugin_TLBTable_12_PLV1;
-        _zz_IF1_InstAddrTranslatePlugin_tlbTranslateResult_TLBHitEntry_PPN1 = MMUPlugin_TLBTable_12_PPN1;
+        _zz__zz_IF1_InstAddrTranslatePlugin_tlbLookup_snapshot_entry_E_5 = MMUPlugin_TLBTable_12_PPN1;
+        _zz__zz_IF1_InstAddrTranslatePlugin_tlbLookup_snapshot_entry_E_5_1 = MMUPlugin_TLBTable_12_PLV1;
+        _zz__zz_IF1_InstAddrTranslatePlugin_tlbLookup_snapshot_entry_E_5_2 = MMUPlugin_TLBTable_12_MAT1;
+        _zz__zz_IF1_InstAddrTranslatePlugin_tlbLookup_snapshot_entry_E_5_3 = MMUPlugin_TLBTable_12_D1;
+        _zz__zz_IF1_InstAddrTranslatePlugin_tlbLookup_snapshot_entry_E_5_4 = MMUPlugin_TLBTable_12_V1;
+        _zz__zz_IF1_InstAddrTranslatePlugin_tlbLookup_snapshot_entry_E_5_5 = MMUPlugin_TLBTable_12_PPN0;
+        _zz__zz_IF1_InstAddrTranslatePlugin_tlbLookup_snapshot_entry_E_5_6 = MMUPlugin_TLBTable_12_PLV0;
+        _zz__zz_IF1_InstAddrTranslatePlugin_tlbLookup_snapshot_entry_E_5_7 = MMUPlugin_TLBTable_12_MAT0;
+        _zz__zz_IF1_InstAddrTranslatePlugin_tlbLookup_snapshot_entry_E_5_8 = MMUPlugin_TLBTable_12_D0;
+        _zz__zz_IF1_InstAddrTranslatePlugin_tlbLookup_snapshot_entry_E_5_9 = MMUPlugin_TLBTable_12_V0;
+        _zz__zz_IF1_InstAddrTranslatePlugin_tlbLookup_snapshot_entry_E_5_10 = MMUPlugin_TLBTable_12_VPPN;
+        _zz__zz_IF1_InstAddrTranslatePlugin_tlbLookup_snapshot_entry_E_5_11 = MMUPlugin_TLBTable_12_PS;
+        _zz__zz_IF1_InstAddrTranslatePlugin_tlbLookup_snapshot_entry_E_5_12 = MMUPlugin_TLBTable_12_G;
+        _zz__zz_IF1_InstAddrTranslatePlugin_tlbLookup_snapshot_entry_E_5_13 = MMUPlugin_TLBTable_12_ASID;
+        _zz__zz_IF1_InstAddrTranslatePlugin_tlbLookup_snapshot_entry_E_5_14 = MMUPlugin_TLBTable_12_E;
       end
       4'b1101 : begin
-        _zz_IF1_InstAddrTranslatePlugin_tlbTranslateResult_TLBHitEntry_E_5 = MMUPlugin_TLBTable_13_E;
-        _zz_IF1_InstAddrTranslatePlugin_tlbTranslateResult_TLBHitEntry_ASID = MMUPlugin_TLBTable_13_ASID;
-        _zz_IF1_InstAddrTranslatePlugin_tlbTranslateResult_TLBHitEntry_G = MMUPlugin_TLBTable_13_G;
-        _zz_IF1_InstAddrTranslatePlugin_tlbTranslateResult_TLBHitEntry_PS = MMUPlugin_TLBTable_13_PS;
-        _zz_IF1_InstAddrTranslatePlugin_tlbTranslateResult_TLBHitEntry_VPPN = MMUPlugin_TLBTable_13_VPPN;
-        _zz_IF1_InstAddrTranslatePlugin_tlbTranslateResult_TLBHitEntry_V0 = MMUPlugin_TLBTable_13_V0;
-        _zz_IF1_InstAddrTranslatePlugin_tlbTranslateResult_TLBHitEntry_D0 = MMUPlugin_TLBTable_13_D0;
-        _zz_IF1_InstAddrTranslatePlugin_tlbTranslateResult_TLBHitEntry_MAT0 = MMUPlugin_TLBTable_13_MAT0;
-        _zz_IF1_InstAddrTranslatePlugin_tlbTranslateResult_TLBHitEntry_PLV0 = MMUPlugin_TLBTable_13_PLV0;
-        _zz_IF1_InstAddrTranslatePlugin_tlbTranslateResult_TLBHitEntry_PPN0 = MMUPlugin_TLBTable_13_PPN0;
-        _zz_IF1_InstAddrTranslatePlugin_tlbTranslateResult_TLBHitEntry_V1 = MMUPlugin_TLBTable_13_V1;
-        _zz_IF1_InstAddrTranslatePlugin_tlbTranslateResult_TLBHitEntry_D1 = MMUPlugin_TLBTable_13_D1;
-        _zz_IF1_InstAddrTranslatePlugin_tlbTranslateResult_TLBHitEntry_MAT1 = MMUPlugin_TLBTable_13_MAT1;
-        _zz_IF1_InstAddrTranslatePlugin_tlbTranslateResult_TLBHitEntry_PLV1 = MMUPlugin_TLBTable_13_PLV1;
-        _zz_IF1_InstAddrTranslatePlugin_tlbTranslateResult_TLBHitEntry_PPN1 = MMUPlugin_TLBTable_13_PPN1;
+        _zz__zz_IF1_InstAddrTranslatePlugin_tlbLookup_snapshot_entry_E_5 = MMUPlugin_TLBTable_13_PPN1;
+        _zz__zz_IF1_InstAddrTranslatePlugin_tlbLookup_snapshot_entry_E_5_1 = MMUPlugin_TLBTable_13_PLV1;
+        _zz__zz_IF1_InstAddrTranslatePlugin_tlbLookup_snapshot_entry_E_5_2 = MMUPlugin_TLBTable_13_MAT1;
+        _zz__zz_IF1_InstAddrTranslatePlugin_tlbLookup_snapshot_entry_E_5_3 = MMUPlugin_TLBTable_13_D1;
+        _zz__zz_IF1_InstAddrTranslatePlugin_tlbLookup_snapshot_entry_E_5_4 = MMUPlugin_TLBTable_13_V1;
+        _zz__zz_IF1_InstAddrTranslatePlugin_tlbLookup_snapshot_entry_E_5_5 = MMUPlugin_TLBTable_13_PPN0;
+        _zz__zz_IF1_InstAddrTranslatePlugin_tlbLookup_snapshot_entry_E_5_6 = MMUPlugin_TLBTable_13_PLV0;
+        _zz__zz_IF1_InstAddrTranslatePlugin_tlbLookup_snapshot_entry_E_5_7 = MMUPlugin_TLBTable_13_MAT0;
+        _zz__zz_IF1_InstAddrTranslatePlugin_tlbLookup_snapshot_entry_E_5_8 = MMUPlugin_TLBTable_13_D0;
+        _zz__zz_IF1_InstAddrTranslatePlugin_tlbLookup_snapshot_entry_E_5_9 = MMUPlugin_TLBTable_13_V0;
+        _zz__zz_IF1_InstAddrTranslatePlugin_tlbLookup_snapshot_entry_E_5_10 = MMUPlugin_TLBTable_13_VPPN;
+        _zz__zz_IF1_InstAddrTranslatePlugin_tlbLookup_snapshot_entry_E_5_11 = MMUPlugin_TLBTable_13_PS;
+        _zz__zz_IF1_InstAddrTranslatePlugin_tlbLookup_snapshot_entry_E_5_12 = MMUPlugin_TLBTable_13_G;
+        _zz__zz_IF1_InstAddrTranslatePlugin_tlbLookup_snapshot_entry_E_5_13 = MMUPlugin_TLBTable_13_ASID;
+        _zz__zz_IF1_InstAddrTranslatePlugin_tlbLookup_snapshot_entry_E_5_14 = MMUPlugin_TLBTable_13_E;
       end
       4'b1110 : begin
-        _zz_IF1_InstAddrTranslatePlugin_tlbTranslateResult_TLBHitEntry_E_5 = MMUPlugin_TLBTable_14_E;
-        _zz_IF1_InstAddrTranslatePlugin_tlbTranslateResult_TLBHitEntry_ASID = MMUPlugin_TLBTable_14_ASID;
-        _zz_IF1_InstAddrTranslatePlugin_tlbTranslateResult_TLBHitEntry_G = MMUPlugin_TLBTable_14_G;
-        _zz_IF1_InstAddrTranslatePlugin_tlbTranslateResult_TLBHitEntry_PS = MMUPlugin_TLBTable_14_PS;
-        _zz_IF1_InstAddrTranslatePlugin_tlbTranslateResult_TLBHitEntry_VPPN = MMUPlugin_TLBTable_14_VPPN;
-        _zz_IF1_InstAddrTranslatePlugin_tlbTranslateResult_TLBHitEntry_V0 = MMUPlugin_TLBTable_14_V0;
-        _zz_IF1_InstAddrTranslatePlugin_tlbTranslateResult_TLBHitEntry_D0 = MMUPlugin_TLBTable_14_D0;
-        _zz_IF1_InstAddrTranslatePlugin_tlbTranslateResult_TLBHitEntry_MAT0 = MMUPlugin_TLBTable_14_MAT0;
-        _zz_IF1_InstAddrTranslatePlugin_tlbTranslateResult_TLBHitEntry_PLV0 = MMUPlugin_TLBTable_14_PLV0;
-        _zz_IF1_InstAddrTranslatePlugin_tlbTranslateResult_TLBHitEntry_PPN0 = MMUPlugin_TLBTable_14_PPN0;
-        _zz_IF1_InstAddrTranslatePlugin_tlbTranslateResult_TLBHitEntry_V1 = MMUPlugin_TLBTable_14_V1;
-        _zz_IF1_InstAddrTranslatePlugin_tlbTranslateResult_TLBHitEntry_D1 = MMUPlugin_TLBTable_14_D1;
-        _zz_IF1_InstAddrTranslatePlugin_tlbTranslateResult_TLBHitEntry_MAT1 = MMUPlugin_TLBTable_14_MAT1;
-        _zz_IF1_InstAddrTranslatePlugin_tlbTranslateResult_TLBHitEntry_PLV1 = MMUPlugin_TLBTable_14_PLV1;
-        _zz_IF1_InstAddrTranslatePlugin_tlbTranslateResult_TLBHitEntry_PPN1 = MMUPlugin_TLBTable_14_PPN1;
+        _zz__zz_IF1_InstAddrTranslatePlugin_tlbLookup_snapshot_entry_E_5 = MMUPlugin_TLBTable_14_PPN1;
+        _zz__zz_IF1_InstAddrTranslatePlugin_tlbLookup_snapshot_entry_E_5_1 = MMUPlugin_TLBTable_14_PLV1;
+        _zz__zz_IF1_InstAddrTranslatePlugin_tlbLookup_snapshot_entry_E_5_2 = MMUPlugin_TLBTable_14_MAT1;
+        _zz__zz_IF1_InstAddrTranslatePlugin_tlbLookup_snapshot_entry_E_5_3 = MMUPlugin_TLBTable_14_D1;
+        _zz__zz_IF1_InstAddrTranslatePlugin_tlbLookup_snapshot_entry_E_5_4 = MMUPlugin_TLBTable_14_V1;
+        _zz__zz_IF1_InstAddrTranslatePlugin_tlbLookup_snapshot_entry_E_5_5 = MMUPlugin_TLBTable_14_PPN0;
+        _zz__zz_IF1_InstAddrTranslatePlugin_tlbLookup_snapshot_entry_E_5_6 = MMUPlugin_TLBTable_14_PLV0;
+        _zz__zz_IF1_InstAddrTranslatePlugin_tlbLookup_snapshot_entry_E_5_7 = MMUPlugin_TLBTable_14_MAT0;
+        _zz__zz_IF1_InstAddrTranslatePlugin_tlbLookup_snapshot_entry_E_5_8 = MMUPlugin_TLBTable_14_D0;
+        _zz__zz_IF1_InstAddrTranslatePlugin_tlbLookup_snapshot_entry_E_5_9 = MMUPlugin_TLBTable_14_V0;
+        _zz__zz_IF1_InstAddrTranslatePlugin_tlbLookup_snapshot_entry_E_5_10 = MMUPlugin_TLBTable_14_VPPN;
+        _zz__zz_IF1_InstAddrTranslatePlugin_tlbLookup_snapshot_entry_E_5_11 = MMUPlugin_TLBTable_14_PS;
+        _zz__zz_IF1_InstAddrTranslatePlugin_tlbLookup_snapshot_entry_E_5_12 = MMUPlugin_TLBTable_14_G;
+        _zz__zz_IF1_InstAddrTranslatePlugin_tlbLookup_snapshot_entry_E_5_13 = MMUPlugin_TLBTable_14_ASID;
+        _zz__zz_IF1_InstAddrTranslatePlugin_tlbLookup_snapshot_entry_E_5_14 = MMUPlugin_TLBTable_14_E;
       end
       default : begin
-        _zz_IF1_InstAddrTranslatePlugin_tlbTranslateResult_TLBHitEntry_E_5 = MMUPlugin_TLBTable_15_E;
-        _zz_IF1_InstAddrTranslatePlugin_tlbTranslateResult_TLBHitEntry_ASID = MMUPlugin_TLBTable_15_ASID;
-        _zz_IF1_InstAddrTranslatePlugin_tlbTranslateResult_TLBHitEntry_G = MMUPlugin_TLBTable_15_G;
-        _zz_IF1_InstAddrTranslatePlugin_tlbTranslateResult_TLBHitEntry_PS = MMUPlugin_TLBTable_15_PS;
-        _zz_IF1_InstAddrTranslatePlugin_tlbTranslateResult_TLBHitEntry_VPPN = MMUPlugin_TLBTable_15_VPPN;
-        _zz_IF1_InstAddrTranslatePlugin_tlbTranslateResult_TLBHitEntry_V0 = MMUPlugin_TLBTable_15_V0;
-        _zz_IF1_InstAddrTranslatePlugin_tlbTranslateResult_TLBHitEntry_D0 = MMUPlugin_TLBTable_15_D0;
-        _zz_IF1_InstAddrTranslatePlugin_tlbTranslateResult_TLBHitEntry_MAT0 = MMUPlugin_TLBTable_15_MAT0;
-        _zz_IF1_InstAddrTranslatePlugin_tlbTranslateResult_TLBHitEntry_PLV0 = MMUPlugin_TLBTable_15_PLV0;
-        _zz_IF1_InstAddrTranslatePlugin_tlbTranslateResult_TLBHitEntry_PPN0 = MMUPlugin_TLBTable_15_PPN0;
-        _zz_IF1_InstAddrTranslatePlugin_tlbTranslateResult_TLBHitEntry_V1 = MMUPlugin_TLBTable_15_V1;
-        _zz_IF1_InstAddrTranslatePlugin_tlbTranslateResult_TLBHitEntry_D1 = MMUPlugin_TLBTable_15_D1;
-        _zz_IF1_InstAddrTranslatePlugin_tlbTranslateResult_TLBHitEntry_MAT1 = MMUPlugin_TLBTable_15_MAT1;
-        _zz_IF1_InstAddrTranslatePlugin_tlbTranslateResult_TLBHitEntry_PLV1 = MMUPlugin_TLBTable_15_PLV1;
-        _zz_IF1_InstAddrTranslatePlugin_tlbTranslateResult_TLBHitEntry_PPN1 = MMUPlugin_TLBTable_15_PPN1;
+        _zz__zz_IF1_InstAddrTranslatePlugin_tlbLookup_snapshot_entry_E_5 = MMUPlugin_TLBTable_15_PPN1;
+        _zz__zz_IF1_InstAddrTranslatePlugin_tlbLookup_snapshot_entry_E_5_1 = MMUPlugin_TLBTable_15_PLV1;
+        _zz__zz_IF1_InstAddrTranslatePlugin_tlbLookup_snapshot_entry_E_5_2 = MMUPlugin_TLBTable_15_MAT1;
+        _zz__zz_IF1_InstAddrTranslatePlugin_tlbLookup_snapshot_entry_E_5_3 = MMUPlugin_TLBTable_15_D1;
+        _zz__zz_IF1_InstAddrTranslatePlugin_tlbLookup_snapshot_entry_E_5_4 = MMUPlugin_TLBTable_15_V1;
+        _zz__zz_IF1_InstAddrTranslatePlugin_tlbLookup_snapshot_entry_E_5_5 = MMUPlugin_TLBTable_15_PPN0;
+        _zz__zz_IF1_InstAddrTranslatePlugin_tlbLookup_snapshot_entry_E_5_6 = MMUPlugin_TLBTable_15_PLV0;
+        _zz__zz_IF1_InstAddrTranslatePlugin_tlbLookup_snapshot_entry_E_5_7 = MMUPlugin_TLBTable_15_MAT0;
+        _zz__zz_IF1_InstAddrTranslatePlugin_tlbLookup_snapshot_entry_E_5_8 = MMUPlugin_TLBTable_15_D0;
+        _zz__zz_IF1_InstAddrTranslatePlugin_tlbLookup_snapshot_entry_E_5_9 = MMUPlugin_TLBTable_15_V0;
+        _zz__zz_IF1_InstAddrTranslatePlugin_tlbLookup_snapshot_entry_E_5_10 = MMUPlugin_TLBTable_15_VPPN;
+        _zz__zz_IF1_InstAddrTranslatePlugin_tlbLookup_snapshot_entry_E_5_11 = MMUPlugin_TLBTable_15_PS;
+        _zz__zz_IF1_InstAddrTranslatePlugin_tlbLookup_snapshot_entry_E_5_12 = MMUPlugin_TLBTable_15_G;
+        _zz__zz_IF1_InstAddrTranslatePlugin_tlbLookup_snapshot_entry_E_5_13 = MMUPlugin_TLBTable_15_ASID;
+        _zz__zz_IF1_InstAddrTranslatePlugin_tlbLookup_snapshot_entry_E_5_14 = MMUPlugin_TLBTable_15_E;
       end
     endcase
   end
@@ -35101,278 +35241,278 @@ module MyCPUCore (
   end
 
   always @(*) begin
-    case(_zz_MEM_ADDR_AddressGenerationPlugin_tlbTranslateResult_TLBHitEntry_E_4)
+    case(_zz_MEM_ADDR_AddressGenerationPlugin_tlbLookup_snapshot_entry_E_4)
       4'b0000 : begin
-        _zz_MEM_ADDR_AddressGenerationPlugin_tlbTranslateResult_TLBHitEntry_E_5 = MMUPlugin_TLBTable_0_E;
-        _zz_MEM_ADDR_AddressGenerationPlugin_tlbTranslateResult_TLBHitEntry_ASID = MMUPlugin_TLBTable_0_ASID;
-        _zz_MEM_ADDR_AddressGenerationPlugin_tlbTranslateResult_TLBHitEntry_G = MMUPlugin_TLBTable_0_G;
-        _zz_MEM_ADDR_AddressGenerationPlugin_tlbTranslateResult_TLBHitEntry_PS = MMUPlugin_TLBTable_0_PS;
-        _zz_MEM_ADDR_AddressGenerationPlugin_tlbTranslateResult_TLBHitEntry_VPPN = MMUPlugin_TLBTable_0_VPPN;
-        _zz_MEM_ADDR_AddressGenerationPlugin_tlbTranslateResult_TLBHitEntry_V0 = MMUPlugin_TLBTable_0_V0;
-        _zz_MEM_ADDR_AddressGenerationPlugin_tlbTranslateResult_TLBHitEntry_D0 = MMUPlugin_TLBTable_0_D0;
-        _zz_MEM_ADDR_AddressGenerationPlugin_tlbTranslateResult_TLBHitEntry_MAT0 = MMUPlugin_TLBTable_0_MAT0;
-        _zz_MEM_ADDR_AddressGenerationPlugin_tlbTranslateResult_TLBHitEntry_PLV0 = MMUPlugin_TLBTable_0_PLV0;
-        _zz_MEM_ADDR_AddressGenerationPlugin_tlbTranslateResult_TLBHitEntry_PPN0 = MMUPlugin_TLBTable_0_PPN0;
-        _zz_MEM_ADDR_AddressGenerationPlugin_tlbTranslateResult_TLBHitEntry_V1 = MMUPlugin_TLBTable_0_V1;
-        _zz_MEM_ADDR_AddressGenerationPlugin_tlbTranslateResult_TLBHitEntry_D1 = MMUPlugin_TLBTable_0_D1;
-        _zz_MEM_ADDR_AddressGenerationPlugin_tlbTranslateResult_TLBHitEntry_MAT1 = MMUPlugin_TLBTable_0_MAT1;
-        _zz_MEM_ADDR_AddressGenerationPlugin_tlbTranslateResult_TLBHitEntry_PLV1 = MMUPlugin_TLBTable_0_PLV1;
-        _zz_MEM_ADDR_AddressGenerationPlugin_tlbTranslateResult_TLBHitEntry_PPN1 = MMUPlugin_TLBTable_0_PPN1;
+        _zz__zz_MEM_ADDR_AddressGenerationPlugin_tlbLookup_snapshot_entry_E_5 = MMUPlugin_TLBTable_0_PPN1;
+        _zz__zz_MEM_ADDR_AddressGenerationPlugin_tlbLookup_snapshot_entry_E_5_1 = MMUPlugin_TLBTable_0_PLV1;
+        _zz__zz_MEM_ADDR_AddressGenerationPlugin_tlbLookup_snapshot_entry_E_5_2 = MMUPlugin_TLBTable_0_MAT1;
+        _zz__zz_MEM_ADDR_AddressGenerationPlugin_tlbLookup_snapshot_entry_E_5_3 = MMUPlugin_TLBTable_0_D1;
+        _zz__zz_MEM_ADDR_AddressGenerationPlugin_tlbLookup_snapshot_entry_E_5_4 = MMUPlugin_TLBTable_0_V1;
+        _zz__zz_MEM_ADDR_AddressGenerationPlugin_tlbLookup_snapshot_entry_E_5_5 = MMUPlugin_TLBTable_0_PPN0;
+        _zz__zz_MEM_ADDR_AddressGenerationPlugin_tlbLookup_snapshot_entry_E_5_6 = MMUPlugin_TLBTable_0_PLV0;
+        _zz__zz_MEM_ADDR_AddressGenerationPlugin_tlbLookup_snapshot_entry_E_5_7 = MMUPlugin_TLBTable_0_MAT0;
+        _zz__zz_MEM_ADDR_AddressGenerationPlugin_tlbLookup_snapshot_entry_E_5_8 = MMUPlugin_TLBTable_0_D0;
+        _zz__zz_MEM_ADDR_AddressGenerationPlugin_tlbLookup_snapshot_entry_E_5_9 = MMUPlugin_TLBTable_0_V0;
+        _zz__zz_MEM_ADDR_AddressGenerationPlugin_tlbLookup_snapshot_entry_E_5_10 = MMUPlugin_TLBTable_0_VPPN;
+        _zz__zz_MEM_ADDR_AddressGenerationPlugin_tlbLookup_snapshot_entry_E_5_11 = MMUPlugin_TLBTable_0_PS;
+        _zz__zz_MEM_ADDR_AddressGenerationPlugin_tlbLookup_snapshot_entry_E_5_12 = MMUPlugin_TLBTable_0_G;
+        _zz__zz_MEM_ADDR_AddressGenerationPlugin_tlbLookup_snapshot_entry_E_5_13 = MMUPlugin_TLBTable_0_ASID;
+        _zz__zz_MEM_ADDR_AddressGenerationPlugin_tlbLookup_snapshot_entry_E_5_14 = MMUPlugin_TLBTable_0_E;
       end
       4'b0001 : begin
-        _zz_MEM_ADDR_AddressGenerationPlugin_tlbTranslateResult_TLBHitEntry_E_5 = MMUPlugin_TLBTable_1_E;
-        _zz_MEM_ADDR_AddressGenerationPlugin_tlbTranslateResult_TLBHitEntry_ASID = MMUPlugin_TLBTable_1_ASID;
-        _zz_MEM_ADDR_AddressGenerationPlugin_tlbTranslateResult_TLBHitEntry_G = MMUPlugin_TLBTable_1_G;
-        _zz_MEM_ADDR_AddressGenerationPlugin_tlbTranslateResult_TLBHitEntry_PS = MMUPlugin_TLBTable_1_PS;
-        _zz_MEM_ADDR_AddressGenerationPlugin_tlbTranslateResult_TLBHitEntry_VPPN = MMUPlugin_TLBTable_1_VPPN;
-        _zz_MEM_ADDR_AddressGenerationPlugin_tlbTranslateResult_TLBHitEntry_V0 = MMUPlugin_TLBTable_1_V0;
-        _zz_MEM_ADDR_AddressGenerationPlugin_tlbTranslateResult_TLBHitEntry_D0 = MMUPlugin_TLBTable_1_D0;
-        _zz_MEM_ADDR_AddressGenerationPlugin_tlbTranslateResult_TLBHitEntry_MAT0 = MMUPlugin_TLBTable_1_MAT0;
-        _zz_MEM_ADDR_AddressGenerationPlugin_tlbTranslateResult_TLBHitEntry_PLV0 = MMUPlugin_TLBTable_1_PLV0;
-        _zz_MEM_ADDR_AddressGenerationPlugin_tlbTranslateResult_TLBHitEntry_PPN0 = MMUPlugin_TLBTable_1_PPN0;
-        _zz_MEM_ADDR_AddressGenerationPlugin_tlbTranslateResult_TLBHitEntry_V1 = MMUPlugin_TLBTable_1_V1;
-        _zz_MEM_ADDR_AddressGenerationPlugin_tlbTranslateResult_TLBHitEntry_D1 = MMUPlugin_TLBTable_1_D1;
-        _zz_MEM_ADDR_AddressGenerationPlugin_tlbTranslateResult_TLBHitEntry_MAT1 = MMUPlugin_TLBTable_1_MAT1;
-        _zz_MEM_ADDR_AddressGenerationPlugin_tlbTranslateResult_TLBHitEntry_PLV1 = MMUPlugin_TLBTable_1_PLV1;
-        _zz_MEM_ADDR_AddressGenerationPlugin_tlbTranslateResult_TLBHitEntry_PPN1 = MMUPlugin_TLBTable_1_PPN1;
+        _zz__zz_MEM_ADDR_AddressGenerationPlugin_tlbLookup_snapshot_entry_E_5 = MMUPlugin_TLBTable_1_PPN1;
+        _zz__zz_MEM_ADDR_AddressGenerationPlugin_tlbLookup_snapshot_entry_E_5_1 = MMUPlugin_TLBTable_1_PLV1;
+        _zz__zz_MEM_ADDR_AddressGenerationPlugin_tlbLookup_snapshot_entry_E_5_2 = MMUPlugin_TLBTable_1_MAT1;
+        _zz__zz_MEM_ADDR_AddressGenerationPlugin_tlbLookup_snapshot_entry_E_5_3 = MMUPlugin_TLBTable_1_D1;
+        _zz__zz_MEM_ADDR_AddressGenerationPlugin_tlbLookup_snapshot_entry_E_5_4 = MMUPlugin_TLBTable_1_V1;
+        _zz__zz_MEM_ADDR_AddressGenerationPlugin_tlbLookup_snapshot_entry_E_5_5 = MMUPlugin_TLBTable_1_PPN0;
+        _zz__zz_MEM_ADDR_AddressGenerationPlugin_tlbLookup_snapshot_entry_E_5_6 = MMUPlugin_TLBTable_1_PLV0;
+        _zz__zz_MEM_ADDR_AddressGenerationPlugin_tlbLookup_snapshot_entry_E_5_7 = MMUPlugin_TLBTable_1_MAT0;
+        _zz__zz_MEM_ADDR_AddressGenerationPlugin_tlbLookup_snapshot_entry_E_5_8 = MMUPlugin_TLBTable_1_D0;
+        _zz__zz_MEM_ADDR_AddressGenerationPlugin_tlbLookup_snapshot_entry_E_5_9 = MMUPlugin_TLBTable_1_V0;
+        _zz__zz_MEM_ADDR_AddressGenerationPlugin_tlbLookup_snapshot_entry_E_5_10 = MMUPlugin_TLBTable_1_VPPN;
+        _zz__zz_MEM_ADDR_AddressGenerationPlugin_tlbLookup_snapshot_entry_E_5_11 = MMUPlugin_TLBTable_1_PS;
+        _zz__zz_MEM_ADDR_AddressGenerationPlugin_tlbLookup_snapshot_entry_E_5_12 = MMUPlugin_TLBTable_1_G;
+        _zz__zz_MEM_ADDR_AddressGenerationPlugin_tlbLookup_snapshot_entry_E_5_13 = MMUPlugin_TLBTable_1_ASID;
+        _zz__zz_MEM_ADDR_AddressGenerationPlugin_tlbLookup_snapshot_entry_E_5_14 = MMUPlugin_TLBTable_1_E;
       end
       4'b0010 : begin
-        _zz_MEM_ADDR_AddressGenerationPlugin_tlbTranslateResult_TLBHitEntry_E_5 = MMUPlugin_TLBTable_2_E;
-        _zz_MEM_ADDR_AddressGenerationPlugin_tlbTranslateResult_TLBHitEntry_ASID = MMUPlugin_TLBTable_2_ASID;
-        _zz_MEM_ADDR_AddressGenerationPlugin_tlbTranslateResult_TLBHitEntry_G = MMUPlugin_TLBTable_2_G;
-        _zz_MEM_ADDR_AddressGenerationPlugin_tlbTranslateResult_TLBHitEntry_PS = MMUPlugin_TLBTable_2_PS;
-        _zz_MEM_ADDR_AddressGenerationPlugin_tlbTranslateResult_TLBHitEntry_VPPN = MMUPlugin_TLBTable_2_VPPN;
-        _zz_MEM_ADDR_AddressGenerationPlugin_tlbTranslateResult_TLBHitEntry_V0 = MMUPlugin_TLBTable_2_V0;
-        _zz_MEM_ADDR_AddressGenerationPlugin_tlbTranslateResult_TLBHitEntry_D0 = MMUPlugin_TLBTable_2_D0;
-        _zz_MEM_ADDR_AddressGenerationPlugin_tlbTranslateResult_TLBHitEntry_MAT0 = MMUPlugin_TLBTable_2_MAT0;
-        _zz_MEM_ADDR_AddressGenerationPlugin_tlbTranslateResult_TLBHitEntry_PLV0 = MMUPlugin_TLBTable_2_PLV0;
-        _zz_MEM_ADDR_AddressGenerationPlugin_tlbTranslateResult_TLBHitEntry_PPN0 = MMUPlugin_TLBTable_2_PPN0;
-        _zz_MEM_ADDR_AddressGenerationPlugin_tlbTranslateResult_TLBHitEntry_V1 = MMUPlugin_TLBTable_2_V1;
-        _zz_MEM_ADDR_AddressGenerationPlugin_tlbTranslateResult_TLBHitEntry_D1 = MMUPlugin_TLBTable_2_D1;
-        _zz_MEM_ADDR_AddressGenerationPlugin_tlbTranslateResult_TLBHitEntry_MAT1 = MMUPlugin_TLBTable_2_MAT1;
-        _zz_MEM_ADDR_AddressGenerationPlugin_tlbTranslateResult_TLBHitEntry_PLV1 = MMUPlugin_TLBTable_2_PLV1;
-        _zz_MEM_ADDR_AddressGenerationPlugin_tlbTranslateResult_TLBHitEntry_PPN1 = MMUPlugin_TLBTable_2_PPN1;
+        _zz__zz_MEM_ADDR_AddressGenerationPlugin_tlbLookup_snapshot_entry_E_5 = MMUPlugin_TLBTable_2_PPN1;
+        _zz__zz_MEM_ADDR_AddressGenerationPlugin_tlbLookup_snapshot_entry_E_5_1 = MMUPlugin_TLBTable_2_PLV1;
+        _zz__zz_MEM_ADDR_AddressGenerationPlugin_tlbLookup_snapshot_entry_E_5_2 = MMUPlugin_TLBTable_2_MAT1;
+        _zz__zz_MEM_ADDR_AddressGenerationPlugin_tlbLookup_snapshot_entry_E_5_3 = MMUPlugin_TLBTable_2_D1;
+        _zz__zz_MEM_ADDR_AddressGenerationPlugin_tlbLookup_snapshot_entry_E_5_4 = MMUPlugin_TLBTable_2_V1;
+        _zz__zz_MEM_ADDR_AddressGenerationPlugin_tlbLookup_snapshot_entry_E_5_5 = MMUPlugin_TLBTable_2_PPN0;
+        _zz__zz_MEM_ADDR_AddressGenerationPlugin_tlbLookup_snapshot_entry_E_5_6 = MMUPlugin_TLBTable_2_PLV0;
+        _zz__zz_MEM_ADDR_AddressGenerationPlugin_tlbLookup_snapshot_entry_E_5_7 = MMUPlugin_TLBTable_2_MAT0;
+        _zz__zz_MEM_ADDR_AddressGenerationPlugin_tlbLookup_snapshot_entry_E_5_8 = MMUPlugin_TLBTable_2_D0;
+        _zz__zz_MEM_ADDR_AddressGenerationPlugin_tlbLookup_snapshot_entry_E_5_9 = MMUPlugin_TLBTable_2_V0;
+        _zz__zz_MEM_ADDR_AddressGenerationPlugin_tlbLookup_snapshot_entry_E_5_10 = MMUPlugin_TLBTable_2_VPPN;
+        _zz__zz_MEM_ADDR_AddressGenerationPlugin_tlbLookup_snapshot_entry_E_5_11 = MMUPlugin_TLBTable_2_PS;
+        _zz__zz_MEM_ADDR_AddressGenerationPlugin_tlbLookup_snapshot_entry_E_5_12 = MMUPlugin_TLBTable_2_G;
+        _zz__zz_MEM_ADDR_AddressGenerationPlugin_tlbLookup_snapshot_entry_E_5_13 = MMUPlugin_TLBTable_2_ASID;
+        _zz__zz_MEM_ADDR_AddressGenerationPlugin_tlbLookup_snapshot_entry_E_5_14 = MMUPlugin_TLBTable_2_E;
       end
       4'b0011 : begin
-        _zz_MEM_ADDR_AddressGenerationPlugin_tlbTranslateResult_TLBHitEntry_E_5 = MMUPlugin_TLBTable_3_E;
-        _zz_MEM_ADDR_AddressGenerationPlugin_tlbTranslateResult_TLBHitEntry_ASID = MMUPlugin_TLBTable_3_ASID;
-        _zz_MEM_ADDR_AddressGenerationPlugin_tlbTranslateResult_TLBHitEntry_G = MMUPlugin_TLBTable_3_G;
-        _zz_MEM_ADDR_AddressGenerationPlugin_tlbTranslateResult_TLBHitEntry_PS = MMUPlugin_TLBTable_3_PS;
-        _zz_MEM_ADDR_AddressGenerationPlugin_tlbTranslateResult_TLBHitEntry_VPPN = MMUPlugin_TLBTable_3_VPPN;
-        _zz_MEM_ADDR_AddressGenerationPlugin_tlbTranslateResult_TLBHitEntry_V0 = MMUPlugin_TLBTable_3_V0;
-        _zz_MEM_ADDR_AddressGenerationPlugin_tlbTranslateResult_TLBHitEntry_D0 = MMUPlugin_TLBTable_3_D0;
-        _zz_MEM_ADDR_AddressGenerationPlugin_tlbTranslateResult_TLBHitEntry_MAT0 = MMUPlugin_TLBTable_3_MAT0;
-        _zz_MEM_ADDR_AddressGenerationPlugin_tlbTranslateResult_TLBHitEntry_PLV0 = MMUPlugin_TLBTable_3_PLV0;
-        _zz_MEM_ADDR_AddressGenerationPlugin_tlbTranslateResult_TLBHitEntry_PPN0 = MMUPlugin_TLBTable_3_PPN0;
-        _zz_MEM_ADDR_AddressGenerationPlugin_tlbTranslateResult_TLBHitEntry_V1 = MMUPlugin_TLBTable_3_V1;
-        _zz_MEM_ADDR_AddressGenerationPlugin_tlbTranslateResult_TLBHitEntry_D1 = MMUPlugin_TLBTable_3_D1;
-        _zz_MEM_ADDR_AddressGenerationPlugin_tlbTranslateResult_TLBHitEntry_MAT1 = MMUPlugin_TLBTable_3_MAT1;
-        _zz_MEM_ADDR_AddressGenerationPlugin_tlbTranslateResult_TLBHitEntry_PLV1 = MMUPlugin_TLBTable_3_PLV1;
-        _zz_MEM_ADDR_AddressGenerationPlugin_tlbTranslateResult_TLBHitEntry_PPN1 = MMUPlugin_TLBTable_3_PPN1;
+        _zz__zz_MEM_ADDR_AddressGenerationPlugin_tlbLookup_snapshot_entry_E_5 = MMUPlugin_TLBTable_3_PPN1;
+        _zz__zz_MEM_ADDR_AddressGenerationPlugin_tlbLookup_snapshot_entry_E_5_1 = MMUPlugin_TLBTable_3_PLV1;
+        _zz__zz_MEM_ADDR_AddressGenerationPlugin_tlbLookup_snapshot_entry_E_5_2 = MMUPlugin_TLBTable_3_MAT1;
+        _zz__zz_MEM_ADDR_AddressGenerationPlugin_tlbLookup_snapshot_entry_E_5_3 = MMUPlugin_TLBTable_3_D1;
+        _zz__zz_MEM_ADDR_AddressGenerationPlugin_tlbLookup_snapshot_entry_E_5_4 = MMUPlugin_TLBTable_3_V1;
+        _zz__zz_MEM_ADDR_AddressGenerationPlugin_tlbLookup_snapshot_entry_E_5_5 = MMUPlugin_TLBTable_3_PPN0;
+        _zz__zz_MEM_ADDR_AddressGenerationPlugin_tlbLookup_snapshot_entry_E_5_6 = MMUPlugin_TLBTable_3_PLV0;
+        _zz__zz_MEM_ADDR_AddressGenerationPlugin_tlbLookup_snapshot_entry_E_5_7 = MMUPlugin_TLBTable_3_MAT0;
+        _zz__zz_MEM_ADDR_AddressGenerationPlugin_tlbLookup_snapshot_entry_E_5_8 = MMUPlugin_TLBTable_3_D0;
+        _zz__zz_MEM_ADDR_AddressGenerationPlugin_tlbLookup_snapshot_entry_E_5_9 = MMUPlugin_TLBTable_3_V0;
+        _zz__zz_MEM_ADDR_AddressGenerationPlugin_tlbLookup_snapshot_entry_E_5_10 = MMUPlugin_TLBTable_3_VPPN;
+        _zz__zz_MEM_ADDR_AddressGenerationPlugin_tlbLookup_snapshot_entry_E_5_11 = MMUPlugin_TLBTable_3_PS;
+        _zz__zz_MEM_ADDR_AddressGenerationPlugin_tlbLookup_snapshot_entry_E_5_12 = MMUPlugin_TLBTable_3_G;
+        _zz__zz_MEM_ADDR_AddressGenerationPlugin_tlbLookup_snapshot_entry_E_5_13 = MMUPlugin_TLBTable_3_ASID;
+        _zz__zz_MEM_ADDR_AddressGenerationPlugin_tlbLookup_snapshot_entry_E_5_14 = MMUPlugin_TLBTable_3_E;
       end
       4'b0100 : begin
-        _zz_MEM_ADDR_AddressGenerationPlugin_tlbTranslateResult_TLBHitEntry_E_5 = MMUPlugin_TLBTable_4_E;
-        _zz_MEM_ADDR_AddressGenerationPlugin_tlbTranslateResult_TLBHitEntry_ASID = MMUPlugin_TLBTable_4_ASID;
-        _zz_MEM_ADDR_AddressGenerationPlugin_tlbTranslateResult_TLBHitEntry_G = MMUPlugin_TLBTable_4_G;
-        _zz_MEM_ADDR_AddressGenerationPlugin_tlbTranslateResult_TLBHitEntry_PS = MMUPlugin_TLBTable_4_PS;
-        _zz_MEM_ADDR_AddressGenerationPlugin_tlbTranslateResult_TLBHitEntry_VPPN = MMUPlugin_TLBTable_4_VPPN;
-        _zz_MEM_ADDR_AddressGenerationPlugin_tlbTranslateResult_TLBHitEntry_V0 = MMUPlugin_TLBTable_4_V0;
-        _zz_MEM_ADDR_AddressGenerationPlugin_tlbTranslateResult_TLBHitEntry_D0 = MMUPlugin_TLBTable_4_D0;
-        _zz_MEM_ADDR_AddressGenerationPlugin_tlbTranslateResult_TLBHitEntry_MAT0 = MMUPlugin_TLBTable_4_MAT0;
-        _zz_MEM_ADDR_AddressGenerationPlugin_tlbTranslateResult_TLBHitEntry_PLV0 = MMUPlugin_TLBTable_4_PLV0;
-        _zz_MEM_ADDR_AddressGenerationPlugin_tlbTranslateResult_TLBHitEntry_PPN0 = MMUPlugin_TLBTable_4_PPN0;
-        _zz_MEM_ADDR_AddressGenerationPlugin_tlbTranslateResult_TLBHitEntry_V1 = MMUPlugin_TLBTable_4_V1;
-        _zz_MEM_ADDR_AddressGenerationPlugin_tlbTranslateResult_TLBHitEntry_D1 = MMUPlugin_TLBTable_4_D1;
-        _zz_MEM_ADDR_AddressGenerationPlugin_tlbTranslateResult_TLBHitEntry_MAT1 = MMUPlugin_TLBTable_4_MAT1;
-        _zz_MEM_ADDR_AddressGenerationPlugin_tlbTranslateResult_TLBHitEntry_PLV1 = MMUPlugin_TLBTable_4_PLV1;
-        _zz_MEM_ADDR_AddressGenerationPlugin_tlbTranslateResult_TLBHitEntry_PPN1 = MMUPlugin_TLBTable_4_PPN1;
+        _zz__zz_MEM_ADDR_AddressGenerationPlugin_tlbLookup_snapshot_entry_E_5 = MMUPlugin_TLBTable_4_PPN1;
+        _zz__zz_MEM_ADDR_AddressGenerationPlugin_tlbLookup_snapshot_entry_E_5_1 = MMUPlugin_TLBTable_4_PLV1;
+        _zz__zz_MEM_ADDR_AddressGenerationPlugin_tlbLookup_snapshot_entry_E_5_2 = MMUPlugin_TLBTable_4_MAT1;
+        _zz__zz_MEM_ADDR_AddressGenerationPlugin_tlbLookup_snapshot_entry_E_5_3 = MMUPlugin_TLBTable_4_D1;
+        _zz__zz_MEM_ADDR_AddressGenerationPlugin_tlbLookup_snapshot_entry_E_5_4 = MMUPlugin_TLBTable_4_V1;
+        _zz__zz_MEM_ADDR_AddressGenerationPlugin_tlbLookup_snapshot_entry_E_5_5 = MMUPlugin_TLBTable_4_PPN0;
+        _zz__zz_MEM_ADDR_AddressGenerationPlugin_tlbLookup_snapshot_entry_E_5_6 = MMUPlugin_TLBTable_4_PLV0;
+        _zz__zz_MEM_ADDR_AddressGenerationPlugin_tlbLookup_snapshot_entry_E_5_7 = MMUPlugin_TLBTable_4_MAT0;
+        _zz__zz_MEM_ADDR_AddressGenerationPlugin_tlbLookup_snapshot_entry_E_5_8 = MMUPlugin_TLBTable_4_D0;
+        _zz__zz_MEM_ADDR_AddressGenerationPlugin_tlbLookup_snapshot_entry_E_5_9 = MMUPlugin_TLBTable_4_V0;
+        _zz__zz_MEM_ADDR_AddressGenerationPlugin_tlbLookup_snapshot_entry_E_5_10 = MMUPlugin_TLBTable_4_VPPN;
+        _zz__zz_MEM_ADDR_AddressGenerationPlugin_tlbLookup_snapshot_entry_E_5_11 = MMUPlugin_TLBTable_4_PS;
+        _zz__zz_MEM_ADDR_AddressGenerationPlugin_tlbLookup_snapshot_entry_E_5_12 = MMUPlugin_TLBTable_4_G;
+        _zz__zz_MEM_ADDR_AddressGenerationPlugin_tlbLookup_snapshot_entry_E_5_13 = MMUPlugin_TLBTable_4_ASID;
+        _zz__zz_MEM_ADDR_AddressGenerationPlugin_tlbLookup_snapshot_entry_E_5_14 = MMUPlugin_TLBTable_4_E;
       end
       4'b0101 : begin
-        _zz_MEM_ADDR_AddressGenerationPlugin_tlbTranslateResult_TLBHitEntry_E_5 = MMUPlugin_TLBTable_5_E;
-        _zz_MEM_ADDR_AddressGenerationPlugin_tlbTranslateResult_TLBHitEntry_ASID = MMUPlugin_TLBTable_5_ASID;
-        _zz_MEM_ADDR_AddressGenerationPlugin_tlbTranslateResult_TLBHitEntry_G = MMUPlugin_TLBTable_5_G;
-        _zz_MEM_ADDR_AddressGenerationPlugin_tlbTranslateResult_TLBHitEntry_PS = MMUPlugin_TLBTable_5_PS;
-        _zz_MEM_ADDR_AddressGenerationPlugin_tlbTranslateResult_TLBHitEntry_VPPN = MMUPlugin_TLBTable_5_VPPN;
-        _zz_MEM_ADDR_AddressGenerationPlugin_tlbTranslateResult_TLBHitEntry_V0 = MMUPlugin_TLBTable_5_V0;
-        _zz_MEM_ADDR_AddressGenerationPlugin_tlbTranslateResult_TLBHitEntry_D0 = MMUPlugin_TLBTable_5_D0;
-        _zz_MEM_ADDR_AddressGenerationPlugin_tlbTranslateResult_TLBHitEntry_MAT0 = MMUPlugin_TLBTable_5_MAT0;
-        _zz_MEM_ADDR_AddressGenerationPlugin_tlbTranslateResult_TLBHitEntry_PLV0 = MMUPlugin_TLBTable_5_PLV0;
-        _zz_MEM_ADDR_AddressGenerationPlugin_tlbTranslateResult_TLBHitEntry_PPN0 = MMUPlugin_TLBTable_5_PPN0;
-        _zz_MEM_ADDR_AddressGenerationPlugin_tlbTranslateResult_TLBHitEntry_V1 = MMUPlugin_TLBTable_5_V1;
-        _zz_MEM_ADDR_AddressGenerationPlugin_tlbTranslateResult_TLBHitEntry_D1 = MMUPlugin_TLBTable_5_D1;
-        _zz_MEM_ADDR_AddressGenerationPlugin_tlbTranslateResult_TLBHitEntry_MAT1 = MMUPlugin_TLBTable_5_MAT1;
-        _zz_MEM_ADDR_AddressGenerationPlugin_tlbTranslateResult_TLBHitEntry_PLV1 = MMUPlugin_TLBTable_5_PLV1;
-        _zz_MEM_ADDR_AddressGenerationPlugin_tlbTranslateResult_TLBHitEntry_PPN1 = MMUPlugin_TLBTable_5_PPN1;
+        _zz__zz_MEM_ADDR_AddressGenerationPlugin_tlbLookup_snapshot_entry_E_5 = MMUPlugin_TLBTable_5_PPN1;
+        _zz__zz_MEM_ADDR_AddressGenerationPlugin_tlbLookup_snapshot_entry_E_5_1 = MMUPlugin_TLBTable_5_PLV1;
+        _zz__zz_MEM_ADDR_AddressGenerationPlugin_tlbLookup_snapshot_entry_E_5_2 = MMUPlugin_TLBTable_5_MAT1;
+        _zz__zz_MEM_ADDR_AddressGenerationPlugin_tlbLookup_snapshot_entry_E_5_3 = MMUPlugin_TLBTable_5_D1;
+        _zz__zz_MEM_ADDR_AddressGenerationPlugin_tlbLookup_snapshot_entry_E_5_4 = MMUPlugin_TLBTable_5_V1;
+        _zz__zz_MEM_ADDR_AddressGenerationPlugin_tlbLookup_snapshot_entry_E_5_5 = MMUPlugin_TLBTable_5_PPN0;
+        _zz__zz_MEM_ADDR_AddressGenerationPlugin_tlbLookup_snapshot_entry_E_5_6 = MMUPlugin_TLBTable_5_PLV0;
+        _zz__zz_MEM_ADDR_AddressGenerationPlugin_tlbLookup_snapshot_entry_E_5_7 = MMUPlugin_TLBTable_5_MAT0;
+        _zz__zz_MEM_ADDR_AddressGenerationPlugin_tlbLookup_snapshot_entry_E_5_8 = MMUPlugin_TLBTable_5_D0;
+        _zz__zz_MEM_ADDR_AddressGenerationPlugin_tlbLookup_snapshot_entry_E_5_9 = MMUPlugin_TLBTable_5_V0;
+        _zz__zz_MEM_ADDR_AddressGenerationPlugin_tlbLookup_snapshot_entry_E_5_10 = MMUPlugin_TLBTable_5_VPPN;
+        _zz__zz_MEM_ADDR_AddressGenerationPlugin_tlbLookup_snapshot_entry_E_5_11 = MMUPlugin_TLBTable_5_PS;
+        _zz__zz_MEM_ADDR_AddressGenerationPlugin_tlbLookup_snapshot_entry_E_5_12 = MMUPlugin_TLBTable_5_G;
+        _zz__zz_MEM_ADDR_AddressGenerationPlugin_tlbLookup_snapshot_entry_E_5_13 = MMUPlugin_TLBTable_5_ASID;
+        _zz__zz_MEM_ADDR_AddressGenerationPlugin_tlbLookup_snapshot_entry_E_5_14 = MMUPlugin_TLBTable_5_E;
       end
       4'b0110 : begin
-        _zz_MEM_ADDR_AddressGenerationPlugin_tlbTranslateResult_TLBHitEntry_E_5 = MMUPlugin_TLBTable_6_E;
-        _zz_MEM_ADDR_AddressGenerationPlugin_tlbTranslateResult_TLBHitEntry_ASID = MMUPlugin_TLBTable_6_ASID;
-        _zz_MEM_ADDR_AddressGenerationPlugin_tlbTranslateResult_TLBHitEntry_G = MMUPlugin_TLBTable_6_G;
-        _zz_MEM_ADDR_AddressGenerationPlugin_tlbTranslateResult_TLBHitEntry_PS = MMUPlugin_TLBTable_6_PS;
-        _zz_MEM_ADDR_AddressGenerationPlugin_tlbTranslateResult_TLBHitEntry_VPPN = MMUPlugin_TLBTable_6_VPPN;
-        _zz_MEM_ADDR_AddressGenerationPlugin_tlbTranslateResult_TLBHitEntry_V0 = MMUPlugin_TLBTable_6_V0;
-        _zz_MEM_ADDR_AddressGenerationPlugin_tlbTranslateResult_TLBHitEntry_D0 = MMUPlugin_TLBTable_6_D0;
-        _zz_MEM_ADDR_AddressGenerationPlugin_tlbTranslateResult_TLBHitEntry_MAT0 = MMUPlugin_TLBTable_6_MAT0;
-        _zz_MEM_ADDR_AddressGenerationPlugin_tlbTranslateResult_TLBHitEntry_PLV0 = MMUPlugin_TLBTable_6_PLV0;
-        _zz_MEM_ADDR_AddressGenerationPlugin_tlbTranslateResult_TLBHitEntry_PPN0 = MMUPlugin_TLBTable_6_PPN0;
-        _zz_MEM_ADDR_AddressGenerationPlugin_tlbTranslateResult_TLBHitEntry_V1 = MMUPlugin_TLBTable_6_V1;
-        _zz_MEM_ADDR_AddressGenerationPlugin_tlbTranslateResult_TLBHitEntry_D1 = MMUPlugin_TLBTable_6_D1;
-        _zz_MEM_ADDR_AddressGenerationPlugin_tlbTranslateResult_TLBHitEntry_MAT1 = MMUPlugin_TLBTable_6_MAT1;
-        _zz_MEM_ADDR_AddressGenerationPlugin_tlbTranslateResult_TLBHitEntry_PLV1 = MMUPlugin_TLBTable_6_PLV1;
-        _zz_MEM_ADDR_AddressGenerationPlugin_tlbTranslateResult_TLBHitEntry_PPN1 = MMUPlugin_TLBTable_6_PPN1;
+        _zz__zz_MEM_ADDR_AddressGenerationPlugin_tlbLookup_snapshot_entry_E_5 = MMUPlugin_TLBTable_6_PPN1;
+        _zz__zz_MEM_ADDR_AddressGenerationPlugin_tlbLookup_snapshot_entry_E_5_1 = MMUPlugin_TLBTable_6_PLV1;
+        _zz__zz_MEM_ADDR_AddressGenerationPlugin_tlbLookup_snapshot_entry_E_5_2 = MMUPlugin_TLBTable_6_MAT1;
+        _zz__zz_MEM_ADDR_AddressGenerationPlugin_tlbLookup_snapshot_entry_E_5_3 = MMUPlugin_TLBTable_6_D1;
+        _zz__zz_MEM_ADDR_AddressGenerationPlugin_tlbLookup_snapshot_entry_E_5_4 = MMUPlugin_TLBTable_6_V1;
+        _zz__zz_MEM_ADDR_AddressGenerationPlugin_tlbLookup_snapshot_entry_E_5_5 = MMUPlugin_TLBTable_6_PPN0;
+        _zz__zz_MEM_ADDR_AddressGenerationPlugin_tlbLookup_snapshot_entry_E_5_6 = MMUPlugin_TLBTable_6_PLV0;
+        _zz__zz_MEM_ADDR_AddressGenerationPlugin_tlbLookup_snapshot_entry_E_5_7 = MMUPlugin_TLBTable_6_MAT0;
+        _zz__zz_MEM_ADDR_AddressGenerationPlugin_tlbLookup_snapshot_entry_E_5_8 = MMUPlugin_TLBTable_6_D0;
+        _zz__zz_MEM_ADDR_AddressGenerationPlugin_tlbLookup_snapshot_entry_E_5_9 = MMUPlugin_TLBTable_6_V0;
+        _zz__zz_MEM_ADDR_AddressGenerationPlugin_tlbLookup_snapshot_entry_E_5_10 = MMUPlugin_TLBTable_6_VPPN;
+        _zz__zz_MEM_ADDR_AddressGenerationPlugin_tlbLookup_snapshot_entry_E_5_11 = MMUPlugin_TLBTable_6_PS;
+        _zz__zz_MEM_ADDR_AddressGenerationPlugin_tlbLookup_snapshot_entry_E_5_12 = MMUPlugin_TLBTable_6_G;
+        _zz__zz_MEM_ADDR_AddressGenerationPlugin_tlbLookup_snapshot_entry_E_5_13 = MMUPlugin_TLBTable_6_ASID;
+        _zz__zz_MEM_ADDR_AddressGenerationPlugin_tlbLookup_snapshot_entry_E_5_14 = MMUPlugin_TLBTable_6_E;
       end
       4'b0111 : begin
-        _zz_MEM_ADDR_AddressGenerationPlugin_tlbTranslateResult_TLBHitEntry_E_5 = MMUPlugin_TLBTable_7_E;
-        _zz_MEM_ADDR_AddressGenerationPlugin_tlbTranslateResult_TLBHitEntry_ASID = MMUPlugin_TLBTable_7_ASID;
-        _zz_MEM_ADDR_AddressGenerationPlugin_tlbTranslateResult_TLBHitEntry_G = MMUPlugin_TLBTable_7_G;
-        _zz_MEM_ADDR_AddressGenerationPlugin_tlbTranslateResult_TLBHitEntry_PS = MMUPlugin_TLBTable_7_PS;
-        _zz_MEM_ADDR_AddressGenerationPlugin_tlbTranslateResult_TLBHitEntry_VPPN = MMUPlugin_TLBTable_7_VPPN;
-        _zz_MEM_ADDR_AddressGenerationPlugin_tlbTranslateResult_TLBHitEntry_V0 = MMUPlugin_TLBTable_7_V0;
-        _zz_MEM_ADDR_AddressGenerationPlugin_tlbTranslateResult_TLBHitEntry_D0 = MMUPlugin_TLBTable_7_D0;
-        _zz_MEM_ADDR_AddressGenerationPlugin_tlbTranslateResult_TLBHitEntry_MAT0 = MMUPlugin_TLBTable_7_MAT0;
-        _zz_MEM_ADDR_AddressGenerationPlugin_tlbTranslateResult_TLBHitEntry_PLV0 = MMUPlugin_TLBTable_7_PLV0;
-        _zz_MEM_ADDR_AddressGenerationPlugin_tlbTranslateResult_TLBHitEntry_PPN0 = MMUPlugin_TLBTable_7_PPN0;
-        _zz_MEM_ADDR_AddressGenerationPlugin_tlbTranslateResult_TLBHitEntry_V1 = MMUPlugin_TLBTable_7_V1;
-        _zz_MEM_ADDR_AddressGenerationPlugin_tlbTranslateResult_TLBHitEntry_D1 = MMUPlugin_TLBTable_7_D1;
-        _zz_MEM_ADDR_AddressGenerationPlugin_tlbTranslateResult_TLBHitEntry_MAT1 = MMUPlugin_TLBTable_7_MAT1;
-        _zz_MEM_ADDR_AddressGenerationPlugin_tlbTranslateResult_TLBHitEntry_PLV1 = MMUPlugin_TLBTable_7_PLV1;
-        _zz_MEM_ADDR_AddressGenerationPlugin_tlbTranslateResult_TLBHitEntry_PPN1 = MMUPlugin_TLBTable_7_PPN1;
+        _zz__zz_MEM_ADDR_AddressGenerationPlugin_tlbLookup_snapshot_entry_E_5 = MMUPlugin_TLBTable_7_PPN1;
+        _zz__zz_MEM_ADDR_AddressGenerationPlugin_tlbLookup_snapshot_entry_E_5_1 = MMUPlugin_TLBTable_7_PLV1;
+        _zz__zz_MEM_ADDR_AddressGenerationPlugin_tlbLookup_snapshot_entry_E_5_2 = MMUPlugin_TLBTable_7_MAT1;
+        _zz__zz_MEM_ADDR_AddressGenerationPlugin_tlbLookup_snapshot_entry_E_5_3 = MMUPlugin_TLBTable_7_D1;
+        _zz__zz_MEM_ADDR_AddressGenerationPlugin_tlbLookup_snapshot_entry_E_5_4 = MMUPlugin_TLBTable_7_V1;
+        _zz__zz_MEM_ADDR_AddressGenerationPlugin_tlbLookup_snapshot_entry_E_5_5 = MMUPlugin_TLBTable_7_PPN0;
+        _zz__zz_MEM_ADDR_AddressGenerationPlugin_tlbLookup_snapshot_entry_E_5_6 = MMUPlugin_TLBTable_7_PLV0;
+        _zz__zz_MEM_ADDR_AddressGenerationPlugin_tlbLookup_snapshot_entry_E_5_7 = MMUPlugin_TLBTable_7_MAT0;
+        _zz__zz_MEM_ADDR_AddressGenerationPlugin_tlbLookup_snapshot_entry_E_5_8 = MMUPlugin_TLBTable_7_D0;
+        _zz__zz_MEM_ADDR_AddressGenerationPlugin_tlbLookup_snapshot_entry_E_5_9 = MMUPlugin_TLBTable_7_V0;
+        _zz__zz_MEM_ADDR_AddressGenerationPlugin_tlbLookup_snapshot_entry_E_5_10 = MMUPlugin_TLBTable_7_VPPN;
+        _zz__zz_MEM_ADDR_AddressGenerationPlugin_tlbLookup_snapshot_entry_E_5_11 = MMUPlugin_TLBTable_7_PS;
+        _zz__zz_MEM_ADDR_AddressGenerationPlugin_tlbLookup_snapshot_entry_E_5_12 = MMUPlugin_TLBTable_7_G;
+        _zz__zz_MEM_ADDR_AddressGenerationPlugin_tlbLookup_snapshot_entry_E_5_13 = MMUPlugin_TLBTable_7_ASID;
+        _zz__zz_MEM_ADDR_AddressGenerationPlugin_tlbLookup_snapshot_entry_E_5_14 = MMUPlugin_TLBTable_7_E;
       end
       4'b1000 : begin
-        _zz_MEM_ADDR_AddressGenerationPlugin_tlbTranslateResult_TLBHitEntry_E_5 = MMUPlugin_TLBTable_8_E;
-        _zz_MEM_ADDR_AddressGenerationPlugin_tlbTranslateResult_TLBHitEntry_ASID = MMUPlugin_TLBTable_8_ASID;
-        _zz_MEM_ADDR_AddressGenerationPlugin_tlbTranslateResult_TLBHitEntry_G = MMUPlugin_TLBTable_8_G;
-        _zz_MEM_ADDR_AddressGenerationPlugin_tlbTranslateResult_TLBHitEntry_PS = MMUPlugin_TLBTable_8_PS;
-        _zz_MEM_ADDR_AddressGenerationPlugin_tlbTranslateResult_TLBHitEntry_VPPN = MMUPlugin_TLBTable_8_VPPN;
-        _zz_MEM_ADDR_AddressGenerationPlugin_tlbTranslateResult_TLBHitEntry_V0 = MMUPlugin_TLBTable_8_V0;
-        _zz_MEM_ADDR_AddressGenerationPlugin_tlbTranslateResult_TLBHitEntry_D0 = MMUPlugin_TLBTable_8_D0;
-        _zz_MEM_ADDR_AddressGenerationPlugin_tlbTranslateResult_TLBHitEntry_MAT0 = MMUPlugin_TLBTable_8_MAT0;
-        _zz_MEM_ADDR_AddressGenerationPlugin_tlbTranslateResult_TLBHitEntry_PLV0 = MMUPlugin_TLBTable_8_PLV0;
-        _zz_MEM_ADDR_AddressGenerationPlugin_tlbTranslateResult_TLBHitEntry_PPN0 = MMUPlugin_TLBTable_8_PPN0;
-        _zz_MEM_ADDR_AddressGenerationPlugin_tlbTranslateResult_TLBHitEntry_V1 = MMUPlugin_TLBTable_8_V1;
-        _zz_MEM_ADDR_AddressGenerationPlugin_tlbTranslateResult_TLBHitEntry_D1 = MMUPlugin_TLBTable_8_D1;
-        _zz_MEM_ADDR_AddressGenerationPlugin_tlbTranslateResult_TLBHitEntry_MAT1 = MMUPlugin_TLBTable_8_MAT1;
-        _zz_MEM_ADDR_AddressGenerationPlugin_tlbTranslateResult_TLBHitEntry_PLV1 = MMUPlugin_TLBTable_8_PLV1;
-        _zz_MEM_ADDR_AddressGenerationPlugin_tlbTranslateResult_TLBHitEntry_PPN1 = MMUPlugin_TLBTable_8_PPN1;
+        _zz__zz_MEM_ADDR_AddressGenerationPlugin_tlbLookup_snapshot_entry_E_5 = MMUPlugin_TLBTable_8_PPN1;
+        _zz__zz_MEM_ADDR_AddressGenerationPlugin_tlbLookup_snapshot_entry_E_5_1 = MMUPlugin_TLBTable_8_PLV1;
+        _zz__zz_MEM_ADDR_AddressGenerationPlugin_tlbLookup_snapshot_entry_E_5_2 = MMUPlugin_TLBTable_8_MAT1;
+        _zz__zz_MEM_ADDR_AddressGenerationPlugin_tlbLookup_snapshot_entry_E_5_3 = MMUPlugin_TLBTable_8_D1;
+        _zz__zz_MEM_ADDR_AddressGenerationPlugin_tlbLookup_snapshot_entry_E_5_4 = MMUPlugin_TLBTable_8_V1;
+        _zz__zz_MEM_ADDR_AddressGenerationPlugin_tlbLookup_snapshot_entry_E_5_5 = MMUPlugin_TLBTable_8_PPN0;
+        _zz__zz_MEM_ADDR_AddressGenerationPlugin_tlbLookup_snapshot_entry_E_5_6 = MMUPlugin_TLBTable_8_PLV0;
+        _zz__zz_MEM_ADDR_AddressGenerationPlugin_tlbLookup_snapshot_entry_E_5_7 = MMUPlugin_TLBTable_8_MAT0;
+        _zz__zz_MEM_ADDR_AddressGenerationPlugin_tlbLookup_snapshot_entry_E_5_8 = MMUPlugin_TLBTable_8_D0;
+        _zz__zz_MEM_ADDR_AddressGenerationPlugin_tlbLookup_snapshot_entry_E_5_9 = MMUPlugin_TLBTable_8_V0;
+        _zz__zz_MEM_ADDR_AddressGenerationPlugin_tlbLookup_snapshot_entry_E_5_10 = MMUPlugin_TLBTable_8_VPPN;
+        _zz__zz_MEM_ADDR_AddressGenerationPlugin_tlbLookup_snapshot_entry_E_5_11 = MMUPlugin_TLBTable_8_PS;
+        _zz__zz_MEM_ADDR_AddressGenerationPlugin_tlbLookup_snapshot_entry_E_5_12 = MMUPlugin_TLBTable_8_G;
+        _zz__zz_MEM_ADDR_AddressGenerationPlugin_tlbLookup_snapshot_entry_E_5_13 = MMUPlugin_TLBTable_8_ASID;
+        _zz__zz_MEM_ADDR_AddressGenerationPlugin_tlbLookup_snapshot_entry_E_5_14 = MMUPlugin_TLBTable_8_E;
       end
       4'b1001 : begin
-        _zz_MEM_ADDR_AddressGenerationPlugin_tlbTranslateResult_TLBHitEntry_E_5 = MMUPlugin_TLBTable_9_E;
-        _zz_MEM_ADDR_AddressGenerationPlugin_tlbTranslateResult_TLBHitEntry_ASID = MMUPlugin_TLBTable_9_ASID;
-        _zz_MEM_ADDR_AddressGenerationPlugin_tlbTranslateResult_TLBHitEntry_G = MMUPlugin_TLBTable_9_G;
-        _zz_MEM_ADDR_AddressGenerationPlugin_tlbTranslateResult_TLBHitEntry_PS = MMUPlugin_TLBTable_9_PS;
-        _zz_MEM_ADDR_AddressGenerationPlugin_tlbTranslateResult_TLBHitEntry_VPPN = MMUPlugin_TLBTable_9_VPPN;
-        _zz_MEM_ADDR_AddressGenerationPlugin_tlbTranslateResult_TLBHitEntry_V0 = MMUPlugin_TLBTable_9_V0;
-        _zz_MEM_ADDR_AddressGenerationPlugin_tlbTranslateResult_TLBHitEntry_D0 = MMUPlugin_TLBTable_9_D0;
-        _zz_MEM_ADDR_AddressGenerationPlugin_tlbTranslateResult_TLBHitEntry_MAT0 = MMUPlugin_TLBTable_9_MAT0;
-        _zz_MEM_ADDR_AddressGenerationPlugin_tlbTranslateResult_TLBHitEntry_PLV0 = MMUPlugin_TLBTable_9_PLV0;
-        _zz_MEM_ADDR_AddressGenerationPlugin_tlbTranslateResult_TLBHitEntry_PPN0 = MMUPlugin_TLBTable_9_PPN0;
-        _zz_MEM_ADDR_AddressGenerationPlugin_tlbTranslateResult_TLBHitEntry_V1 = MMUPlugin_TLBTable_9_V1;
-        _zz_MEM_ADDR_AddressGenerationPlugin_tlbTranslateResult_TLBHitEntry_D1 = MMUPlugin_TLBTable_9_D1;
-        _zz_MEM_ADDR_AddressGenerationPlugin_tlbTranslateResult_TLBHitEntry_MAT1 = MMUPlugin_TLBTable_9_MAT1;
-        _zz_MEM_ADDR_AddressGenerationPlugin_tlbTranslateResult_TLBHitEntry_PLV1 = MMUPlugin_TLBTable_9_PLV1;
-        _zz_MEM_ADDR_AddressGenerationPlugin_tlbTranslateResult_TLBHitEntry_PPN1 = MMUPlugin_TLBTable_9_PPN1;
+        _zz__zz_MEM_ADDR_AddressGenerationPlugin_tlbLookup_snapshot_entry_E_5 = MMUPlugin_TLBTable_9_PPN1;
+        _zz__zz_MEM_ADDR_AddressGenerationPlugin_tlbLookup_snapshot_entry_E_5_1 = MMUPlugin_TLBTable_9_PLV1;
+        _zz__zz_MEM_ADDR_AddressGenerationPlugin_tlbLookup_snapshot_entry_E_5_2 = MMUPlugin_TLBTable_9_MAT1;
+        _zz__zz_MEM_ADDR_AddressGenerationPlugin_tlbLookup_snapshot_entry_E_5_3 = MMUPlugin_TLBTable_9_D1;
+        _zz__zz_MEM_ADDR_AddressGenerationPlugin_tlbLookup_snapshot_entry_E_5_4 = MMUPlugin_TLBTable_9_V1;
+        _zz__zz_MEM_ADDR_AddressGenerationPlugin_tlbLookup_snapshot_entry_E_5_5 = MMUPlugin_TLBTable_9_PPN0;
+        _zz__zz_MEM_ADDR_AddressGenerationPlugin_tlbLookup_snapshot_entry_E_5_6 = MMUPlugin_TLBTable_9_PLV0;
+        _zz__zz_MEM_ADDR_AddressGenerationPlugin_tlbLookup_snapshot_entry_E_5_7 = MMUPlugin_TLBTable_9_MAT0;
+        _zz__zz_MEM_ADDR_AddressGenerationPlugin_tlbLookup_snapshot_entry_E_5_8 = MMUPlugin_TLBTable_9_D0;
+        _zz__zz_MEM_ADDR_AddressGenerationPlugin_tlbLookup_snapshot_entry_E_5_9 = MMUPlugin_TLBTable_9_V0;
+        _zz__zz_MEM_ADDR_AddressGenerationPlugin_tlbLookup_snapshot_entry_E_5_10 = MMUPlugin_TLBTable_9_VPPN;
+        _zz__zz_MEM_ADDR_AddressGenerationPlugin_tlbLookup_snapshot_entry_E_5_11 = MMUPlugin_TLBTable_9_PS;
+        _zz__zz_MEM_ADDR_AddressGenerationPlugin_tlbLookup_snapshot_entry_E_5_12 = MMUPlugin_TLBTable_9_G;
+        _zz__zz_MEM_ADDR_AddressGenerationPlugin_tlbLookup_snapshot_entry_E_5_13 = MMUPlugin_TLBTable_9_ASID;
+        _zz__zz_MEM_ADDR_AddressGenerationPlugin_tlbLookup_snapshot_entry_E_5_14 = MMUPlugin_TLBTable_9_E;
       end
       4'b1010 : begin
-        _zz_MEM_ADDR_AddressGenerationPlugin_tlbTranslateResult_TLBHitEntry_E_5 = MMUPlugin_TLBTable_10_E;
-        _zz_MEM_ADDR_AddressGenerationPlugin_tlbTranslateResult_TLBHitEntry_ASID = MMUPlugin_TLBTable_10_ASID;
-        _zz_MEM_ADDR_AddressGenerationPlugin_tlbTranslateResult_TLBHitEntry_G = MMUPlugin_TLBTable_10_G;
-        _zz_MEM_ADDR_AddressGenerationPlugin_tlbTranslateResult_TLBHitEntry_PS = MMUPlugin_TLBTable_10_PS;
-        _zz_MEM_ADDR_AddressGenerationPlugin_tlbTranslateResult_TLBHitEntry_VPPN = MMUPlugin_TLBTable_10_VPPN;
-        _zz_MEM_ADDR_AddressGenerationPlugin_tlbTranslateResult_TLBHitEntry_V0 = MMUPlugin_TLBTable_10_V0;
-        _zz_MEM_ADDR_AddressGenerationPlugin_tlbTranslateResult_TLBHitEntry_D0 = MMUPlugin_TLBTable_10_D0;
-        _zz_MEM_ADDR_AddressGenerationPlugin_tlbTranslateResult_TLBHitEntry_MAT0 = MMUPlugin_TLBTable_10_MAT0;
-        _zz_MEM_ADDR_AddressGenerationPlugin_tlbTranslateResult_TLBHitEntry_PLV0 = MMUPlugin_TLBTable_10_PLV0;
-        _zz_MEM_ADDR_AddressGenerationPlugin_tlbTranslateResult_TLBHitEntry_PPN0 = MMUPlugin_TLBTable_10_PPN0;
-        _zz_MEM_ADDR_AddressGenerationPlugin_tlbTranslateResult_TLBHitEntry_V1 = MMUPlugin_TLBTable_10_V1;
-        _zz_MEM_ADDR_AddressGenerationPlugin_tlbTranslateResult_TLBHitEntry_D1 = MMUPlugin_TLBTable_10_D1;
-        _zz_MEM_ADDR_AddressGenerationPlugin_tlbTranslateResult_TLBHitEntry_MAT1 = MMUPlugin_TLBTable_10_MAT1;
-        _zz_MEM_ADDR_AddressGenerationPlugin_tlbTranslateResult_TLBHitEntry_PLV1 = MMUPlugin_TLBTable_10_PLV1;
-        _zz_MEM_ADDR_AddressGenerationPlugin_tlbTranslateResult_TLBHitEntry_PPN1 = MMUPlugin_TLBTable_10_PPN1;
+        _zz__zz_MEM_ADDR_AddressGenerationPlugin_tlbLookup_snapshot_entry_E_5 = MMUPlugin_TLBTable_10_PPN1;
+        _zz__zz_MEM_ADDR_AddressGenerationPlugin_tlbLookup_snapshot_entry_E_5_1 = MMUPlugin_TLBTable_10_PLV1;
+        _zz__zz_MEM_ADDR_AddressGenerationPlugin_tlbLookup_snapshot_entry_E_5_2 = MMUPlugin_TLBTable_10_MAT1;
+        _zz__zz_MEM_ADDR_AddressGenerationPlugin_tlbLookup_snapshot_entry_E_5_3 = MMUPlugin_TLBTable_10_D1;
+        _zz__zz_MEM_ADDR_AddressGenerationPlugin_tlbLookup_snapshot_entry_E_5_4 = MMUPlugin_TLBTable_10_V1;
+        _zz__zz_MEM_ADDR_AddressGenerationPlugin_tlbLookup_snapshot_entry_E_5_5 = MMUPlugin_TLBTable_10_PPN0;
+        _zz__zz_MEM_ADDR_AddressGenerationPlugin_tlbLookup_snapshot_entry_E_5_6 = MMUPlugin_TLBTable_10_PLV0;
+        _zz__zz_MEM_ADDR_AddressGenerationPlugin_tlbLookup_snapshot_entry_E_5_7 = MMUPlugin_TLBTable_10_MAT0;
+        _zz__zz_MEM_ADDR_AddressGenerationPlugin_tlbLookup_snapshot_entry_E_5_8 = MMUPlugin_TLBTable_10_D0;
+        _zz__zz_MEM_ADDR_AddressGenerationPlugin_tlbLookup_snapshot_entry_E_5_9 = MMUPlugin_TLBTable_10_V0;
+        _zz__zz_MEM_ADDR_AddressGenerationPlugin_tlbLookup_snapshot_entry_E_5_10 = MMUPlugin_TLBTable_10_VPPN;
+        _zz__zz_MEM_ADDR_AddressGenerationPlugin_tlbLookup_snapshot_entry_E_5_11 = MMUPlugin_TLBTable_10_PS;
+        _zz__zz_MEM_ADDR_AddressGenerationPlugin_tlbLookup_snapshot_entry_E_5_12 = MMUPlugin_TLBTable_10_G;
+        _zz__zz_MEM_ADDR_AddressGenerationPlugin_tlbLookup_snapshot_entry_E_5_13 = MMUPlugin_TLBTable_10_ASID;
+        _zz__zz_MEM_ADDR_AddressGenerationPlugin_tlbLookup_snapshot_entry_E_5_14 = MMUPlugin_TLBTable_10_E;
       end
       4'b1011 : begin
-        _zz_MEM_ADDR_AddressGenerationPlugin_tlbTranslateResult_TLBHitEntry_E_5 = MMUPlugin_TLBTable_11_E;
-        _zz_MEM_ADDR_AddressGenerationPlugin_tlbTranslateResult_TLBHitEntry_ASID = MMUPlugin_TLBTable_11_ASID;
-        _zz_MEM_ADDR_AddressGenerationPlugin_tlbTranslateResult_TLBHitEntry_G = MMUPlugin_TLBTable_11_G;
-        _zz_MEM_ADDR_AddressGenerationPlugin_tlbTranslateResult_TLBHitEntry_PS = MMUPlugin_TLBTable_11_PS;
-        _zz_MEM_ADDR_AddressGenerationPlugin_tlbTranslateResult_TLBHitEntry_VPPN = MMUPlugin_TLBTable_11_VPPN;
-        _zz_MEM_ADDR_AddressGenerationPlugin_tlbTranslateResult_TLBHitEntry_V0 = MMUPlugin_TLBTable_11_V0;
-        _zz_MEM_ADDR_AddressGenerationPlugin_tlbTranslateResult_TLBHitEntry_D0 = MMUPlugin_TLBTable_11_D0;
-        _zz_MEM_ADDR_AddressGenerationPlugin_tlbTranslateResult_TLBHitEntry_MAT0 = MMUPlugin_TLBTable_11_MAT0;
-        _zz_MEM_ADDR_AddressGenerationPlugin_tlbTranslateResult_TLBHitEntry_PLV0 = MMUPlugin_TLBTable_11_PLV0;
-        _zz_MEM_ADDR_AddressGenerationPlugin_tlbTranslateResult_TLBHitEntry_PPN0 = MMUPlugin_TLBTable_11_PPN0;
-        _zz_MEM_ADDR_AddressGenerationPlugin_tlbTranslateResult_TLBHitEntry_V1 = MMUPlugin_TLBTable_11_V1;
-        _zz_MEM_ADDR_AddressGenerationPlugin_tlbTranslateResult_TLBHitEntry_D1 = MMUPlugin_TLBTable_11_D1;
-        _zz_MEM_ADDR_AddressGenerationPlugin_tlbTranslateResult_TLBHitEntry_MAT1 = MMUPlugin_TLBTable_11_MAT1;
-        _zz_MEM_ADDR_AddressGenerationPlugin_tlbTranslateResult_TLBHitEntry_PLV1 = MMUPlugin_TLBTable_11_PLV1;
-        _zz_MEM_ADDR_AddressGenerationPlugin_tlbTranslateResult_TLBHitEntry_PPN1 = MMUPlugin_TLBTable_11_PPN1;
+        _zz__zz_MEM_ADDR_AddressGenerationPlugin_tlbLookup_snapshot_entry_E_5 = MMUPlugin_TLBTable_11_PPN1;
+        _zz__zz_MEM_ADDR_AddressGenerationPlugin_tlbLookup_snapshot_entry_E_5_1 = MMUPlugin_TLBTable_11_PLV1;
+        _zz__zz_MEM_ADDR_AddressGenerationPlugin_tlbLookup_snapshot_entry_E_5_2 = MMUPlugin_TLBTable_11_MAT1;
+        _zz__zz_MEM_ADDR_AddressGenerationPlugin_tlbLookup_snapshot_entry_E_5_3 = MMUPlugin_TLBTable_11_D1;
+        _zz__zz_MEM_ADDR_AddressGenerationPlugin_tlbLookup_snapshot_entry_E_5_4 = MMUPlugin_TLBTable_11_V1;
+        _zz__zz_MEM_ADDR_AddressGenerationPlugin_tlbLookup_snapshot_entry_E_5_5 = MMUPlugin_TLBTable_11_PPN0;
+        _zz__zz_MEM_ADDR_AddressGenerationPlugin_tlbLookup_snapshot_entry_E_5_6 = MMUPlugin_TLBTable_11_PLV0;
+        _zz__zz_MEM_ADDR_AddressGenerationPlugin_tlbLookup_snapshot_entry_E_5_7 = MMUPlugin_TLBTable_11_MAT0;
+        _zz__zz_MEM_ADDR_AddressGenerationPlugin_tlbLookup_snapshot_entry_E_5_8 = MMUPlugin_TLBTable_11_D0;
+        _zz__zz_MEM_ADDR_AddressGenerationPlugin_tlbLookup_snapshot_entry_E_5_9 = MMUPlugin_TLBTable_11_V0;
+        _zz__zz_MEM_ADDR_AddressGenerationPlugin_tlbLookup_snapshot_entry_E_5_10 = MMUPlugin_TLBTable_11_VPPN;
+        _zz__zz_MEM_ADDR_AddressGenerationPlugin_tlbLookup_snapshot_entry_E_5_11 = MMUPlugin_TLBTable_11_PS;
+        _zz__zz_MEM_ADDR_AddressGenerationPlugin_tlbLookup_snapshot_entry_E_5_12 = MMUPlugin_TLBTable_11_G;
+        _zz__zz_MEM_ADDR_AddressGenerationPlugin_tlbLookup_snapshot_entry_E_5_13 = MMUPlugin_TLBTable_11_ASID;
+        _zz__zz_MEM_ADDR_AddressGenerationPlugin_tlbLookup_snapshot_entry_E_5_14 = MMUPlugin_TLBTable_11_E;
       end
       4'b1100 : begin
-        _zz_MEM_ADDR_AddressGenerationPlugin_tlbTranslateResult_TLBHitEntry_E_5 = MMUPlugin_TLBTable_12_E;
-        _zz_MEM_ADDR_AddressGenerationPlugin_tlbTranslateResult_TLBHitEntry_ASID = MMUPlugin_TLBTable_12_ASID;
-        _zz_MEM_ADDR_AddressGenerationPlugin_tlbTranslateResult_TLBHitEntry_G = MMUPlugin_TLBTable_12_G;
-        _zz_MEM_ADDR_AddressGenerationPlugin_tlbTranslateResult_TLBHitEntry_PS = MMUPlugin_TLBTable_12_PS;
-        _zz_MEM_ADDR_AddressGenerationPlugin_tlbTranslateResult_TLBHitEntry_VPPN = MMUPlugin_TLBTable_12_VPPN;
-        _zz_MEM_ADDR_AddressGenerationPlugin_tlbTranslateResult_TLBHitEntry_V0 = MMUPlugin_TLBTable_12_V0;
-        _zz_MEM_ADDR_AddressGenerationPlugin_tlbTranslateResult_TLBHitEntry_D0 = MMUPlugin_TLBTable_12_D0;
-        _zz_MEM_ADDR_AddressGenerationPlugin_tlbTranslateResult_TLBHitEntry_MAT0 = MMUPlugin_TLBTable_12_MAT0;
-        _zz_MEM_ADDR_AddressGenerationPlugin_tlbTranslateResult_TLBHitEntry_PLV0 = MMUPlugin_TLBTable_12_PLV0;
-        _zz_MEM_ADDR_AddressGenerationPlugin_tlbTranslateResult_TLBHitEntry_PPN0 = MMUPlugin_TLBTable_12_PPN0;
-        _zz_MEM_ADDR_AddressGenerationPlugin_tlbTranslateResult_TLBHitEntry_V1 = MMUPlugin_TLBTable_12_V1;
-        _zz_MEM_ADDR_AddressGenerationPlugin_tlbTranslateResult_TLBHitEntry_D1 = MMUPlugin_TLBTable_12_D1;
-        _zz_MEM_ADDR_AddressGenerationPlugin_tlbTranslateResult_TLBHitEntry_MAT1 = MMUPlugin_TLBTable_12_MAT1;
-        _zz_MEM_ADDR_AddressGenerationPlugin_tlbTranslateResult_TLBHitEntry_PLV1 = MMUPlugin_TLBTable_12_PLV1;
-        _zz_MEM_ADDR_AddressGenerationPlugin_tlbTranslateResult_TLBHitEntry_PPN1 = MMUPlugin_TLBTable_12_PPN1;
+        _zz__zz_MEM_ADDR_AddressGenerationPlugin_tlbLookup_snapshot_entry_E_5 = MMUPlugin_TLBTable_12_PPN1;
+        _zz__zz_MEM_ADDR_AddressGenerationPlugin_tlbLookup_snapshot_entry_E_5_1 = MMUPlugin_TLBTable_12_PLV1;
+        _zz__zz_MEM_ADDR_AddressGenerationPlugin_tlbLookup_snapshot_entry_E_5_2 = MMUPlugin_TLBTable_12_MAT1;
+        _zz__zz_MEM_ADDR_AddressGenerationPlugin_tlbLookup_snapshot_entry_E_5_3 = MMUPlugin_TLBTable_12_D1;
+        _zz__zz_MEM_ADDR_AddressGenerationPlugin_tlbLookup_snapshot_entry_E_5_4 = MMUPlugin_TLBTable_12_V1;
+        _zz__zz_MEM_ADDR_AddressGenerationPlugin_tlbLookup_snapshot_entry_E_5_5 = MMUPlugin_TLBTable_12_PPN0;
+        _zz__zz_MEM_ADDR_AddressGenerationPlugin_tlbLookup_snapshot_entry_E_5_6 = MMUPlugin_TLBTable_12_PLV0;
+        _zz__zz_MEM_ADDR_AddressGenerationPlugin_tlbLookup_snapshot_entry_E_5_7 = MMUPlugin_TLBTable_12_MAT0;
+        _zz__zz_MEM_ADDR_AddressGenerationPlugin_tlbLookup_snapshot_entry_E_5_8 = MMUPlugin_TLBTable_12_D0;
+        _zz__zz_MEM_ADDR_AddressGenerationPlugin_tlbLookup_snapshot_entry_E_5_9 = MMUPlugin_TLBTable_12_V0;
+        _zz__zz_MEM_ADDR_AddressGenerationPlugin_tlbLookup_snapshot_entry_E_5_10 = MMUPlugin_TLBTable_12_VPPN;
+        _zz__zz_MEM_ADDR_AddressGenerationPlugin_tlbLookup_snapshot_entry_E_5_11 = MMUPlugin_TLBTable_12_PS;
+        _zz__zz_MEM_ADDR_AddressGenerationPlugin_tlbLookup_snapshot_entry_E_5_12 = MMUPlugin_TLBTable_12_G;
+        _zz__zz_MEM_ADDR_AddressGenerationPlugin_tlbLookup_snapshot_entry_E_5_13 = MMUPlugin_TLBTable_12_ASID;
+        _zz__zz_MEM_ADDR_AddressGenerationPlugin_tlbLookup_snapshot_entry_E_5_14 = MMUPlugin_TLBTable_12_E;
       end
       4'b1101 : begin
-        _zz_MEM_ADDR_AddressGenerationPlugin_tlbTranslateResult_TLBHitEntry_E_5 = MMUPlugin_TLBTable_13_E;
-        _zz_MEM_ADDR_AddressGenerationPlugin_tlbTranslateResult_TLBHitEntry_ASID = MMUPlugin_TLBTable_13_ASID;
-        _zz_MEM_ADDR_AddressGenerationPlugin_tlbTranslateResult_TLBHitEntry_G = MMUPlugin_TLBTable_13_G;
-        _zz_MEM_ADDR_AddressGenerationPlugin_tlbTranslateResult_TLBHitEntry_PS = MMUPlugin_TLBTable_13_PS;
-        _zz_MEM_ADDR_AddressGenerationPlugin_tlbTranslateResult_TLBHitEntry_VPPN = MMUPlugin_TLBTable_13_VPPN;
-        _zz_MEM_ADDR_AddressGenerationPlugin_tlbTranslateResult_TLBHitEntry_V0 = MMUPlugin_TLBTable_13_V0;
-        _zz_MEM_ADDR_AddressGenerationPlugin_tlbTranslateResult_TLBHitEntry_D0 = MMUPlugin_TLBTable_13_D0;
-        _zz_MEM_ADDR_AddressGenerationPlugin_tlbTranslateResult_TLBHitEntry_MAT0 = MMUPlugin_TLBTable_13_MAT0;
-        _zz_MEM_ADDR_AddressGenerationPlugin_tlbTranslateResult_TLBHitEntry_PLV0 = MMUPlugin_TLBTable_13_PLV0;
-        _zz_MEM_ADDR_AddressGenerationPlugin_tlbTranslateResult_TLBHitEntry_PPN0 = MMUPlugin_TLBTable_13_PPN0;
-        _zz_MEM_ADDR_AddressGenerationPlugin_tlbTranslateResult_TLBHitEntry_V1 = MMUPlugin_TLBTable_13_V1;
-        _zz_MEM_ADDR_AddressGenerationPlugin_tlbTranslateResult_TLBHitEntry_D1 = MMUPlugin_TLBTable_13_D1;
-        _zz_MEM_ADDR_AddressGenerationPlugin_tlbTranslateResult_TLBHitEntry_MAT1 = MMUPlugin_TLBTable_13_MAT1;
-        _zz_MEM_ADDR_AddressGenerationPlugin_tlbTranslateResult_TLBHitEntry_PLV1 = MMUPlugin_TLBTable_13_PLV1;
-        _zz_MEM_ADDR_AddressGenerationPlugin_tlbTranslateResult_TLBHitEntry_PPN1 = MMUPlugin_TLBTable_13_PPN1;
+        _zz__zz_MEM_ADDR_AddressGenerationPlugin_tlbLookup_snapshot_entry_E_5 = MMUPlugin_TLBTable_13_PPN1;
+        _zz__zz_MEM_ADDR_AddressGenerationPlugin_tlbLookup_snapshot_entry_E_5_1 = MMUPlugin_TLBTable_13_PLV1;
+        _zz__zz_MEM_ADDR_AddressGenerationPlugin_tlbLookup_snapshot_entry_E_5_2 = MMUPlugin_TLBTable_13_MAT1;
+        _zz__zz_MEM_ADDR_AddressGenerationPlugin_tlbLookup_snapshot_entry_E_5_3 = MMUPlugin_TLBTable_13_D1;
+        _zz__zz_MEM_ADDR_AddressGenerationPlugin_tlbLookup_snapshot_entry_E_5_4 = MMUPlugin_TLBTable_13_V1;
+        _zz__zz_MEM_ADDR_AddressGenerationPlugin_tlbLookup_snapshot_entry_E_5_5 = MMUPlugin_TLBTable_13_PPN0;
+        _zz__zz_MEM_ADDR_AddressGenerationPlugin_tlbLookup_snapshot_entry_E_5_6 = MMUPlugin_TLBTable_13_PLV0;
+        _zz__zz_MEM_ADDR_AddressGenerationPlugin_tlbLookup_snapshot_entry_E_5_7 = MMUPlugin_TLBTable_13_MAT0;
+        _zz__zz_MEM_ADDR_AddressGenerationPlugin_tlbLookup_snapshot_entry_E_5_8 = MMUPlugin_TLBTable_13_D0;
+        _zz__zz_MEM_ADDR_AddressGenerationPlugin_tlbLookup_snapshot_entry_E_5_9 = MMUPlugin_TLBTable_13_V0;
+        _zz__zz_MEM_ADDR_AddressGenerationPlugin_tlbLookup_snapshot_entry_E_5_10 = MMUPlugin_TLBTable_13_VPPN;
+        _zz__zz_MEM_ADDR_AddressGenerationPlugin_tlbLookup_snapshot_entry_E_5_11 = MMUPlugin_TLBTable_13_PS;
+        _zz__zz_MEM_ADDR_AddressGenerationPlugin_tlbLookup_snapshot_entry_E_5_12 = MMUPlugin_TLBTable_13_G;
+        _zz__zz_MEM_ADDR_AddressGenerationPlugin_tlbLookup_snapshot_entry_E_5_13 = MMUPlugin_TLBTable_13_ASID;
+        _zz__zz_MEM_ADDR_AddressGenerationPlugin_tlbLookup_snapshot_entry_E_5_14 = MMUPlugin_TLBTable_13_E;
       end
       4'b1110 : begin
-        _zz_MEM_ADDR_AddressGenerationPlugin_tlbTranslateResult_TLBHitEntry_E_5 = MMUPlugin_TLBTable_14_E;
-        _zz_MEM_ADDR_AddressGenerationPlugin_tlbTranslateResult_TLBHitEntry_ASID = MMUPlugin_TLBTable_14_ASID;
-        _zz_MEM_ADDR_AddressGenerationPlugin_tlbTranslateResult_TLBHitEntry_G = MMUPlugin_TLBTable_14_G;
-        _zz_MEM_ADDR_AddressGenerationPlugin_tlbTranslateResult_TLBHitEntry_PS = MMUPlugin_TLBTable_14_PS;
-        _zz_MEM_ADDR_AddressGenerationPlugin_tlbTranslateResult_TLBHitEntry_VPPN = MMUPlugin_TLBTable_14_VPPN;
-        _zz_MEM_ADDR_AddressGenerationPlugin_tlbTranslateResult_TLBHitEntry_V0 = MMUPlugin_TLBTable_14_V0;
-        _zz_MEM_ADDR_AddressGenerationPlugin_tlbTranslateResult_TLBHitEntry_D0 = MMUPlugin_TLBTable_14_D0;
-        _zz_MEM_ADDR_AddressGenerationPlugin_tlbTranslateResult_TLBHitEntry_MAT0 = MMUPlugin_TLBTable_14_MAT0;
-        _zz_MEM_ADDR_AddressGenerationPlugin_tlbTranslateResult_TLBHitEntry_PLV0 = MMUPlugin_TLBTable_14_PLV0;
-        _zz_MEM_ADDR_AddressGenerationPlugin_tlbTranslateResult_TLBHitEntry_PPN0 = MMUPlugin_TLBTable_14_PPN0;
-        _zz_MEM_ADDR_AddressGenerationPlugin_tlbTranslateResult_TLBHitEntry_V1 = MMUPlugin_TLBTable_14_V1;
-        _zz_MEM_ADDR_AddressGenerationPlugin_tlbTranslateResult_TLBHitEntry_D1 = MMUPlugin_TLBTable_14_D1;
-        _zz_MEM_ADDR_AddressGenerationPlugin_tlbTranslateResult_TLBHitEntry_MAT1 = MMUPlugin_TLBTable_14_MAT1;
-        _zz_MEM_ADDR_AddressGenerationPlugin_tlbTranslateResult_TLBHitEntry_PLV1 = MMUPlugin_TLBTable_14_PLV1;
-        _zz_MEM_ADDR_AddressGenerationPlugin_tlbTranslateResult_TLBHitEntry_PPN1 = MMUPlugin_TLBTable_14_PPN1;
+        _zz__zz_MEM_ADDR_AddressGenerationPlugin_tlbLookup_snapshot_entry_E_5 = MMUPlugin_TLBTable_14_PPN1;
+        _zz__zz_MEM_ADDR_AddressGenerationPlugin_tlbLookup_snapshot_entry_E_5_1 = MMUPlugin_TLBTable_14_PLV1;
+        _zz__zz_MEM_ADDR_AddressGenerationPlugin_tlbLookup_snapshot_entry_E_5_2 = MMUPlugin_TLBTable_14_MAT1;
+        _zz__zz_MEM_ADDR_AddressGenerationPlugin_tlbLookup_snapshot_entry_E_5_3 = MMUPlugin_TLBTable_14_D1;
+        _zz__zz_MEM_ADDR_AddressGenerationPlugin_tlbLookup_snapshot_entry_E_5_4 = MMUPlugin_TLBTable_14_V1;
+        _zz__zz_MEM_ADDR_AddressGenerationPlugin_tlbLookup_snapshot_entry_E_5_5 = MMUPlugin_TLBTable_14_PPN0;
+        _zz__zz_MEM_ADDR_AddressGenerationPlugin_tlbLookup_snapshot_entry_E_5_6 = MMUPlugin_TLBTable_14_PLV0;
+        _zz__zz_MEM_ADDR_AddressGenerationPlugin_tlbLookup_snapshot_entry_E_5_7 = MMUPlugin_TLBTable_14_MAT0;
+        _zz__zz_MEM_ADDR_AddressGenerationPlugin_tlbLookup_snapshot_entry_E_5_8 = MMUPlugin_TLBTable_14_D0;
+        _zz__zz_MEM_ADDR_AddressGenerationPlugin_tlbLookup_snapshot_entry_E_5_9 = MMUPlugin_TLBTable_14_V0;
+        _zz__zz_MEM_ADDR_AddressGenerationPlugin_tlbLookup_snapshot_entry_E_5_10 = MMUPlugin_TLBTable_14_VPPN;
+        _zz__zz_MEM_ADDR_AddressGenerationPlugin_tlbLookup_snapshot_entry_E_5_11 = MMUPlugin_TLBTable_14_PS;
+        _zz__zz_MEM_ADDR_AddressGenerationPlugin_tlbLookup_snapshot_entry_E_5_12 = MMUPlugin_TLBTable_14_G;
+        _zz__zz_MEM_ADDR_AddressGenerationPlugin_tlbLookup_snapshot_entry_E_5_13 = MMUPlugin_TLBTable_14_ASID;
+        _zz__zz_MEM_ADDR_AddressGenerationPlugin_tlbLookup_snapshot_entry_E_5_14 = MMUPlugin_TLBTable_14_E;
       end
       default : begin
-        _zz_MEM_ADDR_AddressGenerationPlugin_tlbTranslateResult_TLBHitEntry_E_5 = MMUPlugin_TLBTable_15_E;
-        _zz_MEM_ADDR_AddressGenerationPlugin_tlbTranslateResult_TLBHitEntry_ASID = MMUPlugin_TLBTable_15_ASID;
-        _zz_MEM_ADDR_AddressGenerationPlugin_tlbTranslateResult_TLBHitEntry_G = MMUPlugin_TLBTable_15_G;
-        _zz_MEM_ADDR_AddressGenerationPlugin_tlbTranslateResult_TLBHitEntry_PS = MMUPlugin_TLBTable_15_PS;
-        _zz_MEM_ADDR_AddressGenerationPlugin_tlbTranslateResult_TLBHitEntry_VPPN = MMUPlugin_TLBTable_15_VPPN;
-        _zz_MEM_ADDR_AddressGenerationPlugin_tlbTranslateResult_TLBHitEntry_V0 = MMUPlugin_TLBTable_15_V0;
-        _zz_MEM_ADDR_AddressGenerationPlugin_tlbTranslateResult_TLBHitEntry_D0 = MMUPlugin_TLBTable_15_D0;
-        _zz_MEM_ADDR_AddressGenerationPlugin_tlbTranslateResult_TLBHitEntry_MAT0 = MMUPlugin_TLBTable_15_MAT0;
-        _zz_MEM_ADDR_AddressGenerationPlugin_tlbTranslateResult_TLBHitEntry_PLV0 = MMUPlugin_TLBTable_15_PLV0;
-        _zz_MEM_ADDR_AddressGenerationPlugin_tlbTranslateResult_TLBHitEntry_PPN0 = MMUPlugin_TLBTable_15_PPN0;
-        _zz_MEM_ADDR_AddressGenerationPlugin_tlbTranslateResult_TLBHitEntry_V1 = MMUPlugin_TLBTable_15_V1;
-        _zz_MEM_ADDR_AddressGenerationPlugin_tlbTranslateResult_TLBHitEntry_D1 = MMUPlugin_TLBTable_15_D1;
-        _zz_MEM_ADDR_AddressGenerationPlugin_tlbTranslateResult_TLBHitEntry_MAT1 = MMUPlugin_TLBTable_15_MAT1;
-        _zz_MEM_ADDR_AddressGenerationPlugin_tlbTranslateResult_TLBHitEntry_PLV1 = MMUPlugin_TLBTable_15_PLV1;
-        _zz_MEM_ADDR_AddressGenerationPlugin_tlbTranslateResult_TLBHitEntry_PPN1 = MMUPlugin_TLBTable_15_PPN1;
+        _zz__zz_MEM_ADDR_AddressGenerationPlugin_tlbLookup_snapshot_entry_E_5 = MMUPlugin_TLBTable_15_PPN1;
+        _zz__zz_MEM_ADDR_AddressGenerationPlugin_tlbLookup_snapshot_entry_E_5_1 = MMUPlugin_TLBTable_15_PLV1;
+        _zz__zz_MEM_ADDR_AddressGenerationPlugin_tlbLookup_snapshot_entry_E_5_2 = MMUPlugin_TLBTable_15_MAT1;
+        _zz__zz_MEM_ADDR_AddressGenerationPlugin_tlbLookup_snapshot_entry_E_5_3 = MMUPlugin_TLBTable_15_D1;
+        _zz__zz_MEM_ADDR_AddressGenerationPlugin_tlbLookup_snapshot_entry_E_5_4 = MMUPlugin_TLBTable_15_V1;
+        _zz__zz_MEM_ADDR_AddressGenerationPlugin_tlbLookup_snapshot_entry_E_5_5 = MMUPlugin_TLBTable_15_PPN0;
+        _zz__zz_MEM_ADDR_AddressGenerationPlugin_tlbLookup_snapshot_entry_E_5_6 = MMUPlugin_TLBTable_15_PLV0;
+        _zz__zz_MEM_ADDR_AddressGenerationPlugin_tlbLookup_snapshot_entry_E_5_7 = MMUPlugin_TLBTable_15_MAT0;
+        _zz__zz_MEM_ADDR_AddressGenerationPlugin_tlbLookup_snapshot_entry_E_5_8 = MMUPlugin_TLBTable_15_D0;
+        _zz__zz_MEM_ADDR_AddressGenerationPlugin_tlbLookup_snapshot_entry_E_5_9 = MMUPlugin_TLBTable_15_V0;
+        _zz__zz_MEM_ADDR_AddressGenerationPlugin_tlbLookup_snapshot_entry_E_5_10 = MMUPlugin_TLBTable_15_VPPN;
+        _zz__zz_MEM_ADDR_AddressGenerationPlugin_tlbLookup_snapshot_entry_E_5_11 = MMUPlugin_TLBTable_15_PS;
+        _zz__zz_MEM_ADDR_AddressGenerationPlugin_tlbLookup_snapshot_entry_E_5_12 = MMUPlugin_TLBTable_15_G;
+        _zz__zz_MEM_ADDR_AddressGenerationPlugin_tlbLookup_snapshot_entry_E_5_13 = MMUPlugin_TLBTable_15_ASID;
+        _zz__zz_MEM_ADDR_AddressGenerationPlugin_tlbLookup_snapshot_entry_E_5_14 = MMUPlugin_TLBTable_15_E;
       end
     endcase
   end
@@ -46914,11 +47054,11 @@ module MyCPUCore (
     endcase
   end
   always @(*) begin
-    case(switch_MMUPlugin_l290)
-      MemOperationType_FETCH : switch_MMUPlugin_l290_string = "FETCH";
-      MemOperationType_LOAD : switch_MMUPlugin_l290_string = "LOAD ";
-      MemOperationType_STORE : switch_MMUPlugin_l290_string = "STORE";
-      default : switch_MMUPlugin_l290_string = "?????";
+    case(switch_MMUPlugin_l331)
+      MemOperationType_FETCH : switch_MMUPlugin_l331_string = "FETCH";
+      MemOperationType_LOAD : switch_MMUPlugin_l331_string = "LOAD ";
+      MemOperationType_STORE : switch_MMUPlugin_l331_string = "STORE";
+      default : switch_MMUPlugin_l331_string = "?????";
     endcase
   end
   always @(*) begin
@@ -47450,19 +47590,19 @@ module MyCPUCore (
     endcase
   end
   always @(*) begin
-    case(switch_MMUPlugin_l290_1)
-      MemOperationType_FETCH : switch_MMUPlugin_l290_1_string = "FETCH";
-      MemOperationType_LOAD : switch_MMUPlugin_l290_1_string = "LOAD ";
-      MemOperationType_STORE : switch_MMUPlugin_l290_1_string = "STORE";
-      default : switch_MMUPlugin_l290_1_string = "?????";
+    case(switch_MMUPlugin_l331_1)
+      MemOperationType_FETCH : switch_MMUPlugin_l331_1_string = "FETCH";
+      MemOperationType_LOAD : switch_MMUPlugin_l331_1_string = "LOAD ";
+      MemOperationType_STORE : switch_MMUPlugin_l331_1_string = "STORE";
+      default : switch_MMUPlugin_l331_1_string = "?????";
     endcase
   end
   always @(*) begin
-    case(_zz_when_MMUPlugin_l359)
-      MemOperationType_FETCH : _zz_when_MMUPlugin_l359_string = "FETCH";
-      MemOperationType_LOAD : _zz_when_MMUPlugin_l359_string = "LOAD ";
-      MemOperationType_STORE : _zz_when_MMUPlugin_l359_string = "STORE";
-      default : _zz_when_MMUPlugin_l359_string = "?????";
+    case(_zz_when_MMUPlugin_l400)
+      MemOperationType_FETCH : _zz_when_MMUPlugin_l400_string = "FETCH";
+      MemOperationType_LOAD : _zz_when_MMUPlugin_l400_string = "LOAD ";
+      MemOperationType_STORE : _zz_when_MMUPlugin_l400_string = "STORE";
+      default : _zz_when_MMUPlugin_l400_string = "?????";
     endcase
   end
   always @(*) begin
@@ -49006,23 +49146,23 @@ module MyCPUCore (
     endcase
   end
   always @(*) begin
-    case(IF2_ICachePlugin_cacheRefillFSM_stateReg)
-      IF2_ICachePlugin_cacheRefillFSM_enumDef_BOOT : IF2_ICachePlugin_cacheRefillFSM_stateReg_string = "BOOT   ";
-      IF2_ICachePlugin_cacheRefillFSM_enumDef_waitAXI : IF2_ICachePlugin_cacheRefillFSM_stateReg_string = "waitAXI";
-      IF2_ICachePlugin_cacheRefillFSM_enumDef_readMem : IF2_ICachePlugin_cacheRefillFSM_stateReg_string = "readMem";
-      IF2_ICachePlugin_cacheRefillFSM_enumDef_commit : IF2_ICachePlugin_cacheRefillFSM_stateReg_string = "commit ";
-      IF2_ICachePlugin_cacheRefillFSM_enumDef_finish : IF2_ICachePlugin_cacheRefillFSM_stateReg_string = "finish ";
-      default : IF2_ICachePlugin_cacheRefillFSM_stateReg_string = "???????";
+    case(IF3_ICachePlugin_cacheRefillFSM_stateReg)
+      IF3_ICachePlugin_cacheRefillFSM_enumDef_BOOT : IF3_ICachePlugin_cacheRefillFSM_stateReg_string = "BOOT   ";
+      IF3_ICachePlugin_cacheRefillFSM_enumDef_waitAXI : IF3_ICachePlugin_cacheRefillFSM_stateReg_string = "waitAXI";
+      IF3_ICachePlugin_cacheRefillFSM_enumDef_readMem : IF3_ICachePlugin_cacheRefillFSM_stateReg_string = "readMem";
+      IF3_ICachePlugin_cacheRefillFSM_enumDef_commit : IF3_ICachePlugin_cacheRefillFSM_stateReg_string = "commit ";
+      IF3_ICachePlugin_cacheRefillFSM_enumDef_finish : IF3_ICachePlugin_cacheRefillFSM_stateReg_string = "finish ";
+      default : IF3_ICachePlugin_cacheRefillFSM_stateReg_string = "???????";
     endcase
   end
   always @(*) begin
-    case(IF2_ICachePlugin_cacheRefillFSM_stateNext)
-      IF2_ICachePlugin_cacheRefillFSM_enumDef_BOOT : IF2_ICachePlugin_cacheRefillFSM_stateNext_string = "BOOT   ";
-      IF2_ICachePlugin_cacheRefillFSM_enumDef_waitAXI : IF2_ICachePlugin_cacheRefillFSM_stateNext_string = "waitAXI";
-      IF2_ICachePlugin_cacheRefillFSM_enumDef_readMem : IF2_ICachePlugin_cacheRefillFSM_stateNext_string = "readMem";
-      IF2_ICachePlugin_cacheRefillFSM_enumDef_commit : IF2_ICachePlugin_cacheRefillFSM_stateNext_string = "commit ";
-      IF2_ICachePlugin_cacheRefillFSM_enumDef_finish : IF2_ICachePlugin_cacheRefillFSM_stateNext_string = "finish ";
-      default : IF2_ICachePlugin_cacheRefillFSM_stateNext_string = "???????";
+    case(IF3_ICachePlugin_cacheRefillFSM_stateNext)
+      IF3_ICachePlugin_cacheRefillFSM_enumDef_BOOT : IF3_ICachePlugin_cacheRefillFSM_stateNext_string = "BOOT   ";
+      IF3_ICachePlugin_cacheRefillFSM_enumDef_waitAXI : IF3_ICachePlugin_cacheRefillFSM_stateNext_string = "waitAXI";
+      IF3_ICachePlugin_cacheRefillFSM_enumDef_readMem : IF3_ICachePlugin_cacheRefillFSM_stateNext_string = "readMem";
+      IF3_ICachePlugin_cacheRefillFSM_enumDef_commit : IF3_ICachePlugin_cacheRefillFSM_stateNext_string = "commit ";
+      IF3_ICachePlugin_cacheRefillFSM_enumDef_finish : IF3_ICachePlugin_cacheRefillFSM_stateNext_string = "finish ";
+      default : IF3_ICachePlugin_cacheRefillFSM_stateNext_string = "???????";
     endcase
   end
   always @(*) begin
@@ -49142,15 +49282,22 @@ module MyCPUCore (
   assign MEM_ADDR_TRANSLATE_SAVED_CSR_CRMD_PG = MEM_ADDR_AddressGenerationPlugin_savedCSR_CRMD_PG;
   assign MEM_ADDR_TRANSLATE_SAVED_CSR_CRMD_DATF = MEM_ADDR_AddressGenerationPlugin_savedCSR_CRMD_DATF;
   assign MEM_ADDR_TRANSLATE_SAVED_CSR_CRMD_DATM = MEM_ADDR_AddressGenerationPlugin_savedCSR_CRMD_DATM;
-  assign MEM_ADDR_TLB_TRANSLATE_RESULT_valid = MEM_ADDR_AddressGenerationPlugin_tlbTranslateResult_resultBundle_valid;
-  assign MEM_ADDR_TLB_TRANSLATE_RESULT_payload_physAddr = MEM_ADDR_AddressGenerationPlugin_tlbTranslateResult_resultBundle_payload_physAddr;
-  assign MEM_ADDR_TLB_TRANSLATE_RESULT_payload_cached = MEM_ADDR_AddressGenerationPlugin_tlbTranslateResult_resultBundle_payload_cached;
-  assign MEM_ADDR_TLB_TRANSLATE_RESULT_payload_exception_raisePIL = MEM_ADDR_AddressGenerationPlugin_tlbTranslateResult_resultBundle_payload_exception_raisePIL;
-  assign MEM_ADDR_TLB_TRANSLATE_RESULT_payload_exception_raisePIS = MEM_ADDR_AddressGenerationPlugin_tlbTranslateResult_resultBundle_payload_exception_raisePIS;
-  assign MEM_ADDR_TLB_TRANSLATE_RESULT_payload_exception_raisePIF = MEM_ADDR_AddressGenerationPlugin_tlbTranslateResult_resultBundle_payload_exception_raisePIF;
-  assign MEM_ADDR_TLB_TRANSLATE_RESULT_payload_exception_raisePME = MEM_ADDR_AddressGenerationPlugin_tlbTranslateResult_resultBundle_payload_exception_raisePME;
-  assign MEM_ADDR_TLB_TRANSLATE_RESULT_payload_exception_raisePPI = MEM_ADDR_AddressGenerationPlugin_tlbTranslateResult_resultBundle_payload_exception_raisePPI;
-  assign MEM_ADDR_TLB_TRANSLATE_RESULT_payload_exception_raiseTLBR = MEM_ADDR_AddressGenerationPlugin_tlbTranslateResult_resultBundle_payload_exception_raiseTLBR;
+  assign MEM_ADDR_TLB_LOOKUP_SNAPSHOT_hit = MEM_ADDR_AddressGenerationPlugin_tlbLookup_snapshot_hit;
+  assign MEM_ADDR_TLB_LOOKUP_SNAPSHOT_entry_E = MEM_ADDR_AddressGenerationPlugin_tlbLookup_snapshot_entry_E;
+  assign MEM_ADDR_TLB_LOOKUP_SNAPSHOT_entry_ASID = MEM_ADDR_AddressGenerationPlugin_tlbLookup_snapshot_entry_ASID;
+  assign MEM_ADDR_TLB_LOOKUP_SNAPSHOT_entry_G = MEM_ADDR_AddressGenerationPlugin_tlbLookup_snapshot_entry_G;
+  assign MEM_ADDR_TLB_LOOKUP_SNAPSHOT_entry_PS = MEM_ADDR_AddressGenerationPlugin_tlbLookup_snapshot_entry_PS;
+  assign MEM_ADDR_TLB_LOOKUP_SNAPSHOT_entry_VPPN = MEM_ADDR_AddressGenerationPlugin_tlbLookup_snapshot_entry_VPPN;
+  assign MEM_ADDR_TLB_LOOKUP_SNAPSHOT_entry_V0 = MEM_ADDR_AddressGenerationPlugin_tlbLookup_snapshot_entry_V0;
+  assign MEM_ADDR_TLB_LOOKUP_SNAPSHOT_entry_D0 = MEM_ADDR_AddressGenerationPlugin_tlbLookup_snapshot_entry_D0;
+  assign MEM_ADDR_TLB_LOOKUP_SNAPSHOT_entry_MAT0 = MEM_ADDR_AddressGenerationPlugin_tlbLookup_snapshot_entry_MAT0;
+  assign MEM_ADDR_TLB_LOOKUP_SNAPSHOT_entry_PLV0 = MEM_ADDR_AddressGenerationPlugin_tlbLookup_snapshot_entry_PLV0;
+  assign MEM_ADDR_TLB_LOOKUP_SNAPSHOT_entry_PPN0 = MEM_ADDR_AddressGenerationPlugin_tlbLookup_snapshot_entry_PPN0;
+  assign MEM_ADDR_TLB_LOOKUP_SNAPSHOT_entry_V1 = MEM_ADDR_AddressGenerationPlugin_tlbLookup_snapshot_entry_V1;
+  assign MEM_ADDR_TLB_LOOKUP_SNAPSHOT_entry_D1 = MEM_ADDR_AddressGenerationPlugin_tlbLookup_snapshot_entry_D1;
+  assign MEM_ADDR_TLB_LOOKUP_SNAPSHOT_entry_MAT1 = MEM_ADDR_AddressGenerationPlugin_tlbLookup_snapshot_entry_MAT1;
+  assign MEM_ADDR_TLB_LOOKUP_SNAPSHOT_entry_PLV1 = MEM_ADDR_AddressGenerationPlugin_tlbLookup_snapshot_entry_PLV1;
+  assign MEM_ADDR_TLB_LOOKUP_SNAPSHOT_entry_PPN1 = MEM_ADDR_AddressGenerationPlugin_tlbLookup_snapshot_entry_PPN1;
   assign MEM_ADDR_DIRECT_TRANSLATE_RESULT_valid = MEM_ADDR_AddressGenerationPlugin_directTranslateResult_resultBundle_valid;
   assign MEM_ADDR_DIRECT_TRANSLATE_RESULT_payload_physAddr = MEM_ADDR_AddressGenerationPlugin_directTranslateResult_resultBundle_payload_physAddr;
   assign MEM_ADDR_DIRECT_TRANSLATE_RESULT_payload_cached = MEM_ADDR_AddressGenerationPlugin_directTranslateResult_resultBundle_payload_cached;
@@ -49561,8 +49708,21 @@ module MyCPUCore (
   assign _zz_ID_to_RENAME_DECODE_PACKET_2_payload_lsType = _zz_ID_to_RENAME_DECODE_PACKET_2_payload_lsType_1;
   assign _zz_ID_to_RENAME_DECODE_PACKET_2_payload_cmpOp = _zz_ID_to_RENAME_DECODE_PACKET_2_payload_cmpOp_1;
   assign _zz_ID_to_RENAME_DECODE_PACKET_2_payload_tlbOp = _zz_ID_to_RENAME_DECODE_PACKET_2_payload_tlbOp_1;
+  assign IF2_RECOVER_TOP = ReturnAddressStackPlugin_rasTopEntry;
+  assign IF2_PRIVATE_BRANCH_HISTORY_0 = IF2_GLOBAL_BRANCH_HISTORY;
+  assign IF2_PRIVATE_BRANCH_HISTORY_1 = IF2_GLOBAL_BRANCH_HISTORY;
+  assign IF2_PRIVATE_BRANCH_HISTORY_2 = IF2_GLOBAL_BRANCH_HISTORY;
+  assign IF2_PRIVATE_BRANCH_HISTORY_3 = IF2_GLOBAL_BRANCH_HISTORY;
+  assign IF2_TAKEN_MASK = _zz_IF2_TAKEN_MASK;
+  assign IF2_PREDICT_ADDR = IF2_GlobalPredictorBTBPlugin_payloadTarget;
+  assign IF3_IS_TLB_REFILL = IF2_to_IF3_IS_TLB_REFILL;
   assign IF2_IS_TLB_REFILL = IF2_InstAddrTranslatePlugin_tlbRefill;
+  assign IF2_PC_PHYSICAL = IF2_InstAddrTranslatePlugin_physPC;
   assign IF1_GLOBAL_BRANCH_HISTORY = GlobalPredictorBTBPlugin_predictor_io_read_globalHistory;
+  assign IF2_PRED_COUNTER_0 = IF1_to_IF2_PRED_COUNTER_0;
+  assign IF2_PRED_COUNTER_1 = IF1_to_IF2_PRED_COUNTER_1;
+  assign IF2_PRED_COUNTER_2 = IF1_to_IF2_PRED_COUNTER_2;
+  assign IF2_PRED_COUNTER_3 = IF1_to_IF2_PRED_COUNTER_3;
   assign IF1_PRED_COUNTER_0 = _zz_IF1_PRED_COUNTER_0;
   assign IF1_PRED_COUNTER_1 = _zz_IF1_PRED_COUNTER_1;
   assign IF1_PRED_COUNTER_2 = _zz_IF1_PRED_COUNTER_2;
@@ -49578,15 +49738,22 @@ module MyCPUCore (
   assign IF1_TRANSLATE_SAVED_CSR_CRMD_PG = IF1_InstAddrTranslatePlugin_savedCSR_CRMD_PG;
   assign IF1_TRANSLATE_SAVED_CSR_CRMD_DATF = IF1_InstAddrTranslatePlugin_savedCSR_CRMD_DATF;
   assign IF1_TRANSLATE_SAVED_CSR_CRMD_DATM = IF1_InstAddrTranslatePlugin_savedCSR_CRMD_DATM;
-  assign IF1_TLB_TRANSLATE_RESULT_valid = IF1_InstAddrTranslatePlugin_tlbTranslateResult_resultBundle_valid;
-  assign IF1_TLB_TRANSLATE_RESULT_payload_physAddr = IF1_InstAddrTranslatePlugin_tlbTranslateResult_resultBundle_payload_physAddr;
-  assign IF1_TLB_TRANSLATE_RESULT_payload_cached = IF1_InstAddrTranslatePlugin_tlbTranslateResult_resultBundle_payload_cached;
-  assign IF1_TLB_TRANSLATE_RESULT_payload_exception_raisePIL = IF1_InstAddrTranslatePlugin_tlbTranslateResult_resultBundle_payload_exception_raisePIL;
-  assign IF1_TLB_TRANSLATE_RESULT_payload_exception_raisePIS = IF1_InstAddrTranslatePlugin_tlbTranslateResult_resultBundle_payload_exception_raisePIS;
-  assign IF1_TLB_TRANSLATE_RESULT_payload_exception_raisePIF = IF1_InstAddrTranslatePlugin_tlbTranslateResult_resultBundle_payload_exception_raisePIF;
-  assign IF1_TLB_TRANSLATE_RESULT_payload_exception_raisePME = IF1_InstAddrTranslatePlugin_tlbTranslateResult_resultBundle_payload_exception_raisePME;
-  assign IF1_TLB_TRANSLATE_RESULT_payload_exception_raisePPI = IF1_InstAddrTranslatePlugin_tlbTranslateResult_resultBundle_payload_exception_raisePPI;
-  assign IF1_TLB_TRANSLATE_RESULT_payload_exception_raiseTLBR = IF1_InstAddrTranslatePlugin_tlbTranslateResult_resultBundle_payload_exception_raiseTLBR;
+  assign IF1_TLB_LOOKUP_SNAPSHOT_hit = IF1_InstAddrTranslatePlugin_tlbLookup_snapshot_hit;
+  assign IF1_TLB_LOOKUP_SNAPSHOT_entry_E = IF1_InstAddrTranslatePlugin_tlbLookup_snapshot_entry_E;
+  assign IF1_TLB_LOOKUP_SNAPSHOT_entry_ASID = IF1_InstAddrTranslatePlugin_tlbLookup_snapshot_entry_ASID;
+  assign IF1_TLB_LOOKUP_SNAPSHOT_entry_G = IF1_InstAddrTranslatePlugin_tlbLookup_snapshot_entry_G;
+  assign IF1_TLB_LOOKUP_SNAPSHOT_entry_PS = IF1_InstAddrTranslatePlugin_tlbLookup_snapshot_entry_PS;
+  assign IF1_TLB_LOOKUP_SNAPSHOT_entry_VPPN = IF1_InstAddrTranslatePlugin_tlbLookup_snapshot_entry_VPPN;
+  assign IF1_TLB_LOOKUP_SNAPSHOT_entry_V0 = IF1_InstAddrTranslatePlugin_tlbLookup_snapshot_entry_V0;
+  assign IF1_TLB_LOOKUP_SNAPSHOT_entry_D0 = IF1_InstAddrTranslatePlugin_tlbLookup_snapshot_entry_D0;
+  assign IF1_TLB_LOOKUP_SNAPSHOT_entry_MAT0 = IF1_InstAddrTranslatePlugin_tlbLookup_snapshot_entry_MAT0;
+  assign IF1_TLB_LOOKUP_SNAPSHOT_entry_PLV0 = IF1_InstAddrTranslatePlugin_tlbLookup_snapshot_entry_PLV0;
+  assign IF1_TLB_LOOKUP_SNAPSHOT_entry_PPN0 = IF1_InstAddrTranslatePlugin_tlbLookup_snapshot_entry_PPN0;
+  assign IF1_TLB_LOOKUP_SNAPSHOT_entry_V1 = IF1_InstAddrTranslatePlugin_tlbLookup_snapshot_entry_V1;
+  assign IF1_TLB_LOOKUP_SNAPSHOT_entry_D1 = IF1_InstAddrTranslatePlugin_tlbLookup_snapshot_entry_D1;
+  assign IF1_TLB_LOOKUP_SNAPSHOT_entry_MAT1 = IF1_InstAddrTranslatePlugin_tlbLookup_snapshot_entry_MAT1;
+  assign IF1_TLB_LOOKUP_SNAPSHOT_entry_PLV1 = IF1_InstAddrTranslatePlugin_tlbLookup_snapshot_entry_PLV1;
+  assign IF1_TLB_LOOKUP_SNAPSHOT_entry_PPN1 = IF1_InstAddrTranslatePlugin_tlbLookup_snapshot_entry_PPN1;
   assign IF1_DIRECT_TRANSLATE_RESULT_valid = IF1_InstAddrTranslatePlugin_directTranslateResult_resultBundle_valid;
   assign IF1_DIRECT_TRANSLATE_RESULT_payload_physAddr = IF1_InstAddrTranslatePlugin_directTranslateResult_resultBundle_payload_physAddr;
   assign IF1_DIRECT_TRANSLATE_RESULT_payload_cached = IF1_InstAddrTranslatePlugin_directTranslateResult_resultBundle_payload_cached;
@@ -49598,13 +49765,27 @@ module MyCPUCore (
   assign IF1_DIRECT_TRANSLATE_RESULT_payload_exception_raiseTLBR = IF1_InstAddrTranslatePlugin_directTranslateResult_resultBundle_payload_exception_raiseTLBR;
   assign IF2_BAD_VADDR = IF1_to_IF2_BAD_VADDR;
   assign IF1_BAD_VADDR = 32'bxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx;
+  assign IF3_EXCEPTION_ESUBCODE = IF2_to_IF3_EXCEPTION_ESUBCODE;
   assign IF2_EXCEPTION_ESUBCODE = IF1_to_IF2_EXCEPTION_ESUBCODE;
   assign IF1_EXCEPTION_ESUBCODE = 9'bxxxxxxxxx;
+  assign IF3_EXCEPTION_ECODE = IF2_to_IF3_EXCEPTION_ECODE;
   assign IF2_EXCEPTION_ECODE = IF1_to_IF2_EXCEPTION_ECODE;
   assign IF1_EXCEPTION_ECODE = 6'bxxxxxx;
+  assign IF3_EXCEPTION_OCCURRED = IF2_to_IF3_EXCEPTION_OCCURRED;
+  assign IF2_ICACHE_INFO_lru = IF1_to_IF2_ICACHE_INFO_lru;
+  assign IF2_ICACHE_INFO_tags_0 = IF1_to_IF2_ICACHE_INFO_tags_0;
+  assign IF2_ICACHE_INFO_tags_1 = IF1_to_IF2_ICACHE_INFO_tags_1;
   assign IF1_ICACHE_INFO_lru = ICachePlugin_infoRAM_io_read_rsp_lru;
   assign IF1_ICACHE_INFO_tags_0 = ICachePlugin_infoRAM_io_read_rsp_tags_0;
   assign IF1_ICACHE_INFO_tags_1 = ICachePlugin_infoRAM_io_read_rsp_tags_1;
+  assign IF2_ICACHE_RSPS_0_0 = IF1_to_IF2_ICACHE_RSPS_0_0;
+  assign IF2_ICACHE_RSPS_0_1 = IF1_to_IF2_ICACHE_RSPS_0_1;
+  assign IF2_ICACHE_RSPS_0_2 = IF1_to_IF2_ICACHE_RSPS_0_2;
+  assign IF2_ICACHE_RSPS_0_3 = IF1_to_IF2_ICACHE_RSPS_0_3;
+  assign IF2_ICACHE_RSPS_1_0 = IF1_to_IF2_ICACHE_RSPS_1_0;
+  assign IF2_ICACHE_RSPS_1_1 = IF1_to_IF2_ICACHE_RSPS_1_1;
+  assign IF2_ICACHE_RSPS_1_2 = IF1_to_IF2_ICACHE_RSPS_1_2;
+  assign IF2_ICACHE_RSPS_1_3 = IF1_to_IF2_ICACHE_RSPS_1_3;
   assign IF1_ICACHE_RSPS_0_0 = _zz_IF1_ICACHE_RSPS_0_0;
   assign IF1_ICACHE_RSPS_0_1 = _zz_IF1_ICACHE_RSPS_0_1;
   assign IF1_ICACHE_RSPS_0_2 = _zz_IF1_ICACHE_RSPS_0_2;
@@ -49613,35 +49794,12 @@ module MyCPUCore (
   assign IF1_ICACHE_RSPS_1_1 = _zz_IF1_ICACHE_RSPS_1_1;
   assign IF1_ICACHE_RSPS_1_2 = _zz_IF1_ICACHE_RSPS_1_2;
   assign IF1_ICACHE_RSPS_1_3 = _zz_IF1_ICACHE_RSPS_1_3;
+  assign IF2_ICACHE_VALIDS_0 = IF1_to_IF2_ICACHE_VALIDS_0;
+  assign IF2_ICACHE_VALIDS_1 = IF1_to_IF2_ICACHE_VALIDS_1;
   assign IF1_ICACHE_VALIDS_0 = _zz_IF1_ICACHE_VALIDS_0_1;
   assign IF1_ICACHE_VALIDS_1 = _zz_IF1_ICACHE_VALIDS_1;
   always @(*) begin
-    _zz_MEM_ADDR_to_MEM_MEM1_EXCEPTION_ESUBCODE = MEM_ADDR_EXCEPTION_ESUBCODE;
-    if(when_ExceptionMuxPlugin_l45_9) begin
-      _zz_MEM_ADDR_to_MEM_MEM1_EXCEPTION_ESUBCODE = 9'h0;
-    end
-  end
-
-  always @(*) begin
-    _zz_MEM_ADDR_to_MEM_MEM1_EXCEPTION_ECODE = MEM_ADDR_EXCEPTION_ECODE;
-    if(when_ExceptionMuxPlugin_l45_9) begin
-      _zz_MEM_ADDR_to_MEM_MEM1_EXCEPTION_ECODE = 6'h09;
-    end
-  end
-
-  assign MEM_ADDR_EXCEPTION_OCCURRED = 1'b0;
-  always @(*) begin
-    _zz_MEM_ADDR_to_MEM_MEM1_EXCEPTION_OCCURRED = MEM_ADDR_EXCEPTION_OCCURRED;
-    if(AddressGenerationPlugin_raiseALE) begin
-      _zz_MEM_ADDR_to_MEM_MEM1_EXCEPTION_OCCURRED = 1'b1;
-    end
-  end
-
-  always @(*) begin
     _zz_MEM_MEM1_to_MEM_MEM2_EXCEPTION_ESUBCODE = MEM_MEM1_EXCEPTION_ESUBCODE;
-    if(when_ExceptionMuxPlugin_l45_4) begin
-      _zz_MEM_MEM1_to_MEM_MEM2_EXCEPTION_ESUBCODE = 9'h0;
-    end
     if(when_ExceptionMuxPlugin_l45_5) begin
       _zz_MEM_MEM1_to_MEM_MEM2_EXCEPTION_ESUBCODE = 9'h0;
     end
@@ -49652,25 +49810,28 @@ module MyCPUCore (
       _zz_MEM_MEM1_to_MEM_MEM2_EXCEPTION_ESUBCODE = 9'h0;
     end
     if(when_ExceptionMuxPlugin_l45_8) begin
+      _zz_MEM_MEM1_to_MEM_MEM2_EXCEPTION_ESUBCODE = 9'h0;
+    end
+    if(when_ExceptionMuxPlugin_l45_9) begin
       _zz_MEM_MEM1_to_MEM_MEM2_EXCEPTION_ESUBCODE = 9'h0;
     end
   end
 
   always @(*) begin
     _zz_MEM_MEM1_to_MEM_MEM2_EXCEPTION_ECODE = MEM_MEM1_EXCEPTION_ECODE;
-    if(when_ExceptionMuxPlugin_l45_4) begin
+    if(when_ExceptionMuxPlugin_l45_5) begin
       _zz_MEM_MEM1_to_MEM_MEM2_EXCEPTION_ECODE = 6'h04;
     end
-    if(when_ExceptionMuxPlugin_l45_5) begin
+    if(when_ExceptionMuxPlugin_l45_6) begin
       _zz_MEM_MEM1_to_MEM_MEM2_EXCEPTION_ECODE = 6'h07;
     end
-    if(when_ExceptionMuxPlugin_l45_6) begin
+    if(when_ExceptionMuxPlugin_l45_7) begin
       _zz_MEM_MEM1_to_MEM_MEM2_EXCEPTION_ECODE = 6'h02;
     end
-    if(when_ExceptionMuxPlugin_l45_7) begin
+    if(when_ExceptionMuxPlugin_l45_8) begin
       _zz_MEM_MEM1_to_MEM_MEM2_EXCEPTION_ECODE = 6'h01;
     end
-    if(when_ExceptionMuxPlugin_l45_8) begin
+    if(when_ExceptionMuxPlugin_l45_9) begin
       _zz_MEM_MEM1_to_MEM_MEM2_EXCEPTION_ECODE = 6'h3f;
     end
   end
@@ -49692,6 +49853,28 @@ module MyCPUCore (
     end
     if(AddressGenerationPlugin_raiseTLBR) begin
       _zz_MEM_MEM1_to_MEM_MEM2_EXCEPTION_OCCURRED = 1'b1;
+    end
+  end
+
+  always @(*) begin
+    _zz_MEM_ADDR_to_MEM_MEM1_EXCEPTION_ESUBCODE = MEM_ADDR_EXCEPTION_ESUBCODE;
+    if(when_ExceptionMuxPlugin_l45_4) begin
+      _zz_MEM_ADDR_to_MEM_MEM1_EXCEPTION_ESUBCODE = 9'h0;
+    end
+  end
+
+  always @(*) begin
+    _zz_MEM_ADDR_to_MEM_MEM1_EXCEPTION_ECODE = MEM_ADDR_EXCEPTION_ECODE;
+    if(when_ExceptionMuxPlugin_l45_4) begin
+      _zz_MEM_ADDR_to_MEM_MEM1_EXCEPTION_ECODE = 6'h09;
+    end
+  end
+
+  assign MEM_ADDR_EXCEPTION_OCCURRED = 1'b0;
+  always @(*) begin
+    _zz_MEM_ADDR_to_MEM_MEM1_EXCEPTION_OCCURRED = MEM_ADDR_EXCEPTION_OCCURRED;
+    if(AddressGenerationPlugin_raiseALE) begin
+      _zz_MEM_ADDR_to_MEM_MEM1_EXCEPTION_OCCURRED = 1'b1;
     end
   end
 
@@ -49950,15 +50133,6 @@ module MyCPUCore (
   assign MEM_MEM1_TRANSLATE_SAVED_CSR_CRMD_PG = MEM_ADDR_to_MEM_MEM1_TRANSLATE_SAVED_CSR_CRMD_PG;
   assign MEM_MEM1_TRANSLATE_SAVED_CSR_CRMD_DATF = MEM_ADDR_to_MEM_MEM1_TRANSLATE_SAVED_CSR_CRMD_DATF;
   assign MEM_MEM1_TRANSLATE_SAVED_CSR_CRMD_DATM = MEM_ADDR_to_MEM_MEM1_TRANSLATE_SAVED_CSR_CRMD_DATM;
-  assign MEM_MEM1_TLB_TRANSLATE_RESULT_valid = MEM_ADDR_to_MEM_MEM1_TLB_TRANSLATE_RESULT_valid;
-  assign MEM_MEM1_TLB_TRANSLATE_RESULT_payload_physAddr = MEM_ADDR_to_MEM_MEM1_TLB_TRANSLATE_RESULT_payload_physAddr;
-  assign MEM_MEM1_TLB_TRANSLATE_RESULT_payload_cached = MEM_ADDR_to_MEM_MEM1_TLB_TRANSLATE_RESULT_payload_cached;
-  assign MEM_MEM1_TLB_TRANSLATE_RESULT_payload_exception_raisePIL = MEM_ADDR_to_MEM_MEM1_TLB_TRANSLATE_RESULT_payload_exception_raisePIL;
-  assign MEM_MEM1_TLB_TRANSLATE_RESULT_payload_exception_raisePIS = MEM_ADDR_to_MEM_MEM1_TLB_TRANSLATE_RESULT_payload_exception_raisePIS;
-  assign MEM_MEM1_TLB_TRANSLATE_RESULT_payload_exception_raisePIF = MEM_ADDR_to_MEM_MEM1_TLB_TRANSLATE_RESULT_payload_exception_raisePIF;
-  assign MEM_MEM1_TLB_TRANSLATE_RESULT_payload_exception_raisePME = MEM_ADDR_to_MEM_MEM1_TLB_TRANSLATE_RESULT_payload_exception_raisePME;
-  assign MEM_MEM1_TLB_TRANSLATE_RESULT_payload_exception_raisePPI = MEM_ADDR_to_MEM_MEM1_TLB_TRANSLATE_RESULT_payload_exception_raisePPI;
-  assign MEM_MEM1_TLB_TRANSLATE_RESULT_payload_exception_raiseTLBR = MEM_ADDR_to_MEM_MEM1_TLB_TRANSLATE_RESULT_payload_exception_raiseTLBR;
   assign MEM_MEM1_DIRECT_TRANSLATE_RESULT_valid = MEM_ADDR_to_MEM_MEM1_DIRECT_TRANSLATE_RESULT_valid;
   assign MEM_MEM1_DIRECT_TRANSLATE_RESULT_payload_physAddr = MEM_ADDR_to_MEM_MEM1_DIRECT_TRANSLATE_RESULT_payload_physAddr;
   assign MEM_MEM1_DIRECT_TRANSLATE_RESULT_payload_cached = MEM_ADDR_to_MEM_MEM1_DIRECT_TRANSLATE_RESULT_payload_cached;
@@ -49968,6 +50142,22 @@ module MyCPUCore (
   assign MEM_MEM1_DIRECT_TRANSLATE_RESULT_payload_exception_raisePME = MEM_ADDR_to_MEM_MEM1_DIRECT_TRANSLATE_RESULT_payload_exception_raisePME;
   assign MEM_MEM1_DIRECT_TRANSLATE_RESULT_payload_exception_raisePPI = MEM_ADDR_to_MEM_MEM1_DIRECT_TRANSLATE_RESULT_payload_exception_raisePPI;
   assign MEM_MEM1_DIRECT_TRANSLATE_RESULT_payload_exception_raiseTLBR = MEM_ADDR_to_MEM_MEM1_DIRECT_TRANSLATE_RESULT_payload_exception_raiseTLBR;
+  assign MEM_MEM1_TLB_LOOKUP_SNAPSHOT_hit = MEM_ADDR_to_MEM_MEM1_TLB_LOOKUP_SNAPSHOT_hit;
+  assign MEM_MEM1_TLB_LOOKUP_SNAPSHOT_entry_E = MEM_ADDR_to_MEM_MEM1_TLB_LOOKUP_SNAPSHOT_entry_E;
+  assign MEM_MEM1_TLB_LOOKUP_SNAPSHOT_entry_ASID = MEM_ADDR_to_MEM_MEM1_TLB_LOOKUP_SNAPSHOT_entry_ASID;
+  assign MEM_MEM1_TLB_LOOKUP_SNAPSHOT_entry_G = MEM_ADDR_to_MEM_MEM1_TLB_LOOKUP_SNAPSHOT_entry_G;
+  assign MEM_MEM1_TLB_LOOKUP_SNAPSHOT_entry_PS = MEM_ADDR_to_MEM_MEM1_TLB_LOOKUP_SNAPSHOT_entry_PS;
+  assign MEM_MEM1_TLB_LOOKUP_SNAPSHOT_entry_VPPN = MEM_ADDR_to_MEM_MEM1_TLB_LOOKUP_SNAPSHOT_entry_VPPN;
+  assign MEM_MEM1_TLB_LOOKUP_SNAPSHOT_entry_V0 = MEM_ADDR_to_MEM_MEM1_TLB_LOOKUP_SNAPSHOT_entry_V0;
+  assign MEM_MEM1_TLB_LOOKUP_SNAPSHOT_entry_D0 = MEM_ADDR_to_MEM_MEM1_TLB_LOOKUP_SNAPSHOT_entry_D0;
+  assign MEM_MEM1_TLB_LOOKUP_SNAPSHOT_entry_MAT0 = MEM_ADDR_to_MEM_MEM1_TLB_LOOKUP_SNAPSHOT_entry_MAT0;
+  assign MEM_MEM1_TLB_LOOKUP_SNAPSHOT_entry_PLV0 = MEM_ADDR_to_MEM_MEM1_TLB_LOOKUP_SNAPSHOT_entry_PLV0;
+  assign MEM_MEM1_TLB_LOOKUP_SNAPSHOT_entry_PPN0 = MEM_ADDR_to_MEM_MEM1_TLB_LOOKUP_SNAPSHOT_entry_PPN0;
+  assign MEM_MEM1_TLB_LOOKUP_SNAPSHOT_entry_V1 = MEM_ADDR_to_MEM_MEM1_TLB_LOOKUP_SNAPSHOT_entry_V1;
+  assign MEM_MEM1_TLB_LOOKUP_SNAPSHOT_entry_D1 = MEM_ADDR_to_MEM_MEM1_TLB_LOOKUP_SNAPSHOT_entry_D1;
+  assign MEM_MEM1_TLB_LOOKUP_SNAPSHOT_entry_MAT1 = MEM_ADDR_to_MEM_MEM1_TLB_LOOKUP_SNAPSHOT_entry_MAT1;
+  assign MEM_MEM1_TLB_LOOKUP_SNAPSHOT_entry_PLV1 = MEM_ADDR_to_MEM_MEM1_TLB_LOOKUP_SNAPSHOT_entry_PLV1;
+  assign MEM_MEM1_TLB_LOOKUP_SNAPSHOT_entry_PPN1 = MEM_ADDR_to_MEM_MEM1_TLB_LOOKUP_SNAPSHOT_entry_PPN1;
   assign MEM_MEM1_MEMORY_ADDRESS = MEM_ADDR_to_MEM_MEM1_MEMORY_ADDRESS;
   assign MEM_MEM1_ISSUE_SLOT_rRegs_0_valid = MEM_ADDR_to_MEM_MEM1_ISSUE_SLOT_rRegs_0_valid;
   assign MEM_MEM1_ISSUE_SLOT_rRegs_0_payload = MEM_ADDR_to_MEM_MEM1_ISSUE_SLOT_rRegs_0_payload;
@@ -50320,6 +50510,8 @@ module MyCPUCore (
   assign INT2_RRD_ISSUE_SLOT_uop_tlbOp = _zz_INT2_RRD_ISSUE_SLOT_uop_tlbOp;
   assign INT2_RRD_ISSUE_SLOT_wReg = INT2_ISS_to_INT2_RRD_ISSUE_SLOT_wReg;
   assign IF2_GLOBAL_BRANCH_HISTORY = IF1_to_IF2_GLOBAL_BRANCH_HISTORY;
+  assign IF2_BRANCH_MASK = IF1_to_IF2_BRANCH_MASK;
+  assign IF2_INSTRUCTION_MASK = IF1_to_IF2_INSTRUCTION_MASK;
   assign IF2_PREDICT_JUMP_WAY = IF1_to_IF2_PREDICT_JUMP_WAY;
   assign IF2_PREDICT_JUMP_PAYLOAD_target = IF1_to_IF2_PREDICT_JUMP_PAYLOAD_target;
   assign IF2_PREDICT_JUMP_PAYLOAD_isCall = IF1_to_IF2_PREDICT_JUMP_PAYLOAD_isCall;
@@ -50329,15 +50521,6 @@ module MyCPUCore (
   assign IF2_TRANSLATE_SAVED_CSR_CRMD_PG = IF1_to_IF2_TRANSLATE_SAVED_CSR_CRMD_PG;
   assign IF2_TRANSLATE_SAVED_CSR_CRMD_DATF = IF1_to_IF2_TRANSLATE_SAVED_CSR_CRMD_DATF;
   assign IF2_TRANSLATE_SAVED_CSR_CRMD_DATM = IF1_to_IF2_TRANSLATE_SAVED_CSR_CRMD_DATM;
-  assign IF2_TLB_TRANSLATE_RESULT_valid = IF1_to_IF2_TLB_TRANSLATE_RESULT_valid;
-  assign IF2_TLB_TRANSLATE_RESULT_payload_physAddr = IF1_to_IF2_TLB_TRANSLATE_RESULT_payload_physAddr;
-  assign IF2_TLB_TRANSLATE_RESULT_payload_cached = IF1_to_IF2_TLB_TRANSLATE_RESULT_payload_cached;
-  assign IF2_TLB_TRANSLATE_RESULT_payload_exception_raisePIL = IF1_to_IF2_TLB_TRANSLATE_RESULT_payload_exception_raisePIL;
-  assign IF2_TLB_TRANSLATE_RESULT_payload_exception_raisePIS = IF1_to_IF2_TLB_TRANSLATE_RESULT_payload_exception_raisePIS;
-  assign IF2_TLB_TRANSLATE_RESULT_payload_exception_raisePIF = IF1_to_IF2_TLB_TRANSLATE_RESULT_payload_exception_raisePIF;
-  assign IF2_TLB_TRANSLATE_RESULT_payload_exception_raisePME = IF1_to_IF2_TLB_TRANSLATE_RESULT_payload_exception_raisePME;
-  assign IF2_TLB_TRANSLATE_RESULT_payload_exception_raisePPI = IF1_to_IF2_TLB_TRANSLATE_RESULT_payload_exception_raisePPI;
-  assign IF2_TLB_TRANSLATE_RESULT_payload_exception_raiseTLBR = IF1_to_IF2_TLB_TRANSLATE_RESULT_payload_exception_raiseTLBR;
   assign IF2_DIRECT_TRANSLATE_RESULT_valid = IF1_to_IF2_DIRECT_TRANSLATE_RESULT_valid;
   assign IF2_DIRECT_TRANSLATE_RESULT_payload_physAddr = IF1_to_IF2_DIRECT_TRANSLATE_RESULT_payload_physAddr;
   assign IF2_DIRECT_TRANSLATE_RESULT_payload_cached = IF1_to_IF2_DIRECT_TRANSLATE_RESULT_payload_cached;
@@ -50347,23 +50530,80 @@ module MyCPUCore (
   assign IF2_DIRECT_TRANSLATE_RESULT_payload_exception_raisePME = IF1_to_IF2_DIRECT_TRANSLATE_RESULT_payload_exception_raisePME;
   assign IF2_DIRECT_TRANSLATE_RESULT_payload_exception_raisePPI = IF1_to_IF2_DIRECT_TRANSLATE_RESULT_payload_exception_raisePPI;
   assign IF2_DIRECT_TRANSLATE_RESULT_payload_exception_raiseTLBR = IF1_to_IF2_DIRECT_TRANSLATE_RESULT_payload_exception_raiseTLBR;
+  assign IF2_TLB_LOOKUP_SNAPSHOT_hit = IF1_to_IF2_TLB_LOOKUP_SNAPSHOT_hit;
+  assign IF2_TLB_LOOKUP_SNAPSHOT_entry_E = IF1_to_IF2_TLB_LOOKUP_SNAPSHOT_entry_E;
+  assign IF2_TLB_LOOKUP_SNAPSHOT_entry_ASID = IF1_to_IF2_TLB_LOOKUP_SNAPSHOT_entry_ASID;
+  assign IF2_TLB_LOOKUP_SNAPSHOT_entry_G = IF1_to_IF2_TLB_LOOKUP_SNAPSHOT_entry_G;
+  assign IF2_TLB_LOOKUP_SNAPSHOT_entry_PS = IF1_to_IF2_TLB_LOOKUP_SNAPSHOT_entry_PS;
+  assign IF2_TLB_LOOKUP_SNAPSHOT_entry_VPPN = IF1_to_IF2_TLB_LOOKUP_SNAPSHOT_entry_VPPN;
+  assign IF2_TLB_LOOKUP_SNAPSHOT_entry_V0 = IF1_to_IF2_TLB_LOOKUP_SNAPSHOT_entry_V0;
+  assign IF2_TLB_LOOKUP_SNAPSHOT_entry_D0 = IF1_to_IF2_TLB_LOOKUP_SNAPSHOT_entry_D0;
+  assign IF2_TLB_LOOKUP_SNAPSHOT_entry_MAT0 = IF1_to_IF2_TLB_LOOKUP_SNAPSHOT_entry_MAT0;
+  assign IF2_TLB_LOOKUP_SNAPSHOT_entry_PLV0 = IF1_to_IF2_TLB_LOOKUP_SNAPSHOT_entry_PLV0;
+  assign IF2_TLB_LOOKUP_SNAPSHOT_entry_PPN0 = IF1_to_IF2_TLB_LOOKUP_SNAPSHOT_entry_PPN0;
+  assign IF2_TLB_LOOKUP_SNAPSHOT_entry_V1 = IF1_to_IF2_TLB_LOOKUP_SNAPSHOT_entry_V1;
+  assign IF2_TLB_LOOKUP_SNAPSHOT_entry_D1 = IF1_to_IF2_TLB_LOOKUP_SNAPSHOT_entry_D1;
+  assign IF2_TLB_LOOKUP_SNAPSHOT_entry_MAT1 = IF1_to_IF2_TLB_LOOKUP_SNAPSHOT_entry_MAT1;
+  assign IF2_TLB_LOOKUP_SNAPSHOT_entry_PLV1 = IF1_to_IF2_TLB_LOOKUP_SNAPSHOT_entry_PLV1;
+  assign IF2_TLB_LOOKUP_SNAPSHOT_entry_PPN1 = IF1_to_IF2_TLB_LOOKUP_SNAPSHOT_entry_PPN1;
+  assign IF2_PC = IF1_to_IF2_PC;
+  always @(*) begin
+    _zz_IF2_to_IF3_EXCEPTION_ESUBCODE = IF2_EXCEPTION_ESUBCODE;
+    if(when_ExceptionMuxPlugin_l45_1) begin
+      _zz_IF2_to_IF3_EXCEPTION_ESUBCODE = 9'h0;
+    end
+    if(when_ExceptionMuxPlugin_l45_2) begin
+      _zz_IF2_to_IF3_EXCEPTION_ESUBCODE = 9'h0;
+    end
+    if(when_ExceptionMuxPlugin_l45_3) begin
+      _zz_IF2_to_IF3_EXCEPTION_ESUBCODE = 9'h0;
+    end
+  end
+
+  always @(*) begin
+    _zz_IF2_to_IF3_EXCEPTION_ECODE = IF2_EXCEPTION_ECODE;
+    if(when_ExceptionMuxPlugin_l45_1) begin
+      _zz_IF2_to_IF3_EXCEPTION_ECODE = 6'h07;
+    end
+    if(when_ExceptionMuxPlugin_l45_2) begin
+      _zz_IF2_to_IF3_EXCEPTION_ECODE = 6'h03;
+    end
+    if(when_ExceptionMuxPlugin_l45_3) begin
+      _zz_IF2_to_IF3_EXCEPTION_ECODE = 6'h3f;
+    end
+  end
+
+  assign IF2_EXCEPTION_OCCURRED = IF1_to_IF2_EXCEPTION_OCCURRED;
+  always @(*) begin
+    _zz_IF2_to_IF3_EXCEPTION_OCCURRED = IF2_EXCEPTION_OCCURRED;
+    if(InstAddrTranslatePlugin_PPI) begin
+      _zz_IF2_to_IF3_EXCEPTION_OCCURRED = 1'b1;
+    end
+    if(InstAddrTranslatePlugin_PIF) begin
+      _zz_IF2_to_IF3_EXCEPTION_OCCURRED = 1'b1;
+    end
+    if(InstAddrTranslatePlugin_TLBR) begin
+      _zz_IF2_to_IF3_EXCEPTION_OCCURRED = 1'b1;
+    end
+  end
+
   always @(*) begin
     _zz_IF1_to_IF2_BAD_VADDR = IF1_BAD_VADDR;
-    if(when_ExceptionMuxPlugin_l45_3) begin
+    if(when_ExceptionMuxPlugin_l45) begin
       _zz_IF1_to_IF2_BAD_VADDR = InstAddrTranslatePlugin_badVaddr;
     end
   end
 
   always @(*) begin
     _zz_IF1_to_IF2_EXCEPTION_ESUBCODE = IF1_EXCEPTION_ESUBCODE;
-    if(when_ExceptionMuxPlugin_l45_3) begin
+    if(when_ExceptionMuxPlugin_l45) begin
       _zz_IF1_to_IF2_EXCEPTION_ESUBCODE = 9'h0;
     end
   end
 
   always @(*) begin
     _zz_IF1_to_IF2_EXCEPTION_ECODE = IF1_EXCEPTION_ECODE;
-    if(when_ExceptionMuxPlugin_l45_3) begin
+    if(when_ExceptionMuxPlugin_l45) begin
       _zz_IF1_to_IF2_EXCEPTION_ECODE = 6'h08;
     end
   end
@@ -50376,88 +50616,49 @@ module MyCPUCore (
     end
   end
 
-  assign IF2_EXCEPTION_OCCURRED = IF1_to_IF2_EXCEPTION_OCCURRED;
-  always @(*) begin
-    _zz_IF2_ICachePlugin_fetchPacket_except_payload_subcode = IF2_EXCEPTION_ESUBCODE;
-    if(when_ExceptionMuxPlugin_l45) begin
-      _zz_IF2_ICachePlugin_fetchPacket_except_payload_subcode = 9'h0;
-    end
-    if(when_ExceptionMuxPlugin_l45_1) begin
-      _zz_IF2_ICachePlugin_fetchPacket_except_payload_subcode = 9'h0;
-    end
-    if(when_ExceptionMuxPlugin_l45_2) begin
-      _zz_IF2_ICachePlugin_fetchPacket_except_payload_subcode = 9'h0;
-    end
-  end
-
-  always @(*) begin
-    _zz_IF2_ICachePlugin_fetchPacket_except_payload_code = IF2_EXCEPTION_ECODE;
-    if(when_ExceptionMuxPlugin_l45) begin
-      _zz_IF2_ICachePlugin_fetchPacket_except_payload_code = 6'h07;
-    end
-    if(when_ExceptionMuxPlugin_l45_1) begin
-      _zz_IF2_ICachePlugin_fetchPacket_except_payload_code = 6'h03;
-    end
-    if(when_ExceptionMuxPlugin_l45_2) begin
-      _zz_IF2_ICachePlugin_fetchPacket_except_payload_code = 6'h3f;
-    end
-  end
-
-  assign IF2_ICACHE_RSPS_0_0 = IF1_to_IF2_ICACHE_RSPS_0_0;
-  assign IF2_ICACHE_RSPS_0_1 = IF1_to_IF2_ICACHE_RSPS_0_1;
-  assign IF2_ICACHE_RSPS_0_2 = IF1_to_IF2_ICACHE_RSPS_0_2;
-  assign IF2_ICACHE_RSPS_0_3 = IF1_to_IF2_ICACHE_RSPS_0_3;
-  assign IF2_ICACHE_RSPS_1_0 = IF1_to_IF2_ICACHE_RSPS_1_0;
-  assign IF2_ICACHE_RSPS_1_1 = IF1_to_IF2_ICACHE_RSPS_1_1;
-  assign IF2_ICACHE_RSPS_1_2 = IF1_to_IF2_ICACHE_RSPS_1_2;
-  assign IF2_ICACHE_RSPS_1_3 = IF1_to_IF2_ICACHE_RSPS_1_3;
-  assign IF2_ICACHE_INFO_lru = IF1_to_IF2_ICACHE_INFO_lru;
-  assign IF2_ICACHE_INFO_tags_0 = IF1_to_IF2_ICACHE_INFO_tags_0;
-  assign IF2_ICACHE_INFO_tags_1 = IF1_to_IF2_ICACHE_INFO_tags_1;
-  assign IF2_ICACHE_VALIDS_0 = IF1_to_IF2_ICACHE_VALIDS_0;
-  assign IF2_ICACHE_VALIDS_1 = IF1_to_IF2_ICACHE_VALIDS_1;
-  assign IF2_PC_PHYSICAL = IF2_InstAddrTranslatePlugin_physPC;
-  always @(*) begin
-    _zz_IF2_ICachePlugin_fetchPacket_except_valid = IF2_EXCEPTION_OCCURRED;
-    if(InstAddrTranslatePlugin_PPI) begin
-      _zz_IF2_ICachePlugin_fetchPacket_except_valid = 1'b1;
-    end
-    if(InstAddrTranslatePlugin_PIF) begin
-      _zz_IF2_ICachePlugin_fetchPacket_except_valid = 1'b1;
-    end
-    if(InstAddrTranslatePlugin_TLBR) begin
-      _zz_IF2_ICachePlugin_fetchPacket_except_valid = 1'b1;
-    end
-  end
-
+  assign IF3_ICACHE_RSPS_0_0 = IF2_to_IF3_ICACHE_RSPS_0_0;
+  assign IF3_ICACHE_RSPS_0_1 = IF2_to_IF3_ICACHE_RSPS_0_1;
+  assign IF3_ICACHE_RSPS_0_2 = IF2_to_IF3_ICACHE_RSPS_0_2;
+  assign IF3_ICACHE_RSPS_0_3 = IF2_to_IF3_ICACHE_RSPS_0_3;
+  assign IF3_ICACHE_RSPS_1_0 = IF2_to_IF3_ICACHE_RSPS_1_0;
+  assign IF3_ICACHE_RSPS_1_1 = IF2_to_IF3_ICACHE_RSPS_1_1;
+  assign IF3_ICACHE_RSPS_1_2 = IF2_to_IF3_ICACHE_RSPS_1_2;
+  assign IF3_ICACHE_RSPS_1_3 = IF2_to_IF3_ICACHE_RSPS_1_3;
+  assign IF3_ICACHE_INFO_lru = IF2_to_IF3_ICACHE_INFO_lru;
+  assign IF3_ICACHE_INFO_tags_0 = IF2_to_IF3_ICACHE_INFO_tags_0;
+  assign IF3_ICACHE_INFO_tags_1 = IF2_to_IF3_ICACHE_INFO_tags_1;
+  assign IF3_ICACHE_VALIDS_0 = IF2_to_IF3_ICACHE_VALIDS_0;
+  assign IF3_ICACHE_VALIDS_1 = IF2_to_IF3_ICACHE_VALIDS_1;
+  assign IF3_PC_PHYSICAL = IF2_to_IF3_PC_PHYSICAL;
+  assign _zz_IF3_ICachePlugin_fetchPacket_except_valid = IF3_EXCEPTION_OCCURRED;
   assign IF1_PC = IF1_ProgramCounterPlugin_regPC;
-  assign IF2_PRIVATE_BRANCH_HISTORY_0 = IF2_GLOBAL_BRANCH_HISTORY;
-  assign IF2_PRIVATE_BRANCH_HISTORY_1 = IF2_GLOBAL_BRANCH_HISTORY;
-  assign IF2_PRIVATE_BRANCH_HISTORY_2 = IF2_GLOBAL_BRANCH_HISTORY;
-  assign IF2_PRIVATE_BRANCH_HISTORY_3 = IF2_GLOBAL_BRANCH_HISTORY;
-  assign IF2_PRED_COUNTER_0 = IF1_to_IF2_PRED_COUNTER_0;
-  assign IF2_PRED_COUNTER_1 = IF1_to_IF2_PRED_COUNTER_1;
-  assign IF2_PRED_COUNTER_2 = IF1_to_IF2_PRED_COUNTER_2;
-  assign IF2_PRED_COUNTER_3 = IF1_to_IF2_PRED_COUNTER_3;
-  assign IF2_RECOVER_TOP = ReturnAddressStackPlugin_rasTopEntry;
-  assign IF2_PREDICT_ADDR = IF2_GlobalPredictorBTBPlugin_payloadTarget;
-  assign IF2_TAKEN_MASK = _zz_IF2_TAKEN_MASK;
-  assign IF2_BRANCH_MASK = IF1_to_IF2_BRANCH_MASK;
-  assign IF2_INSTRUCTION_MASK = IF1_to_IF2_INSTRUCTION_MASK;
-  assign IF2_FETCH_PACKET_pc = IF2_ICachePlugin_fetchPacket_pc;
-  assign IF2_FETCH_PACKET_insts_0_valid = IF2_ICachePlugin_fetchPacket_insts_0_valid;
-  assign IF2_FETCH_PACKET_insts_0_payload = IF2_ICachePlugin_fetchPacket_insts_0_payload;
-  assign IF2_FETCH_PACKET_insts_1_valid = IF2_ICachePlugin_fetchPacket_insts_1_valid;
-  assign IF2_FETCH_PACKET_insts_1_payload = IF2_ICachePlugin_fetchPacket_insts_1_payload;
-  assign IF2_FETCH_PACKET_insts_2_valid = IF2_ICachePlugin_fetchPacket_insts_2_valid;
-  assign IF2_FETCH_PACKET_insts_2_payload = IF2_ICachePlugin_fetchPacket_insts_2_payload;
-  assign IF2_FETCH_PACKET_insts_3_valid = IF2_ICachePlugin_fetchPacket_insts_3_valid;
-  assign IF2_FETCH_PACKET_insts_3_payload = IF2_ICachePlugin_fetchPacket_insts_3_payload;
-  assign IF2_FETCH_PACKET_except_valid = IF2_ICachePlugin_fetchPacket_except_valid;
-  assign IF2_FETCH_PACKET_except_payload_code = IF2_ICachePlugin_fetchPacket_except_payload_code;
-  assign IF2_FETCH_PACKET_except_payload_subcode = IF2_ICachePlugin_fetchPacket_except_payload_subcode;
-  assign IF2_FETCH_PACKET_except_payload_isTLBRefill = IF2_ICachePlugin_fetchPacket_except_payload_isTLBRefill;
-  assign IF2_PC = IF1_to_IF2_PC;
+  assign IF3_PRIVATE_BRANCH_HISTORY_0 = IF2_to_IF3_PRIVATE_BRANCH_HISTORY_0;
+  assign IF3_PRIVATE_BRANCH_HISTORY_1 = IF2_to_IF3_PRIVATE_BRANCH_HISTORY_1;
+  assign IF3_PRIVATE_BRANCH_HISTORY_2 = IF2_to_IF3_PRIVATE_BRANCH_HISTORY_2;
+  assign IF3_PRIVATE_BRANCH_HISTORY_3 = IF2_to_IF3_PRIVATE_BRANCH_HISTORY_3;
+  assign IF3_PRED_COUNTER_0 = IF2_to_IF3_PRED_COUNTER_0;
+  assign IF3_PRED_COUNTER_1 = IF2_to_IF3_PRED_COUNTER_1;
+  assign IF3_PRED_COUNTER_2 = IF2_to_IF3_PRED_COUNTER_2;
+  assign IF3_PRED_COUNTER_3 = IF2_to_IF3_PRED_COUNTER_3;
+  assign IF3_RECOVER_TOP = IF2_to_IF3_RECOVER_TOP;
+  assign IF3_PREDICT_ADDR = IF2_to_IF3_PREDICT_ADDR;
+  assign IF3_TAKEN_MASK = IF2_to_IF3_TAKEN_MASK;
+  assign IF3_BRANCH_MASK = IF2_to_IF3_BRANCH_MASK;
+  assign IF3_INSTRUCTION_MASK = IF2_to_IF3_INSTRUCTION_MASK;
+  assign IF3_FETCH_PACKET_pc = IF3_ICachePlugin_fetchPacket_pc;
+  assign IF3_FETCH_PACKET_insts_0_valid = IF3_ICachePlugin_fetchPacket_insts_0_valid;
+  assign IF3_FETCH_PACKET_insts_0_payload = IF3_ICachePlugin_fetchPacket_insts_0_payload;
+  assign IF3_FETCH_PACKET_insts_1_valid = IF3_ICachePlugin_fetchPacket_insts_1_valid;
+  assign IF3_FETCH_PACKET_insts_1_payload = IF3_ICachePlugin_fetchPacket_insts_1_payload;
+  assign IF3_FETCH_PACKET_insts_2_valid = IF3_ICachePlugin_fetchPacket_insts_2_valid;
+  assign IF3_FETCH_PACKET_insts_2_payload = IF3_ICachePlugin_fetchPacket_insts_2_payload;
+  assign IF3_FETCH_PACKET_insts_3_valid = IF3_ICachePlugin_fetchPacket_insts_3_valid;
+  assign IF3_FETCH_PACKET_insts_3_payload = IF3_ICachePlugin_fetchPacket_insts_3_payload;
+  assign IF3_FETCH_PACKET_except_valid = IF3_ICachePlugin_fetchPacket_except_valid;
+  assign IF3_FETCH_PACKET_except_payload_code = IF3_ICachePlugin_fetchPacket_except_payload_code;
+  assign IF3_FETCH_PACKET_except_payload_subcode = IF3_ICachePlugin_fetchPacket_except_payload_subcode;
+  assign IF3_FETCH_PACKET_except_payload_isTLBRefill = IF3_ICachePlugin_fetchPacket_except_payload_isTLBRefill;
+  assign IF3_PC = IF2_to_IF3_PC;
   assign DISPATCH_PUSH_INDEXES_0_valid = RENAME_to_DISPATCH_PUSH_INDEXES_0_valid;
   assign DISPATCH_PUSH_INDEXES_0_payload = RENAME_to_DISPATCH_PUSH_INDEXES_0_payload;
   assign DISPATCH_PUSH_INDEXES_1_valid = RENAME_to_DISPATCH_PUSH_INDEXES_1_valid;
@@ -50779,31 +50980,7 @@ module MyCPUCore (
 
   assign IF1_arbitration_flushNext = 1'b0;
   assign IF1_arbitration_notStuck = (! IF1_arbitration_isStuck);
-  always @(*) begin
-    IF2_arbitration_haltItself = 1'b0;
-    if(IF2_FetchBufferPlugin_isStall) begin
-      IF2_arbitration_haltItself = 1'b1;
-    end
-    case(IF2_ICachePlugin_cacheRefillFSM_stateReg)
-      IF2_ICachePlugin_cacheRefillFSM_enumDef_waitAXI : begin
-        IF2_arbitration_haltItself = 1'b1;
-      end
-      IF2_ICachePlugin_cacheRefillFSM_enumDef_readMem : begin
-        IF2_arbitration_haltItself = 1'b1;
-      end
-      IF2_ICachePlugin_cacheRefillFSM_enumDef_commit : begin
-        IF2_arbitration_haltItself = 1'b1;
-      end
-      IF2_ICachePlugin_cacheRefillFSM_enumDef_finish : begin
-      end
-      default : begin
-        if(when_ICachePlugin_l160) begin
-          IF2_arbitration_haltItself = 1'b1;
-        end
-      end
-    endcase
-  end
-
+  assign IF2_arbitration_haltItself = 1'b0;
   assign IF2_arbitration_haltByOther = 1'b0;
   always @(*) begin
     IF2_arbitration_removeIt = 1'b0;
@@ -50812,13 +50989,7 @@ module MyCPUCore (
     end
   end
 
-  always @(*) begin
-    IF2_arbitration_flushIt = 1'b0;
-    if(CommitPlugin_needFlush) begin
-      IF2_arbitration_flushIt = 1'b1;
-    end
-  end
-
+  assign IF2_arbitration_flushIt = 1'b0;
   always @(*) begin
     IF2_arbitration_flushNext = 1'b0;
     if(IF2_arbitration_isValid) begin
@@ -50829,6 +51000,48 @@ module MyCPUCore (
   end
 
   assign IF2_arbitration_notStuck = (! IF2_arbitration_isStuck);
+  always @(*) begin
+    IF3_arbitration_haltItself = 1'b0;
+    if(IF3_FetchBufferPlugin_isStall) begin
+      IF3_arbitration_haltItself = 1'b1;
+    end
+    case(IF3_ICachePlugin_cacheRefillFSM_stateReg)
+      IF3_ICachePlugin_cacheRefillFSM_enumDef_waitAXI : begin
+        IF3_arbitration_haltItself = 1'b1;
+      end
+      IF3_ICachePlugin_cacheRefillFSM_enumDef_readMem : begin
+        IF3_arbitration_haltItself = 1'b1;
+      end
+      IF3_ICachePlugin_cacheRefillFSM_enumDef_commit : begin
+        IF3_arbitration_haltItself = 1'b1;
+      end
+      IF3_ICachePlugin_cacheRefillFSM_enumDef_finish : begin
+      end
+      default : begin
+        if(when_ICachePlugin_l162) begin
+          IF3_arbitration_haltItself = 1'b1;
+        end
+      end
+    endcase
+  end
+
+  assign IF3_arbitration_haltByOther = 1'b0;
+  always @(*) begin
+    IF3_arbitration_removeIt = 1'b0;
+    if(IF3_arbitration_isFlushed) begin
+      IF3_arbitration_removeIt = 1'b1;
+    end
+  end
+
+  always @(*) begin
+    IF3_arbitration_flushIt = 1'b0;
+    if(CommitPlugin_needFlush) begin
+      IF3_arbitration_flushIt = 1'b1;
+    end
+  end
+
+  assign IF3_arbitration_flushNext = 1'b0;
+  assign IF3_arbitration_notStuck = (! IF3_arbitration_isStuck);
   always @(*) begin
     ProgramCounterPlugin_backendJumpInterface_valid = 1'b0;
     if(when_CommitPlugin_l184) begin
@@ -50869,15 +51082,15 @@ module MyCPUCore (
 
   always @(*) begin
     ICachePlugin_iBus_ar_valid = 1'b0;
-    case(IF2_ICachePlugin_cacheRefillFSM_stateReg)
-      IF2_ICachePlugin_cacheRefillFSM_enumDef_waitAXI : begin
+    case(IF3_ICachePlugin_cacheRefillFSM_stateReg)
+      IF3_ICachePlugin_cacheRefillFSM_enumDef_waitAXI : begin
         ICachePlugin_iBus_ar_valid = 1'b1;
       end
-      IF2_ICachePlugin_cacheRefillFSM_enumDef_readMem : begin
+      IF3_ICachePlugin_cacheRefillFSM_enumDef_readMem : begin
       end
-      IF2_ICachePlugin_cacheRefillFSM_enumDef_commit : begin
+      IF3_ICachePlugin_cacheRefillFSM_enumDef_commit : begin
       end
-      IF2_ICachePlugin_cacheRefillFSM_enumDef_finish : begin
+      IF3_ICachePlugin_cacheRefillFSM_enumDef_finish : begin
       end
       default : begin
       end
@@ -50886,15 +51099,15 @@ module MyCPUCore (
 
   always @(*) begin
     ICachePlugin_iBus_ar_payload_addr = 32'bxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx;
-    case(IF2_ICachePlugin_cacheRefillFSM_stateReg)
-      IF2_ICachePlugin_cacheRefillFSM_enumDef_waitAXI : begin
-        ICachePlugin_iBus_ar_payload_addr = {IF2_PC_PHYSICAL[31 : 6],6'h0};
+    case(IF3_ICachePlugin_cacheRefillFSM_stateReg)
+      IF3_ICachePlugin_cacheRefillFSM_enumDef_waitAXI : begin
+        ICachePlugin_iBus_ar_payload_addr = {IF3_PC_PHYSICAL[31 : 6],6'h0};
       end
-      IF2_ICachePlugin_cacheRefillFSM_enumDef_readMem : begin
+      IF3_ICachePlugin_cacheRefillFSM_enumDef_readMem : begin
       end
-      IF2_ICachePlugin_cacheRefillFSM_enumDef_commit : begin
+      IF3_ICachePlugin_cacheRefillFSM_enumDef_commit : begin
       end
-      IF2_ICachePlugin_cacheRefillFSM_enumDef_finish : begin
+      IF3_ICachePlugin_cacheRefillFSM_enumDef_finish : begin
       end
       default : begin
       end
@@ -50903,15 +51116,15 @@ module MyCPUCore (
 
   always @(*) begin
     ICachePlugin_iBus_ar_payload_id = 4'bxxxx;
-    case(IF2_ICachePlugin_cacheRefillFSM_stateReg)
-      IF2_ICachePlugin_cacheRefillFSM_enumDef_waitAXI : begin
+    case(IF3_ICachePlugin_cacheRefillFSM_stateReg)
+      IF3_ICachePlugin_cacheRefillFSM_enumDef_waitAXI : begin
         ICachePlugin_iBus_ar_payload_id = 4'b0000;
       end
-      IF2_ICachePlugin_cacheRefillFSM_enumDef_readMem : begin
+      IF3_ICachePlugin_cacheRefillFSM_enumDef_readMem : begin
       end
-      IF2_ICachePlugin_cacheRefillFSM_enumDef_commit : begin
+      IF3_ICachePlugin_cacheRefillFSM_enumDef_commit : begin
       end
-      IF2_ICachePlugin_cacheRefillFSM_enumDef_finish : begin
+      IF3_ICachePlugin_cacheRefillFSM_enumDef_finish : begin
       end
       default : begin
       end
@@ -50920,15 +51133,15 @@ module MyCPUCore (
 
   always @(*) begin
     ICachePlugin_iBus_ar_payload_len = 8'bxxxxxxxx;
-    case(IF2_ICachePlugin_cacheRefillFSM_stateReg)
-      IF2_ICachePlugin_cacheRefillFSM_enumDef_waitAXI : begin
+    case(IF3_ICachePlugin_cacheRefillFSM_stateReg)
+      IF3_ICachePlugin_cacheRefillFSM_enumDef_waitAXI : begin
         ICachePlugin_iBus_ar_payload_len = 8'h0f;
       end
-      IF2_ICachePlugin_cacheRefillFSM_enumDef_readMem : begin
+      IF3_ICachePlugin_cacheRefillFSM_enumDef_readMem : begin
       end
-      IF2_ICachePlugin_cacheRefillFSM_enumDef_commit : begin
+      IF3_ICachePlugin_cacheRefillFSM_enumDef_commit : begin
       end
-      IF2_ICachePlugin_cacheRefillFSM_enumDef_finish : begin
+      IF3_ICachePlugin_cacheRefillFSM_enumDef_finish : begin
       end
       default : begin
       end
@@ -50937,15 +51150,15 @@ module MyCPUCore (
 
   always @(*) begin
     ICachePlugin_iBus_ar_payload_size = 3'bxxx;
-    case(IF2_ICachePlugin_cacheRefillFSM_stateReg)
-      IF2_ICachePlugin_cacheRefillFSM_enumDef_waitAXI : begin
+    case(IF3_ICachePlugin_cacheRefillFSM_stateReg)
+      IF3_ICachePlugin_cacheRefillFSM_enumDef_waitAXI : begin
         ICachePlugin_iBus_ar_payload_size = 3'b010;
       end
-      IF2_ICachePlugin_cacheRefillFSM_enumDef_readMem : begin
+      IF3_ICachePlugin_cacheRefillFSM_enumDef_readMem : begin
       end
-      IF2_ICachePlugin_cacheRefillFSM_enumDef_commit : begin
+      IF3_ICachePlugin_cacheRefillFSM_enumDef_commit : begin
       end
-      IF2_ICachePlugin_cacheRefillFSM_enumDef_finish : begin
+      IF3_ICachePlugin_cacheRefillFSM_enumDef_finish : begin
       end
       default : begin
       end
@@ -50954,15 +51167,15 @@ module MyCPUCore (
 
   always @(*) begin
     ICachePlugin_iBus_ar_payload_burst = 2'bxx;
-    case(IF2_ICachePlugin_cacheRefillFSM_stateReg)
-      IF2_ICachePlugin_cacheRefillFSM_enumDef_waitAXI : begin
+    case(IF3_ICachePlugin_cacheRefillFSM_stateReg)
+      IF3_ICachePlugin_cacheRefillFSM_enumDef_waitAXI : begin
         ICachePlugin_iBus_ar_payload_burst = 2'b01;
       end
-      IF2_ICachePlugin_cacheRefillFSM_enumDef_readMem : begin
+      IF3_ICachePlugin_cacheRefillFSM_enumDef_readMem : begin
       end
-      IF2_ICachePlugin_cacheRefillFSM_enumDef_commit : begin
+      IF3_ICachePlugin_cacheRefillFSM_enumDef_commit : begin
       end
-      IF2_ICachePlugin_cacheRefillFSM_enumDef_finish : begin
+      IF3_ICachePlugin_cacheRefillFSM_enumDef_finish : begin
       end
       default : begin
       end
@@ -50971,15 +51184,15 @@ module MyCPUCore (
 
   always @(*) begin
     ICachePlugin_iBus_ar_payload_lock = 1'bx;
-    case(IF2_ICachePlugin_cacheRefillFSM_stateReg)
-      IF2_ICachePlugin_cacheRefillFSM_enumDef_waitAXI : begin
+    case(IF3_ICachePlugin_cacheRefillFSM_stateReg)
+      IF3_ICachePlugin_cacheRefillFSM_enumDef_waitAXI : begin
         ICachePlugin_iBus_ar_payload_lock = 1'b0;
       end
-      IF2_ICachePlugin_cacheRefillFSM_enumDef_readMem : begin
+      IF3_ICachePlugin_cacheRefillFSM_enumDef_readMem : begin
       end
-      IF2_ICachePlugin_cacheRefillFSM_enumDef_commit : begin
+      IF3_ICachePlugin_cacheRefillFSM_enumDef_commit : begin
       end
-      IF2_ICachePlugin_cacheRefillFSM_enumDef_finish : begin
+      IF3_ICachePlugin_cacheRefillFSM_enumDef_finish : begin
       end
       default : begin
       end
@@ -50988,15 +51201,15 @@ module MyCPUCore (
 
   always @(*) begin
     ICachePlugin_iBus_ar_payload_cache = 4'bxxxx;
-    case(IF2_ICachePlugin_cacheRefillFSM_stateReg)
-      IF2_ICachePlugin_cacheRefillFSM_enumDef_waitAXI : begin
+    case(IF3_ICachePlugin_cacheRefillFSM_stateReg)
+      IF3_ICachePlugin_cacheRefillFSM_enumDef_waitAXI : begin
         ICachePlugin_iBus_ar_payload_cache = 4'b0000;
       end
-      IF2_ICachePlugin_cacheRefillFSM_enumDef_readMem : begin
+      IF3_ICachePlugin_cacheRefillFSM_enumDef_readMem : begin
       end
-      IF2_ICachePlugin_cacheRefillFSM_enumDef_commit : begin
+      IF3_ICachePlugin_cacheRefillFSM_enumDef_commit : begin
       end
-      IF2_ICachePlugin_cacheRefillFSM_enumDef_finish : begin
+      IF3_ICachePlugin_cacheRefillFSM_enumDef_finish : begin
       end
       default : begin
       end
@@ -51005,15 +51218,15 @@ module MyCPUCore (
 
   always @(*) begin
     ICachePlugin_iBus_ar_payload_prot = 3'bxxx;
-    case(IF2_ICachePlugin_cacheRefillFSM_stateReg)
-      IF2_ICachePlugin_cacheRefillFSM_enumDef_waitAXI : begin
+    case(IF3_ICachePlugin_cacheRefillFSM_stateReg)
+      IF3_ICachePlugin_cacheRefillFSM_enumDef_waitAXI : begin
         ICachePlugin_iBus_ar_payload_prot = 3'b000;
       end
-      IF2_ICachePlugin_cacheRefillFSM_enumDef_readMem : begin
+      IF3_ICachePlugin_cacheRefillFSM_enumDef_readMem : begin
       end
-      IF2_ICachePlugin_cacheRefillFSM_enumDef_commit : begin
+      IF3_ICachePlugin_cacheRefillFSM_enumDef_commit : begin
       end
-      IF2_ICachePlugin_cacheRefillFSM_enumDef_finish : begin
+      IF3_ICachePlugin_cacheRefillFSM_enumDef_finish : begin
       end
       default : begin
       end
@@ -51022,15 +51235,15 @@ module MyCPUCore (
 
   always @(*) begin
     ICachePlugin_iBus_r_ready = 1'b0;
-    case(IF2_ICachePlugin_cacheRefillFSM_stateReg)
-      IF2_ICachePlugin_cacheRefillFSM_enumDef_waitAXI : begin
+    case(IF3_ICachePlugin_cacheRefillFSM_stateReg)
+      IF3_ICachePlugin_cacheRefillFSM_enumDef_waitAXI : begin
       end
-      IF2_ICachePlugin_cacheRefillFSM_enumDef_readMem : begin
+      IF3_ICachePlugin_cacheRefillFSM_enumDef_readMem : begin
         ICachePlugin_iBus_r_ready = 1'b1;
       end
-      IF2_ICachePlugin_cacheRefillFSM_enumDef_commit : begin
+      IF3_ICachePlugin_cacheRefillFSM_enumDef_commit : begin
       end
-      IF2_ICachePlugin_cacheRefillFSM_enumDef_finish : begin
+      IF3_ICachePlugin_cacheRefillFSM_enumDef_finish : begin
       end
       default : begin
       end
@@ -51388,10 +51601,10 @@ module MyCPUCore (
       end
     end
     if(MULDIV_EXE_MulDivExecutePlugin_isDivision) begin
-      if(when_MulDivExecutePlugin_l147) begin
+      if(when_MulDivExecutePlugin_l158) begin
         MULDIV_EXE_arbitration_haltItself = 1'b1;
       end
-      if(when_MulDivExecutePlugin_l148) begin
+      if(when_MulDivExecutePlugin_l159) begin
         MULDIV_EXE_arbitration_haltItself = 1'b1;
       end
     end
@@ -62160,26 +62373,26 @@ module MyCPUCore (
   end
 
   assign CSRPlugin_DifftestCSRRegStateDMW1 = _zz_CSRPlugin_DifftestCSRRegStateDMW1;
-  assign _zz_when_MMUPlugin_l404 = ((MMUPlugin_TLBTable_1_E && ((MMUPlugin_TLBTable_1_ASID == MMUPlugin_ASID_ASID) || MMUPlugin_TLBTable_1_G)) && ((MMUPlugin_TLBTable_1_PS == 6'h0c) ? (MMUPlugin_TLBTable_1_VPPN == MMUPlugin_TLBEHI_VPPN) : (MMUPlugin_TLBTable_1_VPPN[18 : 9] == MMUPlugin_TLBEHI_VPPN[18 : 9])));
-  assign _zz_when_MMUPlugin_l404_1 = ((MMUPlugin_TLBTable_2_E && ((MMUPlugin_TLBTable_2_ASID == MMUPlugin_ASID_ASID) || MMUPlugin_TLBTable_2_G)) && ((MMUPlugin_TLBTable_2_PS == 6'h0c) ? (MMUPlugin_TLBTable_2_VPPN == MMUPlugin_TLBEHI_VPPN) : (MMUPlugin_TLBTable_2_VPPN[18 : 9] == MMUPlugin_TLBEHI_VPPN[18 : 9])));
-  assign _zz_when_MMUPlugin_l404_2 = ((MMUPlugin_TLBTable_3_E && ((MMUPlugin_TLBTable_3_ASID == MMUPlugin_ASID_ASID) || MMUPlugin_TLBTable_3_G)) && ((MMUPlugin_TLBTable_3_PS == 6'h0c) ? (MMUPlugin_TLBTable_3_VPPN == MMUPlugin_TLBEHI_VPPN) : (MMUPlugin_TLBTable_3_VPPN[18 : 9] == MMUPlugin_TLBEHI_VPPN[18 : 9])));
-  assign _zz_when_MMUPlugin_l404_3 = ((MMUPlugin_TLBTable_4_E && ((MMUPlugin_TLBTable_4_ASID == MMUPlugin_ASID_ASID) || MMUPlugin_TLBTable_4_G)) && ((MMUPlugin_TLBTable_4_PS == 6'h0c) ? (MMUPlugin_TLBTable_4_VPPN == MMUPlugin_TLBEHI_VPPN) : (MMUPlugin_TLBTable_4_VPPN[18 : 9] == MMUPlugin_TLBEHI_VPPN[18 : 9])));
-  assign _zz_when_MMUPlugin_l404_4 = ((MMUPlugin_TLBTable_5_E && ((MMUPlugin_TLBTable_5_ASID == MMUPlugin_ASID_ASID) || MMUPlugin_TLBTable_5_G)) && ((MMUPlugin_TLBTable_5_PS == 6'h0c) ? (MMUPlugin_TLBTable_5_VPPN == MMUPlugin_TLBEHI_VPPN) : (MMUPlugin_TLBTable_5_VPPN[18 : 9] == MMUPlugin_TLBEHI_VPPN[18 : 9])));
-  assign _zz_when_MMUPlugin_l404_5 = ((MMUPlugin_TLBTable_6_E && ((MMUPlugin_TLBTable_6_ASID == MMUPlugin_ASID_ASID) || MMUPlugin_TLBTable_6_G)) && ((MMUPlugin_TLBTable_6_PS == 6'h0c) ? (MMUPlugin_TLBTable_6_VPPN == MMUPlugin_TLBEHI_VPPN) : (MMUPlugin_TLBTable_6_VPPN[18 : 9] == MMUPlugin_TLBEHI_VPPN[18 : 9])));
-  assign _zz_when_MMUPlugin_l404_6 = ((MMUPlugin_TLBTable_7_E && ((MMUPlugin_TLBTable_7_ASID == MMUPlugin_ASID_ASID) || MMUPlugin_TLBTable_7_G)) && ((MMUPlugin_TLBTable_7_PS == 6'h0c) ? (MMUPlugin_TLBTable_7_VPPN == MMUPlugin_TLBEHI_VPPN) : (MMUPlugin_TLBTable_7_VPPN[18 : 9] == MMUPlugin_TLBEHI_VPPN[18 : 9])));
-  assign _zz_when_MMUPlugin_l404_7 = ((MMUPlugin_TLBTable_8_E && ((MMUPlugin_TLBTable_8_ASID == MMUPlugin_ASID_ASID) || MMUPlugin_TLBTable_8_G)) && ((MMUPlugin_TLBTable_8_PS == 6'h0c) ? (MMUPlugin_TLBTable_8_VPPN == MMUPlugin_TLBEHI_VPPN) : (MMUPlugin_TLBTable_8_VPPN[18 : 9] == MMUPlugin_TLBEHI_VPPN[18 : 9])));
-  assign _zz_when_MMUPlugin_l404_8 = ((MMUPlugin_TLBTable_9_E && ((MMUPlugin_TLBTable_9_ASID == MMUPlugin_ASID_ASID) || MMUPlugin_TLBTable_9_G)) && ((MMUPlugin_TLBTable_9_PS == 6'h0c) ? (MMUPlugin_TLBTable_9_VPPN == MMUPlugin_TLBEHI_VPPN) : (MMUPlugin_TLBTable_9_VPPN[18 : 9] == MMUPlugin_TLBEHI_VPPN[18 : 9])));
-  assign _zz_when_MMUPlugin_l404_9 = ((MMUPlugin_TLBTable_10_E && ((MMUPlugin_TLBTable_10_ASID == MMUPlugin_ASID_ASID) || MMUPlugin_TLBTable_10_G)) && ((MMUPlugin_TLBTable_10_PS == 6'h0c) ? (MMUPlugin_TLBTable_10_VPPN == MMUPlugin_TLBEHI_VPPN) : (MMUPlugin_TLBTable_10_VPPN[18 : 9] == MMUPlugin_TLBEHI_VPPN[18 : 9])));
-  assign _zz_when_MMUPlugin_l404_10 = ((MMUPlugin_TLBTable_11_E && ((MMUPlugin_TLBTable_11_ASID == MMUPlugin_ASID_ASID) || MMUPlugin_TLBTable_11_G)) && ((MMUPlugin_TLBTable_11_PS == 6'h0c) ? (MMUPlugin_TLBTable_11_VPPN == MMUPlugin_TLBEHI_VPPN) : (MMUPlugin_TLBTable_11_VPPN[18 : 9] == MMUPlugin_TLBEHI_VPPN[18 : 9])));
-  assign _zz_when_MMUPlugin_l404_11 = ((MMUPlugin_TLBTable_12_E && ((MMUPlugin_TLBTable_12_ASID == MMUPlugin_ASID_ASID) || MMUPlugin_TLBTable_12_G)) && ((MMUPlugin_TLBTable_12_PS == 6'h0c) ? (MMUPlugin_TLBTable_12_VPPN == MMUPlugin_TLBEHI_VPPN) : (MMUPlugin_TLBTable_12_VPPN[18 : 9] == MMUPlugin_TLBEHI_VPPN[18 : 9])));
-  assign _zz_when_MMUPlugin_l404_12 = ((MMUPlugin_TLBTable_13_E && ((MMUPlugin_TLBTable_13_ASID == MMUPlugin_ASID_ASID) || MMUPlugin_TLBTable_13_G)) && ((MMUPlugin_TLBTable_13_PS == 6'h0c) ? (MMUPlugin_TLBTable_13_VPPN == MMUPlugin_TLBEHI_VPPN) : (MMUPlugin_TLBTable_13_VPPN[18 : 9] == MMUPlugin_TLBEHI_VPPN[18 : 9])));
-  assign _zz_when_MMUPlugin_l404_13 = ((MMUPlugin_TLBTable_14_E && ((MMUPlugin_TLBTable_14_ASID == MMUPlugin_ASID_ASID) || MMUPlugin_TLBTable_14_G)) && ((MMUPlugin_TLBTable_14_PS == 6'h0c) ? (MMUPlugin_TLBTable_14_VPPN == MMUPlugin_TLBEHI_VPPN) : (MMUPlugin_TLBTable_14_VPPN[18 : 9] == MMUPlugin_TLBEHI_VPPN[18 : 9])));
-  assign _zz_when_MMUPlugin_l404_14 = ((MMUPlugin_TLBTable_15_E && ((MMUPlugin_TLBTable_15_ASID == MMUPlugin_ASID_ASID) || MMUPlugin_TLBTable_15_G)) && ((MMUPlugin_TLBTable_15_PS == 6'h0c) ? (MMUPlugin_TLBTable_15_VPPN == MMUPlugin_TLBEHI_VPPN) : (MMUPlugin_TLBTable_15_VPPN[18 : 9] == MMUPlugin_TLBEHI_VPPN[18 : 9])));
-  assign when_MMUPlugin_l404 = ({_zz_when_MMUPlugin_l404_14,{_zz_when_MMUPlugin_l404_13,{_zz_when_MMUPlugin_l404_12,{_zz_when_MMUPlugin_l404_11,{_zz_when_MMUPlugin_l404_10,{_zz_when_MMUPlugin_l404_9,{_zz_when_MMUPlugin_l404_8,{_zz_when_MMUPlugin_l404_7,{_zz_when_MMUPlugin_l404_6,{_zz_when_MMUPlugin_l404_15,_zz_when_MMUPlugin_l404_16}}}}}}}}}} != 16'h0);
-  assign _zz_MMUPlugin_TLBIDX_INDEX = (((((((_zz_when_MMUPlugin_l404 || _zz_when_MMUPlugin_l404_2) || _zz_when_MMUPlugin_l404_4) || _zz_when_MMUPlugin_l404_6) || _zz_when_MMUPlugin_l404_8) || _zz_when_MMUPlugin_l404_10) || _zz_when_MMUPlugin_l404_12) || _zz_when_MMUPlugin_l404_14);
-  assign _zz_MMUPlugin_TLBIDX_INDEX_1 = (((((((_zz_when_MMUPlugin_l404_1 || _zz_when_MMUPlugin_l404_2) || _zz_when_MMUPlugin_l404_5) || _zz_when_MMUPlugin_l404_6) || _zz_when_MMUPlugin_l404_9) || _zz_when_MMUPlugin_l404_10) || _zz_when_MMUPlugin_l404_13) || _zz_when_MMUPlugin_l404_14);
-  assign _zz_MMUPlugin_TLBIDX_INDEX_2 = (((((((_zz_when_MMUPlugin_l404_3 || _zz_when_MMUPlugin_l404_4) || _zz_when_MMUPlugin_l404_5) || _zz_when_MMUPlugin_l404_6) || _zz_when_MMUPlugin_l404_11) || _zz_when_MMUPlugin_l404_12) || _zz_when_MMUPlugin_l404_13) || _zz_when_MMUPlugin_l404_14);
-  assign _zz_MMUPlugin_TLBIDX_INDEX_3 = (((((((_zz_when_MMUPlugin_l404_7 || _zz_when_MMUPlugin_l404_8) || _zz_when_MMUPlugin_l404_9) || _zz_when_MMUPlugin_l404_10) || _zz_when_MMUPlugin_l404_11) || _zz_when_MMUPlugin_l404_12) || _zz_when_MMUPlugin_l404_13) || _zz_when_MMUPlugin_l404_14);
+  assign _zz_when_MMUPlugin_l445 = ((MMUPlugin_TLBTable_1_E && ((MMUPlugin_TLBTable_1_ASID == MMUPlugin_ASID_ASID) || MMUPlugin_TLBTable_1_G)) && ((MMUPlugin_TLBTable_1_PS == 6'h0c) ? (MMUPlugin_TLBTable_1_VPPN == MMUPlugin_TLBEHI_VPPN) : (MMUPlugin_TLBTable_1_VPPN[18 : 9] == MMUPlugin_TLBEHI_VPPN[18 : 9])));
+  assign _zz_when_MMUPlugin_l445_1 = ((MMUPlugin_TLBTable_2_E && ((MMUPlugin_TLBTable_2_ASID == MMUPlugin_ASID_ASID) || MMUPlugin_TLBTable_2_G)) && ((MMUPlugin_TLBTable_2_PS == 6'h0c) ? (MMUPlugin_TLBTable_2_VPPN == MMUPlugin_TLBEHI_VPPN) : (MMUPlugin_TLBTable_2_VPPN[18 : 9] == MMUPlugin_TLBEHI_VPPN[18 : 9])));
+  assign _zz_when_MMUPlugin_l445_2 = ((MMUPlugin_TLBTable_3_E && ((MMUPlugin_TLBTable_3_ASID == MMUPlugin_ASID_ASID) || MMUPlugin_TLBTable_3_G)) && ((MMUPlugin_TLBTable_3_PS == 6'h0c) ? (MMUPlugin_TLBTable_3_VPPN == MMUPlugin_TLBEHI_VPPN) : (MMUPlugin_TLBTable_3_VPPN[18 : 9] == MMUPlugin_TLBEHI_VPPN[18 : 9])));
+  assign _zz_when_MMUPlugin_l445_3 = ((MMUPlugin_TLBTable_4_E && ((MMUPlugin_TLBTable_4_ASID == MMUPlugin_ASID_ASID) || MMUPlugin_TLBTable_4_G)) && ((MMUPlugin_TLBTable_4_PS == 6'h0c) ? (MMUPlugin_TLBTable_4_VPPN == MMUPlugin_TLBEHI_VPPN) : (MMUPlugin_TLBTable_4_VPPN[18 : 9] == MMUPlugin_TLBEHI_VPPN[18 : 9])));
+  assign _zz_when_MMUPlugin_l445_4 = ((MMUPlugin_TLBTable_5_E && ((MMUPlugin_TLBTable_5_ASID == MMUPlugin_ASID_ASID) || MMUPlugin_TLBTable_5_G)) && ((MMUPlugin_TLBTable_5_PS == 6'h0c) ? (MMUPlugin_TLBTable_5_VPPN == MMUPlugin_TLBEHI_VPPN) : (MMUPlugin_TLBTable_5_VPPN[18 : 9] == MMUPlugin_TLBEHI_VPPN[18 : 9])));
+  assign _zz_when_MMUPlugin_l445_5 = ((MMUPlugin_TLBTable_6_E && ((MMUPlugin_TLBTable_6_ASID == MMUPlugin_ASID_ASID) || MMUPlugin_TLBTable_6_G)) && ((MMUPlugin_TLBTable_6_PS == 6'h0c) ? (MMUPlugin_TLBTable_6_VPPN == MMUPlugin_TLBEHI_VPPN) : (MMUPlugin_TLBTable_6_VPPN[18 : 9] == MMUPlugin_TLBEHI_VPPN[18 : 9])));
+  assign _zz_when_MMUPlugin_l445_6 = ((MMUPlugin_TLBTable_7_E && ((MMUPlugin_TLBTable_7_ASID == MMUPlugin_ASID_ASID) || MMUPlugin_TLBTable_7_G)) && ((MMUPlugin_TLBTable_7_PS == 6'h0c) ? (MMUPlugin_TLBTable_7_VPPN == MMUPlugin_TLBEHI_VPPN) : (MMUPlugin_TLBTable_7_VPPN[18 : 9] == MMUPlugin_TLBEHI_VPPN[18 : 9])));
+  assign _zz_when_MMUPlugin_l445_7 = ((MMUPlugin_TLBTable_8_E && ((MMUPlugin_TLBTable_8_ASID == MMUPlugin_ASID_ASID) || MMUPlugin_TLBTable_8_G)) && ((MMUPlugin_TLBTable_8_PS == 6'h0c) ? (MMUPlugin_TLBTable_8_VPPN == MMUPlugin_TLBEHI_VPPN) : (MMUPlugin_TLBTable_8_VPPN[18 : 9] == MMUPlugin_TLBEHI_VPPN[18 : 9])));
+  assign _zz_when_MMUPlugin_l445_8 = ((MMUPlugin_TLBTable_9_E && ((MMUPlugin_TLBTable_9_ASID == MMUPlugin_ASID_ASID) || MMUPlugin_TLBTable_9_G)) && ((MMUPlugin_TLBTable_9_PS == 6'h0c) ? (MMUPlugin_TLBTable_9_VPPN == MMUPlugin_TLBEHI_VPPN) : (MMUPlugin_TLBTable_9_VPPN[18 : 9] == MMUPlugin_TLBEHI_VPPN[18 : 9])));
+  assign _zz_when_MMUPlugin_l445_9 = ((MMUPlugin_TLBTable_10_E && ((MMUPlugin_TLBTable_10_ASID == MMUPlugin_ASID_ASID) || MMUPlugin_TLBTable_10_G)) && ((MMUPlugin_TLBTable_10_PS == 6'h0c) ? (MMUPlugin_TLBTable_10_VPPN == MMUPlugin_TLBEHI_VPPN) : (MMUPlugin_TLBTable_10_VPPN[18 : 9] == MMUPlugin_TLBEHI_VPPN[18 : 9])));
+  assign _zz_when_MMUPlugin_l445_10 = ((MMUPlugin_TLBTable_11_E && ((MMUPlugin_TLBTable_11_ASID == MMUPlugin_ASID_ASID) || MMUPlugin_TLBTable_11_G)) && ((MMUPlugin_TLBTable_11_PS == 6'h0c) ? (MMUPlugin_TLBTable_11_VPPN == MMUPlugin_TLBEHI_VPPN) : (MMUPlugin_TLBTable_11_VPPN[18 : 9] == MMUPlugin_TLBEHI_VPPN[18 : 9])));
+  assign _zz_when_MMUPlugin_l445_11 = ((MMUPlugin_TLBTable_12_E && ((MMUPlugin_TLBTable_12_ASID == MMUPlugin_ASID_ASID) || MMUPlugin_TLBTable_12_G)) && ((MMUPlugin_TLBTable_12_PS == 6'h0c) ? (MMUPlugin_TLBTable_12_VPPN == MMUPlugin_TLBEHI_VPPN) : (MMUPlugin_TLBTable_12_VPPN[18 : 9] == MMUPlugin_TLBEHI_VPPN[18 : 9])));
+  assign _zz_when_MMUPlugin_l445_12 = ((MMUPlugin_TLBTable_13_E && ((MMUPlugin_TLBTable_13_ASID == MMUPlugin_ASID_ASID) || MMUPlugin_TLBTable_13_G)) && ((MMUPlugin_TLBTable_13_PS == 6'h0c) ? (MMUPlugin_TLBTable_13_VPPN == MMUPlugin_TLBEHI_VPPN) : (MMUPlugin_TLBTable_13_VPPN[18 : 9] == MMUPlugin_TLBEHI_VPPN[18 : 9])));
+  assign _zz_when_MMUPlugin_l445_13 = ((MMUPlugin_TLBTable_14_E && ((MMUPlugin_TLBTable_14_ASID == MMUPlugin_ASID_ASID) || MMUPlugin_TLBTable_14_G)) && ((MMUPlugin_TLBTable_14_PS == 6'h0c) ? (MMUPlugin_TLBTable_14_VPPN == MMUPlugin_TLBEHI_VPPN) : (MMUPlugin_TLBTable_14_VPPN[18 : 9] == MMUPlugin_TLBEHI_VPPN[18 : 9])));
+  assign _zz_when_MMUPlugin_l445_14 = ((MMUPlugin_TLBTable_15_E && ((MMUPlugin_TLBTable_15_ASID == MMUPlugin_ASID_ASID) || MMUPlugin_TLBTable_15_G)) && ((MMUPlugin_TLBTable_15_PS == 6'h0c) ? (MMUPlugin_TLBTable_15_VPPN == MMUPlugin_TLBEHI_VPPN) : (MMUPlugin_TLBTable_15_VPPN[18 : 9] == MMUPlugin_TLBEHI_VPPN[18 : 9])));
+  assign when_MMUPlugin_l445 = ({_zz_when_MMUPlugin_l445_14,{_zz_when_MMUPlugin_l445_13,{_zz_when_MMUPlugin_l445_12,{_zz_when_MMUPlugin_l445_11,{_zz_when_MMUPlugin_l445_10,{_zz_when_MMUPlugin_l445_9,{_zz_when_MMUPlugin_l445_8,{_zz_when_MMUPlugin_l445_7,{_zz_when_MMUPlugin_l445_6,{_zz_when_MMUPlugin_l445_15,_zz_when_MMUPlugin_l445_16}}}}}}}}}} != 16'h0);
+  assign _zz_MMUPlugin_TLBIDX_INDEX = (((((((_zz_when_MMUPlugin_l445 || _zz_when_MMUPlugin_l445_2) || _zz_when_MMUPlugin_l445_4) || _zz_when_MMUPlugin_l445_6) || _zz_when_MMUPlugin_l445_8) || _zz_when_MMUPlugin_l445_10) || _zz_when_MMUPlugin_l445_12) || _zz_when_MMUPlugin_l445_14);
+  assign _zz_MMUPlugin_TLBIDX_INDEX_1 = (((((((_zz_when_MMUPlugin_l445_1 || _zz_when_MMUPlugin_l445_2) || _zz_when_MMUPlugin_l445_5) || _zz_when_MMUPlugin_l445_6) || _zz_when_MMUPlugin_l445_9) || _zz_when_MMUPlugin_l445_10) || _zz_when_MMUPlugin_l445_13) || _zz_when_MMUPlugin_l445_14);
+  assign _zz_MMUPlugin_TLBIDX_INDEX_2 = (((((((_zz_when_MMUPlugin_l445_3 || _zz_when_MMUPlugin_l445_4) || _zz_when_MMUPlugin_l445_5) || _zz_when_MMUPlugin_l445_6) || _zz_when_MMUPlugin_l445_11) || _zz_when_MMUPlugin_l445_12) || _zz_when_MMUPlugin_l445_13) || _zz_when_MMUPlugin_l445_14);
+  assign _zz_MMUPlugin_TLBIDX_INDEX_3 = (((((((_zz_when_MMUPlugin_l445_7 || _zz_when_MMUPlugin_l445_8) || _zz_when_MMUPlugin_l445_9) || _zz_when_MMUPlugin_l445_10) || _zz_when_MMUPlugin_l445_11) || _zz_when_MMUPlugin_l445_12) || _zz_when_MMUPlugin_l445_13) || _zz_when_MMUPlugin_l445_14);
   assign _zz_MMUPlugin_TLBIDX_PS = MMUPlugin_TLBIDX_INDEX;
   assign _zz_MMUPlugin_TLBELO0_G = _zz__zz_MMUPlugin_TLBELO0_G;
   assign _zz_278 = ({15'd0,1'b1} <<< MMUPlugin_TLBIDX_INDEX);
@@ -62199,7 +62412,7 @@ module MyCPUCore (
   assign _zz_292 = _zz_278[13];
   assign _zz_293 = _zz_278[14];
   assign _zz_294 = _zz_278[15];
-  assign when_MMUPlugin_l455 = (ExceptionHandlerPlugin_ESTAT_ECODE == 6'h3f);
+  assign when_MMUPlugin_l496 = (ExceptionHandlerPlugin_ESTAT_ECODE == 6'h3f);
   assign _zz_MMUPlugin_TLBTable_0_E = (! MMUPlugin_TLBIDX_NE);
   assign _zz_MMUPlugin_TLBTable_0_G = (MMUPlugin_TLBELO0_G && MMUPlugin_TLBELO1_G);
   assign _zz_MMUPlugin_TLBTable_0_PS = MMUPlugin_TLBIDX_PS;
@@ -62220,7 +62433,7 @@ module MyCPUCore (
   assign _zz_309 = _zz_295[13];
   assign _zz_310 = _zz_295[14];
   assign _zz_311 = _zz_295[15];
-  assign when_MMUPlugin_l479 = (ExceptionHandlerPlugin_ESTAT_ECODE == 6'h3f);
+  assign when_MMUPlugin_l520 = (ExceptionHandlerPlugin_ESTAT_ECODE == 6'h3f);
   assign _zz_MMUPlugin_TLBTable_0_E_1 = (! MMUPlugin_TLBIDX_NE);
   assign _zz_MMUPlugin_TLBTable_0_PS_1 = MMUPlugin_TLBIDX_PS;
   assign _zz_MMUPlugin_TLBTable_0_G_1 = (MMUPlugin_TLBELO0_G && MMUPlugin_TLBELO1_G);
@@ -62666,58 +62879,58 @@ module MyCPUCore (
     end
   end
 
-  assign IF2_FetchBufferPlugin_pcWordOffset = IF2_PC[5 : 2];
+  assign IF3_FetchBufferPlugin_pcWordOffset = IF3_PC[5 : 2];
   always @(*) begin
-    IF2_FetchBufferPlugin_isStall = 1'b0;
+    IF3_FetchBufferPlugin_isStall = 1'b0;
     if(when_FetchBufferPlugin_l75) begin
-      IF2_FetchBufferPlugin_isStall = 1'b1;
+      IF3_FetchBufferPlugin_isStall = 1'b1;
     end
     if(when_FetchBufferPlugin_l75_1) begin
-      IF2_FetchBufferPlugin_isStall = 1'b1;
+      IF3_FetchBufferPlugin_isStall = 1'b1;
     end
     if(when_FetchBufferPlugin_l75_2) begin
-      IF2_FetchBufferPlugin_isStall = 1'b1;
+      IF3_FetchBufferPlugin_isStall = 1'b1;
     end
     if(when_FetchBufferPlugin_l75_3) begin
-      IF2_FetchBufferPlugin_isStall = 1'b1;
+      IF3_FetchBufferPlugin_isStall = 1'b1;
     end
   end
 
-  assign _zz_when_FetchBufferPlugin_l75 = (IF2_FETCH_PACKET_insts_0_valid && IF2_INSTRUCTION_MASK[0]);
-  assign FetchBufferPlugin_bufferFIFO_io_push_0_payload_pc = (IF2_FETCH_PACKET_pc + 32'h0);
-  assign FetchBufferPlugin_bufferFIFO_io_push_0_payload_predInfo_predictBranch = IF2_BRANCH_MASK[0];
-  assign FetchBufferPlugin_bufferFIFO_io_push_0_payload_predInfo_predictTaken = IF2_TAKEN_MASK[0];
-  assign when_FetchBufferPlugin_l75 = ((IF2_arbitration_isValid && _zz_when_FetchBufferPlugin_l75) && (! FetchBufferPlugin_bufferFIFO_io_push_0_ready));
-  assign FetchBufferPlugin_bufferFIFO_io_push_0_valid = ((IF2_arbitration_isValid && (! IF2_arbitration_isStuck)) && _zz_when_FetchBufferPlugin_l75);
-  assign _zz_when_FetchBufferPlugin_l75_1 = (IF2_FETCH_PACKET_insts_1_valid && IF2_INSTRUCTION_MASK[1]);
-  assign FetchBufferPlugin_bufferFIFO_io_push_1_payload_pc = (IF2_FETCH_PACKET_pc + 32'h00000004);
-  assign FetchBufferPlugin_bufferFIFO_io_push_1_payload_predInfo_predictBranch = IF2_BRANCH_MASK[1];
-  assign FetchBufferPlugin_bufferFIFO_io_push_1_payload_predInfo_predictTaken = IF2_TAKEN_MASK[1];
-  assign when_FetchBufferPlugin_l75_1 = ((IF2_arbitration_isValid && _zz_when_FetchBufferPlugin_l75_1) && (! FetchBufferPlugin_bufferFIFO_io_push_1_ready));
-  assign FetchBufferPlugin_bufferFIFO_io_push_1_valid = ((IF2_arbitration_isValid && (! IF2_arbitration_isStuck)) && _zz_when_FetchBufferPlugin_l75_1);
-  assign _zz_when_FetchBufferPlugin_l75_2 = (IF2_FETCH_PACKET_insts_2_valid && IF2_INSTRUCTION_MASK[2]);
-  assign FetchBufferPlugin_bufferFIFO_io_push_2_payload_pc = (IF2_FETCH_PACKET_pc + 32'h00000008);
-  assign FetchBufferPlugin_bufferFIFO_io_push_2_payload_predInfo_predictBranch = IF2_BRANCH_MASK[2];
-  assign FetchBufferPlugin_bufferFIFO_io_push_2_payload_predInfo_predictTaken = IF2_TAKEN_MASK[2];
-  assign when_FetchBufferPlugin_l75_2 = ((IF2_arbitration_isValid && _zz_when_FetchBufferPlugin_l75_2) && (! FetchBufferPlugin_bufferFIFO_io_push_2_ready));
-  assign FetchBufferPlugin_bufferFIFO_io_push_2_valid = ((IF2_arbitration_isValid && (! IF2_arbitration_isStuck)) && _zz_when_FetchBufferPlugin_l75_2);
-  assign _zz_when_FetchBufferPlugin_l75_3 = (IF2_FETCH_PACKET_insts_3_valid && IF2_INSTRUCTION_MASK[3]);
-  assign FetchBufferPlugin_bufferFIFO_io_push_3_payload_pc = (IF2_FETCH_PACKET_pc + 32'h0000000c);
-  assign FetchBufferPlugin_bufferFIFO_io_push_3_payload_predInfo_predictBranch = IF2_BRANCH_MASK[3];
-  assign FetchBufferPlugin_bufferFIFO_io_push_3_payload_predInfo_predictTaken = IF2_TAKEN_MASK[3];
-  assign when_FetchBufferPlugin_l75_3 = ((IF2_arbitration_isValid && _zz_when_FetchBufferPlugin_l75_3) && (! FetchBufferPlugin_bufferFIFO_io_push_3_ready));
-  assign FetchBufferPlugin_bufferFIFO_io_push_3_valid = ((IF2_arbitration_isValid && (! IF2_arbitration_isStuck)) && _zz_when_FetchBufferPlugin_l75_3);
+  assign _zz_when_FetchBufferPlugin_l75 = (IF3_FETCH_PACKET_insts_0_valid && IF3_INSTRUCTION_MASK[0]);
+  assign FetchBufferPlugin_bufferFIFO_io_push_0_payload_pc = (IF3_FETCH_PACKET_pc + 32'h0);
+  assign FetchBufferPlugin_bufferFIFO_io_push_0_payload_predInfo_predictBranch = IF3_BRANCH_MASK[0];
+  assign FetchBufferPlugin_bufferFIFO_io_push_0_payload_predInfo_predictTaken = IF3_TAKEN_MASK[0];
+  assign when_FetchBufferPlugin_l75 = ((IF3_arbitration_isValid && _zz_when_FetchBufferPlugin_l75) && (! FetchBufferPlugin_bufferFIFO_io_push_0_ready));
+  assign FetchBufferPlugin_bufferFIFO_io_push_0_valid = ((IF3_arbitration_isValid && (! IF3_arbitration_isStuck)) && _zz_when_FetchBufferPlugin_l75);
+  assign _zz_when_FetchBufferPlugin_l75_1 = (IF3_FETCH_PACKET_insts_1_valid && IF3_INSTRUCTION_MASK[1]);
+  assign FetchBufferPlugin_bufferFIFO_io_push_1_payload_pc = (IF3_FETCH_PACKET_pc + 32'h00000004);
+  assign FetchBufferPlugin_bufferFIFO_io_push_1_payload_predInfo_predictBranch = IF3_BRANCH_MASK[1];
+  assign FetchBufferPlugin_bufferFIFO_io_push_1_payload_predInfo_predictTaken = IF3_TAKEN_MASK[1];
+  assign when_FetchBufferPlugin_l75_1 = ((IF3_arbitration_isValid && _zz_when_FetchBufferPlugin_l75_1) && (! FetchBufferPlugin_bufferFIFO_io_push_1_ready));
+  assign FetchBufferPlugin_bufferFIFO_io_push_1_valid = ((IF3_arbitration_isValid && (! IF3_arbitration_isStuck)) && _zz_when_FetchBufferPlugin_l75_1);
+  assign _zz_when_FetchBufferPlugin_l75_2 = (IF3_FETCH_PACKET_insts_2_valid && IF3_INSTRUCTION_MASK[2]);
+  assign FetchBufferPlugin_bufferFIFO_io_push_2_payload_pc = (IF3_FETCH_PACKET_pc + 32'h00000008);
+  assign FetchBufferPlugin_bufferFIFO_io_push_2_payload_predInfo_predictBranch = IF3_BRANCH_MASK[2];
+  assign FetchBufferPlugin_bufferFIFO_io_push_2_payload_predInfo_predictTaken = IF3_TAKEN_MASK[2];
+  assign when_FetchBufferPlugin_l75_2 = ((IF3_arbitration_isValid && _zz_when_FetchBufferPlugin_l75_2) && (! FetchBufferPlugin_bufferFIFO_io_push_2_ready));
+  assign FetchBufferPlugin_bufferFIFO_io_push_2_valid = ((IF3_arbitration_isValid && (! IF3_arbitration_isStuck)) && _zz_when_FetchBufferPlugin_l75_2);
+  assign _zz_when_FetchBufferPlugin_l75_3 = (IF3_FETCH_PACKET_insts_3_valid && IF3_INSTRUCTION_MASK[3]);
+  assign FetchBufferPlugin_bufferFIFO_io_push_3_payload_pc = (IF3_FETCH_PACKET_pc + 32'h0000000c);
+  assign FetchBufferPlugin_bufferFIFO_io_push_3_payload_predInfo_predictBranch = IF3_BRANCH_MASK[3];
+  assign FetchBufferPlugin_bufferFIFO_io_push_3_payload_predInfo_predictTaken = IF3_TAKEN_MASK[3];
+  assign when_FetchBufferPlugin_l75_3 = ((IF3_arbitration_isValid && _zz_when_FetchBufferPlugin_l75_3) && (! FetchBufferPlugin_bufferFIFO_io_push_3_ready));
+  assign FetchBufferPlugin_bufferFIFO_io_push_3_valid = ((IF3_arbitration_isValid && (! IF3_arbitration_isStuck)) && _zz_when_FetchBufferPlugin_l75_3);
   always @(*) begin
     ICachePlugin_doRefetch = 1'b0;
-    case(IF2_ICachePlugin_cacheRefillFSM_stateReg)
-      IF2_ICachePlugin_cacheRefillFSM_enumDef_waitAXI : begin
+    case(IF3_ICachePlugin_cacheRefillFSM_stateReg)
+      IF3_ICachePlugin_cacheRefillFSM_enumDef_waitAXI : begin
       end
-      IF2_ICachePlugin_cacheRefillFSM_enumDef_readMem : begin
+      IF3_ICachePlugin_cacheRefillFSM_enumDef_readMem : begin
       end
-      IF2_ICachePlugin_cacheRefillFSM_enumDef_commit : begin
+      IF3_ICachePlugin_cacheRefillFSM_enumDef_commit : begin
       end
-      IF2_ICachePlugin_cacheRefillFSM_enumDef_finish : begin
-        if(when_ICachePlugin_l228) begin
+      IF3_ICachePlugin_cacheRefillFSM_enumDef_finish : begin
+        if(when_ICachePlugin_l230) begin
           ICachePlugin_doRefetch = (! IF1_arbitration_isFlushed);
         end
       end
@@ -62733,25 +62946,25 @@ module MyCPUCore (
   assign ICachePlugin_dataRAMs_0_io_read_cmd_payload = ICachePlugin_rAddr[11 : 6];
   assign ICachePlugin_dataRAMs_1_io_read_cmd_payload = ICachePlugin_rAddr[11 : 6];
   assign _zz_IF1_ICACHE_VALIDS_0 = IF1_PC[11 : 6];
-  assign IF2_ICachePlugin_reqValid = (IF2_arbitration_isValidOnEntry && (! _zz_IF2_ICachePlugin_fetchPacket_except_valid));
-  assign IF2_ICachePlugin_reqCommit = (IF2_ICachePlugin_reqValid && (! IF2_arbitration_isStuck));
-  assign IF2_ICachePlugin_pcWordOffset = IF2_PC[5 : 2];
-  assign IF2_ICachePlugin_idx = IF2_PC[11 : 6];
-  assign IF2_ICachePlugin_tag = IF2_PC_PHYSICAL[31 : 12];
+  assign IF3_ICachePlugin_reqValid = (IF3_arbitration_isValidOnEntry && (! _zz_IF3_ICachePlugin_fetchPacket_except_valid));
+  assign IF3_ICachePlugin_reqCommit = (IF3_ICachePlugin_reqValid && (! IF3_arbitration_isStuck));
+  assign IF3_ICachePlugin_pcWordOffset = IF3_PC[5 : 2];
+  assign IF3_ICachePlugin_idx = IF3_PC[11 : 6];
+  assign IF3_ICachePlugin_tag = IF3_PC_PHYSICAL[31 : 12];
   always @(*) begin
     ICachePlugin_infoRAM_io_write_valid = 1'b0;
-    if(when_ICachePlugin_l123) begin
+    if(when_ICachePlugin_l125) begin
       ICachePlugin_infoRAM_io_write_valid = 1'b1;
     end
-    case(IF2_ICachePlugin_cacheRefillFSM_stateReg)
-      IF2_ICachePlugin_cacheRefillFSM_enumDef_waitAXI : begin
+    case(IF3_ICachePlugin_cacheRefillFSM_stateReg)
+      IF3_ICachePlugin_cacheRefillFSM_enumDef_waitAXI : begin
       end
-      IF2_ICachePlugin_cacheRefillFSM_enumDef_readMem : begin
+      IF3_ICachePlugin_cacheRefillFSM_enumDef_readMem : begin
       end
-      IF2_ICachePlugin_cacheRefillFSM_enumDef_commit : begin
+      IF3_ICachePlugin_cacheRefillFSM_enumDef_commit : begin
         ICachePlugin_infoRAM_io_write_valid = 1'b1;
       end
-      IF2_ICachePlugin_cacheRefillFSM_enumDef_finish : begin
+      IF3_ICachePlugin_cacheRefillFSM_enumDef_finish : begin
       end
       default : begin
       end
@@ -62760,18 +62973,18 @@ module MyCPUCore (
 
   always @(*) begin
     ICachePlugin_infoRAM_io_write_payload_address = 6'bxxxxxx;
-    if(when_ICachePlugin_l123) begin
-      ICachePlugin_infoRAM_io_write_payload_address = IF2_ICachePlugin_idx;
+    if(when_ICachePlugin_l125) begin
+      ICachePlugin_infoRAM_io_write_payload_address = IF3_ICachePlugin_idx;
     end
-    case(IF2_ICachePlugin_cacheRefillFSM_stateReg)
-      IF2_ICachePlugin_cacheRefillFSM_enumDef_waitAXI : begin
+    case(IF3_ICachePlugin_cacheRefillFSM_stateReg)
+      IF3_ICachePlugin_cacheRefillFSM_enumDef_waitAXI : begin
       end
-      IF2_ICachePlugin_cacheRefillFSM_enumDef_readMem : begin
+      IF3_ICachePlugin_cacheRefillFSM_enumDef_readMem : begin
       end
-      IF2_ICachePlugin_cacheRefillFSM_enumDef_commit : begin
-        ICachePlugin_infoRAM_io_write_payload_address = IF2_ICachePlugin_idx;
+      IF3_ICachePlugin_cacheRefillFSM_enumDef_commit : begin
+        ICachePlugin_infoRAM_io_write_payload_address = IF3_ICachePlugin_idx;
       end
-      IF2_ICachePlugin_cacheRefillFSM_enumDef_finish : begin
+      IF3_ICachePlugin_cacheRefillFSM_enumDef_finish : begin
       end
       default : begin
       end
@@ -62780,18 +62993,18 @@ module MyCPUCore (
 
   always @(*) begin
     ICachePlugin_infoRAM_io_write_payload_data_lru = 1'bx;
-    if(when_ICachePlugin_l123) begin
+    if(when_ICachePlugin_l125) begin
       ICachePlugin_infoRAM_io_write_payload_data_lru = _zz_io_write_payload_data_lru;
     end
-    case(IF2_ICachePlugin_cacheRefillFSM_stateReg)
-      IF2_ICachePlugin_cacheRefillFSM_enumDef_waitAXI : begin
+    case(IF3_ICachePlugin_cacheRefillFSM_stateReg)
+      IF3_ICachePlugin_cacheRefillFSM_enumDef_waitAXI : begin
       end
-      IF2_ICachePlugin_cacheRefillFSM_enumDef_readMem : begin
+      IF3_ICachePlugin_cacheRefillFSM_enumDef_readMem : begin
       end
-      IF2_ICachePlugin_cacheRefillFSM_enumDef_commit : begin
-        ICachePlugin_infoRAM_io_write_payload_data_lru = (~ IF2_ICACHE_INFO_lru);
+      IF3_ICachePlugin_cacheRefillFSM_enumDef_commit : begin
+        ICachePlugin_infoRAM_io_write_payload_data_lru = (~ IF3_ICACHE_INFO_lru);
       end
-      IF2_ICachePlugin_cacheRefillFSM_enumDef_finish : begin
+      IF3_ICachePlugin_cacheRefillFSM_enumDef_finish : begin
       end
       default : begin
       end
@@ -62800,18 +63013,18 @@ module MyCPUCore (
 
   always @(*) begin
     ICachePlugin_infoRAM_io_write_payload_data_tags_0 = 20'bxxxxxxxxxxxxxxxxxxxx;
-    if(when_ICachePlugin_l123) begin
-      ICachePlugin_infoRAM_io_write_payload_data_tags_0 = IF2_ICACHE_INFO_tags_0;
+    if(when_ICachePlugin_l125) begin
+      ICachePlugin_infoRAM_io_write_payload_data_tags_0 = IF3_ICACHE_INFO_tags_0;
     end
-    case(IF2_ICachePlugin_cacheRefillFSM_stateReg)
-      IF2_ICachePlugin_cacheRefillFSM_enumDef_waitAXI : begin
+    case(IF3_ICachePlugin_cacheRefillFSM_stateReg)
+      IF3_ICachePlugin_cacheRefillFSM_enumDef_waitAXI : begin
       end
-      IF2_ICachePlugin_cacheRefillFSM_enumDef_readMem : begin
+      IF3_ICachePlugin_cacheRefillFSM_enumDef_readMem : begin
       end
-      IF2_ICachePlugin_cacheRefillFSM_enumDef_commit : begin
+      IF3_ICachePlugin_cacheRefillFSM_enumDef_commit : begin
         ICachePlugin_infoRAM_io_write_payload_data_tags_0 = _zz_io_write_payload_data_tags_0;
       end
-      IF2_ICachePlugin_cacheRefillFSM_enumDef_finish : begin
+      IF3_ICachePlugin_cacheRefillFSM_enumDef_finish : begin
       end
       default : begin
       end
@@ -62820,18 +63033,18 @@ module MyCPUCore (
 
   always @(*) begin
     ICachePlugin_infoRAM_io_write_payload_data_tags_1 = 20'bxxxxxxxxxxxxxxxxxxxx;
-    if(when_ICachePlugin_l123) begin
-      ICachePlugin_infoRAM_io_write_payload_data_tags_1 = IF2_ICACHE_INFO_tags_1;
+    if(when_ICachePlugin_l125) begin
+      ICachePlugin_infoRAM_io_write_payload_data_tags_1 = IF3_ICACHE_INFO_tags_1;
     end
-    case(IF2_ICachePlugin_cacheRefillFSM_stateReg)
-      IF2_ICachePlugin_cacheRefillFSM_enumDef_waitAXI : begin
+    case(IF3_ICachePlugin_cacheRefillFSM_stateReg)
+      IF3_ICachePlugin_cacheRefillFSM_enumDef_waitAXI : begin
       end
-      IF2_ICachePlugin_cacheRefillFSM_enumDef_readMem : begin
+      IF3_ICachePlugin_cacheRefillFSM_enumDef_readMem : begin
       end
-      IF2_ICachePlugin_cacheRefillFSM_enumDef_commit : begin
+      IF3_ICachePlugin_cacheRefillFSM_enumDef_commit : begin
         ICachePlugin_infoRAM_io_write_payload_data_tags_1 = _zz_io_write_payload_data_tags_1;
       end
-      IF2_ICachePlugin_cacheRefillFSM_enumDef_finish : begin
+      IF3_ICachePlugin_cacheRefillFSM_enumDef_finish : begin
       end
       default : begin
       end
@@ -62840,22 +63053,22 @@ module MyCPUCore (
 
   always @(*) begin
     ICachePlugin_dataRAMs_0_io_write_valid = 1'b0;
-    case(IF2_ICachePlugin_cacheRefillFSM_stateReg)
-      IF2_ICachePlugin_cacheRefillFSM_enumDef_waitAXI : begin
+    case(IF3_ICachePlugin_cacheRefillFSM_stateReg)
+      IF3_ICachePlugin_cacheRefillFSM_enumDef_waitAXI : begin
       end
-      IF2_ICachePlugin_cacheRefillFSM_enumDef_readMem : begin
-        if(IF2_ICachePlugin_cacheRefillFSM_refillValid) begin
+      IF3_ICachePlugin_cacheRefillFSM_enumDef_readMem : begin
+        if(IF3_ICachePlugin_cacheRefillFSM_refillValid) begin
           if(_zz_1464) begin
             ICachePlugin_dataRAMs_0_io_write_valid = 1'b1;
           end
         end
       end
-      IF2_ICachePlugin_cacheRefillFSM_enumDef_commit : begin
+      IF3_ICachePlugin_cacheRefillFSM_enumDef_commit : begin
         if(_zz_1464) begin
           ICachePlugin_dataRAMs_0_io_write_valid = 1'b1;
         end
       end
-      IF2_ICachePlugin_cacheRefillFSM_enumDef_finish : begin
+      IF3_ICachePlugin_cacheRefillFSM_enumDef_finish : begin
       end
       default : begin
       end
@@ -62864,22 +63077,22 @@ module MyCPUCore (
 
   always @(*) begin
     ICachePlugin_dataRAMs_0_io_write_payload_address = 6'bxxxxxx;
-    case(IF2_ICachePlugin_cacheRefillFSM_stateReg)
-      IF2_ICachePlugin_cacheRefillFSM_enumDef_waitAXI : begin
+    case(IF3_ICachePlugin_cacheRefillFSM_stateReg)
+      IF3_ICachePlugin_cacheRefillFSM_enumDef_waitAXI : begin
       end
-      IF2_ICachePlugin_cacheRefillFSM_enumDef_readMem : begin
-        if(IF2_ICachePlugin_cacheRefillFSM_refillValid) begin
+      IF3_ICachePlugin_cacheRefillFSM_enumDef_readMem : begin
+        if(IF3_ICachePlugin_cacheRefillFSM_refillValid) begin
           if(_zz_1464) begin
-            ICachePlugin_dataRAMs_0_io_write_payload_address = IF2_ICachePlugin_idx;
+            ICachePlugin_dataRAMs_0_io_write_payload_address = IF3_ICachePlugin_idx;
           end
         end
       end
-      IF2_ICachePlugin_cacheRefillFSM_enumDef_commit : begin
+      IF3_ICachePlugin_cacheRefillFSM_enumDef_commit : begin
         if(_zz_1464) begin
-          ICachePlugin_dataRAMs_0_io_write_payload_address = IF2_ICachePlugin_idx;
+          ICachePlugin_dataRAMs_0_io_write_payload_address = IF3_ICachePlugin_idx;
         end
       end
-      IF2_ICachePlugin_cacheRefillFSM_enumDef_finish : begin
+      IF3_ICachePlugin_cacheRefillFSM_enumDef_finish : begin
       end
       default : begin
       end
@@ -62888,22 +63101,22 @@ module MyCPUCore (
 
   always @(*) begin
     ICachePlugin_dataRAMs_0_io_write_payload_data_0 = 32'bxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx;
-    case(IF2_ICachePlugin_cacheRefillFSM_stateReg)
-      IF2_ICachePlugin_cacheRefillFSM_enumDef_waitAXI : begin
+    case(IF3_ICachePlugin_cacheRefillFSM_stateReg)
+      IF3_ICachePlugin_cacheRefillFSM_enumDef_waitAXI : begin
       end
-      IF2_ICachePlugin_cacheRefillFSM_enumDef_readMem : begin
-        if(IF2_ICachePlugin_cacheRefillFSM_refillValid) begin
+      IF3_ICachePlugin_cacheRefillFSM_enumDef_readMem : begin
+        if(IF3_ICachePlugin_cacheRefillFSM_refillValid) begin
           if(_zz_1464) begin
-            ICachePlugin_dataRAMs_0_io_write_payload_data_0 = IF2_ICachePlugin_cacheRefillFSM_refillWord;
+            ICachePlugin_dataRAMs_0_io_write_payload_data_0 = IF3_ICachePlugin_cacheRefillFSM_refillWord;
           end
         end
       end
-      IF2_ICachePlugin_cacheRefillFSM_enumDef_commit : begin
+      IF3_ICachePlugin_cacheRefillFSM_enumDef_commit : begin
         if(_zz_1464) begin
-          ICachePlugin_dataRAMs_0_io_write_payload_data_0 = IF2_ICachePlugin_cacheRefillFSM_refillWord;
+          ICachePlugin_dataRAMs_0_io_write_payload_data_0 = IF3_ICachePlugin_cacheRefillFSM_refillWord;
         end
       end
-      IF2_ICachePlugin_cacheRefillFSM_enumDef_finish : begin
+      IF3_ICachePlugin_cacheRefillFSM_enumDef_finish : begin
       end
       default : begin
       end
@@ -62912,22 +63125,22 @@ module MyCPUCore (
 
   always @(*) begin
     ICachePlugin_dataRAMs_0_io_write_payload_data_1 = 32'bxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx;
-    case(IF2_ICachePlugin_cacheRefillFSM_stateReg)
-      IF2_ICachePlugin_cacheRefillFSM_enumDef_waitAXI : begin
+    case(IF3_ICachePlugin_cacheRefillFSM_stateReg)
+      IF3_ICachePlugin_cacheRefillFSM_enumDef_waitAXI : begin
       end
-      IF2_ICachePlugin_cacheRefillFSM_enumDef_readMem : begin
-        if(IF2_ICachePlugin_cacheRefillFSM_refillValid) begin
+      IF3_ICachePlugin_cacheRefillFSM_enumDef_readMem : begin
+        if(IF3_ICachePlugin_cacheRefillFSM_refillValid) begin
           if(_zz_1464) begin
-            ICachePlugin_dataRAMs_0_io_write_payload_data_1 = IF2_ICachePlugin_cacheRefillFSM_refillWord;
+            ICachePlugin_dataRAMs_0_io_write_payload_data_1 = IF3_ICachePlugin_cacheRefillFSM_refillWord;
           end
         end
       end
-      IF2_ICachePlugin_cacheRefillFSM_enumDef_commit : begin
+      IF3_ICachePlugin_cacheRefillFSM_enumDef_commit : begin
         if(_zz_1464) begin
-          ICachePlugin_dataRAMs_0_io_write_payload_data_1 = IF2_ICachePlugin_cacheRefillFSM_refillWord;
+          ICachePlugin_dataRAMs_0_io_write_payload_data_1 = IF3_ICachePlugin_cacheRefillFSM_refillWord;
         end
       end
-      IF2_ICachePlugin_cacheRefillFSM_enumDef_finish : begin
+      IF3_ICachePlugin_cacheRefillFSM_enumDef_finish : begin
       end
       default : begin
       end
@@ -62936,22 +63149,22 @@ module MyCPUCore (
 
   always @(*) begin
     ICachePlugin_dataRAMs_0_io_write_payload_data_2 = 32'bxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx;
-    case(IF2_ICachePlugin_cacheRefillFSM_stateReg)
-      IF2_ICachePlugin_cacheRefillFSM_enumDef_waitAXI : begin
+    case(IF3_ICachePlugin_cacheRefillFSM_stateReg)
+      IF3_ICachePlugin_cacheRefillFSM_enumDef_waitAXI : begin
       end
-      IF2_ICachePlugin_cacheRefillFSM_enumDef_readMem : begin
-        if(IF2_ICachePlugin_cacheRefillFSM_refillValid) begin
+      IF3_ICachePlugin_cacheRefillFSM_enumDef_readMem : begin
+        if(IF3_ICachePlugin_cacheRefillFSM_refillValid) begin
           if(_zz_1464) begin
-            ICachePlugin_dataRAMs_0_io_write_payload_data_2 = IF2_ICachePlugin_cacheRefillFSM_refillWord;
+            ICachePlugin_dataRAMs_0_io_write_payload_data_2 = IF3_ICachePlugin_cacheRefillFSM_refillWord;
           end
         end
       end
-      IF2_ICachePlugin_cacheRefillFSM_enumDef_commit : begin
+      IF3_ICachePlugin_cacheRefillFSM_enumDef_commit : begin
         if(_zz_1464) begin
-          ICachePlugin_dataRAMs_0_io_write_payload_data_2 = IF2_ICachePlugin_cacheRefillFSM_refillWord;
+          ICachePlugin_dataRAMs_0_io_write_payload_data_2 = IF3_ICachePlugin_cacheRefillFSM_refillWord;
         end
       end
-      IF2_ICachePlugin_cacheRefillFSM_enumDef_finish : begin
+      IF3_ICachePlugin_cacheRefillFSM_enumDef_finish : begin
       end
       default : begin
       end
@@ -62960,22 +63173,22 @@ module MyCPUCore (
 
   always @(*) begin
     ICachePlugin_dataRAMs_0_io_write_payload_data_3 = 32'bxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx;
-    case(IF2_ICachePlugin_cacheRefillFSM_stateReg)
-      IF2_ICachePlugin_cacheRefillFSM_enumDef_waitAXI : begin
+    case(IF3_ICachePlugin_cacheRefillFSM_stateReg)
+      IF3_ICachePlugin_cacheRefillFSM_enumDef_waitAXI : begin
       end
-      IF2_ICachePlugin_cacheRefillFSM_enumDef_readMem : begin
-        if(IF2_ICachePlugin_cacheRefillFSM_refillValid) begin
+      IF3_ICachePlugin_cacheRefillFSM_enumDef_readMem : begin
+        if(IF3_ICachePlugin_cacheRefillFSM_refillValid) begin
           if(_zz_1464) begin
-            ICachePlugin_dataRAMs_0_io_write_payload_data_3 = IF2_ICachePlugin_cacheRefillFSM_refillWord;
+            ICachePlugin_dataRAMs_0_io_write_payload_data_3 = IF3_ICachePlugin_cacheRefillFSM_refillWord;
           end
         end
       end
-      IF2_ICachePlugin_cacheRefillFSM_enumDef_commit : begin
+      IF3_ICachePlugin_cacheRefillFSM_enumDef_commit : begin
         if(_zz_1464) begin
-          ICachePlugin_dataRAMs_0_io_write_payload_data_3 = IF2_ICachePlugin_cacheRefillFSM_refillWord;
+          ICachePlugin_dataRAMs_0_io_write_payload_data_3 = IF3_ICachePlugin_cacheRefillFSM_refillWord;
         end
       end
-      IF2_ICachePlugin_cacheRefillFSM_enumDef_finish : begin
+      IF3_ICachePlugin_cacheRefillFSM_enumDef_finish : begin
       end
       default : begin
       end
@@ -62984,22 +63197,22 @@ module MyCPUCore (
 
   always @(*) begin
     ICachePlugin_dataRAMs_0_io_write_payload_data_4 = 32'bxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx;
-    case(IF2_ICachePlugin_cacheRefillFSM_stateReg)
-      IF2_ICachePlugin_cacheRefillFSM_enumDef_waitAXI : begin
+    case(IF3_ICachePlugin_cacheRefillFSM_stateReg)
+      IF3_ICachePlugin_cacheRefillFSM_enumDef_waitAXI : begin
       end
-      IF2_ICachePlugin_cacheRefillFSM_enumDef_readMem : begin
-        if(IF2_ICachePlugin_cacheRefillFSM_refillValid) begin
+      IF3_ICachePlugin_cacheRefillFSM_enumDef_readMem : begin
+        if(IF3_ICachePlugin_cacheRefillFSM_refillValid) begin
           if(_zz_1464) begin
-            ICachePlugin_dataRAMs_0_io_write_payload_data_4 = IF2_ICachePlugin_cacheRefillFSM_refillWord;
+            ICachePlugin_dataRAMs_0_io_write_payload_data_4 = IF3_ICachePlugin_cacheRefillFSM_refillWord;
           end
         end
       end
-      IF2_ICachePlugin_cacheRefillFSM_enumDef_commit : begin
+      IF3_ICachePlugin_cacheRefillFSM_enumDef_commit : begin
         if(_zz_1464) begin
-          ICachePlugin_dataRAMs_0_io_write_payload_data_4 = IF2_ICachePlugin_cacheRefillFSM_refillWord;
+          ICachePlugin_dataRAMs_0_io_write_payload_data_4 = IF3_ICachePlugin_cacheRefillFSM_refillWord;
         end
       end
-      IF2_ICachePlugin_cacheRefillFSM_enumDef_finish : begin
+      IF3_ICachePlugin_cacheRefillFSM_enumDef_finish : begin
       end
       default : begin
       end
@@ -63008,22 +63221,22 @@ module MyCPUCore (
 
   always @(*) begin
     ICachePlugin_dataRAMs_0_io_write_payload_data_5 = 32'bxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx;
-    case(IF2_ICachePlugin_cacheRefillFSM_stateReg)
-      IF2_ICachePlugin_cacheRefillFSM_enumDef_waitAXI : begin
+    case(IF3_ICachePlugin_cacheRefillFSM_stateReg)
+      IF3_ICachePlugin_cacheRefillFSM_enumDef_waitAXI : begin
       end
-      IF2_ICachePlugin_cacheRefillFSM_enumDef_readMem : begin
-        if(IF2_ICachePlugin_cacheRefillFSM_refillValid) begin
+      IF3_ICachePlugin_cacheRefillFSM_enumDef_readMem : begin
+        if(IF3_ICachePlugin_cacheRefillFSM_refillValid) begin
           if(_zz_1464) begin
-            ICachePlugin_dataRAMs_0_io_write_payload_data_5 = IF2_ICachePlugin_cacheRefillFSM_refillWord;
+            ICachePlugin_dataRAMs_0_io_write_payload_data_5 = IF3_ICachePlugin_cacheRefillFSM_refillWord;
           end
         end
       end
-      IF2_ICachePlugin_cacheRefillFSM_enumDef_commit : begin
+      IF3_ICachePlugin_cacheRefillFSM_enumDef_commit : begin
         if(_zz_1464) begin
-          ICachePlugin_dataRAMs_0_io_write_payload_data_5 = IF2_ICachePlugin_cacheRefillFSM_refillWord;
+          ICachePlugin_dataRAMs_0_io_write_payload_data_5 = IF3_ICachePlugin_cacheRefillFSM_refillWord;
         end
       end
-      IF2_ICachePlugin_cacheRefillFSM_enumDef_finish : begin
+      IF3_ICachePlugin_cacheRefillFSM_enumDef_finish : begin
       end
       default : begin
       end
@@ -63032,22 +63245,22 @@ module MyCPUCore (
 
   always @(*) begin
     ICachePlugin_dataRAMs_0_io_write_payload_data_6 = 32'bxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx;
-    case(IF2_ICachePlugin_cacheRefillFSM_stateReg)
-      IF2_ICachePlugin_cacheRefillFSM_enumDef_waitAXI : begin
+    case(IF3_ICachePlugin_cacheRefillFSM_stateReg)
+      IF3_ICachePlugin_cacheRefillFSM_enumDef_waitAXI : begin
       end
-      IF2_ICachePlugin_cacheRefillFSM_enumDef_readMem : begin
-        if(IF2_ICachePlugin_cacheRefillFSM_refillValid) begin
+      IF3_ICachePlugin_cacheRefillFSM_enumDef_readMem : begin
+        if(IF3_ICachePlugin_cacheRefillFSM_refillValid) begin
           if(_zz_1464) begin
-            ICachePlugin_dataRAMs_0_io_write_payload_data_6 = IF2_ICachePlugin_cacheRefillFSM_refillWord;
+            ICachePlugin_dataRAMs_0_io_write_payload_data_6 = IF3_ICachePlugin_cacheRefillFSM_refillWord;
           end
         end
       end
-      IF2_ICachePlugin_cacheRefillFSM_enumDef_commit : begin
+      IF3_ICachePlugin_cacheRefillFSM_enumDef_commit : begin
         if(_zz_1464) begin
-          ICachePlugin_dataRAMs_0_io_write_payload_data_6 = IF2_ICachePlugin_cacheRefillFSM_refillWord;
+          ICachePlugin_dataRAMs_0_io_write_payload_data_6 = IF3_ICachePlugin_cacheRefillFSM_refillWord;
         end
       end
-      IF2_ICachePlugin_cacheRefillFSM_enumDef_finish : begin
+      IF3_ICachePlugin_cacheRefillFSM_enumDef_finish : begin
       end
       default : begin
       end
@@ -63056,22 +63269,22 @@ module MyCPUCore (
 
   always @(*) begin
     ICachePlugin_dataRAMs_0_io_write_payload_data_7 = 32'bxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx;
-    case(IF2_ICachePlugin_cacheRefillFSM_stateReg)
-      IF2_ICachePlugin_cacheRefillFSM_enumDef_waitAXI : begin
+    case(IF3_ICachePlugin_cacheRefillFSM_stateReg)
+      IF3_ICachePlugin_cacheRefillFSM_enumDef_waitAXI : begin
       end
-      IF2_ICachePlugin_cacheRefillFSM_enumDef_readMem : begin
-        if(IF2_ICachePlugin_cacheRefillFSM_refillValid) begin
+      IF3_ICachePlugin_cacheRefillFSM_enumDef_readMem : begin
+        if(IF3_ICachePlugin_cacheRefillFSM_refillValid) begin
           if(_zz_1464) begin
-            ICachePlugin_dataRAMs_0_io_write_payload_data_7 = IF2_ICachePlugin_cacheRefillFSM_refillWord;
+            ICachePlugin_dataRAMs_0_io_write_payload_data_7 = IF3_ICachePlugin_cacheRefillFSM_refillWord;
           end
         end
       end
-      IF2_ICachePlugin_cacheRefillFSM_enumDef_commit : begin
+      IF3_ICachePlugin_cacheRefillFSM_enumDef_commit : begin
         if(_zz_1464) begin
-          ICachePlugin_dataRAMs_0_io_write_payload_data_7 = IF2_ICachePlugin_cacheRefillFSM_refillWord;
+          ICachePlugin_dataRAMs_0_io_write_payload_data_7 = IF3_ICachePlugin_cacheRefillFSM_refillWord;
         end
       end
-      IF2_ICachePlugin_cacheRefillFSM_enumDef_finish : begin
+      IF3_ICachePlugin_cacheRefillFSM_enumDef_finish : begin
       end
       default : begin
       end
@@ -63080,22 +63293,22 @@ module MyCPUCore (
 
   always @(*) begin
     ICachePlugin_dataRAMs_0_io_write_payload_data_8 = 32'bxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx;
-    case(IF2_ICachePlugin_cacheRefillFSM_stateReg)
-      IF2_ICachePlugin_cacheRefillFSM_enumDef_waitAXI : begin
+    case(IF3_ICachePlugin_cacheRefillFSM_stateReg)
+      IF3_ICachePlugin_cacheRefillFSM_enumDef_waitAXI : begin
       end
-      IF2_ICachePlugin_cacheRefillFSM_enumDef_readMem : begin
-        if(IF2_ICachePlugin_cacheRefillFSM_refillValid) begin
+      IF3_ICachePlugin_cacheRefillFSM_enumDef_readMem : begin
+        if(IF3_ICachePlugin_cacheRefillFSM_refillValid) begin
           if(_zz_1464) begin
-            ICachePlugin_dataRAMs_0_io_write_payload_data_8 = IF2_ICachePlugin_cacheRefillFSM_refillWord;
+            ICachePlugin_dataRAMs_0_io_write_payload_data_8 = IF3_ICachePlugin_cacheRefillFSM_refillWord;
           end
         end
       end
-      IF2_ICachePlugin_cacheRefillFSM_enumDef_commit : begin
+      IF3_ICachePlugin_cacheRefillFSM_enumDef_commit : begin
         if(_zz_1464) begin
-          ICachePlugin_dataRAMs_0_io_write_payload_data_8 = IF2_ICachePlugin_cacheRefillFSM_refillWord;
+          ICachePlugin_dataRAMs_0_io_write_payload_data_8 = IF3_ICachePlugin_cacheRefillFSM_refillWord;
         end
       end
-      IF2_ICachePlugin_cacheRefillFSM_enumDef_finish : begin
+      IF3_ICachePlugin_cacheRefillFSM_enumDef_finish : begin
       end
       default : begin
       end
@@ -63104,22 +63317,22 @@ module MyCPUCore (
 
   always @(*) begin
     ICachePlugin_dataRAMs_0_io_write_payload_data_9 = 32'bxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx;
-    case(IF2_ICachePlugin_cacheRefillFSM_stateReg)
-      IF2_ICachePlugin_cacheRefillFSM_enumDef_waitAXI : begin
+    case(IF3_ICachePlugin_cacheRefillFSM_stateReg)
+      IF3_ICachePlugin_cacheRefillFSM_enumDef_waitAXI : begin
       end
-      IF2_ICachePlugin_cacheRefillFSM_enumDef_readMem : begin
-        if(IF2_ICachePlugin_cacheRefillFSM_refillValid) begin
+      IF3_ICachePlugin_cacheRefillFSM_enumDef_readMem : begin
+        if(IF3_ICachePlugin_cacheRefillFSM_refillValid) begin
           if(_zz_1464) begin
-            ICachePlugin_dataRAMs_0_io_write_payload_data_9 = IF2_ICachePlugin_cacheRefillFSM_refillWord;
+            ICachePlugin_dataRAMs_0_io_write_payload_data_9 = IF3_ICachePlugin_cacheRefillFSM_refillWord;
           end
         end
       end
-      IF2_ICachePlugin_cacheRefillFSM_enumDef_commit : begin
+      IF3_ICachePlugin_cacheRefillFSM_enumDef_commit : begin
         if(_zz_1464) begin
-          ICachePlugin_dataRAMs_0_io_write_payload_data_9 = IF2_ICachePlugin_cacheRefillFSM_refillWord;
+          ICachePlugin_dataRAMs_0_io_write_payload_data_9 = IF3_ICachePlugin_cacheRefillFSM_refillWord;
         end
       end
-      IF2_ICachePlugin_cacheRefillFSM_enumDef_finish : begin
+      IF3_ICachePlugin_cacheRefillFSM_enumDef_finish : begin
       end
       default : begin
       end
@@ -63128,22 +63341,22 @@ module MyCPUCore (
 
   always @(*) begin
     ICachePlugin_dataRAMs_0_io_write_payload_data_10 = 32'bxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx;
-    case(IF2_ICachePlugin_cacheRefillFSM_stateReg)
-      IF2_ICachePlugin_cacheRefillFSM_enumDef_waitAXI : begin
+    case(IF3_ICachePlugin_cacheRefillFSM_stateReg)
+      IF3_ICachePlugin_cacheRefillFSM_enumDef_waitAXI : begin
       end
-      IF2_ICachePlugin_cacheRefillFSM_enumDef_readMem : begin
-        if(IF2_ICachePlugin_cacheRefillFSM_refillValid) begin
+      IF3_ICachePlugin_cacheRefillFSM_enumDef_readMem : begin
+        if(IF3_ICachePlugin_cacheRefillFSM_refillValid) begin
           if(_zz_1464) begin
-            ICachePlugin_dataRAMs_0_io_write_payload_data_10 = IF2_ICachePlugin_cacheRefillFSM_refillWord;
+            ICachePlugin_dataRAMs_0_io_write_payload_data_10 = IF3_ICachePlugin_cacheRefillFSM_refillWord;
           end
         end
       end
-      IF2_ICachePlugin_cacheRefillFSM_enumDef_commit : begin
+      IF3_ICachePlugin_cacheRefillFSM_enumDef_commit : begin
         if(_zz_1464) begin
-          ICachePlugin_dataRAMs_0_io_write_payload_data_10 = IF2_ICachePlugin_cacheRefillFSM_refillWord;
+          ICachePlugin_dataRAMs_0_io_write_payload_data_10 = IF3_ICachePlugin_cacheRefillFSM_refillWord;
         end
       end
-      IF2_ICachePlugin_cacheRefillFSM_enumDef_finish : begin
+      IF3_ICachePlugin_cacheRefillFSM_enumDef_finish : begin
       end
       default : begin
       end
@@ -63152,22 +63365,22 @@ module MyCPUCore (
 
   always @(*) begin
     ICachePlugin_dataRAMs_0_io_write_payload_data_11 = 32'bxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx;
-    case(IF2_ICachePlugin_cacheRefillFSM_stateReg)
-      IF2_ICachePlugin_cacheRefillFSM_enumDef_waitAXI : begin
+    case(IF3_ICachePlugin_cacheRefillFSM_stateReg)
+      IF3_ICachePlugin_cacheRefillFSM_enumDef_waitAXI : begin
       end
-      IF2_ICachePlugin_cacheRefillFSM_enumDef_readMem : begin
-        if(IF2_ICachePlugin_cacheRefillFSM_refillValid) begin
+      IF3_ICachePlugin_cacheRefillFSM_enumDef_readMem : begin
+        if(IF3_ICachePlugin_cacheRefillFSM_refillValid) begin
           if(_zz_1464) begin
-            ICachePlugin_dataRAMs_0_io_write_payload_data_11 = IF2_ICachePlugin_cacheRefillFSM_refillWord;
+            ICachePlugin_dataRAMs_0_io_write_payload_data_11 = IF3_ICachePlugin_cacheRefillFSM_refillWord;
           end
         end
       end
-      IF2_ICachePlugin_cacheRefillFSM_enumDef_commit : begin
+      IF3_ICachePlugin_cacheRefillFSM_enumDef_commit : begin
         if(_zz_1464) begin
-          ICachePlugin_dataRAMs_0_io_write_payload_data_11 = IF2_ICachePlugin_cacheRefillFSM_refillWord;
+          ICachePlugin_dataRAMs_0_io_write_payload_data_11 = IF3_ICachePlugin_cacheRefillFSM_refillWord;
         end
       end
-      IF2_ICachePlugin_cacheRefillFSM_enumDef_finish : begin
+      IF3_ICachePlugin_cacheRefillFSM_enumDef_finish : begin
       end
       default : begin
       end
@@ -63176,22 +63389,22 @@ module MyCPUCore (
 
   always @(*) begin
     ICachePlugin_dataRAMs_0_io_write_payload_data_12 = 32'bxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx;
-    case(IF2_ICachePlugin_cacheRefillFSM_stateReg)
-      IF2_ICachePlugin_cacheRefillFSM_enumDef_waitAXI : begin
+    case(IF3_ICachePlugin_cacheRefillFSM_stateReg)
+      IF3_ICachePlugin_cacheRefillFSM_enumDef_waitAXI : begin
       end
-      IF2_ICachePlugin_cacheRefillFSM_enumDef_readMem : begin
-        if(IF2_ICachePlugin_cacheRefillFSM_refillValid) begin
+      IF3_ICachePlugin_cacheRefillFSM_enumDef_readMem : begin
+        if(IF3_ICachePlugin_cacheRefillFSM_refillValid) begin
           if(_zz_1464) begin
-            ICachePlugin_dataRAMs_0_io_write_payload_data_12 = IF2_ICachePlugin_cacheRefillFSM_refillWord;
+            ICachePlugin_dataRAMs_0_io_write_payload_data_12 = IF3_ICachePlugin_cacheRefillFSM_refillWord;
           end
         end
       end
-      IF2_ICachePlugin_cacheRefillFSM_enumDef_commit : begin
+      IF3_ICachePlugin_cacheRefillFSM_enumDef_commit : begin
         if(_zz_1464) begin
-          ICachePlugin_dataRAMs_0_io_write_payload_data_12 = IF2_ICachePlugin_cacheRefillFSM_refillWord;
+          ICachePlugin_dataRAMs_0_io_write_payload_data_12 = IF3_ICachePlugin_cacheRefillFSM_refillWord;
         end
       end
-      IF2_ICachePlugin_cacheRefillFSM_enumDef_finish : begin
+      IF3_ICachePlugin_cacheRefillFSM_enumDef_finish : begin
       end
       default : begin
       end
@@ -63200,22 +63413,22 @@ module MyCPUCore (
 
   always @(*) begin
     ICachePlugin_dataRAMs_0_io_write_payload_data_13 = 32'bxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx;
-    case(IF2_ICachePlugin_cacheRefillFSM_stateReg)
-      IF2_ICachePlugin_cacheRefillFSM_enumDef_waitAXI : begin
+    case(IF3_ICachePlugin_cacheRefillFSM_stateReg)
+      IF3_ICachePlugin_cacheRefillFSM_enumDef_waitAXI : begin
       end
-      IF2_ICachePlugin_cacheRefillFSM_enumDef_readMem : begin
-        if(IF2_ICachePlugin_cacheRefillFSM_refillValid) begin
+      IF3_ICachePlugin_cacheRefillFSM_enumDef_readMem : begin
+        if(IF3_ICachePlugin_cacheRefillFSM_refillValid) begin
           if(_zz_1464) begin
-            ICachePlugin_dataRAMs_0_io_write_payload_data_13 = IF2_ICachePlugin_cacheRefillFSM_refillWord;
+            ICachePlugin_dataRAMs_0_io_write_payload_data_13 = IF3_ICachePlugin_cacheRefillFSM_refillWord;
           end
         end
       end
-      IF2_ICachePlugin_cacheRefillFSM_enumDef_commit : begin
+      IF3_ICachePlugin_cacheRefillFSM_enumDef_commit : begin
         if(_zz_1464) begin
-          ICachePlugin_dataRAMs_0_io_write_payload_data_13 = IF2_ICachePlugin_cacheRefillFSM_refillWord;
+          ICachePlugin_dataRAMs_0_io_write_payload_data_13 = IF3_ICachePlugin_cacheRefillFSM_refillWord;
         end
       end
-      IF2_ICachePlugin_cacheRefillFSM_enumDef_finish : begin
+      IF3_ICachePlugin_cacheRefillFSM_enumDef_finish : begin
       end
       default : begin
       end
@@ -63224,22 +63437,22 @@ module MyCPUCore (
 
   always @(*) begin
     ICachePlugin_dataRAMs_0_io_write_payload_data_14 = 32'bxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx;
-    case(IF2_ICachePlugin_cacheRefillFSM_stateReg)
-      IF2_ICachePlugin_cacheRefillFSM_enumDef_waitAXI : begin
+    case(IF3_ICachePlugin_cacheRefillFSM_stateReg)
+      IF3_ICachePlugin_cacheRefillFSM_enumDef_waitAXI : begin
       end
-      IF2_ICachePlugin_cacheRefillFSM_enumDef_readMem : begin
-        if(IF2_ICachePlugin_cacheRefillFSM_refillValid) begin
+      IF3_ICachePlugin_cacheRefillFSM_enumDef_readMem : begin
+        if(IF3_ICachePlugin_cacheRefillFSM_refillValid) begin
           if(_zz_1464) begin
-            ICachePlugin_dataRAMs_0_io_write_payload_data_14 = IF2_ICachePlugin_cacheRefillFSM_refillWord;
+            ICachePlugin_dataRAMs_0_io_write_payload_data_14 = IF3_ICachePlugin_cacheRefillFSM_refillWord;
           end
         end
       end
-      IF2_ICachePlugin_cacheRefillFSM_enumDef_commit : begin
+      IF3_ICachePlugin_cacheRefillFSM_enumDef_commit : begin
         if(_zz_1464) begin
-          ICachePlugin_dataRAMs_0_io_write_payload_data_14 = IF2_ICachePlugin_cacheRefillFSM_refillWord;
+          ICachePlugin_dataRAMs_0_io_write_payload_data_14 = IF3_ICachePlugin_cacheRefillFSM_refillWord;
         end
       end
-      IF2_ICachePlugin_cacheRefillFSM_enumDef_finish : begin
+      IF3_ICachePlugin_cacheRefillFSM_enumDef_finish : begin
       end
       default : begin
       end
@@ -63248,22 +63461,22 @@ module MyCPUCore (
 
   always @(*) begin
     ICachePlugin_dataRAMs_0_io_write_payload_data_15 = 32'bxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx;
-    case(IF2_ICachePlugin_cacheRefillFSM_stateReg)
-      IF2_ICachePlugin_cacheRefillFSM_enumDef_waitAXI : begin
+    case(IF3_ICachePlugin_cacheRefillFSM_stateReg)
+      IF3_ICachePlugin_cacheRefillFSM_enumDef_waitAXI : begin
       end
-      IF2_ICachePlugin_cacheRefillFSM_enumDef_readMem : begin
-        if(IF2_ICachePlugin_cacheRefillFSM_refillValid) begin
+      IF3_ICachePlugin_cacheRefillFSM_enumDef_readMem : begin
+        if(IF3_ICachePlugin_cacheRefillFSM_refillValid) begin
           if(_zz_1464) begin
-            ICachePlugin_dataRAMs_0_io_write_payload_data_15 = IF2_ICachePlugin_cacheRefillFSM_refillWord;
+            ICachePlugin_dataRAMs_0_io_write_payload_data_15 = IF3_ICachePlugin_cacheRefillFSM_refillWord;
           end
         end
       end
-      IF2_ICachePlugin_cacheRefillFSM_enumDef_commit : begin
+      IF3_ICachePlugin_cacheRefillFSM_enumDef_commit : begin
         if(_zz_1464) begin
-          ICachePlugin_dataRAMs_0_io_write_payload_data_15 = IF2_ICachePlugin_cacheRefillFSM_refillWord;
+          ICachePlugin_dataRAMs_0_io_write_payload_data_15 = IF3_ICachePlugin_cacheRefillFSM_refillWord;
         end
       end
-      IF2_ICachePlugin_cacheRefillFSM_enumDef_finish : begin
+      IF3_ICachePlugin_cacheRefillFSM_enumDef_finish : begin
       end
       default : begin
       end
@@ -63272,22 +63485,22 @@ module MyCPUCore (
 
   always @(*) begin
     ICachePlugin_dataRAMs_1_io_write_valid = 1'b0;
-    case(IF2_ICachePlugin_cacheRefillFSM_stateReg)
-      IF2_ICachePlugin_cacheRefillFSM_enumDef_waitAXI : begin
+    case(IF3_ICachePlugin_cacheRefillFSM_stateReg)
+      IF3_ICachePlugin_cacheRefillFSM_enumDef_waitAXI : begin
       end
-      IF2_ICachePlugin_cacheRefillFSM_enumDef_readMem : begin
-        if(IF2_ICachePlugin_cacheRefillFSM_refillValid) begin
+      IF3_ICachePlugin_cacheRefillFSM_enumDef_readMem : begin
+        if(IF3_ICachePlugin_cacheRefillFSM_refillValid) begin
           if(_zz_1465) begin
             ICachePlugin_dataRAMs_1_io_write_valid = 1'b1;
           end
         end
       end
-      IF2_ICachePlugin_cacheRefillFSM_enumDef_commit : begin
+      IF3_ICachePlugin_cacheRefillFSM_enumDef_commit : begin
         if(_zz_1465) begin
           ICachePlugin_dataRAMs_1_io_write_valid = 1'b1;
         end
       end
-      IF2_ICachePlugin_cacheRefillFSM_enumDef_finish : begin
+      IF3_ICachePlugin_cacheRefillFSM_enumDef_finish : begin
       end
       default : begin
       end
@@ -63296,22 +63509,22 @@ module MyCPUCore (
 
   always @(*) begin
     ICachePlugin_dataRAMs_1_io_write_payload_address = 6'bxxxxxx;
-    case(IF2_ICachePlugin_cacheRefillFSM_stateReg)
-      IF2_ICachePlugin_cacheRefillFSM_enumDef_waitAXI : begin
+    case(IF3_ICachePlugin_cacheRefillFSM_stateReg)
+      IF3_ICachePlugin_cacheRefillFSM_enumDef_waitAXI : begin
       end
-      IF2_ICachePlugin_cacheRefillFSM_enumDef_readMem : begin
-        if(IF2_ICachePlugin_cacheRefillFSM_refillValid) begin
+      IF3_ICachePlugin_cacheRefillFSM_enumDef_readMem : begin
+        if(IF3_ICachePlugin_cacheRefillFSM_refillValid) begin
           if(_zz_1465) begin
-            ICachePlugin_dataRAMs_1_io_write_payload_address = IF2_ICachePlugin_idx;
+            ICachePlugin_dataRAMs_1_io_write_payload_address = IF3_ICachePlugin_idx;
           end
         end
       end
-      IF2_ICachePlugin_cacheRefillFSM_enumDef_commit : begin
+      IF3_ICachePlugin_cacheRefillFSM_enumDef_commit : begin
         if(_zz_1465) begin
-          ICachePlugin_dataRAMs_1_io_write_payload_address = IF2_ICachePlugin_idx;
+          ICachePlugin_dataRAMs_1_io_write_payload_address = IF3_ICachePlugin_idx;
         end
       end
-      IF2_ICachePlugin_cacheRefillFSM_enumDef_finish : begin
+      IF3_ICachePlugin_cacheRefillFSM_enumDef_finish : begin
       end
       default : begin
       end
@@ -63320,22 +63533,22 @@ module MyCPUCore (
 
   always @(*) begin
     ICachePlugin_dataRAMs_1_io_write_payload_data_0 = 32'bxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx;
-    case(IF2_ICachePlugin_cacheRefillFSM_stateReg)
-      IF2_ICachePlugin_cacheRefillFSM_enumDef_waitAXI : begin
+    case(IF3_ICachePlugin_cacheRefillFSM_stateReg)
+      IF3_ICachePlugin_cacheRefillFSM_enumDef_waitAXI : begin
       end
-      IF2_ICachePlugin_cacheRefillFSM_enumDef_readMem : begin
-        if(IF2_ICachePlugin_cacheRefillFSM_refillValid) begin
+      IF3_ICachePlugin_cacheRefillFSM_enumDef_readMem : begin
+        if(IF3_ICachePlugin_cacheRefillFSM_refillValid) begin
           if(_zz_1465) begin
-            ICachePlugin_dataRAMs_1_io_write_payload_data_0 = IF2_ICachePlugin_cacheRefillFSM_refillWord;
+            ICachePlugin_dataRAMs_1_io_write_payload_data_0 = IF3_ICachePlugin_cacheRefillFSM_refillWord;
           end
         end
       end
-      IF2_ICachePlugin_cacheRefillFSM_enumDef_commit : begin
+      IF3_ICachePlugin_cacheRefillFSM_enumDef_commit : begin
         if(_zz_1465) begin
-          ICachePlugin_dataRAMs_1_io_write_payload_data_0 = IF2_ICachePlugin_cacheRefillFSM_refillWord;
+          ICachePlugin_dataRAMs_1_io_write_payload_data_0 = IF3_ICachePlugin_cacheRefillFSM_refillWord;
         end
       end
-      IF2_ICachePlugin_cacheRefillFSM_enumDef_finish : begin
+      IF3_ICachePlugin_cacheRefillFSM_enumDef_finish : begin
       end
       default : begin
       end
@@ -63344,22 +63557,22 @@ module MyCPUCore (
 
   always @(*) begin
     ICachePlugin_dataRAMs_1_io_write_payload_data_1 = 32'bxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx;
-    case(IF2_ICachePlugin_cacheRefillFSM_stateReg)
-      IF2_ICachePlugin_cacheRefillFSM_enumDef_waitAXI : begin
+    case(IF3_ICachePlugin_cacheRefillFSM_stateReg)
+      IF3_ICachePlugin_cacheRefillFSM_enumDef_waitAXI : begin
       end
-      IF2_ICachePlugin_cacheRefillFSM_enumDef_readMem : begin
-        if(IF2_ICachePlugin_cacheRefillFSM_refillValid) begin
+      IF3_ICachePlugin_cacheRefillFSM_enumDef_readMem : begin
+        if(IF3_ICachePlugin_cacheRefillFSM_refillValid) begin
           if(_zz_1465) begin
-            ICachePlugin_dataRAMs_1_io_write_payload_data_1 = IF2_ICachePlugin_cacheRefillFSM_refillWord;
+            ICachePlugin_dataRAMs_1_io_write_payload_data_1 = IF3_ICachePlugin_cacheRefillFSM_refillWord;
           end
         end
       end
-      IF2_ICachePlugin_cacheRefillFSM_enumDef_commit : begin
+      IF3_ICachePlugin_cacheRefillFSM_enumDef_commit : begin
         if(_zz_1465) begin
-          ICachePlugin_dataRAMs_1_io_write_payload_data_1 = IF2_ICachePlugin_cacheRefillFSM_refillWord;
+          ICachePlugin_dataRAMs_1_io_write_payload_data_1 = IF3_ICachePlugin_cacheRefillFSM_refillWord;
         end
       end
-      IF2_ICachePlugin_cacheRefillFSM_enumDef_finish : begin
+      IF3_ICachePlugin_cacheRefillFSM_enumDef_finish : begin
       end
       default : begin
       end
@@ -63368,22 +63581,22 @@ module MyCPUCore (
 
   always @(*) begin
     ICachePlugin_dataRAMs_1_io_write_payload_data_2 = 32'bxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx;
-    case(IF2_ICachePlugin_cacheRefillFSM_stateReg)
-      IF2_ICachePlugin_cacheRefillFSM_enumDef_waitAXI : begin
+    case(IF3_ICachePlugin_cacheRefillFSM_stateReg)
+      IF3_ICachePlugin_cacheRefillFSM_enumDef_waitAXI : begin
       end
-      IF2_ICachePlugin_cacheRefillFSM_enumDef_readMem : begin
-        if(IF2_ICachePlugin_cacheRefillFSM_refillValid) begin
+      IF3_ICachePlugin_cacheRefillFSM_enumDef_readMem : begin
+        if(IF3_ICachePlugin_cacheRefillFSM_refillValid) begin
           if(_zz_1465) begin
-            ICachePlugin_dataRAMs_1_io_write_payload_data_2 = IF2_ICachePlugin_cacheRefillFSM_refillWord;
+            ICachePlugin_dataRAMs_1_io_write_payload_data_2 = IF3_ICachePlugin_cacheRefillFSM_refillWord;
           end
         end
       end
-      IF2_ICachePlugin_cacheRefillFSM_enumDef_commit : begin
+      IF3_ICachePlugin_cacheRefillFSM_enumDef_commit : begin
         if(_zz_1465) begin
-          ICachePlugin_dataRAMs_1_io_write_payload_data_2 = IF2_ICachePlugin_cacheRefillFSM_refillWord;
+          ICachePlugin_dataRAMs_1_io_write_payload_data_2 = IF3_ICachePlugin_cacheRefillFSM_refillWord;
         end
       end
-      IF2_ICachePlugin_cacheRefillFSM_enumDef_finish : begin
+      IF3_ICachePlugin_cacheRefillFSM_enumDef_finish : begin
       end
       default : begin
       end
@@ -63392,22 +63605,22 @@ module MyCPUCore (
 
   always @(*) begin
     ICachePlugin_dataRAMs_1_io_write_payload_data_3 = 32'bxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx;
-    case(IF2_ICachePlugin_cacheRefillFSM_stateReg)
-      IF2_ICachePlugin_cacheRefillFSM_enumDef_waitAXI : begin
+    case(IF3_ICachePlugin_cacheRefillFSM_stateReg)
+      IF3_ICachePlugin_cacheRefillFSM_enumDef_waitAXI : begin
       end
-      IF2_ICachePlugin_cacheRefillFSM_enumDef_readMem : begin
-        if(IF2_ICachePlugin_cacheRefillFSM_refillValid) begin
+      IF3_ICachePlugin_cacheRefillFSM_enumDef_readMem : begin
+        if(IF3_ICachePlugin_cacheRefillFSM_refillValid) begin
           if(_zz_1465) begin
-            ICachePlugin_dataRAMs_1_io_write_payload_data_3 = IF2_ICachePlugin_cacheRefillFSM_refillWord;
+            ICachePlugin_dataRAMs_1_io_write_payload_data_3 = IF3_ICachePlugin_cacheRefillFSM_refillWord;
           end
         end
       end
-      IF2_ICachePlugin_cacheRefillFSM_enumDef_commit : begin
+      IF3_ICachePlugin_cacheRefillFSM_enumDef_commit : begin
         if(_zz_1465) begin
-          ICachePlugin_dataRAMs_1_io_write_payload_data_3 = IF2_ICachePlugin_cacheRefillFSM_refillWord;
+          ICachePlugin_dataRAMs_1_io_write_payload_data_3 = IF3_ICachePlugin_cacheRefillFSM_refillWord;
         end
       end
-      IF2_ICachePlugin_cacheRefillFSM_enumDef_finish : begin
+      IF3_ICachePlugin_cacheRefillFSM_enumDef_finish : begin
       end
       default : begin
       end
@@ -63416,22 +63629,22 @@ module MyCPUCore (
 
   always @(*) begin
     ICachePlugin_dataRAMs_1_io_write_payload_data_4 = 32'bxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx;
-    case(IF2_ICachePlugin_cacheRefillFSM_stateReg)
-      IF2_ICachePlugin_cacheRefillFSM_enumDef_waitAXI : begin
+    case(IF3_ICachePlugin_cacheRefillFSM_stateReg)
+      IF3_ICachePlugin_cacheRefillFSM_enumDef_waitAXI : begin
       end
-      IF2_ICachePlugin_cacheRefillFSM_enumDef_readMem : begin
-        if(IF2_ICachePlugin_cacheRefillFSM_refillValid) begin
+      IF3_ICachePlugin_cacheRefillFSM_enumDef_readMem : begin
+        if(IF3_ICachePlugin_cacheRefillFSM_refillValid) begin
           if(_zz_1465) begin
-            ICachePlugin_dataRAMs_1_io_write_payload_data_4 = IF2_ICachePlugin_cacheRefillFSM_refillWord;
+            ICachePlugin_dataRAMs_1_io_write_payload_data_4 = IF3_ICachePlugin_cacheRefillFSM_refillWord;
           end
         end
       end
-      IF2_ICachePlugin_cacheRefillFSM_enumDef_commit : begin
+      IF3_ICachePlugin_cacheRefillFSM_enumDef_commit : begin
         if(_zz_1465) begin
-          ICachePlugin_dataRAMs_1_io_write_payload_data_4 = IF2_ICachePlugin_cacheRefillFSM_refillWord;
+          ICachePlugin_dataRAMs_1_io_write_payload_data_4 = IF3_ICachePlugin_cacheRefillFSM_refillWord;
         end
       end
-      IF2_ICachePlugin_cacheRefillFSM_enumDef_finish : begin
+      IF3_ICachePlugin_cacheRefillFSM_enumDef_finish : begin
       end
       default : begin
       end
@@ -63440,22 +63653,22 @@ module MyCPUCore (
 
   always @(*) begin
     ICachePlugin_dataRAMs_1_io_write_payload_data_5 = 32'bxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx;
-    case(IF2_ICachePlugin_cacheRefillFSM_stateReg)
-      IF2_ICachePlugin_cacheRefillFSM_enumDef_waitAXI : begin
+    case(IF3_ICachePlugin_cacheRefillFSM_stateReg)
+      IF3_ICachePlugin_cacheRefillFSM_enumDef_waitAXI : begin
       end
-      IF2_ICachePlugin_cacheRefillFSM_enumDef_readMem : begin
-        if(IF2_ICachePlugin_cacheRefillFSM_refillValid) begin
+      IF3_ICachePlugin_cacheRefillFSM_enumDef_readMem : begin
+        if(IF3_ICachePlugin_cacheRefillFSM_refillValid) begin
           if(_zz_1465) begin
-            ICachePlugin_dataRAMs_1_io_write_payload_data_5 = IF2_ICachePlugin_cacheRefillFSM_refillWord;
+            ICachePlugin_dataRAMs_1_io_write_payload_data_5 = IF3_ICachePlugin_cacheRefillFSM_refillWord;
           end
         end
       end
-      IF2_ICachePlugin_cacheRefillFSM_enumDef_commit : begin
+      IF3_ICachePlugin_cacheRefillFSM_enumDef_commit : begin
         if(_zz_1465) begin
-          ICachePlugin_dataRAMs_1_io_write_payload_data_5 = IF2_ICachePlugin_cacheRefillFSM_refillWord;
+          ICachePlugin_dataRAMs_1_io_write_payload_data_5 = IF3_ICachePlugin_cacheRefillFSM_refillWord;
         end
       end
-      IF2_ICachePlugin_cacheRefillFSM_enumDef_finish : begin
+      IF3_ICachePlugin_cacheRefillFSM_enumDef_finish : begin
       end
       default : begin
       end
@@ -63464,22 +63677,22 @@ module MyCPUCore (
 
   always @(*) begin
     ICachePlugin_dataRAMs_1_io_write_payload_data_6 = 32'bxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx;
-    case(IF2_ICachePlugin_cacheRefillFSM_stateReg)
-      IF2_ICachePlugin_cacheRefillFSM_enumDef_waitAXI : begin
+    case(IF3_ICachePlugin_cacheRefillFSM_stateReg)
+      IF3_ICachePlugin_cacheRefillFSM_enumDef_waitAXI : begin
       end
-      IF2_ICachePlugin_cacheRefillFSM_enumDef_readMem : begin
-        if(IF2_ICachePlugin_cacheRefillFSM_refillValid) begin
+      IF3_ICachePlugin_cacheRefillFSM_enumDef_readMem : begin
+        if(IF3_ICachePlugin_cacheRefillFSM_refillValid) begin
           if(_zz_1465) begin
-            ICachePlugin_dataRAMs_1_io_write_payload_data_6 = IF2_ICachePlugin_cacheRefillFSM_refillWord;
+            ICachePlugin_dataRAMs_1_io_write_payload_data_6 = IF3_ICachePlugin_cacheRefillFSM_refillWord;
           end
         end
       end
-      IF2_ICachePlugin_cacheRefillFSM_enumDef_commit : begin
+      IF3_ICachePlugin_cacheRefillFSM_enumDef_commit : begin
         if(_zz_1465) begin
-          ICachePlugin_dataRAMs_1_io_write_payload_data_6 = IF2_ICachePlugin_cacheRefillFSM_refillWord;
+          ICachePlugin_dataRAMs_1_io_write_payload_data_6 = IF3_ICachePlugin_cacheRefillFSM_refillWord;
         end
       end
-      IF2_ICachePlugin_cacheRefillFSM_enumDef_finish : begin
+      IF3_ICachePlugin_cacheRefillFSM_enumDef_finish : begin
       end
       default : begin
       end
@@ -63488,22 +63701,22 @@ module MyCPUCore (
 
   always @(*) begin
     ICachePlugin_dataRAMs_1_io_write_payload_data_7 = 32'bxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx;
-    case(IF2_ICachePlugin_cacheRefillFSM_stateReg)
-      IF2_ICachePlugin_cacheRefillFSM_enumDef_waitAXI : begin
+    case(IF3_ICachePlugin_cacheRefillFSM_stateReg)
+      IF3_ICachePlugin_cacheRefillFSM_enumDef_waitAXI : begin
       end
-      IF2_ICachePlugin_cacheRefillFSM_enumDef_readMem : begin
-        if(IF2_ICachePlugin_cacheRefillFSM_refillValid) begin
+      IF3_ICachePlugin_cacheRefillFSM_enumDef_readMem : begin
+        if(IF3_ICachePlugin_cacheRefillFSM_refillValid) begin
           if(_zz_1465) begin
-            ICachePlugin_dataRAMs_1_io_write_payload_data_7 = IF2_ICachePlugin_cacheRefillFSM_refillWord;
+            ICachePlugin_dataRAMs_1_io_write_payload_data_7 = IF3_ICachePlugin_cacheRefillFSM_refillWord;
           end
         end
       end
-      IF2_ICachePlugin_cacheRefillFSM_enumDef_commit : begin
+      IF3_ICachePlugin_cacheRefillFSM_enumDef_commit : begin
         if(_zz_1465) begin
-          ICachePlugin_dataRAMs_1_io_write_payload_data_7 = IF2_ICachePlugin_cacheRefillFSM_refillWord;
+          ICachePlugin_dataRAMs_1_io_write_payload_data_7 = IF3_ICachePlugin_cacheRefillFSM_refillWord;
         end
       end
-      IF2_ICachePlugin_cacheRefillFSM_enumDef_finish : begin
+      IF3_ICachePlugin_cacheRefillFSM_enumDef_finish : begin
       end
       default : begin
       end
@@ -63512,22 +63725,22 @@ module MyCPUCore (
 
   always @(*) begin
     ICachePlugin_dataRAMs_1_io_write_payload_data_8 = 32'bxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx;
-    case(IF2_ICachePlugin_cacheRefillFSM_stateReg)
-      IF2_ICachePlugin_cacheRefillFSM_enumDef_waitAXI : begin
+    case(IF3_ICachePlugin_cacheRefillFSM_stateReg)
+      IF3_ICachePlugin_cacheRefillFSM_enumDef_waitAXI : begin
       end
-      IF2_ICachePlugin_cacheRefillFSM_enumDef_readMem : begin
-        if(IF2_ICachePlugin_cacheRefillFSM_refillValid) begin
+      IF3_ICachePlugin_cacheRefillFSM_enumDef_readMem : begin
+        if(IF3_ICachePlugin_cacheRefillFSM_refillValid) begin
           if(_zz_1465) begin
-            ICachePlugin_dataRAMs_1_io_write_payload_data_8 = IF2_ICachePlugin_cacheRefillFSM_refillWord;
+            ICachePlugin_dataRAMs_1_io_write_payload_data_8 = IF3_ICachePlugin_cacheRefillFSM_refillWord;
           end
         end
       end
-      IF2_ICachePlugin_cacheRefillFSM_enumDef_commit : begin
+      IF3_ICachePlugin_cacheRefillFSM_enumDef_commit : begin
         if(_zz_1465) begin
-          ICachePlugin_dataRAMs_1_io_write_payload_data_8 = IF2_ICachePlugin_cacheRefillFSM_refillWord;
+          ICachePlugin_dataRAMs_1_io_write_payload_data_8 = IF3_ICachePlugin_cacheRefillFSM_refillWord;
         end
       end
-      IF2_ICachePlugin_cacheRefillFSM_enumDef_finish : begin
+      IF3_ICachePlugin_cacheRefillFSM_enumDef_finish : begin
       end
       default : begin
       end
@@ -63536,22 +63749,22 @@ module MyCPUCore (
 
   always @(*) begin
     ICachePlugin_dataRAMs_1_io_write_payload_data_9 = 32'bxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx;
-    case(IF2_ICachePlugin_cacheRefillFSM_stateReg)
-      IF2_ICachePlugin_cacheRefillFSM_enumDef_waitAXI : begin
+    case(IF3_ICachePlugin_cacheRefillFSM_stateReg)
+      IF3_ICachePlugin_cacheRefillFSM_enumDef_waitAXI : begin
       end
-      IF2_ICachePlugin_cacheRefillFSM_enumDef_readMem : begin
-        if(IF2_ICachePlugin_cacheRefillFSM_refillValid) begin
+      IF3_ICachePlugin_cacheRefillFSM_enumDef_readMem : begin
+        if(IF3_ICachePlugin_cacheRefillFSM_refillValid) begin
           if(_zz_1465) begin
-            ICachePlugin_dataRAMs_1_io_write_payload_data_9 = IF2_ICachePlugin_cacheRefillFSM_refillWord;
+            ICachePlugin_dataRAMs_1_io_write_payload_data_9 = IF3_ICachePlugin_cacheRefillFSM_refillWord;
           end
         end
       end
-      IF2_ICachePlugin_cacheRefillFSM_enumDef_commit : begin
+      IF3_ICachePlugin_cacheRefillFSM_enumDef_commit : begin
         if(_zz_1465) begin
-          ICachePlugin_dataRAMs_1_io_write_payload_data_9 = IF2_ICachePlugin_cacheRefillFSM_refillWord;
+          ICachePlugin_dataRAMs_1_io_write_payload_data_9 = IF3_ICachePlugin_cacheRefillFSM_refillWord;
         end
       end
-      IF2_ICachePlugin_cacheRefillFSM_enumDef_finish : begin
+      IF3_ICachePlugin_cacheRefillFSM_enumDef_finish : begin
       end
       default : begin
       end
@@ -63560,22 +63773,22 @@ module MyCPUCore (
 
   always @(*) begin
     ICachePlugin_dataRAMs_1_io_write_payload_data_10 = 32'bxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx;
-    case(IF2_ICachePlugin_cacheRefillFSM_stateReg)
-      IF2_ICachePlugin_cacheRefillFSM_enumDef_waitAXI : begin
+    case(IF3_ICachePlugin_cacheRefillFSM_stateReg)
+      IF3_ICachePlugin_cacheRefillFSM_enumDef_waitAXI : begin
       end
-      IF2_ICachePlugin_cacheRefillFSM_enumDef_readMem : begin
-        if(IF2_ICachePlugin_cacheRefillFSM_refillValid) begin
+      IF3_ICachePlugin_cacheRefillFSM_enumDef_readMem : begin
+        if(IF3_ICachePlugin_cacheRefillFSM_refillValid) begin
           if(_zz_1465) begin
-            ICachePlugin_dataRAMs_1_io_write_payload_data_10 = IF2_ICachePlugin_cacheRefillFSM_refillWord;
+            ICachePlugin_dataRAMs_1_io_write_payload_data_10 = IF3_ICachePlugin_cacheRefillFSM_refillWord;
           end
         end
       end
-      IF2_ICachePlugin_cacheRefillFSM_enumDef_commit : begin
+      IF3_ICachePlugin_cacheRefillFSM_enumDef_commit : begin
         if(_zz_1465) begin
-          ICachePlugin_dataRAMs_1_io_write_payload_data_10 = IF2_ICachePlugin_cacheRefillFSM_refillWord;
+          ICachePlugin_dataRAMs_1_io_write_payload_data_10 = IF3_ICachePlugin_cacheRefillFSM_refillWord;
         end
       end
-      IF2_ICachePlugin_cacheRefillFSM_enumDef_finish : begin
+      IF3_ICachePlugin_cacheRefillFSM_enumDef_finish : begin
       end
       default : begin
       end
@@ -63584,22 +63797,22 @@ module MyCPUCore (
 
   always @(*) begin
     ICachePlugin_dataRAMs_1_io_write_payload_data_11 = 32'bxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx;
-    case(IF2_ICachePlugin_cacheRefillFSM_stateReg)
-      IF2_ICachePlugin_cacheRefillFSM_enumDef_waitAXI : begin
+    case(IF3_ICachePlugin_cacheRefillFSM_stateReg)
+      IF3_ICachePlugin_cacheRefillFSM_enumDef_waitAXI : begin
       end
-      IF2_ICachePlugin_cacheRefillFSM_enumDef_readMem : begin
-        if(IF2_ICachePlugin_cacheRefillFSM_refillValid) begin
+      IF3_ICachePlugin_cacheRefillFSM_enumDef_readMem : begin
+        if(IF3_ICachePlugin_cacheRefillFSM_refillValid) begin
           if(_zz_1465) begin
-            ICachePlugin_dataRAMs_1_io_write_payload_data_11 = IF2_ICachePlugin_cacheRefillFSM_refillWord;
+            ICachePlugin_dataRAMs_1_io_write_payload_data_11 = IF3_ICachePlugin_cacheRefillFSM_refillWord;
           end
         end
       end
-      IF2_ICachePlugin_cacheRefillFSM_enumDef_commit : begin
+      IF3_ICachePlugin_cacheRefillFSM_enumDef_commit : begin
         if(_zz_1465) begin
-          ICachePlugin_dataRAMs_1_io_write_payload_data_11 = IF2_ICachePlugin_cacheRefillFSM_refillWord;
+          ICachePlugin_dataRAMs_1_io_write_payload_data_11 = IF3_ICachePlugin_cacheRefillFSM_refillWord;
         end
       end
-      IF2_ICachePlugin_cacheRefillFSM_enumDef_finish : begin
+      IF3_ICachePlugin_cacheRefillFSM_enumDef_finish : begin
       end
       default : begin
       end
@@ -63608,22 +63821,22 @@ module MyCPUCore (
 
   always @(*) begin
     ICachePlugin_dataRAMs_1_io_write_payload_data_12 = 32'bxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx;
-    case(IF2_ICachePlugin_cacheRefillFSM_stateReg)
-      IF2_ICachePlugin_cacheRefillFSM_enumDef_waitAXI : begin
+    case(IF3_ICachePlugin_cacheRefillFSM_stateReg)
+      IF3_ICachePlugin_cacheRefillFSM_enumDef_waitAXI : begin
       end
-      IF2_ICachePlugin_cacheRefillFSM_enumDef_readMem : begin
-        if(IF2_ICachePlugin_cacheRefillFSM_refillValid) begin
+      IF3_ICachePlugin_cacheRefillFSM_enumDef_readMem : begin
+        if(IF3_ICachePlugin_cacheRefillFSM_refillValid) begin
           if(_zz_1465) begin
-            ICachePlugin_dataRAMs_1_io_write_payload_data_12 = IF2_ICachePlugin_cacheRefillFSM_refillWord;
+            ICachePlugin_dataRAMs_1_io_write_payload_data_12 = IF3_ICachePlugin_cacheRefillFSM_refillWord;
           end
         end
       end
-      IF2_ICachePlugin_cacheRefillFSM_enumDef_commit : begin
+      IF3_ICachePlugin_cacheRefillFSM_enumDef_commit : begin
         if(_zz_1465) begin
-          ICachePlugin_dataRAMs_1_io_write_payload_data_12 = IF2_ICachePlugin_cacheRefillFSM_refillWord;
+          ICachePlugin_dataRAMs_1_io_write_payload_data_12 = IF3_ICachePlugin_cacheRefillFSM_refillWord;
         end
       end
-      IF2_ICachePlugin_cacheRefillFSM_enumDef_finish : begin
+      IF3_ICachePlugin_cacheRefillFSM_enumDef_finish : begin
       end
       default : begin
       end
@@ -63632,22 +63845,22 @@ module MyCPUCore (
 
   always @(*) begin
     ICachePlugin_dataRAMs_1_io_write_payload_data_13 = 32'bxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx;
-    case(IF2_ICachePlugin_cacheRefillFSM_stateReg)
-      IF2_ICachePlugin_cacheRefillFSM_enumDef_waitAXI : begin
+    case(IF3_ICachePlugin_cacheRefillFSM_stateReg)
+      IF3_ICachePlugin_cacheRefillFSM_enumDef_waitAXI : begin
       end
-      IF2_ICachePlugin_cacheRefillFSM_enumDef_readMem : begin
-        if(IF2_ICachePlugin_cacheRefillFSM_refillValid) begin
+      IF3_ICachePlugin_cacheRefillFSM_enumDef_readMem : begin
+        if(IF3_ICachePlugin_cacheRefillFSM_refillValid) begin
           if(_zz_1465) begin
-            ICachePlugin_dataRAMs_1_io_write_payload_data_13 = IF2_ICachePlugin_cacheRefillFSM_refillWord;
+            ICachePlugin_dataRAMs_1_io_write_payload_data_13 = IF3_ICachePlugin_cacheRefillFSM_refillWord;
           end
         end
       end
-      IF2_ICachePlugin_cacheRefillFSM_enumDef_commit : begin
+      IF3_ICachePlugin_cacheRefillFSM_enumDef_commit : begin
         if(_zz_1465) begin
-          ICachePlugin_dataRAMs_1_io_write_payload_data_13 = IF2_ICachePlugin_cacheRefillFSM_refillWord;
+          ICachePlugin_dataRAMs_1_io_write_payload_data_13 = IF3_ICachePlugin_cacheRefillFSM_refillWord;
         end
       end
-      IF2_ICachePlugin_cacheRefillFSM_enumDef_finish : begin
+      IF3_ICachePlugin_cacheRefillFSM_enumDef_finish : begin
       end
       default : begin
       end
@@ -63656,22 +63869,22 @@ module MyCPUCore (
 
   always @(*) begin
     ICachePlugin_dataRAMs_1_io_write_payload_data_14 = 32'bxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx;
-    case(IF2_ICachePlugin_cacheRefillFSM_stateReg)
-      IF2_ICachePlugin_cacheRefillFSM_enumDef_waitAXI : begin
+    case(IF3_ICachePlugin_cacheRefillFSM_stateReg)
+      IF3_ICachePlugin_cacheRefillFSM_enumDef_waitAXI : begin
       end
-      IF2_ICachePlugin_cacheRefillFSM_enumDef_readMem : begin
-        if(IF2_ICachePlugin_cacheRefillFSM_refillValid) begin
+      IF3_ICachePlugin_cacheRefillFSM_enumDef_readMem : begin
+        if(IF3_ICachePlugin_cacheRefillFSM_refillValid) begin
           if(_zz_1465) begin
-            ICachePlugin_dataRAMs_1_io_write_payload_data_14 = IF2_ICachePlugin_cacheRefillFSM_refillWord;
+            ICachePlugin_dataRAMs_1_io_write_payload_data_14 = IF3_ICachePlugin_cacheRefillFSM_refillWord;
           end
         end
       end
-      IF2_ICachePlugin_cacheRefillFSM_enumDef_commit : begin
+      IF3_ICachePlugin_cacheRefillFSM_enumDef_commit : begin
         if(_zz_1465) begin
-          ICachePlugin_dataRAMs_1_io_write_payload_data_14 = IF2_ICachePlugin_cacheRefillFSM_refillWord;
+          ICachePlugin_dataRAMs_1_io_write_payload_data_14 = IF3_ICachePlugin_cacheRefillFSM_refillWord;
         end
       end
-      IF2_ICachePlugin_cacheRefillFSM_enumDef_finish : begin
+      IF3_ICachePlugin_cacheRefillFSM_enumDef_finish : begin
       end
       default : begin
       end
@@ -63680,22 +63893,22 @@ module MyCPUCore (
 
   always @(*) begin
     ICachePlugin_dataRAMs_1_io_write_payload_data_15 = 32'bxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx;
-    case(IF2_ICachePlugin_cacheRefillFSM_stateReg)
-      IF2_ICachePlugin_cacheRefillFSM_enumDef_waitAXI : begin
+    case(IF3_ICachePlugin_cacheRefillFSM_stateReg)
+      IF3_ICachePlugin_cacheRefillFSM_enumDef_waitAXI : begin
       end
-      IF2_ICachePlugin_cacheRefillFSM_enumDef_readMem : begin
-        if(IF2_ICachePlugin_cacheRefillFSM_refillValid) begin
+      IF3_ICachePlugin_cacheRefillFSM_enumDef_readMem : begin
+        if(IF3_ICachePlugin_cacheRefillFSM_refillValid) begin
           if(_zz_1465) begin
-            ICachePlugin_dataRAMs_1_io_write_payload_data_15 = IF2_ICachePlugin_cacheRefillFSM_refillWord;
+            ICachePlugin_dataRAMs_1_io_write_payload_data_15 = IF3_ICachePlugin_cacheRefillFSM_refillWord;
           end
         end
       end
-      IF2_ICachePlugin_cacheRefillFSM_enumDef_commit : begin
+      IF3_ICachePlugin_cacheRefillFSM_enumDef_commit : begin
         if(_zz_1465) begin
-          ICachePlugin_dataRAMs_1_io_write_payload_data_15 = IF2_ICachePlugin_cacheRefillFSM_refillWord;
+          ICachePlugin_dataRAMs_1_io_write_payload_data_15 = IF3_ICachePlugin_cacheRefillFSM_refillWord;
         end
       end
-      IF2_ICachePlugin_cacheRefillFSM_enumDef_finish : begin
+      IF3_ICachePlugin_cacheRefillFSM_enumDef_finish : begin
       end
       default : begin
       end
@@ -63704,11 +63917,11 @@ module MyCPUCore (
 
   always @(*) begin
     ICachePlugin_dataRAMs_0_io_writeMask = 64'h0;
-    case(IF2_ICachePlugin_cacheRefillFSM_stateReg)
-      IF2_ICachePlugin_cacheRefillFSM_enumDef_waitAXI : begin
+    case(IF3_ICachePlugin_cacheRefillFSM_stateReg)
+      IF3_ICachePlugin_cacheRefillFSM_enumDef_waitAXI : begin
       end
-      IF2_ICachePlugin_cacheRefillFSM_enumDef_readMem : begin
-        if(IF2_ICachePlugin_cacheRefillFSM_refillValid) begin
+      IF3_ICachePlugin_cacheRefillFSM_enumDef_readMem : begin
+        if(IF3_ICachePlugin_cacheRefillFSM_refillValid) begin
           if(_zz_1470) begin
             if(_zz_1467) begin
               ICachePlugin_dataRAMs_0_io_writeMask[3 : 0] = 4'b1111;
@@ -63791,7 +64004,7 @@ module MyCPUCore (
           end
         end
       end
-      IF2_ICachePlugin_cacheRefillFSM_enumDef_commit : begin
+      IF3_ICachePlugin_cacheRefillFSM_enumDef_commit : begin
         if(_zz_1470) begin
           if(_zz_1467) begin
             ICachePlugin_dataRAMs_0_io_writeMask[3 : 0] = 4'b1111;
@@ -63873,36 +64086,36 @@ module MyCPUCore (
           end
         end
       end
-      IF2_ICachePlugin_cacheRefillFSM_enumDef_finish : begin
+      IF3_ICachePlugin_cacheRefillFSM_enumDef_finish : begin
       end
       default : begin
       end
     endcase
   end
 
-  assign IF2_ICachePlugin_dataMasks_0_0 = ICachePlugin_dataRAMs_0_io_writeMask[3 : 0];
-  assign IF2_ICachePlugin_dataMasks_0_1 = ICachePlugin_dataRAMs_0_io_writeMask[7 : 4];
-  assign IF2_ICachePlugin_dataMasks_0_2 = ICachePlugin_dataRAMs_0_io_writeMask[11 : 8];
-  assign IF2_ICachePlugin_dataMasks_0_3 = ICachePlugin_dataRAMs_0_io_writeMask[15 : 12];
-  assign IF2_ICachePlugin_dataMasks_0_4 = ICachePlugin_dataRAMs_0_io_writeMask[19 : 16];
-  assign IF2_ICachePlugin_dataMasks_0_5 = ICachePlugin_dataRAMs_0_io_writeMask[23 : 20];
-  assign IF2_ICachePlugin_dataMasks_0_6 = ICachePlugin_dataRAMs_0_io_writeMask[27 : 24];
-  assign IF2_ICachePlugin_dataMasks_0_7 = ICachePlugin_dataRAMs_0_io_writeMask[31 : 28];
-  assign IF2_ICachePlugin_dataMasks_0_8 = ICachePlugin_dataRAMs_0_io_writeMask[35 : 32];
-  assign IF2_ICachePlugin_dataMasks_0_9 = ICachePlugin_dataRAMs_0_io_writeMask[39 : 36];
-  assign IF2_ICachePlugin_dataMasks_0_10 = ICachePlugin_dataRAMs_0_io_writeMask[43 : 40];
-  assign IF2_ICachePlugin_dataMasks_0_11 = ICachePlugin_dataRAMs_0_io_writeMask[47 : 44];
-  assign IF2_ICachePlugin_dataMasks_0_12 = ICachePlugin_dataRAMs_0_io_writeMask[51 : 48];
-  assign IF2_ICachePlugin_dataMasks_0_13 = ICachePlugin_dataRAMs_0_io_writeMask[55 : 52];
-  assign IF2_ICachePlugin_dataMasks_0_14 = ICachePlugin_dataRAMs_0_io_writeMask[59 : 56];
-  assign IF2_ICachePlugin_dataMasks_0_15 = ICachePlugin_dataRAMs_0_io_writeMask[63 : 60];
+  assign IF3_ICachePlugin_dataMasks_0_0 = ICachePlugin_dataRAMs_0_io_writeMask[3 : 0];
+  assign IF3_ICachePlugin_dataMasks_0_1 = ICachePlugin_dataRAMs_0_io_writeMask[7 : 4];
+  assign IF3_ICachePlugin_dataMasks_0_2 = ICachePlugin_dataRAMs_0_io_writeMask[11 : 8];
+  assign IF3_ICachePlugin_dataMasks_0_3 = ICachePlugin_dataRAMs_0_io_writeMask[15 : 12];
+  assign IF3_ICachePlugin_dataMasks_0_4 = ICachePlugin_dataRAMs_0_io_writeMask[19 : 16];
+  assign IF3_ICachePlugin_dataMasks_0_5 = ICachePlugin_dataRAMs_0_io_writeMask[23 : 20];
+  assign IF3_ICachePlugin_dataMasks_0_6 = ICachePlugin_dataRAMs_0_io_writeMask[27 : 24];
+  assign IF3_ICachePlugin_dataMasks_0_7 = ICachePlugin_dataRAMs_0_io_writeMask[31 : 28];
+  assign IF3_ICachePlugin_dataMasks_0_8 = ICachePlugin_dataRAMs_0_io_writeMask[35 : 32];
+  assign IF3_ICachePlugin_dataMasks_0_9 = ICachePlugin_dataRAMs_0_io_writeMask[39 : 36];
+  assign IF3_ICachePlugin_dataMasks_0_10 = ICachePlugin_dataRAMs_0_io_writeMask[43 : 40];
+  assign IF3_ICachePlugin_dataMasks_0_11 = ICachePlugin_dataRAMs_0_io_writeMask[47 : 44];
+  assign IF3_ICachePlugin_dataMasks_0_12 = ICachePlugin_dataRAMs_0_io_writeMask[51 : 48];
+  assign IF3_ICachePlugin_dataMasks_0_13 = ICachePlugin_dataRAMs_0_io_writeMask[55 : 52];
+  assign IF3_ICachePlugin_dataMasks_0_14 = ICachePlugin_dataRAMs_0_io_writeMask[59 : 56];
+  assign IF3_ICachePlugin_dataMasks_0_15 = ICachePlugin_dataRAMs_0_io_writeMask[63 : 60];
   always @(*) begin
     ICachePlugin_dataRAMs_1_io_writeMask = 64'h0;
-    case(IF2_ICachePlugin_cacheRefillFSM_stateReg)
-      IF2_ICachePlugin_cacheRefillFSM_enumDef_waitAXI : begin
+    case(IF3_ICachePlugin_cacheRefillFSM_stateReg)
+      IF3_ICachePlugin_cacheRefillFSM_enumDef_waitAXI : begin
       end
-      IF2_ICachePlugin_cacheRefillFSM_enumDef_readMem : begin
-        if(IF2_ICachePlugin_cacheRefillFSM_refillValid) begin
+      IF3_ICachePlugin_cacheRefillFSM_enumDef_readMem : begin
+        if(IF3_ICachePlugin_cacheRefillFSM_refillValid) begin
           if(_zz_1470) begin
             if(_zz_1468) begin
               ICachePlugin_dataRAMs_1_io_writeMask[3 : 0] = 4'b1111;
@@ -63985,7 +64198,7 @@ module MyCPUCore (
           end
         end
       end
-      IF2_ICachePlugin_cacheRefillFSM_enumDef_commit : begin
+      IF3_ICachePlugin_cacheRefillFSM_enumDef_commit : begin
         if(_zz_1470) begin
           if(_zz_1468) begin
             ICachePlugin_dataRAMs_1_io_writeMask[3 : 0] = 4'b1111;
@@ -64067,54 +64280,54 @@ module MyCPUCore (
           end
         end
       end
-      IF2_ICachePlugin_cacheRefillFSM_enumDef_finish : begin
+      IF3_ICachePlugin_cacheRefillFSM_enumDef_finish : begin
       end
       default : begin
       end
     endcase
   end
 
-  assign IF2_ICachePlugin_dataMasks_1_0 = ICachePlugin_dataRAMs_1_io_writeMask[3 : 0];
-  assign IF2_ICachePlugin_dataMasks_1_1 = ICachePlugin_dataRAMs_1_io_writeMask[7 : 4];
-  assign IF2_ICachePlugin_dataMasks_1_2 = ICachePlugin_dataRAMs_1_io_writeMask[11 : 8];
-  assign IF2_ICachePlugin_dataMasks_1_3 = ICachePlugin_dataRAMs_1_io_writeMask[15 : 12];
-  assign IF2_ICachePlugin_dataMasks_1_4 = ICachePlugin_dataRAMs_1_io_writeMask[19 : 16];
-  assign IF2_ICachePlugin_dataMasks_1_5 = ICachePlugin_dataRAMs_1_io_writeMask[23 : 20];
-  assign IF2_ICachePlugin_dataMasks_1_6 = ICachePlugin_dataRAMs_1_io_writeMask[27 : 24];
-  assign IF2_ICachePlugin_dataMasks_1_7 = ICachePlugin_dataRAMs_1_io_writeMask[31 : 28];
-  assign IF2_ICachePlugin_dataMasks_1_8 = ICachePlugin_dataRAMs_1_io_writeMask[35 : 32];
-  assign IF2_ICachePlugin_dataMasks_1_9 = ICachePlugin_dataRAMs_1_io_writeMask[39 : 36];
-  assign IF2_ICachePlugin_dataMasks_1_10 = ICachePlugin_dataRAMs_1_io_writeMask[43 : 40];
-  assign IF2_ICachePlugin_dataMasks_1_11 = ICachePlugin_dataRAMs_1_io_writeMask[47 : 44];
-  assign IF2_ICachePlugin_dataMasks_1_12 = ICachePlugin_dataRAMs_1_io_writeMask[51 : 48];
-  assign IF2_ICachePlugin_dataMasks_1_13 = ICachePlugin_dataRAMs_1_io_writeMask[55 : 52];
-  assign IF2_ICachePlugin_dataMasks_1_14 = ICachePlugin_dataRAMs_1_io_writeMask[59 : 56];
-  assign IF2_ICachePlugin_dataMasks_1_15 = ICachePlugin_dataRAMs_1_io_writeMask[63 : 60];
-  assign IF2_ICachePlugin_hits_0 = (IF2_ICACHE_VALIDS_0 && (IF2_ICACHE_INFO_tags_0 == IF2_ICachePlugin_tag));
-  assign IF2_ICachePlugin_hits_1 = (IF2_ICACHE_VALIDS_1 && (IF2_ICACHE_INFO_tags_1 == IF2_ICachePlugin_tag));
-  assign IF2_ICachePlugin_hit = ({IF2_ICachePlugin_hits_1,IF2_ICachePlugin_hits_0} != 2'b00);
-  assign IF2_ICachePlugin_hitData_0 = (IF2_ICachePlugin_hits_0 ? IF2_ICACHE_RSPS_0_0 : IF2_ICACHE_RSPS_1_0);
-  assign IF2_ICachePlugin_hitData_1 = (IF2_ICachePlugin_hits_0 ? IF2_ICACHE_RSPS_0_1 : IF2_ICACHE_RSPS_1_1);
-  assign IF2_ICachePlugin_hitData_2 = (IF2_ICachePlugin_hits_0 ? IF2_ICACHE_RSPS_0_2 : IF2_ICACHE_RSPS_1_2);
-  assign IF2_ICachePlugin_hitData_3 = (IF2_ICachePlugin_hits_0 ? IF2_ICACHE_RSPS_0_3 : IF2_ICACHE_RSPS_1_3);
-  assign when_ICachePlugin_l123 = (IF2_ICachePlugin_reqCommit && IF2_ICachePlugin_hit);
-  assign _zz_io_write_payload_data_lru[0] = IF2_ICachePlugin_hits_0;
-  assign IF2_ICachePlugin_cacheRefillFSM_wantExit = 1'b0;
-  assign IF2_ICachePlugin_cacheRefillFSM_wantStart = 1'b0;
-  assign IF2_ICachePlugin_cacheRefillFSM_wantKill = 1'b0;
+  assign IF3_ICachePlugin_dataMasks_1_0 = ICachePlugin_dataRAMs_1_io_writeMask[3 : 0];
+  assign IF3_ICachePlugin_dataMasks_1_1 = ICachePlugin_dataRAMs_1_io_writeMask[7 : 4];
+  assign IF3_ICachePlugin_dataMasks_1_2 = ICachePlugin_dataRAMs_1_io_writeMask[11 : 8];
+  assign IF3_ICachePlugin_dataMasks_1_3 = ICachePlugin_dataRAMs_1_io_writeMask[15 : 12];
+  assign IF3_ICachePlugin_dataMasks_1_4 = ICachePlugin_dataRAMs_1_io_writeMask[19 : 16];
+  assign IF3_ICachePlugin_dataMasks_1_5 = ICachePlugin_dataRAMs_1_io_writeMask[23 : 20];
+  assign IF3_ICachePlugin_dataMasks_1_6 = ICachePlugin_dataRAMs_1_io_writeMask[27 : 24];
+  assign IF3_ICachePlugin_dataMasks_1_7 = ICachePlugin_dataRAMs_1_io_writeMask[31 : 28];
+  assign IF3_ICachePlugin_dataMasks_1_8 = ICachePlugin_dataRAMs_1_io_writeMask[35 : 32];
+  assign IF3_ICachePlugin_dataMasks_1_9 = ICachePlugin_dataRAMs_1_io_writeMask[39 : 36];
+  assign IF3_ICachePlugin_dataMasks_1_10 = ICachePlugin_dataRAMs_1_io_writeMask[43 : 40];
+  assign IF3_ICachePlugin_dataMasks_1_11 = ICachePlugin_dataRAMs_1_io_writeMask[47 : 44];
+  assign IF3_ICachePlugin_dataMasks_1_12 = ICachePlugin_dataRAMs_1_io_writeMask[51 : 48];
+  assign IF3_ICachePlugin_dataMasks_1_13 = ICachePlugin_dataRAMs_1_io_writeMask[55 : 52];
+  assign IF3_ICachePlugin_dataMasks_1_14 = ICachePlugin_dataRAMs_1_io_writeMask[59 : 56];
+  assign IF3_ICachePlugin_dataMasks_1_15 = ICachePlugin_dataRAMs_1_io_writeMask[63 : 60];
+  assign IF3_ICachePlugin_hits_0 = (IF3_ICACHE_VALIDS_0 && (IF3_ICACHE_INFO_tags_0 == IF3_ICachePlugin_tag));
+  assign IF3_ICachePlugin_hits_1 = (IF3_ICACHE_VALIDS_1 && (IF3_ICACHE_INFO_tags_1 == IF3_ICachePlugin_tag));
+  assign IF3_ICachePlugin_hit = ({IF3_ICachePlugin_hits_1,IF3_ICachePlugin_hits_0} != 2'b00);
+  assign IF3_ICachePlugin_hitData_0 = (IF3_ICachePlugin_hits_0 ? IF3_ICACHE_RSPS_0_0 : IF3_ICACHE_RSPS_1_0);
+  assign IF3_ICachePlugin_hitData_1 = (IF3_ICachePlugin_hits_0 ? IF3_ICACHE_RSPS_0_1 : IF3_ICACHE_RSPS_1_1);
+  assign IF3_ICachePlugin_hitData_2 = (IF3_ICachePlugin_hits_0 ? IF3_ICACHE_RSPS_0_2 : IF3_ICACHE_RSPS_1_2);
+  assign IF3_ICachePlugin_hitData_3 = (IF3_ICachePlugin_hits_0 ? IF3_ICACHE_RSPS_0_3 : IF3_ICACHE_RSPS_1_3);
+  assign when_ICachePlugin_l125 = (IF3_ICachePlugin_reqCommit && IF3_ICachePlugin_hit);
+  assign _zz_io_write_payload_data_lru[0] = IF3_ICachePlugin_hits_0;
+  assign IF3_ICachePlugin_cacheRefillFSM_wantExit = 1'b0;
+  assign IF3_ICachePlugin_cacheRefillFSM_wantStart = 1'b0;
+  assign IF3_ICachePlugin_cacheRefillFSM_wantKill = 1'b0;
   always @(*) begin
-    IF2_ICachePlugin_cacheRefillFSM_rspId_willIncrement = 1'b0;
-    case(IF2_ICachePlugin_cacheRefillFSM_stateReg)
-      IF2_ICachePlugin_cacheRefillFSM_enumDef_waitAXI : begin
+    IF3_ICachePlugin_cacheRefillFSM_rspId_willIncrement = 1'b0;
+    case(IF3_ICachePlugin_cacheRefillFSM_stateReg)
+      IF3_ICachePlugin_cacheRefillFSM_enumDef_waitAXI : begin
       end
-      IF2_ICachePlugin_cacheRefillFSM_enumDef_readMem : begin
-        if(IF2_ICachePlugin_cacheRefillFSM_refillValid) begin
-          IF2_ICachePlugin_cacheRefillFSM_rspId_willIncrement = 1'b1;
+      IF3_ICachePlugin_cacheRefillFSM_enumDef_readMem : begin
+        if(IF3_ICachePlugin_cacheRefillFSM_refillValid) begin
+          IF3_ICachePlugin_cacheRefillFSM_rspId_willIncrement = 1'b1;
         end
       end
-      IF2_ICachePlugin_cacheRefillFSM_enumDef_commit : begin
+      IF3_ICachePlugin_cacheRefillFSM_enumDef_commit : begin
       end
-      IF2_ICachePlugin_cacheRefillFSM_enumDef_finish : begin
+      IF3_ICachePlugin_cacheRefillFSM_enumDef_finish : begin
       end
       default : begin
       end
@@ -64122,56 +64335,56 @@ module MyCPUCore (
   end
 
   always @(*) begin
-    IF2_ICachePlugin_cacheRefillFSM_rspId_willClear = 1'b0;
-    case(IF2_ICachePlugin_cacheRefillFSM_stateReg)
-      IF2_ICachePlugin_cacheRefillFSM_enumDef_waitAXI : begin
+    IF3_ICachePlugin_cacheRefillFSM_rspId_willClear = 1'b0;
+    case(IF3_ICachePlugin_cacheRefillFSM_stateReg)
+      IF3_ICachePlugin_cacheRefillFSM_enumDef_waitAXI : begin
         if(ICachePlugin_iBus_ar_ready) begin
-          IF2_ICachePlugin_cacheRefillFSM_rspId_willClear = 1'b1;
+          IF3_ICachePlugin_cacheRefillFSM_rspId_willClear = 1'b1;
         end
       end
-      IF2_ICachePlugin_cacheRefillFSM_enumDef_readMem : begin
+      IF3_ICachePlugin_cacheRefillFSM_enumDef_readMem : begin
       end
-      IF2_ICachePlugin_cacheRefillFSM_enumDef_commit : begin
+      IF3_ICachePlugin_cacheRefillFSM_enumDef_commit : begin
       end
-      IF2_ICachePlugin_cacheRefillFSM_enumDef_finish : begin
+      IF3_ICachePlugin_cacheRefillFSM_enumDef_finish : begin
       end
       default : begin
       end
     endcase
   end
 
-  assign IF2_ICachePlugin_cacheRefillFSM_rspId_willOverflowIfInc = (IF2_ICachePlugin_cacheRefillFSM_rspId_value == 4'b1111);
-  assign IF2_ICachePlugin_cacheRefillFSM_rspId_willOverflow = (IF2_ICachePlugin_cacheRefillFSM_rspId_willOverflowIfInc && IF2_ICachePlugin_cacheRefillFSM_rspId_willIncrement);
+  assign IF3_ICachePlugin_cacheRefillFSM_rspId_willOverflowIfInc = (IF3_ICachePlugin_cacheRefillFSM_rspId_value == 4'b1111);
+  assign IF3_ICachePlugin_cacheRefillFSM_rspId_willOverflow = (IF3_ICachePlugin_cacheRefillFSM_rspId_willOverflowIfInc && IF3_ICachePlugin_cacheRefillFSM_rspId_willIncrement);
   always @(*) begin
-    IF2_ICachePlugin_cacheRefillFSM_rspId_valueNext = (IF2_ICachePlugin_cacheRefillFSM_rspId_value + _zz_IF2_ICachePlugin_cacheRefillFSM_rspId_valueNext);
-    if(IF2_ICachePlugin_cacheRefillFSM_rspId_willClear) begin
-      IF2_ICachePlugin_cacheRefillFSM_rspId_valueNext = 4'b0000;
+    IF3_ICachePlugin_cacheRefillFSM_rspId_valueNext = (IF3_ICachePlugin_cacheRefillFSM_rspId_value + _zz_IF3_ICachePlugin_cacheRefillFSM_rspId_valueNext);
+    if(IF3_ICachePlugin_cacheRefillFSM_rspId_willClear) begin
+      IF3_ICachePlugin_cacheRefillFSM_rspId_valueNext = 4'b0000;
     end
   end
 
   assign ICachePlugin_iBus_r_fire = (ICachePlugin_iBus_r_valid && ICachePlugin_iBus_r_ready);
-  assign IF2_ICachePlugin_cacheRefillFSM_replaceWay = IF2_ICACHE_INFO_lru;
-  assign when_ICachePlugin_l154 = (IF2_ICachePlugin_cacheRefillFSM_refillValid && (IF2_ICachePlugin_cacheRefillFSM_rspId_value == _zz_when_ICachePlugin_l154));
-  assign when_ICachePlugin_l154_1 = (IF2_ICachePlugin_cacheRefillFSM_refillValid && (IF2_ICachePlugin_cacheRefillFSM_rspId_value == _zz_when_ICachePlugin_l154_1));
-  assign when_ICachePlugin_l154_2 = (IF2_ICachePlugin_cacheRefillFSM_refillValid && (IF2_ICachePlugin_cacheRefillFSM_rspId_value == _zz_when_ICachePlugin_l154_2));
-  assign when_ICachePlugin_l154_3 = (IF2_ICachePlugin_cacheRefillFSM_refillValid && (IF2_ICachePlugin_cacheRefillFSM_rspId_value == _zz_when_ICachePlugin_l154_3));
-  assign IF2_ICachePlugin_fetchPacket_pc = IF2_PC;
-  assign IF2_ICachePlugin_fetchPacket_except_valid = _zz_IF2_ICachePlugin_fetchPacket_except_valid;
-  assign IF2_ICachePlugin_fetchPacket_except_payload_code = _zz_IF2_ICachePlugin_fetchPacket_except_payload_code;
-  assign IF2_ICachePlugin_fetchPacket_except_payload_subcode = _zz_IF2_ICachePlugin_fetchPacket_except_payload_subcode;
-  assign IF2_ICachePlugin_fetchPacket_except_payload_isTLBRefill = IF2_IS_TLB_REFILL;
-  assign IF2_ICachePlugin_fetchPacket_insts_0_valid = 1'b1;
-  assign IF2_ICachePlugin_fetchPacket_insts_0_payload = (IF2_ICachePlugin_hit ? IF2_ICachePlugin_hitData_0 : IF2_ICachePlugin_storedPacket_0);
-  assign IF2_ICachePlugin_fetchPacket_insts_1_valid = (IF2_ICachePlugin_pcWordOffset < 4'b1111);
-  assign IF2_ICachePlugin_fetchPacket_insts_1_payload = (IF2_ICachePlugin_hit ? IF2_ICachePlugin_hitData_1 : IF2_ICachePlugin_storedPacket_1);
-  assign IF2_ICachePlugin_fetchPacket_insts_2_valid = (IF2_ICachePlugin_pcWordOffset < 4'b1110);
-  assign IF2_ICachePlugin_fetchPacket_insts_2_payload = (IF2_ICachePlugin_hit ? IF2_ICachePlugin_hitData_2 : IF2_ICachePlugin_storedPacket_2);
-  assign IF2_ICachePlugin_fetchPacket_insts_3_valid = (IF2_ICachePlugin_pcWordOffset < 4'b1101);
-  assign IF2_ICachePlugin_fetchPacket_insts_3_payload = (IF2_ICachePlugin_hit ? IF2_ICachePlugin_hitData_3 : IF2_ICachePlugin_storedPacket_3);
+  assign IF3_ICachePlugin_cacheRefillFSM_replaceWay = IF3_ICACHE_INFO_lru;
+  assign when_ICachePlugin_l156 = (IF3_ICachePlugin_cacheRefillFSM_refillValid && (IF3_ICachePlugin_cacheRefillFSM_rspId_value == _zz_when_ICachePlugin_l156));
+  assign when_ICachePlugin_l156_1 = (IF3_ICachePlugin_cacheRefillFSM_refillValid && (IF3_ICachePlugin_cacheRefillFSM_rspId_value == _zz_when_ICachePlugin_l156_1));
+  assign when_ICachePlugin_l156_2 = (IF3_ICachePlugin_cacheRefillFSM_refillValid && (IF3_ICachePlugin_cacheRefillFSM_rspId_value == _zz_when_ICachePlugin_l156_2));
+  assign when_ICachePlugin_l156_3 = (IF3_ICachePlugin_cacheRefillFSM_refillValid && (IF3_ICachePlugin_cacheRefillFSM_rspId_value == _zz_when_ICachePlugin_l156_3));
+  assign IF3_ICachePlugin_fetchPacket_pc = IF3_PC;
+  assign IF3_ICachePlugin_fetchPacket_except_valid = _zz_IF3_ICachePlugin_fetchPacket_except_valid;
+  assign IF3_ICachePlugin_fetchPacket_except_payload_code = IF3_EXCEPTION_ECODE;
+  assign IF3_ICachePlugin_fetchPacket_except_payload_subcode = IF3_EXCEPTION_ESUBCODE;
+  assign IF3_ICachePlugin_fetchPacket_except_payload_isTLBRefill = IF3_IS_TLB_REFILL;
+  assign IF3_ICachePlugin_fetchPacket_insts_0_valid = 1'b1;
+  assign IF3_ICachePlugin_fetchPacket_insts_0_payload = (IF3_ICachePlugin_hit ? IF3_ICachePlugin_hitData_0 : IF3_ICachePlugin_storedPacket_0);
+  assign IF3_ICachePlugin_fetchPacket_insts_1_valid = (IF3_ICachePlugin_pcWordOffset < 4'b1111);
+  assign IF3_ICachePlugin_fetchPacket_insts_1_payload = (IF3_ICachePlugin_hit ? IF3_ICachePlugin_hitData_1 : IF3_ICachePlugin_storedPacket_1);
+  assign IF3_ICachePlugin_fetchPacket_insts_2_valid = (IF3_ICachePlugin_pcWordOffset < 4'b1110);
+  assign IF3_ICachePlugin_fetchPacket_insts_2_payload = (IF3_ICachePlugin_hit ? IF3_ICachePlugin_hitData_2 : IF3_ICachePlugin_storedPacket_2);
+  assign IF3_ICachePlugin_fetchPacket_insts_3_valid = (IF3_ICachePlugin_pcWordOffset < 4'b1101);
+  assign IF3_ICachePlugin_fetchPacket_insts_3_payload = (IF3_ICachePlugin_hit ? IF3_ICachePlugin_hitData_3 : IF3_ICachePlugin_storedPacket_3);
   assign ICachePlugin_commit_targetICache = (CommitPlugin_cacheOp_payload_sel == CacheSelType_ICache);
   assign ICachePlugin_commit_way = CommitPlugin_cacheOp_payload_addr[0 : 0];
   assign ICachePlugin_commit_index = CommitPlugin_cacheOp_payload_addr[11 : 6];
-  assign when_ICachePlugin_l263 = (CommitPlugin_cacheOp_valid && ICachePlugin_commit_targetICache);
+  assign when_ICachePlugin_l265 = (CommitPlugin_cacheOp_valid && ICachePlugin_commit_targetICache);
   assign _zz_360 = ({63'd0,1'b1} <<< ICachePlugin_commit_index);
   assign _zz_361 = _zz_360[0];
   assign _zz_362 = _zz_360[1];
@@ -64238,10 +64451,10 @@ module MyCPUCore (
   assign _zz_423 = _zz_360[62];
   assign _zz_424 = _zz_360[63];
   assign _zz_425 = ({1'd0,1'b1} <<< ICachePlugin_commit_way);
-  assign when_ExceptionMuxPlugin_l45 = ((! IF2_EXCEPTION_OCCURRED) && InstAddrTranslatePlugin_PPI);
-  assign when_ExceptionMuxPlugin_l45_1 = ((! IF2_EXCEPTION_OCCURRED) && InstAddrTranslatePlugin_PIF);
-  assign when_ExceptionMuxPlugin_l45_2 = ((! IF2_EXCEPTION_OCCURRED) && InstAddrTranslatePlugin_TLBR);
-  assign when_ExceptionMuxPlugin_l45_3 = ((! IF1_EXCEPTION_OCCURRED) && InstAddrTranslatePlugin_ADEF);
+  assign when_ExceptionMuxPlugin_l45 = ((! IF1_EXCEPTION_OCCURRED) && InstAddrTranslatePlugin_ADEF);
+  assign when_ExceptionMuxPlugin_l45_1 = ((! IF2_EXCEPTION_OCCURRED) && InstAddrTranslatePlugin_PPI);
+  assign when_ExceptionMuxPlugin_l45_2 = ((! IF2_EXCEPTION_OCCURRED) && InstAddrTranslatePlugin_PIF);
+  assign when_ExceptionMuxPlugin_l45_3 = ((! IF2_EXCEPTION_OCCURRED) && InstAddrTranslatePlugin_TLBR);
   assign InstAddrTranslatePlugin_badVaddr = IF1_PC;
   assign InstAddrTranslatePlugin_ADEF = (IF1_PC[0] || IF1_PC[1]);
   assign IF1_InstAddrTranslatePlugin_directTranslateResult_resultExceptionBundle_raisePIL = 1'b0;
@@ -64268,204 +64481,205 @@ module MyCPUCore (
   assign IF1_InstAddrTranslatePlugin_directTranslateResult_resultBundle_payload_exception_raisePME = IF1_InstAddrTranslatePlugin_directTranslateResult_resultExceptionBundle_raisePME;
   assign IF1_InstAddrTranslatePlugin_directTranslateResult_resultBundle_payload_exception_raisePPI = IF1_InstAddrTranslatePlugin_directTranslateResult_resultExceptionBundle_raisePPI;
   assign IF1_InstAddrTranslatePlugin_directTranslateResult_resultBundle_payload_exception_raiseTLBR = IF1_InstAddrTranslatePlugin_directTranslateResult_resultExceptionBundle_raiseTLBR;
-  assign switch_MMUPlugin_l290 = MemOperationType_FETCH;
-  assign IF1_InstAddrTranslatePlugin_tlbTranslateResult_resultValid = 1'b1;
-  always @(*) begin
-    IF1_InstAddrTranslatePlugin_tlbTranslateResult_resultExceptionBundle_raisePIL = 1'b0;
-    if(when_MMUPlugin_l289) begin
-      case(switch_MMUPlugin_l290)
-        MemOperationType_FETCH : begin
-        end
-        MemOperationType_LOAD : begin
-          IF1_InstAddrTranslatePlugin_tlbTranslateResult_resultExceptionBundle_raisePIL = 1'b1;
-        end
-        default : begin
-        end
-      endcase
-    end
-  end
-
-  always @(*) begin
-    IF1_InstAddrTranslatePlugin_tlbTranslateResult_resultExceptionBundle_raisePIS = 1'b0;
-    if(when_MMUPlugin_l289) begin
-      case(switch_MMUPlugin_l290)
-        MemOperationType_FETCH : begin
-        end
-        MemOperationType_LOAD : begin
-        end
-        default : begin
-          IF1_InstAddrTranslatePlugin_tlbTranslateResult_resultExceptionBundle_raisePIS = 1'b1;
-        end
-      endcase
-    end
-  end
-
-  always @(*) begin
-    IF1_InstAddrTranslatePlugin_tlbTranslateResult_resultExceptionBundle_raisePIF = 1'b0;
-    if(when_MMUPlugin_l289) begin
-      case(switch_MMUPlugin_l290)
-        MemOperationType_FETCH : begin
-          IF1_InstAddrTranslatePlugin_tlbTranslateResult_resultExceptionBundle_raisePIF = 1'b1;
-        end
-        MemOperationType_LOAD : begin
-        end
-        default : begin
-        end
-      endcase
-    end
-  end
-
-  always @(*) begin
-    IF1_InstAddrTranslatePlugin_tlbTranslateResult_resultExceptionBundle_raisePME = 1'b0;
-    if(when_MMUPlugin_l307) begin
-      IF1_InstAddrTranslatePlugin_tlbTranslateResult_resultExceptionBundle_raisePME = 1'b1;
-    end
-  end
-
-  always @(*) begin
-    IF1_InstAddrTranslatePlugin_tlbTranslateResult_resultExceptionBundle_raisePPI = 1'b0;
-    if(when_MMUPlugin_l303) begin
-      IF1_InstAddrTranslatePlugin_tlbTranslateResult_resultExceptionBundle_raisePPI = 1'b1;
-    end
-  end
-
-  always @(*) begin
-    IF1_InstAddrTranslatePlugin_tlbTranslateResult_resultExceptionBundle_raiseTLBR = 1'b0;
-    if(when_MMUPlugin_l285) begin
-      IF1_InstAddrTranslatePlugin_tlbTranslateResult_resultExceptionBundle_raiseTLBR = 1'b1;
-    end
-  end
-
-  assign IF1_InstAddrTranslatePlugin_tlbTranslateResult_ASIDMatches_0 = (MMUPlugin_TLBTable_0_G || (MMUPlugin_TLBTable_0_ASID == MMUPlugin_ASID_ASID));
-  assign IF1_InstAddrTranslatePlugin_tlbTranslateResult_ASIDMatches_1 = (MMUPlugin_TLBTable_1_G || (MMUPlugin_TLBTable_1_ASID == MMUPlugin_ASID_ASID));
-  assign IF1_InstAddrTranslatePlugin_tlbTranslateResult_ASIDMatches_2 = (MMUPlugin_TLBTable_2_G || (MMUPlugin_TLBTable_2_ASID == MMUPlugin_ASID_ASID));
-  assign IF1_InstAddrTranslatePlugin_tlbTranslateResult_ASIDMatches_3 = (MMUPlugin_TLBTable_3_G || (MMUPlugin_TLBTable_3_ASID == MMUPlugin_ASID_ASID));
-  assign IF1_InstAddrTranslatePlugin_tlbTranslateResult_ASIDMatches_4 = (MMUPlugin_TLBTable_4_G || (MMUPlugin_TLBTable_4_ASID == MMUPlugin_ASID_ASID));
-  assign IF1_InstAddrTranslatePlugin_tlbTranslateResult_ASIDMatches_5 = (MMUPlugin_TLBTable_5_G || (MMUPlugin_TLBTable_5_ASID == MMUPlugin_ASID_ASID));
-  assign IF1_InstAddrTranslatePlugin_tlbTranslateResult_ASIDMatches_6 = (MMUPlugin_TLBTable_6_G || (MMUPlugin_TLBTable_6_ASID == MMUPlugin_ASID_ASID));
-  assign IF1_InstAddrTranslatePlugin_tlbTranslateResult_ASIDMatches_7 = (MMUPlugin_TLBTable_7_G || (MMUPlugin_TLBTable_7_ASID == MMUPlugin_ASID_ASID));
-  assign IF1_InstAddrTranslatePlugin_tlbTranslateResult_ASIDMatches_8 = (MMUPlugin_TLBTable_8_G || (MMUPlugin_TLBTable_8_ASID == MMUPlugin_ASID_ASID));
-  assign IF1_InstAddrTranslatePlugin_tlbTranslateResult_ASIDMatches_9 = (MMUPlugin_TLBTable_9_G || (MMUPlugin_TLBTable_9_ASID == MMUPlugin_ASID_ASID));
-  assign IF1_InstAddrTranslatePlugin_tlbTranslateResult_ASIDMatches_10 = (MMUPlugin_TLBTable_10_G || (MMUPlugin_TLBTable_10_ASID == MMUPlugin_ASID_ASID));
-  assign IF1_InstAddrTranslatePlugin_tlbTranslateResult_ASIDMatches_11 = (MMUPlugin_TLBTable_11_G || (MMUPlugin_TLBTable_11_ASID == MMUPlugin_ASID_ASID));
-  assign IF1_InstAddrTranslatePlugin_tlbTranslateResult_ASIDMatches_12 = (MMUPlugin_TLBTable_12_G || (MMUPlugin_TLBTable_12_ASID == MMUPlugin_ASID_ASID));
-  assign IF1_InstAddrTranslatePlugin_tlbTranslateResult_ASIDMatches_13 = (MMUPlugin_TLBTable_13_G || (MMUPlugin_TLBTable_13_ASID == MMUPlugin_ASID_ASID));
-  assign IF1_InstAddrTranslatePlugin_tlbTranslateResult_ASIDMatches_14 = (MMUPlugin_TLBTable_14_G || (MMUPlugin_TLBTable_14_ASID == MMUPlugin_ASID_ASID));
-  assign IF1_InstAddrTranslatePlugin_tlbTranslateResult_ASIDMatches_15 = (MMUPlugin_TLBTable_15_G || (MMUPlugin_TLBTable_15_ASID == MMUPlugin_ASID_ASID));
-  assign IF1_InstAddrTranslatePlugin_tlbTranslateResult_VPPNMatches_0 = ((MMUPlugin_TLBTable_0_PS == 6'h0c) ? (MMUPlugin_TLBTable_0_VPPN == IF1_PC[31 : 13]) : (MMUPlugin_TLBTable_0_VPPN[18 : 9] == IF1_PC[31 : 22]));
-  assign IF1_InstAddrTranslatePlugin_tlbTranslateResult_VPPNMatches_1 = ((MMUPlugin_TLBTable_1_PS == 6'h0c) ? (MMUPlugin_TLBTable_1_VPPN == IF1_PC[31 : 13]) : (MMUPlugin_TLBTable_1_VPPN[18 : 9] == IF1_PC[31 : 22]));
-  assign IF1_InstAddrTranslatePlugin_tlbTranslateResult_VPPNMatches_2 = ((MMUPlugin_TLBTable_2_PS == 6'h0c) ? (MMUPlugin_TLBTable_2_VPPN == IF1_PC[31 : 13]) : (MMUPlugin_TLBTable_2_VPPN[18 : 9] == IF1_PC[31 : 22]));
-  assign IF1_InstAddrTranslatePlugin_tlbTranslateResult_VPPNMatches_3 = ((MMUPlugin_TLBTable_3_PS == 6'h0c) ? (MMUPlugin_TLBTable_3_VPPN == IF1_PC[31 : 13]) : (MMUPlugin_TLBTable_3_VPPN[18 : 9] == IF1_PC[31 : 22]));
-  assign IF1_InstAddrTranslatePlugin_tlbTranslateResult_VPPNMatches_4 = ((MMUPlugin_TLBTable_4_PS == 6'h0c) ? (MMUPlugin_TLBTable_4_VPPN == IF1_PC[31 : 13]) : (MMUPlugin_TLBTable_4_VPPN[18 : 9] == IF1_PC[31 : 22]));
-  assign IF1_InstAddrTranslatePlugin_tlbTranslateResult_VPPNMatches_5 = ((MMUPlugin_TLBTable_5_PS == 6'h0c) ? (MMUPlugin_TLBTable_5_VPPN == IF1_PC[31 : 13]) : (MMUPlugin_TLBTable_5_VPPN[18 : 9] == IF1_PC[31 : 22]));
-  assign IF1_InstAddrTranslatePlugin_tlbTranslateResult_VPPNMatches_6 = ((MMUPlugin_TLBTable_6_PS == 6'h0c) ? (MMUPlugin_TLBTable_6_VPPN == IF1_PC[31 : 13]) : (MMUPlugin_TLBTable_6_VPPN[18 : 9] == IF1_PC[31 : 22]));
-  assign IF1_InstAddrTranslatePlugin_tlbTranslateResult_VPPNMatches_7 = ((MMUPlugin_TLBTable_7_PS == 6'h0c) ? (MMUPlugin_TLBTable_7_VPPN == IF1_PC[31 : 13]) : (MMUPlugin_TLBTable_7_VPPN[18 : 9] == IF1_PC[31 : 22]));
-  assign IF1_InstAddrTranslatePlugin_tlbTranslateResult_VPPNMatches_8 = ((MMUPlugin_TLBTable_8_PS == 6'h0c) ? (MMUPlugin_TLBTable_8_VPPN == IF1_PC[31 : 13]) : (MMUPlugin_TLBTable_8_VPPN[18 : 9] == IF1_PC[31 : 22]));
-  assign IF1_InstAddrTranslatePlugin_tlbTranslateResult_VPPNMatches_9 = ((MMUPlugin_TLBTable_9_PS == 6'h0c) ? (MMUPlugin_TLBTable_9_VPPN == IF1_PC[31 : 13]) : (MMUPlugin_TLBTable_9_VPPN[18 : 9] == IF1_PC[31 : 22]));
-  assign IF1_InstAddrTranslatePlugin_tlbTranslateResult_VPPNMatches_10 = ((MMUPlugin_TLBTable_10_PS == 6'h0c) ? (MMUPlugin_TLBTable_10_VPPN == IF1_PC[31 : 13]) : (MMUPlugin_TLBTable_10_VPPN[18 : 9] == IF1_PC[31 : 22]));
-  assign IF1_InstAddrTranslatePlugin_tlbTranslateResult_VPPNMatches_11 = ((MMUPlugin_TLBTable_11_PS == 6'h0c) ? (MMUPlugin_TLBTable_11_VPPN == IF1_PC[31 : 13]) : (MMUPlugin_TLBTable_11_VPPN[18 : 9] == IF1_PC[31 : 22]));
-  assign IF1_InstAddrTranslatePlugin_tlbTranslateResult_VPPNMatches_12 = ((MMUPlugin_TLBTable_12_PS == 6'h0c) ? (MMUPlugin_TLBTable_12_VPPN == IF1_PC[31 : 13]) : (MMUPlugin_TLBTable_12_VPPN[18 : 9] == IF1_PC[31 : 22]));
-  assign IF1_InstAddrTranslatePlugin_tlbTranslateResult_VPPNMatches_13 = ((MMUPlugin_TLBTable_13_PS == 6'h0c) ? (MMUPlugin_TLBTable_13_VPPN == IF1_PC[31 : 13]) : (MMUPlugin_TLBTable_13_VPPN[18 : 9] == IF1_PC[31 : 22]));
-  assign IF1_InstAddrTranslatePlugin_tlbTranslateResult_VPPNMatches_14 = ((MMUPlugin_TLBTable_14_PS == 6'h0c) ? (MMUPlugin_TLBTable_14_VPPN == IF1_PC[31 : 13]) : (MMUPlugin_TLBTable_14_VPPN[18 : 9] == IF1_PC[31 : 22]));
-  assign IF1_InstAddrTranslatePlugin_tlbTranslateResult_VPPNMatches_15 = ((MMUPlugin_TLBTable_15_PS == 6'h0c) ? (MMUPlugin_TLBTable_15_VPPN == IF1_PC[31 : 13]) : (MMUPlugin_TLBTable_15_VPPN[18 : 9] == IF1_PC[31 : 22]));
-  assign IF1_InstAddrTranslatePlugin_tlbTranslateResult_EntryHits_0 = ((MMUPlugin_TLBTable_0_E && IF1_InstAddrTranslatePlugin_tlbTranslateResult_ASIDMatches_0) && IF1_InstAddrTranslatePlugin_tlbTranslateResult_VPPNMatches_0);
-  assign IF1_InstAddrTranslatePlugin_tlbTranslateResult_EntryHits_1 = ((MMUPlugin_TLBTable_1_E && IF1_InstAddrTranslatePlugin_tlbTranslateResult_ASIDMatches_1) && IF1_InstAddrTranslatePlugin_tlbTranslateResult_VPPNMatches_1);
-  assign IF1_InstAddrTranslatePlugin_tlbTranslateResult_EntryHits_2 = ((MMUPlugin_TLBTable_2_E && IF1_InstAddrTranslatePlugin_tlbTranslateResult_ASIDMatches_2) && IF1_InstAddrTranslatePlugin_tlbTranslateResult_VPPNMatches_2);
-  assign IF1_InstAddrTranslatePlugin_tlbTranslateResult_EntryHits_3 = ((MMUPlugin_TLBTable_3_E && IF1_InstAddrTranslatePlugin_tlbTranslateResult_ASIDMatches_3) && IF1_InstAddrTranslatePlugin_tlbTranslateResult_VPPNMatches_3);
-  assign IF1_InstAddrTranslatePlugin_tlbTranslateResult_EntryHits_4 = ((MMUPlugin_TLBTable_4_E && IF1_InstAddrTranslatePlugin_tlbTranslateResult_ASIDMatches_4) && IF1_InstAddrTranslatePlugin_tlbTranslateResult_VPPNMatches_4);
-  assign IF1_InstAddrTranslatePlugin_tlbTranslateResult_EntryHits_5 = ((MMUPlugin_TLBTable_5_E && IF1_InstAddrTranslatePlugin_tlbTranslateResult_ASIDMatches_5) && IF1_InstAddrTranslatePlugin_tlbTranslateResult_VPPNMatches_5);
-  assign IF1_InstAddrTranslatePlugin_tlbTranslateResult_EntryHits_6 = ((MMUPlugin_TLBTable_6_E && IF1_InstAddrTranslatePlugin_tlbTranslateResult_ASIDMatches_6) && IF1_InstAddrTranslatePlugin_tlbTranslateResult_VPPNMatches_6);
-  assign IF1_InstAddrTranslatePlugin_tlbTranslateResult_EntryHits_7 = ((MMUPlugin_TLBTable_7_E && IF1_InstAddrTranslatePlugin_tlbTranslateResult_ASIDMatches_7) && IF1_InstAddrTranslatePlugin_tlbTranslateResult_VPPNMatches_7);
-  assign IF1_InstAddrTranslatePlugin_tlbTranslateResult_EntryHits_8 = ((MMUPlugin_TLBTable_8_E && IF1_InstAddrTranslatePlugin_tlbTranslateResult_ASIDMatches_8) && IF1_InstAddrTranslatePlugin_tlbTranslateResult_VPPNMatches_8);
-  assign IF1_InstAddrTranslatePlugin_tlbTranslateResult_EntryHits_9 = ((MMUPlugin_TLBTable_9_E && IF1_InstAddrTranslatePlugin_tlbTranslateResult_ASIDMatches_9) && IF1_InstAddrTranslatePlugin_tlbTranslateResult_VPPNMatches_9);
-  assign IF1_InstAddrTranslatePlugin_tlbTranslateResult_EntryHits_10 = ((MMUPlugin_TLBTable_10_E && IF1_InstAddrTranslatePlugin_tlbTranslateResult_ASIDMatches_10) && IF1_InstAddrTranslatePlugin_tlbTranslateResult_VPPNMatches_10);
-  assign IF1_InstAddrTranslatePlugin_tlbTranslateResult_EntryHits_11 = ((MMUPlugin_TLBTable_11_E && IF1_InstAddrTranslatePlugin_tlbTranslateResult_ASIDMatches_11) && IF1_InstAddrTranslatePlugin_tlbTranslateResult_VPPNMatches_11);
-  assign IF1_InstAddrTranslatePlugin_tlbTranslateResult_EntryHits_12 = ((MMUPlugin_TLBTable_12_E && IF1_InstAddrTranslatePlugin_tlbTranslateResult_ASIDMatches_12) && IF1_InstAddrTranslatePlugin_tlbTranslateResult_VPPNMatches_12);
-  assign IF1_InstAddrTranslatePlugin_tlbTranslateResult_EntryHits_13 = ((MMUPlugin_TLBTable_13_E && IF1_InstAddrTranslatePlugin_tlbTranslateResult_ASIDMatches_13) && IF1_InstAddrTranslatePlugin_tlbTranslateResult_VPPNMatches_13);
-  assign IF1_InstAddrTranslatePlugin_tlbTranslateResult_EntryHits_14 = ((MMUPlugin_TLBTable_14_E && IF1_InstAddrTranslatePlugin_tlbTranslateResult_ASIDMatches_14) && IF1_InstAddrTranslatePlugin_tlbTranslateResult_VPPNMatches_14);
-  assign IF1_InstAddrTranslatePlugin_tlbTranslateResult_EntryHits_15 = ((MMUPlugin_TLBTable_15_E && IF1_InstAddrTranslatePlugin_tlbTranslateResult_ASIDMatches_15) && IF1_InstAddrTranslatePlugin_tlbTranslateResult_VPPNMatches_15);
-  assign IF1_InstAddrTranslatePlugin_tlbTranslateResult_TLBHit = ({IF1_InstAddrTranslatePlugin_tlbTranslateResult_EntryHits_15,{IF1_InstAddrTranslatePlugin_tlbTranslateResult_EntryHits_14,{IF1_InstAddrTranslatePlugin_tlbTranslateResult_EntryHits_13,{IF1_InstAddrTranslatePlugin_tlbTranslateResult_EntryHits_12,{IF1_InstAddrTranslatePlugin_tlbTranslateResult_EntryHits_11,{IF1_InstAddrTranslatePlugin_tlbTranslateResult_EntryHits_10,{IF1_InstAddrTranslatePlugin_tlbTranslateResult_EntryHits_9,{IF1_InstAddrTranslatePlugin_tlbTranslateResult_EntryHits_8,{IF1_InstAddrTranslatePlugin_tlbTranslateResult_EntryHits_7,{_zz_IF1_InstAddrTranslatePlugin_tlbTranslateResult_TLBHit,_zz_IF1_InstAddrTranslatePlugin_tlbTranslateResult_TLBHit_1}}}}}}}}}} != 16'h0);
-  assign _zz_IF1_InstAddrTranslatePlugin_tlbTranslateResult_TLBHitEntry_E = (((((((IF1_InstAddrTranslatePlugin_tlbTranslateResult_EntryHits_1 || IF1_InstAddrTranslatePlugin_tlbTranslateResult_EntryHits_3) || IF1_InstAddrTranslatePlugin_tlbTranslateResult_EntryHits_5) || IF1_InstAddrTranslatePlugin_tlbTranslateResult_EntryHits_7) || IF1_InstAddrTranslatePlugin_tlbTranslateResult_EntryHits_9) || IF1_InstAddrTranslatePlugin_tlbTranslateResult_EntryHits_11) || IF1_InstAddrTranslatePlugin_tlbTranslateResult_EntryHits_13) || IF1_InstAddrTranslatePlugin_tlbTranslateResult_EntryHits_15);
-  assign _zz_IF1_InstAddrTranslatePlugin_tlbTranslateResult_TLBHitEntry_E_1 = (((((((IF1_InstAddrTranslatePlugin_tlbTranslateResult_EntryHits_2 || IF1_InstAddrTranslatePlugin_tlbTranslateResult_EntryHits_3) || IF1_InstAddrTranslatePlugin_tlbTranslateResult_EntryHits_6) || IF1_InstAddrTranslatePlugin_tlbTranslateResult_EntryHits_7) || IF1_InstAddrTranslatePlugin_tlbTranslateResult_EntryHits_10) || IF1_InstAddrTranslatePlugin_tlbTranslateResult_EntryHits_11) || IF1_InstAddrTranslatePlugin_tlbTranslateResult_EntryHits_14) || IF1_InstAddrTranslatePlugin_tlbTranslateResult_EntryHits_15);
-  assign _zz_IF1_InstAddrTranslatePlugin_tlbTranslateResult_TLBHitEntry_E_2 = (((((((IF1_InstAddrTranslatePlugin_tlbTranslateResult_EntryHits_4 || IF1_InstAddrTranslatePlugin_tlbTranslateResult_EntryHits_5) || IF1_InstAddrTranslatePlugin_tlbTranslateResult_EntryHits_6) || IF1_InstAddrTranslatePlugin_tlbTranslateResult_EntryHits_7) || IF1_InstAddrTranslatePlugin_tlbTranslateResult_EntryHits_12) || IF1_InstAddrTranslatePlugin_tlbTranslateResult_EntryHits_13) || IF1_InstAddrTranslatePlugin_tlbTranslateResult_EntryHits_14) || IF1_InstAddrTranslatePlugin_tlbTranslateResult_EntryHits_15);
-  assign _zz_IF1_InstAddrTranslatePlugin_tlbTranslateResult_TLBHitEntry_E_3 = (((((((IF1_InstAddrTranslatePlugin_tlbTranslateResult_EntryHits_8 || IF1_InstAddrTranslatePlugin_tlbTranslateResult_EntryHits_9) || IF1_InstAddrTranslatePlugin_tlbTranslateResult_EntryHits_10) || IF1_InstAddrTranslatePlugin_tlbTranslateResult_EntryHits_11) || IF1_InstAddrTranslatePlugin_tlbTranslateResult_EntryHits_12) || IF1_InstAddrTranslatePlugin_tlbTranslateResult_EntryHits_13) || IF1_InstAddrTranslatePlugin_tlbTranslateResult_EntryHits_14) || IF1_InstAddrTranslatePlugin_tlbTranslateResult_EntryHits_15);
-  assign _zz_IF1_InstAddrTranslatePlugin_tlbTranslateResult_TLBHitEntry_E_4 = {_zz_IF1_InstAddrTranslatePlugin_tlbTranslateResult_TLBHitEntry_E_3,{_zz_IF1_InstAddrTranslatePlugin_tlbTranslateResult_TLBHitEntry_E_2,{_zz_IF1_InstAddrTranslatePlugin_tlbTranslateResult_TLBHitEntry_E_1,_zz_IF1_InstAddrTranslatePlugin_tlbTranslateResult_TLBHitEntry_E}}};
-  assign IF1_InstAddrTranslatePlugin_tlbTranslateResult_TLBHitEntry_E = _zz_IF1_InstAddrTranslatePlugin_tlbTranslateResult_TLBHitEntry_E_5;
-  assign IF1_InstAddrTranslatePlugin_tlbTranslateResult_TLBHitEntry_ASID = _zz_IF1_InstAddrTranslatePlugin_tlbTranslateResult_TLBHitEntry_ASID;
-  assign IF1_InstAddrTranslatePlugin_tlbTranslateResult_TLBHitEntry_G = _zz_IF1_InstAddrTranslatePlugin_tlbTranslateResult_TLBHitEntry_G;
-  assign IF1_InstAddrTranslatePlugin_tlbTranslateResult_TLBHitEntry_PS = _zz_IF1_InstAddrTranslatePlugin_tlbTranslateResult_TLBHitEntry_PS;
-  assign IF1_InstAddrTranslatePlugin_tlbTranslateResult_TLBHitEntry_VPPN = _zz_IF1_InstAddrTranslatePlugin_tlbTranslateResult_TLBHitEntry_VPPN;
-  assign IF1_InstAddrTranslatePlugin_tlbTranslateResult_TLBHitEntry_V0 = _zz_IF1_InstAddrTranslatePlugin_tlbTranslateResult_TLBHitEntry_V0;
-  assign IF1_InstAddrTranslatePlugin_tlbTranslateResult_TLBHitEntry_D0 = _zz_IF1_InstAddrTranslatePlugin_tlbTranslateResult_TLBHitEntry_D0;
-  assign IF1_InstAddrTranslatePlugin_tlbTranslateResult_TLBHitEntry_MAT0 = _zz_IF1_InstAddrTranslatePlugin_tlbTranslateResult_TLBHitEntry_MAT0;
-  assign IF1_InstAddrTranslatePlugin_tlbTranslateResult_TLBHitEntry_PLV0 = _zz_IF1_InstAddrTranslatePlugin_tlbTranslateResult_TLBHitEntry_PLV0;
-  assign IF1_InstAddrTranslatePlugin_tlbTranslateResult_TLBHitEntry_PPN0 = _zz_IF1_InstAddrTranslatePlugin_tlbTranslateResult_TLBHitEntry_PPN0;
-  assign IF1_InstAddrTranslatePlugin_tlbTranslateResult_TLBHitEntry_V1 = _zz_IF1_InstAddrTranslatePlugin_tlbTranslateResult_TLBHitEntry_V1;
-  assign IF1_InstAddrTranslatePlugin_tlbTranslateResult_TLBHitEntry_D1 = _zz_IF1_InstAddrTranslatePlugin_tlbTranslateResult_TLBHitEntry_D1;
-  assign IF1_InstAddrTranslatePlugin_tlbTranslateResult_TLBHitEntry_MAT1 = _zz_IF1_InstAddrTranslatePlugin_tlbTranslateResult_TLBHitEntry_MAT1;
-  assign IF1_InstAddrTranslatePlugin_tlbTranslateResult_TLBHitEntry_PLV1 = _zz_IF1_InstAddrTranslatePlugin_tlbTranslateResult_TLBHitEntry_PLV1;
-  assign IF1_InstAddrTranslatePlugin_tlbTranslateResult_TLBHitEntry_PPN1 = _zz_IF1_InstAddrTranslatePlugin_tlbTranslateResult_TLBHitEntry_PPN1;
-  assign IF1_InstAddrTranslatePlugin_tlbTranslateResult_TLBHitEntry_v = (IF1_PC[IF1_InstAddrTranslatePlugin_tlbTranslateResult_TLBHitEntry_PS[4 : 0]] ? IF1_InstAddrTranslatePlugin_tlbTranslateResult_TLBHitEntry_V1 : IF1_InstAddrTranslatePlugin_tlbTranslateResult_TLBHitEntry_V0);
-  assign IF1_InstAddrTranslatePlugin_tlbTranslateResult_TLBHitEntry_d = (IF1_PC[IF1_InstAddrTranslatePlugin_tlbTranslateResult_TLBHitEntry_PS[4 : 0]] ? IF1_InstAddrTranslatePlugin_tlbTranslateResult_TLBHitEntry_D1 : IF1_InstAddrTranslatePlugin_tlbTranslateResult_TLBHitEntry_D0);
-  assign IF1_InstAddrTranslatePlugin_tlbTranslateResult_TLBHitEntry_mat = (IF1_PC[IF1_InstAddrTranslatePlugin_tlbTranslateResult_TLBHitEntry_PS[4 : 0]] ? IF1_InstAddrTranslatePlugin_tlbTranslateResult_TLBHitEntry_MAT1 : IF1_InstAddrTranslatePlugin_tlbTranslateResult_TLBHitEntry_MAT0);
-  assign IF1_InstAddrTranslatePlugin_tlbTranslateResult_TLBHitEntry_plv = (IF1_PC[IF1_InstAddrTranslatePlugin_tlbTranslateResult_TLBHitEntry_PS[4 : 0]] ? IF1_InstAddrTranslatePlugin_tlbTranslateResult_TLBHitEntry_PLV1 : IF1_InstAddrTranslatePlugin_tlbTranslateResult_TLBHitEntry_PLV0);
-  assign IF1_InstAddrTranslatePlugin_tlbTranslateResult_TLBHitEntry_ppn = (IF1_PC[IF1_InstAddrTranslatePlugin_tlbTranslateResult_TLBHitEntry_PS[4 : 0]] ? IF1_InstAddrTranslatePlugin_tlbTranslateResult_TLBHitEntry_PPN1 : IF1_InstAddrTranslatePlugin_tlbTranslateResult_TLBHitEntry_PPN0);
-  assign when_MMUPlugin_l285 = (! IF1_InstAddrTranslatePlugin_tlbTranslateResult_TLBHit);
-  assign when_MMUPlugin_l289 = (! IF1_InstAddrTranslatePlugin_tlbTranslateResult_TLBHitEntry_v);
-  assign when_MMUPlugin_l303 = (IF1_InstAddrTranslatePlugin_tlbTranslateResult_TLBHitEntry_plv < ExceptionHandlerPlugin_CRMD_PLV);
-  assign when_MMUPlugin_l307 = ((switch_MMUPlugin_l290 == MemOperationType_STORE) && (! IF1_InstAddrTranslatePlugin_tlbTranslateResult_TLBHitEntry_d));
-  assign IF1_InstAddrTranslatePlugin_tlbTranslateResult_resultPhysAddr = ((IF1_InstAddrTranslatePlugin_tlbTranslateResult_TLBHitEntry_PS == 6'h0c) ? {IF1_InstAddrTranslatePlugin_tlbTranslateResult_TLBHitEntry_ppn,IF1_PC[11 : 0]} : {IF1_InstAddrTranslatePlugin_tlbTranslateResult_TLBHitEntry_ppn[19 : 9],IF1_PC[20 : 0]});
-  assign IF1_InstAddrTranslatePlugin_tlbTranslateResult_resultCached = IF1_InstAddrTranslatePlugin_tlbTranslateResult_TLBHitEntry_mat[0];
-  assign IF1_InstAddrTranslatePlugin_tlbTranslateResult_resultBundle_valid = IF1_InstAddrTranslatePlugin_tlbTranslateResult_resultValid;
-  assign IF1_InstAddrTranslatePlugin_tlbTranslateResult_resultBundle_payload_physAddr = IF1_InstAddrTranslatePlugin_tlbTranslateResult_resultPhysAddr;
-  assign IF1_InstAddrTranslatePlugin_tlbTranslateResult_resultBundle_payload_cached = IF1_InstAddrTranslatePlugin_tlbTranslateResult_resultCached;
-  assign IF1_InstAddrTranslatePlugin_tlbTranslateResult_resultBundle_payload_exception_raisePIL = IF1_InstAddrTranslatePlugin_tlbTranslateResult_resultExceptionBundle_raisePIL;
-  assign IF1_InstAddrTranslatePlugin_tlbTranslateResult_resultBundle_payload_exception_raisePIS = IF1_InstAddrTranslatePlugin_tlbTranslateResult_resultExceptionBundle_raisePIS;
-  assign IF1_InstAddrTranslatePlugin_tlbTranslateResult_resultBundle_payload_exception_raisePIF = IF1_InstAddrTranslatePlugin_tlbTranslateResult_resultExceptionBundle_raisePIF;
-  assign IF1_InstAddrTranslatePlugin_tlbTranslateResult_resultBundle_payload_exception_raisePME = IF1_InstAddrTranslatePlugin_tlbTranslateResult_resultExceptionBundle_raisePME;
-  assign IF1_InstAddrTranslatePlugin_tlbTranslateResult_resultBundle_payload_exception_raisePPI = IF1_InstAddrTranslatePlugin_tlbTranslateResult_resultExceptionBundle_raisePPI;
-  assign IF1_InstAddrTranslatePlugin_tlbTranslateResult_resultBundle_payload_exception_raiseTLBR = IF1_InstAddrTranslatePlugin_tlbTranslateResult_resultExceptionBundle_raiseTLBR;
+  assign IF1_InstAddrTranslatePlugin_tlbLookup_ASIDMatches_0 = (MMUPlugin_TLBTable_0_G || (MMUPlugin_TLBTable_0_ASID == MMUPlugin_ASID_ASID));
+  assign IF1_InstAddrTranslatePlugin_tlbLookup_ASIDMatches_1 = (MMUPlugin_TLBTable_1_G || (MMUPlugin_TLBTable_1_ASID == MMUPlugin_ASID_ASID));
+  assign IF1_InstAddrTranslatePlugin_tlbLookup_ASIDMatches_2 = (MMUPlugin_TLBTable_2_G || (MMUPlugin_TLBTable_2_ASID == MMUPlugin_ASID_ASID));
+  assign IF1_InstAddrTranslatePlugin_tlbLookup_ASIDMatches_3 = (MMUPlugin_TLBTable_3_G || (MMUPlugin_TLBTable_3_ASID == MMUPlugin_ASID_ASID));
+  assign IF1_InstAddrTranslatePlugin_tlbLookup_ASIDMatches_4 = (MMUPlugin_TLBTable_4_G || (MMUPlugin_TLBTable_4_ASID == MMUPlugin_ASID_ASID));
+  assign IF1_InstAddrTranslatePlugin_tlbLookup_ASIDMatches_5 = (MMUPlugin_TLBTable_5_G || (MMUPlugin_TLBTable_5_ASID == MMUPlugin_ASID_ASID));
+  assign IF1_InstAddrTranslatePlugin_tlbLookup_ASIDMatches_6 = (MMUPlugin_TLBTable_6_G || (MMUPlugin_TLBTable_6_ASID == MMUPlugin_ASID_ASID));
+  assign IF1_InstAddrTranslatePlugin_tlbLookup_ASIDMatches_7 = (MMUPlugin_TLBTable_7_G || (MMUPlugin_TLBTable_7_ASID == MMUPlugin_ASID_ASID));
+  assign IF1_InstAddrTranslatePlugin_tlbLookup_ASIDMatches_8 = (MMUPlugin_TLBTable_8_G || (MMUPlugin_TLBTable_8_ASID == MMUPlugin_ASID_ASID));
+  assign IF1_InstAddrTranslatePlugin_tlbLookup_ASIDMatches_9 = (MMUPlugin_TLBTable_9_G || (MMUPlugin_TLBTable_9_ASID == MMUPlugin_ASID_ASID));
+  assign IF1_InstAddrTranslatePlugin_tlbLookup_ASIDMatches_10 = (MMUPlugin_TLBTable_10_G || (MMUPlugin_TLBTable_10_ASID == MMUPlugin_ASID_ASID));
+  assign IF1_InstAddrTranslatePlugin_tlbLookup_ASIDMatches_11 = (MMUPlugin_TLBTable_11_G || (MMUPlugin_TLBTable_11_ASID == MMUPlugin_ASID_ASID));
+  assign IF1_InstAddrTranslatePlugin_tlbLookup_ASIDMatches_12 = (MMUPlugin_TLBTable_12_G || (MMUPlugin_TLBTable_12_ASID == MMUPlugin_ASID_ASID));
+  assign IF1_InstAddrTranslatePlugin_tlbLookup_ASIDMatches_13 = (MMUPlugin_TLBTable_13_G || (MMUPlugin_TLBTable_13_ASID == MMUPlugin_ASID_ASID));
+  assign IF1_InstAddrTranslatePlugin_tlbLookup_ASIDMatches_14 = (MMUPlugin_TLBTable_14_G || (MMUPlugin_TLBTable_14_ASID == MMUPlugin_ASID_ASID));
+  assign IF1_InstAddrTranslatePlugin_tlbLookup_ASIDMatches_15 = (MMUPlugin_TLBTable_15_G || (MMUPlugin_TLBTable_15_ASID == MMUPlugin_ASID_ASID));
+  assign IF1_InstAddrTranslatePlugin_tlbLookup_VPPNMatches_0 = ((MMUPlugin_TLBTable_0_PS == 6'h0c) ? (MMUPlugin_TLBTable_0_VPPN == IF1_PC[31 : 13]) : (MMUPlugin_TLBTable_0_VPPN[18 : 9] == IF1_PC[31 : 22]));
+  assign IF1_InstAddrTranslatePlugin_tlbLookup_VPPNMatches_1 = ((MMUPlugin_TLBTable_1_PS == 6'h0c) ? (MMUPlugin_TLBTable_1_VPPN == IF1_PC[31 : 13]) : (MMUPlugin_TLBTable_1_VPPN[18 : 9] == IF1_PC[31 : 22]));
+  assign IF1_InstAddrTranslatePlugin_tlbLookup_VPPNMatches_2 = ((MMUPlugin_TLBTable_2_PS == 6'h0c) ? (MMUPlugin_TLBTable_2_VPPN == IF1_PC[31 : 13]) : (MMUPlugin_TLBTable_2_VPPN[18 : 9] == IF1_PC[31 : 22]));
+  assign IF1_InstAddrTranslatePlugin_tlbLookup_VPPNMatches_3 = ((MMUPlugin_TLBTable_3_PS == 6'h0c) ? (MMUPlugin_TLBTable_3_VPPN == IF1_PC[31 : 13]) : (MMUPlugin_TLBTable_3_VPPN[18 : 9] == IF1_PC[31 : 22]));
+  assign IF1_InstAddrTranslatePlugin_tlbLookup_VPPNMatches_4 = ((MMUPlugin_TLBTable_4_PS == 6'h0c) ? (MMUPlugin_TLBTable_4_VPPN == IF1_PC[31 : 13]) : (MMUPlugin_TLBTable_4_VPPN[18 : 9] == IF1_PC[31 : 22]));
+  assign IF1_InstAddrTranslatePlugin_tlbLookup_VPPNMatches_5 = ((MMUPlugin_TLBTable_5_PS == 6'h0c) ? (MMUPlugin_TLBTable_5_VPPN == IF1_PC[31 : 13]) : (MMUPlugin_TLBTable_5_VPPN[18 : 9] == IF1_PC[31 : 22]));
+  assign IF1_InstAddrTranslatePlugin_tlbLookup_VPPNMatches_6 = ((MMUPlugin_TLBTable_6_PS == 6'h0c) ? (MMUPlugin_TLBTable_6_VPPN == IF1_PC[31 : 13]) : (MMUPlugin_TLBTable_6_VPPN[18 : 9] == IF1_PC[31 : 22]));
+  assign IF1_InstAddrTranslatePlugin_tlbLookup_VPPNMatches_7 = ((MMUPlugin_TLBTable_7_PS == 6'h0c) ? (MMUPlugin_TLBTable_7_VPPN == IF1_PC[31 : 13]) : (MMUPlugin_TLBTable_7_VPPN[18 : 9] == IF1_PC[31 : 22]));
+  assign IF1_InstAddrTranslatePlugin_tlbLookup_VPPNMatches_8 = ((MMUPlugin_TLBTable_8_PS == 6'h0c) ? (MMUPlugin_TLBTable_8_VPPN == IF1_PC[31 : 13]) : (MMUPlugin_TLBTable_8_VPPN[18 : 9] == IF1_PC[31 : 22]));
+  assign IF1_InstAddrTranslatePlugin_tlbLookup_VPPNMatches_9 = ((MMUPlugin_TLBTable_9_PS == 6'h0c) ? (MMUPlugin_TLBTable_9_VPPN == IF1_PC[31 : 13]) : (MMUPlugin_TLBTable_9_VPPN[18 : 9] == IF1_PC[31 : 22]));
+  assign IF1_InstAddrTranslatePlugin_tlbLookup_VPPNMatches_10 = ((MMUPlugin_TLBTable_10_PS == 6'h0c) ? (MMUPlugin_TLBTable_10_VPPN == IF1_PC[31 : 13]) : (MMUPlugin_TLBTable_10_VPPN[18 : 9] == IF1_PC[31 : 22]));
+  assign IF1_InstAddrTranslatePlugin_tlbLookup_VPPNMatches_11 = ((MMUPlugin_TLBTable_11_PS == 6'h0c) ? (MMUPlugin_TLBTable_11_VPPN == IF1_PC[31 : 13]) : (MMUPlugin_TLBTable_11_VPPN[18 : 9] == IF1_PC[31 : 22]));
+  assign IF1_InstAddrTranslatePlugin_tlbLookup_VPPNMatches_12 = ((MMUPlugin_TLBTable_12_PS == 6'h0c) ? (MMUPlugin_TLBTable_12_VPPN == IF1_PC[31 : 13]) : (MMUPlugin_TLBTable_12_VPPN[18 : 9] == IF1_PC[31 : 22]));
+  assign IF1_InstAddrTranslatePlugin_tlbLookup_VPPNMatches_13 = ((MMUPlugin_TLBTable_13_PS == 6'h0c) ? (MMUPlugin_TLBTable_13_VPPN == IF1_PC[31 : 13]) : (MMUPlugin_TLBTable_13_VPPN[18 : 9] == IF1_PC[31 : 22]));
+  assign IF1_InstAddrTranslatePlugin_tlbLookup_VPPNMatches_14 = ((MMUPlugin_TLBTable_14_PS == 6'h0c) ? (MMUPlugin_TLBTable_14_VPPN == IF1_PC[31 : 13]) : (MMUPlugin_TLBTable_14_VPPN[18 : 9] == IF1_PC[31 : 22]));
+  assign IF1_InstAddrTranslatePlugin_tlbLookup_VPPNMatches_15 = ((MMUPlugin_TLBTable_15_PS == 6'h0c) ? (MMUPlugin_TLBTable_15_VPPN == IF1_PC[31 : 13]) : (MMUPlugin_TLBTable_15_VPPN[18 : 9] == IF1_PC[31 : 22]));
+  assign IF1_InstAddrTranslatePlugin_tlbLookup_EntryHits_0 = ((MMUPlugin_TLBTable_0_E && IF1_InstAddrTranslatePlugin_tlbLookup_ASIDMatches_0) && IF1_InstAddrTranslatePlugin_tlbLookup_VPPNMatches_0);
+  assign IF1_InstAddrTranslatePlugin_tlbLookup_EntryHits_1 = ((MMUPlugin_TLBTable_1_E && IF1_InstAddrTranslatePlugin_tlbLookup_ASIDMatches_1) && IF1_InstAddrTranslatePlugin_tlbLookup_VPPNMatches_1);
+  assign IF1_InstAddrTranslatePlugin_tlbLookup_EntryHits_2 = ((MMUPlugin_TLBTable_2_E && IF1_InstAddrTranslatePlugin_tlbLookup_ASIDMatches_2) && IF1_InstAddrTranslatePlugin_tlbLookup_VPPNMatches_2);
+  assign IF1_InstAddrTranslatePlugin_tlbLookup_EntryHits_3 = ((MMUPlugin_TLBTable_3_E && IF1_InstAddrTranslatePlugin_tlbLookup_ASIDMatches_3) && IF1_InstAddrTranslatePlugin_tlbLookup_VPPNMatches_3);
+  assign IF1_InstAddrTranslatePlugin_tlbLookup_EntryHits_4 = ((MMUPlugin_TLBTable_4_E && IF1_InstAddrTranslatePlugin_tlbLookup_ASIDMatches_4) && IF1_InstAddrTranslatePlugin_tlbLookup_VPPNMatches_4);
+  assign IF1_InstAddrTranslatePlugin_tlbLookup_EntryHits_5 = ((MMUPlugin_TLBTable_5_E && IF1_InstAddrTranslatePlugin_tlbLookup_ASIDMatches_5) && IF1_InstAddrTranslatePlugin_tlbLookup_VPPNMatches_5);
+  assign IF1_InstAddrTranslatePlugin_tlbLookup_EntryHits_6 = ((MMUPlugin_TLBTable_6_E && IF1_InstAddrTranslatePlugin_tlbLookup_ASIDMatches_6) && IF1_InstAddrTranslatePlugin_tlbLookup_VPPNMatches_6);
+  assign IF1_InstAddrTranslatePlugin_tlbLookup_EntryHits_7 = ((MMUPlugin_TLBTable_7_E && IF1_InstAddrTranslatePlugin_tlbLookup_ASIDMatches_7) && IF1_InstAddrTranslatePlugin_tlbLookup_VPPNMatches_7);
+  assign IF1_InstAddrTranslatePlugin_tlbLookup_EntryHits_8 = ((MMUPlugin_TLBTable_8_E && IF1_InstAddrTranslatePlugin_tlbLookup_ASIDMatches_8) && IF1_InstAddrTranslatePlugin_tlbLookup_VPPNMatches_8);
+  assign IF1_InstAddrTranslatePlugin_tlbLookup_EntryHits_9 = ((MMUPlugin_TLBTable_9_E && IF1_InstAddrTranslatePlugin_tlbLookup_ASIDMatches_9) && IF1_InstAddrTranslatePlugin_tlbLookup_VPPNMatches_9);
+  assign IF1_InstAddrTranslatePlugin_tlbLookup_EntryHits_10 = ((MMUPlugin_TLBTable_10_E && IF1_InstAddrTranslatePlugin_tlbLookup_ASIDMatches_10) && IF1_InstAddrTranslatePlugin_tlbLookup_VPPNMatches_10);
+  assign IF1_InstAddrTranslatePlugin_tlbLookup_EntryHits_11 = ((MMUPlugin_TLBTable_11_E && IF1_InstAddrTranslatePlugin_tlbLookup_ASIDMatches_11) && IF1_InstAddrTranslatePlugin_tlbLookup_VPPNMatches_11);
+  assign IF1_InstAddrTranslatePlugin_tlbLookup_EntryHits_12 = ((MMUPlugin_TLBTable_12_E && IF1_InstAddrTranslatePlugin_tlbLookup_ASIDMatches_12) && IF1_InstAddrTranslatePlugin_tlbLookup_VPPNMatches_12);
+  assign IF1_InstAddrTranslatePlugin_tlbLookup_EntryHits_13 = ((MMUPlugin_TLBTable_13_E && IF1_InstAddrTranslatePlugin_tlbLookup_ASIDMatches_13) && IF1_InstAddrTranslatePlugin_tlbLookup_VPPNMatches_13);
+  assign IF1_InstAddrTranslatePlugin_tlbLookup_EntryHits_14 = ((MMUPlugin_TLBTable_14_E && IF1_InstAddrTranslatePlugin_tlbLookup_ASIDMatches_14) && IF1_InstAddrTranslatePlugin_tlbLookup_VPPNMatches_14);
+  assign IF1_InstAddrTranslatePlugin_tlbLookup_EntryHits_15 = ((MMUPlugin_TLBTable_15_E && IF1_InstAddrTranslatePlugin_tlbLookup_ASIDMatches_15) && IF1_InstAddrTranslatePlugin_tlbLookup_VPPNMatches_15);
+  assign IF1_InstAddrTranslatePlugin_tlbLookup_snapshot_hit = ({IF1_InstAddrTranslatePlugin_tlbLookup_EntryHits_15,{IF1_InstAddrTranslatePlugin_tlbLookup_EntryHits_14,{IF1_InstAddrTranslatePlugin_tlbLookup_EntryHits_13,{IF1_InstAddrTranslatePlugin_tlbLookup_EntryHits_12,{IF1_InstAddrTranslatePlugin_tlbLookup_EntryHits_11,{IF1_InstAddrTranslatePlugin_tlbLookup_EntryHits_10,{IF1_InstAddrTranslatePlugin_tlbLookup_EntryHits_9,{IF1_InstAddrTranslatePlugin_tlbLookup_EntryHits_8,{IF1_InstAddrTranslatePlugin_tlbLookup_EntryHits_7,{_zz_IF1_InstAddrTranslatePlugin_tlbLookup_snapshot_hit,_zz_IF1_InstAddrTranslatePlugin_tlbLookup_snapshot_hit_1}}}}}}}}}} != 16'h0);
+  assign _zz_IF1_InstAddrTranslatePlugin_tlbLookup_snapshot_entry_E = (((((((IF1_InstAddrTranslatePlugin_tlbLookup_EntryHits_1 || IF1_InstAddrTranslatePlugin_tlbLookup_EntryHits_3) || IF1_InstAddrTranslatePlugin_tlbLookup_EntryHits_5) || IF1_InstAddrTranslatePlugin_tlbLookup_EntryHits_7) || IF1_InstAddrTranslatePlugin_tlbLookup_EntryHits_9) || IF1_InstAddrTranslatePlugin_tlbLookup_EntryHits_11) || IF1_InstAddrTranslatePlugin_tlbLookup_EntryHits_13) || IF1_InstAddrTranslatePlugin_tlbLookup_EntryHits_15);
+  assign _zz_IF1_InstAddrTranslatePlugin_tlbLookup_snapshot_entry_E_1 = (((((((IF1_InstAddrTranslatePlugin_tlbLookup_EntryHits_2 || IF1_InstAddrTranslatePlugin_tlbLookup_EntryHits_3) || IF1_InstAddrTranslatePlugin_tlbLookup_EntryHits_6) || IF1_InstAddrTranslatePlugin_tlbLookup_EntryHits_7) || IF1_InstAddrTranslatePlugin_tlbLookup_EntryHits_10) || IF1_InstAddrTranslatePlugin_tlbLookup_EntryHits_11) || IF1_InstAddrTranslatePlugin_tlbLookup_EntryHits_14) || IF1_InstAddrTranslatePlugin_tlbLookup_EntryHits_15);
+  assign _zz_IF1_InstAddrTranslatePlugin_tlbLookup_snapshot_entry_E_2 = (((((((IF1_InstAddrTranslatePlugin_tlbLookup_EntryHits_4 || IF1_InstAddrTranslatePlugin_tlbLookup_EntryHits_5) || IF1_InstAddrTranslatePlugin_tlbLookup_EntryHits_6) || IF1_InstAddrTranslatePlugin_tlbLookup_EntryHits_7) || IF1_InstAddrTranslatePlugin_tlbLookup_EntryHits_12) || IF1_InstAddrTranslatePlugin_tlbLookup_EntryHits_13) || IF1_InstAddrTranslatePlugin_tlbLookup_EntryHits_14) || IF1_InstAddrTranslatePlugin_tlbLookup_EntryHits_15);
+  assign _zz_IF1_InstAddrTranslatePlugin_tlbLookup_snapshot_entry_E_3 = (((((((IF1_InstAddrTranslatePlugin_tlbLookup_EntryHits_8 || IF1_InstAddrTranslatePlugin_tlbLookup_EntryHits_9) || IF1_InstAddrTranslatePlugin_tlbLookup_EntryHits_10) || IF1_InstAddrTranslatePlugin_tlbLookup_EntryHits_11) || IF1_InstAddrTranslatePlugin_tlbLookup_EntryHits_12) || IF1_InstAddrTranslatePlugin_tlbLookup_EntryHits_13) || IF1_InstAddrTranslatePlugin_tlbLookup_EntryHits_14) || IF1_InstAddrTranslatePlugin_tlbLookup_EntryHits_15);
+  assign _zz_IF1_InstAddrTranslatePlugin_tlbLookup_snapshot_entry_E_4 = {_zz_IF1_InstAddrTranslatePlugin_tlbLookup_snapshot_entry_E_3,{_zz_IF1_InstAddrTranslatePlugin_tlbLookup_snapshot_entry_E_2,{_zz_IF1_InstAddrTranslatePlugin_tlbLookup_snapshot_entry_E_1,_zz_IF1_InstAddrTranslatePlugin_tlbLookup_snapshot_entry_E}}};
+  assign _zz_IF1_InstAddrTranslatePlugin_tlbLookup_snapshot_entry_E_5 = {_zz__zz_IF1_InstAddrTranslatePlugin_tlbLookup_snapshot_entry_E_5,{_zz__zz_IF1_InstAddrTranslatePlugin_tlbLookup_snapshot_entry_E_5_1,{_zz__zz_IF1_InstAddrTranslatePlugin_tlbLookup_snapshot_entry_E_5_2,{_zz__zz_IF1_InstAddrTranslatePlugin_tlbLookup_snapshot_entry_E_5_3,{_zz__zz_IF1_InstAddrTranslatePlugin_tlbLookup_snapshot_entry_E_5_4,{_zz__zz_IF1_InstAddrTranslatePlugin_tlbLookup_snapshot_entry_E_5_5,{_zz__zz_IF1_InstAddrTranslatePlugin_tlbLookup_snapshot_entry_E_5_6,{_zz__zz_IF1_InstAddrTranslatePlugin_tlbLookup_snapshot_entry_E_5_7,{_zz__zz_IF1_InstAddrTranslatePlugin_tlbLookup_snapshot_entry_E_5_8,{_zz__zz_IF1_InstAddrTranslatePlugin_tlbLookup_snapshot_entry_E_5_9,{_zz__zz_IF1_InstAddrTranslatePlugin_tlbLookup_snapshot_entry_E_5_10,{_zz__zz_IF1_InstAddrTranslatePlugin_tlbLookup_snapshot_entry_E_5_11,{_zz__zz_IF1_InstAddrTranslatePlugin_tlbLookup_snapshot_entry_E_5_12,{_zz__zz_IF1_InstAddrTranslatePlugin_tlbLookup_snapshot_entry_E_5_13,_zz__zz_IF1_InstAddrTranslatePlugin_tlbLookup_snapshot_entry_E_5_14}}}}}}}}}}}}}};
+  assign IF1_InstAddrTranslatePlugin_tlbLookup_snapshot_entry_E = _zz_IF1_InstAddrTranslatePlugin_tlbLookup_snapshot_entry_E_5[0];
+  assign IF1_InstAddrTranslatePlugin_tlbLookup_snapshot_entry_ASID = _zz_IF1_InstAddrTranslatePlugin_tlbLookup_snapshot_entry_E_5[10 : 1];
+  assign IF1_InstAddrTranslatePlugin_tlbLookup_snapshot_entry_G = _zz_IF1_InstAddrTranslatePlugin_tlbLookup_snapshot_entry_E_5[11];
+  assign IF1_InstAddrTranslatePlugin_tlbLookup_snapshot_entry_PS = _zz_IF1_InstAddrTranslatePlugin_tlbLookup_snapshot_entry_E_5[17 : 12];
+  assign IF1_InstAddrTranslatePlugin_tlbLookup_snapshot_entry_VPPN = _zz_IF1_InstAddrTranslatePlugin_tlbLookup_snapshot_entry_E_5[36 : 18];
+  assign IF1_InstAddrTranslatePlugin_tlbLookup_snapshot_entry_V0 = _zz_IF1_InstAddrTranslatePlugin_tlbLookup_snapshot_entry_E_5[37];
+  assign IF1_InstAddrTranslatePlugin_tlbLookup_snapshot_entry_D0 = _zz_IF1_InstAddrTranslatePlugin_tlbLookup_snapshot_entry_E_5[38];
+  assign IF1_InstAddrTranslatePlugin_tlbLookup_snapshot_entry_MAT0 = _zz_IF1_InstAddrTranslatePlugin_tlbLookup_snapshot_entry_E_5[40 : 39];
+  assign IF1_InstAddrTranslatePlugin_tlbLookup_snapshot_entry_PLV0 = _zz_IF1_InstAddrTranslatePlugin_tlbLookup_snapshot_entry_E_5[42 : 41];
+  assign IF1_InstAddrTranslatePlugin_tlbLookup_snapshot_entry_PPN0 = _zz_IF1_InstAddrTranslatePlugin_tlbLookup_snapshot_entry_E_5[62 : 43];
+  assign IF1_InstAddrTranslatePlugin_tlbLookup_snapshot_entry_V1 = _zz_IF1_InstAddrTranslatePlugin_tlbLookup_snapshot_entry_E_5[63];
+  assign IF1_InstAddrTranslatePlugin_tlbLookup_snapshot_entry_D1 = _zz_IF1_InstAddrTranslatePlugin_tlbLookup_snapshot_entry_E_5[64];
+  assign IF1_InstAddrTranslatePlugin_tlbLookup_snapshot_entry_MAT1 = _zz_IF1_InstAddrTranslatePlugin_tlbLookup_snapshot_entry_E_5[66 : 65];
+  assign IF1_InstAddrTranslatePlugin_tlbLookup_snapshot_entry_PLV1 = _zz_IF1_InstAddrTranslatePlugin_tlbLookup_snapshot_entry_E_5[68 : 67];
+  assign IF1_InstAddrTranslatePlugin_tlbLookup_snapshot_entry_PPN1 = _zz_IF1_InstAddrTranslatePlugin_tlbLookup_snapshot_entry_E_5[88 : 69];
   assign IF1_InstAddrTranslatePlugin_savedCSR_CRMD_DA = ExceptionHandlerPlugin_CRMD_DA;
   assign IF1_InstAddrTranslatePlugin_savedCSR_CRMD_PG = ExceptionHandlerPlugin_CRMD_PG;
   assign IF1_InstAddrTranslatePlugin_savedCSR_CRMD_DATF = ExceptionHandlerPlugin_CRMD_DATF;
   assign IF1_InstAddrTranslatePlugin_savedCSR_CRMD_DATM = ExceptionHandlerPlugin_CRMD_DATM;
   assign InstAddrTranslatePlugin_badVaddr2 = IF2_PC;
+  assign switch_MMUPlugin_l331 = MemOperationType_FETCH;
+  assign IF2_InstAddrTranslatePlugin_tlbTranslateResult_resultValid = 1'b1;
+  always @(*) begin
+    IF2_InstAddrTranslatePlugin_tlbTranslateResult_resultExceptionBundle_raisePIL = 1'b0;
+    if(when_MMUPlugin_l330) begin
+      case(switch_MMUPlugin_l331)
+        MemOperationType_FETCH : begin
+        end
+        MemOperationType_LOAD : begin
+          IF2_InstAddrTranslatePlugin_tlbTranslateResult_resultExceptionBundle_raisePIL = 1'b1;
+        end
+        default : begin
+        end
+      endcase
+    end
+  end
+
+  always @(*) begin
+    IF2_InstAddrTranslatePlugin_tlbTranslateResult_resultExceptionBundle_raisePIS = 1'b0;
+    if(when_MMUPlugin_l330) begin
+      case(switch_MMUPlugin_l331)
+        MemOperationType_FETCH : begin
+        end
+        MemOperationType_LOAD : begin
+        end
+        default : begin
+          IF2_InstAddrTranslatePlugin_tlbTranslateResult_resultExceptionBundle_raisePIS = 1'b1;
+        end
+      endcase
+    end
+  end
+
+  always @(*) begin
+    IF2_InstAddrTranslatePlugin_tlbTranslateResult_resultExceptionBundle_raisePIF = 1'b0;
+    if(when_MMUPlugin_l330) begin
+      case(switch_MMUPlugin_l331)
+        MemOperationType_FETCH : begin
+          IF2_InstAddrTranslatePlugin_tlbTranslateResult_resultExceptionBundle_raisePIF = 1'b1;
+        end
+        MemOperationType_LOAD : begin
+        end
+        default : begin
+        end
+      endcase
+    end
+  end
+
+  always @(*) begin
+    IF2_InstAddrTranslatePlugin_tlbTranslateResult_resultExceptionBundle_raisePME = 1'b0;
+    if(when_MMUPlugin_l348) begin
+      IF2_InstAddrTranslatePlugin_tlbTranslateResult_resultExceptionBundle_raisePME = 1'b1;
+    end
+  end
+
+  always @(*) begin
+    IF2_InstAddrTranslatePlugin_tlbTranslateResult_resultExceptionBundle_raisePPI = 1'b0;
+    if(when_MMUPlugin_l344) begin
+      IF2_InstAddrTranslatePlugin_tlbTranslateResult_resultExceptionBundle_raisePPI = 1'b1;
+    end
+  end
+
+  always @(*) begin
+    IF2_InstAddrTranslatePlugin_tlbTranslateResult_resultExceptionBundle_raiseTLBR = 1'b0;
+    if(when_MMUPlugin_l326) begin
+      IF2_InstAddrTranslatePlugin_tlbTranslateResult_resultExceptionBundle_raiseTLBR = 1'b1;
+    end
+  end
+
+  assign IF2_InstAddrTranslatePlugin_tlbTranslateResult_TLBHitEntry_v = (IF2_PC[IF2_TLB_LOOKUP_SNAPSHOT_entry_PS[4 : 0]] ? IF2_TLB_LOOKUP_SNAPSHOT_entry_V1 : IF2_TLB_LOOKUP_SNAPSHOT_entry_V0);
+  assign IF2_InstAddrTranslatePlugin_tlbTranslateResult_TLBHitEntry_d = (IF2_PC[IF2_TLB_LOOKUP_SNAPSHOT_entry_PS[4 : 0]] ? IF2_TLB_LOOKUP_SNAPSHOT_entry_D1 : IF2_TLB_LOOKUP_SNAPSHOT_entry_D0);
+  assign IF2_InstAddrTranslatePlugin_tlbTranslateResult_TLBHitEntry_mat = (IF2_PC[IF2_TLB_LOOKUP_SNAPSHOT_entry_PS[4 : 0]] ? IF2_TLB_LOOKUP_SNAPSHOT_entry_MAT1 : IF2_TLB_LOOKUP_SNAPSHOT_entry_MAT0);
+  assign IF2_InstAddrTranslatePlugin_tlbTranslateResult_TLBHitEntry_plv = (IF2_PC[IF2_TLB_LOOKUP_SNAPSHOT_entry_PS[4 : 0]] ? IF2_TLB_LOOKUP_SNAPSHOT_entry_PLV1 : IF2_TLB_LOOKUP_SNAPSHOT_entry_PLV0);
+  assign IF2_InstAddrTranslatePlugin_tlbTranslateResult_TLBHitEntry_ppn = (IF2_PC[IF2_TLB_LOOKUP_SNAPSHOT_entry_PS[4 : 0]] ? IF2_TLB_LOOKUP_SNAPSHOT_entry_PPN1 : IF2_TLB_LOOKUP_SNAPSHOT_entry_PPN0);
+  assign when_MMUPlugin_l326 = (! IF2_TLB_LOOKUP_SNAPSHOT_hit);
+  assign when_MMUPlugin_l330 = (! IF2_InstAddrTranslatePlugin_tlbTranslateResult_TLBHitEntry_v);
+  assign when_MMUPlugin_l344 = (IF2_InstAddrTranslatePlugin_tlbTranslateResult_TLBHitEntry_plv < ExceptionHandlerPlugin_CRMD_PLV);
+  assign when_MMUPlugin_l348 = ((switch_MMUPlugin_l331 == MemOperationType_STORE) && (! IF2_InstAddrTranslatePlugin_tlbTranslateResult_TLBHitEntry_d));
+  assign IF2_InstAddrTranslatePlugin_tlbTranslateResult_resultPhysAddr = ((IF2_TLB_LOOKUP_SNAPSHOT_entry_PS == 6'h0c) ? {IF2_InstAddrTranslatePlugin_tlbTranslateResult_TLBHitEntry_ppn,IF2_PC[11 : 0]} : {IF2_InstAddrTranslatePlugin_tlbTranslateResult_TLBHitEntry_ppn[19 : 9],IF2_PC[20 : 0]});
+  assign IF2_InstAddrTranslatePlugin_tlbTranslateResult_resultCached = IF2_InstAddrTranslatePlugin_tlbTranslateResult_TLBHitEntry_mat[0];
+  assign IF2_InstAddrTranslatePlugin_tlbTranslateResult_resultBundle_valid = IF2_InstAddrTranslatePlugin_tlbTranslateResult_resultValid;
+  assign IF2_InstAddrTranslatePlugin_tlbTranslateResult_resultBundle_payload_physAddr = IF2_InstAddrTranslatePlugin_tlbTranslateResult_resultPhysAddr;
+  assign IF2_InstAddrTranslatePlugin_tlbTranslateResult_resultBundle_payload_cached = IF2_InstAddrTranslatePlugin_tlbTranslateResult_resultCached;
+  assign IF2_InstAddrTranslatePlugin_tlbTranslateResult_resultBundle_payload_exception_raisePIL = IF2_InstAddrTranslatePlugin_tlbTranslateResult_resultExceptionBundle_raisePIL;
+  assign IF2_InstAddrTranslatePlugin_tlbTranslateResult_resultBundle_payload_exception_raisePIS = IF2_InstAddrTranslatePlugin_tlbTranslateResult_resultExceptionBundle_raisePIS;
+  assign IF2_InstAddrTranslatePlugin_tlbTranslateResult_resultBundle_payload_exception_raisePIF = IF2_InstAddrTranslatePlugin_tlbTranslateResult_resultExceptionBundle_raisePIF;
+  assign IF2_InstAddrTranslatePlugin_tlbTranslateResult_resultBundle_payload_exception_raisePME = IF2_InstAddrTranslatePlugin_tlbTranslateResult_resultExceptionBundle_raisePME;
+  assign IF2_InstAddrTranslatePlugin_tlbTranslateResult_resultBundle_payload_exception_raisePPI = IF2_InstAddrTranslatePlugin_tlbTranslateResult_resultExceptionBundle_raisePPI;
+  assign IF2_InstAddrTranslatePlugin_tlbTranslateResult_resultBundle_payload_exception_raiseTLBR = IF2_InstAddrTranslatePlugin_tlbTranslateResult_resultExceptionBundle_raiseTLBR;
   always @(*) begin
     IF2_InstAddrTranslatePlugin_translateResult_resultValid = 1'b0;
-    if(when_MMUPlugin_l339) begin
-      IF2_InstAddrTranslatePlugin_translateResult_resultValid = IF2_TLB_TRANSLATE_RESULT_valid;
+    if(when_MMUPlugin_l380) begin
+      IF2_InstAddrTranslatePlugin_translateResult_resultValid = IF2_InstAddrTranslatePlugin_tlbTranslateResult_resultBundle_valid;
     end
-    if(when_MMUPlugin_l347) begin
+    if(when_MMUPlugin_l388) begin
       IF2_InstAddrTranslatePlugin_translateResult_resultValid = IF2_DIRECT_TRANSLATE_RESULT_valid;
     end
-    if(when_MMUPlugin_l355) begin
+    if(when_MMUPlugin_l396) begin
       IF2_InstAddrTranslatePlugin_translateResult_resultValid = 1'b1;
     end
   end
 
   always @(*) begin
     IF2_InstAddrTranslatePlugin_translateResult_resultPhysAddr = 32'h0;
-    if(when_MMUPlugin_l339) begin
-      IF2_InstAddrTranslatePlugin_translateResult_resultPhysAddr = IF2_TLB_TRANSLATE_RESULT_payload_physAddr;
+    if(when_MMUPlugin_l380) begin
+      IF2_InstAddrTranslatePlugin_translateResult_resultPhysAddr = IF2_InstAddrTranslatePlugin_tlbTranslateResult_resultBundle_payload_physAddr;
     end
-    if(when_MMUPlugin_l347) begin
+    if(when_MMUPlugin_l388) begin
       IF2_InstAddrTranslatePlugin_translateResult_resultPhysAddr = IF2_DIRECT_TRANSLATE_RESULT_payload_physAddr;
     end
-    if(when_MMUPlugin_l355) begin
+    if(when_MMUPlugin_l396) begin
       IF2_InstAddrTranslatePlugin_translateResult_resultPhysAddr = IF2_PC;
     end
   end
 
   always @(*) begin
     IF2_InstAddrTranslatePlugin_translateResult_resultCached = 1'b0;
-    if(when_MMUPlugin_l339) begin
-      IF2_InstAddrTranslatePlugin_translateResult_resultCached = IF2_TLB_TRANSLATE_RESULT_payload_cached;
+    if(when_MMUPlugin_l380) begin
+      IF2_InstAddrTranslatePlugin_translateResult_resultCached = IF2_InstAddrTranslatePlugin_tlbTranslateResult_resultBundle_payload_cached;
     end
-    if(when_MMUPlugin_l347) begin
+    if(when_MMUPlugin_l388) begin
       IF2_InstAddrTranslatePlugin_translateResult_resultCached = IF2_DIRECT_TRANSLATE_RESULT_payload_cached;
     end
-    if(when_MMUPlugin_l355) begin
-      if(when_MMUPlugin_l359) begin
+    if(when_MMUPlugin_l396) begin
+      if(when_MMUPlugin_l400) begin
         IF2_InstAddrTranslatePlugin_translateResult_resultCached = IF2_TRANSLATE_SAVED_CSR_CRMD_DATF[0];
       end else begin
         IF2_InstAddrTranslatePlugin_translateResult_resultCached = IF2_TRANSLATE_SAVED_CSR_CRMD_DATM[0];
@@ -64475,86 +64689,86 @@ module MyCPUCore (
 
   always @(*) begin
     IF2_InstAddrTranslatePlugin_translateResult_resultExceptionBundle_raisePIL = 1'b0;
-    if(when_MMUPlugin_l339) begin
-      IF2_InstAddrTranslatePlugin_translateResult_resultExceptionBundle_raisePIL = IF2_TLB_TRANSLATE_RESULT_payload_exception_raisePIL;
+    if(when_MMUPlugin_l380) begin
+      IF2_InstAddrTranslatePlugin_translateResult_resultExceptionBundle_raisePIL = IF2_InstAddrTranslatePlugin_tlbTranslateResult_resultBundle_payload_exception_raisePIL;
     end
-    if(when_MMUPlugin_l347) begin
+    if(when_MMUPlugin_l388) begin
       IF2_InstAddrTranslatePlugin_translateResult_resultExceptionBundle_raisePIL = IF2_DIRECT_TRANSLATE_RESULT_payload_exception_raisePIL;
     end
-    if(when_MMUPlugin_l355) begin
+    if(when_MMUPlugin_l396) begin
       IF2_InstAddrTranslatePlugin_translateResult_resultExceptionBundle_raisePIL = 1'b0;
     end
   end
 
   always @(*) begin
     IF2_InstAddrTranslatePlugin_translateResult_resultExceptionBundle_raisePIS = 1'b0;
-    if(when_MMUPlugin_l339) begin
-      IF2_InstAddrTranslatePlugin_translateResult_resultExceptionBundle_raisePIS = IF2_TLB_TRANSLATE_RESULT_payload_exception_raisePIS;
+    if(when_MMUPlugin_l380) begin
+      IF2_InstAddrTranslatePlugin_translateResult_resultExceptionBundle_raisePIS = IF2_InstAddrTranslatePlugin_tlbTranslateResult_resultBundle_payload_exception_raisePIS;
     end
-    if(when_MMUPlugin_l347) begin
+    if(when_MMUPlugin_l388) begin
       IF2_InstAddrTranslatePlugin_translateResult_resultExceptionBundle_raisePIS = IF2_DIRECT_TRANSLATE_RESULT_payload_exception_raisePIS;
     end
-    if(when_MMUPlugin_l355) begin
+    if(when_MMUPlugin_l396) begin
       IF2_InstAddrTranslatePlugin_translateResult_resultExceptionBundle_raisePIS = 1'b0;
     end
   end
 
   always @(*) begin
     IF2_InstAddrTranslatePlugin_translateResult_resultExceptionBundle_raisePIF = 1'b0;
-    if(when_MMUPlugin_l339) begin
-      IF2_InstAddrTranslatePlugin_translateResult_resultExceptionBundle_raisePIF = IF2_TLB_TRANSLATE_RESULT_payload_exception_raisePIF;
+    if(when_MMUPlugin_l380) begin
+      IF2_InstAddrTranslatePlugin_translateResult_resultExceptionBundle_raisePIF = IF2_InstAddrTranslatePlugin_tlbTranslateResult_resultBundle_payload_exception_raisePIF;
     end
-    if(when_MMUPlugin_l347) begin
+    if(when_MMUPlugin_l388) begin
       IF2_InstAddrTranslatePlugin_translateResult_resultExceptionBundle_raisePIF = IF2_DIRECT_TRANSLATE_RESULT_payload_exception_raisePIF;
     end
-    if(when_MMUPlugin_l355) begin
+    if(when_MMUPlugin_l396) begin
       IF2_InstAddrTranslatePlugin_translateResult_resultExceptionBundle_raisePIF = 1'b0;
     end
   end
 
   always @(*) begin
     IF2_InstAddrTranslatePlugin_translateResult_resultExceptionBundle_raisePME = 1'b0;
-    if(when_MMUPlugin_l339) begin
-      IF2_InstAddrTranslatePlugin_translateResult_resultExceptionBundle_raisePME = IF2_TLB_TRANSLATE_RESULT_payload_exception_raisePME;
+    if(when_MMUPlugin_l380) begin
+      IF2_InstAddrTranslatePlugin_translateResult_resultExceptionBundle_raisePME = IF2_InstAddrTranslatePlugin_tlbTranslateResult_resultBundle_payload_exception_raisePME;
     end
-    if(when_MMUPlugin_l347) begin
+    if(when_MMUPlugin_l388) begin
       IF2_InstAddrTranslatePlugin_translateResult_resultExceptionBundle_raisePME = IF2_DIRECT_TRANSLATE_RESULT_payload_exception_raisePME;
     end
-    if(when_MMUPlugin_l355) begin
+    if(when_MMUPlugin_l396) begin
       IF2_InstAddrTranslatePlugin_translateResult_resultExceptionBundle_raisePME = 1'b0;
     end
   end
 
   always @(*) begin
     IF2_InstAddrTranslatePlugin_translateResult_resultExceptionBundle_raisePPI = 1'b0;
-    if(when_MMUPlugin_l339) begin
-      IF2_InstAddrTranslatePlugin_translateResult_resultExceptionBundle_raisePPI = IF2_TLB_TRANSLATE_RESULT_payload_exception_raisePPI;
+    if(when_MMUPlugin_l380) begin
+      IF2_InstAddrTranslatePlugin_translateResult_resultExceptionBundle_raisePPI = IF2_InstAddrTranslatePlugin_tlbTranslateResult_resultBundle_payload_exception_raisePPI;
     end
-    if(when_MMUPlugin_l347) begin
+    if(when_MMUPlugin_l388) begin
       IF2_InstAddrTranslatePlugin_translateResult_resultExceptionBundle_raisePPI = IF2_DIRECT_TRANSLATE_RESULT_payload_exception_raisePPI;
     end
-    if(when_MMUPlugin_l355) begin
+    if(when_MMUPlugin_l396) begin
       IF2_InstAddrTranslatePlugin_translateResult_resultExceptionBundle_raisePPI = 1'b0;
     end
   end
 
   always @(*) begin
     IF2_InstAddrTranslatePlugin_translateResult_resultExceptionBundle_raiseTLBR = 1'b0;
-    if(when_MMUPlugin_l339) begin
-      IF2_InstAddrTranslatePlugin_translateResult_resultExceptionBundle_raiseTLBR = IF2_TLB_TRANSLATE_RESULT_payload_exception_raiseTLBR;
+    if(when_MMUPlugin_l380) begin
+      IF2_InstAddrTranslatePlugin_translateResult_resultExceptionBundle_raiseTLBR = IF2_InstAddrTranslatePlugin_tlbTranslateResult_resultBundle_payload_exception_raiseTLBR;
     end
-    if(when_MMUPlugin_l347) begin
+    if(when_MMUPlugin_l388) begin
       IF2_InstAddrTranslatePlugin_translateResult_resultExceptionBundle_raiseTLBR = IF2_DIRECT_TRANSLATE_RESULT_payload_exception_raiseTLBR;
     end
-    if(when_MMUPlugin_l355) begin
+    if(when_MMUPlugin_l396) begin
       IF2_InstAddrTranslatePlugin_translateResult_resultExceptionBundle_raiseTLBR = 1'b0;
     end
   end
 
-  assign when_MMUPlugin_l339 = (((! IF2_TRANSLATE_SAVED_CSR_CRMD_DA) && IF2_TRANSLATE_SAVED_CSR_CRMD_PG) && IF2_TLB_TRANSLATE_RESULT_valid);
-  assign when_MMUPlugin_l347 = (((! IF2_TRANSLATE_SAVED_CSR_CRMD_DA) && IF2_TRANSLATE_SAVED_CSR_CRMD_PG) && IF2_DIRECT_TRANSLATE_RESULT_valid);
-  assign when_MMUPlugin_l355 = (IF2_TRANSLATE_SAVED_CSR_CRMD_DA && (! IF2_TRANSLATE_SAVED_CSR_CRMD_PG));
-  assign when_MMUPlugin_l359 = (MemOperationType_FETCH == MemOperationType_FETCH);
+  assign when_MMUPlugin_l380 = (((! IF2_TRANSLATE_SAVED_CSR_CRMD_DA) && IF2_TRANSLATE_SAVED_CSR_CRMD_PG) && IF2_InstAddrTranslatePlugin_tlbTranslateResult_resultBundle_valid);
+  assign when_MMUPlugin_l388 = (((! IF2_TRANSLATE_SAVED_CSR_CRMD_DA) && IF2_TRANSLATE_SAVED_CSR_CRMD_PG) && IF2_DIRECT_TRANSLATE_RESULT_valid);
+  assign when_MMUPlugin_l396 = (IF2_TRANSLATE_SAVED_CSR_CRMD_DA && (! IF2_TRANSLATE_SAVED_CSR_CRMD_PG));
+  assign when_MMUPlugin_l400 = (MemOperationType_FETCH == MemOperationType_FETCH);
   assign IF2_InstAddrTranslatePlugin_translateResult_resultBundle_valid = IF2_InstAddrTranslatePlugin_translateResult_resultValid;
   assign IF2_InstAddrTranslatePlugin_translateResult_resultBundle_payload_physAddr = IF2_InstAddrTranslatePlugin_translateResult_resultPhysAddr;
   assign IF2_InstAddrTranslatePlugin_translateResult_resultBundle_payload_cached = IF2_InstAddrTranslatePlugin_translateResult_resultCached;
@@ -64836,22 +65050,6 @@ module MyCPUCore (
   assign IF2_GlobalPredictorBTBPlugin_index = IF2_PC[11 : 2];
   assign IF2_GlobalPredictorBTBPlugin_fetchWay = IF2_PC[5 : 2];
   always @(*) begin
-    IF2_GlobalPredictorBTBPlugin_lastValidWay = 2'b11;
-    if(when_GlobalPredictorBTBPlugin_l152) begin
-      IF2_GlobalPredictorBTBPlugin_lastValidWay = 2'b10;
-    end
-    if(when_GlobalPredictorBTBPlugin_l152_1) begin
-      IF2_GlobalPredictorBTBPlugin_lastValidWay = 2'b01;
-    end
-    if(when_GlobalPredictorBTBPlugin_l152_2) begin
-      IF2_GlobalPredictorBTBPlugin_lastValidWay = 2'b00;
-    end
-  end
-
-  assign when_GlobalPredictorBTBPlugin_l152 = (! IF2_FETCH_PACKET_insts_3_valid);
-  assign when_GlobalPredictorBTBPlugin_l152_1 = (! IF2_FETCH_PACKET_insts_2_valid);
-  assign when_GlobalPredictorBTBPlugin_l152_2 = (! IF2_FETCH_PACKET_insts_1_valid);
-  always @(*) begin
     IF2_GlobalPredictorBTBPlugin_payloadTarget = {IF2_PREDICT_JUMP_PAYLOAD_target,2'b00};
     if(ReturnAddressStackPlugin_rasPredict_valid) begin
       IF2_GlobalPredictorBTBPlugin_payloadTarget = ReturnAddressStackPlugin_rasPredict_payload;
@@ -64915,11 +65113,11 @@ module MyCPUCore (
   always @(*) begin
     GlobalPredictorBTBPlugin_btb_io_write_valid = 1'b0;
     if(CommitPlugin_predUpdate_valid) begin
-      if(!when_GlobalPredictorBTBPlugin_l204) begin
-        if(when_GlobalPredictorBTBPlugin_l207) begin
+      if(!when_GlobalPredictorBTBPlugin_l199) begin
+        if(when_GlobalPredictorBTBPlugin_l202) begin
           GlobalPredictorBTBPlugin_btb_io_write_valid = 1'b1;
         end else begin
-          if(when_GlobalPredictorBTBPlugin_l223) begin
+          if(when_GlobalPredictorBTBPlugin_l218) begin
             GlobalPredictorBTBPlugin_btb_io_write_valid = 1'b1;
           end
         end
@@ -64937,11 +65135,11 @@ module MyCPUCore (
   always @(*) begin
     GlobalPredictorBTBPlugin_btb_io_write_payload_data_0_tag = 20'bxxxxxxxxxxxxxxxxxxxx;
     if(CommitPlugin_predUpdate_valid) begin
-      if(!when_GlobalPredictorBTBPlugin_l204) begin
-        if(when_GlobalPredictorBTBPlugin_l207) begin
+      if(!when_GlobalPredictorBTBPlugin_l199) begin
+        if(when_GlobalPredictorBTBPlugin_l202) begin
           GlobalPredictorBTBPlugin_btb_io_write_payload_data_0_tag = _zz_io_write_payload_data_0_tag;
         end else begin
-          if(when_GlobalPredictorBTBPlugin_l223) begin
+          if(when_GlobalPredictorBTBPlugin_l218) begin
             GlobalPredictorBTBPlugin_btb_io_write_payload_data_0_tag = _zz_io_write_payload_data_0_tag;
           end
         end
@@ -64952,11 +65150,11 @@ module MyCPUCore (
   always @(*) begin
     GlobalPredictorBTBPlugin_btb_io_write_payload_data_0_statusBundle_target = 30'bxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx;
     if(CommitPlugin_predUpdate_valid) begin
-      if(!when_GlobalPredictorBTBPlugin_l204) begin
-        if(when_GlobalPredictorBTBPlugin_l207) begin
+      if(!when_GlobalPredictorBTBPlugin_l199) begin
+        if(when_GlobalPredictorBTBPlugin_l202) begin
           GlobalPredictorBTBPlugin_btb_io_write_payload_data_0_statusBundle_target = CommitPlugin_predUpdate_payload_target[31 : 2];
         end else begin
-          if(when_GlobalPredictorBTBPlugin_l223) begin
+          if(when_GlobalPredictorBTBPlugin_l218) begin
             GlobalPredictorBTBPlugin_btb_io_write_payload_data_0_statusBundle_target = CommitPlugin_predUpdate_payload_target[31 : 2];
           end
         end
@@ -64967,11 +65165,11 @@ module MyCPUCore (
   always @(*) begin
     GlobalPredictorBTBPlugin_btb_io_write_payload_data_0_statusBundle_isCall = 1'bx;
     if(CommitPlugin_predUpdate_valid) begin
-      if(!when_GlobalPredictorBTBPlugin_l204) begin
-        if(when_GlobalPredictorBTBPlugin_l207) begin
+      if(!when_GlobalPredictorBTBPlugin_l199) begin
+        if(when_GlobalPredictorBTBPlugin_l202) begin
           GlobalPredictorBTBPlugin_btb_io_write_payload_data_0_statusBundle_isCall = CommitPlugin_predUpdate_payload_isCall;
         end else begin
-          if(when_GlobalPredictorBTBPlugin_l223) begin
+          if(when_GlobalPredictorBTBPlugin_l218) begin
             GlobalPredictorBTBPlugin_btb_io_write_payload_data_0_statusBundle_isCall = CommitPlugin_predUpdate_payload_isCall;
           end
         end
@@ -64982,11 +65180,11 @@ module MyCPUCore (
   always @(*) begin
     GlobalPredictorBTBPlugin_btb_io_write_payload_data_0_statusBundle_isReturn = 1'bx;
     if(CommitPlugin_predUpdate_valid) begin
-      if(!when_GlobalPredictorBTBPlugin_l204) begin
-        if(when_GlobalPredictorBTBPlugin_l207) begin
+      if(!when_GlobalPredictorBTBPlugin_l199) begin
+        if(when_GlobalPredictorBTBPlugin_l202) begin
           GlobalPredictorBTBPlugin_btb_io_write_payload_data_0_statusBundle_isReturn = CommitPlugin_predUpdate_payload_isRet;
         end else begin
-          if(when_GlobalPredictorBTBPlugin_l223) begin
+          if(when_GlobalPredictorBTBPlugin_l218) begin
             GlobalPredictorBTBPlugin_btb_io_write_payload_data_0_statusBundle_isReturn = CommitPlugin_predUpdate_payload_isRet;
           end
         end
@@ -65004,11 +65202,11 @@ module MyCPUCore (
   always @(*) begin
     GlobalPredictorBTBPlugin_predictor_io_write_valid = 1'b0;
     if(CommitPlugin_predUpdate_valid) begin
-      if(!when_GlobalPredictorBTBPlugin_l204) begin
-        if(when_GlobalPredictorBTBPlugin_l207) begin
+      if(!when_GlobalPredictorBTBPlugin_l199) begin
+        if(when_GlobalPredictorBTBPlugin_l202) begin
           GlobalPredictorBTBPlugin_predictor_io_write_valid = 1'b1;
         end else begin
-          if(when_GlobalPredictorBTBPlugin_l223) begin
+          if(when_GlobalPredictorBTBPlugin_l218) begin
             GlobalPredictorBTBPlugin_predictor_io_write_valid = 1'b1;
           end
         end
@@ -65033,19 +65231,19 @@ module MyCPUCore (
   always @(*) begin
     GlobalPredictorBTBPlugin_predictor_io_write_payload_newCounter = 2'bxx;
     if(CommitPlugin_predUpdate_valid) begin
-      if(!when_GlobalPredictorBTBPlugin_l204) begin
-        if(when_GlobalPredictorBTBPlugin_l207) begin
-          if(when_GlobalPredictorBTBPlugin_l213) begin
+      if(!when_GlobalPredictorBTBPlugin_l199) begin
+        if(when_GlobalPredictorBTBPlugin_l202) begin
+          if(when_GlobalPredictorBTBPlugin_l208) begin
             GlobalPredictorBTBPlugin_predictor_io_write_payload_newCounter = 2'b11;
           end else begin
             GlobalPredictorBTBPlugin_predictor_io_write_payload_newCounter = (CommitPlugin_predUpdate_payload_isTaken ? 2'b10 : 2'b01);
           end
         end else begin
-          if(when_GlobalPredictorBTBPlugin_l223) begin
-            if(when_GlobalPredictorBTBPlugin_l230) begin
+          if(when_GlobalPredictorBTBPlugin_l218) begin
+            if(when_GlobalPredictorBTBPlugin_l225) begin
               GlobalPredictorBTBPlugin_predictor_io_write_payload_newCounter = (CommitPlugin_predUpdate_payload_predRecover_predictCounter + 2'b01);
             end else begin
-              if(when_GlobalPredictorBTBPlugin_l232) begin
+              if(when_GlobalPredictorBTBPlugin_l227) begin
                 GlobalPredictorBTBPlugin_predictor_io_write_payload_newCounter = (CommitPlugin_predUpdate_payload_predRecover_predictCounter - 2'b01);
               end else begin
                 GlobalPredictorBTBPlugin_predictor_io_write_payload_newCounter = CommitPlugin_predUpdate_payload_predRecover_predictCounter;
@@ -65059,7 +65257,7 @@ module MyCPUCore (
 
   assign _zz_io_write_payload_data_0_tag = CommitPlugin_predUpdate_payload_pc[31 : 12];
   assign _zz_io_write_payload_address = CommitPlugin_predUpdate_payload_pc[11 : 2];
-  assign when_GlobalPredictorBTBPlugin_l204 = (CommitPlugin_predUpdate_payload_predInfo_predictBranch && (! CommitPlugin_predUpdate_payload_branchLike));
+  assign when_GlobalPredictorBTBPlugin_l199 = (CommitPlugin_predUpdate_payload_predInfo_predictBranch && (! CommitPlugin_predUpdate_payload_branchLike));
   assign _zz_426 = ({1023'd0,1'b1} <<< _zz_io_write_payload_address);
   assign _zz_427 = _zz_426[0];
   assign _zz_428 = _zz_426[1];
@@ -66085,11 +66283,11 @@ module MyCPUCore (
   assign _zz_1448 = _zz_426[1021];
   assign _zz_1449 = _zz_426[1022];
   assign _zz_1450 = _zz_426[1023];
-  assign when_GlobalPredictorBTBPlugin_l213 = (CommitPlugin_predUpdate_payload_isCall || CommitPlugin_predUpdate_payload_isRet);
-  assign when_GlobalPredictorBTBPlugin_l230 = (CommitPlugin_predUpdate_payload_isTaken && (CommitPlugin_predUpdate_payload_predRecover_predictCounter != 2'b11));
-  assign when_GlobalPredictorBTBPlugin_l232 = ((! CommitPlugin_predUpdate_payload_isTaken) && (CommitPlugin_predUpdate_payload_predRecover_predictCounter != 2'b00));
-  assign when_GlobalPredictorBTBPlugin_l207 = ((! CommitPlugin_predUpdate_payload_predInfo_predictBranch) && CommitPlugin_predUpdate_payload_branchLike);
-  assign when_GlobalPredictorBTBPlugin_l223 = (CommitPlugin_predUpdate_payload_predInfo_predictBranch && CommitPlugin_predUpdate_payload_branchLike);
+  assign when_GlobalPredictorBTBPlugin_l208 = (CommitPlugin_predUpdate_payload_isCall || CommitPlugin_predUpdate_payload_isRet);
+  assign when_GlobalPredictorBTBPlugin_l225 = (CommitPlugin_predUpdate_payload_isTaken && (CommitPlugin_predUpdate_payload_predRecover_predictCounter != 2'b11));
+  assign when_GlobalPredictorBTBPlugin_l227 = ((! CommitPlugin_predUpdate_payload_isTaken) && (CommitPlugin_predUpdate_payload_predRecover_predictCounter != 2'b00));
+  assign when_GlobalPredictorBTBPlugin_l202 = ((! CommitPlugin_predUpdate_payload_predInfo_predictBranch) && CommitPlugin_predUpdate_payload_branchLike);
+  assign when_GlobalPredictorBTBPlugin_l218 = (CommitPlugin_predUpdate_payload_predInfo_predictBranch && CommitPlugin_predUpdate_payload_branchLike);
   assign when_ReturnAddressStackPlugin_l31 = ((IF2_arbitration_isValid && (! IF2_arbitration_isStuck)) && IF2_PREDICT_JUMP_FLAG);
   assign _zz_1451 = ({7'd0,1'b1} <<< _zz__zz_1451);
   assign _zz_ReturnAddressStackPlugin_ras_0 = (_zz__zz_ReturnAddressStackPlugin_ras_0 + 30'h00000001);
@@ -71502,16 +71700,17 @@ module MyCPUCore (
   assign when_MulDivExecutePlugin_l112 = (! MULDIV_EXE_MulDivExecutePlugin_mulCounter_willOverflowIfInc);
   assign MULDIV_EXE_MulDivExecutePlugin_isDivision = (MULDIV_EXE_arbitration_isValidOnEntry && ((MULDIV_EXE_ISSUE_SLOT_uop_fuType == FUType_DIV) || (MULDIV_EXE_ISSUE_SLOT_uop_fuType == FUType_MOD_1)));
   assign MULDIV_EXE_MulDivExecutePlugin_in16Bits = ((MULDIV_EXE_MulDivExecutePlugin_absRj[31 : 16] == 16'h0) && (MULDIV_EXE_MulDivExecutePlugin_absRk[31 : 16] == 16'h0));
+  assign when_MulDivExecutePlugin_l136 = (MULDIV_EXE_MulDivExecutePlugin_isDivision && MULDIV_EXE_MulDivExecutePlugin_isFirstCycle);
   assign unsignedDivider_2_io_cmd_valid = ((MULDIV_EXE_MulDivExecutePlugin_isDivision && MULDIV_EXE_MulDivExecutePlugin_isFirstCycle) && (! MULDIV_EXE_MulDivExecutePlugin_in16Bits));
   assign unsignedDivider_2_io_rsp_ready = (! MULDIV_EXE_arbitration_isStuckByOthers);
   assign unsignedDivider_3_io_cmd_valid = (MULDIV_EXE_MulDivExecutePlugin_isDivision && MULDIV_EXE_MulDivExecutePlugin_isFirstCycle);
   assign unsignedDivider_3_io_cmd_payload_numerator = MULDIV_EXE_MulDivExecutePlugin_absRj[15:0];
   assign unsignedDivider_3_io_cmd_payload_denominator = MULDIV_EXE_MulDivExecutePlugin_absRk[15:0];
   assign unsignedDivider_3_io_rsp_ready = (! MULDIV_EXE_arbitration_isStuckByOthers);
-  assign when_MulDivExecutePlugin_l147 = ((! MULDIV_EXE_MulDivExecutePlugin_in16Bits) && (! unsignedDivider_2_io_rsp_valid));
-  assign when_MulDivExecutePlugin_l148 = (MULDIV_EXE_MulDivExecutePlugin_in16Bits && (! unsignedDivider_3_io_rsp_valid));
+  assign when_MulDivExecutePlugin_l158 = ((! MULDIV_EXE_MulDivExecutePlugin_in16BitsHeld) && (! unsignedDivider_2_io_rsp_valid));
+  assign when_MulDivExecutePlugin_l159 = (MULDIV_EXE_MulDivExecutePlugin_in16BitsHeld && (! unsignedDivider_3_io_rsp_valid));
   always @(*) begin
-    if(MULDIV_EXE_MulDivExecutePlugin_in16Bits) begin
+    if(MULDIV_EXE_MulDivExecutePlugin_in16BitsHeld) begin
       _zz_MULDIV_EXE_MulDivExecutePlugin_quotient = {16'd0, unsignedDivider_3_io_rsp_payload_quotient};
     end else begin
       _zz_MULDIV_EXE_MulDivExecutePlugin_quotient = unsignedDivider_2_io_rsp_payload_quotient;
@@ -71519,7 +71718,7 @@ module MyCPUCore (
   end
 
   always @(*) begin
-    if(MULDIV_EXE_MulDivExecutePlugin_in16Bits) begin
+    if(MULDIV_EXE_MulDivExecutePlugin_in16BitsHeld) begin
       _zz_MULDIV_EXE_MulDivExecutePlugin_remainder = {16'd0, unsignedDivider_3_io_rsp_payload_remainder};
     end else begin
       _zz_MULDIV_EXE_MulDivExecutePlugin_remainder = unsignedDivider_2_io_rsp_payload_remainder;
@@ -71635,205 +71834,206 @@ module MyCPUCore (
   assign MEM_ADDR_AddressGenerationPlugin_directTranslateResult_resultBundle_payload_exception_raisePME = MEM_ADDR_AddressGenerationPlugin_directTranslateResult_resultExceptionBundle_raisePME;
   assign MEM_ADDR_AddressGenerationPlugin_directTranslateResult_resultBundle_payload_exception_raisePPI = MEM_ADDR_AddressGenerationPlugin_directTranslateResult_resultExceptionBundle_raisePPI;
   assign MEM_ADDR_AddressGenerationPlugin_directTranslateResult_resultBundle_payload_exception_raiseTLBR = MEM_ADDR_AddressGenerationPlugin_directTranslateResult_resultExceptionBundle_raiseTLBR;
-  assign switch_MMUPlugin_l290_1 = (MEM_ADDR_ISSUE_SLOT_uop_isStore ? MemOperationType_STORE : MemOperationType_LOAD);
-  assign MEM_ADDR_AddressGenerationPlugin_tlbTranslateResult_resultValid = 1'b1;
-  always @(*) begin
-    MEM_ADDR_AddressGenerationPlugin_tlbTranslateResult_resultExceptionBundle_raisePIL = 1'b0;
-    if(when_MMUPlugin_l289_1) begin
-      case(switch_MMUPlugin_l290_1)
-        MemOperationType_FETCH : begin
-        end
-        MemOperationType_LOAD : begin
-          MEM_ADDR_AddressGenerationPlugin_tlbTranslateResult_resultExceptionBundle_raisePIL = 1'b1;
-        end
-        default : begin
-        end
-      endcase
-    end
-  end
-
-  always @(*) begin
-    MEM_ADDR_AddressGenerationPlugin_tlbTranslateResult_resultExceptionBundle_raisePIS = 1'b0;
-    if(when_MMUPlugin_l289_1) begin
-      case(switch_MMUPlugin_l290_1)
-        MemOperationType_FETCH : begin
-        end
-        MemOperationType_LOAD : begin
-        end
-        default : begin
-          MEM_ADDR_AddressGenerationPlugin_tlbTranslateResult_resultExceptionBundle_raisePIS = 1'b1;
-        end
-      endcase
-    end
-  end
-
-  always @(*) begin
-    MEM_ADDR_AddressGenerationPlugin_tlbTranslateResult_resultExceptionBundle_raisePIF = 1'b0;
-    if(when_MMUPlugin_l289_1) begin
-      case(switch_MMUPlugin_l290_1)
-        MemOperationType_FETCH : begin
-          MEM_ADDR_AddressGenerationPlugin_tlbTranslateResult_resultExceptionBundle_raisePIF = 1'b1;
-        end
-        MemOperationType_LOAD : begin
-        end
-        default : begin
-        end
-      endcase
-    end
-  end
-
-  always @(*) begin
-    MEM_ADDR_AddressGenerationPlugin_tlbTranslateResult_resultExceptionBundle_raisePME = 1'b0;
-    if(when_MMUPlugin_l307_1) begin
-      MEM_ADDR_AddressGenerationPlugin_tlbTranslateResult_resultExceptionBundle_raisePME = 1'b1;
-    end
-  end
-
-  always @(*) begin
-    MEM_ADDR_AddressGenerationPlugin_tlbTranslateResult_resultExceptionBundle_raisePPI = 1'b0;
-    if(when_MMUPlugin_l303_1) begin
-      MEM_ADDR_AddressGenerationPlugin_tlbTranslateResult_resultExceptionBundle_raisePPI = 1'b1;
-    end
-  end
-
-  always @(*) begin
-    MEM_ADDR_AddressGenerationPlugin_tlbTranslateResult_resultExceptionBundle_raiseTLBR = 1'b0;
-    if(when_MMUPlugin_l285_1) begin
-      MEM_ADDR_AddressGenerationPlugin_tlbTranslateResult_resultExceptionBundle_raiseTLBR = 1'b1;
-    end
-  end
-
-  assign MEM_ADDR_AddressGenerationPlugin_tlbTranslateResult_ASIDMatches_0 = (MMUPlugin_TLBTable_0_G || (MMUPlugin_TLBTable_0_ASID == MMUPlugin_ASID_ASID));
-  assign MEM_ADDR_AddressGenerationPlugin_tlbTranslateResult_ASIDMatches_1 = (MMUPlugin_TLBTable_1_G || (MMUPlugin_TLBTable_1_ASID == MMUPlugin_ASID_ASID));
-  assign MEM_ADDR_AddressGenerationPlugin_tlbTranslateResult_ASIDMatches_2 = (MMUPlugin_TLBTable_2_G || (MMUPlugin_TLBTable_2_ASID == MMUPlugin_ASID_ASID));
-  assign MEM_ADDR_AddressGenerationPlugin_tlbTranslateResult_ASIDMatches_3 = (MMUPlugin_TLBTable_3_G || (MMUPlugin_TLBTable_3_ASID == MMUPlugin_ASID_ASID));
-  assign MEM_ADDR_AddressGenerationPlugin_tlbTranslateResult_ASIDMatches_4 = (MMUPlugin_TLBTable_4_G || (MMUPlugin_TLBTable_4_ASID == MMUPlugin_ASID_ASID));
-  assign MEM_ADDR_AddressGenerationPlugin_tlbTranslateResult_ASIDMatches_5 = (MMUPlugin_TLBTable_5_G || (MMUPlugin_TLBTable_5_ASID == MMUPlugin_ASID_ASID));
-  assign MEM_ADDR_AddressGenerationPlugin_tlbTranslateResult_ASIDMatches_6 = (MMUPlugin_TLBTable_6_G || (MMUPlugin_TLBTable_6_ASID == MMUPlugin_ASID_ASID));
-  assign MEM_ADDR_AddressGenerationPlugin_tlbTranslateResult_ASIDMatches_7 = (MMUPlugin_TLBTable_7_G || (MMUPlugin_TLBTable_7_ASID == MMUPlugin_ASID_ASID));
-  assign MEM_ADDR_AddressGenerationPlugin_tlbTranslateResult_ASIDMatches_8 = (MMUPlugin_TLBTable_8_G || (MMUPlugin_TLBTable_8_ASID == MMUPlugin_ASID_ASID));
-  assign MEM_ADDR_AddressGenerationPlugin_tlbTranslateResult_ASIDMatches_9 = (MMUPlugin_TLBTable_9_G || (MMUPlugin_TLBTable_9_ASID == MMUPlugin_ASID_ASID));
-  assign MEM_ADDR_AddressGenerationPlugin_tlbTranslateResult_ASIDMatches_10 = (MMUPlugin_TLBTable_10_G || (MMUPlugin_TLBTable_10_ASID == MMUPlugin_ASID_ASID));
-  assign MEM_ADDR_AddressGenerationPlugin_tlbTranslateResult_ASIDMatches_11 = (MMUPlugin_TLBTable_11_G || (MMUPlugin_TLBTable_11_ASID == MMUPlugin_ASID_ASID));
-  assign MEM_ADDR_AddressGenerationPlugin_tlbTranslateResult_ASIDMatches_12 = (MMUPlugin_TLBTable_12_G || (MMUPlugin_TLBTable_12_ASID == MMUPlugin_ASID_ASID));
-  assign MEM_ADDR_AddressGenerationPlugin_tlbTranslateResult_ASIDMatches_13 = (MMUPlugin_TLBTable_13_G || (MMUPlugin_TLBTable_13_ASID == MMUPlugin_ASID_ASID));
-  assign MEM_ADDR_AddressGenerationPlugin_tlbTranslateResult_ASIDMatches_14 = (MMUPlugin_TLBTable_14_G || (MMUPlugin_TLBTable_14_ASID == MMUPlugin_ASID_ASID));
-  assign MEM_ADDR_AddressGenerationPlugin_tlbTranslateResult_ASIDMatches_15 = (MMUPlugin_TLBTable_15_G || (MMUPlugin_TLBTable_15_ASID == MMUPlugin_ASID_ASID));
-  assign MEM_ADDR_AddressGenerationPlugin_tlbTranslateResult_VPPNMatches_0 = ((MMUPlugin_TLBTable_0_PS == 6'h0c) ? (MMUPlugin_TLBTable_0_VPPN == MEM_ADDR_MEMORY_ADDRESS[31 : 13]) : (MMUPlugin_TLBTable_0_VPPN[18 : 9] == MEM_ADDR_MEMORY_ADDRESS[31 : 22]));
-  assign MEM_ADDR_AddressGenerationPlugin_tlbTranslateResult_VPPNMatches_1 = ((MMUPlugin_TLBTable_1_PS == 6'h0c) ? (MMUPlugin_TLBTable_1_VPPN == MEM_ADDR_MEMORY_ADDRESS[31 : 13]) : (MMUPlugin_TLBTable_1_VPPN[18 : 9] == MEM_ADDR_MEMORY_ADDRESS[31 : 22]));
-  assign MEM_ADDR_AddressGenerationPlugin_tlbTranslateResult_VPPNMatches_2 = ((MMUPlugin_TLBTable_2_PS == 6'h0c) ? (MMUPlugin_TLBTable_2_VPPN == MEM_ADDR_MEMORY_ADDRESS[31 : 13]) : (MMUPlugin_TLBTable_2_VPPN[18 : 9] == MEM_ADDR_MEMORY_ADDRESS[31 : 22]));
-  assign MEM_ADDR_AddressGenerationPlugin_tlbTranslateResult_VPPNMatches_3 = ((MMUPlugin_TLBTable_3_PS == 6'h0c) ? (MMUPlugin_TLBTable_3_VPPN == MEM_ADDR_MEMORY_ADDRESS[31 : 13]) : (MMUPlugin_TLBTable_3_VPPN[18 : 9] == MEM_ADDR_MEMORY_ADDRESS[31 : 22]));
-  assign MEM_ADDR_AddressGenerationPlugin_tlbTranslateResult_VPPNMatches_4 = ((MMUPlugin_TLBTable_4_PS == 6'h0c) ? (MMUPlugin_TLBTable_4_VPPN == MEM_ADDR_MEMORY_ADDRESS[31 : 13]) : (MMUPlugin_TLBTable_4_VPPN[18 : 9] == MEM_ADDR_MEMORY_ADDRESS[31 : 22]));
-  assign MEM_ADDR_AddressGenerationPlugin_tlbTranslateResult_VPPNMatches_5 = ((MMUPlugin_TLBTable_5_PS == 6'h0c) ? (MMUPlugin_TLBTable_5_VPPN == MEM_ADDR_MEMORY_ADDRESS[31 : 13]) : (MMUPlugin_TLBTable_5_VPPN[18 : 9] == MEM_ADDR_MEMORY_ADDRESS[31 : 22]));
-  assign MEM_ADDR_AddressGenerationPlugin_tlbTranslateResult_VPPNMatches_6 = ((MMUPlugin_TLBTable_6_PS == 6'h0c) ? (MMUPlugin_TLBTable_6_VPPN == MEM_ADDR_MEMORY_ADDRESS[31 : 13]) : (MMUPlugin_TLBTable_6_VPPN[18 : 9] == MEM_ADDR_MEMORY_ADDRESS[31 : 22]));
-  assign MEM_ADDR_AddressGenerationPlugin_tlbTranslateResult_VPPNMatches_7 = ((MMUPlugin_TLBTable_7_PS == 6'h0c) ? (MMUPlugin_TLBTable_7_VPPN == MEM_ADDR_MEMORY_ADDRESS[31 : 13]) : (MMUPlugin_TLBTable_7_VPPN[18 : 9] == MEM_ADDR_MEMORY_ADDRESS[31 : 22]));
-  assign MEM_ADDR_AddressGenerationPlugin_tlbTranslateResult_VPPNMatches_8 = ((MMUPlugin_TLBTable_8_PS == 6'h0c) ? (MMUPlugin_TLBTable_8_VPPN == MEM_ADDR_MEMORY_ADDRESS[31 : 13]) : (MMUPlugin_TLBTable_8_VPPN[18 : 9] == MEM_ADDR_MEMORY_ADDRESS[31 : 22]));
-  assign MEM_ADDR_AddressGenerationPlugin_tlbTranslateResult_VPPNMatches_9 = ((MMUPlugin_TLBTable_9_PS == 6'h0c) ? (MMUPlugin_TLBTable_9_VPPN == MEM_ADDR_MEMORY_ADDRESS[31 : 13]) : (MMUPlugin_TLBTable_9_VPPN[18 : 9] == MEM_ADDR_MEMORY_ADDRESS[31 : 22]));
-  assign MEM_ADDR_AddressGenerationPlugin_tlbTranslateResult_VPPNMatches_10 = ((MMUPlugin_TLBTable_10_PS == 6'h0c) ? (MMUPlugin_TLBTable_10_VPPN == MEM_ADDR_MEMORY_ADDRESS[31 : 13]) : (MMUPlugin_TLBTable_10_VPPN[18 : 9] == MEM_ADDR_MEMORY_ADDRESS[31 : 22]));
-  assign MEM_ADDR_AddressGenerationPlugin_tlbTranslateResult_VPPNMatches_11 = ((MMUPlugin_TLBTable_11_PS == 6'h0c) ? (MMUPlugin_TLBTable_11_VPPN == MEM_ADDR_MEMORY_ADDRESS[31 : 13]) : (MMUPlugin_TLBTable_11_VPPN[18 : 9] == MEM_ADDR_MEMORY_ADDRESS[31 : 22]));
-  assign MEM_ADDR_AddressGenerationPlugin_tlbTranslateResult_VPPNMatches_12 = ((MMUPlugin_TLBTable_12_PS == 6'h0c) ? (MMUPlugin_TLBTable_12_VPPN == MEM_ADDR_MEMORY_ADDRESS[31 : 13]) : (MMUPlugin_TLBTable_12_VPPN[18 : 9] == MEM_ADDR_MEMORY_ADDRESS[31 : 22]));
-  assign MEM_ADDR_AddressGenerationPlugin_tlbTranslateResult_VPPNMatches_13 = ((MMUPlugin_TLBTable_13_PS == 6'h0c) ? (MMUPlugin_TLBTable_13_VPPN == MEM_ADDR_MEMORY_ADDRESS[31 : 13]) : (MMUPlugin_TLBTable_13_VPPN[18 : 9] == MEM_ADDR_MEMORY_ADDRESS[31 : 22]));
-  assign MEM_ADDR_AddressGenerationPlugin_tlbTranslateResult_VPPNMatches_14 = ((MMUPlugin_TLBTable_14_PS == 6'h0c) ? (MMUPlugin_TLBTable_14_VPPN == MEM_ADDR_MEMORY_ADDRESS[31 : 13]) : (MMUPlugin_TLBTable_14_VPPN[18 : 9] == MEM_ADDR_MEMORY_ADDRESS[31 : 22]));
-  assign MEM_ADDR_AddressGenerationPlugin_tlbTranslateResult_VPPNMatches_15 = ((MMUPlugin_TLBTable_15_PS == 6'h0c) ? (MMUPlugin_TLBTable_15_VPPN == MEM_ADDR_MEMORY_ADDRESS[31 : 13]) : (MMUPlugin_TLBTable_15_VPPN[18 : 9] == MEM_ADDR_MEMORY_ADDRESS[31 : 22]));
-  assign MEM_ADDR_AddressGenerationPlugin_tlbTranslateResult_EntryHits_0 = ((MMUPlugin_TLBTable_0_E && MEM_ADDR_AddressGenerationPlugin_tlbTranslateResult_ASIDMatches_0) && MEM_ADDR_AddressGenerationPlugin_tlbTranslateResult_VPPNMatches_0);
-  assign MEM_ADDR_AddressGenerationPlugin_tlbTranslateResult_EntryHits_1 = ((MMUPlugin_TLBTable_1_E && MEM_ADDR_AddressGenerationPlugin_tlbTranslateResult_ASIDMatches_1) && MEM_ADDR_AddressGenerationPlugin_tlbTranslateResult_VPPNMatches_1);
-  assign MEM_ADDR_AddressGenerationPlugin_tlbTranslateResult_EntryHits_2 = ((MMUPlugin_TLBTable_2_E && MEM_ADDR_AddressGenerationPlugin_tlbTranslateResult_ASIDMatches_2) && MEM_ADDR_AddressGenerationPlugin_tlbTranslateResult_VPPNMatches_2);
-  assign MEM_ADDR_AddressGenerationPlugin_tlbTranslateResult_EntryHits_3 = ((MMUPlugin_TLBTable_3_E && MEM_ADDR_AddressGenerationPlugin_tlbTranslateResult_ASIDMatches_3) && MEM_ADDR_AddressGenerationPlugin_tlbTranslateResult_VPPNMatches_3);
-  assign MEM_ADDR_AddressGenerationPlugin_tlbTranslateResult_EntryHits_4 = ((MMUPlugin_TLBTable_4_E && MEM_ADDR_AddressGenerationPlugin_tlbTranslateResult_ASIDMatches_4) && MEM_ADDR_AddressGenerationPlugin_tlbTranslateResult_VPPNMatches_4);
-  assign MEM_ADDR_AddressGenerationPlugin_tlbTranslateResult_EntryHits_5 = ((MMUPlugin_TLBTable_5_E && MEM_ADDR_AddressGenerationPlugin_tlbTranslateResult_ASIDMatches_5) && MEM_ADDR_AddressGenerationPlugin_tlbTranslateResult_VPPNMatches_5);
-  assign MEM_ADDR_AddressGenerationPlugin_tlbTranslateResult_EntryHits_6 = ((MMUPlugin_TLBTable_6_E && MEM_ADDR_AddressGenerationPlugin_tlbTranslateResult_ASIDMatches_6) && MEM_ADDR_AddressGenerationPlugin_tlbTranslateResult_VPPNMatches_6);
-  assign MEM_ADDR_AddressGenerationPlugin_tlbTranslateResult_EntryHits_7 = ((MMUPlugin_TLBTable_7_E && MEM_ADDR_AddressGenerationPlugin_tlbTranslateResult_ASIDMatches_7) && MEM_ADDR_AddressGenerationPlugin_tlbTranslateResult_VPPNMatches_7);
-  assign MEM_ADDR_AddressGenerationPlugin_tlbTranslateResult_EntryHits_8 = ((MMUPlugin_TLBTable_8_E && MEM_ADDR_AddressGenerationPlugin_tlbTranslateResult_ASIDMatches_8) && MEM_ADDR_AddressGenerationPlugin_tlbTranslateResult_VPPNMatches_8);
-  assign MEM_ADDR_AddressGenerationPlugin_tlbTranslateResult_EntryHits_9 = ((MMUPlugin_TLBTable_9_E && MEM_ADDR_AddressGenerationPlugin_tlbTranslateResult_ASIDMatches_9) && MEM_ADDR_AddressGenerationPlugin_tlbTranslateResult_VPPNMatches_9);
-  assign MEM_ADDR_AddressGenerationPlugin_tlbTranslateResult_EntryHits_10 = ((MMUPlugin_TLBTable_10_E && MEM_ADDR_AddressGenerationPlugin_tlbTranslateResult_ASIDMatches_10) && MEM_ADDR_AddressGenerationPlugin_tlbTranslateResult_VPPNMatches_10);
-  assign MEM_ADDR_AddressGenerationPlugin_tlbTranslateResult_EntryHits_11 = ((MMUPlugin_TLBTable_11_E && MEM_ADDR_AddressGenerationPlugin_tlbTranslateResult_ASIDMatches_11) && MEM_ADDR_AddressGenerationPlugin_tlbTranslateResult_VPPNMatches_11);
-  assign MEM_ADDR_AddressGenerationPlugin_tlbTranslateResult_EntryHits_12 = ((MMUPlugin_TLBTable_12_E && MEM_ADDR_AddressGenerationPlugin_tlbTranslateResult_ASIDMatches_12) && MEM_ADDR_AddressGenerationPlugin_tlbTranslateResult_VPPNMatches_12);
-  assign MEM_ADDR_AddressGenerationPlugin_tlbTranslateResult_EntryHits_13 = ((MMUPlugin_TLBTable_13_E && MEM_ADDR_AddressGenerationPlugin_tlbTranslateResult_ASIDMatches_13) && MEM_ADDR_AddressGenerationPlugin_tlbTranslateResult_VPPNMatches_13);
-  assign MEM_ADDR_AddressGenerationPlugin_tlbTranslateResult_EntryHits_14 = ((MMUPlugin_TLBTable_14_E && MEM_ADDR_AddressGenerationPlugin_tlbTranslateResult_ASIDMatches_14) && MEM_ADDR_AddressGenerationPlugin_tlbTranslateResult_VPPNMatches_14);
-  assign MEM_ADDR_AddressGenerationPlugin_tlbTranslateResult_EntryHits_15 = ((MMUPlugin_TLBTable_15_E && MEM_ADDR_AddressGenerationPlugin_tlbTranslateResult_ASIDMatches_15) && MEM_ADDR_AddressGenerationPlugin_tlbTranslateResult_VPPNMatches_15);
-  assign MEM_ADDR_AddressGenerationPlugin_tlbTranslateResult_TLBHit = ({MEM_ADDR_AddressGenerationPlugin_tlbTranslateResult_EntryHits_15,{MEM_ADDR_AddressGenerationPlugin_tlbTranslateResult_EntryHits_14,{MEM_ADDR_AddressGenerationPlugin_tlbTranslateResult_EntryHits_13,{MEM_ADDR_AddressGenerationPlugin_tlbTranslateResult_EntryHits_12,{MEM_ADDR_AddressGenerationPlugin_tlbTranslateResult_EntryHits_11,{MEM_ADDR_AddressGenerationPlugin_tlbTranslateResult_EntryHits_10,{MEM_ADDR_AddressGenerationPlugin_tlbTranslateResult_EntryHits_9,{MEM_ADDR_AddressGenerationPlugin_tlbTranslateResult_EntryHits_8,{MEM_ADDR_AddressGenerationPlugin_tlbTranslateResult_EntryHits_7,{_zz_MEM_ADDR_AddressGenerationPlugin_tlbTranslateResult_TLBHit,_zz_MEM_ADDR_AddressGenerationPlugin_tlbTranslateResult_TLBHit_1}}}}}}}}}} != 16'h0);
-  assign _zz_MEM_ADDR_AddressGenerationPlugin_tlbTranslateResult_TLBHitEntry_E = (((((((MEM_ADDR_AddressGenerationPlugin_tlbTranslateResult_EntryHits_1 || MEM_ADDR_AddressGenerationPlugin_tlbTranslateResult_EntryHits_3) || MEM_ADDR_AddressGenerationPlugin_tlbTranslateResult_EntryHits_5) || MEM_ADDR_AddressGenerationPlugin_tlbTranslateResult_EntryHits_7) || MEM_ADDR_AddressGenerationPlugin_tlbTranslateResult_EntryHits_9) || MEM_ADDR_AddressGenerationPlugin_tlbTranslateResult_EntryHits_11) || MEM_ADDR_AddressGenerationPlugin_tlbTranslateResult_EntryHits_13) || MEM_ADDR_AddressGenerationPlugin_tlbTranslateResult_EntryHits_15);
-  assign _zz_MEM_ADDR_AddressGenerationPlugin_tlbTranslateResult_TLBHitEntry_E_1 = (((((((MEM_ADDR_AddressGenerationPlugin_tlbTranslateResult_EntryHits_2 || MEM_ADDR_AddressGenerationPlugin_tlbTranslateResult_EntryHits_3) || MEM_ADDR_AddressGenerationPlugin_tlbTranslateResult_EntryHits_6) || MEM_ADDR_AddressGenerationPlugin_tlbTranslateResult_EntryHits_7) || MEM_ADDR_AddressGenerationPlugin_tlbTranslateResult_EntryHits_10) || MEM_ADDR_AddressGenerationPlugin_tlbTranslateResult_EntryHits_11) || MEM_ADDR_AddressGenerationPlugin_tlbTranslateResult_EntryHits_14) || MEM_ADDR_AddressGenerationPlugin_tlbTranslateResult_EntryHits_15);
-  assign _zz_MEM_ADDR_AddressGenerationPlugin_tlbTranslateResult_TLBHitEntry_E_2 = (((((((MEM_ADDR_AddressGenerationPlugin_tlbTranslateResult_EntryHits_4 || MEM_ADDR_AddressGenerationPlugin_tlbTranslateResult_EntryHits_5) || MEM_ADDR_AddressGenerationPlugin_tlbTranslateResult_EntryHits_6) || MEM_ADDR_AddressGenerationPlugin_tlbTranslateResult_EntryHits_7) || MEM_ADDR_AddressGenerationPlugin_tlbTranslateResult_EntryHits_12) || MEM_ADDR_AddressGenerationPlugin_tlbTranslateResult_EntryHits_13) || MEM_ADDR_AddressGenerationPlugin_tlbTranslateResult_EntryHits_14) || MEM_ADDR_AddressGenerationPlugin_tlbTranslateResult_EntryHits_15);
-  assign _zz_MEM_ADDR_AddressGenerationPlugin_tlbTranslateResult_TLBHitEntry_E_3 = (((((((MEM_ADDR_AddressGenerationPlugin_tlbTranslateResult_EntryHits_8 || MEM_ADDR_AddressGenerationPlugin_tlbTranslateResult_EntryHits_9) || MEM_ADDR_AddressGenerationPlugin_tlbTranslateResult_EntryHits_10) || MEM_ADDR_AddressGenerationPlugin_tlbTranslateResult_EntryHits_11) || MEM_ADDR_AddressGenerationPlugin_tlbTranslateResult_EntryHits_12) || MEM_ADDR_AddressGenerationPlugin_tlbTranslateResult_EntryHits_13) || MEM_ADDR_AddressGenerationPlugin_tlbTranslateResult_EntryHits_14) || MEM_ADDR_AddressGenerationPlugin_tlbTranslateResult_EntryHits_15);
-  assign _zz_MEM_ADDR_AddressGenerationPlugin_tlbTranslateResult_TLBHitEntry_E_4 = {_zz_MEM_ADDR_AddressGenerationPlugin_tlbTranslateResult_TLBHitEntry_E_3,{_zz_MEM_ADDR_AddressGenerationPlugin_tlbTranslateResult_TLBHitEntry_E_2,{_zz_MEM_ADDR_AddressGenerationPlugin_tlbTranslateResult_TLBHitEntry_E_1,_zz_MEM_ADDR_AddressGenerationPlugin_tlbTranslateResult_TLBHitEntry_E}}};
-  assign MEM_ADDR_AddressGenerationPlugin_tlbTranslateResult_TLBHitEntry_E = _zz_MEM_ADDR_AddressGenerationPlugin_tlbTranslateResult_TLBHitEntry_E_5;
-  assign MEM_ADDR_AddressGenerationPlugin_tlbTranslateResult_TLBHitEntry_ASID = _zz_MEM_ADDR_AddressGenerationPlugin_tlbTranslateResult_TLBHitEntry_ASID;
-  assign MEM_ADDR_AddressGenerationPlugin_tlbTranslateResult_TLBHitEntry_G = _zz_MEM_ADDR_AddressGenerationPlugin_tlbTranslateResult_TLBHitEntry_G;
-  assign MEM_ADDR_AddressGenerationPlugin_tlbTranslateResult_TLBHitEntry_PS = _zz_MEM_ADDR_AddressGenerationPlugin_tlbTranslateResult_TLBHitEntry_PS;
-  assign MEM_ADDR_AddressGenerationPlugin_tlbTranslateResult_TLBHitEntry_VPPN = _zz_MEM_ADDR_AddressGenerationPlugin_tlbTranslateResult_TLBHitEntry_VPPN;
-  assign MEM_ADDR_AddressGenerationPlugin_tlbTranslateResult_TLBHitEntry_V0 = _zz_MEM_ADDR_AddressGenerationPlugin_tlbTranslateResult_TLBHitEntry_V0;
-  assign MEM_ADDR_AddressGenerationPlugin_tlbTranslateResult_TLBHitEntry_D0 = _zz_MEM_ADDR_AddressGenerationPlugin_tlbTranslateResult_TLBHitEntry_D0;
-  assign MEM_ADDR_AddressGenerationPlugin_tlbTranslateResult_TLBHitEntry_MAT0 = _zz_MEM_ADDR_AddressGenerationPlugin_tlbTranslateResult_TLBHitEntry_MAT0;
-  assign MEM_ADDR_AddressGenerationPlugin_tlbTranslateResult_TLBHitEntry_PLV0 = _zz_MEM_ADDR_AddressGenerationPlugin_tlbTranslateResult_TLBHitEntry_PLV0;
-  assign MEM_ADDR_AddressGenerationPlugin_tlbTranslateResult_TLBHitEntry_PPN0 = _zz_MEM_ADDR_AddressGenerationPlugin_tlbTranslateResult_TLBHitEntry_PPN0;
-  assign MEM_ADDR_AddressGenerationPlugin_tlbTranslateResult_TLBHitEntry_V1 = _zz_MEM_ADDR_AddressGenerationPlugin_tlbTranslateResult_TLBHitEntry_V1;
-  assign MEM_ADDR_AddressGenerationPlugin_tlbTranslateResult_TLBHitEntry_D1 = _zz_MEM_ADDR_AddressGenerationPlugin_tlbTranslateResult_TLBHitEntry_D1;
-  assign MEM_ADDR_AddressGenerationPlugin_tlbTranslateResult_TLBHitEntry_MAT1 = _zz_MEM_ADDR_AddressGenerationPlugin_tlbTranslateResult_TLBHitEntry_MAT1;
-  assign MEM_ADDR_AddressGenerationPlugin_tlbTranslateResult_TLBHitEntry_PLV1 = _zz_MEM_ADDR_AddressGenerationPlugin_tlbTranslateResult_TLBHitEntry_PLV1;
-  assign MEM_ADDR_AddressGenerationPlugin_tlbTranslateResult_TLBHitEntry_PPN1 = _zz_MEM_ADDR_AddressGenerationPlugin_tlbTranslateResult_TLBHitEntry_PPN1;
-  assign MEM_ADDR_AddressGenerationPlugin_tlbTranslateResult_TLBHitEntry_v = (MEM_ADDR_MEMORY_ADDRESS[MEM_ADDR_AddressGenerationPlugin_tlbTranslateResult_TLBHitEntry_PS[4 : 0]] ? MEM_ADDR_AddressGenerationPlugin_tlbTranslateResult_TLBHitEntry_V1 : MEM_ADDR_AddressGenerationPlugin_tlbTranslateResult_TLBHitEntry_V0);
-  assign MEM_ADDR_AddressGenerationPlugin_tlbTranslateResult_TLBHitEntry_d = (MEM_ADDR_MEMORY_ADDRESS[MEM_ADDR_AddressGenerationPlugin_tlbTranslateResult_TLBHitEntry_PS[4 : 0]] ? MEM_ADDR_AddressGenerationPlugin_tlbTranslateResult_TLBHitEntry_D1 : MEM_ADDR_AddressGenerationPlugin_tlbTranslateResult_TLBHitEntry_D0);
-  assign MEM_ADDR_AddressGenerationPlugin_tlbTranslateResult_TLBHitEntry_mat = (MEM_ADDR_MEMORY_ADDRESS[MEM_ADDR_AddressGenerationPlugin_tlbTranslateResult_TLBHitEntry_PS[4 : 0]] ? MEM_ADDR_AddressGenerationPlugin_tlbTranslateResult_TLBHitEntry_MAT1 : MEM_ADDR_AddressGenerationPlugin_tlbTranslateResult_TLBHitEntry_MAT0);
-  assign MEM_ADDR_AddressGenerationPlugin_tlbTranslateResult_TLBHitEntry_plv = (MEM_ADDR_MEMORY_ADDRESS[MEM_ADDR_AddressGenerationPlugin_tlbTranslateResult_TLBHitEntry_PS[4 : 0]] ? MEM_ADDR_AddressGenerationPlugin_tlbTranslateResult_TLBHitEntry_PLV1 : MEM_ADDR_AddressGenerationPlugin_tlbTranslateResult_TLBHitEntry_PLV0);
-  assign MEM_ADDR_AddressGenerationPlugin_tlbTranslateResult_TLBHitEntry_ppn = (MEM_ADDR_MEMORY_ADDRESS[MEM_ADDR_AddressGenerationPlugin_tlbTranslateResult_TLBHitEntry_PS[4 : 0]] ? MEM_ADDR_AddressGenerationPlugin_tlbTranslateResult_TLBHitEntry_PPN1 : MEM_ADDR_AddressGenerationPlugin_tlbTranslateResult_TLBHitEntry_PPN0);
-  assign when_MMUPlugin_l285_1 = (! MEM_ADDR_AddressGenerationPlugin_tlbTranslateResult_TLBHit);
-  assign when_MMUPlugin_l289_1 = (! MEM_ADDR_AddressGenerationPlugin_tlbTranslateResult_TLBHitEntry_v);
-  assign when_MMUPlugin_l303_1 = (MEM_ADDR_AddressGenerationPlugin_tlbTranslateResult_TLBHitEntry_plv < ExceptionHandlerPlugin_CRMD_PLV);
-  assign when_MMUPlugin_l307_1 = ((switch_MMUPlugin_l290_1 == MemOperationType_STORE) && (! MEM_ADDR_AddressGenerationPlugin_tlbTranslateResult_TLBHitEntry_d));
-  assign MEM_ADDR_AddressGenerationPlugin_tlbTranslateResult_resultPhysAddr = ((MEM_ADDR_AddressGenerationPlugin_tlbTranslateResult_TLBHitEntry_PS == 6'h0c) ? {MEM_ADDR_AddressGenerationPlugin_tlbTranslateResult_TLBHitEntry_ppn,MEM_ADDR_MEMORY_ADDRESS[11 : 0]} : {MEM_ADDR_AddressGenerationPlugin_tlbTranslateResult_TLBHitEntry_ppn[19 : 9],MEM_ADDR_MEMORY_ADDRESS[20 : 0]});
-  assign MEM_ADDR_AddressGenerationPlugin_tlbTranslateResult_resultCached = MEM_ADDR_AddressGenerationPlugin_tlbTranslateResult_TLBHitEntry_mat[0];
-  assign MEM_ADDR_AddressGenerationPlugin_tlbTranslateResult_resultBundle_valid = MEM_ADDR_AddressGenerationPlugin_tlbTranslateResult_resultValid;
-  assign MEM_ADDR_AddressGenerationPlugin_tlbTranslateResult_resultBundle_payload_physAddr = MEM_ADDR_AddressGenerationPlugin_tlbTranslateResult_resultPhysAddr;
-  assign MEM_ADDR_AddressGenerationPlugin_tlbTranslateResult_resultBundle_payload_cached = MEM_ADDR_AddressGenerationPlugin_tlbTranslateResult_resultCached;
-  assign MEM_ADDR_AddressGenerationPlugin_tlbTranslateResult_resultBundle_payload_exception_raisePIL = MEM_ADDR_AddressGenerationPlugin_tlbTranslateResult_resultExceptionBundle_raisePIL;
-  assign MEM_ADDR_AddressGenerationPlugin_tlbTranslateResult_resultBundle_payload_exception_raisePIS = MEM_ADDR_AddressGenerationPlugin_tlbTranslateResult_resultExceptionBundle_raisePIS;
-  assign MEM_ADDR_AddressGenerationPlugin_tlbTranslateResult_resultBundle_payload_exception_raisePIF = MEM_ADDR_AddressGenerationPlugin_tlbTranslateResult_resultExceptionBundle_raisePIF;
-  assign MEM_ADDR_AddressGenerationPlugin_tlbTranslateResult_resultBundle_payload_exception_raisePME = MEM_ADDR_AddressGenerationPlugin_tlbTranslateResult_resultExceptionBundle_raisePME;
-  assign MEM_ADDR_AddressGenerationPlugin_tlbTranslateResult_resultBundle_payload_exception_raisePPI = MEM_ADDR_AddressGenerationPlugin_tlbTranslateResult_resultExceptionBundle_raisePPI;
-  assign MEM_ADDR_AddressGenerationPlugin_tlbTranslateResult_resultBundle_payload_exception_raiseTLBR = MEM_ADDR_AddressGenerationPlugin_tlbTranslateResult_resultExceptionBundle_raiseTLBR;
+  assign MEM_ADDR_AddressGenerationPlugin_tlbLookup_ASIDMatches_0 = (MMUPlugin_TLBTable_0_G || (MMUPlugin_TLBTable_0_ASID == MMUPlugin_ASID_ASID));
+  assign MEM_ADDR_AddressGenerationPlugin_tlbLookup_ASIDMatches_1 = (MMUPlugin_TLBTable_1_G || (MMUPlugin_TLBTable_1_ASID == MMUPlugin_ASID_ASID));
+  assign MEM_ADDR_AddressGenerationPlugin_tlbLookup_ASIDMatches_2 = (MMUPlugin_TLBTable_2_G || (MMUPlugin_TLBTable_2_ASID == MMUPlugin_ASID_ASID));
+  assign MEM_ADDR_AddressGenerationPlugin_tlbLookup_ASIDMatches_3 = (MMUPlugin_TLBTable_3_G || (MMUPlugin_TLBTable_3_ASID == MMUPlugin_ASID_ASID));
+  assign MEM_ADDR_AddressGenerationPlugin_tlbLookup_ASIDMatches_4 = (MMUPlugin_TLBTable_4_G || (MMUPlugin_TLBTable_4_ASID == MMUPlugin_ASID_ASID));
+  assign MEM_ADDR_AddressGenerationPlugin_tlbLookup_ASIDMatches_5 = (MMUPlugin_TLBTable_5_G || (MMUPlugin_TLBTable_5_ASID == MMUPlugin_ASID_ASID));
+  assign MEM_ADDR_AddressGenerationPlugin_tlbLookup_ASIDMatches_6 = (MMUPlugin_TLBTable_6_G || (MMUPlugin_TLBTable_6_ASID == MMUPlugin_ASID_ASID));
+  assign MEM_ADDR_AddressGenerationPlugin_tlbLookup_ASIDMatches_7 = (MMUPlugin_TLBTable_7_G || (MMUPlugin_TLBTable_7_ASID == MMUPlugin_ASID_ASID));
+  assign MEM_ADDR_AddressGenerationPlugin_tlbLookup_ASIDMatches_8 = (MMUPlugin_TLBTable_8_G || (MMUPlugin_TLBTable_8_ASID == MMUPlugin_ASID_ASID));
+  assign MEM_ADDR_AddressGenerationPlugin_tlbLookup_ASIDMatches_9 = (MMUPlugin_TLBTable_9_G || (MMUPlugin_TLBTable_9_ASID == MMUPlugin_ASID_ASID));
+  assign MEM_ADDR_AddressGenerationPlugin_tlbLookup_ASIDMatches_10 = (MMUPlugin_TLBTable_10_G || (MMUPlugin_TLBTable_10_ASID == MMUPlugin_ASID_ASID));
+  assign MEM_ADDR_AddressGenerationPlugin_tlbLookup_ASIDMatches_11 = (MMUPlugin_TLBTable_11_G || (MMUPlugin_TLBTable_11_ASID == MMUPlugin_ASID_ASID));
+  assign MEM_ADDR_AddressGenerationPlugin_tlbLookup_ASIDMatches_12 = (MMUPlugin_TLBTable_12_G || (MMUPlugin_TLBTable_12_ASID == MMUPlugin_ASID_ASID));
+  assign MEM_ADDR_AddressGenerationPlugin_tlbLookup_ASIDMatches_13 = (MMUPlugin_TLBTable_13_G || (MMUPlugin_TLBTable_13_ASID == MMUPlugin_ASID_ASID));
+  assign MEM_ADDR_AddressGenerationPlugin_tlbLookup_ASIDMatches_14 = (MMUPlugin_TLBTable_14_G || (MMUPlugin_TLBTable_14_ASID == MMUPlugin_ASID_ASID));
+  assign MEM_ADDR_AddressGenerationPlugin_tlbLookup_ASIDMatches_15 = (MMUPlugin_TLBTable_15_G || (MMUPlugin_TLBTable_15_ASID == MMUPlugin_ASID_ASID));
+  assign MEM_ADDR_AddressGenerationPlugin_tlbLookup_VPPNMatches_0 = ((MMUPlugin_TLBTable_0_PS == 6'h0c) ? (MMUPlugin_TLBTable_0_VPPN == MEM_ADDR_MEMORY_ADDRESS[31 : 13]) : (MMUPlugin_TLBTable_0_VPPN[18 : 9] == MEM_ADDR_MEMORY_ADDRESS[31 : 22]));
+  assign MEM_ADDR_AddressGenerationPlugin_tlbLookup_VPPNMatches_1 = ((MMUPlugin_TLBTable_1_PS == 6'h0c) ? (MMUPlugin_TLBTable_1_VPPN == MEM_ADDR_MEMORY_ADDRESS[31 : 13]) : (MMUPlugin_TLBTable_1_VPPN[18 : 9] == MEM_ADDR_MEMORY_ADDRESS[31 : 22]));
+  assign MEM_ADDR_AddressGenerationPlugin_tlbLookup_VPPNMatches_2 = ((MMUPlugin_TLBTable_2_PS == 6'h0c) ? (MMUPlugin_TLBTable_2_VPPN == MEM_ADDR_MEMORY_ADDRESS[31 : 13]) : (MMUPlugin_TLBTable_2_VPPN[18 : 9] == MEM_ADDR_MEMORY_ADDRESS[31 : 22]));
+  assign MEM_ADDR_AddressGenerationPlugin_tlbLookup_VPPNMatches_3 = ((MMUPlugin_TLBTable_3_PS == 6'h0c) ? (MMUPlugin_TLBTable_3_VPPN == MEM_ADDR_MEMORY_ADDRESS[31 : 13]) : (MMUPlugin_TLBTable_3_VPPN[18 : 9] == MEM_ADDR_MEMORY_ADDRESS[31 : 22]));
+  assign MEM_ADDR_AddressGenerationPlugin_tlbLookup_VPPNMatches_4 = ((MMUPlugin_TLBTable_4_PS == 6'h0c) ? (MMUPlugin_TLBTable_4_VPPN == MEM_ADDR_MEMORY_ADDRESS[31 : 13]) : (MMUPlugin_TLBTable_4_VPPN[18 : 9] == MEM_ADDR_MEMORY_ADDRESS[31 : 22]));
+  assign MEM_ADDR_AddressGenerationPlugin_tlbLookup_VPPNMatches_5 = ((MMUPlugin_TLBTable_5_PS == 6'h0c) ? (MMUPlugin_TLBTable_5_VPPN == MEM_ADDR_MEMORY_ADDRESS[31 : 13]) : (MMUPlugin_TLBTable_5_VPPN[18 : 9] == MEM_ADDR_MEMORY_ADDRESS[31 : 22]));
+  assign MEM_ADDR_AddressGenerationPlugin_tlbLookup_VPPNMatches_6 = ((MMUPlugin_TLBTable_6_PS == 6'h0c) ? (MMUPlugin_TLBTable_6_VPPN == MEM_ADDR_MEMORY_ADDRESS[31 : 13]) : (MMUPlugin_TLBTable_6_VPPN[18 : 9] == MEM_ADDR_MEMORY_ADDRESS[31 : 22]));
+  assign MEM_ADDR_AddressGenerationPlugin_tlbLookup_VPPNMatches_7 = ((MMUPlugin_TLBTable_7_PS == 6'h0c) ? (MMUPlugin_TLBTable_7_VPPN == MEM_ADDR_MEMORY_ADDRESS[31 : 13]) : (MMUPlugin_TLBTable_7_VPPN[18 : 9] == MEM_ADDR_MEMORY_ADDRESS[31 : 22]));
+  assign MEM_ADDR_AddressGenerationPlugin_tlbLookup_VPPNMatches_8 = ((MMUPlugin_TLBTable_8_PS == 6'h0c) ? (MMUPlugin_TLBTable_8_VPPN == MEM_ADDR_MEMORY_ADDRESS[31 : 13]) : (MMUPlugin_TLBTable_8_VPPN[18 : 9] == MEM_ADDR_MEMORY_ADDRESS[31 : 22]));
+  assign MEM_ADDR_AddressGenerationPlugin_tlbLookup_VPPNMatches_9 = ((MMUPlugin_TLBTable_9_PS == 6'h0c) ? (MMUPlugin_TLBTable_9_VPPN == MEM_ADDR_MEMORY_ADDRESS[31 : 13]) : (MMUPlugin_TLBTable_9_VPPN[18 : 9] == MEM_ADDR_MEMORY_ADDRESS[31 : 22]));
+  assign MEM_ADDR_AddressGenerationPlugin_tlbLookup_VPPNMatches_10 = ((MMUPlugin_TLBTable_10_PS == 6'h0c) ? (MMUPlugin_TLBTable_10_VPPN == MEM_ADDR_MEMORY_ADDRESS[31 : 13]) : (MMUPlugin_TLBTable_10_VPPN[18 : 9] == MEM_ADDR_MEMORY_ADDRESS[31 : 22]));
+  assign MEM_ADDR_AddressGenerationPlugin_tlbLookup_VPPNMatches_11 = ((MMUPlugin_TLBTable_11_PS == 6'h0c) ? (MMUPlugin_TLBTable_11_VPPN == MEM_ADDR_MEMORY_ADDRESS[31 : 13]) : (MMUPlugin_TLBTable_11_VPPN[18 : 9] == MEM_ADDR_MEMORY_ADDRESS[31 : 22]));
+  assign MEM_ADDR_AddressGenerationPlugin_tlbLookup_VPPNMatches_12 = ((MMUPlugin_TLBTable_12_PS == 6'h0c) ? (MMUPlugin_TLBTable_12_VPPN == MEM_ADDR_MEMORY_ADDRESS[31 : 13]) : (MMUPlugin_TLBTable_12_VPPN[18 : 9] == MEM_ADDR_MEMORY_ADDRESS[31 : 22]));
+  assign MEM_ADDR_AddressGenerationPlugin_tlbLookup_VPPNMatches_13 = ((MMUPlugin_TLBTable_13_PS == 6'h0c) ? (MMUPlugin_TLBTable_13_VPPN == MEM_ADDR_MEMORY_ADDRESS[31 : 13]) : (MMUPlugin_TLBTable_13_VPPN[18 : 9] == MEM_ADDR_MEMORY_ADDRESS[31 : 22]));
+  assign MEM_ADDR_AddressGenerationPlugin_tlbLookup_VPPNMatches_14 = ((MMUPlugin_TLBTable_14_PS == 6'h0c) ? (MMUPlugin_TLBTable_14_VPPN == MEM_ADDR_MEMORY_ADDRESS[31 : 13]) : (MMUPlugin_TLBTable_14_VPPN[18 : 9] == MEM_ADDR_MEMORY_ADDRESS[31 : 22]));
+  assign MEM_ADDR_AddressGenerationPlugin_tlbLookup_VPPNMatches_15 = ((MMUPlugin_TLBTable_15_PS == 6'h0c) ? (MMUPlugin_TLBTable_15_VPPN == MEM_ADDR_MEMORY_ADDRESS[31 : 13]) : (MMUPlugin_TLBTable_15_VPPN[18 : 9] == MEM_ADDR_MEMORY_ADDRESS[31 : 22]));
+  assign MEM_ADDR_AddressGenerationPlugin_tlbLookup_EntryHits_0 = ((MMUPlugin_TLBTable_0_E && MEM_ADDR_AddressGenerationPlugin_tlbLookup_ASIDMatches_0) && MEM_ADDR_AddressGenerationPlugin_tlbLookup_VPPNMatches_0);
+  assign MEM_ADDR_AddressGenerationPlugin_tlbLookup_EntryHits_1 = ((MMUPlugin_TLBTable_1_E && MEM_ADDR_AddressGenerationPlugin_tlbLookup_ASIDMatches_1) && MEM_ADDR_AddressGenerationPlugin_tlbLookup_VPPNMatches_1);
+  assign MEM_ADDR_AddressGenerationPlugin_tlbLookup_EntryHits_2 = ((MMUPlugin_TLBTable_2_E && MEM_ADDR_AddressGenerationPlugin_tlbLookup_ASIDMatches_2) && MEM_ADDR_AddressGenerationPlugin_tlbLookup_VPPNMatches_2);
+  assign MEM_ADDR_AddressGenerationPlugin_tlbLookup_EntryHits_3 = ((MMUPlugin_TLBTable_3_E && MEM_ADDR_AddressGenerationPlugin_tlbLookup_ASIDMatches_3) && MEM_ADDR_AddressGenerationPlugin_tlbLookup_VPPNMatches_3);
+  assign MEM_ADDR_AddressGenerationPlugin_tlbLookup_EntryHits_4 = ((MMUPlugin_TLBTable_4_E && MEM_ADDR_AddressGenerationPlugin_tlbLookup_ASIDMatches_4) && MEM_ADDR_AddressGenerationPlugin_tlbLookup_VPPNMatches_4);
+  assign MEM_ADDR_AddressGenerationPlugin_tlbLookup_EntryHits_5 = ((MMUPlugin_TLBTable_5_E && MEM_ADDR_AddressGenerationPlugin_tlbLookup_ASIDMatches_5) && MEM_ADDR_AddressGenerationPlugin_tlbLookup_VPPNMatches_5);
+  assign MEM_ADDR_AddressGenerationPlugin_tlbLookup_EntryHits_6 = ((MMUPlugin_TLBTable_6_E && MEM_ADDR_AddressGenerationPlugin_tlbLookup_ASIDMatches_6) && MEM_ADDR_AddressGenerationPlugin_tlbLookup_VPPNMatches_6);
+  assign MEM_ADDR_AddressGenerationPlugin_tlbLookup_EntryHits_7 = ((MMUPlugin_TLBTable_7_E && MEM_ADDR_AddressGenerationPlugin_tlbLookup_ASIDMatches_7) && MEM_ADDR_AddressGenerationPlugin_tlbLookup_VPPNMatches_7);
+  assign MEM_ADDR_AddressGenerationPlugin_tlbLookup_EntryHits_8 = ((MMUPlugin_TLBTable_8_E && MEM_ADDR_AddressGenerationPlugin_tlbLookup_ASIDMatches_8) && MEM_ADDR_AddressGenerationPlugin_tlbLookup_VPPNMatches_8);
+  assign MEM_ADDR_AddressGenerationPlugin_tlbLookup_EntryHits_9 = ((MMUPlugin_TLBTable_9_E && MEM_ADDR_AddressGenerationPlugin_tlbLookup_ASIDMatches_9) && MEM_ADDR_AddressGenerationPlugin_tlbLookup_VPPNMatches_9);
+  assign MEM_ADDR_AddressGenerationPlugin_tlbLookup_EntryHits_10 = ((MMUPlugin_TLBTable_10_E && MEM_ADDR_AddressGenerationPlugin_tlbLookup_ASIDMatches_10) && MEM_ADDR_AddressGenerationPlugin_tlbLookup_VPPNMatches_10);
+  assign MEM_ADDR_AddressGenerationPlugin_tlbLookup_EntryHits_11 = ((MMUPlugin_TLBTable_11_E && MEM_ADDR_AddressGenerationPlugin_tlbLookup_ASIDMatches_11) && MEM_ADDR_AddressGenerationPlugin_tlbLookup_VPPNMatches_11);
+  assign MEM_ADDR_AddressGenerationPlugin_tlbLookup_EntryHits_12 = ((MMUPlugin_TLBTable_12_E && MEM_ADDR_AddressGenerationPlugin_tlbLookup_ASIDMatches_12) && MEM_ADDR_AddressGenerationPlugin_tlbLookup_VPPNMatches_12);
+  assign MEM_ADDR_AddressGenerationPlugin_tlbLookup_EntryHits_13 = ((MMUPlugin_TLBTable_13_E && MEM_ADDR_AddressGenerationPlugin_tlbLookup_ASIDMatches_13) && MEM_ADDR_AddressGenerationPlugin_tlbLookup_VPPNMatches_13);
+  assign MEM_ADDR_AddressGenerationPlugin_tlbLookup_EntryHits_14 = ((MMUPlugin_TLBTable_14_E && MEM_ADDR_AddressGenerationPlugin_tlbLookup_ASIDMatches_14) && MEM_ADDR_AddressGenerationPlugin_tlbLookup_VPPNMatches_14);
+  assign MEM_ADDR_AddressGenerationPlugin_tlbLookup_EntryHits_15 = ((MMUPlugin_TLBTable_15_E && MEM_ADDR_AddressGenerationPlugin_tlbLookup_ASIDMatches_15) && MEM_ADDR_AddressGenerationPlugin_tlbLookup_VPPNMatches_15);
+  assign MEM_ADDR_AddressGenerationPlugin_tlbLookup_snapshot_hit = ({MEM_ADDR_AddressGenerationPlugin_tlbLookup_EntryHits_15,{MEM_ADDR_AddressGenerationPlugin_tlbLookup_EntryHits_14,{MEM_ADDR_AddressGenerationPlugin_tlbLookup_EntryHits_13,{MEM_ADDR_AddressGenerationPlugin_tlbLookup_EntryHits_12,{MEM_ADDR_AddressGenerationPlugin_tlbLookup_EntryHits_11,{MEM_ADDR_AddressGenerationPlugin_tlbLookup_EntryHits_10,{MEM_ADDR_AddressGenerationPlugin_tlbLookup_EntryHits_9,{MEM_ADDR_AddressGenerationPlugin_tlbLookup_EntryHits_8,{MEM_ADDR_AddressGenerationPlugin_tlbLookup_EntryHits_7,{_zz_MEM_ADDR_AddressGenerationPlugin_tlbLookup_snapshot_hit,_zz_MEM_ADDR_AddressGenerationPlugin_tlbLookup_snapshot_hit_1}}}}}}}}}} != 16'h0);
+  assign _zz_MEM_ADDR_AddressGenerationPlugin_tlbLookup_snapshot_entry_E = (((((((MEM_ADDR_AddressGenerationPlugin_tlbLookup_EntryHits_1 || MEM_ADDR_AddressGenerationPlugin_tlbLookup_EntryHits_3) || MEM_ADDR_AddressGenerationPlugin_tlbLookup_EntryHits_5) || MEM_ADDR_AddressGenerationPlugin_tlbLookup_EntryHits_7) || MEM_ADDR_AddressGenerationPlugin_tlbLookup_EntryHits_9) || MEM_ADDR_AddressGenerationPlugin_tlbLookup_EntryHits_11) || MEM_ADDR_AddressGenerationPlugin_tlbLookup_EntryHits_13) || MEM_ADDR_AddressGenerationPlugin_tlbLookup_EntryHits_15);
+  assign _zz_MEM_ADDR_AddressGenerationPlugin_tlbLookup_snapshot_entry_E_1 = (((((((MEM_ADDR_AddressGenerationPlugin_tlbLookup_EntryHits_2 || MEM_ADDR_AddressGenerationPlugin_tlbLookup_EntryHits_3) || MEM_ADDR_AddressGenerationPlugin_tlbLookup_EntryHits_6) || MEM_ADDR_AddressGenerationPlugin_tlbLookup_EntryHits_7) || MEM_ADDR_AddressGenerationPlugin_tlbLookup_EntryHits_10) || MEM_ADDR_AddressGenerationPlugin_tlbLookup_EntryHits_11) || MEM_ADDR_AddressGenerationPlugin_tlbLookup_EntryHits_14) || MEM_ADDR_AddressGenerationPlugin_tlbLookup_EntryHits_15);
+  assign _zz_MEM_ADDR_AddressGenerationPlugin_tlbLookup_snapshot_entry_E_2 = (((((((MEM_ADDR_AddressGenerationPlugin_tlbLookup_EntryHits_4 || MEM_ADDR_AddressGenerationPlugin_tlbLookup_EntryHits_5) || MEM_ADDR_AddressGenerationPlugin_tlbLookup_EntryHits_6) || MEM_ADDR_AddressGenerationPlugin_tlbLookup_EntryHits_7) || MEM_ADDR_AddressGenerationPlugin_tlbLookup_EntryHits_12) || MEM_ADDR_AddressGenerationPlugin_tlbLookup_EntryHits_13) || MEM_ADDR_AddressGenerationPlugin_tlbLookup_EntryHits_14) || MEM_ADDR_AddressGenerationPlugin_tlbLookup_EntryHits_15);
+  assign _zz_MEM_ADDR_AddressGenerationPlugin_tlbLookup_snapshot_entry_E_3 = (((((((MEM_ADDR_AddressGenerationPlugin_tlbLookup_EntryHits_8 || MEM_ADDR_AddressGenerationPlugin_tlbLookup_EntryHits_9) || MEM_ADDR_AddressGenerationPlugin_tlbLookup_EntryHits_10) || MEM_ADDR_AddressGenerationPlugin_tlbLookup_EntryHits_11) || MEM_ADDR_AddressGenerationPlugin_tlbLookup_EntryHits_12) || MEM_ADDR_AddressGenerationPlugin_tlbLookup_EntryHits_13) || MEM_ADDR_AddressGenerationPlugin_tlbLookup_EntryHits_14) || MEM_ADDR_AddressGenerationPlugin_tlbLookup_EntryHits_15);
+  assign _zz_MEM_ADDR_AddressGenerationPlugin_tlbLookup_snapshot_entry_E_4 = {_zz_MEM_ADDR_AddressGenerationPlugin_tlbLookup_snapshot_entry_E_3,{_zz_MEM_ADDR_AddressGenerationPlugin_tlbLookup_snapshot_entry_E_2,{_zz_MEM_ADDR_AddressGenerationPlugin_tlbLookup_snapshot_entry_E_1,_zz_MEM_ADDR_AddressGenerationPlugin_tlbLookup_snapshot_entry_E}}};
+  assign _zz_MEM_ADDR_AddressGenerationPlugin_tlbLookup_snapshot_entry_E_5 = {_zz__zz_MEM_ADDR_AddressGenerationPlugin_tlbLookup_snapshot_entry_E_5,{_zz__zz_MEM_ADDR_AddressGenerationPlugin_tlbLookup_snapshot_entry_E_5_1,{_zz__zz_MEM_ADDR_AddressGenerationPlugin_tlbLookup_snapshot_entry_E_5_2,{_zz__zz_MEM_ADDR_AddressGenerationPlugin_tlbLookup_snapshot_entry_E_5_3,{_zz__zz_MEM_ADDR_AddressGenerationPlugin_tlbLookup_snapshot_entry_E_5_4,{_zz__zz_MEM_ADDR_AddressGenerationPlugin_tlbLookup_snapshot_entry_E_5_5,{_zz__zz_MEM_ADDR_AddressGenerationPlugin_tlbLookup_snapshot_entry_E_5_6,{_zz__zz_MEM_ADDR_AddressGenerationPlugin_tlbLookup_snapshot_entry_E_5_7,{_zz__zz_MEM_ADDR_AddressGenerationPlugin_tlbLookup_snapshot_entry_E_5_8,{_zz__zz_MEM_ADDR_AddressGenerationPlugin_tlbLookup_snapshot_entry_E_5_9,{_zz__zz_MEM_ADDR_AddressGenerationPlugin_tlbLookup_snapshot_entry_E_5_10,{_zz__zz_MEM_ADDR_AddressGenerationPlugin_tlbLookup_snapshot_entry_E_5_11,{_zz__zz_MEM_ADDR_AddressGenerationPlugin_tlbLookup_snapshot_entry_E_5_12,{_zz__zz_MEM_ADDR_AddressGenerationPlugin_tlbLookup_snapshot_entry_E_5_13,_zz__zz_MEM_ADDR_AddressGenerationPlugin_tlbLookup_snapshot_entry_E_5_14}}}}}}}}}}}}}};
+  assign MEM_ADDR_AddressGenerationPlugin_tlbLookup_snapshot_entry_E = _zz_MEM_ADDR_AddressGenerationPlugin_tlbLookup_snapshot_entry_E_5[0];
+  assign MEM_ADDR_AddressGenerationPlugin_tlbLookup_snapshot_entry_ASID = _zz_MEM_ADDR_AddressGenerationPlugin_tlbLookup_snapshot_entry_E_5[10 : 1];
+  assign MEM_ADDR_AddressGenerationPlugin_tlbLookup_snapshot_entry_G = _zz_MEM_ADDR_AddressGenerationPlugin_tlbLookup_snapshot_entry_E_5[11];
+  assign MEM_ADDR_AddressGenerationPlugin_tlbLookup_snapshot_entry_PS = _zz_MEM_ADDR_AddressGenerationPlugin_tlbLookup_snapshot_entry_E_5[17 : 12];
+  assign MEM_ADDR_AddressGenerationPlugin_tlbLookup_snapshot_entry_VPPN = _zz_MEM_ADDR_AddressGenerationPlugin_tlbLookup_snapshot_entry_E_5[36 : 18];
+  assign MEM_ADDR_AddressGenerationPlugin_tlbLookup_snapshot_entry_V0 = _zz_MEM_ADDR_AddressGenerationPlugin_tlbLookup_snapshot_entry_E_5[37];
+  assign MEM_ADDR_AddressGenerationPlugin_tlbLookup_snapshot_entry_D0 = _zz_MEM_ADDR_AddressGenerationPlugin_tlbLookup_snapshot_entry_E_5[38];
+  assign MEM_ADDR_AddressGenerationPlugin_tlbLookup_snapshot_entry_MAT0 = _zz_MEM_ADDR_AddressGenerationPlugin_tlbLookup_snapshot_entry_E_5[40 : 39];
+  assign MEM_ADDR_AddressGenerationPlugin_tlbLookup_snapshot_entry_PLV0 = _zz_MEM_ADDR_AddressGenerationPlugin_tlbLookup_snapshot_entry_E_5[42 : 41];
+  assign MEM_ADDR_AddressGenerationPlugin_tlbLookup_snapshot_entry_PPN0 = _zz_MEM_ADDR_AddressGenerationPlugin_tlbLookup_snapshot_entry_E_5[62 : 43];
+  assign MEM_ADDR_AddressGenerationPlugin_tlbLookup_snapshot_entry_V1 = _zz_MEM_ADDR_AddressGenerationPlugin_tlbLookup_snapshot_entry_E_5[63];
+  assign MEM_ADDR_AddressGenerationPlugin_tlbLookup_snapshot_entry_D1 = _zz_MEM_ADDR_AddressGenerationPlugin_tlbLookup_snapshot_entry_E_5[64];
+  assign MEM_ADDR_AddressGenerationPlugin_tlbLookup_snapshot_entry_MAT1 = _zz_MEM_ADDR_AddressGenerationPlugin_tlbLookup_snapshot_entry_E_5[66 : 65];
+  assign MEM_ADDR_AddressGenerationPlugin_tlbLookup_snapshot_entry_PLV1 = _zz_MEM_ADDR_AddressGenerationPlugin_tlbLookup_snapshot_entry_E_5[68 : 67];
+  assign MEM_ADDR_AddressGenerationPlugin_tlbLookup_snapshot_entry_PPN1 = _zz_MEM_ADDR_AddressGenerationPlugin_tlbLookup_snapshot_entry_E_5[88 : 69];
   assign MEM_ADDR_AddressGenerationPlugin_savedCSR_CRMD_DA = ExceptionHandlerPlugin_CRMD_DA;
   assign MEM_ADDR_AddressGenerationPlugin_savedCSR_CRMD_PG = ExceptionHandlerPlugin_CRMD_PG;
   assign MEM_ADDR_AddressGenerationPlugin_savedCSR_CRMD_DATF = ExceptionHandlerPlugin_CRMD_DATF;
   assign MEM_ADDR_AddressGenerationPlugin_savedCSR_CRMD_DATM = ExceptionHandlerPlugin_CRMD_DATM;
   assign MEM_MEM1_AddressGenerationPlugin_excAsLoad = (! MEM_MEM1_ISSUE_SLOT_uop_isStore);
-  assign _zz_when_MMUPlugin_l359 = (MEM_MEM1_ISSUE_SLOT_uop_isStore ? MemOperationType_STORE : MemOperationType_LOAD);
+  assign switch_MMUPlugin_l331_1 = (MEM_MEM1_ISSUE_SLOT_uop_isStore ? MemOperationType_STORE : MemOperationType_LOAD);
+  assign MEM_MEM1_AddressGenerationPlugin_tlbTranslateResult_resultValid = 1'b1;
+  always @(*) begin
+    MEM_MEM1_AddressGenerationPlugin_tlbTranslateResult_resultExceptionBundle_raisePIL = 1'b0;
+    if(when_MMUPlugin_l330_1) begin
+      case(switch_MMUPlugin_l331_1)
+        MemOperationType_FETCH : begin
+        end
+        MemOperationType_LOAD : begin
+          MEM_MEM1_AddressGenerationPlugin_tlbTranslateResult_resultExceptionBundle_raisePIL = 1'b1;
+        end
+        default : begin
+        end
+      endcase
+    end
+  end
+
+  always @(*) begin
+    MEM_MEM1_AddressGenerationPlugin_tlbTranslateResult_resultExceptionBundle_raisePIS = 1'b0;
+    if(when_MMUPlugin_l330_1) begin
+      case(switch_MMUPlugin_l331_1)
+        MemOperationType_FETCH : begin
+        end
+        MemOperationType_LOAD : begin
+        end
+        default : begin
+          MEM_MEM1_AddressGenerationPlugin_tlbTranslateResult_resultExceptionBundle_raisePIS = 1'b1;
+        end
+      endcase
+    end
+  end
+
+  always @(*) begin
+    MEM_MEM1_AddressGenerationPlugin_tlbTranslateResult_resultExceptionBundle_raisePIF = 1'b0;
+    if(when_MMUPlugin_l330_1) begin
+      case(switch_MMUPlugin_l331_1)
+        MemOperationType_FETCH : begin
+          MEM_MEM1_AddressGenerationPlugin_tlbTranslateResult_resultExceptionBundle_raisePIF = 1'b1;
+        end
+        MemOperationType_LOAD : begin
+        end
+        default : begin
+        end
+      endcase
+    end
+  end
+
+  always @(*) begin
+    MEM_MEM1_AddressGenerationPlugin_tlbTranslateResult_resultExceptionBundle_raisePME = 1'b0;
+    if(when_MMUPlugin_l348_1) begin
+      MEM_MEM1_AddressGenerationPlugin_tlbTranslateResult_resultExceptionBundle_raisePME = 1'b1;
+    end
+  end
+
+  always @(*) begin
+    MEM_MEM1_AddressGenerationPlugin_tlbTranslateResult_resultExceptionBundle_raisePPI = 1'b0;
+    if(when_MMUPlugin_l344_1) begin
+      MEM_MEM1_AddressGenerationPlugin_tlbTranslateResult_resultExceptionBundle_raisePPI = 1'b1;
+    end
+  end
+
+  always @(*) begin
+    MEM_MEM1_AddressGenerationPlugin_tlbTranslateResult_resultExceptionBundle_raiseTLBR = 1'b0;
+    if(when_MMUPlugin_l326_1) begin
+      MEM_MEM1_AddressGenerationPlugin_tlbTranslateResult_resultExceptionBundle_raiseTLBR = 1'b1;
+    end
+  end
+
+  assign MEM_MEM1_AddressGenerationPlugin_tlbTranslateResult_TLBHitEntry_v = (MEM_MEM1_MEMORY_ADDRESS[MEM_MEM1_TLB_LOOKUP_SNAPSHOT_entry_PS[4 : 0]] ? MEM_MEM1_TLB_LOOKUP_SNAPSHOT_entry_V1 : MEM_MEM1_TLB_LOOKUP_SNAPSHOT_entry_V0);
+  assign MEM_MEM1_AddressGenerationPlugin_tlbTranslateResult_TLBHitEntry_d = (MEM_MEM1_MEMORY_ADDRESS[MEM_MEM1_TLB_LOOKUP_SNAPSHOT_entry_PS[4 : 0]] ? MEM_MEM1_TLB_LOOKUP_SNAPSHOT_entry_D1 : MEM_MEM1_TLB_LOOKUP_SNAPSHOT_entry_D0);
+  assign MEM_MEM1_AddressGenerationPlugin_tlbTranslateResult_TLBHitEntry_mat = (MEM_MEM1_MEMORY_ADDRESS[MEM_MEM1_TLB_LOOKUP_SNAPSHOT_entry_PS[4 : 0]] ? MEM_MEM1_TLB_LOOKUP_SNAPSHOT_entry_MAT1 : MEM_MEM1_TLB_LOOKUP_SNAPSHOT_entry_MAT0);
+  assign MEM_MEM1_AddressGenerationPlugin_tlbTranslateResult_TLBHitEntry_plv = (MEM_MEM1_MEMORY_ADDRESS[MEM_MEM1_TLB_LOOKUP_SNAPSHOT_entry_PS[4 : 0]] ? MEM_MEM1_TLB_LOOKUP_SNAPSHOT_entry_PLV1 : MEM_MEM1_TLB_LOOKUP_SNAPSHOT_entry_PLV0);
+  assign MEM_MEM1_AddressGenerationPlugin_tlbTranslateResult_TLBHitEntry_ppn = (MEM_MEM1_MEMORY_ADDRESS[MEM_MEM1_TLB_LOOKUP_SNAPSHOT_entry_PS[4 : 0]] ? MEM_MEM1_TLB_LOOKUP_SNAPSHOT_entry_PPN1 : MEM_MEM1_TLB_LOOKUP_SNAPSHOT_entry_PPN0);
+  assign when_MMUPlugin_l326_1 = (! MEM_MEM1_TLB_LOOKUP_SNAPSHOT_hit);
+  assign when_MMUPlugin_l330_1 = (! MEM_MEM1_AddressGenerationPlugin_tlbTranslateResult_TLBHitEntry_v);
+  assign when_MMUPlugin_l344_1 = (MEM_MEM1_AddressGenerationPlugin_tlbTranslateResult_TLBHitEntry_plv < ExceptionHandlerPlugin_CRMD_PLV);
+  assign when_MMUPlugin_l348_1 = ((switch_MMUPlugin_l331_1 == MemOperationType_STORE) && (! MEM_MEM1_AddressGenerationPlugin_tlbTranslateResult_TLBHitEntry_d));
+  assign MEM_MEM1_AddressGenerationPlugin_tlbTranslateResult_resultPhysAddr = ((MEM_MEM1_TLB_LOOKUP_SNAPSHOT_entry_PS == 6'h0c) ? {MEM_MEM1_AddressGenerationPlugin_tlbTranslateResult_TLBHitEntry_ppn,MEM_MEM1_MEMORY_ADDRESS[11 : 0]} : {MEM_MEM1_AddressGenerationPlugin_tlbTranslateResult_TLBHitEntry_ppn[19 : 9],MEM_MEM1_MEMORY_ADDRESS[20 : 0]});
+  assign MEM_MEM1_AddressGenerationPlugin_tlbTranslateResult_resultCached = MEM_MEM1_AddressGenerationPlugin_tlbTranslateResult_TLBHitEntry_mat[0];
+  assign MEM_MEM1_AddressGenerationPlugin_tlbTranslateResult_resultBundle_valid = MEM_MEM1_AddressGenerationPlugin_tlbTranslateResult_resultValid;
+  assign MEM_MEM1_AddressGenerationPlugin_tlbTranslateResult_resultBundle_payload_physAddr = MEM_MEM1_AddressGenerationPlugin_tlbTranslateResult_resultPhysAddr;
+  assign MEM_MEM1_AddressGenerationPlugin_tlbTranslateResult_resultBundle_payload_cached = MEM_MEM1_AddressGenerationPlugin_tlbTranslateResult_resultCached;
+  assign MEM_MEM1_AddressGenerationPlugin_tlbTranslateResult_resultBundle_payload_exception_raisePIL = MEM_MEM1_AddressGenerationPlugin_tlbTranslateResult_resultExceptionBundle_raisePIL;
+  assign MEM_MEM1_AddressGenerationPlugin_tlbTranslateResult_resultBundle_payload_exception_raisePIS = MEM_MEM1_AddressGenerationPlugin_tlbTranslateResult_resultExceptionBundle_raisePIS;
+  assign MEM_MEM1_AddressGenerationPlugin_tlbTranslateResult_resultBundle_payload_exception_raisePIF = MEM_MEM1_AddressGenerationPlugin_tlbTranslateResult_resultExceptionBundle_raisePIF;
+  assign MEM_MEM1_AddressGenerationPlugin_tlbTranslateResult_resultBundle_payload_exception_raisePME = MEM_MEM1_AddressGenerationPlugin_tlbTranslateResult_resultExceptionBundle_raisePME;
+  assign MEM_MEM1_AddressGenerationPlugin_tlbTranslateResult_resultBundle_payload_exception_raisePPI = MEM_MEM1_AddressGenerationPlugin_tlbTranslateResult_resultExceptionBundle_raisePPI;
+  assign MEM_MEM1_AddressGenerationPlugin_tlbTranslateResult_resultBundle_payload_exception_raiseTLBR = MEM_MEM1_AddressGenerationPlugin_tlbTranslateResult_resultExceptionBundle_raiseTLBR;
+  assign _zz_when_MMUPlugin_l400 = (MEM_MEM1_ISSUE_SLOT_uop_isStore ? MemOperationType_STORE : MemOperationType_LOAD);
   always @(*) begin
     MEM_MEM1_AddressGenerationPlugin_translateResult_resultValid = 1'b0;
-    if(when_MMUPlugin_l339_1) begin
-      MEM_MEM1_AddressGenerationPlugin_translateResult_resultValid = MEM_MEM1_TLB_TRANSLATE_RESULT_valid;
+    if(when_MMUPlugin_l380_1) begin
+      MEM_MEM1_AddressGenerationPlugin_translateResult_resultValid = MEM_MEM1_AddressGenerationPlugin_tlbTranslateResult_resultBundle_valid;
     end
-    if(when_MMUPlugin_l347_1) begin
+    if(when_MMUPlugin_l388_1) begin
       MEM_MEM1_AddressGenerationPlugin_translateResult_resultValid = MEM_MEM1_DIRECT_TRANSLATE_RESULT_valid;
     end
-    if(when_MMUPlugin_l355_1) begin
+    if(when_MMUPlugin_l396_1) begin
       MEM_MEM1_AddressGenerationPlugin_translateResult_resultValid = 1'b1;
     end
   end
 
   always @(*) begin
     MEM_MEM1_AddressGenerationPlugin_translateResult_resultPhysAddr = 32'h0;
-    if(when_MMUPlugin_l339_1) begin
-      MEM_MEM1_AddressGenerationPlugin_translateResult_resultPhysAddr = MEM_MEM1_TLB_TRANSLATE_RESULT_payload_physAddr;
+    if(when_MMUPlugin_l380_1) begin
+      MEM_MEM1_AddressGenerationPlugin_translateResult_resultPhysAddr = MEM_MEM1_AddressGenerationPlugin_tlbTranslateResult_resultBundle_payload_physAddr;
     end
-    if(when_MMUPlugin_l347_1) begin
+    if(when_MMUPlugin_l388_1) begin
       MEM_MEM1_AddressGenerationPlugin_translateResult_resultPhysAddr = MEM_MEM1_DIRECT_TRANSLATE_RESULT_payload_physAddr;
     end
-    if(when_MMUPlugin_l355_1) begin
+    if(when_MMUPlugin_l396_1) begin
       MEM_MEM1_AddressGenerationPlugin_translateResult_resultPhysAddr = MEM_MEM1_MEMORY_ADDRESS;
     end
   end
 
   always @(*) begin
     MEM_MEM1_AddressGenerationPlugin_translateResult_resultCached = 1'b0;
-    if(when_MMUPlugin_l339_1) begin
-      MEM_MEM1_AddressGenerationPlugin_translateResult_resultCached = MEM_MEM1_TLB_TRANSLATE_RESULT_payload_cached;
+    if(when_MMUPlugin_l380_1) begin
+      MEM_MEM1_AddressGenerationPlugin_translateResult_resultCached = MEM_MEM1_AddressGenerationPlugin_tlbTranslateResult_resultBundle_payload_cached;
     end
-    if(when_MMUPlugin_l347_1) begin
+    if(when_MMUPlugin_l388_1) begin
       MEM_MEM1_AddressGenerationPlugin_translateResult_resultCached = MEM_MEM1_DIRECT_TRANSLATE_RESULT_payload_cached;
     end
-    if(when_MMUPlugin_l355_1) begin
-      if(when_MMUPlugin_l359_1) begin
+    if(when_MMUPlugin_l396_1) begin
+      if(when_MMUPlugin_l400_1) begin
         MEM_MEM1_AddressGenerationPlugin_translateResult_resultCached = MEM_MEM1_TRANSLATE_SAVED_CSR_CRMD_DATF[0];
       end else begin
         MEM_MEM1_AddressGenerationPlugin_translateResult_resultCached = MEM_MEM1_TRANSLATE_SAVED_CSR_CRMD_DATM[0];
@@ -71843,86 +72043,86 @@ module MyCPUCore (
 
   always @(*) begin
     MEM_MEM1_AddressGenerationPlugin_translateResult_resultExceptionBundle_raisePIL = 1'b0;
-    if(when_MMUPlugin_l339_1) begin
-      MEM_MEM1_AddressGenerationPlugin_translateResult_resultExceptionBundle_raisePIL = MEM_MEM1_TLB_TRANSLATE_RESULT_payload_exception_raisePIL;
+    if(when_MMUPlugin_l380_1) begin
+      MEM_MEM1_AddressGenerationPlugin_translateResult_resultExceptionBundle_raisePIL = MEM_MEM1_AddressGenerationPlugin_tlbTranslateResult_resultBundle_payload_exception_raisePIL;
     end
-    if(when_MMUPlugin_l347_1) begin
+    if(when_MMUPlugin_l388_1) begin
       MEM_MEM1_AddressGenerationPlugin_translateResult_resultExceptionBundle_raisePIL = MEM_MEM1_DIRECT_TRANSLATE_RESULT_payload_exception_raisePIL;
     end
-    if(when_MMUPlugin_l355_1) begin
+    if(when_MMUPlugin_l396_1) begin
       MEM_MEM1_AddressGenerationPlugin_translateResult_resultExceptionBundle_raisePIL = 1'b0;
     end
   end
 
   always @(*) begin
     MEM_MEM1_AddressGenerationPlugin_translateResult_resultExceptionBundle_raisePIS = 1'b0;
-    if(when_MMUPlugin_l339_1) begin
-      MEM_MEM1_AddressGenerationPlugin_translateResult_resultExceptionBundle_raisePIS = MEM_MEM1_TLB_TRANSLATE_RESULT_payload_exception_raisePIS;
+    if(when_MMUPlugin_l380_1) begin
+      MEM_MEM1_AddressGenerationPlugin_translateResult_resultExceptionBundle_raisePIS = MEM_MEM1_AddressGenerationPlugin_tlbTranslateResult_resultBundle_payload_exception_raisePIS;
     end
-    if(when_MMUPlugin_l347_1) begin
+    if(when_MMUPlugin_l388_1) begin
       MEM_MEM1_AddressGenerationPlugin_translateResult_resultExceptionBundle_raisePIS = MEM_MEM1_DIRECT_TRANSLATE_RESULT_payload_exception_raisePIS;
     end
-    if(when_MMUPlugin_l355_1) begin
+    if(when_MMUPlugin_l396_1) begin
       MEM_MEM1_AddressGenerationPlugin_translateResult_resultExceptionBundle_raisePIS = 1'b0;
     end
   end
 
   always @(*) begin
     MEM_MEM1_AddressGenerationPlugin_translateResult_resultExceptionBundle_raisePIF = 1'b0;
-    if(when_MMUPlugin_l339_1) begin
-      MEM_MEM1_AddressGenerationPlugin_translateResult_resultExceptionBundle_raisePIF = MEM_MEM1_TLB_TRANSLATE_RESULT_payload_exception_raisePIF;
+    if(when_MMUPlugin_l380_1) begin
+      MEM_MEM1_AddressGenerationPlugin_translateResult_resultExceptionBundle_raisePIF = MEM_MEM1_AddressGenerationPlugin_tlbTranslateResult_resultBundle_payload_exception_raisePIF;
     end
-    if(when_MMUPlugin_l347_1) begin
+    if(when_MMUPlugin_l388_1) begin
       MEM_MEM1_AddressGenerationPlugin_translateResult_resultExceptionBundle_raisePIF = MEM_MEM1_DIRECT_TRANSLATE_RESULT_payload_exception_raisePIF;
     end
-    if(when_MMUPlugin_l355_1) begin
+    if(when_MMUPlugin_l396_1) begin
       MEM_MEM1_AddressGenerationPlugin_translateResult_resultExceptionBundle_raisePIF = 1'b0;
     end
   end
 
   always @(*) begin
     MEM_MEM1_AddressGenerationPlugin_translateResult_resultExceptionBundle_raisePME = 1'b0;
-    if(when_MMUPlugin_l339_1) begin
-      MEM_MEM1_AddressGenerationPlugin_translateResult_resultExceptionBundle_raisePME = MEM_MEM1_TLB_TRANSLATE_RESULT_payload_exception_raisePME;
+    if(when_MMUPlugin_l380_1) begin
+      MEM_MEM1_AddressGenerationPlugin_translateResult_resultExceptionBundle_raisePME = MEM_MEM1_AddressGenerationPlugin_tlbTranslateResult_resultBundle_payload_exception_raisePME;
     end
-    if(when_MMUPlugin_l347_1) begin
+    if(when_MMUPlugin_l388_1) begin
       MEM_MEM1_AddressGenerationPlugin_translateResult_resultExceptionBundle_raisePME = MEM_MEM1_DIRECT_TRANSLATE_RESULT_payload_exception_raisePME;
     end
-    if(when_MMUPlugin_l355_1) begin
+    if(when_MMUPlugin_l396_1) begin
       MEM_MEM1_AddressGenerationPlugin_translateResult_resultExceptionBundle_raisePME = 1'b0;
     end
   end
 
   always @(*) begin
     MEM_MEM1_AddressGenerationPlugin_translateResult_resultExceptionBundle_raisePPI = 1'b0;
-    if(when_MMUPlugin_l339_1) begin
-      MEM_MEM1_AddressGenerationPlugin_translateResult_resultExceptionBundle_raisePPI = MEM_MEM1_TLB_TRANSLATE_RESULT_payload_exception_raisePPI;
+    if(when_MMUPlugin_l380_1) begin
+      MEM_MEM1_AddressGenerationPlugin_translateResult_resultExceptionBundle_raisePPI = MEM_MEM1_AddressGenerationPlugin_tlbTranslateResult_resultBundle_payload_exception_raisePPI;
     end
-    if(when_MMUPlugin_l347_1) begin
+    if(when_MMUPlugin_l388_1) begin
       MEM_MEM1_AddressGenerationPlugin_translateResult_resultExceptionBundle_raisePPI = MEM_MEM1_DIRECT_TRANSLATE_RESULT_payload_exception_raisePPI;
     end
-    if(when_MMUPlugin_l355_1) begin
+    if(when_MMUPlugin_l396_1) begin
       MEM_MEM1_AddressGenerationPlugin_translateResult_resultExceptionBundle_raisePPI = 1'b0;
     end
   end
 
   always @(*) begin
     MEM_MEM1_AddressGenerationPlugin_translateResult_resultExceptionBundle_raiseTLBR = 1'b0;
-    if(when_MMUPlugin_l339_1) begin
-      MEM_MEM1_AddressGenerationPlugin_translateResult_resultExceptionBundle_raiseTLBR = MEM_MEM1_TLB_TRANSLATE_RESULT_payload_exception_raiseTLBR;
+    if(when_MMUPlugin_l380_1) begin
+      MEM_MEM1_AddressGenerationPlugin_translateResult_resultExceptionBundle_raiseTLBR = MEM_MEM1_AddressGenerationPlugin_tlbTranslateResult_resultBundle_payload_exception_raiseTLBR;
     end
-    if(when_MMUPlugin_l347_1) begin
+    if(when_MMUPlugin_l388_1) begin
       MEM_MEM1_AddressGenerationPlugin_translateResult_resultExceptionBundle_raiseTLBR = MEM_MEM1_DIRECT_TRANSLATE_RESULT_payload_exception_raiseTLBR;
     end
-    if(when_MMUPlugin_l355_1) begin
+    if(when_MMUPlugin_l396_1) begin
       MEM_MEM1_AddressGenerationPlugin_translateResult_resultExceptionBundle_raiseTLBR = 1'b0;
     end
   end
 
-  assign when_MMUPlugin_l339_1 = (((! MEM_MEM1_TRANSLATE_SAVED_CSR_CRMD_DA) && MEM_MEM1_TRANSLATE_SAVED_CSR_CRMD_PG) && MEM_MEM1_TLB_TRANSLATE_RESULT_valid);
-  assign when_MMUPlugin_l347_1 = (((! MEM_MEM1_TRANSLATE_SAVED_CSR_CRMD_DA) && MEM_MEM1_TRANSLATE_SAVED_CSR_CRMD_PG) && MEM_MEM1_DIRECT_TRANSLATE_RESULT_valid);
-  assign when_MMUPlugin_l355_1 = (MEM_MEM1_TRANSLATE_SAVED_CSR_CRMD_DA && (! MEM_MEM1_TRANSLATE_SAVED_CSR_CRMD_PG));
-  assign when_MMUPlugin_l359_1 = (_zz_when_MMUPlugin_l359 == MemOperationType_FETCH);
+  assign when_MMUPlugin_l380_1 = (((! MEM_MEM1_TRANSLATE_SAVED_CSR_CRMD_DA) && MEM_MEM1_TRANSLATE_SAVED_CSR_CRMD_PG) && MEM_MEM1_AddressGenerationPlugin_tlbTranslateResult_resultBundle_valid);
+  assign when_MMUPlugin_l388_1 = (((! MEM_MEM1_TRANSLATE_SAVED_CSR_CRMD_DA) && MEM_MEM1_TRANSLATE_SAVED_CSR_CRMD_PG) && MEM_MEM1_DIRECT_TRANSLATE_RESULT_valid);
+  assign when_MMUPlugin_l396_1 = (MEM_MEM1_TRANSLATE_SAVED_CSR_CRMD_DA && (! MEM_MEM1_TRANSLATE_SAVED_CSR_CRMD_PG));
+  assign when_MMUPlugin_l400_1 = (_zz_when_MMUPlugin_l400 == MemOperationType_FETCH);
   assign MEM_MEM1_AddressGenerationPlugin_translateResult_resultBundle_valid = MEM_MEM1_AddressGenerationPlugin_translateResult_resultValid;
   assign MEM_MEM1_AddressGenerationPlugin_translateResult_resultBundle_payload_physAddr = MEM_MEM1_AddressGenerationPlugin_translateResult_resultPhysAddr;
   assign MEM_MEM1_AddressGenerationPlugin_translateResult_resultBundle_payload_cached = MEM_MEM1_AddressGenerationPlugin_translateResult_resultCached;
@@ -73180,45 +73380,69 @@ module MyCPUCore (
   assign MemExecutePlugin_robWrite_payload_pAddr = MEM_WB_MEMORY_ADDRESS_PHYSICAL;
   assign MemExecutePlugin_robWrite_payload_storeData = MEM_WB_MEMORY_WRITE_DATA;
   assign MemExecutePlugin_robWrite_payload_myPC = MEM_WB_ISSUE_SLOT_uop_pc;
-  assign when_ExceptionMuxPlugin_l45_4 = ((! MEM_MEM1_EXCEPTION_OCCURRED) && AddressGenerationPlugin_raisePME);
-  assign when_ExceptionMuxPlugin_l45_5 = ((! MEM_MEM1_EXCEPTION_OCCURRED) && AddressGenerationPlugin_raisePPI);
-  assign when_ExceptionMuxPlugin_l45_6 = ((! MEM_MEM1_EXCEPTION_OCCURRED) && AddressGenerationPlugin_raisePIS);
-  assign when_ExceptionMuxPlugin_l45_7 = ((! MEM_MEM1_EXCEPTION_OCCURRED) && AddressGenerationPlugin_raisePIL);
-  assign when_ExceptionMuxPlugin_l45_8 = ((! MEM_MEM1_EXCEPTION_OCCURRED) && AddressGenerationPlugin_raiseTLBR);
-  assign when_ExceptionMuxPlugin_l45_9 = ((! MEM_ADDR_EXCEPTION_OCCURRED) && AddressGenerationPlugin_raiseALE);
+  assign when_ExceptionMuxPlugin_l45_4 = ((! MEM_ADDR_EXCEPTION_OCCURRED) && AddressGenerationPlugin_raiseALE);
+  assign when_ExceptionMuxPlugin_l45_5 = ((! MEM_MEM1_EXCEPTION_OCCURRED) && AddressGenerationPlugin_raisePME);
+  assign when_ExceptionMuxPlugin_l45_6 = ((! MEM_MEM1_EXCEPTION_OCCURRED) && AddressGenerationPlugin_raisePPI);
+  assign when_ExceptionMuxPlugin_l45_7 = ((! MEM_MEM1_EXCEPTION_OCCURRED) && AddressGenerationPlugin_raisePIS);
+  assign when_ExceptionMuxPlugin_l45_8 = ((! MEM_MEM1_EXCEPTION_OCCURRED) && AddressGenerationPlugin_raisePIL);
+  assign when_ExceptionMuxPlugin_l45_9 = ((! MEM_MEM1_EXCEPTION_OCCURRED) && AddressGenerationPlugin_raiseTLBR);
   assign when_Pipeline_l158 = (! IF2_arbitration_isStuck);
-  assign when_Pipeline_l158_1 = (! IF2_arbitration_isStuck);
+  assign when_Pipeline_l158_1 = (! IF3_arbitration_isStuck);
   assign when_Pipeline_l158_2 = (! IF2_arbitration_isStuck);
-  assign when_Pipeline_l158_3 = (! IF2_arbitration_isStuck);
+  assign when_Pipeline_l158_3 = (! IF3_arbitration_isStuck);
   assign when_Pipeline_l158_4 = (! IF2_arbitration_isStuck);
-  assign when_Pipeline_l158_5 = (! IF2_arbitration_isStuck);
+  assign when_Pipeline_l158_5 = (! IF3_arbitration_isStuck);
   assign when_Pipeline_l158_6 = (! IF2_arbitration_isStuck);
-  assign when_Pipeline_l158_7 = (! IF2_arbitration_isStuck);
+  assign when_Pipeline_l158_7 = (! IF3_arbitration_isStuck);
   assign when_Pipeline_l158_8 = (! IF2_arbitration_isStuck);
-  assign when_Pipeline_l158_9 = (! IF2_arbitration_isStuck);
+  assign when_Pipeline_l158_9 = (! IF3_arbitration_isStuck);
   assign when_Pipeline_l158_10 = (! IF2_arbitration_isStuck);
-  assign when_Pipeline_l158_11 = (! IF2_arbitration_isStuck);
+  assign when_Pipeline_l158_11 = (! IF3_arbitration_isStuck);
   assign when_Pipeline_l158_12 = (! IF2_arbitration_isStuck);
-  assign when_Pipeline_l158_13 = (! IF2_arbitration_isStuck);
+  assign when_Pipeline_l158_13 = (! IF3_arbitration_isStuck);
   assign when_Pipeline_l158_14 = (! IF2_arbitration_isStuck);
   assign when_Pipeline_l158_15 = (! IF2_arbitration_isStuck);
   assign when_Pipeline_l158_16 = (! IF2_arbitration_isStuck);
   assign when_Pipeline_l158_17 = (! IF2_arbitration_isStuck);
-  assign IF1_arbitration_isFlushed = ((IF2_arbitration_flushNext != 1'b0) || ({IF2_arbitration_flushIt,IF1_arbitration_flushIt} != 2'b00));
-  assign IF2_arbitration_isFlushed = (1'b0 || (IF2_arbitration_flushIt != 1'b0));
-  assign IF1_arbitration_isStuckByOthers = (IF1_arbitration_haltByOther || (1'b0 || IF2_arbitration_isStuck));
+  assign when_Pipeline_l158_18 = (! IF2_arbitration_isStuck);
+  assign when_Pipeline_l158_19 = (! IF2_arbitration_isStuck);
+  assign when_Pipeline_l158_20 = (! IF2_arbitration_isStuck);
+  assign when_Pipeline_l158_21 = (! IF2_arbitration_isStuck);
+  assign when_Pipeline_l158_22 = (! IF3_arbitration_isStuck);
+  assign when_Pipeline_l158_23 = (! IF2_arbitration_isStuck);
+  assign when_Pipeline_l158_24 = (! IF3_arbitration_isStuck);
+  assign when_Pipeline_l158_25 = (! IF2_arbitration_isStuck);
+  assign when_Pipeline_l158_26 = (! IF3_arbitration_isStuck);
+  assign when_Pipeline_l158_27 = (! IF2_arbitration_isStuck);
+  assign when_Pipeline_l158_28 = (! IF3_arbitration_isStuck);
+  assign when_Pipeline_l158_29 = (! IF3_arbitration_isStuck);
+  assign when_Pipeline_l158_30 = (! IF3_arbitration_isStuck);
+  assign when_Pipeline_l158_31 = (! IF3_arbitration_isStuck);
+  assign when_Pipeline_l158_32 = (! IF3_arbitration_isStuck);
+  assign when_Pipeline_l158_33 = (! IF3_arbitration_isStuck);
+  assign IF1_arbitration_isFlushed = (({IF3_arbitration_flushNext,IF2_arbitration_flushNext} != 2'b00) || ({IF3_arbitration_flushIt,{IF2_arbitration_flushIt,IF1_arbitration_flushIt}} != 3'b000));
+  assign IF2_arbitration_isFlushed = ((IF3_arbitration_flushNext != 1'b0) || ({IF3_arbitration_flushIt,IF2_arbitration_flushIt} != 2'b00));
+  assign IF3_arbitration_isFlushed = (1'b0 || (IF3_arbitration_flushIt != 1'b0));
+  assign IF1_arbitration_isStuckByOthers = (IF1_arbitration_haltByOther || ((1'b0 || IF2_arbitration_isStuck) || IF3_arbitration_isStuck));
   assign IF1_arbitration_isStuck = (IF1_arbitration_haltItself || IF1_arbitration_isStuckByOthers);
   assign IF1_arbitration_isMoving = ((! IF1_arbitration_isStuck) && (! IF1_arbitration_removeIt));
   assign IF1_arbitration_isFiring = ((IF1_arbitration_isValid && (! IF1_arbitration_isStuck)) && (! IF1_arbitration_removeIt));
-  assign IF2_arbitration_isStuckByOthers = (IF2_arbitration_haltByOther || 1'b0);
+  assign IF2_arbitration_isStuckByOthers = (IF2_arbitration_haltByOther || (1'b0 || IF3_arbitration_isStuck));
   assign IF2_arbitration_isStuck = (IF2_arbitration_haltItself || IF2_arbitration_isStuckByOthers);
   assign IF2_arbitration_isMoving = ((! IF2_arbitration_isStuck) && (! IF2_arbitration_removeIt));
   assign IF2_arbitration_isFiring = ((IF2_arbitration_isValid && (! IF2_arbitration_isStuck)) && (! IF2_arbitration_removeIt));
+  assign IF3_arbitration_isStuckByOthers = (IF3_arbitration_haltByOther || 1'b0);
+  assign IF3_arbitration_isStuck = (IF3_arbitration_haltItself || IF3_arbitration_isStuckByOthers);
+  assign IF3_arbitration_isMoving = ((! IF3_arbitration_isStuck) && (! IF3_arbitration_removeIt));
+  assign IF3_arbitration_isFiring = ((IF3_arbitration_isValid && (! IF3_arbitration_isStuck)) && (! IF3_arbitration_removeIt));
   assign IF1_arbitration_isValidOnEntry = 1'b1;
   assign when_Pipeline_l198 = (! IF1_arbitration_isStuck);
   assign when_Pipeline_l208 = ((! IF2_arbitration_isStuck) || IF2_arbitration_removeIt);
   assign when_Pipeline_l211 = (! IF2_arbitration_isStuck);
   assign when_Pipeline_l213 = ((! IF1_arbitration_isStuck) && (! IF1_arbitration_removeIt));
+  assign when_Pipeline_l208_1 = ((! IF3_arbitration_isStuck) || IF3_arbitration_removeIt);
+  assign when_Pipeline_l211_1 = (! IF3_arbitration_isStuck);
+  assign when_Pipeline_l213_1 = ((! IF2_arbitration_isStuck) && (! IF2_arbitration_removeIt));
   assign _zz_ID_to_RENAME_DECODE_PACKET_0_payload_fuType_1 = ID_DECODE_PACKET_0_payload_fuType;
   assign _zz_ID_to_RENAME_DECODE_PACKET_0_payload_immExtendType_1 = ID_DECODE_PACKET_0_payload_immExtendType;
   assign _zz_ID_to_RENAME_DECODE_PACKET_0_payload_aluOp_1 = ID_DECODE_PACKET_0_payload_aluOp;
@@ -73273,7 +73497,7 @@ module MyCPUCore (
   assign _zz_ID_DECODE_PACKET_2_payload_lsType = ID_DecoderArray_decodePacket_2_payload_lsType;
   assign _zz_ID_DECODE_PACKET_2_payload_cmpOp = ID_DecoderArray_decodePacket_2_payload_cmpOp;
   assign _zz_ID_DECODE_PACKET_2_payload_tlbOp = ID_DecoderArray_decodePacket_2_payload_tlbOp;
-  assign when_Pipeline_l158_18 = (! RENAME_arbitration_isStuck);
+  assign when_Pipeline_l158_34 = (! RENAME_arbitration_isStuck);
   assign _zz_RENAME_DECODE_PACKET_0_payload_fuType = ID_to_RENAME_DECODE_PACKET_0_payload_fuType;
   assign _zz_RENAME_DECODE_PACKET_0_payload_immExtendType = ID_to_RENAME_DECODE_PACKET_0_payload_immExtendType;
   assign _zz_RENAME_DECODE_PACKET_0_payload_aluOp = ID_to_RENAME_DECODE_PACKET_0_payload_aluOp;
@@ -73292,7 +73516,7 @@ module MyCPUCore (
   assign _zz_RENAME_DECODE_PACKET_2_payload_lsType = ID_to_RENAME_DECODE_PACKET_2_payload_lsType;
   assign _zz_RENAME_DECODE_PACKET_2_payload_cmpOp = ID_to_RENAME_DECODE_PACKET_2_payload_cmpOp;
   assign _zz_RENAME_DECODE_PACKET_2_payload_tlbOp = ID_to_RENAME_DECODE_PACKET_2_payload_tlbOp;
-  assign when_Pipeline_l158_19 = (! DISPATCH_arbitration_isStuck);
+  assign when_Pipeline_l158_35 = (! DISPATCH_arbitration_isStuck);
   assign _zz_DISPATCH_DECODE_PACKET_0_payload_fuType = RENAME_to_DISPATCH_DECODE_PACKET_0_payload_fuType;
   assign _zz_DISPATCH_DECODE_PACKET_0_payload_immExtendType = RENAME_to_DISPATCH_DECODE_PACKET_0_payload_immExtendType;
   assign _zz_DISPATCH_DECODE_PACKET_0_payload_aluOp = RENAME_to_DISPATCH_DECODE_PACKET_0_payload_aluOp;
@@ -73311,9 +73535,9 @@ module MyCPUCore (
   assign _zz_DISPATCH_DECODE_PACKET_2_payload_lsType = RENAME_to_DISPATCH_DECODE_PACKET_2_payload_lsType;
   assign _zz_DISPATCH_DECODE_PACKET_2_payload_cmpOp = RENAME_to_DISPATCH_DECODE_PACKET_2_payload_cmpOp;
   assign _zz_DISPATCH_DECODE_PACKET_2_payload_tlbOp = RENAME_to_DISPATCH_DECODE_PACKET_2_payload_tlbOp;
-  assign when_Pipeline_l158_20 = (! DISPATCH_arbitration_isStuck);
-  assign when_Pipeline_l158_21 = (! DISPATCH_arbitration_isStuck);
-  assign when_Pipeline_l158_22 = (! DISPATCH_arbitration_isStuck);
+  assign when_Pipeline_l158_36 = (! DISPATCH_arbitration_isStuck);
+  assign when_Pipeline_l158_37 = (! DISPATCH_arbitration_isStuck);
+  assign when_Pipeline_l158_38 = (! DISPATCH_arbitration_isStuck);
   assign ID_arbitration_isFlushed = (({DISPATCH_arbitration_flushNext,RENAME_arbitration_flushNext} != 2'b00) || ({DISPATCH_arbitration_flushIt,{RENAME_arbitration_flushIt,ID_arbitration_flushIt}} != 3'b000));
   assign RENAME_arbitration_isFlushed = ((DISPATCH_arbitration_flushNext != 1'b0) || ({DISPATCH_arbitration_flushIt,RENAME_arbitration_flushIt} != 2'b00));
   assign DISPATCH_arbitration_isFlushed = (1'b0 || (DISPATCH_arbitration_flushIt != 1'b0));
@@ -73331,12 +73555,12 @@ module MyCPUCore (
   assign DISPATCH_arbitration_isFiring = ((DISPATCH_arbitration_isValid && (! DISPATCH_arbitration_isStuck)) && (! DISPATCH_arbitration_removeIt));
   assign ID_arbitration_isValidOnEntry = 1'b1;
   assign when_Pipeline_l198_1 = (! ID_arbitration_isStuck);
-  assign when_Pipeline_l208_1 = ((! RENAME_arbitration_isStuck) || RENAME_arbitration_removeIt);
-  assign when_Pipeline_l211_1 = (! RENAME_arbitration_isStuck);
-  assign when_Pipeline_l213_1 = ((! ID_arbitration_isStuck) && (! ID_arbitration_removeIt));
-  assign when_Pipeline_l208_2 = ((! DISPATCH_arbitration_isStuck) || DISPATCH_arbitration_removeIt);
-  assign when_Pipeline_l211_2 = (! DISPATCH_arbitration_isStuck);
-  assign when_Pipeline_l213_2 = ((! RENAME_arbitration_isStuck) && (! RENAME_arbitration_removeIt));
+  assign when_Pipeline_l208_2 = ((! RENAME_arbitration_isStuck) || RENAME_arbitration_removeIt);
+  assign when_Pipeline_l211_2 = (! RENAME_arbitration_isStuck);
+  assign when_Pipeline_l213_2 = ((! ID_arbitration_isStuck) && (! ID_arbitration_removeIt));
+  assign when_Pipeline_l208_3 = ((! DISPATCH_arbitration_isStuck) || DISPATCH_arbitration_removeIt);
+  assign when_Pipeline_l211_3 = (! DISPATCH_arbitration_isStuck);
+  assign when_Pipeline_l213_3 = ((! RENAME_arbitration_isStuck) && (! RENAME_arbitration_removeIt));
   assign _zz_INT2_ISS_to_INT2_RRD_ISSUE_SLOT_uop_fuType_1 = INT2_ISS_ISSUE_SLOT_uop_fuType;
   assign _zz_INT2_ISS_to_INT2_RRD_ISSUE_SLOT_uop_immExtendType_1 = INT2_ISS_ISSUE_SLOT_uop_immExtendType;
   assign _zz_INT2_ISS_to_INT2_RRD_ISSUE_SLOT_uop_aluOp_1 = INT2_ISS_ISSUE_SLOT_uop_aluOp;
@@ -73357,36 +73581,36 @@ module MyCPUCore (
   assign _zz_INT2_ISS_ISSUE_SLOT_uop_aluOp = INT2_ISS_IntExecutePlugin_issSlot_uop_aluOp;
   assign _zz_INT2_ISS_ISSUE_SLOT_uop_cmpOp = INT2_ISS_IntExecutePlugin_issSlot_uop_cmpOp;
   assign _zz_INT2_ISS_ISSUE_SLOT_uop_tlbOp = INT2_ISS_IntExecutePlugin_issSlot_uop_tlbOp;
-  assign when_Pipeline_l158_23 = (! INT2_RRD_arbitration_isStuck);
+  assign when_Pipeline_l158_39 = (! INT2_RRD_arbitration_isStuck);
   assign _zz_INT2_RRD_ISSUE_SLOT_uop_fuType = INT2_ISS_to_INT2_RRD_ISSUE_SLOT_uop_fuType;
   assign _zz_INT2_RRD_ISSUE_SLOT_uop_immExtendType = INT2_ISS_to_INT2_RRD_ISSUE_SLOT_uop_immExtendType;
   assign _zz_INT2_RRD_ISSUE_SLOT_uop_aluOp = INT2_ISS_to_INT2_RRD_ISSUE_SLOT_uop_aluOp;
   assign _zz_INT2_RRD_ISSUE_SLOT_uop_cmpOp = INT2_ISS_to_INT2_RRD_ISSUE_SLOT_uop_cmpOp;
   assign _zz_INT2_RRD_ISSUE_SLOT_uop_tlbOp = INT2_ISS_to_INT2_RRD_ISSUE_SLOT_uop_tlbOp;
-  assign when_Pipeline_l158_24 = (! INT2_EXE_arbitration_isStuck);
+  assign when_Pipeline_l158_40 = (! INT2_EXE_arbitration_isStuck);
   assign _zz_INT2_EXE_ISSUE_SLOT_uop_fuType = INT2_RRD_to_INT2_EXE_ISSUE_SLOT_uop_fuType;
   assign _zz_INT2_EXE_ISSUE_SLOT_uop_immExtendType = INT2_RRD_to_INT2_EXE_ISSUE_SLOT_uop_immExtendType;
   assign _zz_INT2_EXE_ISSUE_SLOT_uop_aluOp = INT2_RRD_to_INT2_EXE_ISSUE_SLOT_uop_aluOp;
   assign _zz_INT2_EXE_ISSUE_SLOT_uop_cmpOp = INT2_RRD_to_INT2_EXE_ISSUE_SLOT_uop_cmpOp;
   assign _zz_INT2_EXE_ISSUE_SLOT_uop_tlbOp = INT2_RRD_to_INT2_EXE_ISSUE_SLOT_uop_tlbOp;
-  assign when_Pipeline_l158_25 = (! INT2_WB_arbitration_isStuck);
+  assign when_Pipeline_l158_41 = (! INT2_WB_arbitration_isStuck);
   assign _zz_INT2_WB_ISSUE_SLOT_uop_fuType = INT2_EXE_to_INT2_WB_ISSUE_SLOT_uop_fuType;
   assign _zz_INT2_WB_ISSUE_SLOT_uop_immExtendType = INT2_EXE_to_INT2_WB_ISSUE_SLOT_uop_immExtendType;
   assign _zz_INT2_WB_ISSUE_SLOT_uop_aluOp = INT2_EXE_to_INT2_WB_ISSUE_SLOT_uop_aluOp;
   assign _zz_INT2_WB_ISSUE_SLOT_uop_cmpOp = INT2_EXE_to_INT2_WB_ISSUE_SLOT_uop_cmpOp;
   assign _zz_INT2_WB_ISSUE_SLOT_uop_tlbOp = INT2_EXE_to_INT2_WB_ISSUE_SLOT_uop_tlbOp;
-  assign when_Pipeline_l158_26 = (! INT2_EXE_arbitration_isStuck);
-  assign when_Pipeline_l158_27 = (! INT2_EXE_arbitration_isStuck);
-  assign when_Pipeline_l158_28 = (! INT2_WB_arbitration_isStuck);
-  assign when_Pipeline_l158_29 = (! INT2_EXE_arbitration_isStuck);
-  assign when_Pipeline_l158_30 = (! INT2_WB_arbitration_isStuck);
-  assign when_Pipeline_l158_31 = (! INT2_EXE_arbitration_isStuck);
-  assign when_Pipeline_l158_32 = (! INT2_WB_arbitration_isStuck);
-  assign when_Pipeline_l158_33 = (! INT2_EXE_arbitration_isStuck);
-  assign when_Pipeline_l158_34 = (! INT2_WB_arbitration_isStuck);
-  assign when_Pipeline_l158_35 = (! INT2_WB_arbitration_isStuck);
-  assign when_Pipeline_l158_36 = (! INT2_WB_arbitration_isStuck);
-  assign when_Pipeline_l158_37 = (! INT2_WB_arbitration_isStuck);
+  assign when_Pipeline_l158_42 = (! INT2_EXE_arbitration_isStuck);
+  assign when_Pipeline_l158_43 = (! INT2_EXE_arbitration_isStuck);
+  assign when_Pipeline_l158_44 = (! INT2_WB_arbitration_isStuck);
+  assign when_Pipeline_l158_45 = (! INT2_EXE_arbitration_isStuck);
+  assign when_Pipeline_l158_46 = (! INT2_WB_arbitration_isStuck);
+  assign when_Pipeline_l158_47 = (! INT2_EXE_arbitration_isStuck);
+  assign when_Pipeline_l158_48 = (! INT2_WB_arbitration_isStuck);
+  assign when_Pipeline_l158_49 = (! INT2_EXE_arbitration_isStuck);
+  assign when_Pipeline_l158_50 = (! INT2_WB_arbitration_isStuck);
+  assign when_Pipeline_l158_51 = (! INT2_WB_arbitration_isStuck);
+  assign when_Pipeline_l158_52 = (! INT2_WB_arbitration_isStuck);
+  assign when_Pipeline_l158_53 = (! INT2_WB_arbitration_isStuck);
   assign INT2_ISS_arbitration_isFlushed = (({INT2_WB_arbitration_flushNext,{INT2_EXE_arbitration_flushNext,INT2_RRD_arbitration_flushNext}} != 3'b000) || ({INT2_WB_arbitration_flushIt,{INT2_EXE_arbitration_flushIt,{INT2_RRD_arbitration_flushIt,INT2_ISS_arbitration_flushIt}}} != 4'b0000));
   assign INT2_RRD_arbitration_isFlushed = (({INT2_WB_arbitration_flushNext,INT2_EXE_arbitration_flushNext} != 2'b00) || ({INT2_WB_arbitration_flushIt,{INT2_EXE_arbitration_flushIt,INT2_RRD_arbitration_flushIt}} != 3'b000));
   assign INT2_EXE_arbitration_isFlushed = ((INT2_WB_arbitration_flushNext != 1'b0) || ({INT2_WB_arbitration_flushIt,INT2_EXE_arbitration_flushIt} != 2'b00));
@@ -73409,15 +73633,15 @@ module MyCPUCore (
   assign INT2_WB_arbitration_isFiring = ((INT2_WB_arbitration_isValid && (! INT2_WB_arbitration_isStuck)) && (! INT2_WB_arbitration_removeIt));
   assign INT2_ISS_arbitration_isValidOnEntry = 1'b1;
   assign when_Pipeline_l198_2 = (! INT2_ISS_arbitration_isStuck);
-  assign when_Pipeline_l208_3 = ((! INT2_RRD_arbitration_isStuck) || INT2_RRD_arbitration_removeIt);
-  assign when_Pipeline_l211_3 = (! INT2_RRD_arbitration_isStuck);
-  assign when_Pipeline_l213_3 = ((! INT2_ISS_arbitration_isStuck) && (! INT2_ISS_arbitration_removeIt));
-  assign when_Pipeline_l208_4 = ((! INT2_EXE_arbitration_isStuck) || INT2_EXE_arbitration_removeIt);
-  assign when_Pipeline_l211_4 = (! INT2_EXE_arbitration_isStuck);
-  assign when_Pipeline_l213_4 = ((! INT2_RRD_arbitration_isStuck) && (! INT2_RRD_arbitration_removeIt));
-  assign when_Pipeline_l208_5 = ((! INT2_WB_arbitration_isStuck) || INT2_WB_arbitration_removeIt);
-  assign when_Pipeline_l211_5 = (! INT2_WB_arbitration_isStuck);
-  assign when_Pipeline_l213_5 = ((! INT2_EXE_arbitration_isStuck) && (! INT2_EXE_arbitration_removeIt));
+  assign when_Pipeline_l208_4 = ((! INT2_RRD_arbitration_isStuck) || INT2_RRD_arbitration_removeIt);
+  assign when_Pipeline_l211_4 = (! INT2_RRD_arbitration_isStuck);
+  assign when_Pipeline_l213_4 = ((! INT2_ISS_arbitration_isStuck) && (! INT2_ISS_arbitration_removeIt));
+  assign when_Pipeline_l208_5 = ((! INT2_EXE_arbitration_isStuck) || INT2_EXE_arbitration_removeIt);
+  assign when_Pipeline_l211_5 = (! INT2_EXE_arbitration_isStuck);
+  assign when_Pipeline_l213_5 = ((! INT2_RRD_arbitration_isStuck) && (! INT2_RRD_arbitration_removeIt));
+  assign when_Pipeline_l208_6 = ((! INT2_WB_arbitration_isStuck) || INT2_WB_arbitration_removeIt);
+  assign when_Pipeline_l211_6 = (! INT2_WB_arbitration_isStuck);
+  assign when_Pipeline_l213_6 = ((! INT2_EXE_arbitration_isStuck) && (! INT2_EXE_arbitration_removeIt));
   assign _zz_INT1_ISS_to_INT1_RRD_ISSUE_SLOT_uop_fuType_1 = INT1_ISS_ISSUE_SLOT_uop_fuType;
   assign _zz_INT1_ISS_to_INT1_RRD_ISSUE_SLOT_uop_immExtendType_1 = INT1_ISS_ISSUE_SLOT_uop_immExtendType;
   assign _zz_INT1_ISS_to_INT1_RRD_ISSUE_SLOT_uop_aluOp_1 = INT1_ISS_ISSUE_SLOT_uop_aluOp;
@@ -73438,35 +73662,35 @@ module MyCPUCore (
   assign _zz_INT1_ISS_ISSUE_SLOT_uop_aluOp = INT1_ISS_IntExecutePlugin_issSlot_uop_aluOp;
   assign _zz_INT1_ISS_ISSUE_SLOT_uop_cmpOp = INT1_ISS_IntExecutePlugin_issSlot_uop_cmpOp;
   assign _zz_INT1_ISS_ISSUE_SLOT_uop_tlbOp = INT1_ISS_IntExecutePlugin_issSlot_uop_tlbOp;
-  assign when_Pipeline_l158_38 = (! INT1_RRD_arbitration_isStuck);
+  assign when_Pipeline_l158_54 = (! INT1_RRD_arbitration_isStuck);
   assign _zz_INT1_RRD_ISSUE_SLOT_uop_fuType = INT1_ISS_to_INT1_RRD_ISSUE_SLOT_uop_fuType;
   assign _zz_INT1_RRD_ISSUE_SLOT_uop_immExtendType = INT1_ISS_to_INT1_RRD_ISSUE_SLOT_uop_immExtendType;
   assign _zz_INT1_RRD_ISSUE_SLOT_uop_aluOp = INT1_ISS_to_INT1_RRD_ISSUE_SLOT_uop_aluOp;
   assign _zz_INT1_RRD_ISSUE_SLOT_uop_cmpOp = INT1_ISS_to_INT1_RRD_ISSUE_SLOT_uop_cmpOp;
   assign _zz_INT1_RRD_ISSUE_SLOT_uop_tlbOp = INT1_ISS_to_INT1_RRD_ISSUE_SLOT_uop_tlbOp;
-  assign when_Pipeline_l158_39 = (! INT1_EXE_arbitration_isStuck);
+  assign when_Pipeline_l158_55 = (! INT1_EXE_arbitration_isStuck);
   assign _zz_INT1_EXE_ISSUE_SLOT_uop_fuType = INT1_RRD_to_INT1_EXE_ISSUE_SLOT_uop_fuType;
   assign _zz_INT1_EXE_ISSUE_SLOT_uop_immExtendType = INT1_RRD_to_INT1_EXE_ISSUE_SLOT_uop_immExtendType;
   assign _zz_INT1_EXE_ISSUE_SLOT_uop_aluOp = INT1_RRD_to_INT1_EXE_ISSUE_SLOT_uop_aluOp;
   assign _zz_INT1_EXE_ISSUE_SLOT_uop_cmpOp = INT1_RRD_to_INT1_EXE_ISSUE_SLOT_uop_cmpOp;
   assign _zz_INT1_EXE_ISSUE_SLOT_uop_tlbOp = INT1_RRD_to_INT1_EXE_ISSUE_SLOT_uop_tlbOp;
-  assign when_Pipeline_l158_40 = (! INT1_WB_arbitration_isStuck);
+  assign when_Pipeline_l158_56 = (! INT1_WB_arbitration_isStuck);
   assign _zz_INT1_WB_ISSUE_SLOT_uop_fuType = INT1_EXE_to_INT1_WB_ISSUE_SLOT_uop_fuType;
   assign _zz_INT1_WB_ISSUE_SLOT_uop_immExtendType = INT1_EXE_to_INT1_WB_ISSUE_SLOT_uop_immExtendType;
   assign _zz_INT1_WB_ISSUE_SLOT_uop_aluOp = INT1_EXE_to_INT1_WB_ISSUE_SLOT_uop_aluOp;
   assign _zz_INT1_WB_ISSUE_SLOT_uop_cmpOp = INT1_EXE_to_INT1_WB_ISSUE_SLOT_uop_cmpOp;
   assign _zz_INT1_WB_ISSUE_SLOT_uop_tlbOp = INT1_EXE_to_INT1_WB_ISSUE_SLOT_uop_tlbOp;
-  assign when_Pipeline_l158_41 = (! INT1_EXE_arbitration_isStuck);
-  assign when_Pipeline_l158_42 = (! INT1_EXE_arbitration_isStuck);
-  assign when_Pipeline_l158_43 = (! INT1_WB_arbitration_isStuck);
-  assign when_Pipeline_l158_44 = (! INT1_WB_arbitration_isStuck);
-  assign when_Pipeline_l158_45 = (! INT1_EXE_arbitration_isStuck);
-  assign when_Pipeline_l158_46 = (! INT1_WB_arbitration_isStuck);
-  assign when_Pipeline_l158_47 = (! INT1_EXE_arbitration_isStuck);
-  assign when_Pipeline_l158_48 = (! INT1_WB_arbitration_isStuck);
-  assign when_Pipeline_l158_49 = (! INT1_WB_arbitration_isStuck);
-  assign when_Pipeline_l158_50 = (! INT1_WB_arbitration_isStuck);
-  assign when_Pipeline_l158_51 = (! INT1_WB_arbitration_isStuck);
+  assign when_Pipeline_l158_57 = (! INT1_EXE_arbitration_isStuck);
+  assign when_Pipeline_l158_58 = (! INT1_EXE_arbitration_isStuck);
+  assign when_Pipeline_l158_59 = (! INT1_WB_arbitration_isStuck);
+  assign when_Pipeline_l158_60 = (! INT1_WB_arbitration_isStuck);
+  assign when_Pipeline_l158_61 = (! INT1_EXE_arbitration_isStuck);
+  assign when_Pipeline_l158_62 = (! INT1_WB_arbitration_isStuck);
+  assign when_Pipeline_l158_63 = (! INT1_EXE_arbitration_isStuck);
+  assign when_Pipeline_l158_64 = (! INT1_WB_arbitration_isStuck);
+  assign when_Pipeline_l158_65 = (! INT1_WB_arbitration_isStuck);
+  assign when_Pipeline_l158_66 = (! INT1_WB_arbitration_isStuck);
+  assign when_Pipeline_l158_67 = (! INT1_WB_arbitration_isStuck);
   assign INT1_ISS_arbitration_isFlushed = (({INT1_WB_arbitration_flushNext,{INT1_EXE_arbitration_flushNext,INT1_RRD_arbitration_flushNext}} != 3'b000) || ({INT1_WB_arbitration_flushIt,{INT1_EXE_arbitration_flushIt,{INT1_RRD_arbitration_flushIt,INT1_ISS_arbitration_flushIt}}} != 4'b0000));
   assign INT1_RRD_arbitration_isFlushed = (({INT1_WB_arbitration_flushNext,INT1_EXE_arbitration_flushNext} != 2'b00) || ({INT1_WB_arbitration_flushIt,{INT1_EXE_arbitration_flushIt,INT1_RRD_arbitration_flushIt}} != 3'b000));
   assign INT1_EXE_arbitration_isFlushed = ((INT1_WB_arbitration_flushNext != 1'b0) || ({INT1_WB_arbitration_flushIt,INT1_EXE_arbitration_flushIt} != 2'b00));
@@ -73489,15 +73713,15 @@ module MyCPUCore (
   assign INT1_WB_arbitration_isFiring = ((INT1_WB_arbitration_isValid && (! INT1_WB_arbitration_isStuck)) && (! INT1_WB_arbitration_removeIt));
   assign INT1_ISS_arbitration_isValidOnEntry = 1'b1;
   assign when_Pipeline_l198_3 = (! INT1_ISS_arbitration_isStuck);
-  assign when_Pipeline_l208_6 = ((! INT1_RRD_arbitration_isStuck) || INT1_RRD_arbitration_removeIt);
-  assign when_Pipeline_l211_6 = (! INT1_RRD_arbitration_isStuck);
-  assign when_Pipeline_l213_6 = ((! INT1_ISS_arbitration_isStuck) && (! INT1_ISS_arbitration_removeIt));
-  assign when_Pipeline_l208_7 = ((! INT1_EXE_arbitration_isStuck) || INT1_EXE_arbitration_removeIt);
-  assign when_Pipeline_l211_7 = (! INT1_EXE_arbitration_isStuck);
-  assign when_Pipeline_l213_7 = ((! INT1_RRD_arbitration_isStuck) && (! INT1_RRD_arbitration_removeIt));
-  assign when_Pipeline_l208_8 = ((! INT1_WB_arbitration_isStuck) || INT1_WB_arbitration_removeIt);
-  assign when_Pipeline_l211_8 = (! INT1_WB_arbitration_isStuck);
-  assign when_Pipeline_l213_8 = ((! INT1_EXE_arbitration_isStuck) && (! INT1_EXE_arbitration_removeIt));
+  assign when_Pipeline_l208_7 = ((! INT1_RRD_arbitration_isStuck) || INT1_RRD_arbitration_removeIt);
+  assign when_Pipeline_l211_7 = (! INT1_RRD_arbitration_isStuck);
+  assign when_Pipeline_l213_7 = ((! INT1_ISS_arbitration_isStuck) && (! INT1_ISS_arbitration_removeIt));
+  assign when_Pipeline_l208_8 = ((! INT1_EXE_arbitration_isStuck) || INT1_EXE_arbitration_removeIt);
+  assign when_Pipeline_l211_8 = (! INT1_EXE_arbitration_isStuck);
+  assign when_Pipeline_l213_8 = ((! INT1_RRD_arbitration_isStuck) && (! INT1_RRD_arbitration_removeIt));
+  assign when_Pipeline_l208_9 = ((! INT1_WB_arbitration_isStuck) || INT1_WB_arbitration_removeIt);
+  assign when_Pipeline_l211_9 = (! INT1_WB_arbitration_isStuck);
+  assign when_Pipeline_l213_9 = ((! INT1_EXE_arbitration_isStuck) && (! INT1_EXE_arbitration_removeIt));
   assign _zz_INT0_ISS_to_INT0_RRD_ISSUE_SLOT_uop_fuType_1 = INT0_ISS_ISSUE_SLOT_uop_fuType;
   assign _zz_INT0_ISS_to_INT0_RRD_ISSUE_SLOT_uop_immExtendType_1 = INT0_ISS_ISSUE_SLOT_uop_immExtendType;
   assign _zz_INT0_ISS_to_INT0_RRD_ISSUE_SLOT_uop_aluOp_1 = INT0_ISS_ISSUE_SLOT_uop_aluOp;
@@ -73513,27 +73737,27 @@ module MyCPUCore (
   assign _zz_INT0_ISS_ISSUE_SLOT_uop_aluOp = INT0_ISS_IntExecutePlugin_issSlot_uop_aluOp;
   assign _zz_INT0_ISS_ISSUE_SLOT_uop_cmpOp = INT0_ISS_IntExecutePlugin_issSlot_uop_cmpOp;
   assign _zz_INT0_ISS_ISSUE_SLOT_uop_tlbOp = INT0_ISS_IntExecutePlugin_issSlot_uop_tlbOp;
-  assign when_Pipeline_l158_52 = (! INT0_RRD_arbitration_isStuck);
+  assign when_Pipeline_l158_68 = (! INT0_RRD_arbitration_isStuck);
   assign _zz_INT0_RRD_ISSUE_SLOT_uop_fuType = INT0_ISS_to_INT0_RRD_ISSUE_SLOT_uop_fuType;
   assign _zz_INT0_RRD_ISSUE_SLOT_uop_immExtendType = INT0_ISS_to_INT0_RRD_ISSUE_SLOT_uop_immExtendType;
   assign _zz_INT0_RRD_ISSUE_SLOT_uop_aluOp = INT0_ISS_to_INT0_RRD_ISSUE_SLOT_uop_aluOp;
   assign _zz_INT0_RRD_ISSUE_SLOT_uop_cmpOp = INT0_ISS_to_INT0_RRD_ISSUE_SLOT_uop_cmpOp;
   assign _zz_INT0_RRD_ISSUE_SLOT_uop_tlbOp = INT0_ISS_to_INT0_RRD_ISSUE_SLOT_uop_tlbOp;
-  assign when_Pipeline_l158_53 = (! INT0_EXE_arbitration_isStuck);
+  assign when_Pipeline_l158_69 = (! INT0_EXE_arbitration_isStuck);
   assign _zz_INT0_EXE_ISSUE_SLOT_uop_fuType = INT0_RRD_to_INT0_EXE_ISSUE_SLOT_uop_fuType;
   assign _zz_INT0_EXE_ISSUE_SLOT_uop_immExtendType = INT0_RRD_to_INT0_EXE_ISSUE_SLOT_uop_immExtendType;
   assign _zz_INT0_EXE_ISSUE_SLOT_uop_aluOp = INT0_RRD_to_INT0_EXE_ISSUE_SLOT_uop_aluOp;
   assign _zz_INT0_EXE_ISSUE_SLOT_uop_cmpOp = INT0_RRD_to_INT0_EXE_ISSUE_SLOT_uop_cmpOp;
   assign _zz_INT0_EXE_ISSUE_SLOT_uop_tlbOp = INT0_RRD_to_INT0_EXE_ISSUE_SLOT_uop_tlbOp;
-  assign when_Pipeline_l158_54 = (! INT0_EXE_arbitration_isStuck);
-  assign when_Pipeline_l158_55 = (! INT0_EXE_arbitration_isStuck);
-  assign when_Pipeline_l158_56 = (! INT0_EXE_arbitration_isStuck);
-  assign when_Pipeline_l158_57 = (! INT0_WB_arbitration_isStuck);
-  assign when_Pipeline_l158_58 = (! INT0_WB_arbitration_isStuck);
-  assign when_Pipeline_l158_59 = (! INT0_WB_arbitration_isStuck);
-  assign when_Pipeline_l158_60 = (! INT0_WB_arbitration_isStuck);
-  assign when_Pipeline_l158_61 = (! INT0_WB_arbitration_isStuck);
-  assign when_Pipeline_l158_62 = (! INT0_WB_arbitration_isStuck);
+  assign when_Pipeline_l158_70 = (! INT0_EXE_arbitration_isStuck);
+  assign when_Pipeline_l158_71 = (! INT0_EXE_arbitration_isStuck);
+  assign when_Pipeline_l158_72 = (! INT0_EXE_arbitration_isStuck);
+  assign when_Pipeline_l158_73 = (! INT0_WB_arbitration_isStuck);
+  assign when_Pipeline_l158_74 = (! INT0_WB_arbitration_isStuck);
+  assign when_Pipeline_l158_75 = (! INT0_WB_arbitration_isStuck);
+  assign when_Pipeline_l158_76 = (! INT0_WB_arbitration_isStuck);
+  assign when_Pipeline_l158_77 = (! INT0_WB_arbitration_isStuck);
+  assign when_Pipeline_l158_78 = (! INT0_WB_arbitration_isStuck);
   assign INT0_ISS_arbitration_isFlushed = (({INT0_WB_arbitration_flushNext,{INT0_EXE_arbitration_flushNext,INT0_RRD_arbitration_flushNext}} != 3'b000) || ({INT0_WB_arbitration_flushIt,{INT0_EXE_arbitration_flushIt,{INT0_RRD_arbitration_flushIt,INT0_ISS_arbitration_flushIt}}} != 4'b0000));
   assign INT0_RRD_arbitration_isFlushed = (({INT0_WB_arbitration_flushNext,INT0_EXE_arbitration_flushNext} != 2'b00) || ({INT0_WB_arbitration_flushIt,{INT0_EXE_arbitration_flushIt,INT0_RRD_arbitration_flushIt}} != 3'b000));
   assign INT0_EXE_arbitration_isFlushed = ((INT0_WB_arbitration_flushNext != 1'b0) || ({INT0_WB_arbitration_flushIt,INT0_EXE_arbitration_flushIt} != 2'b00));
@@ -73556,27 +73780,27 @@ module MyCPUCore (
   assign INT0_WB_arbitration_isFiring = ((INT0_WB_arbitration_isValid && (! INT0_WB_arbitration_isStuck)) && (! INT0_WB_arbitration_removeIt));
   assign INT0_ISS_arbitration_isValidOnEntry = 1'b1;
   assign when_Pipeline_l198_4 = (! INT0_ISS_arbitration_isStuck);
-  assign when_Pipeline_l208_9 = ((! INT0_RRD_arbitration_isStuck) || INT0_RRD_arbitration_removeIt);
-  assign when_Pipeline_l211_9 = (! INT0_RRD_arbitration_isStuck);
-  assign when_Pipeline_l213_9 = ((! INT0_ISS_arbitration_isStuck) && (! INT0_ISS_arbitration_removeIt));
-  assign when_Pipeline_l208_10 = ((! INT0_EXE_arbitration_isStuck) || INT0_EXE_arbitration_removeIt);
-  assign when_Pipeline_l211_10 = (! INT0_EXE_arbitration_isStuck);
-  assign when_Pipeline_l213_10 = ((! INT0_RRD_arbitration_isStuck) && (! INT0_RRD_arbitration_removeIt));
-  assign when_Pipeline_l208_11 = ((! INT0_WB_arbitration_isStuck) || INT0_WB_arbitration_removeIt);
-  assign when_Pipeline_l211_11 = (! INT0_WB_arbitration_isStuck);
-  assign when_Pipeline_l213_11 = ((! INT0_EXE_arbitration_isStuck) && (! INT0_EXE_arbitration_removeIt));
+  assign when_Pipeline_l208_10 = ((! INT0_RRD_arbitration_isStuck) || INT0_RRD_arbitration_removeIt);
+  assign when_Pipeline_l211_10 = (! INT0_RRD_arbitration_isStuck);
+  assign when_Pipeline_l213_10 = ((! INT0_ISS_arbitration_isStuck) && (! INT0_ISS_arbitration_removeIt));
+  assign when_Pipeline_l208_11 = ((! INT0_EXE_arbitration_isStuck) || INT0_EXE_arbitration_removeIt);
+  assign when_Pipeline_l211_11 = (! INT0_EXE_arbitration_isStuck);
+  assign when_Pipeline_l213_11 = ((! INT0_RRD_arbitration_isStuck) && (! INT0_RRD_arbitration_removeIt));
+  assign when_Pipeline_l208_12 = ((! INT0_WB_arbitration_isStuck) || INT0_WB_arbitration_removeIt);
+  assign when_Pipeline_l211_12 = (! INT0_WB_arbitration_isStuck);
+  assign when_Pipeline_l213_12 = ((! INT0_EXE_arbitration_isStuck) && (! INT0_EXE_arbitration_removeIt));
   assign _zz_MULDIV_ISS_to_MULDIV_RRD_ISSUE_SLOT_uop_fuType_1 = MULDIV_ISS_ISSUE_SLOT_uop_fuType;
   assign _zz_MULDIV_RRD_to_MULDIV_EXE_ISSUE_SLOT_uop_fuType_1 = MULDIV_RRD_ISSUE_SLOT_uop_fuType;
   assign _zz_MULDIV_EXE_to_MULDIV_WB_ISSUE_SLOT_uop_fuType_1 = MULDIV_EXE_ISSUE_SLOT_uop_fuType;
   assign _zz_MULDIV_ISS_ISSUE_SLOT_uop_fuType = MULDIV_ISS_MulDivExecutePlugin_issSlot_uop_fuType;
-  assign when_Pipeline_l158_63 = (! MULDIV_RRD_arbitration_isStuck);
+  assign when_Pipeline_l158_79 = (! MULDIV_RRD_arbitration_isStuck);
   assign _zz_MULDIV_RRD_ISSUE_SLOT_uop_fuType = MULDIV_ISS_to_MULDIV_RRD_ISSUE_SLOT_uop_fuType;
-  assign when_Pipeline_l158_64 = (! MULDIV_EXE_arbitration_isStuck);
+  assign when_Pipeline_l158_80 = (! MULDIV_EXE_arbitration_isStuck);
   assign _zz_MULDIV_EXE_ISSUE_SLOT_uop_fuType = MULDIV_RRD_to_MULDIV_EXE_ISSUE_SLOT_uop_fuType;
-  assign when_Pipeline_l158_65 = (! MULDIV_WB_arbitration_isStuck);
+  assign when_Pipeline_l158_81 = (! MULDIV_WB_arbitration_isStuck);
   assign _zz_MULDIV_WB_ISSUE_SLOT_uop_fuType = MULDIV_EXE_to_MULDIV_WB_ISSUE_SLOT_uop_fuType;
-  assign when_Pipeline_l158_66 = (! MULDIV_EXE_arbitration_isStuck);
-  assign when_Pipeline_l158_67 = (! MULDIV_WB_arbitration_isStuck);
+  assign when_Pipeline_l158_82 = (! MULDIV_EXE_arbitration_isStuck);
+  assign when_Pipeline_l158_83 = (! MULDIV_WB_arbitration_isStuck);
   assign MULDIV_ISS_arbitration_isFlushed = (({MULDIV_WB_arbitration_flushNext,{MULDIV_EXE_arbitration_flushNext,MULDIV_RRD_arbitration_flushNext}} != 3'b000) || ({MULDIV_WB_arbitration_flushIt,{MULDIV_EXE_arbitration_flushIt,{MULDIV_RRD_arbitration_flushIt,MULDIV_ISS_arbitration_flushIt}}} != 4'b0000));
   assign MULDIV_RRD_arbitration_isFlushed = (({MULDIV_WB_arbitration_flushNext,MULDIV_EXE_arbitration_flushNext} != 2'b00) || ({MULDIV_WB_arbitration_flushIt,{MULDIV_EXE_arbitration_flushIt,MULDIV_RRD_arbitration_flushIt}} != 3'b000));
   assign MULDIV_EXE_arbitration_isFlushed = ((MULDIV_WB_arbitration_flushNext != 1'b0) || ({MULDIV_WB_arbitration_flushIt,MULDIV_EXE_arbitration_flushIt} != 2'b00));
@@ -73599,15 +73823,15 @@ module MyCPUCore (
   assign MULDIV_WB_arbitration_isFiring = ((MULDIV_WB_arbitration_isValid && (! MULDIV_WB_arbitration_isStuck)) && (! MULDIV_WB_arbitration_removeIt));
   assign MULDIV_ISS_arbitration_isValidOnEntry = 1'b1;
   assign when_Pipeline_l198_5 = (! MULDIV_ISS_arbitration_isStuck);
-  assign when_Pipeline_l208_12 = ((! MULDIV_RRD_arbitration_isStuck) || MULDIV_RRD_arbitration_removeIt);
-  assign when_Pipeline_l211_12 = (! MULDIV_RRD_arbitration_isStuck);
-  assign when_Pipeline_l213_12 = ((! MULDIV_ISS_arbitration_isStuck) && (! MULDIV_ISS_arbitration_removeIt));
-  assign when_Pipeline_l208_13 = ((! MULDIV_EXE_arbitration_isStuck) || MULDIV_EXE_arbitration_removeIt);
-  assign when_Pipeline_l211_13 = (! MULDIV_EXE_arbitration_isStuck);
-  assign when_Pipeline_l213_13 = ((! MULDIV_RRD_arbitration_isStuck) && (! MULDIV_RRD_arbitration_removeIt));
-  assign when_Pipeline_l208_14 = ((! MULDIV_WB_arbitration_isStuck) || MULDIV_WB_arbitration_removeIt);
-  assign when_Pipeline_l211_14 = (! MULDIV_WB_arbitration_isStuck);
-  assign when_Pipeline_l213_14 = ((! MULDIV_EXE_arbitration_isStuck) && (! MULDIV_EXE_arbitration_removeIt));
+  assign when_Pipeline_l208_13 = ((! MULDIV_RRD_arbitration_isStuck) || MULDIV_RRD_arbitration_removeIt);
+  assign when_Pipeline_l211_13 = (! MULDIV_RRD_arbitration_isStuck);
+  assign when_Pipeline_l213_13 = ((! MULDIV_ISS_arbitration_isStuck) && (! MULDIV_ISS_arbitration_removeIt));
+  assign when_Pipeline_l208_14 = ((! MULDIV_EXE_arbitration_isStuck) || MULDIV_EXE_arbitration_removeIt);
+  assign when_Pipeline_l211_14 = (! MULDIV_EXE_arbitration_isStuck);
+  assign when_Pipeline_l213_14 = ((! MULDIV_RRD_arbitration_isStuck) && (! MULDIV_RRD_arbitration_removeIt));
+  assign when_Pipeline_l208_15 = ((! MULDIV_WB_arbitration_isStuck) || MULDIV_WB_arbitration_removeIt);
+  assign when_Pipeline_l211_15 = (! MULDIV_WB_arbitration_isStuck);
+  assign when_Pipeline_l213_15 = ((! MULDIV_EXE_arbitration_isStuck) && (! MULDIV_EXE_arbitration_removeIt));
   assign _zz_MEM_ISS_to_MEM_RRD_ISSUE_SLOT_uop_lsType_1 = MEM_ISS_ISSUE_SLOT_uop_lsType;
   assign _zz_MEM_ISS_to_MEM_RRD_ISSUE_SLOT_uop_cacheOp_1 = MEM_ISS_ISSUE_SLOT_uop_cacheOp;
   assign _zz_MEM_ISS_to_MEM_RRD_ISSUE_SLOT_uop_cacheSel_1 = MEM_ISS_ISSUE_SLOT_uop_cacheSel;
@@ -73626,23 +73850,23 @@ module MyCPUCore (
   assign _zz_MEM_ISS_ISSUE_SLOT_uop_lsType = MEM_ISS_MemExecutePlugin_issSlot_uop_lsType;
   assign _zz_MEM_ISS_ISSUE_SLOT_uop_cacheOp = MEM_ISS_MemExecutePlugin_issSlot_uop_cacheOp;
   assign _zz_MEM_ISS_ISSUE_SLOT_uop_cacheSel = MEM_ISS_MemExecutePlugin_issSlot_uop_cacheSel;
-  assign when_Pipeline_l158_68 = (! MEM_RRD_arbitration_isStuck);
+  assign when_Pipeline_l158_84 = (! MEM_RRD_arbitration_isStuck);
   assign _zz_MEM_RRD_ISSUE_SLOT_uop_lsType = MEM_ISS_to_MEM_RRD_ISSUE_SLOT_uop_lsType;
   assign _zz_MEM_RRD_ISSUE_SLOT_uop_cacheOp = MEM_ISS_to_MEM_RRD_ISSUE_SLOT_uop_cacheOp;
   assign _zz_MEM_RRD_ISSUE_SLOT_uop_cacheSel = MEM_ISS_to_MEM_RRD_ISSUE_SLOT_uop_cacheSel;
-  assign when_Pipeline_l158_69 = (! MEM_ADDR_arbitration_isStuck);
+  assign when_Pipeline_l158_85 = (! MEM_ADDR_arbitration_isStuck);
   assign _zz_MEM_ADDR_ISSUE_SLOT_uop_lsType = MEM_RRD_to_MEM_ADDR_ISSUE_SLOT_uop_lsType;
   assign _zz_MEM_ADDR_ISSUE_SLOT_uop_cacheOp = MEM_RRD_to_MEM_ADDR_ISSUE_SLOT_uop_cacheOp;
   assign _zz_MEM_ADDR_ISSUE_SLOT_uop_cacheSel = MEM_RRD_to_MEM_ADDR_ISSUE_SLOT_uop_cacheSel;
-  assign when_Pipeline_l158_70 = (! MEM_MEM1_arbitration_isStuck);
+  assign when_Pipeline_l158_86 = (! MEM_MEM1_arbitration_isStuck);
   assign _zz_MEM_MEM1_ISSUE_SLOT_uop_lsType = MEM_ADDR_to_MEM_MEM1_ISSUE_SLOT_uop_lsType;
   assign _zz_MEM_MEM1_ISSUE_SLOT_uop_cacheOp = MEM_ADDR_to_MEM_MEM1_ISSUE_SLOT_uop_cacheOp;
   assign _zz_MEM_MEM1_ISSUE_SLOT_uop_cacheSel = MEM_ADDR_to_MEM_MEM1_ISSUE_SLOT_uop_cacheSel;
-  assign when_Pipeline_l158_71 = (! MEM_MEM2_arbitration_isStuck);
+  assign when_Pipeline_l158_87 = (! MEM_MEM2_arbitration_isStuck);
   assign _zz_MEM_MEM2_ISSUE_SLOT_uop_lsType = MEM_MEM1_to_MEM_MEM2_ISSUE_SLOT_uop_lsType;
   assign _zz_MEM_MEM2_ISSUE_SLOT_uop_cacheOp = MEM_MEM1_to_MEM_MEM2_ISSUE_SLOT_uop_cacheOp;
   assign _zz_MEM_MEM2_ISSUE_SLOT_uop_cacheSel = MEM_MEM1_to_MEM_MEM2_ISSUE_SLOT_uop_cacheSel;
-  assign when_Pipeline_l158_72 = (! MEM_WB_arbitration_isStuck);
+  assign when_Pipeline_l158_88 = (! MEM_WB_arbitration_isStuck);
   assign _zz_MEM_WB_ISSUE_SLOT_uop_lsType = MEM_MEM2_to_MEM_WB_ISSUE_SLOT_uop_lsType;
   assign _zz_MEM_WB_ISSUE_SLOT_uop_cacheOp = MEM_MEM2_to_MEM_WB_ISSUE_SLOT_uop_cacheOp;
   assign _zz_MEM_WB_ISSUE_SLOT_uop_cacheSel = MEM_MEM2_to_MEM_WB_ISSUE_SLOT_uop_cacheSel;
@@ -73653,63 +73877,63 @@ module MyCPUCore (
   assign _zz_MEM_MEM2_to_MEM_WB_STD_SLOT_payload_lsType_1 = MEM_MEM2_STD_SLOT_payload_lsType;
   assign _zz_MEM_WB_to_MEM_WB2_STD_SLOT_payload_lsType_1 = MEM_WB_STD_SLOT_payload_lsType;
   assign _zz_MEM_ISS_STD_SLOT_payload_lsType = _zz_MEM_ISS_STD_SLOT_payload_lsType_1;
-  assign when_Pipeline_l158_73 = (! MEM_RRD_arbitration_isStuck);
+  assign when_Pipeline_l158_89 = (! MEM_RRD_arbitration_isStuck);
   assign _zz_MEM_RRD_STD_SLOT_payload_lsType = MEM_ISS_to_MEM_RRD_STD_SLOT_payload_lsType;
-  assign when_Pipeline_l158_74 = (! MEM_ADDR_arbitration_isStuck);
+  assign when_Pipeline_l158_90 = (! MEM_ADDR_arbitration_isStuck);
   assign _zz_MEM_ADDR_STD_SLOT_payload_lsType = MEM_RRD_to_MEM_ADDR_STD_SLOT_payload_lsType;
-  assign when_Pipeline_l158_75 = (! MEM_MEM1_arbitration_isStuck);
-  assign _zz_MEM_MEM1_STD_SLOT_payload_lsType = MEM_ADDR_to_MEM_MEM1_STD_SLOT_payload_lsType;
-  assign when_Pipeline_l158_76 = (! MEM_MEM2_arbitration_isStuck);
-  assign _zz_MEM_MEM2_STD_SLOT_payload_lsType = MEM_MEM1_to_MEM_MEM2_STD_SLOT_payload_lsType;
-  assign when_Pipeline_l158_77 = (! MEM_WB_arbitration_isStuck);
-  assign _zz_MEM_WB_STD_SLOT_payload_lsType = MEM_MEM2_to_MEM_WB_STD_SLOT_payload_lsType;
-  assign when_Pipeline_l158_78 = (! MEM_WB2_arbitration_isStuck);
-  assign _zz_MEM_WB2_STD_SLOT_payload_lsType = MEM_WB_to_MEM_WB2_STD_SLOT_payload_lsType;
-  assign when_Pipeline_l158_79 = (! MEM_ADDR_arbitration_isStuck);
-  assign when_Pipeline_l158_80 = (! MEM_MEM1_arbitration_isStuck);
-  assign when_Pipeline_l158_81 = (! MEM_MEM2_arbitration_isStuck);
-  assign when_Pipeline_l158_82 = (! MEM_WB_arbitration_isStuck);
-  assign when_Pipeline_l158_83 = (! MEM_ADDR_arbitration_isStuck);
-  assign when_Pipeline_l158_84 = (! MEM_MEM1_arbitration_isStuck);
-  assign when_Pipeline_l158_85 = (! MEM_MEM2_arbitration_isStuck);
-  assign when_Pipeline_l158_86 = (! MEM_WB_arbitration_isStuck);
-  assign when_Pipeline_l158_87 = (! MEM_MEM1_arbitration_isStuck);
-  assign when_Pipeline_l158_88 = (! MEM_MEM2_arbitration_isStuck);
-  assign when_Pipeline_l158_89 = (! MEM_MEM1_arbitration_isStuck);
-  assign when_Pipeline_l158_90 = (! MEM_MEM1_arbitration_isStuck);
   assign when_Pipeline_l158_91 = (! MEM_MEM1_arbitration_isStuck);
-  assign when_Pipeline_l158_92 = (! MEM_MEM1_arbitration_isStuck);
-  assign when_Pipeline_l158_93 = (! MEM_MEM2_arbitration_isStuck);
-  assign when_Pipeline_l158_94 = (! MEM_WB_arbitration_isStuck);
-  assign when_Pipeline_l158_95 = (! MEM_MEM1_arbitration_isStuck);
-  assign when_Pipeline_l158_96 = (! MEM_MEM2_arbitration_isStuck);
-  assign when_Pipeline_l158_97 = (! MEM_WB_arbitration_isStuck);
-  assign when_Pipeline_l158_98 = (! MEM_MEM1_arbitration_isStuck);
-  assign when_Pipeline_l158_99 = (! MEM_MEM2_arbitration_isStuck);
-  assign when_Pipeline_l158_100 = (! MEM_WB_arbitration_isStuck);
+  assign _zz_MEM_MEM1_STD_SLOT_payload_lsType = MEM_ADDR_to_MEM_MEM1_STD_SLOT_payload_lsType;
+  assign when_Pipeline_l158_92 = (! MEM_MEM2_arbitration_isStuck);
+  assign _zz_MEM_MEM2_STD_SLOT_payload_lsType = MEM_MEM1_to_MEM_MEM2_STD_SLOT_payload_lsType;
+  assign when_Pipeline_l158_93 = (! MEM_WB_arbitration_isStuck);
+  assign _zz_MEM_WB_STD_SLOT_payload_lsType = MEM_MEM2_to_MEM_WB_STD_SLOT_payload_lsType;
+  assign when_Pipeline_l158_94 = (! MEM_WB2_arbitration_isStuck);
+  assign _zz_MEM_WB2_STD_SLOT_payload_lsType = MEM_WB_to_MEM_WB2_STD_SLOT_payload_lsType;
+  assign when_Pipeline_l158_95 = (! MEM_ADDR_arbitration_isStuck);
+  assign when_Pipeline_l158_96 = (! MEM_MEM1_arbitration_isStuck);
+  assign when_Pipeline_l158_97 = (! MEM_MEM2_arbitration_isStuck);
+  assign when_Pipeline_l158_98 = (! MEM_WB_arbitration_isStuck);
+  assign when_Pipeline_l158_99 = (! MEM_ADDR_arbitration_isStuck);
+  assign when_Pipeline_l158_100 = (! MEM_MEM1_arbitration_isStuck);
   assign when_Pipeline_l158_101 = (! MEM_MEM2_arbitration_isStuck);
   assign when_Pipeline_l158_102 = (! MEM_WB_arbitration_isStuck);
-  assign when_Pipeline_l158_103 = (! MEM_MEM2_arbitration_isStuck);
-  assign when_Pipeline_l158_104 = (! MEM_WB_arbitration_isStuck);
-  assign when_Pipeline_l158_105 = (! MEM_MEM2_arbitration_isStuck);
-  assign when_Pipeline_l158_106 = (! MEM_WB_arbitration_isStuck);
-  assign when_Pipeline_l158_107 = (! MEM_MEM2_arbitration_isStuck);
-  assign when_Pipeline_l158_108 = (! MEM_MEM2_arbitration_isStuck);
+  assign when_Pipeline_l158_103 = (! MEM_MEM1_arbitration_isStuck);
+  assign when_Pipeline_l158_104 = (! MEM_MEM2_arbitration_isStuck);
+  assign when_Pipeline_l158_105 = (! MEM_MEM1_arbitration_isStuck);
+  assign when_Pipeline_l158_106 = (! MEM_MEM1_arbitration_isStuck);
+  assign when_Pipeline_l158_107 = (! MEM_MEM1_arbitration_isStuck);
+  assign when_Pipeline_l158_108 = (! MEM_MEM1_arbitration_isStuck);
   assign when_Pipeline_l158_109 = (! MEM_MEM2_arbitration_isStuck);
-  assign when_Pipeline_l158_110 = (! MEM_MEM2_arbitration_isStuck);
-  assign when_Pipeline_l158_111 = (! MEM_MEM2_arbitration_isStuck);
-  assign when_Pipeline_l158_112 = (! MEM_WB_arbitration_isStuck);
-  assign when_Pipeline_l158_113 = (! MEM_MEM2_arbitration_isStuck);
-  assign when_Pipeline_l158_114 = (! MEM_WB_arbitration_isStuck);
+  assign when_Pipeline_l158_110 = (! MEM_WB_arbitration_isStuck);
+  assign when_Pipeline_l158_111 = (! MEM_MEM1_arbitration_isStuck);
+  assign when_Pipeline_l158_112 = (! MEM_MEM2_arbitration_isStuck);
+  assign when_Pipeline_l158_113 = (! MEM_WB_arbitration_isStuck);
+  assign when_Pipeline_l158_114 = (! MEM_MEM1_arbitration_isStuck);
   assign when_Pipeline_l158_115 = (! MEM_MEM2_arbitration_isStuck);
   assign when_Pipeline_l158_116 = (! MEM_WB_arbitration_isStuck);
   assign when_Pipeline_l158_117 = (! MEM_MEM2_arbitration_isStuck);
   assign when_Pipeline_l158_118 = (! MEM_WB_arbitration_isStuck);
+  assign when_Pipeline_l158_119 = (! MEM_MEM2_arbitration_isStuck);
+  assign when_Pipeline_l158_120 = (! MEM_WB_arbitration_isStuck);
+  assign when_Pipeline_l158_121 = (! MEM_MEM2_arbitration_isStuck);
+  assign when_Pipeline_l158_122 = (! MEM_WB_arbitration_isStuck);
+  assign when_Pipeline_l158_123 = (! MEM_MEM2_arbitration_isStuck);
+  assign when_Pipeline_l158_124 = (! MEM_MEM2_arbitration_isStuck);
+  assign when_Pipeline_l158_125 = (! MEM_MEM2_arbitration_isStuck);
+  assign when_Pipeline_l158_126 = (! MEM_MEM2_arbitration_isStuck);
+  assign when_Pipeline_l158_127 = (! MEM_MEM2_arbitration_isStuck);
+  assign when_Pipeline_l158_128 = (! MEM_WB_arbitration_isStuck);
+  assign when_Pipeline_l158_129 = (! MEM_MEM2_arbitration_isStuck);
+  assign when_Pipeline_l158_130 = (! MEM_WB_arbitration_isStuck);
+  assign when_Pipeline_l158_131 = (! MEM_MEM2_arbitration_isStuck);
+  assign when_Pipeline_l158_132 = (! MEM_WB_arbitration_isStuck);
+  assign when_Pipeline_l158_133 = (! MEM_MEM2_arbitration_isStuck);
+  assign when_Pipeline_l158_134 = (! MEM_WB_arbitration_isStuck);
   assign _zz_MEM_MEM1_to_MEM_MEM2_LOAD_STORE_TYPE_1 = MEM_MEM1_LOAD_STORE_TYPE;
   assign _zz_MEM_MEM1_LOAD_STORE_TYPE = _zz_MEM_MEM1_LOAD_STORE_TYPE_1;
-  assign when_Pipeline_l158_119 = (! MEM_MEM2_arbitration_isStuck);
+  assign when_Pipeline_l158_135 = (! MEM_MEM2_arbitration_isStuck);
   assign _zz_MEM_MEM2_LOAD_STORE_TYPE = MEM_MEM1_to_MEM_MEM2_LOAD_STORE_TYPE;
-  assign when_Pipeline_l158_120 = (! MEM_WB_arbitration_isStuck);
+  assign when_Pipeline_l158_136 = (! MEM_WB_arbitration_isStuck);
   assign MEM_ISS_arbitration_isFlushed = (({MEM_WB2_arbitration_flushNext,{MEM_WB_arbitration_flushNext,{MEM_MEM2_arbitration_flushNext,{MEM_MEM1_arbitration_flushNext,{_zz_MEM_ISS_arbitration_isFlushed,_zz_MEM_ISS_arbitration_isFlushed_1}}}}} != 6'h0) || ({MEM_WB2_arbitration_flushIt,{MEM_WB_arbitration_flushIt,{MEM_MEM2_arbitration_flushIt,{MEM_MEM1_arbitration_flushIt,{_zz_MEM_ISS_arbitration_isFlushed_2,_zz_MEM_ISS_arbitration_isFlushed_3}}}}} != 7'h0));
   assign MEM_RRD_arbitration_isFlushed = (({MEM_WB2_arbitration_flushNext,{MEM_WB_arbitration_flushNext,{MEM_MEM2_arbitration_flushNext,{MEM_MEM1_arbitration_flushNext,MEM_ADDR_arbitration_flushNext}}}} != 5'h0) || ({MEM_WB2_arbitration_flushIt,{MEM_WB_arbitration_flushIt,{MEM_MEM2_arbitration_flushIt,{MEM_MEM1_arbitration_flushIt,{_zz_MEM_RRD_arbitration_isFlushed,_zz_MEM_RRD_arbitration_isFlushed_1}}}}} != 6'h0));
   assign MEM_ADDR_arbitration_isFlushed = (({MEM_WB2_arbitration_flushNext,{MEM_WB_arbitration_flushNext,{MEM_MEM2_arbitration_flushNext,MEM_MEM1_arbitration_flushNext}}} != 4'b0000) || ({MEM_WB2_arbitration_flushIt,{MEM_WB_arbitration_flushIt,{MEM_MEM2_arbitration_flushIt,{MEM_MEM1_arbitration_flushIt,MEM_ADDR_arbitration_flushIt}}}} != 5'h0));
@@ -73747,24 +73971,24 @@ module MyCPUCore (
   assign MEM_WB2_arbitration_isFiring = ((MEM_WB2_arbitration_isValid && (! MEM_WB2_arbitration_isStuck)) && (! MEM_WB2_arbitration_removeIt));
   assign MEM_ISS_arbitration_isValidOnEntry = 1'b1;
   assign when_Pipeline_l198_6 = (! MEM_ISS_arbitration_isStuck);
-  assign when_Pipeline_l208_15 = ((! MEM_RRD_arbitration_isStuck) || MEM_RRD_arbitration_removeIt);
-  assign when_Pipeline_l211_15 = (! MEM_RRD_arbitration_isStuck);
-  assign when_Pipeline_l213_15 = ((! MEM_ISS_arbitration_isStuck) && (! MEM_ISS_arbitration_removeIt));
-  assign when_Pipeline_l208_16 = ((! MEM_ADDR_arbitration_isStuck) || MEM_ADDR_arbitration_removeIt);
-  assign when_Pipeline_l211_16 = (! MEM_ADDR_arbitration_isStuck);
-  assign when_Pipeline_l213_16 = ((! MEM_RRD_arbitration_isStuck) && (! MEM_RRD_arbitration_removeIt));
-  assign when_Pipeline_l208_17 = ((! MEM_MEM1_arbitration_isStuck) || MEM_MEM1_arbitration_removeIt);
-  assign when_Pipeline_l211_17 = (! MEM_MEM1_arbitration_isStuck);
-  assign when_Pipeline_l213_17 = ((! MEM_ADDR_arbitration_isStuck) && (! MEM_ADDR_arbitration_removeIt));
-  assign when_Pipeline_l208_18 = ((! MEM_MEM2_arbitration_isStuck) || MEM_MEM2_arbitration_removeIt);
-  assign when_Pipeline_l211_18 = (! MEM_MEM2_arbitration_isStuck);
-  assign when_Pipeline_l213_18 = ((! MEM_MEM1_arbitration_isStuck) && (! MEM_MEM1_arbitration_removeIt));
-  assign when_Pipeline_l208_19 = ((! MEM_WB_arbitration_isStuck) || MEM_WB_arbitration_removeIt);
-  assign when_Pipeline_l211_19 = (! MEM_WB_arbitration_isStuck);
-  assign when_Pipeline_l213_19 = ((! MEM_MEM2_arbitration_isStuck) && (! MEM_MEM2_arbitration_removeIt));
-  assign when_Pipeline_l208_20 = ((! MEM_WB2_arbitration_isStuck) || MEM_WB2_arbitration_removeIt);
-  assign when_Pipeline_l211_20 = (! MEM_WB2_arbitration_isStuck);
-  assign when_Pipeline_l213_20 = ((! MEM_WB_arbitration_isStuck) && (! MEM_WB_arbitration_removeIt));
+  assign when_Pipeline_l208_16 = ((! MEM_RRD_arbitration_isStuck) || MEM_RRD_arbitration_removeIt);
+  assign when_Pipeline_l211_16 = (! MEM_RRD_arbitration_isStuck);
+  assign when_Pipeline_l213_16 = ((! MEM_ISS_arbitration_isStuck) && (! MEM_ISS_arbitration_removeIt));
+  assign when_Pipeline_l208_17 = ((! MEM_ADDR_arbitration_isStuck) || MEM_ADDR_arbitration_removeIt);
+  assign when_Pipeline_l211_17 = (! MEM_ADDR_arbitration_isStuck);
+  assign when_Pipeline_l213_17 = ((! MEM_RRD_arbitration_isStuck) && (! MEM_RRD_arbitration_removeIt));
+  assign when_Pipeline_l208_18 = ((! MEM_MEM1_arbitration_isStuck) || MEM_MEM1_arbitration_removeIt);
+  assign when_Pipeline_l211_18 = (! MEM_MEM1_arbitration_isStuck);
+  assign when_Pipeline_l213_18 = ((! MEM_ADDR_arbitration_isStuck) && (! MEM_ADDR_arbitration_removeIt));
+  assign when_Pipeline_l208_19 = ((! MEM_MEM2_arbitration_isStuck) || MEM_MEM2_arbitration_removeIt);
+  assign when_Pipeline_l211_19 = (! MEM_MEM2_arbitration_isStuck);
+  assign when_Pipeline_l213_19 = ((! MEM_MEM1_arbitration_isStuck) && (! MEM_MEM1_arbitration_removeIt));
+  assign when_Pipeline_l208_20 = ((! MEM_WB_arbitration_isStuck) || MEM_WB_arbitration_removeIt);
+  assign when_Pipeline_l211_20 = (! MEM_WB_arbitration_isStuck);
+  assign when_Pipeline_l213_20 = ((! MEM_MEM2_arbitration_isStuck) && (! MEM_MEM2_arbitration_removeIt));
+  assign when_Pipeline_l208_21 = ((! MEM_WB2_arbitration_isStuck) || MEM_WB2_arbitration_removeIt);
+  assign when_Pipeline_l211_21 = (! MEM_WB2_arbitration_isStuck);
+  assign when_Pipeline_l213_21 = ((! MEM_WB_arbitration_isStuck) && (! MEM_WB_arbitration_removeIt));
   assign _zz_when_CompressedFIFO_l59 = (! MulDivIssueQueuePlugin_queue_0_valid);
   assign _zz_when_CompressedFIFO_l59_1 = (MulDivIssueQueuePlugin_queue_0_valid && (! MulDivIssueQueuePlugin_queue_1_valid));
   assign MulDivIssueQueuePlugin_queueIO_pushPorts_0_ready = (! MulDivIssueQueuePlugin_queue_2_valid);
@@ -73878,44 +74102,44 @@ module MyCPUCore (
   assign when_InterruptHandlerPlugin_l107 = CSRPlugin_writeData[0];
   assign when_CSRPlugin_l93_2 = CSRPlugin_writeData[0];
   always @(*) begin
-    IF2_ICachePlugin_cacheRefillFSM_stateNext = IF2_ICachePlugin_cacheRefillFSM_stateReg;
-    case(IF2_ICachePlugin_cacheRefillFSM_stateReg)
-      IF2_ICachePlugin_cacheRefillFSM_enumDef_waitAXI : begin
+    IF3_ICachePlugin_cacheRefillFSM_stateNext = IF3_ICachePlugin_cacheRefillFSM_stateReg;
+    case(IF3_ICachePlugin_cacheRefillFSM_stateReg)
+      IF3_ICachePlugin_cacheRefillFSM_enumDef_waitAXI : begin
         if(ICachePlugin_iBus_ar_ready) begin
-          IF2_ICachePlugin_cacheRefillFSM_stateNext = IF2_ICachePlugin_cacheRefillFSM_enumDef_readMem;
+          IF3_ICachePlugin_cacheRefillFSM_stateNext = IF3_ICachePlugin_cacheRefillFSM_enumDef_readMem;
         end
       end
-      IF2_ICachePlugin_cacheRefillFSM_enumDef_readMem : begin
-        if(when_ICachePlugin_l197) begin
-          IF2_ICachePlugin_cacheRefillFSM_stateNext = IF2_ICachePlugin_cacheRefillFSM_enumDef_commit;
+      IF3_ICachePlugin_cacheRefillFSM_enumDef_readMem : begin
+        if(when_ICachePlugin_l199) begin
+          IF3_ICachePlugin_cacheRefillFSM_stateNext = IF3_ICachePlugin_cacheRefillFSM_enumDef_commit;
         end
       end
-      IF2_ICachePlugin_cacheRefillFSM_enumDef_commit : begin
-        IF2_ICachePlugin_cacheRefillFSM_stateNext = IF2_ICachePlugin_cacheRefillFSM_enumDef_finish;
+      IF3_ICachePlugin_cacheRefillFSM_enumDef_commit : begin
+        IF3_ICachePlugin_cacheRefillFSM_stateNext = IF3_ICachePlugin_cacheRefillFSM_enumDef_finish;
       end
-      IF2_ICachePlugin_cacheRefillFSM_enumDef_finish : begin
-        if(when_ICachePlugin_l228) begin
-          IF2_ICachePlugin_cacheRefillFSM_stateNext = IF2_ICachePlugin_cacheRefillFSM_enumDef_BOOT;
+      IF3_ICachePlugin_cacheRefillFSM_enumDef_finish : begin
+        if(when_ICachePlugin_l230) begin
+          IF3_ICachePlugin_cacheRefillFSM_stateNext = IF3_ICachePlugin_cacheRefillFSM_enumDef_BOOT;
         end
       end
       default : begin
-        if(when_ICachePlugin_l160) begin
-          IF2_ICachePlugin_cacheRefillFSM_stateNext = IF2_ICachePlugin_cacheRefillFSM_enumDef_waitAXI;
+        if(when_ICachePlugin_l162) begin
+          IF3_ICachePlugin_cacheRefillFSM_stateNext = IF3_ICachePlugin_cacheRefillFSM_enumDef_waitAXI;
         end
       end
     endcase
-    if(IF2_ICachePlugin_cacheRefillFSM_wantKill) begin
-      IF2_ICachePlugin_cacheRefillFSM_stateNext = IF2_ICachePlugin_cacheRefillFSM_enumDef_BOOT;
+    if(IF3_ICachePlugin_cacheRefillFSM_wantKill) begin
+      IF3_ICachePlugin_cacheRefillFSM_stateNext = IF3_ICachePlugin_cacheRefillFSM_enumDef_BOOT;
     end
   end
 
-  assign _zz_1463 = ({1'd0,1'b1} <<< IF2_ICachePlugin_cacheRefillFSM_replaceWay);
+  assign _zz_1463 = ({1'd0,1'b1} <<< IF3_ICachePlugin_cacheRefillFSM_replaceWay);
   assign _zz_1464 = _zz_1463[0];
   assign _zz_1465 = _zz_1463[1];
-  assign _zz_1466 = ({1'd0,1'b1} <<< IF2_ICachePlugin_cacheRefillFSM_replaceWay);
+  assign _zz_1466 = ({1'd0,1'b1} <<< IF3_ICachePlugin_cacheRefillFSM_replaceWay);
   assign _zz_1467 = _zz_1466[0];
   assign _zz_1468 = _zz_1466[1];
-  assign _zz_1469 = ({15'd0,1'b1} <<< IF2_ICachePlugin_cacheRefillFSM_rspId_value);
+  assign _zz_1469 = ({15'd0,1'b1} <<< IF3_ICachePlugin_cacheRefillFSM_rspId_value);
   assign _zz_1470 = _zz_1469[0];
   assign _zz_1471 = _zz_1469[1];
   assign _zz_1472 = _zz_1469[2];
@@ -73932,23 +74156,23 @@ module MyCPUCore (
   assign _zz_1483 = _zz_1469[13];
   assign _zz_1484 = _zz_1469[14];
   assign _zz_1485 = _zz_1469[15];
-  assign when_ICachePlugin_l197 = (ICachePlugin_iBus_r_valid && ICachePlugin_iBus_r_payload_last);
+  assign when_ICachePlugin_l199 = (ICachePlugin_iBus_r_valid && ICachePlugin_iBus_r_payload_last);
   always @(*) begin
-    _zz_io_write_payload_data_tags_0 = IF2_ICACHE_INFO_tags_0;
+    _zz_io_write_payload_data_tags_0 = IF3_ICACHE_INFO_tags_0;
     if(_zz_1486[0]) begin
-      _zz_io_write_payload_data_tags_0 = IF2_ICachePlugin_tag;
+      _zz_io_write_payload_data_tags_0 = IF3_ICachePlugin_tag;
     end
   end
 
   always @(*) begin
-    _zz_io_write_payload_data_tags_1 = IF2_ICACHE_INFO_tags_1;
+    _zz_io_write_payload_data_tags_1 = IF3_ICACHE_INFO_tags_1;
     if(_zz_1486[1]) begin
-      _zz_io_write_payload_data_tags_1 = IF2_ICachePlugin_tag;
+      _zz_io_write_payload_data_tags_1 = IF3_ICachePlugin_tag;
     end
   end
 
-  assign _zz_1486 = ({1'd0,1'b1} <<< IF2_ICachePlugin_cacheRefillFSM_replaceWay);
-  assign _zz_1487 = ({63'd0,1'b1} <<< IF2_ICachePlugin_idx);
+  assign _zz_1486 = ({1'd0,1'b1} <<< IF3_ICachePlugin_cacheRefillFSM_replaceWay);
+  assign _zz_1487 = ({63'd0,1'b1} <<< IF3_ICachePlugin_idx);
   assign _zz_1488 = _zz_1487[0];
   assign _zz_1489 = _zz_1487[1];
   assign _zz_1490 = _zz_1487[2];
@@ -74013,9 +74237,9 @@ module MyCPUCore (
   assign _zz_1549 = _zz_1487[61];
   assign _zz_1550 = _zz_1487[62];
   assign _zz_1551 = _zz_1487[63];
-  assign _zz_1552 = ({1'd0,1'b1} <<< IF2_ICachePlugin_cacheRefillFSM_replaceWay);
-  assign when_ICachePlugin_l228 = (! IF2_arbitration_isStuck);
-  assign when_ICachePlugin_l160 = (IF2_ICachePlugin_reqValid && (! IF2_ICachePlugin_hit));
+  assign _zz_1552 = ({1'd0,1'b1} <<< IF3_ICachePlugin_cacheRefillFSM_replaceWay);
+  assign when_ICachePlugin_l230 = (! IF3_arbitration_isStuck);
+  assign when_ICachePlugin_l162 = (IF3_ICachePlugin_reqValid && (! IF3_ICachePlugin_hit));
   always @(*) begin
     MEM_MEM2_DCachePlugin_dirtyLineWritebackFSM_stateNext = MEM_MEM2_DCachePlugin_dirtyLineWritebackFSM_stateReg;
     case(MEM_MEM2_DCachePlugin_dirtyLineWritebackFSM_stateReg)
@@ -76130,8 +76354,9 @@ module MyCPUCore (
       WaitHandlerPlugin_inLowPowerMode <= 1'b0;
       ProgramCounterPlugin_backendJumpInterface_rValid <= 1'b0;
       IF1_ProgramCounterPlugin_regPC <= 32'h1c000000;
-      IF2_ICachePlugin_cacheRefillFSM_rspId_value <= 4'b0000;
+      IF3_ICachePlugin_cacheRefillFSM_rspId_value <= 4'b0000;
       MULDIV_EXE_MulDivExecutePlugin_mulCounter_value <= 2'b00;
+      MULDIV_EXE_MulDivExecutePlugin_in16BitsHeld <= 1'b0;
       MEM_MEM2_DCachePlugin_dirtyLineWritebackFSM_wayIdx <= 1'b0;
       MEM_MEM2_DCachePlugin_dirtyLineWritebackFSM_rspId_value <= 4'b0000;
       MEM_MEM2_DCachePlugin_cacheRefillFSM_rspId_value <= 4'b0000;
@@ -76141,6 +76366,8 @@ module MyCPUCore (
       IF1_arbitration_isValid <= 1'b1;
       IF2_arbitration_isValid <= 1'b0;
       IF2_arbitration_isValidOnEntry <= 1'b0;
+      IF3_arbitration_isValid <= 1'b0;
+      IF3_arbitration_isValidOnEntry <= 1'b0;
       ID_arbitration_isValid <= 1'b1;
       RENAME_arbitration_isValid <= 1'b0;
       RENAME_arbitration_isValidOnEntry <= 1'b0;
@@ -76188,7 +76415,7 @@ module MyCPUCore (
       MEM_WB2_arbitration_isValid <= 1'b0;
       MEM_WB2_arbitration_isValidOnEntry <= 1'b0;
       CommitPlugin_port0Commit_uncachedProcess_fsm_stateReg <= CommitPlugin_port0Commit_uncachedProcess_fsm_enumDef_BOOT;
-      IF2_ICachePlugin_cacheRefillFSM_stateReg <= IF2_ICachePlugin_cacheRefillFSM_enumDef_BOOT;
+      IF3_ICachePlugin_cacheRefillFSM_stateReg <= IF3_ICachePlugin_cacheRefillFSM_enumDef_BOOT;
       MEM_MEM2_DCachePlugin_dirtyLineWritebackFSM_stateReg <= MEM_MEM2_DCachePlugin_dirtyLineWritebackFSM_enumDef_BOOT;
       MEM_MEM2_DCachePlugin_fixUncacheFSM_stateReg <= MEM_MEM2_DCachePlugin_fixUncacheFSM_enumDef_BOOT;
       MEM_MEM2_DCachePlugin_CACHEFSM_stateReg <= MEM_MEM2_DCachePlugin_CACHEFSM_enumDef_BOOT;
@@ -78945,7 +79172,7 @@ module MyCPUCore (
         TLBOpType_NONE : begin
         end
         TLBOpType_TLBSRCH : begin
-          if(when_MMUPlugin_l404) begin
+          if(when_MMUPlugin_l445) begin
             MMUPlugin_TLBIDX_INDEX <= _zz_MMUPlugin_TLBIDX_INDEX_4;
             MMUPlugin_TLBIDX_NE <= 1'b0;
           end else begin
@@ -78990,7 +79217,7 @@ module MyCPUCore (
           end
         end
         TLBOpType_TLBWR : begin
-          if(when_MMUPlugin_l455) begin
+          if(when_MMUPlugin_l496) begin
             if(_zz_279) begin
               MMUPlugin_TLBTable_0_E <= 1'b1;
             end
@@ -79764,7 +79991,7 @@ module MyCPUCore (
         end
         TLBOpType_TLBFILL : begin
           MMUPlugin_victim_idx <= (MMUPlugin_victim_idx + 4'b0001);
-          if(when_MMUPlugin_l479) begin
+          if(when_MMUPlugin_l520) begin
             if(_zz_296) begin
               MMUPlugin_TLBTable_0_E <= 1'b1;
             end
@@ -80599,8 +80826,8 @@ module MyCPUCore (
       if(when_ProgramCounterPlugin_l48) begin
         IF1_ProgramCounterPlugin_regPC <= ProgramCounterPlugin_nextPC;
       end
-      IF2_ICachePlugin_cacheRefillFSM_rspId_value <= IF2_ICachePlugin_cacheRefillFSM_rspId_valueNext;
-      if(when_ICachePlugin_l263) begin
+      IF3_ICachePlugin_cacheRefillFSM_rspId_value <= IF3_ICachePlugin_cacheRefillFSM_rspId_valueNext;
+      if(when_ICachePlugin_l265) begin
         case(CommitPlugin_cacheOp_payload_op)
           CacheOpType_None : begin
           end
@@ -81513,7 +81740,7 @@ module MyCPUCore (
         endcase
       end
       if(CommitPlugin_predUpdate_valid) begin
-        if(when_GlobalPredictorBTBPlugin_l204) begin
+        if(when_GlobalPredictorBTBPlugin_l199) begin
           if(_zz_427) begin
             GlobalPredictorBTBPlugin_valid_0 <= 1'b0;
           end
@@ -84587,7 +84814,7 @@ module MyCPUCore (
             GlobalPredictorBTBPlugin_valid_1023 <= 1'b0;
           end
         end else begin
-          if(when_GlobalPredictorBTBPlugin_l207) begin
+          if(when_GlobalPredictorBTBPlugin_l202) begin
             if(_zz_427) begin
               GlobalPredictorBTBPlugin_valid_0 <= 1'b1;
             end
@@ -88340,6 +88567,9 @@ module MyCPUCore (
         RenamePlugin_sRAT_30 <= RenamePlugin_aRAT_30;
       end
       MULDIV_EXE_MulDivExecutePlugin_mulCounter_value <= MULDIV_EXE_MulDivExecutePlugin_mulCounter_valueNext;
+      if(when_MulDivExecutePlugin_l136) begin
+        MULDIV_EXE_MulDivExecutePlugin_in16BitsHeld <= MULDIV_EXE_MulDivExecutePlugin_in16Bits;
+      end
       MEM_MEM2_DCachePlugin_dirtyLineWritebackFSM_rspId_value <= MEM_MEM2_DCachePlugin_dirtyLineWritebackFSM_rspId_valueNext;
       MEM_MEM2_DCachePlugin_cacheRefillFSM_rspId_value <= MEM_MEM2_DCachePlugin_cacheRefillFSM_rspId_valueNext;
       if(io_udBus_aw_fire) begin
@@ -88441,29 +88671,39 @@ module MyCPUCore (
         IF2_arbitration_isValid <= IF1_arbitration_isValid;
         IF2_arbitration_isValidOnEntry <= IF1_arbitration_isValid;
       end
+      if(when_Pipeline_l208_1) begin
+        IF3_arbitration_isValid <= 1'b0;
+      end
+      if(when_Pipeline_l211_1) begin
+        IF3_arbitration_isValidOnEntry <= 1'b0;
+      end
+      if(when_Pipeline_l213_1) begin
+        IF3_arbitration_isValid <= IF2_arbitration_isValid;
+        IF3_arbitration_isValidOnEntry <= IF2_arbitration_isValid;
+      end
       if(ID_arbitration_removeIt) begin
         ID_arbitration_isValid <= 1'b0;
       end
       if(when_Pipeline_l198_1) begin
         ID_arbitration_isValid <= 1'b1;
       end
-      if(when_Pipeline_l208_1) begin
+      if(when_Pipeline_l208_2) begin
         RENAME_arbitration_isValid <= 1'b0;
       end
-      if(when_Pipeline_l211_1) begin
+      if(when_Pipeline_l211_2) begin
         RENAME_arbitration_isValidOnEntry <= 1'b0;
       end
-      if(when_Pipeline_l213_1) begin
+      if(when_Pipeline_l213_2) begin
         RENAME_arbitration_isValid <= ID_arbitration_isValid;
         RENAME_arbitration_isValidOnEntry <= ID_arbitration_isValid;
       end
-      if(when_Pipeline_l208_2) begin
+      if(when_Pipeline_l208_3) begin
         DISPATCH_arbitration_isValid <= 1'b0;
       end
-      if(when_Pipeline_l211_2) begin
+      if(when_Pipeline_l211_3) begin
         DISPATCH_arbitration_isValidOnEntry <= 1'b0;
       end
-      if(when_Pipeline_l213_2) begin
+      if(when_Pipeline_l213_3) begin
         DISPATCH_arbitration_isValid <= RENAME_arbitration_isValid;
         DISPATCH_arbitration_isValidOnEntry <= RENAME_arbitration_isValid;
       end
@@ -88473,33 +88713,33 @@ module MyCPUCore (
       if(when_Pipeline_l198_2) begin
         INT2_ISS_arbitration_isValid <= 1'b1;
       end
-      if(when_Pipeline_l208_3) begin
+      if(when_Pipeline_l208_4) begin
         INT2_RRD_arbitration_isValid <= 1'b0;
       end
-      if(when_Pipeline_l211_3) begin
+      if(when_Pipeline_l211_4) begin
         INT2_RRD_arbitration_isValidOnEntry <= 1'b0;
       end
-      if(when_Pipeline_l213_3) begin
+      if(when_Pipeline_l213_4) begin
         INT2_RRD_arbitration_isValid <= INT2_ISS_arbitration_isValid;
         INT2_RRD_arbitration_isValidOnEntry <= INT2_ISS_arbitration_isValid;
       end
-      if(when_Pipeline_l208_4) begin
+      if(when_Pipeline_l208_5) begin
         INT2_EXE_arbitration_isValid <= 1'b0;
       end
-      if(when_Pipeline_l211_4) begin
+      if(when_Pipeline_l211_5) begin
         INT2_EXE_arbitration_isValidOnEntry <= 1'b0;
       end
-      if(when_Pipeline_l213_4) begin
+      if(when_Pipeline_l213_5) begin
         INT2_EXE_arbitration_isValid <= INT2_RRD_arbitration_isValid;
         INT2_EXE_arbitration_isValidOnEntry <= INT2_RRD_arbitration_isValid;
       end
-      if(when_Pipeline_l208_5) begin
+      if(when_Pipeline_l208_6) begin
         INT2_WB_arbitration_isValid <= 1'b0;
       end
-      if(when_Pipeline_l211_5) begin
+      if(when_Pipeline_l211_6) begin
         INT2_WB_arbitration_isValidOnEntry <= 1'b0;
       end
-      if(when_Pipeline_l213_5) begin
+      if(when_Pipeline_l213_6) begin
         INT2_WB_arbitration_isValid <= INT2_EXE_arbitration_isValid;
         INT2_WB_arbitration_isValidOnEntry <= INT2_EXE_arbitration_isValid;
       end
@@ -88509,33 +88749,33 @@ module MyCPUCore (
       if(when_Pipeline_l198_3) begin
         INT1_ISS_arbitration_isValid <= 1'b1;
       end
-      if(when_Pipeline_l208_6) begin
+      if(when_Pipeline_l208_7) begin
         INT1_RRD_arbitration_isValid <= 1'b0;
       end
-      if(when_Pipeline_l211_6) begin
+      if(when_Pipeline_l211_7) begin
         INT1_RRD_arbitration_isValidOnEntry <= 1'b0;
       end
-      if(when_Pipeline_l213_6) begin
+      if(when_Pipeline_l213_7) begin
         INT1_RRD_arbitration_isValid <= INT1_ISS_arbitration_isValid;
         INT1_RRD_arbitration_isValidOnEntry <= INT1_ISS_arbitration_isValid;
       end
-      if(when_Pipeline_l208_7) begin
+      if(when_Pipeline_l208_8) begin
         INT1_EXE_arbitration_isValid <= 1'b0;
       end
-      if(when_Pipeline_l211_7) begin
+      if(when_Pipeline_l211_8) begin
         INT1_EXE_arbitration_isValidOnEntry <= 1'b0;
       end
-      if(when_Pipeline_l213_7) begin
+      if(when_Pipeline_l213_8) begin
         INT1_EXE_arbitration_isValid <= INT1_RRD_arbitration_isValid;
         INT1_EXE_arbitration_isValidOnEntry <= INT1_RRD_arbitration_isValid;
       end
-      if(when_Pipeline_l208_8) begin
+      if(when_Pipeline_l208_9) begin
         INT1_WB_arbitration_isValid <= 1'b0;
       end
-      if(when_Pipeline_l211_8) begin
+      if(when_Pipeline_l211_9) begin
         INT1_WB_arbitration_isValidOnEntry <= 1'b0;
       end
-      if(when_Pipeline_l213_8) begin
+      if(when_Pipeline_l213_9) begin
         INT1_WB_arbitration_isValid <= INT1_EXE_arbitration_isValid;
         INT1_WB_arbitration_isValidOnEntry <= INT1_EXE_arbitration_isValid;
       end
@@ -88545,33 +88785,33 @@ module MyCPUCore (
       if(when_Pipeline_l198_4) begin
         INT0_ISS_arbitration_isValid <= 1'b1;
       end
-      if(when_Pipeline_l208_9) begin
+      if(when_Pipeline_l208_10) begin
         INT0_RRD_arbitration_isValid <= 1'b0;
       end
-      if(when_Pipeline_l211_9) begin
+      if(when_Pipeline_l211_10) begin
         INT0_RRD_arbitration_isValidOnEntry <= 1'b0;
       end
-      if(when_Pipeline_l213_9) begin
+      if(when_Pipeline_l213_10) begin
         INT0_RRD_arbitration_isValid <= INT0_ISS_arbitration_isValid;
         INT0_RRD_arbitration_isValidOnEntry <= INT0_ISS_arbitration_isValid;
       end
-      if(when_Pipeline_l208_10) begin
+      if(when_Pipeline_l208_11) begin
         INT0_EXE_arbitration_isValid <= 1'b0;
       end
-      if(when_Pipeline_l211_10) begin
+      if(when_Pipeline_l211_11) begin
         INT0_EXE_arbitration_isValidOnEntry <= 1'b0;
       end
-      if(when_Pipeline_l213_10) begin
+      if(when_Pipeline_l213_11) begin
         INT0_EXE_arbitration_isValid <= INT0_RRD_arbitration_isValid;
         INT0_EXE_arbitration_isValidOnEntry <= INT0_RRD_arbitration_isValid;
       end
-      if(when_Pipeline_l208_11) begin
+      if(when_Pipeline_l208_12) begin
         INT0_WB_arbitration_isValid <= 1'b0;
       end
-      if(when_Pipeline_l211_11) begin
+      if(when_Pipeline_l211_12) begin
         INT0_WB_arbitration_isValidOnEntry <= 1'b0;
       end
-      if(when_Pipeline_l213_11) begin
+      if(when_Pipeline_l213_12) begin
         INT0_WB_arbitration_isValid <= INT0_EXE_arbitration_isValid;
         INT0_WB_arbitration_isValidOnEntry <= INT0_EXE_arbitration_isValid;
       end
@@ -88581,52 +88821,52 @@ module MyCPUCore (
       if(when_Pipeline_l198_5) begin
         MULDIV_ISS_arbitration_isValid <= 1'b1;
       end
-      if(when_Pipeline_l208_12) begin
+      if(when_Pipeline_l208_13) begin
         MULDIV_RRD_arbitration_isValid <= 1'b0;
       end
-      if(when_Pipeline_l211_12) begin
+      if(when_Pipeline_l211_13) begin
         MULDIV_RRD_arbitration_isValidOnEntry <= 1'b0;
       end
-      if(when_Pipeline_l213_12) begin
+      if(when_Pipeline_l213_13) begin
         MULDIV_RRD_arbitration_isValid <= MULDIV_ISS_arbitration_isValid;
         MULDIV_RRD_arbitration_isValidOnEntry <= MULDIV_ISS_arbitration_isValid;
       end
-      if(when_Pipeline_l208_13) begin
+      if(when_Pipeline_l208_14) begin
         MULDIV_EXE_arbitration_isValid <= 1'b0;
       end
-      if(when_Pipeline_l211_13) begin
+      if(when_Pipeline_l211_14) begin
         MULDIV_EXE_arbitration_isValidOnEntry <= 1'b0;
       end
-      if(when_Pipeline_l213_13) begin
+      if(when_Pipeline_l213_14) begin
         MULDIV_EXE_arbitration_isValid <= MULDIV_RRD_arbitration_isValid;
         MULDIV_EXE_arbitration_isValidOnEntry <= MULDIV_RRD_arbitration_isValid;
       end
-      if(when_Pipeline_l208_14) begin
+      if(when_Pipeline_l208_15) begin
         MULDIV_WB_arbitration_isValid <= 1'b0;
       end
-      if(when_Pipeline_l211_14) begin
+      if(when_Pipeline_l211_15) begin
         MULDIV_WB_arbitration_isValidOnEntry <= 1'b0;
       end
-      if(when_Pipeline_l213_14) begin
+      if(when_Pipeline_l213_15) begin
         MULDIV_WB_arbitration_isValid <= MULDIV_EXE_arbitration_isValid;
         MULDIV_WB_arbitration_isValidOnEntry <= MULDIV_EXE_arbitration_isValid;
       end
-      if(when_Pipeline_l158_73) begin
+      if(when_Pipeline_l158_89) begin
         MEM_ISS_to_MEM_RRD_STD_SLOT_valid <= _zz_MEM_ISS_to_MEM_RRD_STD_SLOT_valid;
       end
-      if(when_Pipeline_l158_74) begin
+      if(when_Pipeline_l158_90) begin
         MEM_RRD_to_MEM_ADDR_STD_SLOT_valid <= _zz_MEM_RRD_to_MEM_ADDR_STD_SLOT_valid;
       end
-      if(when_Pipeline_l158_75) begin
+      if(when_Pipeline_l158_91) begin
         MEM_ADDR_to_MEM_MEM1_STD_SLOT_valid <= _zz_MEM_ADDR_to_MEM_MEM1_STD_SLOT_valid;
       end
-      if(when_Pipeline_l158_76) begin
+      if(when_Pipeline_l158_92) begin
         MEM_MEM1_to_MEM_MEM2_STD_SLOT_valid <= _zz_MEM_MEM1_to_MEM_MEM2_STD_SLOT_valid;
       end
-      if(when_Pipeline_l158_77) begin
+      if(when_Pipeline_l158_93) begin
         MEM_MEM2_to_MEM_WB_STD_SLOT_valid <= _zz_MEM_MEM2_to_MEM_WB_STD_SLOT_valid;
       end
-      if(when_Pipeline_l158_78) begin
+      if(when_Pipeline_l158_94) begin
         MEM_WB_to_MEM_WB2_STD_SLOT_valid <= _zz_MEM_WB_to_MEM_WB2_STD_SLOT_valid;
       end
       if(MEM_ISS_arbitration_removeIt) begin
@@ -88635,63 +88875,63 @@ module MyCPUCore (
       if(when_Pipeline_l198_6) begin
         MEM_ISS_arbitration_isValid <= 1'b1;
       end
-      if(when_Pipeline_l208_15) begin
+      if(when_Pipeline_l208_16) begin
         MEM_RRD_arbitration_isValid <= 1'b0;
       end
-      if(when_Pipeline_l211_15) begin
+      if(when_Pipeline_l211_16) begin
         MEM_RRD_arbitration_isValidOnEntry <= 1'b0;
       end
-      if(when_Pipeline_l213_15) begin
+      if(when_Pipeline_l213_16) begin
         MEM_RRD_arbitration_isValid <= MEM_ISS_arbitration_isValid;
         MEM_RRD_arbitration_isValidOnEntry <= MEM_ISS_arbitration_isValid;
       end
-      if(when_Pipeline_l208_16) begin
+      if(when_Pipeline_l208_17) begin
         MEM_ADDR_arbitration_isValid <= 1'b0;
       end
-      if(when_Pipeline_l211_16) begin
+      if(when_Pipeline_l211_17) begin
         MEM_ADDR_arbitration_isValidOnEntry <= 1'b0;
       end
-      if(when_Pipeline_l213_16) begin
+      if(when_Pipeline_l213_17) begin
         MEM_ADDR_arbitration_isValid <= MEM_RRD_arbitration_isValid;
         MEM_ADDR_arbitration_isValidOnEntry <= MEM_RRD_arbitration_isValid;
       end
-      if(when_Pipeline_l208_17) begin
+      if(when_Pipeline_l208_18) begin
         MEM_MEM1_arbitration_isValid <= 1'b0;
       end
-      if(when_Pipeline_l211_17) begin
+      if(when_Pipeline_l211_18) begin
         MEM_MEM1_arbitration_isValidOnEntry <= 1'b0;
       end
-      if(when_Pipeline_l213_17) begin
+      if(when_Pipeline_l213_18) begin
         MEM_MEM1_arbitration_isValid <= MEM_ADDR_arbitration_isValid;
         MEM_MEM1_arbitration_isValidOnEntry <= MEM_ADDR_arbitration_isValid;
       end
-      if(when_Pipeline_l208_18) begin
+      if(when_Pipeline_l208_19) begin
         MEM_MEM2_arbitration_isValid <= 1'b0;
       end
-      if(when_Pipeline_l211_18) begin
+      if(when_Pipeline_l211_19) begin
         MEM_MEM2_arbitration_isValidOnEntry <= 1'b0;
       end
-      if(when_Pipeline_l213_18) begin
+      if(when_Pipeline_l213_19) begin
         MEM_MEM2_arbitration_isValid <= MEM_MEM1_arbitration_isValid;
         MEM_MEM2_arbitration_isValidOnEntry <= MEM_MEM1_arbitration_isValid;
       end
-      if(when_Pipeline_l208_19) begin
+      if(when_Pipeline_l208_20) begin
         MEM_WB_arbitration_isValid <= 1'b0;
       end
-      if(when_Pipeline_l211_19) begin
+      if(when_Pipeline_l211_20) begin
         MEM_WB_arbitration_isValidOnEntry <= 1'b0;
       end
-      if(when_Pipeline_l213_19) begin
+      if(when_Pipeline_l213_20) begin
         MEM_WB_arbitration_isValid <= MEM_MEM2_arbitration_isValid;
         MEM_WB_arbitration_isValidOnEntry <= MEM_MEM2_arbitration_isValid;
       end
-      if(when_Pipeline_l208_20) begin
+      if(when_Pipeline_l208_21) begin
         MEM_WB2_arbitration_isValid <= 1'b0;
       end
-      if(when_Pipeline_l211_20) begin
+      if(when_Pipeline_l211_21) begin
         MEM_WB2_arbitration_isValidOnEntry <= 1'b0;
       end
-      if(when_Pipeline_l213_20) begin
+      if(when_Pipeline_l213_21) begin
         MEM_WB2_arbitration_isValid <= MEM_WB_arbitration_isValid;
         MEM_WB2_arbitration_isValidOnEntry <= MEM_WB_arbitration_isValid;
       end
@@ -89148,13 +89388,13 @@ module MyCPUCore (
         default : begin
         end
       endcase
-      IF2_ICachePlugin_cacheRefillFSM_stateReg <= IF2_ICachePlugin_cacheRefillFSM_stateNext;
-      case(IF2_ICachePlugin_cacheRefillFSM_stateReg)
-        IF2_ICachePlugin_cacheRefillFSM_enumDef_waitAXI : begin
+      IF3_ICachePlugin_cacheRefillFSM_stateReg <= IF3_ICachePlugin_cacheRefillFSM_stateNext;
+      case(IF3_ICachePlugin_cacheRefillFSM_stateReg)
+        IF3_ICachePlugin_cacheRefillFSM_enumDef_waitAXI : begin
         end
-        IF2_ICachePlugin_cacheRefillFSM_enumDef_readMem : begin
+        IF3_ICachePlugin_cacheRefillFSM_enumDef_readMem : begin
         end
-        IF2_ICachePlugin_cacheRefillFSM_enumDef_commit : begin
+        IF3_ICachePlugin_cacheRefillFSM_enumDef_commit : begin
           if(_zz_1552[0]) begin
             if(_zz_1488) begin
               ICachePlugin_valids_0_0 <= 1'b1;
@@ -89544,7 +89784,7 @@ module MyCPUCore (
             end
           end
         end
-        IF2_ICachePlugin_cacheRefillFSM_enumDef_finish : begin
+        IF3_ICachePlugin_cacheRefillFSM_enumDef_finish : begin
         end
         default : begin
         end
@@ -110095,19 +110335,19 @@ module MyCPUCore (
     if(ProgramCounterPlugin_backendJumpInterface_ready) begin
       ProgramCounterPlugin_backendJumpInterface_rData <= ProgramCounterPlugin_backendJumpInterface_payload;
     end
-    IF2_ICachePlugin_cacheRefillFSM_refillValid <= ICachePlugin_iBus_r_fire;
-    IF2_ICachePlugin_cacheRefillFSM_refillWord <= ICachePlugin_iBus_r_payload_data;
-    if(when_ICachePlugin_l154) begin
-      IF2_ICachePlugin_storedPacket_0 <= IF2_ICachePlugin_cacheRefillFSM_refillWord;
+    IF3_ICachePlugin_cacheRefillFSM_refillValid <= ICachePlugin_iBus_r_fire;
+    IF3_ICachePlugin_cacheRefillFSM_refillWord <= ICachePlugin_iBus_r_payload_data;
+    if(when_ICachePlugin_l156) begin
+      IF3_ICachePlugin_storedPacket_0 <= IF3_ICachePlugin_cacheRefillFSM_refillWord;
     end
-    if(when_ICachePlugin_l154_1) begin
-      IF2_ICachePlugin_storedPacket_1 <= IF2_ICachePlugin_cacheRefillFSM_refillWord;
+    if(when_ICachePlugin_l156_1) begin
+      IF3_ICachePlugin_storedPacket_1 <= IF3_ICachePlugin_cacheRefillFSM_refillWord;
     end
-    if(when_ICachePlugin_l154_2) begin
-      IF2_ICachePlugin_storedPacket_2 <= IF2_ICachePlugin_cacheRefillFSM_refillWord;
+    if(when_ICachePlugin_l156_2) begin
+      IF3_ICachePlugin_storedPacket_2 <= IF3_ICachePlugin_cacheRefillFSM_refillWord;
     end
-    if(when_ICachePlugin_l154_3) begin
-      IF2_ICachePlugin_storedPacket_3 <= IF2_ICachePlugin_cacheRefillFSM_refillWord;
+    if(when_ICachePlugin_l156_3) begin
+      IF3_ICachePlugin_storedPacket_3 <= IF3_ICachePlugin_cacheRefillFSM_refillWord;
     end
     if(when_IntExecutePlugin_l122) begin
       if(when_IntExecutePlugin_l125) begin
@@ -110469,10 +110709,17 @@ module MyCPUCore (
       IF1_to_IF2_PC <= IF1_PC;
     end
     if(when_Pipeline_l158_1) begin
+      IF2_to_IF3_PC <= IF2_PC;
+    end
+    if(when_Pipeline_l158_2) begin
       IF1_to_IF2_ICACHE_VALIDS_0 <= IF1_ICACHE_VALIDS_0;
       IF1_to_IF2_ICACHE_VALIDS_1 <= IF1_ICACHE_VALIDS_1;
     end
-    if(when_Pipeline_l158_2) begin
+    if(when_Pipeline_l158_3) begin
+      IF2_to_IF3_ICACHE_VALIDS_0 <= IF2_ICACHE_VALIDS_0;
+      IF2_to_IF3_ICACHE_VALIDS_1 <= IF2_ICACHE_VALIDS_1;
+    end
+    if(when_Pipeline_l158_4) begin
       IF1_to_IF2_ICACHE_RSPS_0_0 <= IF1_ICACHE_RSPS_0_0;
       IF1_to_IF2_ICACHE_RSPS_0_1 <= IF1_ICACHE_RSPS_0_1;
       IF1_to_IF2_ICACHE_RSPS_0_2 <= IF1_ICACHE_RSPS_0_2;
@@ -110482,24 +110729,48 @@ module MyCPUCore (
       IF1_to_IF2_ICACHE_RSPS_1_2 <= IF1_ICACHE_RSPS_1_2;
       IF1_to_IF2_ICACHE_RSPS_1_3 <= IF1_ICACHE_RSPS_1_3;
     end
-    if(when_Pipeline_l158_3) begin
+    if(when_Pipeline_l158_5) begin
+      IF2_to_IF3_ICACHE_RSPS_0_0 <= IF2_ICACHE_RSPS_0_0;
+      IF2_to_IF3_ICACHE_RSPS_0_1 <= IF2_ICACHE_RSPS_0_1;
+      IF2_to_IF3_ICACHE_RSPS_0_2 <= IF2_ICACHE_RSPS_0_2;
+      IF2_to_IF3_ICACHE_RSPS_0_3 <= IF2_ICACHE_RSPS_0_3;
+      IF2_to_IF3_ICACHE_RSPS_1_0 <= IF2_ICACHE_RSPS_1_0;
+      IF2_to_IF3_ICACHE_RSPS_1_1 <= IF2_ICACHE_RSPS_1_1;
+      IF2_to_IF3_ICACHE_RSPS_1_2 <= IF2_ICACHE_RSPS_1_2;
+      IF2_to_IF3_ICACHE_RSPS_1_3 <= IF2_ICACHE_RSPS_1_3;
+    end
+    if(when_Pipeline_l158_6) begin
       IF1_to_IF2_ICACHE_INFO_lru <= IF1_ICACHE_INFO_lru;
       IF1_to_IF2_ICACHE_INFO_tags_0 <= IF1_ICACHE_INFO_tags_0;
       IF1_to_IF2_ICACHE_INFO_tags_1 <= IF1_ICACHE_INFO_tags_1;
     end
-    if(when_Pipeline_l158_4) begin
-      IF1_to_IF2_EXCEPTION_OCCURRED <= _zz_IF1_to_IF2_EXCEPTION_OCCURRED;
-    end
-    if(when_Pipeline_l158_5) begin
-      IF1_to_IF2_EXCEPTION_ECODE <= _zz_IF1_to_IF2_EXCEPTION_ECODE;
-    end
-    if(when_Pipeline_l158_6) begin
-      IF1_to_IF2_EXCEPTION_ESUBCODE <= _zz_IF1_to_IF2_EXCEPTION_ESUBCODE;
-    end
     if(when_Pipeline_l158_7) begin
-      IF1_to_IF2_BAD_VADDR <= _zz_IF1_to_IF2_BAD_VADDR;
+      IF2_to_IF3_ICACHE_INFO_lru <= IF2_ICACHE_INFO_lru;
+      IF2_to_IF3_ICACHE_INFO_tags_0 <= IF2_ICACHE_INFO_tags_0;
+      IF2_to_IF3_ICACHE_INFO_tags_1 <= IF2_ICACHE_INFO_tags_1;
     end
     if(when_Pipeline_l158_8) begin
+      IF1_to_IF2_EXCEPTION_OCCURRED <= _zz_IF1_to_IF2_EXCEPTION_OCCURRED;
+    end
+    if(when_Pipeline_l158_9) begin
+      IF2_to_IF3_EXCEPTION_OCCURRED <= _zz_IF2_to_IF3_EXCEPTION_OCCURRED;
+    end
+    if(when_Pipeline_l158_10) begin
+      IF1_to_IF2_EXCEPTION_ECODE <= _zz_IF1_to_IF2_EXCEPTION_ECODE;
+    end
+    if(when_Pipeline_l158_11) begin
+      IF2_to_IF3_EXCEPTION_ECODE <= _zz_IF2_to_IF3_EXCEPTION_ECODE;
+    end
+    if(when_Pipeline_l158_12) begin
+      IF1_to_IF2_EXCEPTION_ESUBCODE <= _zz_IF1_to_IF2_EXCEPTION_ESUBCODE;
+    end
+    if(when_Pipeline_l158_13) begin
+      IF2_to_IF3_EXCEPTION_ESUBCODE <= _zz_IF2_to_IF3_EXCEPTION_ESUBCODE;
+    end
+    if(when_Pipeline_l158_14) begin
+      IF1_to_IF2_BAD_VADDR <= _zz_IF1_to_IF2_BAD_VADDR;
+    end
+    if(when_Pipeline_l158_15) begin
       IF1_to_IF2_DIRECT_TRANSLATE_RESULT_valid <= IF1_DIRECT_TRANSLATE_RESULT_valid;
       IF1_to_IF2_DIRECT_TRANSLATE_RESULT_payload_physAddr <= IF1_DIRECT_TRANSLATE_RESULT_payload_physAddr;
       IF1_to_IF2_DIRECT_TRANSLATE_RESULT_payload_cached <= IF1_DIRECT_TRANSLATE_RESULT_payload_cached;
@@ -110510,50 +110781,90 @@ module MyCPUCore (
       IF1_to_IF2_DIRECT_TRANSLATE_RESULT_payload_exception_raisePPI <= IF1_DIRECT_TRANSLATE_RESULT_payload_exception_raisePPI;
       IF1_to_IF2_DIRECT_TRANSLATE_RESULT_payload_exception_raiseTLBR <= IF1_DIRECT_TRANSLATE_RESULT_payload_exception_raiseTLBR;
     end
-    if(when_Pipeline_l158_9) begin
-      IF1_to_IF2_TLB_TRANSLATE_RESULT_valid <= IF1_TLB_TRANSLATE_RESULT_valid;
-      IF1_to_IF2_TLB_TRANSLATE_RESULT_payload_physAddr <= IF1_TLB_TRANSLATE_RESULT_payload_physAddr;
-      IF1_to_IF2_TLB_TRANSLATE_RESULT_payload_cached <= IF1_TLB_TRANSLATE_RESULT_payload_cached;
-      IF1_to_IF2_TLB_TRANSLATE_RESULT_payload_exception_raisePIL <= IF1_TLB_TRANSLATE_RESULT_payload_exception_raisePIL;
-      IF1_to_IF2_TLB_TRANSLATE_RESULT_payload_exception_raisePIS <= IF1_TLB_TRANSLATE_RESULT_payload_exception_raisePIS;
-      IF1_to_IF2_TLB_TRANSLATE_RESULT_payload_exception_raisePIF <= IF1_TLB_TRANSLATE_RESULT_payload_exception_raisePIF;
-      IF1_to_IF2_TLB_TRANSLATE_RESULT_payload_exception_raisePME <= IF1_TLB_TRANSLATE_RESULT_payload_exception_raisePME;
-      IF1_to_IF2_TLB_TRANSLATE_RESULT_payload_exception_raisePPI <= IF1_TLB_TRANSLATE_RESULT_payload_exception_raisePPI;
-      IF1_to_IF2_TLB_TRANSLATE_RESULT_payload_exception_raiseTLBR <= IF1_TLB_TRANSLATE_RESULT_payload_exception_raiseTLBR;
+    if(when_Pipeline_l158_16) begin
+      IF1_to_IF2_TLB_LOOKUP_SNAPSHOT_hit <= IF1_TLB_LOOKUP_SNAPSHOT_hit;
+      IF1_to_IF2_TLB_LOOKUP_SNAPSHOT_entry_E <= IF1_TLB_LOOKUP_SNAPSHOT_entry_E;
+      IF1_to_IF2_TLB_LOOKUP_SNAPSHOT_entry_ASID <= IF1_TLB_LOOKUP_SNAPSHOT_entry_ASID;
+      IF1_to_IF2_TLB_LOOKUP_SNAPSHOT_entry_G <= IF1_TLB_LOOKUP_SNAPSHOT_entry_G;
+      IF1_to_IF2_TLB_LOOKUP_SNAPSHOT_entry_PS <= IF1_TLB_LOOKUP_SNAPSHOT_entry_PS;
+      IF1_to_IF2_TLB_LOOKUP_SNAPSHOT_entry_VPPN <= IF1_TLB_LOOKUP_SNAPSHOT_entry_VPPN;
+      IF1_to_IF2_TLB_LOOKUP_SNAPSHOT_entry_V0 <= IF1_TLB_LOOKUP_SNAPSHOT_entry_V0;
+      IF1_to_IF2_TLB_LOOKUP_SNAPSHOT_entry_D0 <= IF1_TLB_LOOKUP_SNAPSHOT_entry_D0;
+      IF1_to_IF2_TLB_LOOKUP_SNAPSHOT_entry_MAT0 <= IF1_TLB_LOOKUP_SNAPSHOT_entry_MAT0;
+      IF1_to_IF2_TLB_LOOKUP_SNAPSHOT_entry_PLV0 <= IF1_TLB_LOOKUP_SNAPSHOT_entry_PLV0;
+      IF1_to_IF2_TLB_LOOKUP_SNAPSHOT_entry_PPN0 <= IF1_TLB_LOOKUP_SNAPSHOT_entry_PPN0;
+      IF1_to_IF2_TLB_LOOKUP_SNAPSHOT_entry_V1 <= IF1_TLB_LOOKUP_SNAPSHOT_entry_V1;
+      IF1_to_IF2_TLB_LOOKUP_SNAPSHOT_entry_D1 <= IF1_TLB_LOOKUP_SNAPSHOT_entry_D1;
+      IF1_to_IF2_TLB_LOOKUP_SNAPSHOT_entry_MAT1 <= IF1_TLB_LOOKUP_SNAPSHOT_entry_MAT1;
+      IF1_to_IF2_TLB_LOOKUP_SNAPSHOT_entry_PLV1 <= IF1_TLB_LOOKUP_SNAPSHOT_entry_PLV1;
+      IF1_to_IF2_TLB_LOOKUP_SNAPSHOT_entry_PPN1 <= IF1_TLB_LOOKUP_SNAPSHOT_entry_PPN1;
     end
-    if(when_Pipeline_l158_10) begin
+    if(when_Pipeline_l158_17) begin
       IF1_to_IF2_TRANSLATE_SAVED_CSR_CRMD_DA <= IF1_TRANSLATE_SAVED_CSR_CRMD_DA;
       IF1_to_IF2_TRANSLATE_SAVED_CSR_CRMD_PG <= IF1_TRANSLATE_SAVED_CSR_CRMD_PG;
       IF1_to_IF2_TRANSLATE_SAVED_CSR_CRMD_DATF <= IF1_TRANSLATE_SAVED_CSR_CRMD_DATF;
       IF1_to_IF2_TRANSLATE_SAVED_CSR_CRMD_DATM <= IF1_TRANSLATE_SAVED_CSR_CRMD_DATM;
     end
-    if(when_Pipeline_l158_11) begin
+    if(when_Pipeline_l158_18) begin
       IF1_to_IF2_PREDICT_JUMP_FLAG <= IF1_PREDICT_JUMP_FLAG;
     end
-    if(when_Pipeline_l158_12) begin
+    if(when_Pipeline_l158_19) begin
       IF1_to_IF2_PREDICT_JUMP_PAYLOAD_target <= IF1_PREDICT_JUMP_PAYLOAD_target;
       IF1_to_IF2_PREDICT_JUMP_PAYLOAD_isCall <= IF1_PREDICT_JUMP_PAYLOAD_isCall;
       IF1_to_IF2_PREDICT_JUMP_PAYLOAD_isReturn <= IF1_PREDICT_JUMP_PAYLOAD_isReturn;
     end
-    if(when_Pipeline_l158_13) begin
+    if(when_Pipeline_l158_20) begin
       IF1_to_IF2_PREDICT_JUMP_WAY <= IF1_PREDICT_JUMP_WAY;
     end
-    if(when_Pipeline_l158_14) begin
+    if(when_Pipeline_l158_21) begin
       IF1_to_IF2_INSTRUCTION_MASK <= IF1_INSTRUCTION_MASK;
     end
-    if(when_Pipeline_l158_15) begin
+    if(when_Pipeline_l158_22) begin
+      IF2_to_IF3_INSTRUCTION_MASK <= IF2_INSTRUCTION_MASK;
+    end
+    if(when_Pipeline_l158_23) begin
       IF1_to_IF2_BRANCH_MASK <= IF1_BRANCH_MASK;
     end
-    if(when_Pipeline_l158_16) begin
+    if(when_Pipeline_l158_24) begin
+      IF2_to_IF3_BRANCH_MASK <= IF2_BRANCH_MASK;
+    end
+    if(when_Pipeline_l158_25) begin
       IF1_to_IF2_PRED_COUNTER_0 <= IF1_PRED_COUNTER_0;
       IF1_to_IF2_PRED_COUNTER_1 <= IF1_PRED_COUNTER_1;
       IF1_to_IF2_PRED_COUNTER_2 <= IF1_PRED_COUNTER_2;
       IF1_to_IF2_PRED_COUNTER_3 <= IF1_PRED_COUNTER_3;
     end
-    if(when_Pipeline_l158_17) begin
+    if(when_Pipeline_l158_26) begin
+      IF2_to_IF3_PRED_COUNTER_0 <= IF2_PRED_COUNTER_0;
+      IF2_to_IF3_PRED_COUNTER_1 <= IF2_PRED_COUNTER_1;
+      IF2_to_IF3_PRED_COUNTER_2 <= IF2_PRED_COUNTER_2;
+      IF2_to_IF3_PRED_COUNTER_3 <= IF2_PRED_COUNTER_3;
+    end
+    if(when_Pipeline_l158_27) begin
       IF1_to_IF2_GLOBAL_BRANCH_HISTORY <= IF1_GLOBAL_BRANCH_HISTORY;
     end
-    if(when_Pipeline_l158_18) begin
+    if(when_Pipeline_l158_28) begin
+      IF2_to_IF3_PC_PHYSICAL <= IF2_PC_PHYSICAL;
+    end
+    if(when_Pipeline_l158_29) begin
+      IF2_to_IF3_IS_TLB_REFILL <= IF2_IS_TLB_REFILL;
+    end
+    if(when_Pipeline_l158_30) begin
+      IF2_to_IF3_PREDICT_ADDR <= IF2_PREDICT_ADDR;
+    end
+    if(when_Pipeline_l158_31) begin
+      IF2_to_IF3_TAKEN_MASK <= IF2_TAKEN_MASK;
+    end
+    if(when_Pipeline_l158_32) begin
+      IF2_to_IF3_PRIVATE_BRANCH_HISTORY_0 <= IF2_PRIVATE_BRANCH_HISTORY_0;
+      IF2_to_IF3_PRIVATE_BRANCH_HISTORY_1 <= IF2_PRIVATE_BRANCH_HISTORY_1;
+      IF2_to_IF3_PRIVATE_BRANCH_HISTORY_2 <= IF2_PRIVATE_BRANCH_HISTORY_2;
+      IF2_to_IF3_PRIVATE_BRANCH_HISTORY_3 <= IF2_PRIVATE_BRANCH_HISTORY_3;
+    end
+    if(when_Pipeline_l158_33) begin
+      IF2_to_IF3_RECOVER_TOP <= IF2_RECOVER_TOP;
+    end
+    if(when_Pipeline_l158_34) begin
       ID_to_RENAME_DECODE_PACKET_0_valid <= ID_DECODE_PACKET_0_valid;
       ID_to_RENAME_DECODE_PACKET_0_payload_pc <= ID_DECODE_PACKET_0_payload_pc;
       ID_to_RENAME_DECODE_PACKET_0_payload_inst <= ID_DECODE_PACKET_0_payload_inst;
@@ -110684,7 +110995,7 @@ module MyCPUCore (
       ID_to_RENAME_DECODE_PACKET_2_payload_isErtn <= ID_DECODE_PACKET_2_payload_isErtn;
       ID_to_RENAME_DECODE_PACKET_2_payload_flushState <= ID_DECODE_PACKET_2_payload_flushState;
     end
-    if(when_Pipeline_l158_19) begin
+    if(when_Pipeline_l158_35) begin
       RENAME_to_DISPATCH_DECODE_PACKET_0_valid <= RENAME_DECODE_PACKET_0_valid;
       RENAME_to_DISPATCH_DECODE_PACKET_0_payload_pc <= RENAME_DECODE_PACKET_0_payload_pc;
       RENAME_to_DISPATCH_DECODE_PACKET_0_payload_inst <= RENAME_DECODE_PACKET_0_payload_inst;
@@ -110815,12 +111126,12 @@ module MyCPUCore (
       RENAME_to_DISPATCH_DECODE_PACKET_2_payload_isErtn <= RENAME_DECODE_PACKET_2_payload_isErtn;
       RENAME_to_DISPATCH_DECODE_PACKET_2_payload_flushState <= RENAME_DECODE_PACKET_2_payload_flushState;
     end
-    if(when_Pipeline_l158_20) begin
+    if(when_Pipeline_l158_36) begin
       RENAME_to_DISPATCH_ROB_INDEXES_0 <= RENAME_ROB_INDEXES_0;
       RENAME_to_DISPATCH_ROB_INDEXES_1 <= RENAME_ROB_INDEXES_1;
       RENAME_to_DISPATCH_ROB_INDEXES_2 <= RENAME_ROB_INDEXES_2;
     end
-    if(when_Pipeline_l158_21) begin
+    if(when_Pipeline_l158_37) begin
       RENAME_to_DISPATCH_PUSH_INDEXES_0_valid <= RENAME_PUSH_INDEXES_0_valid;
       RENAME_to_DISPATCH_PUSH_INDEXES_0_payload <= RENAME_PUSH_INDEXES_0_payload;
       RENAME_to_DISPATCH_PUSH_INDEXES_1_valid <= RENAME_PUSH_INDEXES_1_valid;
@@ -110828,7 +111139,7 @@ module MyCPUCore (
       RENAME_to_DISPATCH_PUSH_INDEXES_2_valid <= RENAME_PUSH_INDEXES_2_valid;
       RENAME_to_DISPATCH_PUSH_INDEXES_2_payload <= RENAME_PUSH_INDEXES_2_payload;
     end
-    if(when_Pipeline_l158_22) begin
+    if(when_Pipeline_l158_38) begin
       RENAME_to_DISPATCH_RENAME_RECORDS_0_rRegs_0 <= RENAME_RENAME_RECORDS_0_rRegs_0;
       RENAME_to_DISPATCH_RENAME_RECORDS_0_rRegs_1 <= RENAME_RENAME_RECORDS_0_rRegs_1;
       RENAME_to_DISPATCH_RENAME_RECORDS_0_wReg <= RENAME_RENAME_RECORDS_0_wReg;
@@ -110842,7 +111153,7 @@ module MyCPUCore (
       RENAME_to_DISPATCH_RENAME_RECORDS_2_wReg <= RENAME_RENAME_RECORDS_2_wReg;
       RENAME_to_DISPATCH_RENAME_RECORDS_2_wPrevReg <= RENAME_RENAME_RECORDS_2_wPrevReg;
     end
-    if(when_Pipeline_l158_23) begin
+    if(when_Pipeline_l158_39) begin
       INT2_ISS_to_INT2_RRD_ISSUE_SLOT_rRegs_0_valid <= INT2_ISS_ISSUE_SLOT_rRegs_0_valid;
       INT2_ISS_to_INT2_RRD_ISSUE_SLOT_rRegs_0_payload <= INT2_ISS_ISSUE_SLOT_rRegs_0_payload;
       INT2_ISS_to_INT2_RRD_ISSUE_SLOT_rRegs_1_valid <= INT2_ISS_ISSUE_SLOT_rRegs_1_valid;
@@ -110872,7 +111183,7 @@ module MyCPUCore (
       INT2_ISS_to_INT2_RRD_ISSUE_SLOT_uop_tlbOp <= _zz_INT2_ISS_to_INT2_RRD_ISSUE_SLOT_uop_tlbOp;
       INT2_ISS_to_INT2_RRD_ISSUE_SLOT_wReg <= INT2_ISS_ISSUE_SLOT_wReg;
     end
-    if(when_Pipeline_l158_24) begin
+    if(when_Pipeline_l158_40) begin
       INT2_RRD_to_INT2_EXE_ISSUE_SLOT_rRegs_0_valid <= INT2_RRD_ISSUE_SLOT_rRegs_0_valid;
       INT2_RRD_to_INT2_EXE_ISSUE_SLOT_rRegs_0_payload <= INT2_RRD_ISSUE_SLOT_rRegs_0_payload;
       INT2_RRD_to_INT2_EXE_ISSUE_SLOT_rRegs_1_valid <= INT2_RRD_ISSUE_SLOT_rRegs_1_valid;
@@ -110902,7 +111213,7 @@ module MyCPUCore (
       INT2_RRD_to_INT2_EXE_ISSUE_SLOT_uop_tlbOp <= _zz_INT2_RRD_to_INT2_EXE_ISSUE_SLOT_uop_tlbOp;
       INT2_RRD_to_INT2_EXE_ISSUE_SLOT_wReg <= INT2_RRD_ISSUE_SLOT_wReg;
     end
-    if(when_Pipeline_l158_25) begin
+    if(when_Pipeline_l158_41) begin
       INT2_EXE_to_INT2_WB_ISSUE_SLOT_rRegs_0_valid <= INT2_EXE_ISSUE_SLOT_rRegs_0_valid;
       INT2_EXE_to_INT2_WB_ISSUE_SLOT_rRegs_0_payload <= INT2_EXE_ISSUE_SLOT_rRegs_0_payload;
       INT2_EXE_to_INT2_WB_ISSUE_SLOT_rRegs_1_valid <= INT2_EXE_ISSUE_SLOT_rRegs_1_valid;
@@ -110932,45 +111243,45 @@ module MyCPUCore (
       INT2_EXE_to_INT2_WB_ISSUE_SLOT_uop_tlbOp <= _zz_INT2_EXE_to_INT2_WB_ISSUE_SLOT_uop_tlbOp;
       INT2_EXE_to_INT2_WB_ISSUE_SLOT_wReg <= INT2_EXE_ISSUE_SLOT_wReg;
     end
-    if(when_Pipeline_l158_26) begin
+    if(when_Pipeline_l158_42) begin
       INT2_RRD_to_INT2_EXE_REG_READ_RSP_0 <= INT2_RRD_REG_READ_RSP_0;
       INT2_RRD_to_INT2_EXE_REG_READ_RSP_1 <= INT2_RRD_REG_READ_RSP_1;
     end
-    if(when_Pipeline_l158_27) begin
+    if(when_Pipeline_l158_43) begin
       INT2_RRD_to_INT2_EXE_DIFF_IS_COUNT <= INT2_RRD_DIFF_IS_COUNT;
     end
-    if(when_Pipeline_l158_28) begin
+    if(when_Pipeline_l158_44) begin
       INT2_EXE_to_INT2_WB_DIFF_IS_COUNT <= INT2_EXE_DIFF_IS_COUNT;
     end
-    if(when_Pipeline_l158_29) begin
+    if(when_Pipeline_l158_45) begin
       INT2_RRD_to_INT2_EXE_DIFF_COUNT64_value <= INT2_RRD_DIFF_COUNT64_value;
     end
-    if(when_Pipeline_l158_30) begin
+    if(when_Pipeline_l158_46) begin
       INT2_EXE_to_INT2_WB_DIFF_COUNT64_value <= INT2_EXE_DIFF_COUNT64_value;
     end
-    if(when_Pipeline_l158_31) begin
+    if(when_Pipeline_l158_47) begin
       INT2_RRD_to_INT2_EXE_DIFF_CSR_RSTAT <= INT2_RRD_DIFF_CSR_RSTAT;
     end
-    if(when_Pipeline_l158_32) begin
+    if(when_Pipeline_l158_48) begin
       INT2_EXE_to_INT2_WB_DIFF_CSR_RSTAT <= INT2_EXE_DIFF_CSR_RSTAT;
     end
-    if(when_Pipeline_l158_33) begin
+    if(when_Pipeline_l158_49) begin
       INT2_RRD_to_INT2_EXE_DIFF_CSR_DATA <= INT2_RRD_DIFF_CSR_DATA;
     end
-    if(when_Pipeline_l158_34) begin
+    if(when_Pipeline_l158_50) begin
       INT2_EXE_to_INT2_WB_DIFF_CSR_DATA <= INT2_EXE_DIFF_CSR_DATA;
     end
-    if(when_Pipeline_l158_35) begin
+    if(when_Pipeline_l158_51) begin
       INT2_EXE_to_INT2_WB_EXE_RESULT <= INT2_EXE_EXE_RESULT;
     end
-    if(when_Pipeline_l158_36) begin
+    if(when_Pipeline_l158_52) begin
       INT2_EXE_to_INT2_WB_WRITE_REG_valid <= INT2_EXE_WRITE_REG_valid;
       INT2_EXE_to_INT2_WB_WRITE_REG_payload <= INT2_EXE_WRITE_REG_payload;
     end
-    if(when_Pipeline_l158_37) begin
+    if(when_Pipeline_l158_53) begin
       INT2_EXE_to_INT2_WB_ROB_IDX <= INT2_EXE_ROB_IDX;
     end
-    if(when_Pipeline_l158_38) begin
+    if(when_Pipeline_l158_54) begin
       INT1_ISS_to_INT1_RRD_ISSUE_SLOT_rRegs_0_valid <= INT1_ISS_ISSUE_SLOT_rRegs_0_valid;
       INT1_ISS_to_INT1_RRD_ISSUE_SLOT_rRegs_0_payload <= INT1_ISS_ISSUE_SLOT_rRegs_0_payload;
       INT1_ISS_to_INT1_RRD_ISSUE_SLOT_rRegs_1_valid <= INT1_ISS_ISSUE_SLOT_rRegs_1_valid;
@@ -111000,7 +111311,7 @@ module MyCPUCore (
       INT1_ISS_to_INT1_RRD_ISSUE_SLOT_uop_tlbOp <= _zz_INT1_ISS_to_INT1_RRD_ISSUE_SLOT_uop_tlbOp;
       INT1_ISS_to_INT1_RRD_ISSUE_SLOT_wReg <= INT1_ISS_ISSUE_SLOT_wReg;
     end
-    if(when_Pipeline_l158_39) begin
+    if(when_Pipeline_l158_55) begin
       INT1_RRD_to_INT1_EXE_ISSUE_SLOT_rRegs_0_valid <= INT1_RRD_ISSUE_SLOT_rRegs_0_valid;
       INT1_RRD_to_INT1_EXE_ISSUE_SLOT_rRegs_0_payload <= INT1_RRD_ISSUE_SLOT_rRegs_0_payload;
       INT1_RRD_to_INT1_EXE_ISSUE_SLOT_rRegs_1_valid <= INT1_RRD_ISSUE_SLOT_rRegs_1_valid;
@@ -111030,7 +111341,7 @@ module MyCPUCore (
       INT1_RRD_to_INT1_EXE_ISSUE_SLOT_uop_tlbOp <= _zz_INT1_RRD_to_INT1_EXE_ISSUE_SLOT_uop_tlbOp;
       INT1_RRD_to_INT1_EXE_ISSUE_SLOT_wReg <= INT1_RRD_ISSUE_SLOT_wReg;
     end
-    if(when_Pipeline_l158_40) begin
+    if(when_Pipeline_l158_56) begin
       INT1_EXE_to_INT1_WB_ISSUE_SLOT_rRegs_0_valid <= INT1_EXE_ISSUE_SLOT_rRegs_0_valid;
       INT1_EXE_to_INT1_WB_ISSUE_SLOT_rRegs_0_payload <= INT1_EXE_ISSUE_SLOT_rRegs_0_payload;
       INT1_EXE_to_INT1_WB_ISSUE_SLOT_rRegs_1_valid <= INT1_EXE_ISSUE_SLOT_rRegs_1_valid;
@@ -111060,42 +111371,42 @@ module MyCPUCore (
       INT1_EXE_to_INT1_WB_ISSUE_SLOT_uop_tlbOp <= _zz_INT1_EXE_to_INT1_WB_ISSUE_SLOT_uop_tlbOp;
       INT1_EXE_to_INT1_WB_ISSUE_SLOT_wReg <= INT1_EXE_ISSUE_SLOT_wReg;
     end
-    if(when_Pipeline_l158_41) begin
+    if(when_Pipeline_l158_57) begin
       INT1_RRD_to_INT1_EXE_REG_READ_RSP_0 <= INT1_RRD_REG_READ_RSP_0;
       INT1_RRD_to_INT1_EXE_REG_READ_RSP_1 <= INT1_RRD_REG_READ_RSP_1;
     end
-    if(when_Pipeline_l158_42) begin
+    if(when_Pipeline_l158_58) begin
       INT1_RRD_to_INT1_EXE_DIFF_IS_COUNT <= INT1_RRD_DIFF_IS_COUNT;
     end
-    if(when_Pipeline_l158_43) begin
+    if(when_Pipeline_l158_59) begin
       INT1_EXE_to_INT1_WB_DIFF_IS_COUNT <= _zz_INT1_EXE_to_INT1_WB_DIFF_IS_COUNT;
     end
-    if(when_Pipeline_l158_44) begin
+    if(when_Pipeline_l158_60) begin
       INT1_EXE_to_INT1_WB_DIFF_COUNT64_value <= INT1_EXE_DIFF_COUNT64_value;
     end
-    if(when_Pipeline_l158_45) begin
+    if(when_Pipeline_l158_61) begin
       INT1_RRD_to_INT1_EXE_DIFF_CSR_RSTAT <= INT1_RRD_DIFF_CSR_RSTAT;
     end
-    if(when_Pipeline_l158_46) begin
+    if(when_Pipeline_l158_62) begin
       INT1_EXE_to_INT1_WB_DIFF_CSR_RSTAT <= INT1_EXE_DIFF_CSR_RSTAT;
     end
-    if(when_Pipeline_l158_47) begin
+    if(when_Pipeline_l158_63) begin
       INT1_RRD_to_INT1_EXE_DIFF_CSR_DATA <= INT1_RRD_DIFF_CSR_DATA;
     end
-    if(when_Pipeline_l158_48) begin
+    if(when_Pipeline_l158_64) begin
       INT1_EXE_to_INT1_WB_DIFF_CSR_DATA <= INT1_EXE_DIFF_CSR_DATA;
     end
-    if(when_Pipeline_l158_49) begin
+    if(when_Pipeline_l158_65) begin
       INT1_EXE_to_INT1_WB_EXE_RESULT <= INT1_EXE_EXE_RESULT;
     end
-    if(when_Pipeline_l158_50) begin
+    if(when_Pipeline_l158_66) begin
       INT1_EXE_to_INT1_WB_WRITE_REG_valid <= INT1_EXE_WRITE_REG_valid;
       INT1_EXE_to_INT1_WB_WRITE_REG_payload <= INT1_EXE_WRITE_REG_payload;
     end
-    if(when_Pipeline_l158_51) begin
+    if(when_Pipeline_l158_67) begin
       INT1_EXE_to_INT1_WB_ROB_IDX <= INT1_EXE_ROB_IDX;
     end
-    if(when_Pipeline_l158_52) begin
+    if(when_Pipeline_l158_68) begin
       INT0_ISS_to_INT0_RRD_ISSUE_SLOT_rRegs_0_valid <= INT0_ISS_ISSUE_SLOT_rRegs_0_valid;
       INT0_ISS_to_INT0_RRD_ISSUE_SLOT_rRegs_0_payload <= INT0_ISS_ISSUE_SLOT_rRegs_0_payload;
       INT0_ISS_to_INT0_RRD_ISSUE_SLOT_rRegs_1_valid <= INT0_ISS_ISSUE_SLOT_rRegs_1_valid;
@@ -111125,7 +111436,7 @@ module MyCPUCore (
       INT0_ISS_to_INT0_RRD_ISSUE_SLOT_uop_tlbOp <= _zz_INT0_ISS_to_INT0_RRD_ISSUE_SLOT_uop_tlbOp;
       INT0_ISS_to_INT0_RRD_ISSUE_SLOT_wReg <= INT0_ISS_ISSUE_SLOT_wReg;
     end
-    if(when_Pipeline_l158_53) begin
+    if(when_Pipeline_l158_69) begin
       INT0_RRD_to_INT0_EXE_ISSUE_SLOT_rRegs_0_valid <= INT0_RRD_ISSUE_SLOT_rRegs_0_valid;
       INT0_RRD_to_INT0_EXE_ISSUE_SLOT_rRegs_0_payload <= INT0_RRD_ISSUE_SLOT_rRegs_0_payload;
       INT0_RRD_to_INT0_EXE_ISSUE_SLOT_rRegs_1_valid <= INT0_RRD_ISSUE_SLOT_rRegs_1_valid;
@@ -111155,36 +111466,36 @@ module MyCPUCore (
       INT0_RRD_to_INT0_EXE_ISSUE_SLOT_uop_tlbOp <= _zz_INT0_RRD_to_INT0_EXE_ISSUE_SLOT_uop_tlbOp;
       INT0_RRD_to_INT0_EXE_ISSUE_SLOT_wReg <= INT0_RRD_ISSUE_SLOT_wReg;
     end
-    if(when_Pipeline_l158_54) begin
+    if(when_Pipeline_l158_70) begin
       INT0_RRD_to_INT0_EXE_REG_READ_RSP_0 <= INT0_RRD_REG_READ_RSP_0;
       INT0_RRD_to_INT0_EXE_REG_READ_RSP_1 <= INT0_RRD_REG_READ_RSP_1;
     end
-    if(when_Pipeline_l158_55) begin
+    if(when_Pipeline_l158_71) begin
       INT0_RRD_to_INT0_EXE_DIFF_CSR_RSTAT <= INT0_RRD_DIFF_CSR_RSTAT;
     end
-    if(when_Pipeline_l158_56) begin
+    if(when_Pipeline_l158_72) begin
       INT0_RRD_to_INT0_EXE_DIFF_CSR_DATA <= INT0_RRD_DIFF_CSR_DATA;
     end
-    if(when_Pipeline_l158_57) begin
+    if(when_Pipeline_l158_73) begin
       INT0_EXE_to_INT0_WB_EXE_RESULT <= INT0_EXE_EXE_RESULT;
     end
-    if(when_Pipeline_l158_58) begin
+    if(when_Pipeline_l158_74) begin
       INT0_EXE_to_INT0_WB_ACTUAL_TARGET <= INT0_EXE_ACTUAL_TARGET;
     end
-    if(when_Pipeline_l158_59) begin
+    if(when_Pipeline_l158_75) begin
       INT0_EXE_to_INT0_WB_ACTUAL_TAKEN <= INT0_EXE_ACTUAL_TAKEN;
     end
-    if(when_Pipeline_l158_60) begin
+    if(when_Pipeline_l158_76) begin
       INT0_EXE_to_INT0_WB_MISPREDICT <= INT0_EXE_MISPREDICT;
     end
-    if(when_Pipeline_l158_61) begin
+    if(when_Pipeline_l158_77) begin
       INT0_EXE_to_INT0_WB_WRITE_REG_valid <= INT0_EXE_WRITE_REG_valid;
       INT0_EXE_to_INT0_WB_WRITE_REG_payload <= INT0_EXE_WRITE_REG_payload;
     end
-    if(when_Pipeline_l158_62) begin
+    if(when_Pipeline_l158_78) begin
       INT0_EXE_to_INT0_WB_ROB_IDX <= INT0_EXE_ROB_IDX;
     end
-    if(when_Pipeline_l158_63) begin
+    if(when_Pipeline_l158_79) begin
       MULDIV_ISS_to_MULDIV_RRD_ISSUE_SLOT_rRegs_0_valid <= MULDIV_ISS_ISSUE_SLOT_rRegs_0_valid;
       MULDIV_ISS_to_MULDIV_RRD_ISSUE_SLOT_rRegs_0_payload <= MULDIV_ISS_ISSUE_SLOT_rRegs_0_payload;
       MULDIV_ISS_to_MULDIV_RRD_ISSUE_SLOT_rRegs_1_valid <= MULDIV_ISS_ISSUE_SLOT_rRegs_1_valid;
@@ -111195,7 +111506,7 @@ module MyCPUCore (
       MULDIV_ISS_to_MULDIV_RRD_ISSUE_SLOT_uop_signed <= MULDIV_ISS_ISSUE_SLOT_uop_signed;
       MULDIV_ISS_to_MULDIV_RRD_ISSUE_SLOT_wReg <= MULDIV_ISS_ISSUE_SLOT_wReg;
     end
-    if(when_Pipeline_l158_64) begin
+    if(when_Pipeline_l158_80) begin
       MULDIV_RRD_to_MULDIV_EXE_ISSUE_SLOT_rRegs_0_valid <= MULDIV_RRD_ISSUE_SLOT_rRegs_0_valid;
       MULDIV_RRD_to_MULDIV_EXE_ISSUE_SLOT_rRegs_0_payload <= MULDIV_RRD_ISSUE_SLOT_rRegs_0_payload;
       MULDIV_RRD_to_MULDIV_EXE_ISSUE_SLOT_rRegs_1_valid <= MULDIV_RRD_ISSUE_SLOT_rRegs_1_valid;
@@ -111206,7 +111517,7 @@ module MyCPUCore (
       MULDIV_RRD_to_MULDIV_EXE_ISSUE_SLOT_uop_signed <= MULDIV_RRD_ISSUE_SLOT_uop_signed;
       MULDIV_RRD_to_MULDIV_EXE_ISSUE_SLOT_wReg <= MULDIV_RRD_ISSUE_SLOT_wReg;
     end
-    if(when_Pipeline_l158_65) begin
+    if(when_Pipeline_l158_81) begin
       MULDIV_EXE_to_MULDIV_WB_ISSUE_SLOT_rRegs_0_valid <= MULDIV_EXE_ISSUE_SLOT_rRegs_0_valid;
       MULDIV_EXE_to_MULDIV_WB_ISSUE_SLOT_rRegs_0_payload <= MULDIV_EXE_ISSUE_SLOT_rRegs_0_payload;
       MULDIV_EXE_to_MULDIV_WB_ISSUE_SLOT_rRegs_1_valid <= MULDIV_EXE_ISSUE_SLOT_rRegs_1_valid;
@@ -111217,14 +111528,14 @@ module MyCPUCore (
       MULDIV_EXE_to_MULDIV_WB_ISSUE_SLOT_uop_signed <= MULDIV_EXE_ISSUE_SLOT_uop_signed;
       MULDIV_EXE_to_MULDIV_WB_ISSUE_SLOT_wReg <= MULDIV_EXE_ISSUE_SLOT_wReg;
     end
-    if(when_Pipeline_l158_66) begin
+    if(when_Pipeline_l158_82) begin
       MULDIV_RRD_to_MULDIV_EXE_REG_READ_RSP_0 <= MULDIV_RRD_REG_READ_RSP_0;
       MULDIV_RRD_to_MULDIV_EXE_REG_READ_RSP_1 <= MULDIV_RRD_REG_READ_RSP_1;
     end
-    if(when_Pipeline_l158_67) begin
+    if(when_Pipeline_l158_83) begin
       MULDIV_EXE_to_MULDIV_WB_EXE_RESULT <= MULDIV_EXE_EXE_RESULT;
     end
-    if(when_Pipeline_l158_68) begin
+    if(when_Pipeline_l158_84) begin
       MEM_ISS_to_MEM_RRD_ISSUE_SLOT_rRegs_0_valid <= MEM_ISS_ISSUE_SLOT_rRegs_0_valid;
       MEM_ISS_to_MEM_RRD_ISSUE_SLOT_rRegs_0_payload <= MEM_ISS_ISSUE_SLOT_rRegs_0_payload;
       MEM_ISS_to_MEM_RRD_ISSUE_SLOT_rRegs_1_valid <= MEM_ISS_ISSUE_SLOT_rRegs_1_valid;
@@ -111243,7 +111554,7 @@ module MyCPUCore (
       MEM_ISS_to_MEM_RRD_ISSUE_SLOT_uop_cacheSel <= _zz_MEM_ISS_to_MEM_RRD_ISSUE_SLOT_uop_cacheSel;
       MEM_ISS_to_MEM_RRD_ISSUE_SLOT_wReg <= MEM_ISS_ISSUE_SLOT_wReg;
     end
-    if(when_Pipeline_l158_69) begin
+    if(when_Pipeline_l158_85) begin
       MEM_RRD_to_MEM_ADDR_ISSUE_SLOT_rRegs_0_valid <= MEM_RRD_ISSUE_SLOT_rRegs_0_valid;
       MEM_RRD_to_MEM_ADDR_ISSUE_SLOT_rRegs_0_payload <= MEM_RRD_ISSUE_SLOT_rRegs_0_payload;
       MEM_RRD_to_MEM_ADDR_ISSUE_SLOT_rRegs_1_valid <= MEM_RRD_ISSUE_SLOT_rRegs_1_valid;
@@ -111262,7 +111573,7 @@ module MyCPUCore (
       MEM_RRD_to_MEM_ADDR_ISSUE_SLOT_uop_cacheSel <= _zz_MEM_RRD_to_MEM_ADDR_ISSUE_SLOT_uop_cacheSel;
       MEM_RRD_to_MEM_ADDR_ISSUE_SLOT_wReg <= MEM_RRD_ISSUE_SLOT_wReg;
     end
-    if(when_Pipeline_l158_70) begin
+    if(when_Pipeline_l158_86) begin
       MEM_ADDR_to_MEM_MEM1_ISSUE_SLOT_rRegs_0_valid <= MEM_ADDR_ISSUE_SLOT_rRegs_0_valid;
       MEM_ADDR_to_MEM_MEM1_ISSUE_SLOT_rRegs_0_payload <= MEM_ADDR_ISSUE_SLOT_rRegs_0_payload;
       MEM_ADDR_to_MEM_MEM1_ISSUE_SLOT_rRegs_1_valid <= MEM_ADDR_ISSUE_SLOT_rRegs_1_valid;
@@ -111281,7 +111592,7 @@ module MyCPUCore (
       MEM_ADDR_to_MEM_MEM1_ISSUE_SLOT_uop_cacheSel <= _zz_MEM_ADDR_to_MEM_MEM1_ISSUE_SLOT_uop_cacheSel;
       MEM_ADDR_to_MEM_MEM1_ISSUE_SLOT_wReg <= MEM_ADDR_ISSUE_SLOT_wReg;
     end
-    if(when_Pipeline_l158_71) begin
+    if(when_Pipeline_l158_87) begin
       MEM_MEM1_to_MEM_MEM2_ISSUE_SLOT_rRegs_0_valid <= MEM_MEM1_ISSUE_SLOT_rRegs_0_valid;
       MEM_MEM1_to_MEM_MEM2_ISSUE_SLOT_rRegs_0_payload <= MEM_MEM1_ISSUE_SLOT_rRegs_0_payload;
       MEM_MEM1_to_MEM_MEM2_ISSUE_SLOT_rRegs_1_valid <= MEM_MEM1_ISSUE_SLOT_rRegs_1_valid;
@@ -111300,7 +111611,7 @@ module MyCPUCore (
       MEM_MEM1_to_MEM_MEM2_ISSUE_SLOT_uop_cacheSel <= _zz_MEM_MEM1_to_MEM_MEM2_ISSUE_SLOT_uop_cacheSel;
       MEM_MEM1_to_MEM_MEM2_ISSUE_SLOT_wReg <= MEM_MEM1_ISSUE_SLOT_wReg;
     end
-    if(when_Pipeline_l158_72) begin
+    if(when_Pipeline_l158_88) begin
       MEM_MEM2_to_MEM_WB_ISSUE_SLOT_rRegs_0_valid <= MEM_MEM2_ISSUE_SLOT_rRegs_0_valid;
       MEM_MEM2_to_MEM_WB_ISSUE_SLOT_rRegs_0_payload <= MEM_MEM2_ISSUE_SLOT_rRegs_0_payload;
       MEM_MEM2_to_MEM_WB_ISSUE_SLOT_rRegs_1_valid <= MEM_MEM2_ISSUE_SLOT_rRegs_1_valid;
@@ -111319,7 +111630,7 @@ module MyCPUCore (
       MEM_MEM2_to_MEM_WB_ISSUE_SLOT_uop_cacheSel <= _zz_MEM_MEM2_to_MEM_WB_ISSUE_SLOT_uop_cacheSel;
       MEM_MEM2_to_MEM_WB_ISSUE_SLOT_wReg <= MEM_MEM2_ISSUE_SLOT_wReg;
     end
-    if(when_Pipeline_l158_73) begin
+    if(when_Pipeline_l158_89) begin
       MEM_ISS_to_MEM_RRD_STD_SLOT_payload_retired <= MEM_ISS_STD_SLOT_payload_retired;
       MEM_ISS_to_MEM_RRD_STD_SLOT_payload_addr <= MEM_ISS_STD_SLOT_payload_addr;
       MEM_ISS_to_MEM_RRD_STD_SLOT_payload_be <= MEM_ISS_STD_SLOT_payload_be;
@@ -111331,7 +111642,7 @@ module MyCPUCore (
       MEM_ISS_to_MEM_RRD_STD_SLOT_payload_lsType <= _zz_MEM_ISS_to_MEM_RRD_STD_SLOT_payload_lsType;
       MEM_ISS_to_MEM_RRD_STD_SLOT_payload_robIdx <= MEM_ISS_STD_SLOT_payload_robIdx;
     end
-    if(when_Pipeline_l158_74) begin
+    if(when_Pipeline_l158_90) begin
       MEM_RRD_to_MEM_ADDR_STD_SLOT_payload_retired <= MEM_RRD_STD_SLOT_payload_retired;
       MEM_RRD_to_MEM_ADDR_STD_SLOT_payload_addr <= MEM_RRD_STD_SLOT_payload_addr;
       MEM_RRD_to_MEM_ADDR_STD_SLOT_payload_be <= MEM_RRD_STD_SLOT_payload_be;
@@ -111343,7 +111654,7 @@ module MyCPUCore (
       MEM_RRD_to_MEM_ADDR_STD_SLOT_payload_lsType <= _zz_MEM_RRD_to_MEM_ADDR_STD_SLOT_payload_lsType;
       MEM_RRD_to_MEM_ADDR_STD_SLOT_payload_robIdx <= MEM_RRD_STD_SLOT_payload_robIdx;
     end
-    if(when_Pipeline_l158_75) begin
+    if(when_Pipeline_l158_91) begin
       MEM_ADDR_to_MEM_MEM1_STD_SLOT_payload_retired <= MEM_ADDR_STD_SLOT_payload_retired;
       MEM_ADDR_to_MEM_MEM1_STD_SLOT_payload_addr <= MEM_ADDR_STD_SLOT_payload_addr;
       MEM_ADDR_to_MEM_MEM1_STD_SLOT_payload_be <= MEM_ADDR_STD_SLOT_payload_be;
@@ -111355,7 +111666,7 @@ module MyCPUCore (
       MEM_ADDR_to_MEM_MEM1_STD_SLOT_payload_lsType <= _zz_MEM_ADDR_to_MEM_MEM1_STD_SLOT_payload_lsType;
       MEM_ADDR_to_MEM_MEM1_STD_SLOT_payload_robIdx <= MEM_ADDR_STD_SLOT_payload_robIdx;
     end
-    if(when_Pipeline_l158_76) begin
+    if(when_Pipeline_l158_92) begin
       MEM_MEM1_to_MEM_MEM2_STD_SLOT_payload_retired <= MEM_MEM1_STD_SLOT_payload_retired;
       MEM_MEM1_to_MEM_MEM2_STD_SLOT_payload_addr <= MEM_MEM1_STD_SLOT_payload_addr;
       MEM_MEM1_to_MEM_MEM2_STD_SLOT_payload_be <= MEM_MEM1_STD_SLOT_payload_be;
@@ -111367,7 +111678,7 @@ module MyCPUCore (
       MEM_MEM1_to_MEM_MEM2_STD_SLOT_payload_lsType <= _zz_MEM_MEM1_to_MEM_MEM2_STD_SLOT_payload_lsType;
       MEM_MEM1_to_MEM_MEM2_STD_SLOT_payload_robIdx <= MEM_MEM1_STD_SLOT_payload_robIdx;
     end
-    if(when_Pipeline_l158_77) begin
+    if(when_Pipeline_l158_93) begin
       MEM_MEM2_to_MEM_WB_STD_SLOT_payload_retired <= MEM_MEM2_STD_SLOT_payload_retired;
       MEM_MEM2_to_MEM_WB_STD_SLOT_payload_addr <= MEM_MEM2_STD_SLOT_payload_addr;
       MEM_MEM2_to_MEM_WB_STD_SLOT_payload_be <= MEM_MEM2_STD_SLOT_payload_be;
@@ -111379,7 +111690,7 @@ module MyCPUCore (
       MEM_MEM2_to_MEM_WB_STD_SLOT_payload_lsType <= _zz_MEM_MEM2_to_MEM_WB_STD_SLOT_payload_lsType;
       MEM_MEM2_to_MEM_WB_STD_SLOT_payload_robIdx <= MEM_MEM2_STD_SLOT_payload_robIdx;
     end
-    if(when_Pipeline_l158_78) begin
+    if(when_Pipeline_l158_94) begin
       MEM_WB_to_MEM_WB2_STD_SLOT_payload_retired <= MEM_WB_STD_SLOT_payload_retired;
       MEM_WB_to_MEM_WB2_STD_SLOT_payload_addr <= MEM_WB_STD_SLOT_payload_addr;
       MEM_WB_to_MEM_WB2_STD_SLOT_payload_be <= MEM_WB_STD_SLOT_payload_be;
@@ -111391,37 +111702,37 @@ module MyCPUCore (
       MEM_WB_to_MEM_WB2_STD_SLOT_payload_lsType <= _zz_MEM_WB_to_MEM_WB2_STD_SLOT_payload_lsType;
       MEM_WB_to_MEM_WB2_STD_SLOT_payload_robIdx <= MEM_WB_STD_SLOT_payload_robIdx;
     end
-    if(when_Pipeline_l158_79) begin
+    if(when_Pipeline_l158_95) begin
       MEM_RRD_to_MEM_ADDR_MEMORY_ADDRESS <= MEM_RRD_MEMORY_ADDRESS;
     end
-    if(when_Pipeline_l158_80) begin
+    if(when_Pipeline_l158_96) begin
       MEM_ADDR_to_MEM_MEM1_MEMORY_ADDRESS <= _zz_MEM_ADDR_DCachePlugin_memAddr;
     end
-    if(when_Pipeline_l158_81) begin
+    if(when_Pipeline_l158_97) begin
       MEM_MEM1_to_MEM_MEM2_MEMORY_ADDRESS <= MEM_MEM1_MEMORY_ADDRESS;
     end
-    if(when_Pipeline_l158_82) begin
+    if(when_Pipeline_l158_98) begin
       MEM_MEM2_to_MEM_WB_MEMORY_ADDRESS <= _zz_MEM_MEM2_to_MEM_WB_MEMORY_ADDRESS;
     end
-    if(when_Pipeline_l158_83) begin
+    if(when_Pipeline_l158_99) begin
       MEM_RRD_to_MEM_ADDR_MEMORY_WRITE_DATA <= MEM_RRD_MEMORY_WRITE_DATA;
     end
-    if(when_Pipeline_l158_84) begin
+    if(when_Pipeline_l158_100) begin
       MEM_ADDR_to_MEM_MEM1_MEMORY_WRITE_DATA <= MEM_ADDR_AddressGenerationPlugin_memWData;
     end
-    if(when_Pipeline_l158_85) begin
+    if(when_Pipeline_l158_101) begin
       MEM_MEM1_to_MEM_MEM2_MEMORY_WRITE_DATA <= MEM_MEM1_MEMORY_WRITE_DATA;
     end
-    if(when_Pipeline_l158_86) begin
+    if(when_Pipeline_l158_102) begin
       MEM_MEM2_to_MEM_WB_MEMORY_WRITE_DATA <= MEM_MEM2_MEMORY_WRITE_DATA;
     end
-    if(when_Pipeline_l158_87) begin
+    if(when_Pipeline_l158_103) begin
       MEM_ADDR_to_MEM_MEM1_MEMORY_BE <= MEM_ADDR_MEMORY_BE;
     end
-    if(when_Pipeline_l158_88) begin
+    if(when_Pipeline_l158_104) begin
       MEM_MEM1_to_MEM_MEM2_MEMORY_BE <= MEM_MEM1_MEMORY_BE;
     end
-    if(when_Pipeline_l158_89) begin
+    if(when_Pipeline_l158_105) begin
       MEM_ADDR_to_MEM_MEM1_DIRECT_TRANSLATE_RESULT_valid <= MEM_ADDR_DIRECT_TRANSLATE_RESULT_valid;
       MEM_ADDR_to_MEM_MEM1_DIRECT_TRANSLATE_RESULT_payload_physAddr <= MEM_ADDR_DIRECT_TRANSLATE_RESULT_payload_physAddr;
       MEM_ADDR_to_MEM_MEM1_DIRECT_TRANSLATE_RESULT_payload_cached <= MEM_ADDR_DIRECT_TRANSLATE_RESULT_payload_cached;
@@ -111432,113 +111743,120 @@ module MyCPUCore (
       MEM_ADDR_to_MEM_MEM1_DIRECT_TRANSLATE_RESULT_payload_exception_raisePPI <= MEM_ADDR_DIRECT_TRANSLATE_RESULT_payload_exception_raisePPI;
       MEM_ADDR_to_MEM_MEM1_DIRECT_TRANSLATE_RESULT_payload_exception_raiseTLBR <= MEM_ADDR_DIRECT_TRANSLATE_RESULT_payload_exception_raiseTLBR;
     end
-    if(when_Pipeline_l158_90) begin
-      MEM_ADDR_to_MEM_MEM1_TLB_TRANSLATE_RESULT_valid <= MEM_ADDR_TLB_TRANSLATE_RESULT_valid;
-      MEM_ADDR_to_MEM_MEM1_TLB_TRANSLATE_RESULT_payload_physAddr <= MEM_ADDR_TLB_TRANSLATE_RESULT_payload_physAddr;
-      MEM_ADDR_to_MEM_MEM1_TLB_TRANSLATE_RESULT_payload_cached <= MEM_ADDR_TLB_TRANSLATE_RESULT_payload_cached;
-      MEM_ADDR_to_MEM_MEM1_TLB_TRANSLATE_RESULT_payload_exception_raisePIL <= MEM_ADDR_TLB_TRANSLATE_RESULT_payload_exception_raisePIL;
-      MEM_ADDR_to_MEM_MEM1_TLB_TRANSLATE_RESULT_payload_exception_raisePIS <= MEM_ADDR_TLB_TRANSLATE_RESULT_payload_exception_raisePIS;
-      MEM_ADDR_to_MEM_MEM1_TLB_TRANSLATE_RESULT_payload_exception_raisePIF <= MEM_ADDR_TLB_TRANSLATE_RESULT_payload_exception_raisePIF;
-      MEM_ADDR_to_MEM_MEM1_TLB_TRANSLATE_RESULT_payload_exception_raisePME <= MEM_ADDR_TLB_TRANSLATE_RESULT_payload_exception_raisePME;
-      MEM_ADDR_to_MEM_MEM1_TLB_TRANSLATE_RESULT_payload_exception_raisePPI <= MEM_ADDR_TLB_TRANSLATE_RESULT_payload_exception_raisePPI;
-      MEM_ADDR_to_MEM_MEM1_TLB_TRANSLATE_RESULT_payload_exception_raiseTLBR <= MEM_ADDR_TLB_TRANSLATE_RESULT_payload_exception_raiseTLBR;
+    if(when_Pipeline_l158_106) begin
+      MEM_ADDR_to_MEM_MEM1_TLB_LOOKUP_SNAPSHOT_hit <= MEM_ADDR_TLB_LOOKUP_SNAPSHOT_hit;
+      MEM_ADDR_to_MEM_MEM1_TLB_LOOKUP_SNAPSHOT_entry_E <= MEM_ADDR_TLB_LOOKUP_SNAPSHOT_entry_E;
+      MEM_ADDR_to_MEM_MEM1_TLB_LOOKUP_SNAPSHOT_entry_ASID <= MEM_ADDR_TLB_LOOKUP_SNAPSHOT_entry_ASID;
+      MEM_ADDR_to_MEM_MEM1_TLB_LOOKUP_SNAPSHOT_entry_G <= MEM_ADDR_TLB_LOOKUP_SNAPSHOT_entry_G;
+      MEM_ADDR_to_MEM_MEM1_TLB_LOOKUP_SNAPSHOT_entry_PS <= MEM_ADDR_TLB_LOOKUP_SNAPSHOT_entry_PS;
+      MEM_ADDR_to_MEM_MEM1_TLB_LOOKUP_SNAPSHOT_entry_VPPN <= MEM_ADDR_TLB_LOOKUP_SNAPSHOT_entry_VPPN;
+      MEM_ADDR_to_MEM_MEM1_TLB_LOOKUP_SNAPSHOT_entry_V0 <= MEM_ADDR_TLB_LOOKUP_SNAPSHOT_entry_V0;
+      MEM_ADDR_to_MEM_MEM1_TLB_LOOKUP_SNAPSHOT_entry_D0 <= MEM_ADDR_TLB_LOOKUP_SNAPSHOT_entry_D0;
+      MEM_ADDR_to_MEM_MEM1_TLB_LOOKUP_SNAPSHOT_entry_MAT0 <= MEM_ADDR_TLB_LOOKUP_SNAPSHOT_entry_MAT0;
+      MEM_ADDR_to_MEM_MEM1_TLB_LOOKUP_SNAPSHOT_entry_PLV0 <= MEM_ADDR_TLB_LOOKUP_SNAPSHOT_entry_PLV0;
+      MEM_ADDR_to_MEM_MEM1_TLB_LOOKUP_SNAPSHOT_entry_PPN0 <= MEM_ADDR_TLB_LOOKUP_SNAPSHOT_entry_PPN0;
+      MEM_ADDR_to_MEM_MEM1_TLB_LOOKUP_SNAPSHOT_entry_V1 <= MEM_ADDR_TLB_LOOKUP_SNAPSHOT_entry_V1;
+      MEM_ADDR_to_MEM_MEM1_TLB_LOOKUP_SNAPSHOT_entry_D1 <= MEM_ADDR_TLB_LOOKUP_SNAPSHOT_entry_D1;
+      MEM_ADDR_to_MEM_MEM1_TLB_LOOKUP_SNAPSHOT_entry_MAT1 <= MEM_ADDR_TLB_LOOKUP_SNAPSHOT_entry_MAT1;
+      MEM_ADDR_to_MEM_MEM1_TLB_LOOKUP_SNAPSHOT_entry_PLV1 <= MEM_ADDR_TLB_LOOKUP_SNAPSHOT_entry_PLV1;
+      MEM_ADDR_to_MEM_MEM1_TLB_LOOKUP_SNAPSHOT_entry_PPN1 <= MEM_ADDR_TLB_LOOKUP_SNAPSHOT_entry_PPN1;
     end
-    if(when_Pipeline_l158_91) begin
+    if(when_Pipeline_l158_107) begin
       MEM_ADDR_to_MEM_MEM1_TRANSLATE_SAVED_CSR_CRMD_DA <= MEM_ADDR_TRANSLATE_SAVED_CSR_CRMD_DA;
       MEM_ADDR_to_MEM_MEM1_TRANSLATE_SAVED_CSR_CRMD_PG <= MEM_ADDR_TRANSLATE_SAVED_CSR_CRMD_PG;
       MEM_ADDR_to_MEM_MEM1_TRANSLATE_SAVED_CSR_CRMD_DATF <= MEM_ADDR_TRANSLATE_SAVED_CSR_CRMD_DATF;
       MEM_ADDR_to_MEM_MEM1_TRANSLATE_SAVED_CSR_CRMD_DATM <= MEM_ADDR_TRANSLATE_SAVED_CSR_CRMD_DATM;
     end
-    if(when_Pipeline_l158_92) begin
+    if(when_Pipeline_l158_108) begin
       MEM_ADDR_to_MEM_MEM1_EXCEPTION_OCCURRED <= _zz_MEM_ADDR_to_MEM_MEM1_EXCEPTION_OCCURRED;
     end
-    if(when_Pipeline_l158_93) begin
+    if(when_Pipeline_l158_109) begin
       MEM_MEM1_to_MEM_MEM2_EXCEPTION_OCCURRED <= _zz_MEM_MEM1_to_MEM_MEM2_EXCEPTION_OCCURRED;
     end
-    if(when_Pipeline_l158_94) begin
+    if(when_Pipeline_l158_110) begin
       MEM_MEM2_to_MEM_WB_EXCEPTION_OCCURRED <= MEM_MEM2_EXCEPTION_OCCURRED;
     end
-    if(when_Pipeline_l158_95) begin
+    if(when_Pipeline_l158_111) begin
       MEM_ADDR_to_MEM_MEM1_EXCEPTION_ECODE <= _zz_MEM_ADDR_to_MEM_MEM1_EXCEPTION_ECODE;
     end
-    if(when_Pipeline_l158_96) begin
+    if(when_Pipeline_l158_112) begin
       MEM_MEM1_to_MEM_MEM2_EXCEPTION_ECODE <= _zz_MEM_MEM1_to_MEM_MEM2_EXCEPTION_ECODE;
     end
-    if(when_Pipeline_l158_97) begin
+    if(when_Pipeline_l158_113) begin
       MEM_MEM2_to_MEM_WB_EXCEPTION_ECODE <= MEM_MEM2_EXCEPTION_ECODE;
     end
-    if(when_Pipeline_l158_98) begin
+    if(when_Pipeline_l158_114) begin
       MEM_ADDR_to_MEM_MEM1_EXCEPTION_ESUBCODE <= _zz_MEM_ADDR_to_MEM_MEM1_EXCEPTION_ESUBCODE;
     end
-    if(when_Pipeline_l158_99) begin
+    if(when_Pipeline_l158_115) begin
       MEM_MEM1_to_MEM_MEM2_EXCEPTION_ESUBCODE <= _zz_MEM_MEM1_to_MEM_MEM2_EXCEPTION_ESUBCODE;
     end
-    if(when_Pipeline_l158_100) begin
+    if(when_Pipeline_l158_116) begin
       MEM_MEM2_to_MEM_WB_EXCEPTION_ESUBCODE <= MEM_MEM2_EXCEPTION_ESUBCODE;
     end
-    if(when_Pipeline_l158_101) begin
+    if(when_Pipeline_l158_117) begin
       MEM_MEM1_to_MEM_MEM2_MEMORY_ADDRESS_PHYSICAL <= MEM_MEM1_MEMORY_ADDRESS_PHYSICAL;
     end
-    if(when_Pipeline_l158_102) begin
+    if(when_Pipeline_l158_118) begin
       MEM_MEM2_to_MEM_WB_MEMORY_ADDRESS_PHYSICAL <= MEM_MEM2_MEMORY_ADDRESS_PHYSICAL;
     end
-    if(when_Pipeline_l158_103) begin
+    if(when_Pipeline_l158_119) begin
       MEM_MEM1_to_MEM_MEM2_ADDRESS_CACHED <= MEM_MEM1_ADDRESS_CACHED;
     end
-    if(when_Pipeline_l158_104) begin
+    if(when_Pipeline_l158_120) begin
       MEM_MEM2_to_MEM_WB_ADDRESS_CACHED <= MEM_MEM2_ADDRESS_CACHED;
     end
-    if(when_Pipeline_l158_105) begin
+    if(when_Pipeline_l158_121) begin
       MEM_MEM1_to_MEM_MEM2_IS_TLB_REFILL <= MEM_MEM1_IS_TLB_REFILL;
     end
-    if(when_Pipeline_l158_106) begin
+    if(when_Pipeline_l158_122) begin
       MEM_MEM2_to_MEM_WB_IS_TLB_REFILL <= MEM_MEM2_IS_TLB_REFILL;
     end
-    if(when_Pipeline_l158_107) begin
+    if(when_Pipeline_l158_123) begin
       MEM_MEM1_to_MEM_MEM2_DCACHE_VALIDS_0 <= MEM_MEM1_DCACHE_VALIDS_0;
       MEM_MEM1_to_MEM_MEM2_DCACHE_VALIDS_1 <= MEM_MEM1_DCACHE_VALIDS_1;
     end
-    if(when_Pipeline_l158_108) begin
+    if(when_Pipeline_l158_124) begin
       MEM_MEM1_to_MEM_MEM2_DCACHE_DIRTY <= MEM_MEM1_DCACHE_DIRTY;
     end
-    if(when_Pipeline_l158_109) begin
+    if(when_Pipeline_l158_125) begin
       MEM_MEM1_to_MEM_MEM2_DCACHE_INFO_lru <= MEM_MEM1_DCACHE_INFO_lru;
       MEM_MEM1_to_MEM_MEM2_DCACHE_INFO_tags_0 <= MEM_MEM1_DCACHE_INFO_tags_0;
       MEM_MEM1_to_MEM_MEM2_DCACHE_INFO_tags_1 <= MEM_MEM1_DCACHE_INFO_tags_1;
     end
-    if(when_Pipeline_l158_110) begin
+    if(when_Pipeline_l158_126) begin
       MEM_MEM1_to_MEM_MEM2_TAG_MATCHES <= MEM_MEM1_TAG_MATCHES;
     end
-    if(when_Pipeline_l158_111) begin
+    if(when_Pipeline_l158_127) begin
       MEM_MEM1_to_MEM_MEM2_ROB_IDX <= MEM_MEM1_ROB_IDX;
     end
-    if(when_Pipeline_l158_112) begin
+    if(when_Pipeline_l158_128) begin
       MEM_MEM2_to_MEM_WB_ROB_IDX <= MEM_MEM2_ROB_IDX;
     end
-    if(when_Pipeline_l158_113) begin
+    if(when_Pipeline_l158_129) begin
       MEM_MEM1_to_MEM_MEM2_IS_LOAD <= MEM_MEM1_IS_LOAD;
     end
-    if(when_Pipeline_l158_114) begin
+    if(when_Pipeline_l158_130) begin
       MEM_MEM2_to_MEM_WB_IS_LOAD <= MEM_MEM2_IS_LOAD;
     end
-    if(when_Pipeline_l158_115) begin
+    if(when_Pipeline_l158_131) begin
       MEM_MEM1_to_MEM_MEM2_IS_STORE <= MEM_MEM1_IS_STORE;
     end
-    if(when_Pipeline_l158_116) begin
+    if(when_Pipeline_l158_132) begin
       MEM_MEM2_to_MEM_WB_IS_STORE <= MEM_MEM2_IS_STORE;
     end
-    if(when_Pipeline_l158_117) begin
+    if(when_Pipeline_l158_133) begin
       MEM_MEM1_to_MEM_MEM2_WRITE_REG_valid <= MEM_MEM1_WRITE_REG_valid;
       MEM_MEM1_to_MEM_MEM2_WRITE_REG_payload <= MEM_MEM1_WRITE_REG_payload;
     end
-    if(when_Pipeline_l158_118) begin
+    if(when_Pipeline_l158_134) begin
       MEM_MEM2_to_MEM_WB_WRITE_REG_valid <= _zz_when_MemExecutePlugin_l122;
       MEM_MEM2_to_MEM_WB_WRITE_REG_payload <= _zz_MEM_MEM2_to_MEM_WB_WRITE_REG_payload;
     end
-    if(when_Pipeline_l158_119) begin
+    if(when_Pipeline_l158_135) begin
       MEM_MEM1_to_MEM_MEM2_LOAD_STORE_TYPE <= _zz_MEM_MEM1_to_MEM_MEM2_LOAD_STORE_TYPE;
     end
-    if(when_Pipeline_l158_120) begin
+    if(when_Pipeline_l158_136) begin
       MEM_MEM2_to_MEM_WB_MEMORY_READ_DATA <= MEM_MEM2_LoadPostprocessPlugin_wbWord;
     end
     if(when_CompressedFIFO_l59) begin
