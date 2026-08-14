@@ -130,7 +130,8 @@ class ReorderCacheRAMOutReg[T <: Data](
     rPortCount: Int,
     wPortCount: Int,
     outputReg: Boolean = true,
-    writeFirst: Boolean = false
+    writeFirst: Boolean = false,
+    rspReplicaCount: Int = 1
 ) extends Component {
   val addressWidth = log2Up(wordCount)
   val offWidth = log2Up(math.max(rPortCount, wPortCount))
@@ -151,8 +152,14 @@ class ReorderCacheRAMOutReg[T <: Data](
   val io = new Bundle {
     val read = slave(MemReadPort(Vec(dataType, rPortCount), addressWidth))
     val write = in(Flow(RAMWriteCmdWithMask(Vec(dataType, wPortCount), addressWidth, wPortCount)))
+    // 响应寄存器副本(供父组件按消费组分扇出,见 MultiPortFIFOSyncImpl)
+    val rspReplicas = out(Vec(Vec(dataType, rPortCount), rspReplicaCount))
   }
-  io.read.rsp.setAsReg()
+  // 手动复制寄存器(ch9:高扇出网由多份 FF 各自驱动消费组,避免综合器
+  // 把副本全部连回同一寄存器)。副本同 D、同时钟,周期语义不变。
+  val rspReplicaRegs =
+    if (rspReplicaCount <= 1) Seq(io.read.rsp.setAsReg())
+    else Seq.fill(rspReplicaCount)(Reg(Vec(dataType, rPortCount)))
   val readLogic = new Area {
     val addrHi = io.read.cmd.payload((addressWidth - 1) downto offWidth)
     val offset = io.read.cmd.payload(0, offWidth bits)
@@ -163,8 +170,20 @@ class ReorderCacheRAMOutReg[T <: Data](
     }
     // 延迟address，输出重排序
     val regAddr = Delay(offset, if (outputReg) 1 else 0, io.read.cmd.valid)
-    io.read.rsp.zipWithIndex.map { case (rsp, idx) =>
+    val muxed = Vec(dataType, rPortCount)
+    muxed.zipWithIndex.map { case (rsp, idx) =>
       rsp := rPorts(regAddr + idx).rsp
+    }
+    for (r <- rspReplicaRegs) {
+      r := muxed
+    }
+    io.rspReplicas.zip(rspReplicaRegs).foreach { case (outPort, reg) =>
+      outPort := reg
+    }
+    // 多副本时 io.read.rsp 本身不是寄存器,从副本 0 组合引出;单副本时
+    // rspReplicaRegs.head 就是 io.read.rsp(经 setAsReg),再赋值会自指。
+    if (rspReplicaCount > 1) {
+      io.read.rsp := rspReplicaRegs.head
     }
   }
   val writeLogic = new Area {

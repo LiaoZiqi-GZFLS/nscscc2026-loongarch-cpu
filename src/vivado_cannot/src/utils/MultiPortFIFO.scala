@@ -23,7 +23,8 @@ class MultiPortFIFOSyncImpl[T <: Data](
   // 时序:读地址不再依赖 popCount 的提交就绪优先 mux(popPtr -> popCount mux
   // -> 加法 -> RAM 译码 曾是关键路径),改为直接读 popPtr 并超读 2 倍入口,
   // 弹出数据由寄存一拍的 popCount 在响应侧选择。
-  val ram = new ReorderCacheRAMOutReg(dataType, depth, popPorts * 2, pushPorts, false, true)
+  val ram = new ReorderCacheRAMOutReg(dataType, depth, popPorts * 2, pushPorts, false, true,
+      rspReplicaCount = popPorts)
   val pushPtr = RegInit(U(0, ram.addressWidth bits))
   val popPtr = RegInit(U(0, ram.addressWidth bits))
   val isRisingOccupancy = RegInit(False)
@@ -66,7 +67,8 @@ class MultiPortFIFOSyncImpl[T <: Data](
     // 所有左侧均ready，且可以pop
     val readyTakeLeft = io.pop.take(i + 1).map(_.ready).andR
     io.pop(i).valid := isFull || i < maxPop
-    io.pop(i).payload := ram.io.read.rsp(popCountReg + i)
+    // 手动复制:每个 pop 口的响应 mux 读不同的 rsp 副本,拆散扇出
+    io.pop(i).payload := ram.io.rspReplicas(i % popPorts)(popCountReg + i)
   }
   popPtr := popPtr + popCount
   ram.io.read.cmd.valid := True
