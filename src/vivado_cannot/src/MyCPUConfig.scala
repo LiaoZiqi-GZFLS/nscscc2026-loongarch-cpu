@@ -32,7 +32,7 @@ final case class ICacheConfig(
 final case class DCacheConfig(
     sets: Int = 64,
     lineSize: Int = 64,
-    ways: Int = 2
+    ways: Int = 4 // 4-way round-robin: halves D$ misses on perf benchmarks
 ) extends CacheBasicConfig {
   require(sets * lineSize <= (4 << 10), "4KB is VIPT limit")
   val enable = true

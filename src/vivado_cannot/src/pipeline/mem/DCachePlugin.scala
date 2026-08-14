@@ -153,7 +153,7 @@ class DCachePlugin(config: MyCPUConfig) extends Plugin[MemPipeline] {
       }
       val hit = hits.orR
       val hitData = MuxOH(hits, dataRAMs.map(_.io.read.rsp))
-      val hitWay = hits(1).asUInt
+      val hitWay = OHToUInt(Vec(hits).asBits) // multi-way safe one-hot decode
       val replaceWay = input(DCACHE_INFO).lru.asUInt
 
       // CACHE指令相关信息
@@ -166,15 +166,7 @@ class DCachePlugin(config: MyCPUConfig) extends Plugin[MemPipeline] {
       dirtyBitsManager.io.writeCmd.setIdle()
 
       when(reqCommit && hit) {
-        // 命中，提交LRU修改
-        assert(dcache.ways == 2)
-        val newInfo = input(DCACHE_INFO).copy()
-        newInfo.tags := input(DCACHE_INFO).tags
-        // hit 0, set 1
-        newInfo.lru(0) := hits(0)
-        wPort.valid.set()
-        wPort.payload.address := idx
-        wPort.payload.data := newInfo
+        // Round-Robin 替换：命中不更新替换信息
         when(isSTD) {
           // STD提交写cache
           dataWs(hitWay).valid := True
@@ -481,14 +473,13 @@ class DCachePlugin(config: MyCPUConfig) extends Plugin[MemPipeline] {
           dataWs(replaceWay).payload.address := idx @@ rspId
           dataWs(replaceWay).payload.data := refillWord
           // 更新info
-          assert(dcache.ways == 2)
           val newInfo = input(DCACHE_INFO).copy()
           // 其它路tag保持
           newInfo.tags := input(DCACHE_INFO).tags
           // 选择的一路写入新tag
           newInfo.tags(replaceWay) := tag
-          // 更新LRU
-          newInfo.lru := ~input(DCACHE_INFO).lru
+          // Round-Robin：refill 后 victim 计数 +1（宽度截断自然回卷）
+          newInfo.lru := (input(DCACHE_INFO).lru.asUInt + 1).resize(log2Up(dcache.ways)).asBits
           dirtyBitsManager.io.writeCmd.valid := True
           dirtyBitsManager.io.writeCmd.idx := idx
           dirtyBitsManager.io.writeCmd.way := replaceWay
