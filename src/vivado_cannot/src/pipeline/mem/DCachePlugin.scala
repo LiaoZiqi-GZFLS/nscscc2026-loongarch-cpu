@@ -24,6 +24,20 @@ class DCachePlugin(config: MyCPUConfig) extends Plugin[MemPipeline] {
   // valid有单index清空的可能，多写口
   val valids = Vec(Vec(RegInit(False), dcache.ways), dcache.sets)
   val dirtyBitsManager = new DirtyBitsManager(config.dcache)
+  // 预取流缓冲(下一行预取,度1):全相联、按整行地址键。需求 miss 时把
+  // addr+lineSize 压入 pending,refill 空闲时发突发填入,不写 L1(零污染)。
+  // 需求查 L1 优先,流缓冲命中直接回送(不阻塞、不提升)。
+  // 一致性:store/写回/uncached 命中/缓存指令都会失效对应条目,见 MEM2。
+  val sbEnabled = dcache.streamBufferEntries > 0
+  val sbEnabledB = Bool(sbEnabled)
+  val sbData = if (sbEnabled) Vec(Reg(Vec(BWord(), dcache.lineWords)), dcache.streamBufferEntries) else null
+  val sbTags =
+    if (sbEnabled) Vec(RegInit(U(0, (32 - dcache.offsetWidth) bits)), dcache.streamBufferEntries)
+    else null
+  val sbValid = if (sbEnabled) Vec(RegInit(False), dcache.streamBufferEntries) else null
+  val sbAlloc = if (sbEnabled) RegInit(U(0, log2Up(dcache.streamBufferEntries) bits)) else null
+  val prefetchPending = RegInit(False)
+  val prefetchAddr = RegInit(U(0, 32 bits))
   // 虽然d-cache形式上组织成例如32B一行，但是实际每次读写都只需要一个word，因此物理上这么组织最省面积和延迟
   val dataRAMs = Seq.fill(dcache.ways)(
     new SDPRAM(BWord(), dcache.lineWords * dcache.sets, true, useByteEnable = true)
@@ -34,6 +48,7 @@ class DCachePlugin(config: MyCPUConfig) extends Plugin[MemPipeline] {
   private object DCACHE_DIRTY extends Stageable(dirtyBitsManager.dirtyBits.dataType())
   private object DCACHE_INFO extends Stageable(CacheLineInfo(dcache))
   private object TAG_MATCHES extends Stageable(Bits(dcache.ways bits))
+  private object DCACHE_SB_HITS extends Stageable(Bits(scala.math.max(dcache.streamBufferEntries, 1) bits))
 
   val writebackIdle = False
 
@@ -77,6 +92,26 @@ class DCachePlugin(config: MyCPUConfig) extends Plugin[MemPipeline] {
       val cachePhysAddr = Mux(std.valid, std.addr, input(MEMORY_ADDRESS_PHYSICAL))
       for (i <- 0 until dcache.ways) {
         insert(TAG_MATCHES)(i) := input(DCACHE_INFO).tags(i) === cachePhysAddr(dcache.tagRange)
+      }
+
+      // 流缓冲查找与 store 失效提前到 MEM1(与 TAG_MATCHES 同模式):
+      // 26 位行比较不进 MEM2 组合云,避免拉长 MEM2 haltItself->notStuck 链
+      // (该链曾被 -0.390ns 违例路径穿过:STD_SLOT.valid -> 发射队列唤醒)
+      if (sbEnabled) {
+        val mem1SbHits =
+          for (i <- 0 until dcache.streamBufferEntries)
+            yield sbValid(i) && sbTags(i) === cachePhysAddr(31 downto dcache.offsetWidth)
+        insert(DCACHE_SB_HITS) := Vec(mem1SbHits).asBits
+        // 任何 store(含 uncached)的地址槽经过 MEM1 即失效命中条目;
+        // 比 MEM2 提前一拍,STD 到达 MEM2 时条目已失效,needRefill 的
+        // isSTD 豁免兜底。被 flush 的 store 多失效一条无害(保守方向)
+        when(arbitration.isValidNotStuck && input(ISSUE_SLOT).uop.isStore) {
+          for (i <- 0 until dcache.streamBufferEntries) {
+            when(sbTags(i) === cachePhysAddr(31 downto dcache.offsetWidth)) {
+              sbValid(i) := False
+            }
+          }
+        }
       }
 
       // 拆issue slot
@@ -151,10 +186,31 @@ class DCachePlugin(config: MyCPUConfig) extends Plugin[MemPipeline] {
       val hits = for (i <- 0 until setValids.size) yield {
         setValids(i) && input(TAG_MATCHES)(i)
       }
-      val hit = hits.orR
+      val l1Hit = hits.orR
       val hitData = MuxOH(hits, dataRAMs.map(_.io.read.rsp))
       val hitWay = OHToUInt(Vec(hits).asBits) // multi-way safe one-hot decode
       val replaceWay = input(DCACHE_INFO).lru.asUInt
+
+      // 流缓冲查询(命中向量在 MEM1 已算好并打拍,这里只做数据选择)
+      val sbLineAddr = cachePhysAddr(31 downto dcache.offsetWidth)
+      val sbHits = if (sbEnabled) input(DCACHE_SB_HITS).asBools else Vec(Seq.empty[Bool])
+      val sbHit = sbHits.orR
+      val sbHitData =
+        if (sbEnabled) MuxOH(sbHits, sbData.map(_(cachePhysAddr(dcache.wordOffsetRange))))
+        else B(0, 32 bits)
+      val hit = l1Hit || sbHit
+      // 需要 refill 的需求访问:load 命中流缓冲视为命中;STD 必须落在
+      // L1(store 数据经数据 RAM 提交),流缓冲命中不豁免——且 STA 时
+      // 缓冲条目已失效,STD 出现时 sbHit 应为假,此分支为防御性兜底。
+      val needRefill = reqValid && !l1Hit && (isSTD || !sbHit)
+      // 预取窗口门控:仅对缓存窗口内的行预取(0x0/0x1/0x7 物理直通与
+      // 0x8/0x9 仿真缓存窗口),避免对设备区发无意义突发
+      val cacheWindowOk =
+        cachePhysAddr(31 downto 28) === U"x0" ||
+          cachePhysAddr(31 downto 28) === U"x1" ||
+          cachePhysAddr(31 downto 28) === U"x7" ||
+          cachePhysAddr(31 downto 28) === U"x8" ||
+          cachePhysAddr(31 downto 28) === U"x9"
 
       // CACHE指令相关信息
       val wayCACHE = CombInit(hitWay)
@@ -165,7 +221,7 @@ class DCachePlugin(config: MyCPUConfig) extends Plugin[MemPipeline] {
       val storedWord = Reg(BWord())
       dirtyBitsManager.io.writeCmd.setIdle()
 
-      when(reqCommit && hit) {
+      when(reqCommit && l1Hit) {
         // Round-Robin 替换：命中不更新替换信息
         when(isSTD) {
           // STD提交写cache
@@ -181,6 +237,9 @@ class DCachePlugin(config: MyCPUConfig) extends Plugin[MemPipeline] {
           // doRefetch := True
         }
       }
+
+      // 流缓冲一致性:store 失效已提前到 MEM1(store 地址槽经过时即清),
+      // STD 到达 MEM2 时条目已失效;needRefill 的 isSTD 豁免兜底防御
 
       // 触发将脏块写回内存的状态机
       val triggerWriteback = False
@@ -213,11 +272,33 @@ class DCachePlugin(config: MyCPUConfig) extends Plugin[MemPipeline] {
             goto(fetchCache)
             when(triggerWriteback) {
               wayIdx := replaceWay
+              // 写回行 L:失效流缓冲中的 L,防止陈旧副本被后续 load 命中
+              if (sbEnabled) {
+                for (i <- 0 until dcache.streamBufferEntries) {
+                  when(sbTags(i) === input(DCACHE_INFO).tags(replaceWay) @@ idx) {
+                    sbValid(i) := False
+                  }
+                }
+              }
             } elsewhen (triggerWritebackFixUncache) {
               wayIdx := hitWay
+              if (sbEnabled) {
+                for (i <- 0 until dcache.streamBufferEntries) {
+                  when(sbTags(i) === input(DCACHE_INFO).tags(hitWay) @@ idx) {
+                    sbValid(i) := False
+                  }
+                }
+              }
             } otherwise {
               // triggerWritebackCACHE
               wayIdx := wayCACHE
+              if (sbEnabled) {
+                for (i <- 0 until dcache.streamBufferEntries) {
+                  when(sbTags(i) === input(DCACHE_INFO).tags(wayCACHE) @@ idx) {
+                    sbValid(i) := False
+                  }
+                }
+              }
             }
           }
         }
@@ -285,12 +366,20 @@ class DCachePlugin(config: MyCPUConfig) extends Plugin[MemPipeline] {
         setEntry(stateBoot)
         val waitWriteback = new State
 
-        val dirty = setValids(hitWay) && input(DCACHE_DIRTY)(hitWay)
+        val dirty = l1Hit && setValids(hitWay) && input(DCACHE_DIRTY)(hitWay)
 
         stateBoot.whenIsActive {
           when((isLDU || isSTU) && hit) {
             arbitration.haltItself := True
             triggerWritebackFixUncache := dirty
+            // 流缓冲中的同一行直接失效(uncached 访问后副本已不可信)
+            if (sbEnabled) {
+              for (i <- 0 until dcache.streamBufferEntries) {
+                when(sbTags(i) === sbLineAddr) {
+                  sbValid(i) := False
+                }
+              }
+            }
             goto(waitWriteback)
           }
         }
@@ -299,7 +388,9 @@ class DCachePlugin(config: MyCPUConfig) extends Plugin[MemPipeline] {
           triggerWritebackFixUncache := False
           // 每条都从state boot开始
           when(arbitration.notStuck) {
-            valids(idx)(hitWay) := False // invalidate the cache
+            when(l1Hit) {
+              valids(idx)(hitWay) := False // invalidate the cache
+            }
             doRefetch := True // valid状态改了，需要refetch
             goto(stateBoot)
           }
@@ -320,6 +411,12 @@ class DCachePlugin(config: MyCPUConfig) extends Plugin[MemPipeline] {
 
         stateBoot.whenIsActive {
           when(arbitration.isValidOnEntry && isCACHE && cacheSel === CacheSelType.DCache) {
+            // 缓存指令会改动 L1 内容,流缓冲副本保守全部失效
+            if (sbEnabled) {
+              for (i <- 0 until dcache.streamBufferEntries) {
+                sbValid(i) := False
+              }
+            }
             switch(input(ISSUE_SLOT).uop.cacheOp) {
               import CacheOpType._
               is(IndexInvalidate) {
@@ -397,6 +494,10 @@ class DCachePlugin(config: MyCPUConfig) extends Plugin[MemPipeline] {
         val waitAXIU = new State
         val readMemU = new State
         val finishU = new State
+        // 下一行预取(流缓冲):空闲时复用 dBus,需求 miss/uncached 出现即放弃
+        val prefetchAR = new State
+        val prefetchRead = new State
+        val prefetchDrain = new State
         disableAutoStart()
         setEntry(stateBoot)
         val rspId = Counter(dcache.lineWords)
@@ -419,15 +520,20 @@ class DCachePlugin(config: MyCPUConfig) extends Plugin[MemPipeline] {
 
         stateBoot.whenIsActive {
           // write-back write allocate, STD需要refill cache
-          when(reqValid && !hit) {
+          when(needRefill) {
             arbitration.haltItself.set()
             rspId.clear()
             triggerWriteback := dirty
+            // 记录下一行预取(新 miss 覆盖旧 pending)
+            prefetchPending := sbEnabledB && cacheWindowOk
+            prefetchAddr := cachePhysAddr + U(dcache.lineSize)
             goto(waitAXI)
-          }
-          when(isLDU) {
+          } elsewhen (isLDU) {
             arbitration.haltItself.set()
             goto(waitAXIU)
+          } elsewhen (prefetchPending) {
+            // 无需求 miss 且 pending 有效:空闲发预取突发
+            goto(prefetchAR)
           }
         }
 
@@ -502,6 +608,81 @@ class DCachePlugin(config: MyCPUConfig) extends Plugin[MemPipeline] {
           }
         }
 
+        // ---- 下一行预取(流缓冲,度1)----
+        // 不 halt 流水线:刚 refill 完的需求 load 重放即可命中;
+        // 预取期间出现新需求 miss 或 uncached load 时放弃本突发
+        prefetchAR.whenIsActive {
+          val ar = dBus.ar
+          ar.payload.id := 1
+          // 抹去offset
+          ar.payload.addr := prefetchAddr(31 downto dcache.offsetWidth) @@
+            U(0, dcache.offsetWidth bits)
+          ar.payload.len := dcache.lineWords - 1 // burst len
+          ar.payload.size := 2 // burst size = 4Bytes = 32 bits
+          ar.payload.burst := 1 // burst type = INCR
+          ar.payload.lock := 0 // normal access
+          ar.payload.cache := 0 // device non-bufferable
+          if (config.axiConfig.useQos) ar.payload.qos := 0 // no QoS scheme
+          ar.payload.prot := 0 // secure and normal(non-priviledged)
+          ar.valid := True
+          when(ar.ready) {
+            rspId.clear()
+            goto(prefetchRead)
+          }
+          // 等待 grant 期间出现需求 miss/uncached load:放弃预取。
+          // 冻结流水线防止该指令带垃圾数据流走;若本拍恰好被授予,
+          // 必须把已授予的突发吃掉(drain)再交还总线,否则需求 refill
+          // 会把预取节拍误当自己的数据(同 id 有序响应)
+          when(needRefill || isLDU) {
+            arbitration.haltItself.set()
+            prefetchPending := False
+            when(ar.ready) {
+              goto(prefetchDrain)
+            } otherwise {
+              goto(stateBoot)
+            }
+          }
+        }
+
+        prefetchRead.whenIsActive {
+          if (sbEnabled) {
+            val r = dBus.r
+            r.ready := True
+            when(r.fire) {
+              sbData(sbAlloc)(rspId) := r.payload.data
+              rspId.increment()
+              when(r.payload.last) {
+                sbTags(sbAlloc) := prefetchAddr(31 downto dcache.offsetWidth)
+                sbValid(sbAlloc) := True
+                sbAlloc := sbAlloc + 1
+                prefetchPending := False
+                goto(stateBoot)
+              }
+            }
+            // 需求 miss 或 uncached load:放弃本突发。半成品条目必须失效
+            // (条目可能还挂着旧的 valid),冻结流水线,剩余节拍丢弃后由
+            // 需求 refill 接管
+            when(needRefill || isLDU) {
+              arbitration.haltItself.set()
+              sbValid(sbAlloc) := False
+              when(r.valid && r.payload.last) {
+                goto(stateBoot)
+              } otherwise {
+                goto(prefetchDrain)
+              }
+            }
+          }
+        }
+
+        prefetchDrain.whenIsActive {
+          // 丢弃剩余节拍,不写缓冲;需求指令保持冻结
+          arbitration.haltItself.set()
+          dBus.r.ready := True
+          when(dBus.r.fire && dBus.r.payload.last) {
+            goto(stateBoot)
+          }
+        }
+
         // uncached load
         val udBus = pipeline.service(classOf[UncachedAccessPlugin]).udBus
         val uncachedStoreHandshake = pipeline.service(classOf[UncachedAccessPlugin]).uncachedStoreHandshake
@@ -544,7 +725,8 @@ class DCachePlugin(config: MyCPUConfig) extends Plugin[MemPipeline] {
       }
 
       // ! Load Logic: assemble MEMORY_READ_DATA
-      val cacheData = Mux(hit, hitData, storedWord)
+      // L1 命中优先,其次流缓冲命中直接回送,否则 refill 填充的 storedWord
+      val cacheData = Mux(l1Hit, hitData, Mux(sbHit, sbHitData, storedWord))
       val memRData = insert(MEMORY_READ_DATA)
       memRData := cacheData
 

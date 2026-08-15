@@ -32,7 +32,9 @@ final case class ICacheConfig(
 final case class DCacheConfig(
     sets: Int = 64,
     lineSize: Int = 64,
-    ways: Int = 4 // 4-way round-robin: halves D$ misses on perf benchmarks
+    ways: Int = 4, // 4-way round-robin: halves D$ misses on perf benchmarks
+    // 预取流缓冲条目数(下一行预取,度1)。0 = 关闭预取。
+    streamBufferEntries: Int = 4
 ) extends CacheBasicConfig {
   require(sets * lineSize <= (4 << 10), "4KB is VIPT limit")
   val enable = true

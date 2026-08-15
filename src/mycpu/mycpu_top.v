@@ -1,7 +1,7 @@
 // Generator : SpinalHDL v1.8.1    git head : 2a7592004363e5b40ec43e1f122ed8641cd8965b
 // Component : mycpu_top
-// Git hash  : c62a3da2e01d3334aec281d3bb353fb76cdd7a8a
-// Date      : 15/08/2026, 06:46:37
+// Git hash  : 4ed460ef9ff68f624bd908c4f110250b02084398
+// Date      : 15/08/2026, 11:09:33
 
 `timescale 1ns/1ps
 
@@ -7607,14 +7607,17 @@ module MyCPUCore (
   localparam MEM_MEM2_DCachePlugin_CACHEFSM_enumDef_waitWriteBack = 2'd1;
   localparam MEM_MEM2_DCachePlugin_CACHEFSM_enumDef_checkWay = 2'd2;
   localparam MEM_MEM2_DCachePlugin_CACHEFSM_enumDef_writebackWay = 2'd3;
-  localparam MEM_MEM2_DCachePlugin_cacheRefillFSM_enumDef_BOOT = 3'd0;
-  localparam MEM_MEM2_DCachePlugin_cacheRefillFSM_enumDef_waitAXI = 3'd1;
-  localparam MEM_MEM2_DCachePlugin_cacheRefillFSM_enumDef_readMem = 3'd2;
-  localparam MEM_MEM2_DCachePlugin_cacheRefillFSM_enumDef_commit = 3'd3;
-  localparam MEM_MEM2_DCachePlugin_cacheRefillFSM_enumDef_finish = 3'd4;
-  localparam MEM_MEM2_DCachePlugin_cacheRefillFSM_enumDef_waitAXIU = 3'd5;
-  localparam MEM_MEM2_DCachePlugin_cacheRefillFSM_enumDef_readMemU = 3'd6;
-  localparam MEM_MEM2_DCachePlugin_cacheRefillFSM_enumDef_finishU = 3'd7;
+  localparam MEM_MEM2_DCachePlugin_cacheRefillFSM_enumDef_BOOT = 4'd0;
+  localparam MEM_MEM2_DCachePlugin_cacheRefillFSM_enumDef_waitAXI = 4'd1;
+  localparam MEM_MEM2_DCachePlugin_cacheRefillFSM_enumDef_readMem = 4'd2;
+  localparam MEM_MEM2_DCachePlugin_cacheRefillFSM_enumDef_commit = 4'd3;
+  localparam MEM_MEM2_DCachePlugin_cacheRefillFSM_enumDef_finish = 4'd4;
+  localparam MEM_MEM2_DCachePlugin_cacheRefillFSM_enumDef_waitAXIU = 4'd5;
+  localparam MEM_MEM2_DCachePlugin_cacheRefillFSM_enumDef_readMemU = 4'd6;
+  localparam MEM_MEM2_DCachePlugin_cacheRefillFSM_enumDef_finishU = 4'd7;
+  localparam MEM_MEM2_DCachePlugin_cacheRefillFSM_enumDef_prefetchAR = 4'd8;
+  localparam MEM_MEM2_DCachePlugin_cacheRefillFSM_enumDef_prefetchRead = 4'd9;
+  localparam MEM_MEM2_DCachePlugin_cacheRefillFSM_enumDef_prefetchDrain = 4'd10;
   localparam MEM_MEM2_UncachedAccessPlugin_uncachedStoreFSM_enumDef_BOOT = 1'd0;
   localparam MEM_MEM2_UncachedAccessPlugin_uncachedStoreFSM_enumDef_waitAXIWriteU = 1'd1;
 
@@ -9133,6 +9136,16 @@ module MyCPUCore (
   reg                 _zz__zz_MEM_ADDR_AddressGenerationPlugin_tlbLookup_snapshot_entry_E_5_14;
   reg        [31:0]   _zz_MEM_MEM2_DCachePlugin_hitData_2;
   wire       [1:0]    _zz_MEM_MEM2_DCachePlugin_hitData_3;
+  reg        [31:0]   _zz_MEM_MEM2_DCachePlugin_sbHitData_2;
+  wire       [1:0]    _zz_MEM_MEM2_DCachePlugin_sbHitData_3;
+  reg        [31:0]   _zz_MEM_MEM2_DCachePlugin_sbHitData_4;
+  wire       [3:0]    _zz_MEM_MEM2_DCachePlugin_sbHitData_5;
+  reg        [31:0]   _zz_MEM_MEM2_DCachePlugin_sbHitData_6;
+  wire       [3:0]    _zz_MEM_MEM2_DCachePlugin_sbHitData_7;
+  reg        [31:0]   _zz_MEM_MEM2_DCachePlugin_sbHitData_8;
+  wire       [3:0]    _zz_MEM_MEM2_DCachePlugin_sbHitData_9;
+  reg        [31:0]   _zz_MEM_MEM2_DCachePlugin_sbHitData_10;
+  wire       [3:0]    _zz_MEM_MEM2_DCachePlugin_sbHitData_11;
   wire       [3:0]    _zz_MEM_MEM2_DCachePlugin_dirtyLineWritebackFSM_rspId_valueNext;
   wire       [0:0]    _zz_MEM_MEM2_DCachePlugin_dirtyLineWritebackFSM_rspId_valueNext_1;
   reg                 _zz_MEM_MEM2_DCachePlugin_fixUncacheFSM_dirty;
@@ -9167,6 +9180,9 @@ module MyCPUCore (
   reg        [31:0]   _zz__zz_MEM_MEM2_DCachePlugin_dirtyLine_0;
   reg        [19:0]   _zz_io_dBus_aw_payload_addr;
   reg        [31:0]   _zz_io_dBus_w_payload_data;
+  reg        [19:0]   _zz__zz_when_DCachePlugin_l278;
+  reg        [19:0]   _zz__zz_when_DCachePlugin_l287;
+  reg        [19:0]   _zz__zz_when_DCachePlugin_l297;
   reg                 _zz_MEM_MEM2_DCachePlugin_triggerWritebackCACHE;
   wire       [1:0]    _zz_io_write_payload_data_lru_1;
   wire       [1:0]    _zz_io_write_payload_data_lru_2;
@@ -9179,6 +9195,7 @@ module MyCPUCore (
   wire                MEM_MEM1_IS_STORE;
   wire                MEM_MEM1_IS_LOAD;
   wire       [4:0]    MEM_MEM1_ROB_IDX;
+  wire       [3:0]    MEM_MEM1_DCACHE_SB_HITS;
   wire       [3:0]    MEM_MEM1_TAG_MATCHES;
   wire       [3:0]    MEM_MEM1_DCACHE_DIRTY;
   wire                MEM_MEM1_DCACHE_VALIDS_0;
@@ -9845,14 +9862,14 @@ module MyCPUCore (
   wire                IF2_ICACHE_VALIDS_1;
   wire                IF1_ICACHE_VALIDS_0;
   wire                IF1_ICACHE_VALIDS_1;
-  reg        [8:0]    _zz_MEM_MEM1_to_MEM_MEM2_EXCEPTION_ESUBCODE;
-  reg        [5:0]    _zz_MEM_MEM1_to_MEM_MEM2_EXCEPTION_ECODE;
-  wire                MEM_MEM1_EXCEPTION_OCCURRED;
-  reg                 _zz_MEM_MEM1_to_MEM_MEM2_EXCEPTION_OCCURRED;
   reg        [8:0]    _zz_MEM_ADDR_to_MEM_MEM1_EXCEPTION_ESUBCODE;
   reg        [5:0]    _zz_MEM_ADDR_to_MEM_MEM1_EXCEPTION_ECODE;
   wire                MEM_ADDR_EXCEPTION_OCCURRED;
   reg                 _zz_MEM_ADDR_to_MEM_MEM1_EXCEPTION_OCCURRED;
+  reg        [8:0]    _zz_MEM_MEM1_to_MEM_MEM2_EXCEPTION_ESUBCODE;
+  reg        [5:0]    _zz_MEM_MEM1_to_MEM_MEM2_EXCEPTION_ECODE;
+  wire                MEM_MEM1_EXCEPTION_OCCURRED;
+  reg                 _zz_MEM_MEM1_to_MEM_MEM2_EXCEPTION_OCCURRED;
   reg                 _zz_MEM_WB_to_MEM_WB2_STD_SLOT_valid;
   wire       [2:0]    _zz_MEM_WB_to_MEM_WB2_STD_SLOT_payload_lsType;
   wire       [2:0]    _zz_MEM_WB_to_MEM_WB2_STD_SLOT_payload_lsType_1;
@@ -10009,6 +10026,7 @@ module MyCPUCore (
   wire       [2:0]    _zz_MEM_MEM2_ISSUE_SLOT_uop_lsType;
   wire       [1:0]    _zz_MEM_MEM2_ISSUE_SLOT_uop_cacheOp;
   wire       [1:0]    _zz_MEM_MEM2_ISSUE_SLOT_uop_cacheSel;
+  wire       [3:0]    MEM_MEM2_DCACHE_SB_HITS;
   wire       [1:0]    MEM_MEM2_DCACHE_INFO_lru;
   wire       [19:0]   MEM_MEM2_DCACHE_INFO_tags_0;
   wire       [19:0]   MEM_MEM2_DCACHE_INFO_tags_1;
@@ -13088,6 +13106,82 @@ module MyCPUCore (
   reg                 DCachePlugin_valids_63_1;
   reg                 DCachePlugin_valids_63_2;
   reg                 DCachePlugin_valids_63_3;
+  wire                DCachePlugin_sbEnabledB;
+  reg        [31:0]   DCachePlugin_sbData_0_0;
+  reg        [31:0]   DCachePlugin_sbData_0_1;
+  reg        [31:0]   DCachePlugin_sbData_0_2;
+  reg        [31:0]   DCachePlugin_sbData_0_3;
+  reg        [31:0]   DCachePlugin_sbData_0_4;
+  reg        [31:0]   DCachePlugin_sbData_0_5;
+  reg        [31:0]   DCachePlugin_sbData_0_6;
+  reg        [31:0]   DCachePlugin_sbData_0_7;
+  reg        [31:0]   DCachePlugin_sbData_0_8;
+  reg        [31:0]   DCachePlugin_sbData_0_9;
+  reg        [31:0]   DCachePlugin_sbData_0_10;
+  reg        [31:0]   DCachePlugin_sbData_0_11;
+  reg        [31:0]   DCachePlugin_sbData_0_12;
+  reg        [31:0]   DCachePlugin_sbData_0_13;
+  reg        [31:0]   DCachePlugin_sbData_0_14;
+  reg        [31:0]   DCachePlugin_sbData_0_15;
+  reg        [31:0]   DCachePlugin_sbData_1_0;
+  reg        [31:0]   DCachePlugin_sbData_1_1;
+  reg        [31:0]   DCachePlugin_sbData_1_2;
+  reg        [31:0]   DCachePlugin_sbData_1_3;
+  reg        [31:0]   DCachePlugin_sbData_1_4;
+  reg        [31:0]   DCachePlugin_sbData_1_5;
+  reg        [31:0]   DCachePlugin_sbData_1_6;
+  reg        [31:0]   DCachePlugin_sbData_1_7;
+  reg        [31:0]   DCachePlugin_sbData_1_8;
+  reg        [31:0]   DCachePlugin_sbData_1_9;
+  reg        [31:0]   DCachePlugin_sbData_1_10;
+  reg        [31:0]   DCachePlugin_sbData_1_11;
+  reg        [31:0]   DCachePlugin_sbData_1_12;
+  reg        [31:0]   DCachePlugin_sbData_1_13;
+  reg        [31:0]   DCachePlugin_sbData_1_14;
+  reg        [31:0]   DCachePlugin_sbData_1_15;
+  reg        [31:0]   DCachePlugin_sbData_2_0;
+  reg        [31:0]   DCachePlugin_sbData_2_1;
+  reg        [31:0]   DCachePlugin_sbData_2_2;
+  reg        [31:0]   DCachePlugin_sbData_2_3;
+  reg        [31:0]   DCachePlugin_sbData_2_4;
+  reg        [31:0]   DCachePlugin_sbData_2_5;
+  reg        [31:0]   DCachePlugin_sbData_2_6;
+  reg        [31:0]   DCachePlugin_sbData_2_7;
+  reg        [31:0]   DCachePlugin_sbData_2_8;
+  reg        [31:0]   DCachePlugin_sbData_2_9;
+  reg        [31:0]   DCachePlugin_sbData_2_10;
+  reg        [31:0]   DCachePlugin_sbData_2_11;
+  reg        [31:0]   DCachePlugin_sbData_2_12;
+  reg        [31:0]   DCachePlugin_sbData_2_13;
+  reg        [31:0]   DCachePlugin_sbData_2_14;
+  reg        [31:0]   DCachePlugin_sbData_2_15;
+  reg        [31:0]   DCachePlugin_sbData_3_0;
+  reg        [31:0]   DCachePlugin_sbData_3_1;
+  reg        [31:0]   DCachePlugin_sbData_3_2;
+  reg        [31:0]   DCachePlugin_sbData_3_3;
+  reg        [31:0]   DCachePlugin_sbData_3_4;
+  reg        [31:0]   DCachePlugin_sbData_3_5;
+  reg        [31:0]   DCachePlugin_sbData_3_6;
+  reg        [31:0]   DCachePlugin_sbData_3_7;
+  reg        [31:0]   DCachePlugin_sbData_3_8;
+  reg        [31:0]   DCachePlugin_sbData_3_9;
+  reg        [31:0]   DCachePlugin_sbData_3_10;
+  reg        [31:0]   DCachePlugin_sbData_3_11;
+  reg        [31:0]   DCachePlugin_sbData_3_12;
+  reg        [31:0]   DCachePlugin_sbData_3_13;
+  reg        [31:0]   DCachePlugin_sbData_3_14;
+  reg        [31:0]   DCachePlugin_sbData_3_15;
+  reg        [25:0]   DCachePlugin_sbTags_0;
+  reg        [25:0]   DCachePlugin_sbTags_1;
+  reg        [25:0]   DCachePlugin_sbTags_2;
+  reg        [25:0]   DCachePlugin_sbTags_3;
+  reg                 DCachePlugin_sbValid_0;
+  reg                 DCachePlugin_sbValid_1;
+  reg                 DCachePlugin_sbValid_2;
+  reg                 DCachePlugin_sbValid_3;
+  reg        [1:0]    DCachePlugin_sbAlloc;
+  reg                 DCachePlugin_prefetchPending;
+  reg        [31:0]   DCachePlugin_prefetchAddr;
   reg                 DCachePlugin_writebackIdle;
   reg                 UncachedAccessPlugin_uncachedStoreHandshake_valid;
   reg                 UncachedAccessPlugin_uncachedStoreHandshake_ready;
@@ -19431,6 +19525,11 @@ module MyCPUCore (
   wire       [31:0]   MEM_MEM1_DCachePlugin_memAddr;
   wire       [5:0]    _zz_MEM_MEM1_DCACHE_VALIDS_0;
   wire       [31:0]   MEM_MEM1_DCachePlugin_cachePhysAddr;
+  wire                when_DCachePlugin_l108;
+  wire                when_DCachePlugin_l110;
+  wire                when_DCachePlugin_l110_1;
+  wire                when_DCachePlugin_l110_2;
+  wire                when_DCachePlugin_l110_3;
   wire                MEM_MEM2_DCachePlugin_isSTD;
   wire                MEM_MEM2_DCachePlugin_isCACHE;
   wire                MEM_MEM2_DCachePlugin_noExcept;
@@ -19442,12 +19541,12 @@ module MyCPUCore (
   wire       [5:0]    MEM_MEM2_DCachePlugin_idx;
   wire       [19:0]   MEM_MEM2_DCachePlugin_tag;
   wire                MEM_MEM2_DCachePlugin_storeBufferPushValid;
-  wire                when_DCachePlugin_l148;
+  wire                when_DCachePlugin_l183;
   wire                MEM_MEM2_DCachePlugin_hits_0;
   wire                MEM_MEM2_DCachePlugin_hits_1;
   wire                MEM_MEM2_DCachePlugin_hits_2;
   wire                MEM_MEM2_DCachePlugin_hits_3;
-  wire                MEM_MEM2_DCachePlugin_hit;
+  wire                MEM_MEM2_DCachePlugin_l1Hit;
   wire                _zz_MEM_MEM2_DCachePlugin_hitData;
   wire                _zz_MEM_MEM2_DCachePlugin_hitData_1;
   wire       [31:0]   MEM_MEM2_DCachePlugin_hitData;
@@ -19457,9 +19556,21 @@ module MyCPUCore (
   wire                _zz_MEM_MEM2_DCachePlugin_hitWay_3;
   wire       [1:0]    MEM_MEM2_DCachePlugin_hitWay;
   wire       [1:0]    MEM_MEM2_DCachePlugin_replaceWay;
+  wire       [25:0]   MEM_MEM2_DCachePlugin_sbLineAddr;
+  wire                MEM_MEM2_DCachePlugin_sbHits_0;
+  wire                MEM_MEM2_DCachePlugin_sbHits_1;
+  wire                MEM_MEM2_DCachePlugin_sbHits_2;
+  wire                MEM_MEM2_DCachePlugin_sbHits_3;
+  wire                MEM_MEM2_DCachePlugin_sbHit;
+  wire                _zz_MEM_MEM2_DCachePlugin_sbHitData;
+  wire                _zz_MEM_MEM2_DCachePlugin_sbHitData_1;
+  wire       [31:0]   MEM_MEM2_DCachePlugin_sbHitData;
+  wire                MEM_MEM2_DCachePlugin_hit;
+  wire                MEM_MEM2_DCachePlugin_needRefill;
+  wire                MEM_MEM2_DCachePlugin_cacheWindowOk;
   reg        [1:0]    MEM_MEM2_DCachePlugin_wayCACHE;
   reg        [31:0]   MEM_MEM2_DCachePlugin_storedWord;
-  wire                when_DCachePlugin_l168;
+  wire                when_DCachePlugin_l224;
   wire       [3:0]    _zz_1459;
   wire                _zz_1460;
   wire                _zz_1461;
@@ -19522,47 +19633,47 @@ module MyCPUCore (
   reg                 MEM_MEM2_DCachePlugin_cacheRefillFSM_refillValid;
   reg        [31:0]   MEM_MEM2_DCachePlugin_cacheRefillFSM_regBusWord;
   reg        [31:0]   MEM_MEM2_DCachePlugin_cacheRefillFSM_refillWord;
-  wire                when_DCachePlugin_l409;
-  wire                when_DCachePlugin_l409_1;
-  wire                when_DCachePlugin_l409_2;
-  wire                when_DCachePlugin_l409_3;
+  wire                when_DCachePlugin_l510;
+  wire                when_DCachePlugin_l510_1;
+  wire                when_DCachePlugin_l510_2;
+  wire                when_DCachePlugin_l510_3;
   wire                MEM_MEM2_DCachePlugin_cacheRefillFSM_dirty;
-  wire                when_DCachePlugin_l416;
+  wire                when_DCachePlugin_l517;
   wire       [31:0]   MEM_MEM2_DCachePlugin_cacheData;
-  wire                when_DCachePlugin_l562;
-  wire                when_DCachePlugin_l563;
-  wire                when_DCachePlugin_l563_1;
-  wire                when_DCachePlugin_l563_2;
-  wire                when_DCachePlugin_l563_3;
-  wire                when_DCachePlugin_l562_1;
-  wire                when_DCachePlugin_l563_4;
-  wire                when_DCachePlugin_l563_5;
-  wire                when_DCachePlugin_l563_6;
-  wire                when_DCachePlugin_l563_7;
-  wire                when_DCachePlugin_l562_2;
-  wire                when_DCachePlugin_l563_8;
-  wire                when_DCachePlugin_l563_9;
-  wire                when_DCachePlugin_l563_10;
-  wire                when_DCachePlugin_l563_11;
-  wire                when_DCachePlugin_l562_3;
-  wire                when_DCachePlugin_l563_12;
-  wire                when_DCachePlugin_l563_13;
-  wire                when_DCachePlugin_l563_14;
-  wire                when_DCachePlugin_l563_15;
-  wire                when_DCachePlugin_l562_4;
-  wire                when_DCachePlugin_l563_16;
-  wire                when_DCachePlugin_l563_17;
-  wire                when_DCachePlugin_l563_18;
-  wire                when_DCachePlugin_l563_19;
-  wire                when_DCachePlugin_l562_5;
-  wire                when_DCachePlugin_l563_20;
-  wire                when_DCachePlugin_l563_21;
-  wire                when_DCachePlugin_l563_22;
-  wire                when_DCachePlugin_l563_23;
-  wire                when_DCachePlugin_l571;
-  wire                when_DCachePlugin_l571_1;
-  wire                when_DCachePlugin_l571_2;
-  wire                when_DCachePlugin_l571_3;
+  wire                when_DCachePlugin_l744;
+  wire                when_DCachePlugin_l745;
+  wire                when_DCachePlugin_l745_1;
+  wire                when_DCachePlugin_l745_2;
+  wire                when_DCachePlugin_l745_3;
+  wire                when_DCachePlugin_l744_1;
+  wire                when_DCachePlugin_l745_4;
+  wire                when_DCachePlugin_l745_5;
+  wire                when_DCachePlugin_l745_6;
+  wire                when_DCachePlugin_l745_7;
+  wire                when_DCachePlugin_l744_2;
+  wire                when_DCachePlugin_l745_8;
+  wire                when_DCachePlugin_l745_9;
+  wire                when_DCachePlugin_l745_10;
+  wire                when_DCachePlugin_l745_11;
+  wire                when_DCachePlugin_l744_3;
+  wire                when_DCachePlugin_l745_12;
+  wire                when_DCachePlugin_l745_13;
+  wire                when_DCachePlugin_l745_14;
+  wire                when_DCachePlugin_l745_15;
+  wire                when_DCachePlugin_l744_4;
+  wire                when_DCachePlugin_l745_16;
+  wire                when_DCachePlugin_l745_17;
+  wire                when_DCachePlugin_l745_18;
+  wire                when_DCachePlugin_l745_19;
+  wire                when_DCachePlugin_l744_5;
+  wire                when_DCachePlugin_l745_20;
+  wire                when_DCachePlugin_l745_21;
+  wire                when_DCachePlugin_l745_22;
+  wire                when_DCachePlugin_l745_23;
+  wire                when_DCachePlugin_l753;
+  wire                when_DCachePlugin_l753_1;
+  wire                when_DCachePlugin_l753_2;
+  wire                when_DCachePlugin_l753_3;
   wire                MEM_MEM2_UncachedAccessPlugin_isLDU;
   wire                MEM_MEM2_UncachedAccessPlugin_isSTU;
   wire                when_UncachedAccess_l32;
@@ -20722,26 +20833,28 @@ module MyCPUCore (
   wire                when_Pipeline_l158_126;
   reg        [3:0]    MEM_MEM1_to_MEM_MEM2_TAG_MATCHES;
   wire                when_Pipeline_l158_127;
-  reg        [4:0]    MEM_MEM1_to_MEM_MEM2_ROB_IDX;
+  reg        [3:0]    MEM_MEM1_to_MEM_MEM2_DCACHE_SB_HITS;
   wire                when_Pipeline_l158_128;
-  reg        [4:0]    MEM_MEM2_to_MEM_WB_ROB_IDX;
+  reg        [4:0]    MEM_MEM1_to_MEM_MEM2_ROB_IDX;
   wire                when_Pipeline_l158_129;
-  reg                 MEM_MEM1_to_MEM_MEM2_IS_LOAD;
+  reg        [4:0]    MEM_MEM2_to_MEM_WB_ROB_IDX;
   wire                when_Pipeline_l158_130;
-  reg                 MEM_MEM2_to_MEM_WB_IS_LOAD;
+  reg                 MEM_MEM1_to_MEM_MEM2_IS_LOAD;
   wire                when_Pipeline_l158_131;
-  reg                 MEM_MEM1_to_MEM_MEM2_IS_STORE;
+  reg                 MEM_MEM2_to_MEM_WB_IS_LOAD;
   wire                when_Pipeline_l158_132;
-  reg                 MEM_MEM2_to_MEM_WB_IS_STORE;
+  reg                 MEM_MEM1_to_MEM_MEM2_IS_STORE;
   wire                when_Pipeline_l158_133;
+  reg                 MEM_MEM2_to_MEM_WB_IS_STORE;
+  wire                when_Pipeline_l158_134;
   reg                 MEM_MEM1_to_MEM_MEM2_WRITE_REG_valid;
   reg        [5:0]    MEM_MEM1_to_MEM_MEM2_WRITE_REG_payload;
-  wire                when_Pipeline_l158_134;
+  wire                when_Pipeline_l158_135;
   reg                 MEM_MEM2_to_MEM_WB_WRITE_REG_valid;
   reg        [5:0]    MEM_MEM2_to_MEM_WB_WRITE_REG_payload;
-  wire                when_Pipeline_l158_135;
-  reg        [2:0]    MEM_MEM1_to_MEM_MEM2_LOAD_STORE_TYPE;
   wire                when_Pipeline_l158_136;
+  reg        [2:0]    MEM_MEM1_to_MEM_MEM2_LOAD_STORE_TYPE;
+  wire                when_Pipeline_l158_137;
   reg        [31:0]   MEM_MEM2_to_MEM_WB_MEMORY_READ_DATA;
   wire                when_Pipeline_l198_6;
   wire                when_Pipeline_l208_16;
@@ -20949,8 +21062,23 @@ module MyCPUCore (
   reg        [2:0]    MEM_MEM2_DCachePlugin_dirtyLineWritebackFSM_stateNext;
   wire       [15:0]   _zz_1555;
   wire       [31:0]   _zz_MEM_MEM2_DCachePlugin_dirtyLine_0;
-  wire                when_DCachePlugin_l230;
-  wire                when_DCachePlugin_l211;
+  wire                when_DCachePlugin_l311;
+  wire                when_DCachePlugin_l270;
+  wire       [19:0]   _zz_when_DCachePlugin_l278;
+  wire                when_DCachePlugin_l278;
+  wire                when_DCachePlugin_l278_1;
+  wire                when_DCachePlugin_l278_2;
+  wire                when_DCachePlugin_l278_3;
+  wire       [19:0]   _zz_when_DCachePlugin_l287;
+  wire                when_DCachePlugin_l287;
+  wire                when_DCachePlugin_l287_1;
+  wire                when_DCachePlugin_l287_2;
+  wire                when_DCachePlugin_l287_3;
+  wire       [19:0]   _zz_when_DCachePlugin_l297;
+  wire                when_DCachePlugin_l297;
+  wire                when_DCachePlugin_l297_1;
+  wire                when_DCachePlugin_l297_2;
+  wire                when_DCachePlugin_l297_3;
   reg        [0:0]    MEM_MEM2_DCachePlugin_fixUncacheFSM_stateReg;
   reg        [0:0]    MEM_MEM2_DCachePlugin_fixUncacheFSM_stateNext;
   wire       [63:0]   _zz_1556;
@@ -21019,15 +21147,19 @@ module MyCPUCore (
   wire                _zz_1619;
   wire                _zz_1620;
   wire       [3:0]    _zz_1621;
-  wire                when_DCachePlugin_l291;
+  wire                when_DCachePlugin_l372;
+  wire                when_DCachePlugin_l378;
+  wire                when_DCachePlugin_l378_1;
+  wire                when_DCachePlugin_l378_2;
+  wire                when_DCachePlugin_l378_3;
   reg        [1:0]    MEM_MEM2_DCachePlugin_CACHEFSM_stateReg;
   reg        [1:0]    MEM_MEM2_DCachePlugin_CACHEFSM_stateNext;
   wire       [3:0]    _zz_1622;
   wire       [3:0]    _zz_1623;
-  wire                when_DCachePlugin_l370;
-  wire                when_DCachePlugin_l322;
-  reg        [2:0]    MEM_MEM2_DCachePlugin_cacheRefillFSM_stateReg;
-  reg        [2:0]    MEM_MEM2_DCachePlugin_cacheRefillFSM_stateNext;
+  wire                when_DCachePlugin_l467;
+  wire                when_DCachePlugin_l413;
+  reg        [3:0]    MEM_MEM2_DCachePlugin_cacheRefillFSM_stateReg;
+  reg        [3:0]    MEM_MEM2_DCachePlugin_cacheRefillFSM_stateNext;
   wire       [3:0]    _zz_1624;
   wire                _zz_1625;
   wire                _zz_1626;
@@ -21035,7 +21167,7 @@ module MyCPUCore (
   wire                _zz_1628;
   wire       [9:0]    _zz_io_write_payload_address_2;
   wire                io_dBus_r_fire_1;
-  wire                when_DCachePlugin_l466;
+  wire                when_DCachePlugin_l572;
   wire       [9:0]    _zz_io_write_payload_address_3;
   reg        [19:0]   _zz_io_write_payload_data_tags_0_1;
   reg        [19:0]   _zz_io_write_payload_data_tags_1_1;
@@ -21043,12 +21175,30 @@ module MyCPUCore (
   reg        [19:0]   _zz_io_write_payload_data_tags_3;
   wire       [3:0]    _zz_1629;
   wire       [3:0]    _zz_1630;
-  wire                when_DCachePlugin_l499;
+  wire                when_DCachePlugin_l605;
   reg        [2:0]    _zz_io_udBus_ar_payload_size;
   wire                io_udBus_ar_fire;
-  wire                when_DCachePlugin_l532;
-  wire                when_DCachePlugin_l540;
-  wire                when_DCachePlugin_l422;
+  wire                when_DCachePlugin_l713;
+  wire                when_DCachePlugin_l721;
+  wire                when_DCachePlugin_l636;
+  wire                io_dBus_r_fire_2;
+  wire       [3:0]    _zz_1631;
+  wire                _zz_1632;
+  wire                _zz_1633;
+  wire                _zz_1634;
+  wire                _zz_1635;
+  wire       [15:0]   _zz_1636;
+  wire       [3:0]    _zz_1637;
+  wire       [25:0]   _zz_DCachePlugin_sbTags_0;
+  wire       [3:0]    _zz_1638;
+  wire                _zz_1639;
+  wire                _zz_1640;
+  wire                _zz_1641;
+  wire                _zz_1642;
+  wire                when_DCachePlugin_l665;
+  wire                when_DCachePlugin_l668;
+  wire                io_dBus_r_fire_3;
+  wire                when_DCachePlugin_l681;
   reg        [0:0]    MEM_MEM2_UncachedAccessPlugin_uncachedStoreFSM_stateReg;
   reg        [0:0]    MEM_MEM2_UncachedAccessPlugin_uncachedStoreFSM_stateNext;
   reg        [2:0]    _zz_io_udBus_aw_payload_size;
@@ -21993,8 +22143,8 @@ module MyCPUCore (
   reg [103:0] MEM_MEM2_DCachePlugin_fixUncacheFSM_stateNext_string;
   reg [103:0] MEM_MEM2_DCachePlugin_CACHEFSM_stateReg_string;
   reg [103:0] MEM_MEM2_DCachePlugin_CACHEFSM_stateNext_string;
-  reg [63:0] MEM_MEM2_DCachePlugin_cacheRefillFSM_stateReg_string;
-  reg [63:0] MEM_MEM2_DCachePlugin_cacheRefillFSM_stateNext_string;
+  reg [103:0] MEM_MEM2_DCachePlugin_cacheRefillFSM_stateReg_string;
+  reg [103:0] MEM_MEM2_DCachePlugin_cacheRefillFSM_stateNext_string;
   reg [103:0] MEM_MEM2_UncachedAccessPlugin_uncachedStoreFSM_stateReg_string;
   reg [103:0] MEM_MEM2_UncachedAccessPlugin_uncachedStoreFSM_stateNext_string;
   `endif
@@ -22005,21 +22155,21 @@ module MyCPUCore (
       zz_io_dBus_b_ready = 1'b1;
     end
   endfunction
-  wire  _zz_1631;
+  wire  _zz_1643;
   function  zz_io_udBus_b_ready(input dummy);
     begin
       zz_io_udBus_b_ready = 1'b0;
       zz_io_udBus_b_ready = 1'b1;
     end
   endfunction
-  wire  _zz_1632;
+  wire  _zz_1644;
   function  zz__zz_when_InterruptHandlerPlugin_l93(input dummy);
     begin
       zz__zz_when_InterruptHandlerPlugin_l93 = 1'b0;
       zz__zz_when_InterruptHandlerPlugin_l93 = 1'b1;
     end
   endfunction
-  wire  _zz_1633;
+  wire  _zz_1645;
 
   assign _zz_IF1_ICACHE_RSPS_0_0_1 = (IF1_PC[5 : 2] + 4'b0000);
   assign _zz_IF1_ICACHE_RSPS_0_1_1 = (IF1_PC[5 : 2] + 4'b0001);
@@ -22684,6 +22834,11 @@ module MyCPUCore (
   assign _zz_CommitPlugin_arfCommits_1_pushIdx_1 = CommitPlugin_arfCommits_0_valid;
   assign _zz_CommitPlugin_arfCommits_2_pushIdx_1 = {CommitPlugin_arfCommits_1_valid,CommitPlugin_arfCommits_0_valid};
   assign _zz_MEM_MEM2_DCachePlugin_hitData_3 = {_zz_MEM_MEM2_DCachePlugin_hitData_1,_zz_MEM_MEM2_DCachePlugin_hitData};
+  assign _zz_MEM_MEM2_DCachePlugin_sbHitData_3 = {_zz_MEM_MEM2_DCachePlugin_sbHitData_1,_zz_MEM_MEM2_DCachePlugin_sbHitData};
+  assign _zz_MEM_MEM2_DCachePlugin_sbHitData_5 = MEM_MEM2_DCachePlugin_cachePhysAddr[5 : 2];
+  assign _zz_MEM_MEM2_DCachePlugin_sbHitData_7 = MEM_MEM2_DCachePlugin_cachePhysAddr[5 : 2];
+  assign _zz_MEM_MEM2_DCachePlugin_sbHitData_9 = MEM_MEM2_DCachePlugin_cachePhysAddr[5 : 2];
+  assign _zz_MEM_MEM2_DCachePlugin_sbHitData_11 = MEM_MEM2_DCachePlugin_cachePhysAddr[5 : 2];
   assign _zz_when_PhysRegFilePlugin_l93 = (IntExecutePlugin_clrBusy_payload_1 == IntIssueQueuePlugin_busyAddrs_0);
   assign _zz_when_PhysRegFilePlugin_l93_1 = (IntExecutePlugin_clrBusy_payload == IntIssueQueuePlugin_busyAddrs_0);
   assign _zz__zz_IntExecutePlugin_issGrant_1_2 = (! IntExecutePlugin_issGrant_2);
@@ -35861,20 +36016,137 @@ module MyCPUCore (
   end
 
   always @(*) begin
+    case(_zz_MEM_MEM2_DCachePlugin_sbHitData_3)
+      2'b00 : _zz_MEM_MEM2_DCachePlugin_sbHitData_2 = _zz_MEM_MEM2_DCachePlugin_sbHitData_4;
+      2'b01 : _zz_MEM_MEM2_DCachePlugin_sbHitData_2 = _zz_MEM_MEM2_DCachePlugin_sbHitData_6;
+      2'b10 : _zz_MEM_MEM2_DCachePlugin_sbHitData_2 = _zz_MEM_MEM2_DCachePlugin_sbHitData_8;
+      default : _zz_MEM_MEM2_DCachePlugin_sbHitData_2 = _zz_MEM_MEM2_DCachePlugin_sbHitData_10;
+    endcase
+  end
+
+  always @(*) begin
+    case(_zz_MEM_MEM2_DCachePlugin_sbHitData_5)
+      4'b0000 : _zz_MEM_MEM2_DCachePlugin_sbHitData_4 = DCachePlugin_sbData_0_0;
+      4'b0001 : _zz_MEM_MEM2_DCachePlugin_sbHitData_4 = DCachePlugin_sbData_0_1;
+      4'b0010 : _zz_MEM_MEM2_DCachePlugin_sbHitData_4 = DCachePlugin_sbData_0_2;
+      4'b0011 : _zz_MEM_MEM2_DCachePlugin_sbHitData_4 = DCachePlugin_sbData_0_3;
+      4'b0100 : _zz_MEM_MEM2_DCachePlugin_sbHitData_4 = DCachePlugin_sbData_0_4;
+      4'b0101 : _zz_MEM_MEM2_DCachePlugin_sbHitData_4 = DCachePlugin_sbData_0_5;
+      4'b0110 : _zz_MEM_MEM2_DCachePlugin_sbHitData_4 = DCachePlugin_sbData_0_6;
+      4'b0111 : _zz_MEM_MEM2_DCachePlugin_sbHitData_4 = DCachePlugin_sbData_0_7;
+      4'b1000 : _zz_MEM_MEM2_DCachePlugin_sbHitData_4 = DCachePlugin_sbData_0_8;
+      4'b1001 : _zz_MEM_MEM2_DCachePlugin_sbHitData_4 = DCachePlugin_sbData_0_9;
+      4'b1010 : _zz_MEM_MEM2_DCachePlugin_sbHitData_4 = DCachePlugin_sbData_0_10;
+      4'b1011 : _zz_MEM_MEM2_DCachePlugin_sbHitData_4 = DCachePlugin_sbData_0_11;
+      4'b1100 : _zz_MEM_MEM2_DCachePlugin_sbHitData_4 = DCachePlugin_sbData_0_12;
+      4'b1101 : _zz_MEM_MEM2_DCachePlugin_sbHitData_4 = DCachePlugin_sbData_0_13;
+      4'b1110 : _zz_MEM_MEM2_DCachePlugin_sbHitData_4 = DCachePlugin_sbData_0_14;
+      default : _zz_MEM_MEM2_DCachePlugin_sbHitData_4 = DCachePlugin_sbData_0_15;
+    endcase
+  end
+
+  always @(*) begin
+    case(_zz_MEM_MEM2_DCachePlugin_sbHitData_7)
+      4'b0000 : _zz_MEM_MEM2_DCachePlugin_sbHitData_6 = DCachePlugin_sbData_1_0;
+      4'b0001 : _zz_MEM_MEM2_DCachePlugin_sbHitData_6 = DCachePlugin_sbData_1_1;
+      4'b0010 : _zz_MEM_MEM2_DCachePlugin_sbHitData_6 = DCachePlugin_sbData_1_2;
+      4'b0011 : _zz_MEM_MEM2_DCachePlugin_sbHitData_6 = DCachePlugin_sbData_1_3;
+      4'b0100 : _zz_MEM_MEM2_DCachePlugin_sbHitData_6 = DCachePlugin_sbData_1_4;
+      4'b0101 : _zz_MEM_MEM2_DCachePlugin_sbHitData_6 = DCachePlugin_sbData_1_5;
+      4'b0110 : _zz_MEM_MEM2_DCachePlugin_sbHitData_6 = DCachePlugin_sbData_1_6;
+      4'b0111 : _zz_MEM_MEM2_DCachePlugin_sbHitData_6 = DCachePlugin_sbData_1_7;
+      4'b1000 : _zz_MEM_MEM2_DCachePlugin_sbHitData_6 = DCachePlugin_sbData_1_8;
+      4'b1001 : _zz_MEM_MEM2_DCachePlugin_sbHitData_6 = DCachePlugin_sbData_1_9;
+      4'b1010 : _zz_MEM_MEM2_DCachePlugin_sbHitData_6 = DCachePlugin_sbData_1_10;
+      4'b1011 : _zz_MEM_MEM2_DCachePlugin_sbHitData_6 = DCachePlugin_sbData_1_11;
+      4'b1100 : _zz_MEM_MEM2_DCachePlugin_sbHitData_6 = DCachePlugin_sbData_1_12;
+      4'b1101 : _zz_MEM_MEM2_DCachePlugin_sbHitData_6 = DCachePlugin_sbData_1_13;
+      4'b1110 : _zz_MEM_MEM2_DCachePlugin_sbHitData_6 = DCachePlugin_sbData_1_14;
+      default : _zz_MEM_MEM2_DCachePlugin_sbHitData_6 = DCachePlugin_sbData_1_15;
+    endcase
+  end
+
+  always @(*) begin
+    case(_zz_MEM_MEM2_DCachePlugin_sbHitData_9)
+      4'b0000 : _zz_MEM_MEM2_DCachePlugin_sbHitData_8 = DCachePlugin_sbData_2_0;
+      4'b0001 : _zz_MEM_MEM2_DCachePlugin_sbHitData_8 = DCachePlugin_sbData_2_1;
+      4'b0010 : _zz_MEM_MEM2_DCachePlugin_sbHitData_8 = DCachePlugin_sbData_2_2;
+      4'b0011 : _zz_MEM_MEM2_DCachePlugin_sbHitData_8 = DCachePlugin_sbData_2_3;
+      4'b0100 : _zz_MEM_MEM2_DCachePlugin_sbHitData_8 = DCachePlugin_sbData_2_4;
+      4'b0101 : _zz_MEM_MEM2_DCachePlugin_sbHitData_8 = DCachePlugin_sbData_2_5;
+      4'b0110 : _zz_MEM_MEM2_DCachePlugin_sbHitData_8 = DCachePlugin_sbData_2_6;
+      4'b0111 : _zz_MEM_MEM2_DCachePlugin_sbHitData_8 = DCachePlugin_sbData_2_7;
+      4'b1000 : _zz_MEM_MEM2_DCachePlugin_sbHitData_8 = DCachePlugin_sbData_2_8;
+      4'b1001 : _zz_MEM_MEM2_DCachePlugin_sbHitData_8 = DCachePlugin_sbData_2_9;
+      4'b1010 : _zz_MEM_MEM2_DCachePlugin_sbHitData_8 = DCachePlugin_sbData_2_10;
+      4'b1011 : _zz_MEM_MEM2_DCachePlugin_sbHitData_8 = DCachePlugin_sbData_2_11;
+      4'b1100 : _zz_MEM_MEM2_DCachePlugin_sbHitData_8 = DCachePlugin_sbData_2_12;
+      4'b1101 : _zz_MEM_MEM2_DCachePlugin_sbHitData_8 = DCachePlugin_sbData_2_13;
+      4'b1110 : _zz_MEM_MEM2_DCachePlugin_sbHitData_8 = DCachePlugin_sbData_2_14;
+      default : _zz_MEM_MEM2_DCachePlugin_sbHitData_8 = DCachePlugin_sbData_2_15;
+    endcase
+  end
+
+  always @(*) begin
+    case(_zz_MEM_MEM2_DCachePlugin_sbHitData_11)
+      4'b0000 : _zz_MEM_MEM2_DCachePlugin_sbHitData_10 = DCachePlugin_sbData_3_0;
+      4'b0001 : _zz_MEM_MEM2_DCachePlugin_sbHitData_10 = DCachePlugin_sbData_3_1;
+      4'b0010 : _zz_MEM_MEM2_DCachePlugin_sbHitData_10 = DCachePlugin_sbData_3_2;
+      4'b0011 : _zz_MEM_MEM2_DCachePlugin_sbHitData_10 = DCachePlugin_sbData_3_3;
+      4'b0100 : _zz_MEM_MEM2_DCachePlugin_sbHitData_10 = DCachePlugin_sbData_3_4;
+      4'b0101 : _zz_MEM_MEM2_DCachePlugin_sbHitData_10 = DCachePlugin_sbData_3_5;
+      4'b0110 : _zz_MEM_MEM2_DCachePlugin_sbHitData_10 = DCachePlugin_sbData_3_6;
+      4'b0111 : _zz_MEM_MEM2_DCachePlugin_sbHitData_10 = DCachePlugin_sbData_3_7;
+      4'b1000 : _zz_MEM_MEM2_DCachePlugin_sbHitData_10 = DCachePlugin_sbData_3_8;
+      4'b1001 : _zz_MEM_MEM2_DCachePlugin_sbHitData_10 = DCachePlugin_sbData_3_9;
+      4'b1010 : _zz_MEM_MEM2_DCachePlugin_sbHitData_10 = DCachePlugin_sbData_3_10;
+      4'b1011 : _zz_MEM_MEM2_DCachePlugin_sbHitData_10 = DCachePlugin_sbData_3_11;
+      4'b1100 : _zz_MEM_MEM2_DCachePlugin_sbHitData_10 = DCachePlugin_sbData_3_12;
+      4'b1101 : _zz_MEM_MEM2_DCachePlugin_sbHitData_10 = DCachePlugin_sbData_3_13;
+      4'b1110 : _zz_MEM_MEM2_DCachePlugin_sbHitData_10 = DCachePlugin_sbData_3_14;
+      default : _zz_MEM_MEM2_DCachePlugin_sbHitData_10 = DCachePlugin_sbData_3_15;
+    endcase
+  end
+
+  always @(*) begin
     case(MEM_MEM2_DCachePlugin_hitWay)
-      2'b00 : _zz_MEM_MEM2_DCachePlugin_fixUncacheFSM_dirty = MEM_MEM2_DCACHE_VALIDS_0;
-      2'b01 : _zz_MEM_MEM2_DCachePlugin_fixUncacheFSM_dirty = MEM_MEM2_DCACHE_VALIDS_1;
-      2'b10 : _zz_MEM_MEM2_DCachePlugin_fixUncacheFSM_dirty = MEM_MEM2_DCACHE_VALIDS_2;
-      default : _zz_MEM_MEM2_DCachePlugin_fixUncacheFSM_dirty = MEM_MEM2_DCACHE_VALIDS_3;
+      2'b00 : begin
+        _zz_MEM_MEM2_DCachePlugin_fixUncacheFSM_dirty = MEM_MEM2_DCACHE_VALIDS_0;
+        _zz__zz_when_DCachePlugin_l287 = MEM_MEM2_DCACHE_INFO_tags_0;
+      end
+      2'b01 : begin
+        _zz_MEM_MEM2_DCachePlugin_fixUncacheFSM_dirty = MEM_MEM2_DCACHE_VALIDS_1;
+        _zz__zz_when_DCachePlugin_l287 = MEM_MEM2_DCACHE_INFO_tags_1;
+      end
+      2'b10 : begin
+        _zz_MEM_MEM2_DCachePlugin_fixUncacheFSM_dirty = MEM_MEM2_DCACHE_VALIDS_2;
+        _zz__zz_when_DCachePlugin_l287 = MEM_MEM2_DCACHE_INFO_tags_2;
+      end
+      default : begin
+        _zz_MEM_MEM2_DCachePlugin_fixUncacheFSM_dirty = MEM_MEM2_DCACHE_VALIDS_3;
+        _zz__zz_when_DCachePlugin_l287 = MEM_MEM2_DCACHE_INFO_tags_3;
+      end
     endcase
   end
 
   always @(*) begin
     case(MEM_MEM2_DCachePlugin_replaceWay)
-      2'b00 : _zz_MEM_MEM2_DCachePlugin_cacheRefillFSM_dirty = MEM_MEM2_DCACHE_VALIDS_0;
-      2'b01 : _zz_MEM_MEM2_DCachePlugin_cacheRefillFSM_dirty = MEM_MEM2_DCACHE_VALIDS_1;
-      2'b10 : _zz_MEM_MEM2_DCachePlugin_cacheRefillFSM_dirty = MEM_MEM2_DCACHE_VALIDS_2;
-      default : _zz_MEM_MEM2_DCachePlugin_cacheRefillFSM_dirty = MEM_MEM2_DCACHE_VALIDS_3;
+      2'b00 : begin
+        _zz_MEM_MEM2_DCachePlugin_cacheRefillFSM_dirty = MEM_MEM2_DCACHE_VALIDS_0;
+        _zz__zz_when_DCachePlugin_l278 = MEM_MEM2_DCACHE_INFO_tags_0;
+      end
+      2'b01 : begin
+        _zz_MEM_MEM2_DCachePlugin_cacheRefillFSM_dirty = MEM_MEM2_DCACHE_VALIDS_1;
+        _zz__zz_when_DCachePlugin_l278 = MEM_MEM2_DCACHE_INFO_tags_1;
+      end
+      2'b10 : begin
+        _zz_MEM_MEM2_DCachePlugin_cacheRefillFSM_dirty = MEM_MEM2_DCACHE_VALIDS_2;
+        _zz__zz_when_DCachePlugin_l278 = MEM_MEM2_DCACHE_INFO_tags_2;
+      end
+      default : begin
+        _zz_MEM_MEM2_DCachePlugin_cacheRefillFSM_dirty = MEM_MEM2_DCACHE_VALIDS_3;
+        _zz__zz_when_DCachePlugin_l278 = MEM_MEM2_DCACHE_INFO_tags_3;
+      end
     endcase
   end
 
@@ -35917,6 +36189,15 @@ module MyCPUCore (
       4'b1101 : _zz_io_dBus_w_payload_data = MEM_MEM2_DCachePlugin_dirtyLine_13;
       4'b1110 : _zz_io_dBus_w_payload_data = MEM_MEM2_DCachePlugin_dirtyLine_14;
       default : _zz_io_dBus_w_payload_data = MEM_MEM2_DCachePlugin_dirtyLine_15;
+    endcase
+  end
+
+  always @(*) begin
+    case(MEM_MEM2_DCachePlugin_wayCACHE)
+      2'b00 : _zz__zz_when_DCachePlugin_l297 = MEM_MEM2_DCACHE_INFO_tags_0;
+      2'b01 : _zz__zz_when_DCachePlugin_l297 = MEM_MEM2_DCACHE_INFO_tags_1;
+      2'b10 : _zz__zz_when_DCachePlugin_l297 = MEM_MEM2_DCACHE_INFO_tags_2;
+      default : _zz__zz_when_DCachePlugin_l297 = MEM_MEM2_DCACHE_INFO_tags_3;
     endcase
   end
 
@@ -49576,28 +49857,34 @@ module MyCPUCore (
   end
   always @(*) begin
     case(MEM_MEM2_DCachePlugin_cacheRefillFSM_stateReg)
-      MEM_MEM2_DCachePlugin_cacheRefillFSM_enumDef_BOOT : MEM_MEM2_DCachePlugin_cacheRefillFSM_stateReg_string = "BOOT    ";
-      MEM_MEM2_DCachePlugin_cacheRefillFSM_enumDef_waitAXI : MEM_MEM2_DCachePlugin_cacheRefillFSM_stateReg_string = "waitAXI ";
-      MEM_MEM2_DCachePlugin_cacheRefillFSM_enumDef_readMem : MEM_MEM2_DCachePlugin_cacheRefillFSM_stateReg_string = "readMem ";
-      MEM_MEM2_DCachePlugin_cacheRefillFSM_enumDef_commit : MEM_MEM2_DCachePlugin_cacheRefillFSM_stateReg_string = "commit  ";
-      MEM_MEM2_DCachePlugin_cacheRefillFSM_enumDef_finish : MEM_MEM2_DCachePlugin_cacheRefillFSM_stateReg_string = "finish  ";
-      MEM_MEM2_DCachePlugin_cacheRefillFSM_enumDef_waitAXIU : MEM_MEM2_DCachePlugin_cacheRefillFSM_stateReg_string = "waitAXIU";
-      MEM_MEM2_DCachePlugin_cacheRefillFSM_enumDef_readMemU : MEM_MEM2_DCachePlugin_cacheRefillFSM_stateReg_string = "readMemU";
-      MEM_MEM2_DCachePlugin_cacheRefillFSM_enumDef_finishU : MEM_MEM2_DCachePlugin_cacheRefillFSM_stateReg_string = "finishU ";
-      default : MEM_MEM2_DCachePlugin_cacheRefillFSM_stateReg_string = "????????";
+      MEM_MEM2_DCachePlugin_cacheRefillFSM_enumDef_BOOT : MEM_MEM2_DCachePlugin_cacheRefillFSM_stateReg_string = "BOOT         ";
+      MEM_MEM2_DCachePlugin_cacheRefillFSM_enumDef_waitAXI : MEM_MEM2_DCachePlugin_cacheRefillFSM_stateReg_string = "waitAXI      ";
+      MEM_MEM2_DCachePlugin_cacheRefillFSM_enumDef_readMem : MEM_MEM2_DCachePlugin_cacheRefillFSM_stateReg_string = "readMem      ";
+      MEM_MEM2_DCachePlugin_cacheRefillFSM_enumDef_commit : MEM_MEM2_DCachePlugin_cacheRefillFSM_stateReg_string = "commit       ";
+      MEM_MEM2_DCachePlugin_cacheRefillFSM_enumDef_finish : MEM_MEM2_DCachePlugin_cacheRefillFSM_stateReg_string = "finish       ";
+      MEM_MEM2_DCachePlugin_cacheRefillFSM_enumDef_waitAXIU : MEM_MEM2_DCachePlugin_cacheRefillFSM_stateReg_string = "waitAXIU     ";
+      MEM_MEM2_DCachePlugin_cacheRefillFSM_enumDef_readMemU : MEM_MEM2_DCachePlugin_cacheRefillFSM_stateReg_string = "readMemU     ";
+      MEM_MEM2_DCachePlugin_cacheRefillFSM_enumDef_finishU : MEM_MEM2_DCachePlugin_cacheRefillFSM_stateReg_string = "finishU      ";
+      MEM_MEM2_DCachePlugin_cacheRefillFSM_enumDef_prefetchAR : MEM_MEM2_DCachePlugin_cacheRefillFSM_stateReg_string = "prefetchAR   ";
+      MEM_MEM2_DCachePlugin_cacheRefillFSM_enumDef_prefetchRead : MEM_MEM2_DCachePlugin_cacheRefillFSM_stateReg_string = "prefetchRead ";
+      MEM_MEM2_DCachePlugin_cacheRefillFSM_enumDef_prefetchDrain : MEM_MEM2_DCachePlugin_cacheRefillFSM_stateReg_string = "prefetchDrain";
+      default : MEM_MEM2_DCachePlugin_cacheRefillFSM_stateReg_string = "?????????????";
     endcase
   end
   always @(*) begin
     case(MEM_MEM2_DCachePlugin_cacheRefillFSM_stateNext)
-      MEM_MEM2_DCachePlugin_cacheRefillFSM_enumDef_BOOT : MEM_MEM2_DCachePlugin_cacheRefillFSM_stateNext_string = "BOOT    ";
-      MEM_MEM2_DCachePlugin_cacheRefillFSM_enumDef_waitAXI : MEM_MEM2_DCachePlugin_cacheRefillFSM_stateNext_string = "waitAXI ";
-      MEM_MEM2_DCachePlugin_cacheRefillFSM_enumDef_readMem : MEM_MEM2_DCachePlugin_cacheRefillFSM_stateNext_string = "readMem ";
-      MEM_MEM2_DCachePlugin_cacheRefillFSM_enumDef_commit : MEM_MEM2_DCachePlugin_cacheRefillFSM_stateNext_string = "commit  ";
-      MEM_MEM2_DCachePlugin_cacheRefillFSM_enumDef_finish : MEM_MEM2_DCachePlugin_cacheRefillFSM_stateNext_string = "finish  ";
-      MEM_MEM2_DCachePlugin_cacheRefillFSM_enumDef_waitAXIU : MEM_MEM2_DCachePlugin_cacheRefillFSM_stateNext_string = "waitAXIU";
-      MEM_MEM2_DCachePlugin_cacheRefillFSM_enumDef_readMemU : MEM_MEM2_DCachePlugin_cacheRefillFSM_stateNext_string = "readMemU";
-      MEM_MEM2_DCachePlugin_cacheRefillFSM_enumDef_finishU : MEM_MEM2_DCachePlugin_cacheRefillFSM_stateNext_string = "finishU ";
-      default : MEM_MEM2_DCachePlugin_cacheRefillFSM_stateNext_string = "????????";
+      MEM_MEM2_DCachePlugin_cacheRefillFSM_enumDef_BOOT : MEM_MEM2_DCachePlugin_cacheRefillFSM_stateNext_string = "BOOT         ";
+      MEM_MEM2_DCachePlugin_cacheRefillFSM_enumDef_waitAXI : MEM_MEM2_DCachePlugin_cacheRefillFSM_stateNext_string = "waitAXI      ";
+      MEM_MEM2_DCachePlugin_cacheRefillFSM_enumDef_readMem : MEM_MEM2_DCachePlugin_cacheRefillFSM_stateNext_string = "readMem      ";
+      MEM_MEM2_DCachePlugin_cacheRefillFSM_enumDef_commit : MEM_MEM2_DCachePlugin_cacheRefillFSM_stateNext_string = "commit       ";
+      MEM_MEM2_DCachePlugin_cacheRefillFSM_enumDef_finish : MEM_MEM2_DCachePlugin_cacheRefillFSM_stateNext_string = "finish       ";
+      MEM_MEM2_DCachePlugin_cacheRefillFSM_enumDef_waitAXIU : MEM_MEM2_DCachePlugin_cacheRefillFSM_stateNext_string = "waitAXIU     ";
+      MEM_MEM2_DCachePlugin_cacheRefillFSM_enumDef_readMemU : MEM_MEM2_DCachePlugin_cacheRefillFSM_stateNext_string = "readMemU     ";
+      MEM_MEM2_DCachePlugin_cacheRefillFSM_enumDef_finishU : MEM_MEM2_DCachePlugin_cacheRefillFSM_stateNext_string = "finishU      ";
+      MEM_MEM2_DCachePlugin_cacheRefillFSM_enumDef_prefetchAR : MEM_MEM2_DCachePlugin_cacheRefillFSM_stateNext_string = "prefetchAR   ";
+      MEM_MEM2_DCachePlugin_cacheRefillFSM_enumDef_prefetchRead : MEM_MEM2_DCachePlugin_cacheRefillFSM_stateNext_string = "prefetchRead ";
+      MEM_MEM2_DCachePlugin_cacheRefillFSM_enumDef_prefetchDrain : MEM_MEM2_DCachePlugin_cacheRefillFSM_stateNext_string = "prefetchDrain";
+      default : MEM_MEM2_DCachePlugin_cacheRefillFSM_stateNext_string = "?????????????";
     endcase
   end
   always @(*) begin
@@ -49623,6 +49910,7 @@ module MyCPUCore (
   assign MEM_MEM1_IS_STORE = MEM_MEM1_ISSUE_SLOT_uop_isStore;
   assign MEM_MEM1_IS_LOAD = MEM_MEM1_ISSUE_SLOT_uop_isLoad;
   assign MEM_MEM1_ROB_IDX = MEM_MEM1_ISSUE_SLOT_robIdx;
+  assign MEM_MEM1_DCACHE_SB_HITS = {(DCachePlugin_sbValid_3 && (DCachePlugin_sbTags_3 == MEM_MEM1_DCachePlugin_cachePhysAddr[31 : 6])),{(DCachePlugin_sbValid_2 && (DCachePlugin_sbTags_2 == MEM_MEM1_DCachePlugin_cachePhysAddr[31 : 6])),{(DCachePlugin_sbValid_1 && (DCachePlugin_sbTags_1 == MEM_MEM1_DCachePlugin_cachePhysAddr[31 : 6])),(DCachePlugin_sbValid_0 && (DCachePlugin_sbTags_0 == MEM_MEM1_DCachePlugin_cachePhysAddr[31 : 6]))}}};
   assign MEM_MEM1_TAG_MATCHES = _zz_MEM_MEM1_TAG_MATCHES;
   assign MEM_MEM1_DCACHE_DIRTY = DCachePlugin_dirtyBitsManager_io_readRsp;
   assign MEM_MEM1_DCACHE_VALIDS_0 = _zz_MEM_MEM1_DCACHE_VALIDS_0_1;
@@ -50158,7 +50446,32 @@ module MyCPUCore (
   assign IF1_ICACHE_VALIDS_0 = _zz_IF1_ICACHE_VALIDS_0_1;
   assign IF1_ICACHE_VALIDS_1 = _zz_IF1_ICACHE_VALIDS_1;
   always @(*) begin
+    _zz_MEM_ADDR_to_MEM_MEM1_EXCEPTION_ESUBCODE = MEM_ADDR_EXCEPTION_ESUBCODE;
+    if(when_ExceptionMuxPlugin_l45_9) begin
+      _zz_MEM_ADDR_to_MEM_MEM1_EXCEPTION_ESUBCODE = 9'h0;
+    end
+  end
+
+  always @(*) begin
+    _zz_MEM_ADDR_to_MEM_MEM1_EXCEPTION_ECODE = MEM_ADDR_EXCEPTION_ECODE;
+    if(when_ExceptionMuxPlugin_l45_9) begin
+      _zz_MEM_ADDR_to_MEM_MEM1_EXCEPTION_ECODE = 6'h09;
+    end
+  end
+
+  assign MEM_ADDR_EXCEPTION_OCCURRED = 1'b0;
+  always @(*) begin
+    _zz_MEM_ADDR_to_MEM_MEM1_EXCEPTION_OCCURRED = MEM_ADDR_EXCEPTION_OCCURRED;
+    if(AddressGenerationPlugin_raiseALE) begin
+      _zz_MEM_ADDR_to_MEM_MEM1_EXCEPTION_OCCURRED = 1'b1;
+    end
+  end
+
+  always @(*) begin
     _zz_MEM_MEM1_to_MEM_MEM2_EXCEPTION_ESUBCODE = MEM_MEM1_EXCEPTION_ESUBCODE;
+    if(when_ExceptionMuxPlugin_l45_4) begin
+      _zz_MEM_MEM1_to_MEM_MEM2_EXCEPTION_ESUBCODE = 9'h0;
+    end
     if(when_ExceptionMuxPlugin_l45_5) begin
       _zz_MEM_MEM1_to_MEM_MEM2_EXCEPTION_ESUBCODE = 9'h0;
     end
@@ -50169,28 +50482,25 @@ module MyCPUCore (
       _zz_MEM_MEM1_to_MEM_MEM2_EXCEPTION_ESUBCODE = 9'h0;
     end
     if(when_ExceptionMuxPlugin_l45_8) begin
-      _zz_MEM_MEM1_to_MEM_MEM2_EXCEPTION_ESUBCODE = 9'h0;
-    end
-    if(when_ExceptionMuxPlugin_l45_9) begin
       _zz_MEM_MEM1_to_MEM_MEM2_EXCEPTION_ESUBCODE = 9'h0;
     end
   end
 
   always @(*) begin
     _zz_MEM_MEM1_to_MEM_MEM2_EXCEPTION_ECODE = MEM_MEM1_EXCEPTION_ECODE;
-    if(when_ExceptionMuxPlugin_l45_5) begin
+    if(when_ExceptionMuxPlugin_l45_4) begin
       _zz_MEM_MEM1_to_MEM_MEM2_EXCEPTION_ECODE = 6'h04;
     end
-    if(when_ExceptionMuxPlugin_l45_6) begin
+    if(when_ExceptionMuxPlugin_l45_5) begin
       _zz_MEM_MEM1_to_MEM_MEM2_EXCEPTION_ECODE = 6'h07;
     end
-    if(when_ExceptionMuxPlugin_l45_7) begin
+    if(when_ExceptionMuxPlugin_l45_6) begin
       _zz_MEM_MEM1_to_MEM_MEM2_EXCEPTION_ECODE = 6'h02;
     end
-    if(when_ExceptionMuxPlugin_l45_8) begin
+    if(when_ExceptionMuxPlugin_l45_7) begin
       _zz_MEM_MEM1_to_MEM_MEM2_EXCEPTION_ECODE = 6'h01;
     end
-    if(when_ExceptionMuxPlugin_l45_9) begin
+    if(when_ExceptionMuxPlugin_l45_8) begin
       _zz_MEM_MEM1_to_MEM_MEM2_EXCEPTION_ECODE = 6'h3f;
     end
   end
@@ -50212,28 +50522,6 @@ module MyCPUCore (
     end
     if(AddressGenerationPlugin_raiseTLBR) begin
       _zz_MEM_MEM1_to_MEM_MEM2_EXCEPTION_OCCURRED = 1'b1;
-    end
-  end
-
-  always @(*) begin
-    _zz_MEM_ADDR_to_MEM_MEM1_EXCEPTION_ESUBCODE = MEM_ADDR_EXCEPTION_ESUBCODE;
-    if(when_ExceptionMuxPlugin_l45_4) begin
-      _zz_MEM_ADDR_to_MEM_MEM1_EXCEPTION_ESUBCODE = 9'h0;
-    end
-  end
-
-  always @(*) begin
-    _zz_MEM_ADDR_to_MEM_MEM1_EXCEPTION_ECODE = MEM_ADDR_EXCEPTION_ECODE;
-    if(when_ExceptionMuxPlugin_l45_4) begin
-      _zz_MEM_ADDR_to_MEM_MEM1_EXCEPTION_ECODE = 6'h09;
-    end
-  end
-
-  assign MEM_ADDR_EXCEPTION_OCCURRED = 1'b0;
-  always @(*) begin
-    _zz_MEM_ADDR_to_MEM_MEM1_EXCEPTION_OCCURRED = MEM_ADDR_EXCEPTION_OCCURRED;
-    if(AddressGenerationPlugin_raiseALE) begin
-      _zz_MEM_ADDR_to_MEM_MEM1_EXCEPTION_OCCURRED = 1'b1;
     end
   end
 
@@ -50432,6 +50720,7 @@ module MyCPUCore (
   assign MEM_MEM2_ISSUE_SLOT_uop_cacheOp = _zz_MEM_MEM2_ISSUE_SLOT_uop_cacheOp;
   assign MEM_MEM2_ISSUE_SLOT_uop_cacheSel = _zz_MEM_MEM2_ISSUE_SLOT_uop_cacheSel;
   assign MEM_MEM2_ISSUE_SLOT_wReg = MEM_MEM1_to_MEM_MEM2_ISSUE_SLOT_wReg;
+  assign MEM_MEM2_DCACHE_SB_HITS = MEM_MEM1_to_MEM_MEM2_DCACHE_SB_HITS;
   assign MEM_MEM2_DCACHE_INFO_lru = MEM_MEM1_to_MEM_MEM2_DCACHE_INFO_lru;
   assign MEM_MEM2_DCACHE_INFO_tags_0 = MEM_MEM1_to_MEM_MEM2_DCACHE_INFO_tags_0;
   assign MEM_MEM2_DCACHE_INFO_tags_1 = MEM_MEM1_to_MEM_MEM2_DCACHE_INFO_tags_1;
@@ -52075,7 +52364,7 @@ module MyCPUCore (
   assign MEM_MEM1_arbitration_notStuck = (! MEM_MEM1_arbitration_isStuck);
   always @(*) begin
     MEM_MEM2_arbitration_haltItself = 1'b0;
-    if(when_DCachePlugin_l148) begin
+    if(when_DCachePlugin_l183) begin
       MEM_MEM2_arbitration_haltItself = 1'b1;
     end
     if(MEM_MEM2_UncachedAccessPlugin_isSTU) begin
@@ -52103,7 +52392,7 @@ module MyCPUCore (
       MEM_MEM2_DCachePlugin_fixUncacheFSM_enumDef_waitWriteback : begin
       end
       default : begin
-        if(when_DCachePlugin_l291) begin
+        if(when_DCachePlugin_l372) begin
           MEM_MEM2_arbitration_haltItself = 1'b1;
         end
       end
@@ -52120,7 +52409,7 @@ module MyCPUCore (
         MEM_MEM2_arbitration_haltItself = 1'b1;
       end
       default : begin
-        if(when_DCachePlugin_l322) begin
+        if(when_DCachePlugin_l413) begin
           case(MEM_MEM2_ISSUE_SLOT_uop_cacheOp)
             CacheOpType_IndexInvalidate : begin
               MEM_MEM2_arbitration_haltItself = 1'b1;
@@ -52154,12 +52443,26 @@ module MyCPUCore (
       end
       MEM_MEM2_DCachePlugin_cacheRefillFSM_enumDef_finishU : begin
       end
-      default : begin
-        if(when_DCachePlugin_l422) begin
+      MEM_MEM2_DCachePlugin_cacheRefillFSM_enumDef_prefetchAR : begin
+        if(when_DCachePlugin_l636) begin
           MEM_MEM2_arbitration_haltItself = 1'b1;
         end
-        if(MEM_MEM2_DCachePlugin_isLDU) begin
+      end
+      MEM_MEM2_DCachePlugin_cacheRefillFSM_enumDef_prefetchRead : begin
+        if(when_DCachePlugin_l665) begin
           MEM_MEM2_arbitration_haltItself = 1'b1;
+        end
+      end
+      MEM_MEM2_DCachePlugin_cacheRefillFSM_enumDef_prefetchDrain : begin
+        MEM_MEM2_arbitration_haltItself = 1'b1;
+      end
+      default : begin
+        if(MEM_MEM2_DCachePlugin_needRefill) begin
+          MEM_MEM2_arbitration_haltItself = 1'b1;
+        end else begin
+          if(MEM_MEM2_DCachePlugin_isLDU) begin
+            MEM_MEM2_arbitration_haltItself = 1'b1;
+          end
         end
       end
     endcase
@@ -52448,8 +52751,8 @@ module MyCPUCore (
     endcase
   end
 
-  assign _zz_1631 = zz_io_dBus_b_ready(1'b0);
-  always @(*) io_dBus_b_ready = _zz_1631;
+  assign _zz_1643 = zz_io_dBus_b_ready(1'b0);
+  always @(*) io_dBus_b_ready = _zz_1643;
   always @(*) begin
     io_dBus_ar_valid = 1'b0;
     case(MEM_MEM2_DCachePlugin_cacheRefillFSM_stateReg)
@@ -52467,6 +52770,13 @@ module MyCPUCore (
       MEM_MEM2_DCachePlugin_cacheRefillFSM_enumDef_readMemU : begin
       end
       MEM_MEM2_DCachePlugin_cacheRefillFSM_enumDef_finishU : begin
+      end
+      MEM_MEM2_DCachePlugin_cacheRefillFSM_enumDef_prefetchAR : begin
+        io_dBus_ar_valid = 1'b1;
+      end
+      MEM_MEM2_DCachePlugin_cacheRefillFSM_enumDef_prefetchRead : begin
+      end
+      MEM_MEM2_DCachePlugin_cacheRefillFSM_enumDef_prefetchDrain : begin
       end
       default : begin
       end
@@ -52491,6 +52801,13 @@ module MyCPUCore (
       end
       MEM_MEM2_DCachePlugin_cacheRefillFSM_enumDef_finishU : begin
       end
+      MEM_MEM2_DCachePlugin_cacheRefillFSM_enumDef_prefetchAR : begin
+        io_dBus_ar_payload_addr = {DCachePlugin_prefetchAddr[31 : 6],6'h0};
+      end
+      MEM_MEM2_DCachePlugin_cacheRefillFSM_enumDef_prefetchRead : begin
+      end
+      MEM_MEM2_DCachePlugin_cacheRefillFSM_enumDef_prefetchDrain : begin
+      end
       default : begin
       end
     endcase
@@ -52513,6 +52830,13 @@ module MyCPUCore (
       MEM_MEM2_DCachePlugin_cacheRefillFSM_enumDef_readMemU : begin
       end
       MEM_MEM2_DCachePlugin_cacheRefillFSM_enumDef_finishU : begin
+      end
+      MEM_MEM2_DCachePlugin_cacheRefillFSM_enumDef_prefetchAR : begin
+        io_dBus_ar_payload_id = 4'b0001;
+      end
+      MEM_MEM2_DCachePlugin_cacheRefillFSM_enumDef_prefetchRead : begin
+      end
+      MEM_MEM2_DCachePlugin_cacheRefillFSM_enumDef_prefetchDrain : begin
       end
       default : begin
       end
@@ -52537,6 +52861,13 @@ module MyCPUCore (
       end
       MEM_MEM2_DCachePlugin_cacheRefillFSM_enumDef_finishU : begin
       end
+      MEM_MEM2_DCachePlugin_cacheRefillFSM_enumDef_prefetchAR : begin
+        io_dBus_ar_payload_len = 8'h0f;
+      end
+      MEM_MEM2_DCachePlugin_cacheRefillFSM_enumDef_prefetchRead : begin
+      end
+      MEM_MEM2_DCachePlugin_cacheRefillFSM_enumDef_prefetchDrain : begin
+      end
       default : begin
       end
     endcase
@@ -52559,6 +52890,13 @@ module MyCPUCore (
       MEM_MEM2_DCachePlugin_cacheRefillFSM_enumDef_readMemU : begin
       end
       MEM_MEM2_DCachePlugin_cacheRefillFSM_enumDef_finishU : begin
+      end
+      MEM_MEM2_DCachePlugin_cacheRefillFSM_enumDef_prefetchAR : begin
+        io_dBus_ar_payload_size = 3'b010;
+      end
+      MEM_MEM2_DCachePlugin_cacheRefillFSM_enumDef_prefetchRead : begin
+      end
+      MEM_MEM2_DCachePlugin_cacheRefillFSM_enumDef_prefetchDrain : begin
       end
       default : begin
       end
@@ -52583,6 +52921,13 @@ module MyCPUCore (
       end
       MEM_MEM2_DCachePlugin_cacheRefillFSM_enumDef_finishU : begin
       end
+      MEM_MEM2_DCachePlugin_cacheRefillFSM_enumDef_prefetchAR : begin
+        io_dBus_ar_payload_burst = 2'b01;
+      end
+      MEM_MEM2_DCachePlugin_cacheRefillFSM_enumDef_prefetchRead : begin
+      end
+      MEM_MEM2_DCachePlugin_cacheRefillFSM_enumDef_prefetchDrain : begin
+      end
       default : begin
       end
     endcase
@@ -52605,6 +52950,13 @@ module MyCPUCore (
       MEM_MEM2_DCachePlugin_cacheRefillFSM_enumDef_readMemU : begin
       end
       MEM_MEM2_DCachePlugin_cacheRefillFSM_enumDef_finishU : begin
+      end
+      MEM_MEM2_DCachePlugin_cacheRefillFSM_enumDef_prefetchAR : begin
+        io_dBus_ar_payload_lock = 1'b0;
+      end
+      MEM_MEM2_DCachePlugin_cacheRefillFSM_enumDef_prefetchRead : begin
+      end
+      MEM_MEM2_DCachePlugin_cacheRefillFSM_enumDef_prefetchDrain : begin
       end
       default : begin
       end
@@ -52629,6 +52981,13 @@ module MyCPUCore (
       end
       MEM_MEM2_DCachePlugin_cacheRefillFSM_enumDef_finishU : begin
       end
+      MEM_MEM2_DCachePlugin_cacheRefillFSM_enumDef_prefetchAR : begin
+        io_dBus_ar_payload_cache = 4'b0000;
+      end
+      MEM_MEM2_DCachePlugin_cacheRefillFSM_enumDef_prefetchRead : begin
+      end
+      MEM_MEM2_DCachePlugin_cacheRefillFSM_enumDef_prefetchDrain : begin
+      end
       default : begin
       end
     endcase
@@ -52651,6 +53010,13 @@ module MyCPUCore (
       MEM_MEM2_DCachePlugin_cacheRefillFSM_enumDef_readMemU : begin
       end
       MEM_MEM2_DCachePlugin_cacheRefillFSM_enumDef_finishU : begin
+      end
+      MEM_MEM2_DCachePlugin_cacheRefillFSM_enumDef_prefetchAR : begin
+        io_dBus_ar_payload_prot = 3'b000;
+      end
+      MEM_MEM2_DCachePlugin_cacheRefillFSM_enumDef_prefetchRead : begin
+      end
+      MEM_MEM2_DCachePlugin_cacheRefillFSM_enumDef_prefetchDrain : begin
       end
       default : begin
       end
@@ -52675,11 +53041,20 @@ module MyCPUCore (
       end
       MEM_MEM2_DCachePlugin_cacheRefillFSM_enumDef_finishU : begin
       end
+      MEM_MEM2_DCachePlugin_cacheRefillFSM_enumDef_prefetchAR : begin
+      end
+      MEM_MEM2_DCachePlugin_cacheRefillFSM_enumDef_prefetchRead : begin
+        io_dBus_r_ready = 1'b1;
+      end
+      MEM_MEM2_DCachePlugin_cacheRefillFSM_enumDef_prefetchDrain : begin
+        io_dBus_r_ready = 1'b1;
+      end
       default : begin
       end
     endcase
   end
 
+  assign DCachePlugin_sbEnabledB = 1'b1;
   always @(*) begin
     DCachePlugin_writebackIdle = 1'b0;
     case(MEM_MEM2_DCachePlugin_dirtyLineWritebackFSM_stateReg)
@@ -52840,8 +53215,8 @@ module MyCPUCore (
     endcase
   end
 
-  assign _zz_1632 = zz_io_udBus_b_ready(1'b0);
-  always @(*) io_udBus_b_ready = _zz_1632;
+  assign _zz_1644 = zz_io_udBus_b_ready(1'b0);
+  always @(*) io_udBus_b_ready = _zz_1644;
   always @(*) begin
     io_udBus_ar_valid = 1'b0;
     case(MEM_MEM2_DCachePlugin_cacheRefillFSM_stateReg)
@@ -52859,6 +53234,12 @@ module MyCPUCore (
       MEM_MEM2_DCachePlugin_cacheRefillFSM_enumDef_readMemU : begin
       end
       MEM_MEM2_DCachePlugin_cacheRefillFSM_enumDef_finishU : begin
+      end
+      MEM_MEM2_DCachePlugin_cacheRefillFSM_enumDef_prefetchAR : begin
+      end
+      MEM_MEM2_DCachePlugin_cacheRefillFSM_enumDef_prefetchRead : begin
+      end
+      MEM_MEM2_DCachePlugin_cacheRefillFSM_enumDef_prefetchDrain : begin
       end
       default : begin
       end
@@ -52883,6 +53264,12 @@ module MyCPUCore (
       end
       MEM_MEM2_DCachePlugin_cacheRefillFSM_enumDef_finishU : begin
       end
+      MEM_MEM2_DCachePlugin_cacheRefillFSM_enumDef_prefetchAR : begin
+      end
+      MEM_MEM2_DCachePlugin_cacheRefillFSM_enumDef_prefetchRead : begin
+      end
+      MEM_MEM2_DCachePlugin_cacheRefillFSM_enumDef_prefetchDrain : begin
+      end
       default : begin
       end
     endcase
@@ -52905,6 +53292,12 @@ module MyCPUCore (
       MEM_MEM2_DCachePlugin_cacheRefillFSM_enumDef_readMemU : begin
       end
       MEM_MEM2_DCachePlugin_cacheRefillFSM_enumDef_finishU : begin
+      end
+      MEM_MEM2_DCachePlugin_cacheRefillFSM_enumDef_prefetchAR : begin
+      end
+      MEM_MEM2_DCachePlugin_cacheRefillFSM_enumDef_prefetchRead : begin
+      end
+      MEM_MEM2_DCachePlugin_cacheRefillFSM_enumDef_prefetchDrain : begin
       end
       default : begin
       end
@@ -52929,6 +53322,12 @@ module MyCPUCore (
       end
       MEM_MEM2_DCachePlugin_cacheRefillFSM_enumDef_finishU : begin
       end
+      MEM_MEM2_DCachePlugin_cacheRefillFSM_enumDef_prefetchAR : begin
+      end
+      MEM_MEM2_DCachePlugin_cacheRefillFSM_enumDef_prefetchRead : begin
+      end
+      MEM_MEM2_DCachePlugin_cacheRefillFSM_enumDef_prefetchDrain : begin
+      end
       default : begin
       end
     endcase
@@ -52951,6 +53350,12 @@ module MyCPUCore (
       MEM_MEM2_DCachePlugin_cacheRefillFSM_enumDef_readMemU : begin
       end
       MEM_MEM2_DCachePlugin_cacheRefillFSM_enumDef_finishU : begin
+      end
+      MEM_MEM2_DCachePlugin_cacheRefillFSM_enumDef_prefetchAR : begin
+      end
+      MEM_MEM2_DCachePlugin_cacheRefillFSM_enumDef_prefetchRead : begin
+      end
+      MEM_MEM2_DCachePlugin_cacheRefillFSM_enumDef_prefetchDrain : begin
       end
       default : begin
       end
@@ -52975,6 +53380,12 @@ module MyCPUCore (
       end
       MEM_MEM2_DCachePlugin_cacheRefillFSM_enumDef_finishU : begin
       end
+      MEM_MEM2_DCachePlugin_cacheRefillFSM_enumDef_prefetchAR : begin
+      end
+      MEM_MEM2_DCachePlugin_cacheRefillFSM_enumDef_prefetchRead : begin
+      end
+      MEM_MEM2_DCachePlugin_cacheRefillFSM_enumDef_prefetchDrain : begin
+      end
       default : begin
       end
     endcase
@@ -52997,6 +53408,12 @@ module MyCPUCore (
       MEM_MEM2_DCachePlugin_cacheRefillFSM_enumDef_readMemU : begin
       end
       MEM_MEM2_DCachePlugin_cacheRefillFSM_enumDef_finishU : begin
+      end
+      MEM_MEM2_DCachePlugin_cacheRefillFSM_enumDef_prefetchAR : begin
+      end
+      MEM_MEM2_DCachePlugin_cacheRefillFSM_enumDef_prefetchRead : begin
+      end
+      MEM_MEM2_DCachePlugin_cacheRefillFSM_enumDef_prefetchDrain : begin
       end
       default : begin
       end
@@ -53021,6 +53438,12 @@ module MyCPUCore (
       end
       MEM_MEM2_DCachePlugin_cacheRefillFSM_enumDef_finishU : begin
       end
+      MEM_MEM2_DCachePlugin_cacheRefillFSM_enumDef_prefetchAR : begin
+      end
+      MEM_MEM2_DCachePlugin_cacheRefillFSM_enumDef_prefetchRead : begin
+      end
+      MEM_MEM2_DCachePlugin_cacheRefillFSM_enumDef_prefetchDrain : begin
+      end
       default : begin
       end
     endcase
@@ -53044,6 +53467,12 @@ module MyCPUCore (
       end
       MEM_MEM2_DCachePlugin_cacheRefillFSM_enumDef_finishU : begin
       end
+      MEM_MEM2_DCachePlugin_cacheRefillFSM_enumDef_prefetchAR : begin
+      end
+      MEM_MEM2_DCachePlugin_cacheRefillFSM_enumDef_prefetchRead : begin
+      end
+      MEM_MEM2_DCachePlugin_cacheRefillFSM_enumDef_prefetchDrain : begin
+      end
       default : begin
       end
     endcase
@@ -53066,6 +53495,12 @@ module MyCPUCore (
         io_udBus_r_ready = 1'b1;
       end
       MEM_MEM2_DCachePlugin_cacheRefillFSM_enumDef_finishU : begin
+      end
+      MEM_MEM2_DCachePlugin_cacheRefillFSM_enumDef_prefetchAR : begin
+      end
+      MEM_MEM2_DCachePlugin_cacheRefillFSM_enumDef_prefetchRead : begin
+      end
+      MEM_MEM2_DCachePlugin_cacheRefillFSM_enumDef_prefetchDrain : begin
       end
       default : begin
       end
@@ -62518,8 +62953,8 @@ module MyCPUCore (
   assign when_ExceptionHandlerPlugin_l222 = ({((CommitPlugin_except_payload_code == 6'h07) && (CommitPlugin_except_payload_subcode == 9'h0)),{((CommitPlugin_except_payload_code == 6'h04) && (CommitPlugin_except_payload_subcode == 9'h0)),{((CommitPlugin_except_payload_code == _zz_when_ExceptionHandlerPlugin_l222) && (CommitPlugin_except_payload_subcode == _zz_when_ExceptionHandlerPlugin_l222_1)),{(_zz_when_ExceptionHandlerPlugin_l222_2 && _zz_when_ExceptionHandlerPlugin_l222_3),{_zz_when_ExceptionHandlerPlugin_l222_4,{_zz_when_ExceptionHandlerPlugin_l222_5,_zz_when_ExceptionHandlerPlugin_l222_6}}}}}} != 9'h0);
   assign when_ExceptionHandlerPlugin_l248 = (ExceptionHandlerPlugin_ESTAT_ECODE == 6'h3f);
   assign _zz_CSRPlugin_readDataInit_9 = 1'b0;
-  assign _zz_1633 = zz__zz_when_InterruptHandlerPlugin_l93(1'b0);
-  always @(*) _zz_when_InterruptHandlerPlugin_l93 = _zz_1633;
+  assign _zz_1645 = zz__zz_when_InterruptHandlerPlugin_l93(1'b0);
+  always @(*) _zz_when_InterruptHandlerPlugin_l93 = _zz_1645;
   assign _zz_when_InterruptHandlerPlugin_l93_1 = 1'b1;
   assign _zz_when_InterruptHandlerPlugin_l93_2 = (_zz_when_InterruptHandlerPlugin_l93_1 && _zz_when_InterruptHandlerPlugin_l93);
   assign when_InterruptHandlerPlugin_l87 = (InterruptHandlerPlugin_timer_en && (InterruptHandlerPlugin_TVAL_TIMEVAL == 32'h0));
@@ -72540,7 +72975,7 @@ module MyCPUCore (
       MEM_MEM2_DCachePlugin_cacheRefillFSM_enumDef_commit : begin
       end
       MEM_MEM2_DCachePlugin_cacheRefillFSM_enumDef_finish : begin
-        if(when_DCachePlugin_l499) begin
+        if(when_DCachePlugin_l605) begin
           DCachePlugin_doRefetch = 1'b1;
         end
       end
@@ -72549,6 +72984,12 @@ module MyCPUCore (
       MEM_MEM2_DCachePlugin_cacheRefillFSM_enumDef_readMemU : begin
       end
       MEM_MEM2_DCachePlugin_cacheRefillFSM_enumDef_finishU : begin
+      end
+      MEM_MEM2_DCachePlugin_cacheRefillFSM_enumDef_prefetchAR : begin
+      end
+      MEM_MEM2_DCachePlugin_cacheRefillFSM_enumDef_prefetchRead : begin
+      end
+      MEM_MEM2_DCachePlugin_cacheRefillFSM_enumDef_prefetchDrain : begin
       end
       default : begin
       end
@@ -72707,6 +73148,11 @@ module MyCPUCore (
     _zz_MEM_MEM1_TAG_MATCHES[3] = (MEM_MEM1_DCACHE_INFO_tags_3 == MEM_MEM1_DCachePlugin_cachePhysAddr[31 : 12]);
   end
 
+  assign when_DCachePlugin_l108 = ((MEM_MEM1_arbitration_isValid && (! MEM_MEM1_arbitration_isStuck)) && MEM_MEM1_ISSUE_SLOT_uop_isStore);
+  assign when_DCachePlugin_l110 = (DCachePlugin_sbTags_0 == MEM_MEM1_DCachePlugin_cachePhysAddr[31 : 6]);
+  assign when_DCachePlugin_l110_1 = (DCachePlugin_sbTags_1 == MEM_MEM1_DCachePlugin_cachePhysAddr[31 : 6]);
+  assign when_DCachePlugin_l110_2 = (DCachePlugin_sbTags_2 == MEM_MEM1_DCachePlugin_cachePhysAddr[31 : 6]);
+  assign when_DCachePlugin_l110_3 = (DCachePlugin_sbTags_3 == MEM_MEM1_DCachePlugin_cachePhysAddr[31 : 6]);
   assign _zz_MEM_MEM1_LOAD_STORE_TYPE_1 = MEM_MEM1_ISSUE_SLOT_uop_lsType;
   assign MEM_MEM2_DCachePlugin_isSTD = ((MEM_MEM2_STD_SLOT_valid && MEM_MEM2_STD_SLOT_payload_isStore) && MEM_MEM2_STD_SLOT_payload_isCached);
   assign MEM_MEM2_DCachePlugin_isCACHE = ((! MEM_MEM2_IS_LOAD) && (! MEM_MEM2_IS_STORE));
@@ -72736,6 +73182,12 @@ module MyCPUCore (
       end
       MEM_MEM2_DCachePlugin_cacheRefillFSM_enumDef_finishU : begin
       end
+      MEM_MEM2_DCachePlugin_cacheRefillFSM_enumDef_prefetchAR : begin
+      end
+      MEM_MEM2_DCachePlugin_cacheRefillFSM_enumDef_prefetchRead : begin
+      end
+      MEM_MEM2_DCachePlugin_cacheRefillFSM_enumDef_prefetchDrain : begin
+      end
       default : begin
       end
     endcase
@@ -72758,6 +73210,12 @@ module MyCPUCore (
       MEM_MEM2_DCachePlugin_cacheRefillFSM_enumDef_readMemU : begin
       end
       MEM_MEM2_DCachePlugin_cacheRefillFSM_enumDef_finishU : begin
+      end
+      MEM_MEM2_DCachePlugin_cacheRefillFSM_enumDef_prefetchAR : begin
+      end
+      MEM_MEM2_DCachePlugin_cacheRefillFSM_enumDef_prefetchRead : begin
+      end
+      MEM_MEM2_DCachePlugin_cacheRefillFSM_enumDef_prefetchDrain : begin
       end
       default : begin
       end
@@ -72782,6 +73240,12 @@ module MyCPUCore (
       end
       MEM_MEM2_DCachePlugin_cacheRefillFSM_enumDef_finishU : begin
       end
+      MEM_MEM2_DCachePlugin_cacheRefillFSM_enumDef_prefetchAR : begin
+      end
+      MEM_MEM2_DCachePlugin_cacheRefillFSM_enumDef_prefetchRead : begin
+      end
+      MEM_MEM2_DCachePlugin_cacheRefillFSM_enumDef_prefetchDrain : begin
+      end
       default : begin
       end
     endcase
@@ -72804,6 +73268,12 @@ module MyCPUCore (
       MEM_MEM2_DCachePlugin_cacheRefillFSM_enumDef_readMemU : begin
       end
       MEM_MEM2_DCachePlugin_cacheRefillFSM_enumDef_finishU : begin
+      end
+      MEM_MEM2_DCachePlugin_cacheRefillFSM_enumDef_prefetchAR : begin
+      end
+      MEM_MEM2_DCachePlugin_cacheRefillFSM_enumDef_prefetchRead : begin
+      end
+      MEM_MEM2_DCachePlugin_cacheRefillFSM_enumDef_prefetchDrain : begin
       end
       default : begin
       end
@@ -72828,6 +73298,12 @@ module MyCPUCore (
       end
       MEM_MEM2_DCachePlugin_cacheRefillFSM_enumDef_finishU : begin
       end
+      MEM_MEM2_DCachePlugin_cacheRefillFSM_enumDef_prefetchAR : begin
+      end
+      MEM_MEM2_DCachePlugin_cacheRefillFSM_enumDef_prefetchRead : begin
+      end
+      MEM_MEM2_DCachePlugin_cacheRefillFSM_enumDef_prefetchDrain : begin
+      end
       default : begin
       end
     endcase
@@ -72850,6 +73326,12 @@ module MyCPUCore (
       MEM_MEM2_DCachePlugin_cacheRefillFSM_enumDef_readMemU : begin
       end
       MEM_MEM2_DCachePlugin_cacheRefillFSM_enumDef_finishU : begin
+      end
+      MEM_MEM2_DCachePlugin_cacheRefillFSM_enumDef_prefetchAR : begin
+      end
+      MEM_MEM2_DCachePlugin_cacheRefillFSM_enumDef_prefetchRead : begin
+      end
+      MEM_MEM2_DCachePlugin_cacheRefillFSM_enumDef_prefetchDrain : begin
       end
       default : begin
       end
@@ -72874,6 +73356,12 @@ module MyCPUCore (
       end
       MEM_MEM2_DCachePlugin_cacheRefillFSM_enumDef_finishU : begin
       end
+      MEM_MEM2_DCachePlugin_cacheRefillFSM_enumDef_prefetchAR : begin
+      end
+      MEM_MEM2_DCachePlugin_cacheRefillFSM_enumDef_prefetchRead : begin
+      end
+      MEM_MEM2_DCachePlugin_cacheRefillFSM_enumDef_prefetchDrain : begin
+      end
       default : begin
       end
     endcase
@@ -72881,7 +73369,7 @@ module MyCPUCore (
 
   always @(*) begin
     DCachePlugin_dataRAMs_0_io_write_valid = 1'b0;
-    if(when_DCachePlugin_l168) begin
+    if(when_DCachePlugin_l224) begin
       if(MEM_MEM2_DCachePlugin_isSTD) begin
         if(_zz_1460) begin
           DCachePlugin_dataRAMs_0_io_write_valid = 1'b1;
@@ -72911,6 +73399,12 @@ module MyCPUCore (
       end
       MEM_MEM2_DCachePlugin_cacheRefillFSM_enumDef_finishU : begin
       end
+      MEM_MEM2_DCachePlugin_cacheRefillFSM_enumDef_prefetchAR : begin
+      end
+      MEM_MEM2_DCachePlugin_cacheRefillFSM_enumDef_prefetchRead : begin
+      end
+      MEM_MEM2_DCachePlugin_cacheRefillFSM_enumDef_prefetchDrain : begin
+      end
       default : begin
       end
     endcase
@@ -72918,7 +73412,7 @@ module MyCPUCore (
 
   always @(*) begin
     DCachePlugin_dataRAMs_0_io_write_payload_address = 10'bxxxxxxxxxx;
-    if(when_DCachePlugin_l168) begin
+    if(when_DCachePlugin_l224) begin
       if(MEM_MEM2_DCachePlugin_isSTD) begin
         if(_zz_1460) begin
           DCachePlugin_dataRAMs_0_io_write_payload_address = _zz_io_write_payload_address_1;
@@ -72948,6 +73442,12 @@ module MyCPUCore (
       end
       MEM_MEM2_DCachePlugin_cacheRefillFSM_enumDef_finishU : begin
       end
+      MEM_MEM2_DCachePlugin_cacheRefillFSM_enumDef_prefetchAR : begin
+      end
+      MEM_MEM2_DCachePlugin_cacheRefillFSM_enumDef_prefetchRead : begin
+      end
+      MEM_MEM2_DCachePlugin_cacheRefillFSM_enumDef_prefetchDrain : begin
+      end
       default : begin
       end
     endcase
@@ -72955,7 +73455,7 @@ module MyCPUCore (
 
   always @(*) begin
     DCachePlugin_dataRAMs_0_io_write_payload_data = 32'bxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx;
-    if(when_DCachePlugin_l168) begin
+    if(when_DCachePlugin_l224) begin
       if(MEM_MEM2_DCachePlugin_isSTD) begin
         if(_zz_1460) begin
           DCachePlugin_dataRAMs_0_io_write_payload_data = MEM_MEM2_STD_SLOT_payload_data;
@@ -72985,6 +73485,12 @@ module MyCPUCore (
       end
       MEM_MEM2_DCachePlugin_cacheRefillFSM_enumDef_finishU : begin
       end
+      MEM_MEM2_DCachePlugin_cacheRefillFSM_enumDef_prefetchAR : begin
+      end
+      MEM_MEM2_DCachePlugin_cacheRefillFSM_enumDef_prefetchRead : begin
+      end
+      MEM_MEM2_DCachePlugin_cacheRefillFSM_enumDef_prefetchDrain : begin
+      end
       default : begin
       end
     endcase
@@ -72992,7 +73498,7 @@ module MyCPUCore (
 
   always @(*) begin
     DCachePlugin_dataRAMs_1_io_write_valid = 1'b0;
-    if(when_DCachePlugin_l168) begin
+    if(when_DCachePlugin_l224) begin
       if(MEM_MEM2_DCachePlugin_isSTD) begin
         if(_zz_1461) begin
           DCachePlugin_dataRAMs_1_io_write_valid = 1'b1;
@@ -73022,6 +73528,12 @@ module MyCPUCore (
       end
       MEM_MEM2_DCachePlugin_cacheRefillFSM_enumDef_finishU : begin
       end
+      MEM_MEM2_DCachePlugin_cacheRefillFSM_enumDef_prefetchAR : begin
+      end
+      MEM_MEM2_DCachePlugin_cacheRefillFSM_enumDef_prefetchRead : begin
+      end
+      MEM_MEM2_DCachePlugin_cacheRefillFSM_enumDef_prefetchDrain : begin
+      end
       default : begin
       end
     endcase
@@ -73029,7 +73541,7 @@ module MyCPUCore (
 
   always @(*) begin
     DCachePlugin_dataRAMs_1_io_write_payload_address = 10'bxxxxxxxxxx;
-    if(when_DCachePlugin_l168) begin
+    if(when_DCachePlugin_l224) begin
       if(MEM_MEM2_DCachePlugin_isSTD) begin
         if(_zz_1461) begin
           DCachePlugin_dataRAMs_1_io_write_payload_address = _zz_io_write_payload_address_1;
@@ -73059,6 +73571,12 @@ module MyCPUCore (
       end
       MEM_MEM2_DCachePlugin_cacheRefillFSM_enumDef_finishU : begin
       end
+      MEM_MEM2_DCachePlugin_cacheRefillFSM_enumDef_prefetchAR : begin
+      end
+      MEM_MEM2_DCachePlugin_cacheRefillFSM_enumDef_prefetchRead : begin
+      end
+      MEM_MEM2_DCachePlugin_cacheRefillFSM_enumDef_prefetchDrain : begin
+      end
       default : begin
       end
     endcase
@@ -73066,7 +73584,7 @@ module MyCPUCore (
 
   always @(*) begin
     DCachePlugin_dataRAMs_1_io_write_payload_data = 32'bxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx;
-    if(when_DCachePlugin_l168) begin
+    if(when_DCachePlugin_l224) begin
       if(MEM_MEM2_DCachePlugin_isSTD) begin
         if(_zz_1461) begin
           DCachePlugin_dataRAMs_1_io_write_payload_data = MEM_MEM2_STD_SLOT_payload_data;
@@ -73096,6 +73614,12 @@ module MyCPUCore (
       end
       MEM_MEM2_DCachePlugin_cacheRefillFSM_enumDef_finishU : begin
       end
+      MEM_MEM2_DCachePlugin_cacheRefillFSM_enumDef_prefetchAR : begin
+      end
+      MEM_MEM2_DCachePlugin_cacheRefillFSM_enumDef_prefetchRead : begin
+      end
+      MEM_MEM2_DCachePlugin_cacheRefillFSM_enumDef_prefetchDrain : begin
+      end
       default : begin
       end
     endcase
@@ -73103,7 +73627,7 @@ module MyCPUCore (
 
   always @(*) begin
     DCachePlugin_dataRAMs_2_io_write_valid = 1'b0;
-    if(when_DCachePlugin_l168) begin
+    if(when_DCachePlugin_l224) begin
       if(MEM_MEM2_DCachePlugin_isSTD) begin
         if(_zz_1462) begin
           DCachePlugin_dataRAMs_2_io_write_valid = 1'b1;
@@ -73133,6 +73657,12 @@ module MyCPUCore (
       end
       MEM_MEM2_DCachePlugin_cacheRefillFSM_enumDef_finishU : begin
       end
+      MEM_MEM2_DCachePlugin_cacheRefillFSM_enumDef_prefetchAR : begin
+      end
+      MEM_MEM2_DCachePlugin_cacheRefillFSM_enumDef_prefetchRead : begin
+      end
+      MEM_MEM2_DCachePlugin_cacheRefillFSM_enumDef_prefetchDrain : begin
+      end
       default : begin
       end
     endcase
@@ -73140,7 +73670,7 @@ module MyCPUCore (
 
   always @(*) begin
     DCachePlugin_dataRAMs_2_io_write_payload_address = 10'bxxxxxxxxxx;
-    if(when_DCachePlugin_l168) begin
+    if(when_DCachePlugin_l224) begin
       if(MEM_MEM2_DCachePlugin_isSTD) begin
         if(_zz_1462) begin
           DCachePlugin_dataRAMs_2_io_write_payload_address = _zz_io_write_payload_address_1;
@@ -73170,6 +73700,12 @@ module MyCPUCore (
       end
       MEM_MEM2_DCachePlugin_cacheRefillFSM_enumDef_finishU : begin
       end
+      MEM_MEM2_DCachePlugin_cacheRefillFSM_enumDef_prefetchAR : begin
+      end
+      MEM_MEM2_DCachePlugin_cacheRefillFSM_enumDef_prefetchRead : begin
+      end
+      MEM_MEM2_DCachePlugin_cacheRefillFSM_enumDef_prefetchDrain : begin
+      end
       default : begin
       end
     endcase
@@ -73177,7 +73713,7 @@ module MyCPUCore (
 
   always @(*) begin
     DCachePlugin_dataRAMs_2_io_write_payload_data = 32'bxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx;
-    if(when_DCachePlugin_l168) begin
+    if(when_DCachePlugin_l224) begin
       if(MEM_MEM2_DCachePlugin_isSTD) begin
         if(_zz_1462) begin
           DCachePlugin_dataRAMs_2_io_write_payload_data = MEM_MEM2_STD_SLOT_payload_data;
@@ -73207,6 +73743,12 @@ module MyCPUCore (
       end
       MEM_MEM2_DCachePlugin_cacheRefillFSM_enumDef_finishU : begin
       end
+      MEM_MEM2_DCachePlugin_cacheRefillFSM_enumDef_prefetchAR : begin
+      end
+      MEM_MEM2_DCachePlugin_cacheRefillFSM_enumDef_prefetchRead : begin
+      end
+      MEM_MEM2_DCachePlugin_cacheRefillFSM_enumDef_prefetchDrain : begin
+      end
       default : begin
       end
     endcase
@@ -73214,7 +73756,7 @@ module MyCPUCore (
 
   always @(*) begin
     DCachePlugin_dataRAMs_3_io_write_valid = 1'b0;
-    if(when_DCachePlugin_l168) begin
+    if(when_DCachePlugin_l224) begin
       if(MEM_MEM2_DCachePlugin_isSTD) begin
         if(_zz_1463) begin
           DCachePlugin_dataRAMs_3_io_write_valid = 1'b1;
@@ -73244,6 +73786,12 @@ module MyCPUCore (
       end
       MEM_MEM2_DCachePlugin_cacheRefillFSM_enumDef_finishU : begin
       end
+      MEM_MEM2_DCachePlugin_cacheRefillFSM_enumDef_prefetchAR : begin
+      end
+      MEM_MEM2_DCachePlugin_cacheRefillFSM_enumDef_prefetchRead : begin
+      end
+      MEM_MEM2_DCachePlugin_cacheRefillFSM_enumDef_prefetchDrain : begin
+      end
       default : begin
       end
     endcase
@@ -73251,7 +73799,7 @@ module MyCPUCore (
 
   always @(*) begin
     DCachePlugin_dataRAMs_3_io_write_payload_address = 10'bxxxxxxxxxx;
-    if(when_DCachePlugin_l168) begin
+    if(when_DCachePlugin_l224) begin
       if(MEM_MEM2_DCachePlugin_isSTD) begin
         if(_zz_1463) begin
           DCachePlugin_dataRAMs_3_io_write_payload_address = _zz_io_write_payload_address_1;
@@ -73281,6 +73829,12 @@ module MyCPUCore (
       end
       MEM_MEM2_DCachePlugin_cacheRefillFSM_enumDef_finishU : begin
       end
+      MEM_MEM2_DCachePlugin_cacheRefillFSM_enumDef_prefetchAR : begin
+      end
+      MEM_MEM2_DCachePlugin_cacheRefillFSM_enumDef_prefetchRead : begin
+      end
+      MEM_MEM2_DCachePlugin_cacheRefillFSM_enumDef_prefetchDrain : begin
+      end
       default : begin
       end
     endcase
@@ -73288,7 +73842,7 @@ module MyCPUCore (
 
   always @(*) begin
     DCachePlugin_dataRAMs_3_io_write_payload_data = 32'bxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx;
-    if(when_DCachePlugin_l168) begin
+    if(when_DCachePlugin_l224) begin
       if(MEM_MEM2_DCachePlugin_isSTD) begin
         if(_zz_1463) begin
           DCachePlugin_dataRAMs_3_io_write_payload_data = MEM_MEM2_STD_SLOT_payload_data;
@@ -73318,6 +73872,12 @@ module MyCPUCore (
       end
       MEM_MEM2_DCachePlugin_cacheRefillFSM_enumDef_finishU : begin
       end
+      MEM_MEM2_DCachePlugin_cacheRefillFSM_enumDef_prefetchAR : begin
+      end
+      MEM_MEM2_DCachePlugin_cacheRefillFSM_enumDef_prefetchRead : begin
+      end
+      MEM_MEM2_DCachePlugin_cacheRefillFSM_enumDef_prefetchDrain : begin
+      end
       default : begin
       end
     endcase
@@ -73325,7 +73885,7 @@ module MyCPUCore (
 
   always @(*) begin
     DCachePlugin_dataRAMs_0_io_writeMask = 4'b1111;
-    if(when_DCachePlugin_l168) begin
+    if(when_DCachePlugin_l224) begin
       if(MEM_MEM2_DCachePlugin_isSTD) begin
         if(_zz_1464[0]) begin
           DCachePlugin_dataRAMs_0_io_writeMask = MEM_MEM2_STD_SLOT_payload_be;
@@ -73336,7 +73896,7 @@ module MyCPUCore (
 
   always @(*) begin
     DCachePlugin_dataRAMs_1_io_writeMask = 4'b1111;
-    if(when_DCachePlugin_l168) begin
+    if(when_DCachePlugin_l224) begin
       if(MEM_MEM2_DCachePlugin_isSTD) begin
         if(_zz_1464[1]) begin
           DCachePlugin_dataRAMs_1_io_writeMask = MEM_MEM2_STD_SLOT_payload_be;
@@ -73347,7 +73907,7 @@ module MyCPUCore (
 
   always @(*) begin
     DCachePlugin_dataRAMs_2_io_writeMask = 4'b1111;
-    if(when_DCachePlugin_l168) begin
+    if(when_DCachePlugin_l224) begin
       if(MEM_MEM2_DCachePlugin_isSTD) begin
         if(_zz_1464[2]) begin
           DCachePlugin_dataRAMs_2_io_writeMask = MEM_MEM2_STD_SLOT_payload_be;
@@ -73358,7 +73918,7 @@ module MyCPUCore (
 
   always @(*) begin
     DCachePlugin_dataRAMs_3_io_writeMask = 4'b1111;
-    if(when_DCachePlugin_l168) begin
+    if(when_DCachePlugin_l224) begin
       if(MEM_MEM2_DCachePlugin_isSTD) begin
         if(_zz_1464[3]) begin
           DCachePlugin_dataRAMs_3_io_writeMask = MEM_MEM2_STD_SLOT_payload_be;
@@ -73379,12 +73939,12 @@ module MyCPUCore (
   assign StoreBufferPlugin_queueIO_pushPort_payload_wReg_payload = MEM_MEM2_WRITE_REG_payload;
   assign StoreBufferPlugin_queueIO_pushPort_payload_lsType = MEM_MEM2_LOAD_STORE_TYPE;
   assign StoreBufferPlugin_queueIO_pushPort_payload_robIdx = MEM_MEM2_ROB_IDX;
-  assign when_DCachePlugin_l148 = (MEM_MEM2_DCachePlugin_storeBufferPushValid && (! StoreBufferPlugin_queueIO_pushPort_ready));
+  assign when_DCachePlugin_l183 = (MEM_MEM2_DCachePlugin_storeBufferPushValid && (! StoreBufferPlugin_queueIO_pushPort_ready));
   assign MEM_MEM2_DCachePlugin_hits_0 = (MEM_MEM2_DCACHE_VALIDS_0 && MEM_MEM2_TAG_MATCHES[0]);
   assign MEM_MEM2_DCachePlugin_hits_1 = (MEM_MEM2_DCACHE_VALIDS_1 && MEM_MEM2_TAG_MATCHES[1]);
   assign MEM_MEM2_DCachePlugin_hits_2 = (MEM_MEM2_DCACHE_VALIDS_2 && MEM_MEM2_TAG_MATCHES[2]);
   assign MEM_MEM2_DCachePlugin_hits_3 = (MEM_MEM2_DCACHE_VALIDS_3 && MEM_MEM2_TAG_MATCHES[3]);
-  assign MEM_MEM2_DCachePlugin_hit = ({MEM_MEM2_DCachePlugin_hits_3,{MEM_MEM2_DCachePlugin_hits_2,{MEM_MEM2_DCachePlugin_hits_1,MEM_MEM2_DCachePlugin_hits_0}}} != 4'b0000);
+  assign MEM_MEM2_DCachePlugin_l1Hit = ({MEM_MEM2_DCachePlugin_hits_3,{MEM_MEM2_DCachePlugin_hits_2,{MEM_MEM2_DCachePlugin_hits_1,MEM_MEM2_DCachePlugin_hits_0}}} != 4'b0000);
   assign _zz_MEM_MEM2_DCachePlugin_hitData = (MEM_MEM2_DCachePlugin_hits_1 || MEM_MEM2_DCachePlugin_hits_3);
   assign _zz_MEM_MEM2_DCachePlugin_hitData_1 = (MEM_MEM2_DCachePlugin_hits_2 || MEM_MEM2_DCachePlugin_hits_3);
   assign MEM_MEM2_DCachePlugin_hitData = _zz_MEM_MEM2_DCachePlugin_hitData_2;
@@ -73394,6 +73954,18 @@ module MyCPUCore (
   assign _zz_MEM_MEM2_DCachePlugin_hitWay_3 = (_zz_MEM_MEM2_DCachePlugin_hitWay[2] || _zz_MEM_MEM2_DCachePlugin_hitWay_1);
   assign MEM_MEM2_DCachePlugin_hitWay = {_zz_MEM_MEM2_DCachePlugin_hitWay_3,_zz_MEM_MEM2_DCachePlugin_hitWay_2};
   assign MEM_MEM2_DCachePlugin_replaceWay = MEM_MEM2_DCACHE_INFO_lru;
+  assign MEM_MEM2_DCachePlugin_sbLineAddr = MEM_MEM2_DCachePlugin_cachePhysAddr[31 : 6];
+  assign MEM_MEM2_DCachePlugin_sbHits_0 = MEM_MEM2_DCACHE_SB_HITS[0];
+  assign MEM_MEM2_DCachePlugin_sbHits_1 = MEM_MEM2_DCACHE_SB_HITS[1];
+  assign MEM_MEM2_DCachePlugin_sbHits_2 = MEM_MEM2_DCACHE_SB_HITS[2];
+  assign MEM_MEM2_DCachePlugin_sbHits_3 = MEM_MEM2_DCACHE_SB_HITS[3];
+  assign MEM_MEM2_DCachePlugin_sbHit = ({MEM_MEM2_DCachePlugin_sbHits_3,{MEM_MEM2_DCachePlugin_sbHits_2,{MEM_MEM2_DCachePlugin_sbHits_1,MEM_MEM2_DCachePlugin_sbHits_0}}} != 4'b0000);
+  assign _zz_MEM_MEM2_DCachePlugin_sbHitData = (MEM_MEM2_DCachePlugin_sbHits_1 || MEM_MEM2_DCachePlugin_sbHits_3);
+  assign _zz_MEM_MEM2_DCachePlugin_sbHitData_1 = (MEM_MEM2_DCachePlugin_sbHits_2 || MEM_MEM2_DCachePlugin_sbHits_3);
+  assign MEM_MEM2_DCachePlugin_sbHitData = _zz_MEM_MEM2_DCachePlugin_sbHitData_2;
+  assign MEM_MEM2_DCachePlugin_hit = (MEM_MEM2_DCachePlugin_l1Hit || MEM_MEM2_DCachePlugin_sbHit);
+  assign MEM_MEM2_DCachePlugin_needRefill = ((MEM_MEM2_DCachePlugin_reqValid && (! MEM_MEM2_DCachePlugin_l1Hit)) && (MEM_MEM2_DCachePlugin_isSTD || (! MEM_MEM2_DCachePlugin_sbHit)));
+  assign MEM_MEM2_DCachePlugin_cacheWindowOk = (((((MEM_MEM2_DCachePlugin_cachePhysAddr[31 : 28] == 4'b0000) || (MEM_MEM2_DCachePlugin_cachePhysAddr[31 : 28] == 4'b0001)) || (MEM_MEM2_DCachePlugin_cachePhysAddr[31 : 28] == 4'b0111)) || (MEM_MEM2_DCachePlugin_cachePhysAddr[31 : 28] == 4'b1000)) || (MEM_MEM2_DCachePlugin_cachePhysAddr[31 : 28] == 4'b1001));
   always @(*) begin
     MEM_MEM2_DCachePlugin_wayCACHE = MEM_MEM2_DCachePlugin_hitWay;
     case(MEM_MEM2_DCachePlugin_CACHEFSM_stateReg)
@@ -73411,7 +73983,7 @@ module MyCPUCore (
 
   always @(*) begin
     DCachePlugin_dirtyBitsManager_io_writeCmd_valid = 1'b0;
-    if(when_DCachePlugin_l168) begin
+    if(when_DCachePlugin_l224) begin
       if(MEM_MEM2_DCachePlugin_isSTD) begin
         DCachePlugin_dirtyBitsManager_io_writeCmd_valid = 1'b1;
       end
@@ -73431,6 +74003,12 @@ module MyCPUCore (
       MEM_MEM2_DCachePlugin_cacheRefillFSM_enumDef_readMemU : begin
       end
       MEM_MEM2_DCachePlugin_cacheRefillFSM_enumDef_finishU : begin
+      end
+      MEM_MEM2_DCachePlugin_cacheRefillFSM_enumDef_prefetchAR : begin
+      end
+      MEM_MEM2_DCachePlugin_cacheRefillFSM_enumDef_prefetchRead : begin
+      end
+      MEM_MEM2_DCachePlugin_cacheRefillFSM_enumDef_prefetchDrain : begin
       end
       default : begin
       end
@@ -73439,7 +74017,7 @@ module MyCPUCore (
 
   always @(*) begin
     DCachePlugin_dirtyBitsManager_io_writeCmd_payload_idx = 6'bxxxxxx;
-    if(when_DCachePlugin_l168) begin
+    if(when_DCachePlugin_l224) begin
       if(MEM_MEM2_DCachePlugin_isSTD) begin
         DCachePlugin_dirtyBitsManager_io_writeCmd_payload_idx = MEM_MEM2_DCachePlugin_idx;
       end
@@ -73460,6 +74038,12 @@ module MyCPUCore (
       end
       MEM_MEM2_DCachePlugin_cacheRefillFSM_enumDef_finishU : begin
       end
+      MEM_MEM2_DCachePlugin_cacheRefillFSM_enumDef_prefetchAR : begin
+      end
+      MEM_MEM2_DCachePlugin_cacheRefillFSM_enumDef_prefetchRead : begin
+      end
+      MEM_MEM2_DCachePlugin_cacheRefillFSM_enumDef_prefetchDrain : begin
+      end
       default : begin
       end
     endcase
@@ -73467,7 +74051,7 @@ module MyCPUCore (
 
   always @(*) begin
     DCachePlugin_dirtyBitsManager_io_writeCmd_payload_way = 2'bxx;
-    if(when_DCachePlugin_l168) begin
+    if(when_DCachePlugin_l224) begin
       if(MEM_MEM2_DCachePlugin_isSTD) begin
         DCachePlugin_dirtyBitsManager_io_writeCmd_payload_way = MEM_MEM2_DCachePlugin_hitWay;
       end
@@ -73488,6 +74072,12 @@ module MyCPUCore (
       end
       MEM_MEM2_DCachePlugin_cacheRefillFSM_enumDef_finishU : begin
       end
+      MEM_MEM2_DCachePlugin_cacheRefillFSM_enumDef_prefetchAR : begin
+      end
+      MEM_MEM2_DCachePlugin_cacheRefillFSM_enumDef_prefetchRead : begin
+      end
+      MEM_MEM2_DCachePlugin_cacheRefillFSM_enumDef_prefetchDrain : begin
+      end
       default : begin
       end
     endcase
@@ -73495,7 +74085,7 @@ module MyCPUCore (
 
   always @(*) begin
     DCachePlugin_dirtyBitsManager_io_writeCmd_payload_data = 1'bx;
-    if(when_DCachePlugin_l168) begin
+    if(when_DCachePlugin_l224) begin
       if(MEM_MEM2_DCachePlugin_isSTD) begin
         DCachePlugin_dirtyBitsManager_io_writeCmd_payload_data = 1'b1;
       end
@@ -73516,12 +74106,18 @@ module MyCPUCore (
       end
       MEM_MEM2_DCachePlugin_cacheRefillFSM_enumDef_finishU : begin
       end
+      MEM_MEM2_DCachePlugin_cacheRefillFSM_enumDef_prefetchAR : begin
+      end
+      MEM_MEM2_DCachePlugin_cacheRefillFSM_enumDef_prefetchRead : begin
+      end
+      MEM_MEM2_DCachePlugin_cacheRefillFSM_enumDef_prefetchDrain : begin
+      end
       default : begin
       end
     endcase
   end
 
-  assign when_DCachePlugin_l168 = (MEM_MEM2_DCachePlugin_reqCommit && MEM_MEM2_DCachePlugin_hit);
+  assign when_DCachePlugin_l224 = (MEM_MEM2_DCachePlugin_reqCommit && MEM_MEM2_DCachePlugin_l1Hit);
   assign _zz_1459 = ({3'd0,1'b1} <<< MEM_MEM2_DCachePlugin_hitWay);
   assign _zz_1460 = _zz_1459[0];
   assign _zz_1461 = _zz_1459[1];
@@ -73546,8 +74142,14 @@ module MyCPUCore (
       end
       MEM_MEM2_DCachePlugin_cacheRefillFSM_enumDef_finishU : begin
       end
+      MEM_MEM2_DCachePlugin_cacheRefillFSM_enumDef_prefetchAR : begin
+      end
+      MEM_MEM2_DCachePlugin_cacheRefillFSM_enumDef_prefetchRead : begin
+      end
+      MEM_MEM2_DCachePlugin_cacheRefillFSM_enumDef_prefetchDrain : begin
+      end
       default : begin
-        if(when_DCachePlugin_l422) begin
+        if(MEM_MEM2_DCachePlugin_needRefill) begin
           MEM_MEM2_DCachePlugin_triggerWriteback = MEM_MEM2_DCachePlugin_cacheRefillFSM_dirty;
         end
       end
@@ -73561,7 +74163,7 @@ module MyCPUCore (
         MEM_MEM2_DCachePlugin_triggerWritebackFixUncache = 1'b0;
       end
       default : begin
-        if(when_DCachePlugin_l291) begin
+        if(when_DCachePlugin_l372) begin
           MEM_MEM2_DCachePlugin_triggerWritebackFixUncache = MEM_MEM2_DCachePlugin_fixUncacheFSM_dirty;
         end
       end
@@ -73640,7 +74242,7 @@ module MyCPUCore (
       MEM_MEM2_DCachePlugin_dirtyLineWritebackFSM_enumDef_waitB : begin
       end
       default : begin
-        if(when_DCachePlugin_l211) begin
+        if(when_DCachePlugin_l270) begin
           MEM_MEM2_DCachePlugin_dirtyLineWritebackFSM_rspId_willClear = 1'b1;
         end
       end
@@ -73659,7 +74261,7 @@ module MyCPUCore (
   assign MEM_MEM2_DCachePlugin_fixUncacheFSM_wantExit = 1'b0;
   assign MEM_MEM2_DCachePlugin_fixUncacheFSM_wantStart = 1'b0;
   assign MEM_MEM2_DCachePlugin_fixUncacheFSM_wantKill = 1'b0;
-  assign MEM_MEM2_DCachePlugin_fixUncacheFSM_dirty = (_zz_MEM_MEM2_DCachePlugin_fixUncacheFSM_dirty && MEM_MEM2_DCACHE_DIRTY[MEM_MEM2_DCachePlugin_hitWay]);
+  assign MEM_MEM2_DCachePlugin_fixUncacheFSM_dirty = ((MEM_MEM2_DCachePlugin_l1Hit && _zz_MEM_MEM2_DCachePlugin_fixUncacheFSM_dirty) && MEM_MEM2_DCACHE_DIRTY[MEM_MEM2_DCachePlugin_hitWay]);
   assign MEM_MEM2_DCachePlugin_CACHEFSM_wantExit = 1'b0;
   assign MEM_MEM2_DCachePlugin_CACHEFSM_wantStart = 1'b0;
   assign MEM_MEM2_DCachePlugin_CACHEFSM_wantKill = 1'b0;
@@ -73685,6 +74287,15 @@ module MyCPUCore (
       MEM_MEM2_DCachePlugin_cacheRefillFSM_enumDef_readMemU : begin
       end
       MEM_MEM2_DCachePlugin_cacheRefillFSM_enumDef_finishU : begin
+      end
+      MEM_MEM2_DCachePlugin_cacheRefillFSM_enumDef_prefetchAR : begin
+      end
+      MEM_MEM2_DCachePlugin_cacheRefillFSM_enumDef_prefetchRead : begin
+        if(io_dBus_r_fire_2) begin
+          MEM_MEM2_DCachePlugin_cacheRefillFSM_rspId_willIncrement = 1'b1;
+        end
+      end
+      MEM_MEM2_DCachePlugin_cacheRefillFSM_enumDef_prefetchDrain : begin
       end
       default : begin
       end
@@ -73712,8 +74323,17 @@ module MyCPUCore (
       end
       MEM_MEM2_DCachePlugin_cacheRefillFSM_enumDef_finishU : begin
       end
+      MEM_MEM2_DCachePlugin_cacheRefillFSM_enumDef_prefetchAR : begin
+        if(io_dBus_ar_ready) begin
+          MEM_MEM2_DCachePlugin_cacheRefillFSM_rspId_willClear = 1'b1;
+        end
+      end
+      MEM_MEM2_DCachePlugin_cacheRefillFSM_enumDef_prefetchRead : begin
+      end
+      MEM_MEM2_DCachePlugin_cacheRefillFSM_enumDef_prefetchDrain : begin
+      end
       default : begin
-        if(when_DCachePlugin_l422) begin
+        if(MEM_MEM2_DCachePlugin_needRefill) begin
           MEM_MEM2_DCachePlugin_cacheRefillFSM_rspId_willClear = 1'b1;
         end
       end
@@ -73732,123 +74352,123 @@ module MyCPUCore (
   assign io_dBus_r_fire = (io_dBus_r_valid && io_dBus_r_ready);
   always @(*) begin
     MEM_MEM2_DCachePlugin_cacheRefillFSM_refillWord = MEM_MEM2_DCachePlugin_cacheRefillFSM_regBusWord;
-    if(when_DCachePlugin_l409) begin
+    if(when_DCachePlugin_l510) begin
       MEM_MEM2_DCachePlugin_cacheRefillFSM_refillWord[7 : 0] = MEM_MEM2_STD_SLOT_payload_data[7 : 0];
     end
-    if(when_DCachePlugin_l409_1) begin
+    if(when_DCachePlugin_l510_1) begin
       MEM_MEM2_DCachePlugin_cacheRefillFSM_refillWord[15 : 8] = MEM_MEM2_STD_SLOT_payload_data[15 : 8];
     end
-    if(when_DCachePlugin_l409_2) begin
+    if(when_DCachePlugin_l510_2) begin
       MEM_MEM2_DCachePlugin_cacheRefillFSM_refillWord[23 : 16] = MEM_MEM2_STD_SLOT_payload_data[23 : 16];
     end
-    if(when_DCachePlugin_l409_3) begin
+    if(when_DCachePlugin_l510_3) begin
       MEM_MEM2_DCachePlugin_cacheRefillFSM_refillWord[31 : 24] = MEM_MEM2_STD_SLOT_payload_data[31 : 24];
     end
   end
 
-  assign when_DCachePlugin_l409 = ((MEM_MEM2_DCachePlugin_isSTD && (MEM_MEM2_DCachePlugin_cacheRefillFSM_rspId_value == MEM_MEM2_STD_SLOT_payload_addr[5 : 2])) && MEM_MEM2_STD_SLOT_payload_be[0]);
-  assign when_DCachePlugin_l409_1 = ((MEM_MEM2_DCachePlugin_isSTD && (MEM_MEM2_DCachePlugin_cacheRefillFSM_rspId_value == MEM_MEM2_STD_SLOT_payload_addr[5 : 2])) && MEM_MEM2_STD_SLOT_payload_be[1]);
-  assign when_DCachePlugin_l409_2 = ((MEM_MEM2_DCachePlugin_isSTD && (MEM_MEM2_DCachePlugin_cacheRefillFSM_rspId_value == MEM_MEM2_STD_SLOT_payload_addr[5 : 2])) && MEM_MEM2_STD_SLOT_payload_be[2]);
-  assign when_DCachePlugin_l409_3 = ((MEM_MEM2_DCachePlugin_isSTD && (MEM_MEM2_DCachePlugin_cacheRefillFSM_rspId_value == MEM_MEM2_STD_SLOT_payload_addr[5 : 2])) && MEM_MEM2_STD_SLOT_payload_be[3]);
+  assign when_DCachePlugin_l510 = ((MEM_MEM2_DCachePlugin_isSTD && (MEM_MEM2_DCachePlugin_cacheRefillFSM_rspId_value == MEM_MEM2_STD_SLOT_payload_addr[5 : 2])) && MEM_MEM2_STD_SLOT_payload_be[0]);
+  assign when_DCachePlugin_l510_1 = ((MEM_MEM2_DCachePlugin_isSTD && (MEM_MEM2_DCachePlugin_cacheRefillFSM_rspId_value == MEM_MEM2_STD_SLOT_payload_addr[5 : 2])) && MEM_MEM2_STD_SLOT_payload_be[1]);
+  assign when_DCachePlugin_l510_2 = ((MEM_MEM2_DCachePlugin_isSTD && (MEM_MEM2_DCachePlugin_cacheRefillFSM_rspId_value == MEM_MEM2_STD_SLOT_payload_addr[5 : 2])) && MEM_MEM2_STD_SLOT_payload_be[2]);
+  assign when_DCachePlugin_l510_3 = ((MEM_MEM2_DCachePlugin_isSTD && (MEM_MEM2_DCachePlugin_cacheRefillFSM_rspId_value == MEM_MEM2_STD_SLOT_payload_addr[5 : 2])) && MEM_MEM2_STD_SLOT_payload_be[3]);
   assign MEM_MEM2_DCachePlugin_cacheRefillFSM_dirty = (_zz_MEM_MEM2_DCachePlugin_cacheRefillFSM_dirty && MEM_MEM2_DCACHE_DIRTY[MEM_MEM2_DCachePlugin_replaceWay]);
-  assign when_DCachePlugin_l416 = (MEM_MEM2_DCachePlugin_cacheRefillFSM_refillValid && (MEM_MEM2_DCachePlugin_cacheRefillFSM_rspId_value == MEM_MEM2_DCachePlugin_cachePhysAddr[5 : 2]));
-  assign MEM_MEM2_DCachePlugin_cacheData = (MEM_MEM2_DCachePlugin_hit ? MEM_MEM2_DCachePlugin_hitData : MEM_MEM2_DCachePlugin_storedWord);
+  assign when_DCachePlugin_l517 = (MEM_MEM2_DCachePlugin_cacheRefillFSM_refillValid && (MEM_MEM2_DCachePlugin_cacheRefillFSM_rspId_value == MEM_MEM2_DCachePlugin_cachePhysAddr[5 : 2]));
+  assign MEM_MEM2_DCachePlugin_cacheData = (MEM_MEM2_DCachePlugin_l1Hit ? MEM_MEM2_DCachePlugin_hitData : (MEM_MEM2_DCachePlugin_sbHit ? MEM_MEM2_DCachePlugin_sbHitData : MEM_MEM2_DCachePlugin_storedWord));
   always @(*) begin
     MEM_MEM2_DCachePlugin_memRData = MEM_MEM2_DCachePlugin_cacheData;
-    if(when_DCachePlugin_l562) begin
-      if(when_DCachePlugin_l563) begin
+    if(when_DCachePlugin_l744) begin
+      if(when_DCachePlugin_l745) begin
         MEM_MEM2_DCachePlugin_memRData[7 : 0] = MEM_WB2_STD_SLOT_payload_data[7 : 0];
       end
-      if(when_DCachePlugin_l563_1) begin
+      if(when_DCachePlugin_l745_1) begin
         MEM_MEM2_DCachePlugin_memRData[15 : 8] = MEM_WB2_STD_SLOT_payload_data[15 : 8];
       end
-      if(when_DCachePlugin_l563_2) begin
+      if(when_DCachePlugin_l745_2) begin
         MEM_MEM2_DCachePlugin_memRData[23 : 16] = MEM_WB2_STD_SLOT_payload_data[23 : 16];
       end
-      if(when_DCachePlugin_l563_3) begin
+      if(when_DCachePlugin_l745_3) begin
         MEM_MEM2_DCachePlugin_memRData[31 : 24] = MEM_WB2_STD_SLOT_payload_data[31 : 24];
       end
     end
-    if(when_DCachePlugin_l562_1) begin
-      if(when_DCachePlugin_l563_4) begin
+    if(when_DCachePlugin_l744_1) begin
+      if(when_DCachePlugin_l745_4) begin
         MEM_MEM2_DCachePlugin_memRData[7 : 0] = MEM_WB_STD_SLOT_payload_data[7 : 0];
       end
-      if(when_DCachePlugin_l563_5) begin
+      if(when_DCachePlugin_l745_5) begin
         MEM_MEM2_DCachePlugin_memRData[15 : 8] = MEM_WB_STD_SLOT_payload_data[15 : 8];
       end
-      if(when_DCachePlugin_l563_6) begin
+      if(when_DCachePlugin_l745_6) begin
         MEM_MEM2_DCachePlugin_memRData[23 : 16] = MEM_WB_STD_SLOT_payload_data[23 : 16];
       end
-      if(when_DCachePlugin_l563_7) begin
+      if(when_DCachePlugin_l745_7) begin
         MEM_MEM2_DCachePlugin_memRData[31 : 24] = MEM_WB_STD_SLOT_payload_data[31 : 24];
       end
     end
-    if(when_DCachePlugin_l562_2) begin
-      if(when_DCachePlugin_l563_8) begin
+    if(when_DCachePlugin_l744_2) begin
+      if(when_DCachePlugin_l745_8) begin
         MEM_MEM2_DCachePlugin_memRData[7 : 0] = MEM_MEM2_STD_SLOT_payload_data[7 : 0];
       end
-      if(when_DCachePlugin_l563_9) begin
+      if(when_DCachePlugin_l745_9) begin
         MEM_MEM2_DCachePlugin_memRData[15 : 8] = MEM_MEM2_STD_SLOT_payload_data[15 : 8];
       end
-      if(when_DCachePlugin_l563_10) begin
+      if(when_DCachePlugin_l745_10) begin
         MEM_MEM2_DCachePlugin_memRData[23 : 16] = MEM_MEM2_STD_SLOT_payload_data[23 : 16];
       end
-      if(when_DCachePlugin_l563_11) begin
+      if(when_DCachePlugin_l745_11) begin
         MEM_MEM2_DCachePlugin_memRData[31 : 24] = MEM_MEM2_STD_SLOT_payload_data[31 : 24];
       end
     end
-    if(when_DCachePlugin_l562_3) begin
-      if(when_DCachePlugin_l563_12) begin
+    if(when_DCachePlugin_l744_3) begin
+      if(when_DCachePlugin_l745_12) begin
         MEM_MEM2_DCachePlugin_memRData[7 : 0] = MEM_MEM1_STD_SLOT_payload_data[7 : 0];
       end
-      if(when_DCachePlugin_l563_13) begin
+      if(when_DCachePlugin_l745_13) begin
         MEM_MEM2_DCachePlugin_memRData[15 : 8] = MEM_MEM1_STD_SLOT_payload_data[15 : 8];
       end
-      if(when_DCachePlugin_l563_14) begin
+      if(when_DCachePlugin_l745_14) begin
         MEM_MEM2_DCachePlugin_memRData[23 : 16] = MEM_MEM1_STD_SLOT_payload_data[23 : 16];
       end
-      if(when_DCachePlugin_l563_15) begin
+      if(when_DCachePlugin_l745_15) begin
         MEM_MEM2_DCachePlugin_memRData[31 : 24] = MEM_MEM1_STD_SLOT_payload_data[31 : 24];
       end
     end
-    if(when_DCachePlugin_l562_4) begin
-      if(when_DCachePlugin_l563_16) begin
+    if(when_DCachePlugin_l744_4) begin
+      if(when_DCachePlugin_l745_16) begin
         MEM_MEM2_DCachePlugin_memRData[7 : 0] = MEM_ADDR_STD_SLOT_payload_data[7 : 0];
       end
-      if(when_DCachePlugin_l563_17) begin
+      if(when_DCachePlugin_l745_17) begin
         MEM_MEM2_DCachePlugin_memRData[15 : 8] = MEM_ADDR_STD_SLOT_payload_data[15 : 8];
       end
-      if(when_DCachePlugin_l563_18) begin
+      if(when_DCachePlugin_l745_18) begin
         MEM_MEM2_DCachePlugin_memRData[23 : 16] = MEM_ADDR_STD_SLOT_payload_data[23 : 16];
       end
-      if(when_DCachePlugin_l563_19) begin
+      if(when_DCachePlugin_l745_19) begin
         MEM_MEM2_DCachePlugin_memRData[31 : 24] = MEM_ADDR_STD_SLOT_payload_data[31 : 24];
       end
     end
-    if(when_DCachePlugin_l562_5) begin
-      if(when_DCachePlugin_l563_20) begin
+    if(when_DCachePlugin_l744_5) begin
+      if(when_DCachePlugin_l745_20) begin
         MEM_MEM2_DCachePlugin_memRData[7 : 0] = MEM_RRD_STD_SLOT_payload_data[7 : 0];
       end
-      if(when_DCachePlugin_l563_21) begin
+      if(when_DCachePlugin_l745_21) begin
         MEM_MEM2_DCachePlugin_memRData[15 : 8] = MEM_RRD_STD_SLOT_payload_data[15 : 8];
       end
-      if(when_DCachePlugin_l563_22) begin
+      if(when_DCachePlugin_l745_22) begin
         MEM_MEM2_DCachePlugin_memRData[23 : 16] = MEM_RRD_STD_SLOT_payload_data[23 : 16];
       end
-      if(when_DCachePlugin_l563_23) begin
+      if(when_DCachePlugin_l745_23) begin
         MEM_MEM2_DCachePlugin_memRData[31 : 24] = MEM_RRD_STD_SLOT_payload_data[31 : 24];
       end
     end
-    if(when_DCachePlugin_l571) begin
+    if(when_DCachePlugin_l753) begin
       MEM_MEM2_DCachePlugin_memRData[7 : 0] = StoreBufferPlugin_query_data[7 : 0];
     end
-    if(when_DCachePlugin_l571_1) begin
+    if(when_DCachePlugin_l753_1) begin
       MEM_MEM2_DCachePlugin_memRData[15 : 8] = StoreBufferPlugin_query_data[15 : 8];
     end
-    if(when_DCachePlugin_l571_2) begin
+    if(when_DCachePlugin_l753_2) begin
       MEM_MEM2_DCachePlugin_memRData[23 : 16] = StoreBufferPlugin_query_data[23 : 16];
     end
-    if(when_DCachePlugin_l571_3) begin
+    if(when_DCachePlugin_l753_3) begin
       MEM_MEM2_DCachePlugin_memRData[31 : 24] = StoreBufferPlugin_query_data[31 : 24];
     end
     if(MEM_MEM2_DCachePlugin_isLDU) begin
@@ -73856,41 +74476,41 @@ module MyCPUCore (
     end
   end
 
-  assign when_DCachePlugin_l562 = ((MEM_MEM2_MEMORY_ADDRESS_PHYSICAL[31 : 2] == MEM_WB2_STD_SLOT_payload_addr[31 : 2]) && ((MEM_WB2_STD_SLOT_valid && MEM_WB2_STD_SLOT_payload_isStore) && MEM_WB2_STD_SLOT_payload_isCached));
-  assign when_DCachePlugin_l563 = MEM_WB2_STD_SLOT_payload_be[0];
-  assign when_DCachePlugin_l563_1 = MEM_WB2_STD_SLOT_payload_be[1];
-  assign when_DCachePlugin_l563_2 = MEM_WB2_STD_SLOT_payload_be[2];
-  assign when_DCachePlugin_l563_3 = MEM_WB2_STD_SLOT_payload_be[3];
-  assign when_DCachePlugin_l562_1 = ((MEM_MEM2_MEMORY_ADDRESS_PHYSICAL[31 : 2] == MEM_WB_STD_SLOT_payload_addr[31 : 2]) && ((MEM_WB_STD_SLOT_valid && MEM_WB_STD_SLOT_payload_isStore) && MEM_WB_STD_SLOT_payload_isCached));
-  assign when_DCachePlugin_l563_4 = MEM_WB_STD_SLOT_payload_be[0];
-  assign when_DCachePlugin_l563_5 = MEM_WB_STD_SLOT_payload_be[1];
-  assign when_DCachePlugin_l563_6 = MEM_WB_STD_SLOT_payload_be[2];
-  assign when_DCachePlugin_l563_7 = MEM_WB_STD_SLOT_payload_be[3];
-  assign when_DCachePlugin_l562_2 = ((MEM_MEM2_MEMORY_ADDRESS_PHYSICAL[31 : 2] == MEM_MEM2_STD_SLOT_payload_addr[31 : 2]) && ((MEM_MEM2_STD_SLOT_valid && MEM_MEM2_STD_SLOT_payload_isStore) && MEM_MEM2_STD_SLOT_payload_isCached));
-  assign when_DCachePlugin_l563_8 = MEM_MEM2_STD_SLOT_payload_be[0];
-  assign when_DCachePlugin_l563_9 = MEM_MEM2_STD_SLOT_payload_be[1];
-  assign when_DCachePlugin_l563_10 = MEM_MEM2_STD_SLOT_payload_be[2];
-  assign when_DCachePlugin_l563_11 = MEM_MEM2_STD_SLOT_payload_be[3];
-  assign when_DCachePlugin_l562_3 = ((MEM_MEM2_MEMORY_ADDRESS_PHYSICAL[31 : 2] == MEM_MEM1_STD_SLOT_payload_addr[31 : 2]) && ((MEM_MEM1_STD_SLOT_valid && MEM_MEM1_STD_SLOT_payload_isStore) && MEM_MEM1_STD_SLOT_payload_isCached));
-  assign when_DCachePlugin_l563_12 = MEM_MEM1_STD_SLOT_payload_be[0];
-  assign when_DCachePlugin_l563_13 = MEM_MEM1_STD_SLOT_payload_be[1];
-  assign when_DCachePlugin_l563_14 = MEM_MEM1_STD_SLOT_payload_be[2];
-  assign when_DCachePlugin_l563_15 = MEM_MEM1_STD_SLOT_payload_be[3];
-  assign when_DCachePlugin_l562_4 = ((MEM_MEM2_MEMORY_ADDRESS_PHYSICAL[31 : 2] == MEM_ADDR_STD_SLOT_payload_addr[31 : 2]) && ((MEM_ADDR_STD_SLOT_valid && MEM_ADDR_STD_SLOT_payload_isStore) && MEM_ADDR_STD_SLOT_payload_isCached));
-  assign when_DCachePlugin_l563_16 = MEM_ADDR_STD_SLOT_payload_be[0];
-  assign when_DCachePlugin_l563_17 = MEM_ADDR_STD_SLOT_payload_be[1];
-  assign when_DCachePlugin_l563_18 = MEM_ADDR_STD_SLOT_payload_be[2];
-  assign when_DCachePlugin_l563_19 = MEM_ADDR_STD_SLOT_payload_be[3];
-  assign when_DCachePlugin_l562_5 = ((MEM_MEM2_MEMORY_ADDRESS_PHYSICAL[31 : 2] == MEM_RRD_STD_SLOT_payload_addr[31 : 2]) && ((MEM_RRD_STD_SLOT_valid && MEM_RRD_STD_SLOT_payload_isStore) && MEM_RRD_STD_SLOT_payload_isCached));
-  assign when_DCachePlugin_l563_20 = MEM_RRD_STD_SLOT_payload_be[0];
-  assign when_DCachePlugin_l563_21 = MEM_RRD_STD_SLOT_payload_be[1];
-  assign when_DCachePlugin_l563_22 = MEM_RRD_STD_SLOT_payload_be[2];
-  assign when_DCachePlugin_l563_23 = MEM_RRD_STD_SLOT_payload_be[3];
+  assign when_DCachePlugin_l744 = ((MEM_MEM2_MEMORY_ADDRESS_PHYSICAL[31 : 2] == MEM_WB2_STD_SLOT_payload_addr[31 : 2]) && ((MEM_WB2_STD_SLOT_valid && MEM_WB2_STD_SLOT_payload_isStore) && MEM_WB2_STD_SLOT_payload_isCached));
+  assign when_DCachePlugin_l745 = MEM_WB2_STD_SLOT_payload_be[0];
+  assign when_DCachePlugin_l745_1 = MEM_WB2_STD_SLOT_payload_be[1];
+  assign when_DCachePlugin_l745_2 = MEM_WB2_STD_SLOT_payload_be[2];
+  assign when_DCachePlugin_l745_3 = MEM_WB2_STD_SLOT_payload_be[3];
+  assign when_DCachePlugin_l744_1 = ((MEM_MEM2_MEMORY_ADDRESS_PHYSICAL[31 : 2] == MEM_WB_STD_SLOT_payload_addr[31 : 2]) && ((MEM_WB_STD_SLOT_valid && MEM_WB_STD_SLOT_payload_isStore) && MEM_WB_STD_SLOT_payload_isCached));
+  assign when_DCachePlugin_l745_4 = MEM_WB_STD_SLOT_payload_be[0];
+  assign when_DCachePlugin_l745_5 = MEM_WB_STD_SLOT_payload_be[1];
+  assign when_DCachePlugin_l745_6 = MEM_WB_STD_SLOT_payload_be[2];
+  assign when_DCachePlugin_l745_7 = MEM_WB_STD_SLOT_payload_be[3];
+  assign when_DCachePlugin_l744_2 = ((MEM_MEM2_MEMORY_ADDRESS_PHYSICAL[31 : 2] == MEM_MEM2_STD_SLOT_payload_addr[31 : 2]) && ((MEM_MEM2_STD_SLOT_valid && MEM_MEM2_STD_SLOT_payload_isStore) && MEM_MEM2_STD_SLOT_payload_isCached));
+  assign when_DCachePlugin_l745_8 = MEM_MEM2_STD_SLOT_payload_be[0];
+  assign when_DCachePlugin_l745_9 = MEM_MEM2_STD_SLOT_payload_be[1];
+  assign when_DCachePlugin_l745_10 = MEM_MEM2_STD_SLOT_payload_be[2];
+  assign when_DCachePlugin_l745_11 = MEM_MEM2_STD_SLOT_payload_be[3];
+  assign when_DCachePlugin_l744_3 = ((MEM_MEM2_MEMORY_ADDRESS_PHYSICAL[31 : 2] == MEM_MEM1_STD_SLOT_payload_addr[31 : 2]) && ((MEM_MEM1_STD_SLOT_valid && MEM_MEM1_STD_SLOT_payload_isStore) && MEM_MEM1_STD_SLOT_payload_isCached));
+  assign when_DCachePlugin_l745_12 = MEM_MEM1_STD_SLOT_payload_be[0];
+  assign when_DCachePlugin_l745_13 = MEM_MEM1_STD_SLOT_payload_be[1];
+  assign when_DCachePlugin_l745_14 = MEM_MEM1_STD_SLOT_payload_be[2];
+  assign when_DCachePlugin_l745_15 = MEM_MEM1_STD_SLOT_payload_be[3];
+  assign when_DCachePlugin_l744_4 = ((MEM_MEM2_MEMORY_ADDRESS_PHYSICAL[31 : 2] == MEM_ADDR_STD_SLOT_payload_addr[31 : 2]) && ((MEM_ADDR_STD_SLOT_valid && MEM_ADDR_STD_SLOT_payload_isStore) && MEM_ADDR_STD_SLOT_payload_isCached));
+  assign when_DCachePlugin_l745_16 = MEM_ADDR_STD_SLOT_payload_be[0];
+  assign when_DCachePlugin_l745_17 = MEM_ADDR_STD_SLOT_payload_be[1];
+  assign when_DCachePlugin_l745_18 = MEM_ADDR_STD_SLOT_payload_be[2];
+  assign when_DCachePlugin_l745_19 = MEM_ADDR_STD_SLOT_payload_be[3];
+  assign when_DCachePlugin_l744_5 = ((MEM_MEM2_MEMORY_ADDRESS_PHYSICAL[31 : 2] == MEM_RRD_STD_SLOT_payload_addr[31 : 2]) && ((MEM_RRD_STD_SLOT_valid && MEM_RRD_STD_SLOT_payload_isStore) && MEM_RRD_STD_SLOT_payload_isCached));
+  assign when_DCachePlugin_l745_20 = MEM_RRD_STD_SLOT_payload_be[0];
+  assign when_DCachePlugin_l745_21 = MEM_RRD_STD_SLOT_payload_be[1];
+  assign when_DCachePlugin_l745_22 = MEM_RRD_STD_SLOT_payload_be[2];
+  assign when_DCachePlugin_l745_23 = MEM_RRD_STD_SLOT_payload_be[3];
   assign StoreBufferPlugin_query_addr = MEM_MEM2_MEMORY_ADDRESS_PHYSICAL;
-  assign when_DCachePlugin_l571 = StoreBufferPlugin_query_be[0];
-  assign when_DCachePlugin_l571_1 = StoreBufferPlugin_query_be[1];
-  assign when_DCachePlugin_l571_2 = StoreBufferPlugin_query_be[2];
-  assign when_DCachePlugin_l571_3 = StoreBufferPlugin_query_be[3];
+  assign when_DCachePlugin_l753 = StoreBufferPlugin_query_be[0];
+  assign when_DCachePlugin_l753_1 = StoreBufferPlugin_query_be[1];
+  assign when_DCachePlugin_l753_2 = StoreBufferPlugin_query_be[2];
+  assign when_DCachePlugin_l753_3 = StoreBufferPlugin_query_be[3];
   assign MEM_MEM2_UncachedAccessPlugin_isLDU = (MEM_MEM2_STD_SLOT_valid && (! MEM_MEM2_STD_SLOT_payload_isStore));
   assign MEM_MEM2_UncachedAccessPlugin_isSTU = ((MEM_MEM2_STD_SLOT_valid && MEM_MEM2_STD_SLOT_payload_isStore) && (! MEM_MEM2_STD_SLOT_payload_isCached));
   assign when_UncachedAccess_l32 = (! UncachedAccessPlugin_uncachedStoreHandshake_ready);
@@ -74099,12 +74719,12 @@ module MyCPUCore (
   assign MemExecutePlugin_robWrite_payload_pAddr = MEM_WB_MEMORY_ADDRESS_PHYSICAL;
   assign MemExecutePlugin_robWrite_payload_storeData = MEM_WB_MEMORY_WRITE_DATA;
   assign MemExecutePlugin_robWrite_payload_myPC = MEM_WB_ISSUE_SLOT_uop_pc;
-  assign when_ExceptionMuxPlugin_l45_4 = ((! MEM_ADDR_EXCEPTION_OCCURRED) && AddressGenerationPlugin_raiseALE);
-  assign when_ExceptionMuxPlugin_l45_5 = ((! MEM_MEM1_EXCEPTION_OCCURRED) && AddressGenerationPlugin_raisePME);
-  assign when_ExceptionMuxPlugin_l45_6 = ((! MEM_MEM1_EXCEPTION_OCCURRED) && AddressGenerationPlugin_raisePPI);
-  assign when_ExceptionMuxPlugin_l45_7 = ((! MEM_MEM1_EXCEPTION_OCCURRED) && AddressGenerationPlugin_raisePIS);
-  assign when_ExceptionMuxPlugin_l45_8 = ((! MEM_MEM1_EXCEPTION_OCCURRED) && AddressGenerationPlugin_raisePIL);
-  assign when_ExceptionMuxPlugin_l45_9 = ((! MEM_MEM1_EXCEPTION_OCCURRED) && AddressGenerationPlugin_raiseTLBR);
+  assign when_ExceptionMuxPlugin_l45_4 = ((! MEM_MEM1_EXCEPTION_OCCURRED) && AddressGenerationPlugin_raisePME);
+  assign when_ExceptionMuxPlugin_l45_5 = ((! MEM_MEM1_EXCEPTION_OCCURRED) && AddressGenerationPlugin_raisePPI);
+  assign when_ExceptionMuxPlugin_l45_6 = ((! MEM_MEM1_EXCEPTION_OCCURRED) && AddressGenerationPlugin_raisePIS);
+  assign when_ExceptionMuxPlugin_l45_7 = ((! MEM_MEM1_EXCEPTION_OCCURRED) && AddressGenerationPlugin_raisePIL);
+  assign when_ExceptionMuxPlugin_l45_8 = ((! MEM_MEM1_EXCEPTION_OCCURRED) && AddressGenerationPlugin_raiseTLBR);
+  assign when_ExceptionMuxPlugin_l45_9 = ((! MEM_ADDR_EXCEPTION_OCCURRED) && AddressGenerationPlugin_raiseALE);
   assign when_Pipeline_l158 = (! IF2_arbitration_isStuck);
   assign when_Pipeline_l158_1 = (! IF3_arbitration_isStuck);
   assign when_Pipeline_l158_2 = (! IF2_arbitration_isStuck);
@@ -74641,18 +75261,19 @@ module MyCPUCore (
   assign when_Pipeline_l158_125 = (! MEM_MEM2_arbitration_isStuck);
   assign when_Pipeline_l158_126 = (! MEM_MEM2_arbitration_isStuck);
   assign when_Pipeline_l158_127 = (! MEM_MEM2_arbitration_isStuck);
-  assign when_Pipeline_l158_128 = (! MEM_WB_arbitration_isStuck);
-  assign when_Pipeline_l158_129 = (! MEM_MEM2_arbitration_isStuck);
-  assign when_Pipeline_l158_130 = (! MEM_WB_arbitration_isStuck);
-  assign when_Pipeline_l158_131 = (! MEM_MEM2_arbitration_isStuck);
-  assign when_Pipeline_l158_132 = (! MEM_WB_arbitration_isStuck);
-  assign when_Pipeline_l158_133 = (! MEM_MEM2_arbitration_isStuck);
-  assign when_Pipeline_l158_134 = (! MEM_WB_arbitration_isStuck);
+  assign when_Pipeline_l158_128 = (! MEM_MEM2_arbitration_isStuck);
+  assign when_Pipeline_l158_129 = (! MEM_WB_arbitration_isStuck);
+  assign when_Pipeline_l158_130 = (! MEM_MEM2_arbitration_isStuck);
+  assign when_Pipeline_l158_131 = (! MEM_WB_arbitration_isStuck);
+  assign when_Pipeline_l158_132 = (! MEM_MEM2_arbitration_isStuck);
+  assign when_Pipeline_l158_133 = (! MEM_WB_arbitration_isStuck);
+  assign when_Pipeline_l158_134 = (! MEM_MEM2_arbitration_isStuck);
+  assign when_Pipeline_l158_135 = (! MEM_WB_arbitration_isStuck);
   assign _zz_MEM_MEM1_to_MEM_MEM2_LOAD_STORE_TYPE_1 = MEM_MEM1_LOAD_STORE_TYPE;
   assign _zz_MEM_MEM1_LOAD_STORE_TYPE = _zz_MEM_MEM1_LOAD_STORE_TYPE_1;
-  assign when_Pipeline_l158_135 = (! MEM_MEM2_arbitration_isStuck);
+  assign when_Pipeline_l158_136 = (! MEM_MEM2_arbitration_isStuck);
   assign _zz_MEM_MEM2_LOAD_STORE_TYPE = MEM_MEM1_to_MEM_MEM2_LOAD_STORE_TYPE;
-  assign when_Pipeline_l158_136 = (! MEM_WB_arbitration_isStuck);
+  assign when_Pipeline_l158_137 = (! MEM_WB_arbitration_isStuck);
   assign MEM_ISS_arbitration_isFlushed = (({MEM_WB2_arbitration_flushNext,{MEM_WB_arbitration_flushNext,{MEM_MEM2_arbitration_flushNext,{MEM_MEM1_arbitration_flushNext,{_zz_MEM_ISS_arbitration_isFlushed,_zz_MEM_ISS_arbitration_isFlushed_1}}}}} != 6'h0) || ({MEM_WB2_arbitration_flushIt,{MEM_WB_arbitration_flushIt,{MEM_MEM2_arbitration_flushIt,{MEM_MEM1_arbitration_flushIt,{_zz_MEM_ISS_arbitration_isFlushed_2,_zz_MEM_ISS_arbitration_isFlushed_3}}}}} != 7'h0));
   assign MEM_RRD_arbitration_isFlushed = (({MEM_WB2_arbitration_flushNext,{MEM_WB_arbitration_flushNext,{MEM_MEM2_arbitration_flushNext,{MEM_MEM1_arbitration_flushNext,MEM_ADDR_arbitration_flushNext}}}} != 5'h0) || ({MEM_WB2_arbitration_flushIt,{MEM_WB_arbitration_flushIt,{MEM_MEM2_arbitration_flushIt,{MEM_MEM1_arbitration_flushIt,{_zz_MEM_RRD_arbitration_isFlushed,_zz_MEM_RRD_arbitration_isFlushed_1}}}}} != 6'h0));
   assign MEM_ADDR_arbitration_isFlushed = (({MEM_WB2_arbitration_flushNext,{MEM_WB_arbitration_flushNext,{MEM_MEM2_arbitration_flushNext,MEM_MEM1_arbitration_flushNext}}} != 4'b0000) || ({MEM_WB2_arbitration_flushIt,{MEM_WB_arbitration_flushIt,{MEM_MEM2_arbitration_flushIt,{MEM_MEM1_arbitration_flushIt,MEM_ADDR_arbitration_flushIt}}}} != 5'h0));
@@ -74963,7 +75584,7 @@ module MyCPUCore (
     MEM_MEM2_DCachePlugin_dirtyLineWritebackFSM_stateNext = MEM_MEM2_DCachePlugin_dirtyLineWritebackFSM_stateReg;
     case(MEM_MEM2_DCachePlugin_dirtyLineWritebackFSM_stateReg)
       MEM_MEM2_DCachePlugin_dirtyLineWritebackFSM_enumDef_fetchCache : begin
-        if(when_DCachePlugin_l230) begin
+        if(when_DCachePlugin_l311) begin
           MEM_MEM2_DCachePlugin_dirtyLineWritebackFSM_stateNext = MEM_MEM2_DCachePlugin_dirtyLineWritebackFSM_enumDef_waitAW;
         end
       end
@@ -74985,7 +75606,7 @@ module MyCPUCore (
         end
       end
       default : begin
-        if(when_DCachePlugin_l211) begin
+        if(when_DCachePlugin_l270) begin
           MEM_MEM2_DCachePlugin_dirtyLineWritebackFSM_stateNext = MEM_MEM2_DCachePlugin_dirtyLineWritebackFSM_enumDef_fetchCache;
         end
       end
@@ -74997,8 +75618,23 @@ module MyCPUCore (
 
   assign _zz_1555 = ({15'd0,1'b1} <<< MEM_MEM2_DCachePlugin_dirtyLineWritebackFSM_rspIdDelayed);
   assign _zz_MEM_MEM2_DCachePlugin_dirtyLine_0 = _zz__zz_MEM_MEM2_DCachePlugin_dirtyLine_0;
-  assign when_DCachePlugin_l230 = (MEM_MEM2_DCachePlugin_dirtyLineWritebackFSM_rspIdDelayed == 4'b1111);
-  assign when_DCachePlugin_l211 = ((MEM_MEM2_DCachePlugin_triggerWriteback || MEM_MEM2_DCachePlugin_triggerWritebackFixUncache) || MEM_MEM2_DCachePlugin_triggerWritebackCACHE);
+  assign when_DCachePlugin_l311 = (MEM_MEM2_DCachePlugin_dirtyLineWritebackFSM_rspIdDelayed == 4'b1111);
+  assign when_DCachePlugin_l270 = ((MEM_MEM2_DCachePlugin_triggerWriteback || MEM_MEM2_DCachePlugin_triggerWritebackFixUncache) || MEM_MEM2_DCachePlugin_triggerWritebackCACHE);
+  assign _zz_when_DCachePlugin_l278 = _zz__zz_when_DCachePlugin_l278;
+  assign when_DCachePlugin_l278 = (DCachePlugin_sbTags_0 == {_zz_when_DCachePlugin_l278,MEM_MEM2_DCachePlugin_idx});
+  assign when_DCachePlugin_l278_1 = (DCachePlugin_sbTags_1 == {_zz_when_DCachePlugin_l278,MEM_MEM2_DCachePlugin_idx});
+  assign when_DCachePlugin_l278_2 = (DCachePlugin_sbTags_2 == {_zz_when_DCachePlugin_l278,MEM_MEM2_DCachePlugin_idx});
+  assign when_DCachePlugin_l278_3 = (DCachePlugin_sbTags_3 == {_zz_when_DCachePlugin_l278,MEM_MEM2_DCachePlugin_idx});
+  assign _zz_when_DCachePlugin_l287 = _zz__zz_when_DCachePlugin_l287;
+  assign when_DCachePlugin_l287 = (DCachePlugin_sbTags_0 == {_zz_when_DCachePlugin_l287,MEM_MEM2_DCachePlugin_idx});
+  assign when_DCachePlugin_l287_1 = (DCachePlugin_sbTags_1 == {_zz_when_DCachePlugin_l287,MEM_MEM2_DCachePlugin_idx});
+  assign when_DCachePlugin_l287_2 = (DCachePlugin_sbTags_2 == {_zz_when_DCachePlugin_l287,MEM_MEM2_DCachePlugin_idx});
+  assign when_DCachePlugin_l287_3 = (DCachePlugin_sbTags_3 == {_zz_when_DCachePlugin_l287,MEM_MEM2_DCachePlugin_idx});
+  assign _zz_when_DCachePlugin_l297 = _zz__zz_when_DCachePlugin_l297;
+  assign when_DCachePlugin_l297 = (DCachePlugin_sbTags_0 == {_zz_when_DCachePlugin_l297,MEM_MEM2_DCachePlugin_idx});
+  assign when_DCachePlugin_l297_1 = (DCachePlugin_sbTags_1 == {_zz_when_DCachePlugin_l297,MEM_MEM2_DCachePlugin_idx});
+  assign when_DCachePlugin_l297_2 = (DCachePlugin_sbTags_2 == {_zz_when_DCachePlugin_l297,MEM_MEM2_DCachePlugin_idx});
+  assign when_DCachePlugin_l297_3 = (DCachePlugin_sbTags_3 == {_zz_when_DCachePlugin_l297,MEM_MEM2_DCachePlugin_idx});
   always @(*) begin
     MEM_MEM2_DCachePlugin_fixUncacheFSM_stateNext = MEM_MEM2_DCachePlugin_fixUncacheFSM_stateReg;
     case(MEM_MEM2_DCachePlugin_fixUncacheFSM_stateReg)
@@ -75008,7 +75644,7 @@ module MyCPUCore (
         end
       end
       default : begin
-        if(when_DCachePlugin_l291) begin
+        if(when_DCachePlugin_l372) begin
           MEM_MEM2_DCachePlugin_fixUncacheFSM_stateNext = MEM_MEM2_DCachePlugin_fixUncacheFSM_enumDef_waitWriteback;
         end
       end
@@ -75084,7 +75720,11 @@ module MyCPUCore (
   assign _zz_1619 = _zz_1556[62];
   assign _zz_1620 = _zz_1556[63];
   assign _zz_1621 = ({3'd0,1'b1} <<< MEM_MEM2_DCachePlugin_hitWay);
-  assign when_DCachePlugin_l291 = ((MEM_MEM2_DCachePlugin_isLDU || MEM_MEM2_DCachePlugin_isSTU) && MEM_MEM2_DCachePlugin_hit);
+  assign when_DCachePlugin_l372 = ((MEM_MEM2_DCachePlugin_isLDU || MEM_MEM2_DCachePlugin_isSTU) && MEM_MEM2_DCachePlugin_hit);
+  assign when_DCachePlugin_l378 = (DCachePlugin_sbTags_0 == MEM_MEM2_DCachePlugin_sbLineAddr);
+  assign when_DCachePlugin_l378_1 = (DCachePlugin_sbTags_1 == MEM_MEM2_DCachePlugin_sbLineAddr);
+  assign when_DCachePlugin_l378_2 = (DCachePlugin_sbTags_2 == MEM_MEM2_DCachePlugin_sbLineAddr);
+  assign when_DCachePlugin_l378_3 = (DCachePlugin_sbTags_3 == MEM_MEM2_DCachePlugin_sbLineAddr);
   always @(*) begin
     MEM_MEM2_DCachePlugin_CACHEFSM_stateNext = MEM_MEM2_DCachePlugin_CACHEFSM_stateReg;
     case(MEM_MEM2_DCachePlugin_CACHEFSM_stateReg)
@@ -75110,7 +75750,7 @@ module MyCPUCore (
         end
       end
       default : begin
-        if(when_DCachePlugin_l322) begin
+        if(when_DCachePlugin_l413) begin
           case(MEM_MEM2_ISSUE_SLOT_uop_cacheOp)
             CacheOpType_IndexInvalidate : begin
               MEM_MEM2_DCachePlugin_CACHEFSM_stateNext = MEM_MEM2_DCachePlugin_CACHEFSM_enumDef_checkWay;
@@ -75131,8 +75771,8 @@ module MyCPUCore (
 
   assign _zz_1622 = ({3'd0,1'b1} <<< MEM_MEM2_DCachePlugin_wayCACHE);
   assign _zz_1623 = ({3'd0,1'b1} <<< MEM_MEM2_DCachePlugin_CACHEFSM_wayCounter);
-  assign when_DCachePlugin_l370 = (MEM_MEM2_DCachePlugin_CACHEFSM_wayCounter == 2'b11);
-  assign when_DCachePlugin_l322 = ((MEM_MEM2_arbitration_isValidOnEntry && MEM_MEM2_DCachePlugin_isCACHE) && (MEM_MEM2_ISSUE_SLOT_uop_cacheSel == CacheSelType_DCache));
+  assign when_DCachePlugin_l467 = (MEM_MEM2_DCachePlugin_CACHEFSM_wayCounter == 2'b11);
+  assign when_DCachePlugin_l413 = ((MEM_MEM2_arbitration_isValidOnEntry && MEM_MEM2_DCachePlugin_isCACHE) && (MEM_MEM2_ISSUE_SLOT_uop_cacheSel == CacheSelType_DCache));
   always @(*) begin
     MEM_MEM2_DCachePlugin_cacheRefillFSM_stateNext = MEM_MEM2_DCachePlugin_cacheRefillFSM_stateReg;
     case(MEM_MEM2_DCachePlugin_cacheRefillFSM_stateReg)
@@ -75142,7 +75782,7 @@ module MyCPUCore (
         end
       end
       MEM_MEM2_DCachePlugin_cacheRefillFSM_enumDef_readMem : begin
-        if(when_DCachePlugin_l466) begin
+        if(when_DCachePlugin_l572) begin
           MEM_MEM2_DCachePlugin_cacheRefillFSM_stateNext = MEM_MEM2_DCachePlugin_cacheRefillFSM_enumDef_commit;
         end
       end
@@ -75150,7 +75790,7 @@ module MyCPUCore (
         MEM_MEM2_DCachePlugin_cacheRefillFSM_stateNext = MEM_MEM2_DCachePlugin_cacheRefillFSM_enumDef_finish;
       end
       MEM_MEM2_DCachePlugin_cacheRefillFSM_enumDef_finish : begin
-        if(when_DCachePlugin_l499) begin
+        if(when_DCachePlugin_l605) begin
           MEM_MEM2_DCachePlugin_cacheRefillFSM_stateNext = MEM_MEM2_DCachePlugin_cacheRefillFSM_enumDef_BOOT;
         end
       end
@@ -75160,21 +75800,57 @@ module MyCPUCore (
         end
       end
       MEM_MEM2_DCachePlugin_cacheRefillFSM_enumDef_readMemU : begin
-        if(when_DCachePlugin_l532) begin
+        if(when_DCachePlugin_l713) begin
           MEM_MEM2_DCachePlugin_cacheRefillFSM_stateNext = MEM_MEM2_DCachePlugin_cacheRefillFSM_enumDef_finishU;
         end
       end
       MEM_MEM2_DCachePlugin_cacheRefillFSM_enumDef_finishU : begin
-        if(when_DCachePlugin_l540) begin
+        if(when_DCachePlugin_l721) begin
+          MEM_MEM2_DCachePlugin_cacheRefillFSM_stateNext = MEM_MEM2_DCachePlugin_cacheRefillFSM_enumDef_BOOT;
+        end
+      end
+      MEM_MEM2_DCachePlugin_cacheRefillFSM_enumDef_prefetchAR : begin
+        if(io_dBus_ar_ready) begin
+          MEM_MEM2_DCachePlugin_cacheRefillFSM_stateNext = MEM_MEM2_DCachePlugin_cacheRefillFSM_enumDef_prefetchRead;
+        end
+        if(when_DCachePlugin_l636) begin
+          if(io_dBus_ar_ready) begin
+            MEM_MEM2_DCachePlugin_cacheRefillFSM_stateNext = MEM_MEM2_DCachePlugin_cacheRefillFSM_enumDef_prefetchDrain;
+          end else begin
+            MEM_MEM2_DCachePlugin_cacheRefillFSM_stateNext = MEM_MEM2_DCachePlugin_cacheRefillFSM_enumDef_BOOT;
+          end
+        end
+      end
+      MEM_MEM2_DCachePlugin_cacheRefillFSM_enumDef_prefetchRead : begin
+        if(io_dBus_r_fire_2) begin
+          if(io_dBus_r_payload_last) begin
+            MEM_MEM2_DCachePlugin_cacheRefillFSM_stateNext = MEM_MEM2_DCachePlugin_cacheRefillFSM_enumDef_BOOT;
+          end
+        end
+        if(when_DCachePlugin_l665) begin
+          if(when_DCachePlugin_l668) begin
+            MEM_MEM2_DCachePlugin_cacheRefillFSM_stateNext = MEM_MEM2_DCachePlugin_cacheRefillFSM_enumDef_BOOT;
+          end else begin
+            MEM_MEM2_DCachePlugin_cacheRefillFSM_stateNext = MEM_MEM2_DCachePlugin_cacheRefillFSM_enumDef_prefetchDrain;
+          end
+        end
+      end
+      MEM_MEM2_DCachePlugin_cacheRefillFSM_enumDef_prefetchDrain : begin
+        if(when_DCachePlugin_l681) begin
           MEM_MEM2_DCachePlugin_cacheRefillFSM_stateNext = MEM_MEM2_DCachePlugin_cacheRefillFSM_enumDef_BOOT;
         end
       end
       default : begin
-        if(when_DCachePlugin_l422) begin
+        if(MEM_MEM2_DCachePlugin_needRefill) begin
           MEM_MEM2_DCachePlugin_cacheRefillFSM_stateNext = MEM_MEM2_DCachePlugin_cacheRefillFSM_enumDef_waitAXI;
-        end
-        if(MEM_MEM2_DCachePlugin_isLDU) begin
-          MEM_MEM2_DCachePlugin_cacheRefillFSM_stateNext = MEM_MEM2_DCachePlugin_cacheRefillFSM_enumDef_waitAXIU;
+        end else begin
+          if(MEM_MEM2_DCachePlugin_isLDU) begin
+            MEM_MEM2_DCachePlugin_cacheRefillFSM_stateNext = MEM_MEM2_DCachePlugin_cacheRefillFSM_enumDef_waitAXIU;
+          end else begin
+            if(DCachePlugin_prefetchPending) begin
+              MEM_MEM2_DCachePlugin_cacheRefillFSM_stateNext = MEM_MEM2_DCachePlugin_cacheRefillFSM_enumDef_prefetchAR;
+            end
+          end
         end
       end
     endcase
@@ -75190,7 +75866,7 @@ module MyCPUCore (
   assign _zz_1628 = _zz_1624[3];
   assign _zz_io_write_payload_address_2 = {MEM_MEM2_DCachePlugin_idx,MEM_MEM2_DCachePlugin_cacheRefillFSM_rspId_value};
   assign io_dBus_r_fire_1 = (io_dBus_r_valid && io_dBus_r_ready);
-  assign when_DCachePlugin_l466 = (io_dBus_r_fire_1 && io_dBus_r_payload_last);
+  assign when_DCachePlugin_l572 = (io_dBus_r_fire_1 && io_dBus_r_payload_last);
   assign _zz_io_write_payload_address_3 = {MEM_MEM2_DCachePlugin_idx,MEM_MEM2_DCachePlugin_cacheRefillFSM_rspId_value};
   always @(*) begin
     _zz_io_write_payload_data_tags_0_1 = MEM_MEM2_DCACHE_INFO_tags_0;
@@ -75222,7 +75898,7 @@ module MyCPUCore (
 
   assign _zz_1629 = ({3'd0,1'b1} <<< MEM_MEM2_DCachePlugin_replaceWay);
   assign _zz_1630 = ({3'd0,1'b1} <<< MEM_MEM2_DCachePlugin_replaceWay);
-  assign when_DCachePlugin_l499 = (! MEM_MEM2_arbitration_isStuck);
+  assign when_DCachePlugin_l605 = (! MEM_MEM2_arbitration_isStuck);
   always @(*) begin
     case(MEM_MEM2_STD_SLOT_payload_lsType)
       LoadStoreType_BYTE_1, LoadStoreType_BYTE_U : begin
@@ -75238,9 +75914,27 @@ module MyCPUCore (
   end
 
   assign io_udBus_ar_fire = (io_udBus_ar_valid && io_udBus_ar_ready);
-  assign when_DCachePlugin_l532 = (io_udBus_r_valid && io_udBus_r_payload_last);
-  assign when_DCachePlugin_l540 = (! MEM_MEM2_arbitration_isStuck);
-  assign when_DCachePlugin_l422 = (MEM_MEM2_DCachePlugin_reqValid && (! MEM_MEM2_DCachePlugin_hit));
+  assign when_DCachePlugin_l713 = (io_udBus_r_valid && io_udBus_r_payload_last);
+  assign when_DCachePlugin_l721 = (! MEM_MEM2_arbitration_isStuck);
+  assign when_DCachePlugin_l636 = (MEM_MEM2_DCachePlugin_needRefill || MEM_MEM2_DCachePlugin_isLDU);
+  assign io_dBus_r_fire_2 = (io_dBus_r_valid && io_dBus_r_ready);
+  assign _zz_1631 = ({3'd0,1'b1} <<< DCachePlugin_sbAlloc);
+  assign _zz_1632 = _zz_1631[0];
+  assign _zz_1633 = _zz_1631[1];
+  assign _zz_1634 = _zz_1631[2];
+  assign _zz_1635 = _zz_1631[3];
+  assign _zz_1636 = ({15'd0,1'b1} <<< MEM_MEM2_DCachePlugin_cacheRefillFSM_rspId_value);
+  assign _zz_1637 = ({3'd0,1'b1} <<< DCachePlugin_sbAlloc);
+  assign _zz_DCachePlugin_sbTags_0 = DCachePlugin_prefetchAddr[31 : 6];
+  assign _zz_1638 = ({3'd0,1'b1} <<< DCachePlugin_sbAlloc);
+  assign _zz_1639 = _zz_1638[0];
+  assign _zz_1640 = _zz_1638[1];
+  assign _zz_1641 = _zz_1638[2];
+  assign _zz_1642 = _zz_1638[3];
+  assign when_DCachePlugin_l665 = (MEM_MEM2_DCachePlugin_needRefill || MEM_MEM2_DCachePlugin_isLDU);
+  assign when_DCachePlugin_l668 = (io_dBus_r_valid && io_dBus_r_payload_last);
+  assign io_dBus_r_fire_3 = (io_dBus_r_valid && io_dBus_r_ready);
+  assign when_DCachePlugin_l681 = (io_dBus_r_fire_3 && io_dBus_r_payload_last);
   always @(*) begin
     MEM_MEM2_UncachedAccessPlugin_uncachedStoreFSM_stateNext = MEM_MEM2_UncachedAccessPlugin_uncachedStoreFSM_stateReg;
     case(MEM_MEM2_UncachedAccessPlugin_uncachedStoreFSM_stateReg)
@@ -76760,6 +77454,17 @@ module MyCPUCore (
       DCachePlugin_valids_63_1 <= 1'b0;
       DCachePlugin_valids_63_2 <= 1'b0;
       DCachePlugin_valids_63_3 <= 1'b0;
+      DCachePlugin_sbTags_0 <= 26'h0;
+      DCachePlugin_sbTags_1 <= 26'h0;
+      DCachePlugin_sbTags_2 <= 26'h0;
+      DCachePlugin_sbTags_3 <= 26'h0;
+      DCachePlugin_sbValid_0 <= 1'b0;
+      DCachePlugin_sbValid_1 <= 1'b0;
+      DCachePlugin_sbValid_2 <= 1'b0;
+      DCachePlugin_sbValid_3 <= 1'b0;
+      DCachePlugin_sbAlloc <= 2'b00;
+      DCachePlugin_prefetchPending <= 1'b0;
+      DCachePlugin_prefetchAddr <= 32'h0;
       StoreBufferPlugin_queue_0_valid <= 1'b0;
       StoreBufferPlugin_queue_1_valid <= 1'b0;
       StoreBufferPlugin_queue_2_valid <= 1'b0;
@@ -89433,6 +90138,20 @@ module MyCPUCore (
       if(when_MulDivExecutePlugin_l136) begin
         MULDIV_EXE_MulDivExecutePlugin_in16BitsHeld <= MULDIV_EXE_MulDivExecutePlugin_in16Bits;
       end
+      if(when_DCachePlugin_l108) begin
+        if(when_DCachePlugin_l110) begin
+          DCachePlugin_sbValid_0 <= 1'b0;
+        end
+        if(when_DCachePlugin_l110_1) begin
+          DCachePlugin_sbValid_1 <= 1'b0;
+        end
+        if(when_DCachePlugin_l110_2) begin
+          DCachePlugin_sbValid_2 <= 1'b0;
+        end
+        if(when_DCachePlugin_l110_3) begin
+          DCachePlugin_sbValid_3 <= 1'b0;
+        end
+      end
       MEM_MEM2_DCachePlugin_dirtyLineWritebackFSM_rspId_value <= MEM_MEM2_DCachePlugin_dirtyLineWritebackFSM_rspId_valueNext;
       MEM_MEM2_DCachePlugin_cacheRefillFSM_rspId_value <= MEM_MEM2_DCachePlugin_cacheRefillFSM_rspId_valueNext;
       if(io_udBus_aw_fire) begin
@@ -90663,14 +91382,50 @@ module MyCPUCore (
         MEM_MEM2_DCachePlugin_dirtyLineWritebackFSM_enumDef_waitB : begin
         end
         default : begin
-          if(when_DCachePlugin_l211) begin
+          if(when_DCachePlugin_l270) begin
             if(MEM_MEM2_DCachePlugin_triggerWriteback) begin
               MEM_MEM2_DCachePlugin_dirtyLineWritebackFSM_wayIdx <= MEM_MEM2_DCachePlugin_replaceWay;
+              if(when_DCachePlugin_l278) begin
+                DCachePlugin_sbValid_0 <= 1'b0;
+              end
+              if(when_DCachePlugin_l278_1) begin
+                DCachePlugin_sbValid_1 <= 1'b0;
+              end
+              if(when_DCachePlugin_l278_2) begin
+                DCachePlugin_sbValid_2 <= 1'b0;
+              end
+              if(when_DCachePlugin_l278_3) begin
+                DCachePlugin_sbValid_3 <= 1'b0;
+              end
             end else begin
               if(MEM_MEM2_DCachePlugin_triggerWritebackFixUncache) begin
                 MEM_MEM2_DCachePlugin_dirtyLineWritebackFSM_wayIdx <= MEM_MEM2_DCachePlugin_hitWay;
+                if(when_DCachePlugin_l287) begin
+                  DCachePlugin_sbValid_0 <= 1'b0;
+                end
+                if(when_DCachePlugin_l287_1) begin
+                  DCachePlugin_sbValid_1 <= 1'b0;
+                end
+                if(when_DCachePlugin_l287_2) begin
+                  DCachePlugin_sbValid_2 <= 1'b0;
+                end
+                if(when_DCachePlugin_l287_3) begin
+                  DCachePlugin_sbValid_3 <= 1'b0;
+                end
               end else begin
                 MEM_MEM2_DCachePlugin_dirtyLineWritebackFSM_wayIdx <= MEM_MEM2_DCachePlugin_wayCACHE;
+                if(when_DCachePlugin_l297) begin
+                  DCachePlugin_sbValid_0 <= 1'b0;
+                end
+                if(when_DCachePlugin_l297_1) begin
+                  DCachePlugin_sbValid_1 <= 1'b0;
+                end
+                if(when_DCachePlugin_l297_2) begin
+                  DCachePlugin_sbValid_2 <= 1'b0;
+                end
+                if(when_DCachePlugin_l297_3) begin
+                  DCachePlugin_sbValid_3 <= 1'b0;
+                end
               end
             end
           end
@@ -90680,785 +91435,801 @@ module MyCPUCore (
       case(MEM_MEM2_DCachePlugin_fixUncacheFSM_stateReg)
         MEM_MEM2_DCachePlugin_fixUncacheFSM_enumDef_waitWriteback : begin
           if(MEM_MEM2_arbitration_notStuck) begin
-            if(_zz_1621[0]) begin
-              if(_zz_1557) begin
-                DCachePlugin_valids_0_0 <= 1'b0;
-              end
-              if(_zz_1558) begin
-                DCachePlugin_valids_1_0 <= 1'b0;
-              end
-              if(_zz_1559) begin
-                DCachePlugin_valids_2_0 <= 1'b0;
-              end
-              if(_zz_1560) begin
-                DCachePlugin_valids_3_0 <= 1'b0;
-              end
-              if(_zz_1561) begin
-                DCachePlugin_valids_4_0 <= 1'b0;
-              end
-              if(_zz_1562) begin
-                DCachePlugin_valids_5_0 <= 1'b0;
-              end
-              if(_zz_1563) begin
-                DCachePlugin_valids_6_0 <= 1'b0;
-              end
-              if(_zz_1564) begin
-                DCachePlugin_valids_7_0 <= 1'b0;
-              end
-              if(_zz_1565) begin
-                DCachePlugin_valids_8_0 <= 1'b0;
-              end
-              if(_zz_1566) begin
-                DCachePlugin_valids_9_0 <= 1'b0;
-              end
-              if(_zz_1567) begin
-                DCachePlugin_valids_10_0 <= 1'b0;
-              end
-              if(_zz_1568) begin
-                DCachePlugin_valids_11_0 <= 1'b0;
-              end
-              if(_zz_1569) begin
-                DCachePlugin_valids_12_0 <= 1'b0;
-              end
-              if(_zz_1570) begin
-                DCachePlugin_valids_13_0 <= 1'b0;
-              end
-              if(_zz_1571) begin
-                DCachePlugin_valids_14_0 <= 1'b0;
-              end
-              if(_zz_1572) begin
-                DCachePlugin_valids_15_0 <= 1'b0;
-              end
-              if(_zz_1573) begin
-                DCachePlugin_valids_16_0 <= 1'b0;
-              end
-              if(_zz_1574) begin
-                DCachePlugin_valids_17_0 <= 1'b0;
-              end
-              if(_zz_1575) begin
-                DCachePlugin_valids_18_0 <= 1'b0;
-              end
-              if(_zz_1576) begin
-                DCachePlugin_valids_19_0 <= 1'b0;
-              end
-              if(_zz_1577) begin
-                DCachePlugin_valids_20_0 <= 1'b0;
-              end
-              if(_zz_1578) begin
-                DCachePlugin_valids_21_0 <= 1'b0;
-              end
-              if(_zz_1579) begin
-                DCachePlugin_valids_22_0 <= 1'b0;
-              end
-              if(_zz_1580) begin
-                DCachePlugin_valids_23_0 <= 1'b0;
-              end
-              if(_zz_1581) begin
-                DCachePlugin_valids_24_0 <= 1'b0;
-              end
-              if(_zz_1582) begin
-                DCachePlugin_valids_25_0 <= 1'b0;
-              end
-              if(_zz_1583) begin
-                DCachePlugin_valids_26_0 <= 1'b0;
-              end
-              if(_zz_1584) begin
-                DCachePlugin_valids_27_0 <= 1'b0;
-              end
-              if(_zz_1585) begin
-                DCachePlugin_valids_28_0 <= 1'b0;
-              end
-              if(_zz_1586) begin
-                DCachePlugin_valids_29_0 <= 1'b0;
-              end
-              if(_zz_1587) begin
-                DCachePlugin_valids_30_0 <= 1'b0;
-              end
-              if(_zz_1588) begin
-                DCachePlugin_valids_31_0 <= 1'b0;
-              end
-              if(_zz_1589) begin
-                DCachePlugin_valids_32_0 <= 1'b0;
-              end
-              if(_zz_1590) begin
-                DCachePlugin_valids_33_0 <= 1'b0;
-              end
-              if(_zz_1591) begin
-                DCachePlugin_valids_34_0 <= 1'b0;
-              end
-              if(_zz_1592) begin
-                DCachePlugin_valids_35_0 <= 1'b0;
-              end
-              if(_zz_1593) begin
-                DCachePlugin_valids_36_0 <= 1'b0;
-              end
-              if(_zz_1594) begin
-                DCachePlugin_valids_37_0 <= 1'b0;
-              end
-              if(_zz_1595) begin
-                DCachePlugin_valids_38_0 <= 1'b0;
-              end
-              if(_zz_1596) begin
-                DCachePlugin_valids_39_0 <= 1'b0;
-              end
-              if(_zz_1597) begin
-                DCachePlugin_valids_40_0 <= 1'b0;
-              end
-              if(_zz_1598) begin
-                DCachePlugin_valids_41_0 <= 1'b0;
-              end
-              if(_zz_1599) begin
-                DCachePlugin_valids_42_0 <= 1'b0;
-              end
-              if(_zz_1600) begin
-                DCachePlugin_valids_43_0 <= 1'b0;
-              end
-              if(_zz_1601) begin
-                DCachePlugin_valids_44_0 <= 1'b0;
-              end
-              if(_zz_1602) begin
-                DCachePlugin_valids_45_0 <= 1'b0;
-              end
-              if(_zz_1603) begin
-                DCachePlugin_valids_46_0 <= 1'b0;
-              end
-              if(_zz_1604) begin
-                DCachePlugin_valids_47_0 <= 1'b0;
-              end
-              if(_zz_1605) begin
-                DCachePlugin_valids_48_0 <= 1'b0;
-              end
-              if(_zz_1606) begin
-                DCachePlugin_valids_49_0 <= 1'b0;
-              end
-              if(_zz_1607) begin
-                DCachePlugin_valids_50_0 <= 1'b0;
-              end
-              if(_zz_1608) begin
-                DCachePlugin_valids_51_0 <= 1'b0;
-              end
-              if(_zz_1609) begin
-                DCachePlugin_valids_52_0 <= 1'b0;
-              end
-              if(_zz_1610) begin
-                DCachePlugin_valids_53_0 <= 1'b0;
-              end
-              if(_zz_1611) begin
-                DCachePlugin_valids_54_0 <= 1'b0;
-              end
-              if(_zz_1612) begin
-                DCachePlugin_valids_55_0 <= 1'b0;
-              end
-              if(_zz_1613) begin
-                DCachePlugin_valids_56_0 <= 1'b0;
-              end
-              if(_zz_1614) begin
-                DCachePlugin_valids_57_0 <= 1'b0;
-              end
-              if(_zz_1615) begin
-                DCachePlugin_valids_58_0 <= 1'b0;
-              end
-              if(_zz_1616) begin
-                DCachePlugin_valids_59_0 <= 1'b0;
-              end
-              if(_zz_1617) begin
-                DCachePlugin_valids_60_0 <= 1'b0;
-              end
-              if(_zz_1618) begin
-                DCachePlugin_valids_61_0 <= 1'b0;
-              end
-              if(_zz_1619) begin
-                DCachePlugin_valids_62_0 <= 1'b0;
-              end
-              if(_zz_1620) begin
-                DCachePlugin_valids_63_0 <= 1'b0;
-              end
-            end
-            if(_zz_1621[1]) begin
-              if(_zz_1557) begin
-                DCachePlugin_valids_0_1 <= 1'b0;
-              end
-              if(_zz_1558) begin
-                DCachePlugin_valids_1_1 <= 1'b0;
-              end
-              if(_zz_1559) begin
-                DCachePlugin_valids_2_1 <= 1'b0;
-              end
-              if(_zz_1560) begin
-                DCachePlugin_valids_3_1 <= 1'b0;
-              end
-              if(_zz_1561) begin
-                DCachePlugin_valids_4_1 <= 1'b0;
-              end
-              if(_zz_1562) begin
-                DCachePlugin_valids_5_1 <= 1'b0;
-              end
-              if(_zz_1563) begin
-                DCachePlugin_valids_6_1 <= 1'b0;
-              end
-              if(_zz_1564) begin
-                DCachePlugin_valids_7_1 <= 1'b0;
-              end
-              if(_zz_1565) begin
-                DCachePlugin_valids_8_1 <= 1'b0;
-              end
-              if(_zz_1566) begin
-                DCachePlugin_valids_9_1 <= 1'b0;
-              end
-              if(_zz_1567) begin
-                DCachePlugin_valids_10_1 <= 1'b0;
-              end
-              if(_zz_1568) begin
-                DCachePlugin_valids_11_1 <= 1'b0;
-              end
-              if(_zz_1569) begin
-                DCachePlugin_valids_12_1 <= 1'b0;
-              end
-              if(_zz_1570) begin
-                DCachePlugin_valids_13_1 <= 1'b0;
-              end
-              if(_zz_1571) begin
-                DCachePlugin_valids_14_1 <= 1'b0;
-              end
-              if(_zz_1572) begin
-                DCachePlugin_valids_15_1 <= 1'b0;
-              end
-              if(_zz_1573) begin
-                DCachePlugin_valids_16_1 <= 1'b0;
-              end
-              if(_zz_1574) begin
-                DCachePlugin_valids_17_1 <= 1'b0;
-              end
-              if(_zz_1575) begin
-                DCachePlugin_valids_18_1 <= 1'b0;
-              end
-              if(_zz_1576) begin
-                DCachePlugin_valids_19_1 <= 1'b0;
-              end
-              if(_zz_1577) begin
-                DCachePlugin_valids_20_1 <= 1'b0;
-              end
-              if(_zz_1578) begin
-                DCachePlugin_valids_21_1 <= 1'b0;
-              end
-              if(_zz_1579) begin
-                DCachePlugin_valids_22_1 <= 1'b0;
-              end
-              if(_zz_1580) begin
-                DCachePlugin_valids_23_1 <= 1'b0;
-              end
-              if(_zz_1581) begin
-                DCachePlugin_valids_24_1 <= 1'b0;
-              end
-              if(_zz_1582) begin
-                DCachePlugin_valids_25_1 <= 1'b0;
-              end
-              if(_zz_1583) begin
-                DCachePlugin_valids_26_1 <= 1'b0;
-              end
-              if(_zz_1584) begin
-                DCachePlugin_valids_27_1 <= 1'b0;
-              end
-              if(_zz_1585) begin
-                DCachePlugin_valids_28_1 <= 1'b0;
-              end
-              if(_zz_1586) begin
-                DCachePlugin_valids_29_1 <= 1'b0;
-              end
-              if(_zz_1587) begin
-                DCachePlugin_valids_30_1 <= 1'b0;
-              end
-              if(_zz_1588) begin
-                DCachePlugin_valids_31_1 <= 1'b0;
-              end
-              if(_zz_1589) begin
-                DCachePlugin_valids_32_1 <= 1'b0;
-              end
-              if(_zz_1590) begin
-                DCachePlugin_valids_33_1 <= 1'b0;
-              end
-              if(_zz_1591) begin
-                DCachePlugin_valids_34_1 <= 1'b0;
-              end
-              if(_zz_1592) begin
-                DCachePlugin_valids_35_1 <= 1'b0;
-              end
-              if(_zz_1593) begin
-                DCachePlugin_valids_36_1 <= 1'b0;
-              end
-              if(_zz_1594) begin
-                DCachePlugin_valids_37_1 <= 1'b0;
-              end
-              if(_zz_1595) begin
-                DCachePlugin_valids_38_1 <= 1'b0;
-              end
-              if(_zz_1596) begin
-                DCachePlugin_valids_39_1 <= 1'b0;
-              end
-              if(_zz_1597) begin
-                DCachePlugin_valids_40_1 <= 1'b0;
-              end
-              if(_zz_1598) begin
-                DCachePlugin_valids_41_1 <= 1'b0;
-              end
-              if(_zz_1599) begin
-                DCachePlugin_valids_42_1 <= 1'b0;
-              end
-              if(_zz_1600) begin
-                DCachePlugin_valids_43_1 <= 1'b0;
-              end
-              if(_zz_1601) begin
-                DCachePlugin_valids_44_1 <= 1'b0;
-              end
-              if(_zz_1602) begin
-                DCachePlugin_valids_45_1 <= 1'b0;
-              end
-              if(_zz_1603) begin
-                DCachePlugin_valids_46_1 <= 1'b0;
-              end
-              if(_zz_1604) begin
-                DCachePlugin_valids_47_1 <= 1'b0;
-              end
-              if(_zz_1605) begin
-                DCachePlugin_valids_48_1 <= 1'b0;
-              end
-              if(_zz_1606) begin
-                DCachePlugin_valids_49_1 <= 1'b0;
-              end
-              if(_zz_1607) begin
-                DCachePlugin_valids_50_1 <= 1'b0;
-              end
-              if(_zz_1608) begin
-                DCachePlugin_valids_51_1 <= 1'b0;
-              end
-              if(_zz_1609) begin
-                DCachePlugin_valids_52_1 <= 1'b0;
-              end
-              if(_zz_1610) begin
-                DCachePlugin_valids_53_1 <= 1'b0;
-              end
-              if(_zz_1611) begin
-                DCachePlugin_valids_54_1 <= 1'b0;
-              end
-              if(_zz_1612) begin
-                DCachePlugin_valids_55_1 <= 1'b0;
-              end
-              if(_zz_1613) begin
-                DCachePlugin_valids_56_1 <= 1'b0;
-              end
-              if(_zz_1614) begin
-                DCachePlugin_valids_57_1 <= 1'b0;
-              end
-              if(_zz_1615) begin
-                DCachePlugin_valids_58_1 <= 1'b0;
-              end
-              if(_zz_1616) begin
-                DCachePlugin_valids_59_1 <= 1'b0;
-              end
-              if(_zz_1617) begin
-                DCachePlugin_valids_60_1 <= 1'b0;
-              end
-              if(_zz_1618) begin
-                DCachePlugin_valids_61_1 <= 1'b0;
-              end
-              if(_zz_1619) begin
-                DCachePlugin_valids_62_1 <= 1'b0;
-              end
-              if(_zz_1620) begin
-                DCachePlugin_valids_63_1 <= 1'b0;
-              end
-            end
-            if(_zz_1621[2]) begin
-              if(_zz_1557) begin
-                DCachePlugin_valids_0_2 <= 1'b0;
-              end
-              if(_zz_1558) begin
-                DCachePlugin_valids_1_2 <= 1'b0;
-              end
-              if(_zz_1559) begin
-                DCachePlugin_valids_2_2 <= 1'b0;
-              end
-              if(_zz_1560) begin
-                DCachePlugin_valids_3_2 <= 1'b0;
-              end
-              if(_zz_1561) begin
-                DCachePlugin_valids_4_2 <= 1'b0;
-              end
-              if(_zz_1562) begin
-                DCachePlugin_valids_5_2 <= 1'b0;
-              end
-              if(_zz_1563) begin
-                DCachePlugin_valids_6_2 <= 1'b0;
-              end
-              if(_zz_1564) begin
-                DCachePlugin_valids_7_2 <= 1'b0;
-              end
-              if(_zz_1565) begin
-                DCachePlugin_valids_8_2 <= 1'b0;
-              end
-              if(_zz_1566) begin
-                DCachePlugin_valids_9_2 <= 1'b0;
-              end
-              if(_zz_1567) begin
-                DCachePlugin_valids_10_2 <= 1'b0;
-              end
-              if(_zz_1568) begin
-                DCachePlugin_valids_11_2 <= 1'b0;
-              end
-              if(_zz_1569) begin
-                DCachePlugin_valids_12_2 <= 1'b0;
-              end
-              if(_zz_1570) begin
-                DCachePlugin_valids_13_2 <= 1'b0;
-              end
-              if(_zz_1571) begin
-                DCachePlugin_valids_14_2 <= 1'b0;
-              end
-              if(_zz_1572) begin
-                DCachePlugin_valids_15_2 <= 1'b0;
-              end
-              if(_zz_1573) begin
-                DCachePlugin_valids_16_2 <= 1'b0;
-              end
-              if(_zz_1574) begin
-                DCachePlugin_valids_17_2 <= 1'b0;
-              end
-              if(_zz_1575) begin
-                DCachePlugin_valids_18_2 <= 1'b0;
-              end
-              if(_zz_1576) begin
-                DCachePlugin_valids_19_2 <= 1'b0;
-              end
-              if(_zz_1577) begin
-                DCachePlugin_valids_20_2 <= 1'b0;
-              end
-              if(_zz_1578) begin
-                DCachePlugin_valids_21_2 <= 1'b0;
-              end
-              if(_zz_1579) begin
-                DCachePlugin_valids_22_2 <= 1'b0;
-              end
-              if(_zz_1580) begin
-                DCachePlugin_valids_23_2 <= 1'b0;
-              end
-              if(_zz_1581) begin
-                DCachePlugin_valids_24_2 <= 1'b0;
-              end
-              if(_zz_1582) begin
-                DCachePlugin_valids_25_2 <= 1'b0;
-              end
-              if(_zz_1583) begin
-                DCachePlugin_valids_26_2 <= 1'b0;
-              end
-              if(_zz_1584) begin
-                DCachePlugin_valids_27_2 <= 1'b0;
-              end
-              if(_zz_1585) begin
-                DCachePlugin_valids_28_2 <= 1'b0;
-              end
-              if(_zz_1586) begin
-                DCachePlugin_valids_29_2 <= 1'b0;
-              end
-              if(_zz_1587) begin
-                DCachePlugin_valids_30_2 <= 1'b0;
-              end
-              if(_zz_1588) begin
-                DCachePlugin_valids_31_2 <= 1'b0;
-              end
-              if(_zz_1589) begin
-                DCachePlugin_valids_32_2 <= 1'b0;
-              end
-              if(_zz_1590) begin
-                DCachePlugin_valids_33_2 <= 1'b0;
-              end
-              if(_zz_1591) begin
-                DCachePlugin_valids_34_2 <= 1'b0;
-              end
-              if(_zz_1592) begin
-                DCachePlugin_valids_35_2 <= 1'b0;
-              end
-              if(_zz_1593) begin
-                DCachePlugin_valids_36_2 <= 1'b0;
-              end
-              if(_zz_1594) begin
-                DCachePlugin_valids_37_2 <= 1'b0;
-              end
-              if(_zz_1595) begin
-                DCachePlugin_valids_38_2 <= 1'b0;
-              end
-              if(_zz_1596) begin
-                DCachePlugin_valids_39_2 <= 1'b0;
-              end
-              if(_zz_1597) begin
-                DCachePlugin_valids_40_2 <= 1'b0;
-              end
-              if(_zz_1598) begin
-                DCachePlugin_valids_41_2 <= 1'b0;
-              end
-              if(_zz_1599) begin
-                DCachePlugin_valids_42_2 <= 1'b0;
-              end
-              if(_zz_1600) begin
-                DCachePlugin_valids_43_2 <= 1'b0;
-              end
-              if(_zz_1601) begin
-                DCachePlugin_valids_44_2 <= 1'b0;
-              end
-              if(_zz_1602) begin
-                DCachePlugin_valids_45_2 <= 1'b0;
-              end
-              if(_zz_1603) begin
-                DCachePlugin_valids_46_2 <= 1'b0;
-              end
-              if(_zz_1604) begin
-                DCachePlugin_valids_47_2 <= 1'b0;
-              end
-              if(_zz_1605) begin
-                DCachePlugin_valids_48_2 <= 1'b0;
-              end
-              if(_zz_1606) begin
-                DCachePlugin_valids_49_2 <= 1'b0;
-              end
-              if(_zz_1607) begin
-                DCachePlugin_valids_50_2 <= 1'b0;
-              end
-              if(_zz_1608) begin
-                DCachePlugin_valids_51_2 <= 1'b0;
-              end
-              if(_zz_1609) begin
-                DCachePlugin_valids_52_2 <= 1'b0;
-              end
-              if(_zz_1610) begin
-                DCachePlugin_valids_53_2 <= 1'b0;
-              end
-              if(_zz_1611) begin
-                DCachePlugin_valids_54_2 <= 1'b0;
-              end
-              if(_zz_1612) begin
-                DCachePlugin_valids_55_2 <= 1'b0;
-              end
-              if(_zz_1613) begin
-                DCachePlugin_valids_56_2 <= 1'b0;
-              end
-              if(_zz_1614) begin
-                DCachePlugin_valids_57_2 <= 1'b0;
-              end
-              if(_zz_1615) begin
-                DCachePlugin_valids_58_2 <= 1'b0;
-              end
-              if(_zz_1616) begin
-                DCachePlugin_valids_59_2 <= 1'b0;
-              end
-              if(_zz_1617) begin
-                DCachePlugin_valids_60_2 <= 1'b0;
-              end
-              if(_zz_1618) begin
-                DCachePlugin_valids_61_2 <= 1'b0;
-              end
-              if(_zz_1619) begin
-                DCachePlugin_valids_62_2 <= 1'b0;
-              end
-              if(_zz_1620) begin
-                DCachePlugin_valids_63_2 <= 1'b0;
-              end
-            end
-            if(_zz_1621[3]) begin
-              if(_zz_1557) begin
-                DCachePlugin_valids_0_3 <= 1'b0;
-              end
-              if(_zz_1558) begin
-                DCachePlugin_valids_1_3 <= 1'b0;
-              end
-              if(_zz_1559) begin
-                DCachePlugin_valids_2_3 <= 1'b0;
-              end
-              if(_zz_1560) begin
-                DCachePlugin_valids_3_3 <= 1'b0;
-              end
-              if(_zz_1561) begin
-                DCachePlugin_valids_4_3 <= 1'b0;
-              end
-              if(_zz_1562) begin
-                DCachePlugin_valids_5_3 <= 1'b0;
-              end
-              if(_zz_1563) begin
-                DCachePlugin_valids_6_3 <= 1'b0;
-              end
-              if(_zz_1564) begin
-                DCachePlugin_valids_7_3 <= 1'b0;
-              end
-              if(_zz_1565) begin
-                DCachePlugin_valids_8_3 <= 1'b0;
-              end
-              if(_zz_1566) begin
-                DCachePlugin_valids_9_3 <= 1'b0;
-              end
-              if(_zz_1567) begin
-                DCachePlugin_valids_10_3 <= 1'b0;
-              end
-              if(_zz_1568) begin
-                DCachePlugin_valids_11_3 <= 1'b0;
-              end
-              if(_zz_1569) begin
-                DCachePlugin_valids_12_3 <= 1'b0;
-              end
-              if(_zz_1570) begin
-                DCachePlugin_valids_13_3 <= 1'b0;
-              end
-              if(_zz_1571) begin
-                DCachePlugin_valids_14_3 <= 1'b0;
-              end
-              if(_zz_1572) begin
-                DCachePlugin_valids_15_3 <= 1'b0;
-              end
-              if(_zz_1573) begin
-                DCachePlugin_valids_16_3 <= 1'b0;
-              end
-              if(_zz_1574) begin
-                DCachePlugin_valids_17_3 <= 1'b0;
-              end
-              if(_zz_1575) begin
-                DCachePlugin_valids_18_3 <= 1'b0;
-              end
-              if(_zz_1576) begin
-                DCachePlugin_valids_19_3 <= 1'b0;
-              end
-              if(_zz_1577) begin
-                DCachePlugin_valids_20_3 <= 1'b0;
-              end
-              if(_zz_1578) begin
-                DCachePlugin_valids_21_3 <= 1'b0;
-              end
-              if(_zz_1579) begin
-                DCachePlugin_valids_22_3 <= 1'b0;
-              end
-              if(_zz_1580) begin
-                DCachePlugin_valids_23_3 <= 1'b0;
-              end
-              if(_zz_1581) begin
-                DCachePlugin_valids_24_3 <= 1'b0;
-              end
-              if(_zz_1582) begin
-                DCachePlugin_valids_25_3 <= 1'b0;
-              end
-              if(_zz_1583) begin
-                DCachePlugin_valids_26_3 <= 1'b0;
-              end
-              if(_zz_1584) begin
-                DCachePlugin_valids_27_3 <= 1'b0;
-              end
-              if(_zz_1585) begin
-                DCachePlugin_valids_28_3 <= 1'b0;
-              end
-              if(_zz_1586) begin
-                DCachePlugin_valids_29_3 <= 1'b0;
-              end
-              if(_zz_1587) begin
-                DCachePlugin_valids_30_3 <= 1'b0;
-              end
-              if(_zz_1588) begin
-                DCachePlugin_valids_31_3 <= 1'b0;
-              end
-              if(_zz_1589) begin
-                DCachePlugin_valids_32_3 <= 1'b0;
-              end
-              if(_zz_1590) begin
-                DCachePlugin_valids_33_3 <= 1'b0;
-              end
-              if(_zz_1591) begin
-                DCachePlugin_valids_34_3 <= 1'b0;
-              end
-              if(_zz_1592) begin
-                DCachePlugin_valids_35_3 <= 1'b0;
-              end
-              if(_zz_1593) begin
-                DCachePlugin_valids_36_3 <= 1'b0;
-              end
-              if(_zz_1594) begin
-                DCachePlugin_valids_37_3 <= 1'b0;
-              end
-              if(_zz_1595) begin
-                DCachePlugin_valids_38_3 <= 1'b0;
-              end
-              if(_zz_1596) begin
-                DCachePlugin_valids_39_3 <= 1'b0;
-              end
-              if(_zz_1597) begin
-                DCachePlugin_valids_40_3 <= 1'b0;
-              end
-              if(_zz_1598) begin
-                DCachePlugin_valids_41_3 <= 1'b0;
-              end
-              if(_zz_1599) begin
-                DCachePlugin_valids_42_3 <= 1'b0;
-              end
-              if(_zz_1600) begin
-                DCachePlugin_valids_43_3 <= 1'b0;
-              end
-              if(_zz_1601) begin
-                DCachePlugin_valids_44_3 <= 1'b0;
-              end
-              if(_zz_1602) begin
-                DCachePlugin_valids_45_3 <= 1'b0;
-              end
-              if(_zz_1603) begin
-                DCachePlugin_valids_46_3 <= 1'b0;
-              end
-              if(_zz_1604) begin
-                DCachePlugin_valids_47_3 <= 1'b0;
-              end
-              if(_zz_1605) begin
-                DCachePlugin_valids_48_3 <= 1'b0;
-              end
-              if(_zz_1606) begin
-                DCachePlugin_valids_49_3 <= 1'b0;
-              end
-              if(_zz_1607) begin
-                DCachePlugin_valids_50_3 <= 1'b0;
-              end
-              if(_zz_1608) begin
-                DCachePlugin_valids_51_3 <= 1'b0;
-              end
-              if(_zz_1609) begin
-                DCachePlugin_valids_52_3 <= 1'b0;
-              end
-              if(_zz_1610) begin
-                DCachePlugin_valids_53_3 <= 1'b0;
-              end
-              if(_zz_1611) begin
-                DCachePlugin_valids_54_3 <= 1'b0;
-              end
-              if(_zz_1612) begin
-                DCachePlugin_valids_55_3 <= 1'b0;
-              end
-              if(_zz_1613) begin
-                DCachePlugin_valids_56_3 <= 1'b0;
-              end
-              if(_zz_1614) begin
-                DCachePlugin_valids_57_3 <= 1'b0;
-              end
-              if(_zz_1615) begin
-                DCachePlugin_valids_58_3 <= 1'b0;
-              end
-              if(_zz_1616) begin
-                DCachePlugin_valids_59_3 <= 1'b0;
-              end
-              if(_zz_1617) begin
-                DCachePlugin_valids_60_3 <= 1'b0;
-              end
-              if(_zz_1618) begin
-                DCachePlugin_valids_61_3 <= 1'b0;
-              end
-              if(_zz_1619) begin
-                DCachePlugin_valids_62_3 <= 1'b0;
-              end
-              if(_zz_1620) begin
-                DCachePlugin_valids_63_3 <= 1'b0;
+            if(MEM_MEM2_DCachePlugin_l1Hit) begin
+              if(_zz_1621[0]) begin
+                if(_zz_1557) begin
+                  DCachePlugin_valids_0_0 <= 1'b0;
+                end
+                if(_zz_1558) begin
+                  DCachePlugin_valids_1_0 <= 1'b0;
+                end
+                if(_zz_1559) begin
+                  DCachePlugin_valids_2_0 <= 1'b0;
+                end
+                if(_zz_1560) begin
+                  DCachePlugin_valids_3_0 <= 1'b0;
+                end
+                if(_zz_1561) begin
+                  DCachePlugin_valids_4_0 <= 1'b0;
+                end
+                if(_zz_1562) begin
+                  DCachePlugin_valids_5_0 <= 1'b0;
+                end
+                if(_zz_1563) begin
+                  DCachePlugin_valids_6_0 <= 1'b0;
+                end
+                if(_zz_1564) begin
+                  DCachePlugin_valids_7_0 <= 1'b0;
+                end
+                if(_zz_1565) begin
+                  DCachePlugin_valids_8_0 <= 1'b0;
+                end
+                if(_zz_1566) begin
+                  DCachePlugin_valids_9_0 <= 1'b0;
+                end
+                if(_zz_1567) begin
+                  DCachePlugin_valids_10_0 <= 1'b0;
+                end
+                if(_zz_1568) begin
+                  DCachePlugin_valids_11_0 <= 1'b0;
+                end
+                if(_zz_1569) begin
+                  DCachePlugin_valids_12_0 <= 1'b0;
+                end
+                if(_zz_1570) begin
+                  DCachePlugin_valids_13_0 <= 1'b0;
+                end
+                if(_zz_1571) begin
+                  DCachePlugin_valids_14_0 <= 1'b0;
+                end
+                if(_zz_1572) begin
+                  DCachePlugin_valids_15_0 <= 1'b0;
+                end
+                if(_zz_1573) begin
+                  DCachePlugin_valids_16_0 <= 1'b0;
+                end
+                if(_zz_1574) begin
+                  DCachePlugin_valids_17_0 <= 1'b0;
+                end
+                if(_zz_1575) begin
+                  DCachePlugin_valids_18_0 <= 1'b0;
+                end
+                if(_zz_1576) begin
+                  DCachePlugin_valids_19_0 <= 1'b0;
+                end
+                if(_zz_1577) begin
+                  DCachePlugin_valids_20_0 <= 1'b0;
+                end
+                if(_zz_1578) begin
+                  DCachePlugin_valids_21_0 <= 1'b0;
+                end
+                if(_zz_1579) begin
+                  DCachePlugin_valids_22_0 <= 1'b0;
+                end
+                if(_zz_1580) begin
+                  DCachePlugin_valids_23_0 <= 1'b0;
+                end
+                if(_zz_1581) begin
+                  DCachePlugin_valids_24_0 <= 1'b0;
+                end
+                if(_zz_1582) begin
+                  DCachePlugin_valids_25_0 <= 1'b0;
+                end
+                if(_zz_1583) begin
+                  DCachePlugin_valids_26_0 <= 1'b0;
+                end
+                if(_zz_1584) begin
+                  DCachePlugin_valids_27_0 <= 1'b0;
+                end
+                if(_zz_1585) begin
+                  DCachePlugin_valids_28_0 <= 1'b0;
+                end
+                if(_zz_1586) begin
+                  DCachePlugin_valids_29_0 <= 1'b0;
+                end
+                if(_zz_1587) begin
+                  DCachePlugin_valids_30_0 <= 1'b0;
+                end
+                if(_zz_1588) begin
+                  DCachePlugin_valids_31_0 <= 1'b0;
+                end
+                if(_zz_1589) begin
+                  DCachePlugin_valids_32_0 <= 1'b0;
+                end
+                if(_zz_1590) begin
+                  DCachePlugin_valids_33_0 <= 1'b0;
+                end
+                if(_zz_1591) begin
+                  DCachePlugin_valids_34_0 <= 1'b0;
+                end
+                if(_zz_1592) begin
+                  DCachePlugin_valids_35_0 <= 1'b0;
+                end
+                if(_zz_1593) begin
+                  DCachePlugin_valids_36_0 <= 1'b0;
+                end
+                if(_zz_1594) begin
+                  DCachePlugin_valids_37_0 <= 1'b0;
+                end
+                if(_zz_1595) begin
+                  DCachePlugin_valids_38_0 <= 1'b0;
+                end
+                if(_zz_1596) begin
+                  DCachePlugin_valids_39_0 <= 1'b0;
+                end
+                if(_zz_1597) begin
+                  DCachePlugin_valids_40_0 <= 1'b0;
+                end
+                if(_zz_1598) begin
+                  DCachePlugin_valids_41_0 <= 1'b0;
+                end
+                if(_zz_1599) begin
+                  DCachePlugin_valids_42_0 <= 1'b0;
+                end
+                if(_zz_1600) begin
+                  DCachePlugin_valids_43_0 <= 1'b0;
+                end
+                if(_zz_1601) begin
+                  DCachePlugin_valids_44_0 <= 1'b0;
+                end
+                if(_zz_1602) begin
+                  DCachePlugin_valids_45_0 <= 1'b0;
+                end
+                if(_zz_1603) begin
+                  DCachePlugin_valids_46_0 <= 1'b0;
+                end
+                if(_zz_1604) begin
+                  DCachePlugin_valids_47_0 <= 1'b0;
+                end
+                if(_zz_1605) begin
+                  DCachePlugin_valids_48_0 <= 1'b0;
+                end
+                if(_zz_1606) begin
+                  DCachePlugin_valids_49_0 <= 1'b0;
+                end
+                if(_zz_1607) begin
+                  DCachePlugin_valids_50_0 <= 1'b0;
+                end
+                if(_zz_1608) begin
+                  DCachePlugin_valids_51_0 <= 1'b0;
+                end
+                if(_zz_1609) begin
+                  DCachePlugin_valids_52_0 <= 1'b0;
+                end
+                if(_zz_1610) begin
+                  DCachePlugin_valids_53_0 <= 1'b0;
+                end
+                if(_zz_1611) begin
+                  DCachePlugin_valids_54_0 <= 1'b0;
+                end
+                if(_zz_1612) begin
+                  DCachePlugin_valids_55_0 <= 1'b0;
+                end
+                if(_zz_1613) begin
+                  DCachePlugin_valids_56_0 <= 1'b0;
+                end
+                if(_zz_1614) begin
+                  DCachePlugin_valids_57_0 <= 1'b0;
+                end
+                if(_zz_1615) begin
+                  DCachePlugin_valids_58_0 <= 1'b0;
+                end
+                if(_zz_1616) begin
+                  DCachePlugin_valids_59_0 <= 1'b0;
+                end
+                if(_zz_1617) begin
+                  DCachePlugin_valids_60_0 <= 1'b0;
+                end
+                if(_zz_1618) begin
+                  DCachePlugin_valids_61_0 <= 1'b0;
+                end
+                if(_zz_1619) begin
+                  DCachePlugin_valids_62_0 <= 1'b0;
+                end
+                if(_zz_1620) begin
+                  DCachePlugin_valids_63_0 <= 1'b0;
+                end
+              end
+              if(_zz_1621[1]) begin
+                if(_zz_1557) begin
+                  DCachePlugin_valids_0_1 <= 1'b0;
+                end
+                if(_zz_1558) begin
+                  DCachePlugin_valids_1_1 <= 1'b0;
+                end
+                if(_zz_1559) begin
+                  DCachePlugin_valids_2_1 <= 1'b0;
+                end
+                if(_zz_1560) begin
+                  DCachePlugin_valids_3_1 <= 1'b0;
+                end
+                if(_zz_1561) begin
+                  DCachePlugin_valids_4_1 <= 1'b0;
+                end
+                if(_zz_1562) begin
+                  DCachePlugin_valids_5_1 <= 1'b0;
+                end
+                if(_zz_1563) begin
+                  DCachePlugin_valids_6_1 <= 1'b0;
+                end
+                if(_zz_1564) begin
+                  DCachePlugin_valids_7_1 <= 1'b0;
+                end
+                if(_zz_1565) begin
+                  DCachePlugin_valids_8_1 <= 1'b0;
+                end
+                if(_zz_1566) begin
+                  DCachePlugin_valids_9_1 <= 1'b0;
+                end
+                if(_zz_1567) begin
+                  DCachePlugin_valids_10_1 <= 1'b0;
+                end
+                if(_zz_1568) begin
+                  DCachePlugin_valids_11_1 <= 1'b0;
+                end
+                if(_zz_1569) begin
+                  DCachePlugin_valids_12_1 <= 1'b0;
+                end
+                if(_zz_1570) begin
+                  DCachePlugin_valids_13_1 <= 1'b0;
+                end
+                if(_zz_1571) begin
+                  DCachePlugin_valids_14_1 <= 1'b0;
+                end
+                if(_zz_1572) begin
+                  DCachePlugin_valids_15_1 <= 1'b0;
+                end
+                if(_zz_1573) begin
+                  DCachePlugin_valids_16_1 <= 1'b0;
+                end
+                if(_zz_1574) begin
+                  DCachePlugin_valids_17_1 <= 1'b0;
+                end
+                if(_zz_1575) begin
+                  DCachePlugin_valids_18_1 <= 1'b0;
+                end
+                if(_zz_1576) begin
+                  DCachePlugin_valids_19_1 <= 1'b0;
+                end
+                if(_zz_1577) begin
+                  DCachePlugin_valids_20_1 <= 1'b0;
+                end
+                if(_zz_1578) begin
+                  DCachePlugin_valids_21_1 <= 1'b0;
+                end
+                if(_zz_1579) begin
+                  DCachePlugin_valids_22_1 <= 1'b0;
+                end
+                if(_zz_1580) begin
+                  DCachePlugin_valids_23_1 <= 1'b0;
+                end
+                if(_zz_1581) begin
+                  DCachePlugin_valids_24_1 <= 1'b0;
+                end
+                if(_zz_1582) begin
+                  DCachePlugin_valids_25_1 <= 1'b0;
+                end
+                if(_zz_1583) begin
+                  DCachePlugin_valids_26_1 <= 1'b0;
+                end
+                if(_zz_1584) begin
+                  DCachePlugin_valids_27_1 <= 1'b0;
+                end
+                if(_zz_1585) begin
+                  DCachePlugin_valids_28_1 <= 1'b0;
+                end
+                if(_zz_1586) begin
+                  DCachePlugin_valids_29_1 <= 1'b0;
+                end
+                if(_zz_1587) begin
+                  DCachePlugin_valids_30_1 <= 1'b0;
+                end
+                if(_zz_1588) begin
+                  DCachePlugin_valids_31_1 <= 1'b0;
+                end
+                if(_zz_1589) begin
+                  DCachePlugin_valids_32_1 <= 1'b0;
+                end
+                if(_zz_1590) begin
+                  DCachePlugin_valids_33_1 <= 1'b0;
+                end
+                if(_zz_1591) begin
+                  DCachePlugin_valids_34_1 <= 1'b0;
+                end
+                if(_zz_1592) begin
+                  DCachePlugin_valids_35_1 <= 1'b0;
+                end
+                if(_zz_1593) begin
+                  DCachePlugin_valids_36_1 <= 1'b0;
+                end
+                if(_zz_1594) begin
+                  DCachePlugin_valids_37_1 <= 1'b0;
+                end
+                if(_zz_1595) begin
+                  DCachePlugin_valids_38_1 <= 1'b0;
+                end
+                if(_zz_1596) begin
+                  DCachePlugin_valids_39_1 <= 1'b0;
+                end
+                if(_zz_1597) begin
+                  DCachePlugin_valids_40_1 <= 1'b0;
+                end
+                if(_zz_1598) begin
+                  DCachePlugin_valids_41_1 <= 1'b0;
+                end
+                if(_zz_1599) begin
+                  DCachePlugin_valids_42_1 <= 1'b0;
+                end
+                if(_zz_1600) begin
+                  DCachePlugin_valids_43_1 <= 1'b0;
+                end
+                if(_zz_1601) begin
+                  DCachePlugin_valids_44_1 <= 1'b0;
+                end
+                if(_zz_1602) begin
+                  DCachePlugin_valids_45_1 <= 1'b0;
+                end
+                if(_zz_1603) begin
+                  DCachePlugin_valids_46_1 <= 1'b0;
+                end
+                if(_zz_1604) begin
+                  DCachePlugin_valids_47_1 <= 1'b0;
+                end
+                if(_zz_1605) begin
+                  DCachePlugin_valids_48_1 <= 1'b0;
+                end
+                if(_zz_1606) begin
+                  DCachePlugin_valids_49_1 <= 1'b0;
+                end
+                if(_zz_1607) begin
+                  DCachePlugin_valids_50_1 <= 1'b0;
+                end
+                if(_zz_1608) begin
+                  DCachePlugin_valids_51_1 <= 1'b0;
+                end
+                if(_zz_1609) begin
+                  DCachePlugin_valids_52_1 <= 1'b0;
+                end
+                if(_zz_1610) begin
+                  DCachePlugin_valids_53_1 <= 1'b0;
+                end
+                if(_zz_1611) begin
+                  DCachePlugin_valids_54_1 <= 1'b0;
+                end
+                if(_zz_1612) begin
+                  DCachePlugin_valids_55_1 <= 1'b0;
+                end
+                if(_zz_1613) begin
+                  DCachePlugin_valids_56_1 <= 1'b0;
+                end
+                if(_zz_1614) begin
+                  DCachePlugin_valids_57_1 <= 1'b0;
+                end
+                if(_zz_1615) begin
+                  DCachePlugin_valids_58_1 <= 1'b0;
+                end
+                if(_zz_1616) begin
+                  DCachePlugin_valids_59_1 <= 1'b0;
+                end
+                if(_zz_1617) begin
+                  DCachePlugin_valids_60_1 <= 1'b0;
+                end
+                if(_zz_1618) begin
+                  DCachePlugin_valids_61_1 <= 1'b0;
+                end
+                if(_zz_1619) begin
+                  DCachePlugin_valids_62_1 <= 1'b0;
+                end
+                if(_zz_1620) begin
+                  DCachePlugin_valids_63_1 <= 1'b0;
+                end
+              end
+              if(_zz_1621[2]) begin
+                if(_zz_1557) begin
+                  DCachePlugin_valids_0_2 <= 1'b0;
+                end
+                if(_zz_1558) begin
+                  DCachePlugin_valids_1_2 <= 1'b0;
+                end
+                if(_zz_1559) begin
+                  DCachePlugin_valids_2_2 <= 1'b0;
+                end
+                if(_zz_1560) begin
+                  DCachePlugin_valids_3_2 <= 1'b0;
+                end
+                if(_zz_1561) begin
+                  DCachePlugin_valids_4_2 <= 1'b0;
+                end
+                if(_zz_1562) begin
+                  DCachePlugin_valids_5_2 <= 1'b0;
+                end
+                if(_zz_1563) begin
+                  DCachePlugin_valids_6_2 <= 1'b0;
+                end
+                if(_zz_1564) begin
+                  DCachePlugin_valids_7_2 <= 1'b0;
+                end
+                if(_zz_1565) begin
+                  DCachePlugin_valids_8_2 <= 1'b0;
+                end
+                if(_zz_1566) begin
+                  DCachePlugin_valids_9_2 <= 1'b0;
+                end
+                if(_zz_1567) begin
+                  DCachePlugin_valids_10_2 <= 1'b0;
+                end
+                if(_zz_1568) begin
+                  DCachePlugin_valids_11_2 <= 1'b0;
+                end
+                if(_zz_1569) begin
+                  DCachePlugin_valids_12_2 <= 1'b0;
+                end
+                if(_zz_1570) begin
+                  DCachePlugin_valids_13_2 <= 1'b0;
+                end
+                if(_zz_1571) begin
+                  DCachePlugin_valids_14_2 <= 1'b0;
+                end
+                if(_zz_1572) begin
+                  DCachePlugin_valids_15_2 <= 1'b0;
+                end
+                if(_zz_1573) begin
+                  DCachePlugin_valids_16_2 <= 1'b0;
+                end
+                if(_zz_1574) begin
+                  DCachePlugin_valids_17_2 <= 1'b0;
+                end
+                if(_zz_1575) begin
+                  DCachePlugin_valids_18_2 <= 1'b0;
+                end
+                if(_zz_1576) begin
+                  DCachePlugin_valids_19_2 <= 1'b0;
+                end
+                if(_zz_1577) begin
+                  DCachePlugin_valids_20_2 <= 1'b0;
+                end
+                if(_zz_1578) begin
+                  DCachePlugin_valids_21_2 <= 1'b0;
+                end
+                if(_zz_1579) begin
+                  DCachePlugin_valids_22_2 <= 1'b0;
+                end
+                if(_zz_1580) begin
+                  DCachePlugin_valids_23_2 <= 1'b0;
+                end
+                if(_zz_1581) begin
+                  DCachePlugin_valids_24_2 <= 1'b0;
+                end
+                if(_zz_1582) begin
+                  DCachePlugin_valids_25_2 <= 1'b0;
+                end
+                if(_zz_1583) begin
+                  DCachePlugin_valids_26_2 <= 1'b0;
+                end
+                if(_zz_1584) begin
+                  DCachePlugin_valids_27_2 <= 1'b0;
+                end
+                if(_zz_1585) begin
+                  DCachePlugin_valids_28_2 <= 1'b0;
+                end
+                if(_zz_1586) begin
+                  DCachePlugin_valids_29_2 <= 1'b0;
+                end
+                if(_zz_1587) begin
+                  DCachePlugin_valids_30_2 <= 1'b0;
+                end
+                if(_zz_1588) begin
+                  DCachePlugin_valids_31_2 <= 1'b0;
+                end
+                if(_zz_1589) begin
+                  DCachePlugin_valids_32_2 <= 1'b0;
+                end
+                if(_zz_1590) begin
+                  DCachePlugin_valids_33_2 <= 1'b0;
+                end
+                if(_zz_1591) begin
+                  DCachePlugin_valids_34_2 <= 1'b0;
+                end
+                if(_zz_1592) begin
+                  DCachePlugin_valids_35_2 <= 1'b0;
+                end
+                if(_zz_1593) begin
+                  DCachePlugin_valids_36_2 <= 1'b0;
+                end
+                if(_zz_1594) begin
+                  DCachePlugin_valids_37_2 <= 1'b0;
+                end
+                if(_zz_1595) begin
+                  DCachePlugin_valids_38_2 <= 1'b0;
+                end
+                if(_zz_1596) begin
+                  DCachePlugin_valids_39_2 <= 1'b0;
+                end
+                if(_zz_1597) begin
+                  DCachePlugin_valids_40_2 <= 1'b0;
+                end
+                if(_zz_1598) begin
+                  DCachePlugin_valids_41_2 <= 1'b0;
+                end
+                if(_zz_1599) begin
+                  DCachePlugin_valids_42_2 <= 1'b0;
+                end
+                if(_zz_1600) begin
+                  DCachePlugin_valids_43_2 <= 1'b0;
+                end
+                if(_zz_1601) begin
+                  DCachePlugin_valids_44_2 <= 1'b0;
+                end
+                if(_zz_1602) begin
+                  DCachePlugin_valids_45_2 <= 1'b0;
+                end
+                if(_zz_1603) begin
+                  DCachePlugin_valids_46_2 <= 1'b0;
+                end
+                if(_zz_1604) begin
+                  DCachePlugin_valids_47_2 <= 1'b0;
+                end
+                if(_zz_1605) begin
+                  DCachePlugin_valids_48_2 <= 1'b0;
+                end
+                if(_zz_1606) begin
+                  DCachePlugin_valids_49_2 <= 1'b0;
+                end
+                if(_zz_1607) begin
+                  DCachePlugin_valids_50_2 <= 1'b0;
+                end
+                if(_zz_1608) begin
+                  DCachePlugin_valids_51_2 <= 1'b0;
+                end
+                if(_zz_1609) begin
+                  DCachePlugin_valids_52_2 <= 1'b0;
+                end
+                if(_zz_1610) begin
+                  DCachePlugin_valids_53_2 <= 1'b0;
+                end
+                if(_zz_1611) begin
+                  DCachePlugin_valids_54_2 <= 1'b0;
+                end
+                if(_zz_1612) begin
+                  DCachePlugin_valids_55_2 <= 1'b0;
+                end
+                if(_zz_1613) begin
+                  DCachePlugin_valids_56_2 <= 1'b0;
+                end
+                if(_zz_1614) begin
+                  DCachePlugin_valids_57_2 <= 1'b0;
+                end
+                if(_zz_1615) begin
+                  DCachePlugin_valids_58_2 <= 1'b0;
+                end
+                if(_zz_1616) begin
+                  DCachePlugin_valids_59_2 <= 1'b0;
+                end
+                if(_zz_1617) begin
+                  DCachePlugin_valids_60_2 <= 1'b0;
+                end
+                if(_zz_1618) begin
+                  DCachePlugin_valids_61_2 <= 1'b0;
+                end
+                if(_zz_1619) begin
+                  DCachePlugin_valids_62_2 <= 1'b0;
+                end
+                if(_zz_1620) begin
+                  DCachePlugin_valids_63_2 <= 1'b0;
+                end
+              end
+              if(_zz_1621[3]) begin
+                if(_zz_1557) begin
+                  DCachePlugin_valids_0_3 <= 1'b0;
+                end
+                if(_zz_1558) begin
+                  DCachePlugin_valids_1_3 <= 1'b0;
+                end
+                if(_zz_1559) begin
+                  DCachePlugin_valids_2_3 <= 1'b0;
+                end
+                if(_zz_1560) begin
+                  DCachePlugin_valids_3_3 <= 1'b0;
+                end
+                if(_zz_1561) begin
+                  DCachePlugin_valids_4_3 <= 1'b0;
+                end
+                if(_zz_1562) begin
+                  DCachePlugin_valids_5_3 <= 1'b0;
+                end
+                if(_zz_1563) begin
+                  DCachePlugin_valids_6_3 <= 1'b0;
+                end
+                if(_zz_1564) begin
+                  DCachePlugin_valids_7_3 <= 1'b0;
+                end
+                if(_zz_1565) begin
+                  DCachePlugin_valids_8_3 <= 1'b0;
+                end
+                if(_zz_1566) begin
+                  DCachePlugin_valids_9_3 <= 1'b0;
+                end
+                if(_zz_1567) begin
+                  DCachePlugin_valids_10_3 <= 1'b0;
+                end
+                if(_zz_1568) begin
+                  DCachePlugin_valids_11_3 <= 1'b0;
+                end
+                if(_zz_1569) begin
+                  DCachePlugin_valids_12_3 <= 1'b0;
+                end
+                if(_zz_1570) begin
+                  DCachePlugin_valids_13_3 <= 1'b0;
+                end
+                if(_zz_1571) begin
+                  DCachePlugin_valids_14_3 <= 1'b0;
+                end
+                if(_zz_1572) begin
+                  DCachePlugin_valids_15_3 <= 1'b0;
+                end
+                if(_zz_1573) begin
+                  DCachePlugin_valids_16_3 <= 1'b0;
+                end
+                if(_zz_1574) begin
+                  DCachePlugin_valids_17_3 <= 1'b0;
+                end
+                if(_zz_1575) begin
+                  DCachePlugin_valids_18_3 <= 1'b0;
+                end
+                if(_zz_1576) begin
+                  DCachePlugin_valids_19_3 <= 1'b0;
+                end
+                if(_zz_1577) begin
+                  DCachePlugin_valids_20_3 <= 1'b0;
+                end
+                if(_zz_1578) begin
+                  DCachePlugin_valids_21_3 <= 1'b0;
+                end
+                if(_zz_1579) begin
+                  DCachePlugin_valids_22_3 <= 1'b0;
+                end
+                if(_zz_1580) begin
+                  DCachePlugin_valids_23_3 <= 1'b0;
+                end
+                if(_zz_1581) begin
+                  DCachePlugin_valids_24_3 <= 1'b0;
+                end
+                if(_zz_1582) begin
+                  DCachePlugin_valids_25_3 <= 1'b0;
+                end
+                if(_zz_1583) begin
+                  DCachePlugin_valids_26_3 <= 1'b0;
+                end
+                if(_zz_1584) begin
+                  DCachePlugin_valids_27_3 <= 1'b0;
+                end
+                if(_zz_1585) begin
+                  DCachePlugin_valids_28_3 <= 1'b0;
+                end
+                if(_zz_1586) begin
+                  DCachePlugin_valids_29_3 <= 1'b0;
+                end
+                if(_zz_1587) begin
+                  DCachePlugin_valids_30_3 <= 1'b0;
+                end
+                if(_zz_1588) begin
+                  DCachePlugin_valids_31_3 <= 1'b0;
+                end
+                if(_zz_1589) begin
+                  DCachePlugin_valids_32_3 <= 1'b0;
+                end
+                if(_zz_1590) begin
+                  DCachePlugin_valids_33_3 <= 1'b0;
+                end
+                if(_zz_1591) begin
+                  DCachePlugin_valids_34_3 <= 1'b0;
+                end
+                if(_zz_1592) begin
+                  DCachePlugin_valids_35_3 <= 1'b0;
+                end
+                if(_zz_1593) begin
+                  DCachePlugin_valids_36_3 <= 1'b0;
+                end
+                if(_zz_1594) begin
+                  DCachePlugin_valids_37_3 <= 1'b0;
+                end
+                if(_zz_1595) begin
+                  DCachePlugin_valids_38_3 <= 1'b0;
+                end
+                if(_zz_1596) begin
+                  DCachePlugin_valids_39_3 <= 1'b0;
+                end
+                if(_zz_1597) begin
+                  DCachePlugin_valids_40_3 <= 1'b0;
+                end
+                if(_zz_1598) begin
+                  DCachePlugin_valids_41_3 <= 1'b0;
+                end
+                if(_zz_1599) begin
+                  DCachePlugin_valids_42_3 <= 1'b0;
+                end
+                if(_zz_1600) begin
+                  DCachePlugin_valids_43_3 <= 1'b0;
+                end
+                if(_zz_1601) begin
+                  DCachePlugin_valids_44_3 <= 1'b0;
+                end
+                if(_zz_1602) begin
+                  DCachePlugin_valids_45_3 <= 1'b0;
+                end
+                if(_zz_1603) begin
+                  DCachePlugin_valids_46_3 <= 1'b0;
+                end
+                if(_zz_1604) begin
+                  DCachePlugin_valids_47_3 <= 1'b0;
+                end
+                if(_zz_1605) begin
+                  DCachePlugin_valids_48_3 <= 1'b0;
+                end
+                if(_zz_1606) begin
+                  DCachePlugin_valids_49_3 <= 1'b0;
+                end
+                if(_zz_1607) begin
+                  DCachePlugin_valids_50_3 <= 1'b0;
+                end
+                if(_zz_1608) begin
+                  DCachePlugin_valids_51_3 <= 1'b0;
+                end
+                if(_zz_1609) begin
+                  DCachePlugin_valids_52_3 <= 1'b0;
+                end
+                if(_zz_1610) begin
+                  DCachePlugin_valids_53_3 <= 1'b0;
+                end
+                if(_zz_1611) begin
+                  DCachePlugin_valids_54_3 <= 1'b0;
+                end
+                if(_zz_1612) begin
+                  DCachePlugin_valids_55_3 <= 1'b0;
+                end
+                if(_zz_1613) begin
+                  DCachePlugin_valids_56_3 <= 1'b0;
+                end
+                if(_zz_1614) begin
+                  DCachePlugin_valids_57_3 <= 1'b0;
+                end
+                if(_zz_1615) begin
+                  DCachePlugin_valids_58_3 <= 1'b0;
+                end
+                if(_zz_1616) begin
+                  DCachePlugin_valids_59_3 <= 1'b0;
+                end
+                if(_zz_1617) begin
+                  DCachePlugin_valids_60_3 <= 1'b0;
+                end
+                if(_zz_1618) begin
+                  DCachePlugin_valids_61_3 <= 1'b0;
+                end
+                if(_zz_1619) begin
+                  DCachePlugin_valids_62_3 <= 1'b0;
+                end
+                if(_zz_1620) begin
+                  DCachePlugin_valids_63_3 <= 1'b0;
+                end
               end
             end
           end
         end
         default : begin
+          if(when_DCachePlugin_l372) begin
+            if(when_DCachePlugin_l378) begin
+              DCachePlugin_sbValid_0 <= 1'b0;
+            end
+            if(when_DCachePlugin_l378_1) begin
+              DCachePlugin_sbValid_1 <= 1'b0;
+            end
+            if(when_DCachePlugin_l378_2) begin
+              DCachePlugin_sbValid_2 <= 1'b0;
+            end
+            if(when_DCachePlugin_l378_3) begin
+              DCachePlugin_sbValid_3 <= 1'b0;
+            end
+          end
         end
       endcase
       MEM_MEM2_DCachePlugin_CACHEFSM_stateReg <= MEM_MEM2_DCachePlugin_CACHEFSM_stateNext;
@@ -93026,7 +93797,11 @@ module MyCPUCore (
           end
         end
         default : begin
-          if(when_DCachePlugin_l322) begin
+          if(when_DCachePlugin_l413) begin
+            DCachePlugin_sbValid_0 <= 1'b0;
+            DCachePlugin_sbValid_1 <= 1'b0;
+            DCachePlugin_sbValid_2 <= 1'b0;
+            DCachePlugin_sbValid_3 <= 1'b0;
             case(MEM_MEM2_ISSUE_SLOT_uop_cacheOp)
               CacheOpType_StoreTag : begin
                 DCachePlugin_valids_0_0 <= 1'b0;
@@ -94084,7 +94859,64 @@ module MyCPUCore (
         end
         MEM_MEM2_DCachePlugin_cacheRefillFSM_enumDef_finishU : begin
         end
+        MEM_MEM2_DCachePlugin_cacheRefillFSM_enumDef_prefetchAR : begin
+          if(when_DCachePlugin_l636) begin
+            DCachePlugin_prefetchPending <= 1'b0;
+          end
+        end
+        MEM_MEM2_DCachePlugin_cacheRefillFSM_enumDef_prefetchRead : begin
+          if(io_dBus_r_fire_2) begin
+            if(io_dBus_r_payload_last) begin
+              if(_zz_1637[0]) begin
+                DCachePlugin_sbTags_0 <= _zz_DCachePlugin_sbTags_0;
+              end
+              if(_zz_1637[1]) begin
+                DCachePlugin_sbTags_1 <= _zz_DCachePlugin_sbTags_0;
+              end
+              if(_zz_1637[2]) begin
+                DCachePlugin_sbTags_2 <= _zz_DCachePlugin_sbTags_0;
+              end
+              if(_zz_1637[3]) begin
+                DCachePlugin_sbTags_3 <= _zz_DCachePlugin_sbTags_0;
+              end
+              if(_zz_1639) begin
+                DCachePlugin_sbValid_0 <= 1'b1;
+              end
+              if(_zz_1640) begin
+                DCachePlugin_sbValid_1 <= 1'b1;
+              end
+              if(_zz_1641) begin
+                DCachePlugin_sbValid_2 <= 1'b1;
+              end
+              if(_zz_1642) begin
+                DCachePlugin_sbValid_3 <= 1'b1;
+              end
+              DCachePlugin_sbAlloc <= (DCachePlugin_sbAlloc + 2'b01);
+              DCachePlugin_prefetchPending <= 1'b0;
+            end
+          end
+          if(when_DCachePlugin_l665) begin
+            if(_zz_1639) begin
+              DCachePlugin_sbValid_0 <= 1'b0;
+            end
+            if(_zz_1640) begin
+              DCachePlugin_sbValid_1 <= 1'b0;
+            end
+            if(_zz_1641) begin
+              DCachePlugin_sbValid_2 <= 1'b0;
+            end
+            if(_zz_1642) begin
+              DCachePlugin_sbValid_3 <= 1'b0;
+            end
+          end
+        end
+        MEM_MEM2_DCachePlugin_cacheRefillFSM_enumDef_prefetchDrain : begin
+        end
         default : begin
+          if(MEM_MEM2_DCachePlugin_needRefill) begin
+            DCachePlugin_prefetchPending <= (DCachePlugin_sbEnabledB && MEM_MEM2_DCachePlugin_cacheWindowOk);
+            DCachePlugin_prefetchAddr <= (MEM_MEM2_DCachePlugin_cachePhysAddr + 32'h00000040);
+          end
         end
       endcase
       MEM_MEM2_UncachedAccessPlugin_uncachedStoreFSM_stateReg <= MEM_MEM2_UncachedAccessPlugin_uncachedStoreFSM_stateNext;
@@ -113029,7 +113861,7 @@ module MyCPUCore (
     MEM_MEM2_DCachePlugin_dirtyLineWritebackFSM_rspIdDelayed <= MEM_MEM2_DCachePlugin_dirtyLineWritebackFSM_rspId_value_delay_1;
     MEM_MEM2_DCachePlugin_cacheRefillFSM_refillValid <= io_dBus_r_fire;
     MEM_MEM2_DCachePlugin_cacheRefillFSM_regBusWord <= io_dBus_r_payload_data;
-    if(when_DCachePlugin_l416) begin
+    if(when_DCachePlugin_l517) begin
       MEM_MEM2_DCachePlugin_storedWord <= MEM_MEM2_DCachePlugin_cacheRefillFSM_refillWord;
     end
     if(UncachedAccessPlugin_uncachedStoreHandshake_fire) begin
@@ -114375,35 +115207,38 @@ module MyCPUCore (
       MEM_MEM1_to_MEM_MEM2_TAG_MATCHES <= MEM_MEM1_TAG_MATCHES;
     end
     if(when_Pipeline_l158_127) begin
-      MEM_MEM1_to_MEM_MEM2_ROB_IDX <= MEM_MEM1_ROB_IDX;
+      MEM_MEM1_to_MEM_MEM2_DCACHE_SB_HITS <= MEM_MEM1_DCACHE_SB_HITS;
     end
     if(when_Pipeline_l158_128) begin
-      MEM_MEM2_to_MEM_WB_ROB_IDX <= MEM_MEM2_ROB_IDX;
+      MEM_MEM1_to_MEM_MEM2_ROB_IDX <= MEM_MEM1_ROB_IDX;
     end
     if(when_Pipeline_l158_129) begin
-      MEM_MEM1_to_MEM_MEM2_IS_LOAD <= MEM_MEM1_IS_LOAD;
+      MEM_MEM2_to_MEM_WB_ROB_IDX <= MEM_MEM2_ROB_IDX;
     end
     if(when_Pipeline_l158_130) begin
-      MEM_MEM2_to_MEM_WB_IS_LOAD <= MEM_MEM2_IS_LOAD;
+      MEM_MEM1_to_MEM_MEM2_IS_LOAD <= MEM_MEM1_IS_LOAD;
     end
     if(when_Pipeline_l158_131) begin
-      MEM_MEM1_to_MEM_MEM2_IS_STORE <= MEM_MEM1_IS_STORE;
+      MEM_MEM2_to_MEM_WB_IS_LOAD <= MEM_MEM2_IS_LOAD;
     end
     if(when_Pipeline_l158_132) begin
-      MEM_MEM2_to_MEM_WB_IS_STORE <= MEM_MEM2_IS_STORE;
+      MEM_MEM1_to_MEM_MEM2_IS_STORE <= MEM_MEM1_IS_STORE;
     end
     if(when_Pipeline_l158_133) begin
+      MEM_MEM2_to_MEM_WB_IS_STORE <= MEM_MEM2_IS_STORE;
+    end
+    if(when_Pipeline_l158_134) begin
       MEM_MEM1_to_MEM_MEM2_WRITE_REG_valid <= MEM_MEM1_WRITE_REG_valid;
       MEM_MEM1_to_MEM_MEM2_WRITE_REG_payload <= MEM_MEM1_WRITE_REG_payload;
     end
-    if(when_Pipeline_l158_134) begin
+    if(when_Pipeline_l158_135) begin
       MEM_MEM2_to_MEM_WB_WRITE_REG_valid <= _zz_when_MemExecutePlugin_l122;
       MEM_MEM2_to_MEM_WB_WRITE_REG_payload <= _zz_MEM_MEM2_to_MEM_WB_WRITE_REG_payload;
     end
-    if(when_Pipeline_l158_135) begin
+    if(when_Pipeline_l158_136) begin
       MEM_MEM1_to_MEM_MEM2_LOAD_STORE_TYPE <= _zz_MEM_MEM1_to_MEM_MEM2_LOAD_STORE_TYPE;
     end
-    if(when_Pipeline_l158_136) begin
+    if(when_Pipeline_l158_137) begin
       MEM_MEM2_to_MEM_WB_MEMORY_READ_DATA <= MEM_MEM2_LoadPostprocessPlugin_wbWord;
     end
     if(when_CompressedFIFO_l59) begin
@@ -115855,14 +116690,14 @@ module MyCPUCore (
       end
       MEM_MEM2_DCachePlugin_CACHEFSM_enumDef_writebackWay : begin
         if(DCachePlugin_writebackIdle) begin
-          if(when_DCachePlugin_l370) begin
+          if(when_DCachePlugin_l467) begin
             MEM_MEM2_DCachePlugin_CACHEFSM_finishAllWay <= 1'b1;
           end
           MEM_MEM2_DCachePlugin_CACHEFSM_wayCounter <= (MEM_MEM2_DCachePlugin_CACHEFSM_wayCounter + 2'b01);
         end
       end
       default : begin
-        if(when_DCachePlugin_l322) begin
+        if(when_DCachePlugin_l413) begin
           case(MEM_MEM2_ISSUE_SLOT_uop_cacheOp)
             CacheOpType_IndexInvalidate : begin
               MEM_MEM2_DCachePlugin_CACHEFSM_finishAllWay <= 1'b0;
@@ -115890,11 +116725,243 @@ module MyCPUCore (
       MEM_MEM2_DCachePlugin_cacheRefillFSM_enumDef_waitAXIU : begin
       end
       MEM_MEM2_DCachePlugin_cacheRefillFSM_enumDef_readMemU : begin
-        if(when_DCachePlugin_l532) begin
+        if(when_DCachePlugin_l713) begin
           MEM_MEM2_DCachePlugin_storedWord <= io_udBus_r_payload_data;
         end
       end
       MEM_MEM2_DCachePlugin_cacheRefillFSM_enumDef_finishU : begin
+      end
+      MEM_MEM2_DCachePlugin_cacheRefillFSM_enumDef_prefetchAR : begin
+      end
+      MEM_MEM2_DCachePlugin_cacheRefillFSM_enumDef_prefetchRead : begin
+        if(io_dBus_r_fire_2) begin
+          if(_zz_1636[0]) begin
+            if(_zz_1632) begin
+              DCachePlugin_sbData_0_0 <= io_dBus_r_payload_data;
+            end
+            if(_zz_1633) begin
+              DCachePlugin_sbData_1_0 <= io_dBus_r_payload_data;
+            end
+            if(_zz_1634) begin
+              DCachePlugin_sbData_2_0 <= io_dBus_r_payload_data;
+            end
+            if(_zz_1635) begin
+              DCachePlugin_sbData_3_0 <= io_dBus_r_payload_data;
+            end
+          end
+          if(_zz_1636[1]) begin
+            if(_zz_1632) begin
+              DCachePlugin_sbData_0_1 <= io_dBus_r_payload_data;
+            end
+            if(_zz_1633) begin
+              DCachePlugin_sbData_1_1 <= io_dBus_r_payload_data;
+            end
+            if(_zz_1634) begin
+              DCachePlugin_sbData_2_1 <= io_dBus_r_payload_data;
+            end
+            if(_zz_1635) begin
+              DCachePlugin_sbData_3_1 <= io_dBus_r_payload_data;
+            end
+          end
+          if(_zz_1636[2]) begin
+            if(_zz_1632) begin
+              DCachePlugin_sbData_0_2 <= io_dBus_r_payload_data;
+            end
+            if(_zz_1633) begin
+              DCachePlugin_sbData_1_2 <= io_dBus_r_payload_data;
+            end
+            if(_zz_1634) begin
+              DCachePlugin_sbData_2_2 <= io_dBus_r_payload_data;
+            end
+            if(_zz_1635) begin
+              DCachePlugin_sbData_3_2 <= io_dBus_r_payload_data;
+            end
+          end
+          if(_zz_1636[3]) begin
+            if(_zz_1632) begin
+              DCachePlugin_sbData_0_3 <= io_dBus_r_payload_data;
+            end
+            if(_zz_1633) begin
+              DCachePlugin_sbData_1_3 <= io_dBus_r_payload_data;
+            end
+            if(_zz_1634) begin
+              DCachePlugin_sbData_2_3 <= io_dBus_r_payload_data;
+            end
+            if(_zz_1635) begin
+              DCachePlugin_sbData_3_3 <= io_dBus_r_payload_data;
+            end
+          end
+          if(_zz_1636[4]) begin
+            if(_zz_1632) begin
+              DCachePlugin_sbData_0_4 <= io_dBus_r_payload_data;
+            end
+            if(_zz_1633) begin
+              DCachePlugin_sbData_1_4 <= io_dBus_r_payload_data;
+            end
+            if(_zz_1634) begin
+              DCachePlugin_sbData_2_4 <= io_dBus_r_payload_data;
+            end
+            if(_zz_1635) begin
+              DCachePlugin_sbData_3_4 <= io_dBus_r_payload_data;
+            end
+          end
+          if(_zz_1636[5]) begin
+            if(_zz_1632) begin
+              DCachePlugin_sbData_0_5 <= io_dBus_r_payload_data;
+            end
+            if(_zz_1633) begin
+              DCachePlugin_sbData_1_5 <= io_dBus_r_payload_data;
+            end
+            if(_zz_1634) begin
+              DCachePlugin_sbData_2_5 <= io_dBus_r_payload_data;
+            end
+            if(_zz_1635) begin
+              DCachePlugin_sbData_3_5 <= io_dBus_r_payload_data;
+            end
+          end
+          if(_zz_1636[6]) begin
+            if(_zz_1632) begin
+              DCachePlugin_sbData_0_6 <= io_dBus_r_payload_data;
+            end
+            if(_zz_1633) begin
+              DCachePlugin_sbData_1_6 <= io_dBus_r_payload_data;
+            end
+            if(_zz_1634) begin
+              DCachePlugin_sbData_2_6 <= io_dBus_r_payload_data;
+            end
+            if(_zz_1635) begin
+              DCachePlugin_sbData_3_6 <= io_dBus_r_payload_data;
+            end
+          end
+          if(_zz_1636[7]) begin
+            if(_zz_1632) begin
+              DCachePlugin_sbData_0_7 <= io_dBus_r_payload_data;
+            end
+            if(_zz_1633) begin
+              DCachePlugin_sbData_1_7 <= io_dBus_r_payload_data;
+            end
+            if(_zz_1634) begin
+              DCachePlugin_sbData_2_7 <= io_dBus_r_payload_data;
+            end
+            if(_zz_1635) begin
+              DCachePlugin_sbData_3_7 <= io_dBus_r_payload_data;
+            end
+          end
+          if(_zz_1636[8]) begin
+            if(_zz_1632) begin
+              DCachePlugin_sbData_0_8 <= io_dBus_r_payload_data;
+            end
+            if(_zz_1633) begin
+              DCachePlugin_sbData_1_8 <= io_dBus_r_payload_data;
+            end
+            if(_zz_1634) begin
+              DCachePlugin_sbData_2_8 <= io_dBus_r_payload_data;
+            end
+            if(_zz_1635) begin
+              DCachePlugin_sbData_3_8 <= io_dBus_r_payload_data;
+            end
+          end
+          if(_zz_1636[9]) begin
+            if(_zz_1632) begin
+              DCachePlugin_sbData_0_9 <= io_dBus_r_payload_data;
+            end
+            if(_zz_1633) begin
+              DCachePlugin_sbData_1_9 <= io_dBus_r_payload_data;
+            end
+            if(_zz_1634) begin
+              DCachePlugin_sbData_2_9 <= io_dBus_r_payload_data;
+            end
+            if(_zz_1635) begin
+              DCachePlugin_sbData_3_9 <= io_dBus_r_payload_data;
+            end
+          end
+          if(_zz_1636[10]) begin
+            if(_zz_1632) begin
+              DCachePlugin_sbData_0_10 <= io_dBus_r_payload_data;
+            end
+            if(_zz_1633) begin
+              DCachePlugin_sbData_1_10 <= io_dBus_r_payload_data;
+            end
+            if(_zz_1634) begin
+              DCachePlugin_sbData_2_10 <= io_dBus_r_payload_data;
+            end
+            if(_zz_1635) begin
+              DCachePlugin_sbData_3_10 <= io_dBus_r_payload_data;
+            end
+          end
+          if(_zz_1636[11]) begin
+            if(_zz_1632) begin
+              DCachePlugin_sbData_0_11 <= io_dBus_r_payload_data;
+            end
+            if(_zz_1633) begin
+              DCachePlugin_sbData_1_11 <= io_dBus_r_payload_data;
+            end
+            if(_zz_1634) begin
+              DCachePlugin_sbData_2_11 <= io_dBus_r_payload_data;
+            end
+            if(_zz_1635) begin
+              DCachePlugin_sbData_3_11 <= io_dBus_r_payload_data;
+            end
+          end
+          if(_zz_1636[12]) begin
+            if(_zz_1632) begin
+              DCachePlugin_sbData_0_12 <= io_dBus_r_payload_data;
+            end
+            if(_zz_1633) begin
+              DCachePlugin_sbData_1_12 <= io_dBus_r_payload_data;
+            end
+            if(_zz_1634) begin
+              DCachePlugin_sbData_2_12 <= io_dBus_r_payload_data;
+            end
+            if(_zz_1635) begin
+              DCachePlugin_sbData_3_12 <= io_dBus_r_payload_data;
+            end
+          end
+          if(_zz_1636[13]) begin
+            if(_zz_1632) begin
+              DCachePlugin_sbData_0_13 <= io_dBus_r_payload_data;
+            end
+            if(_zz_1633) begin
+              DCachePlugin_sbData_1_13 <= io_dBus_r_payload_data;
+            end
+            if(_zz_1634) begin
+              DCachePlugin_sbData_2_13 <= io_dBus_r_payload_data;
+            end
+            if(_zz_1635) begin
+              DCachePlugin_sbData_3_13 <= io_dBus_r_payload_data;
+            end
+          end
+          if(_zz_1636[14]) begin
+            if(_zz_1632) begin
+              DCachePlugin_sbData_0_14 <= io_dBus_r_payload_data;
+            end
+            if(_zz_1633) begin
+              DCachePlugin_sbData_1_14 <= io_dBus_r_payload_data;
+            end
+            if(_zz_1634) begin
+              DCachePlugin_sbData_2_14 <= io_dBus_r_payload_data;
+            end
+            if(_zz_1635) begin
+              DCachePlugin_sbData_3_14 <= io_dBus_r_payload_data;
+            end
+          end
+          if(_zz_1636[15]) begin
+            if(_zz_1632) begin
+              DCachePlugin_sbData_0_15 <= io_dBus_r_payload_data;
+            end
+            if(_zz_1633) begin
+              DCachePlugin_sbData_1_15 <= io_dBus_r_payload_data;
+            end
+            if(_zz_1634) begin
+              DCachePlugin_sbData_2_15 <= io_dBus_r_payload_data;
+            end
+            if(_zz_1635) begin
+              DCachePlugin_sbData_3_15 <= io_dBus_r_payload_data;
+            end
+          end
+        end
+      end
+      MEM_MEM2_DCachePlugin_cacheRefillFSM_enumDef_prefetchDrain : begin
       end
       default : begin
       end
