@@ -35,7 +35,7 @@ if [ ! -d la32r-Linux ]; then
 else
 	cd la32r-Linux
 fi
-for p in "$HERE"/patches/000[1235678]*.patch; do
+	for p in "$HERE"/patches/00[01][0-9]*.patch; do
 	git apply --check "$p" 2>/dev/null && git apply "$p" && echo "applied: $(basename $p)" \
 		|| echo "skip（已应用）: $(basename $p)"
 done
@@ -65,9 +65,12 @@ build_one() { # $1=变体名 $2=源码树 $3=额外 make 参数 $4=配置后处�
 	sed -i "s|^CONFIG_INITRAMFS_SOURCE=.*|CONFIG_INITRAMFS_SOURCE=\"$WORK/initramfs/initramfs_list.txt\"|" .config
 	make ARCH=loongarch CROSS_COMPILE=$CROSS_COMPILE olddefconfig
 	make ARCH=loongarch CROSS_COMPILE=$CROSS_COMPILE $EXTRA -j"$JOBS"
-	"$HERE/boot/mkimage.sh" "$WORK/$SRC/vmlinux" "$WORK/image-$V"
+	ROOTFS="$WORK/initramfs/rootfs.cpio.gz" \
+		"$HERE/boot/mkimage.sh" "$WORK/$SRC/vmlinux" "$WORK/image-$V"
 	${CROSS_COMPILE}strip -o "$O/vmlinux" "$WORK/$SRC/vmlinux"
 	cp "$WORK/image-$V/vmlinux.bin" "$WORK/image-$V/start.bin" "$O/"
+	[ -f "$WORK/image-$V/rootfs.cpio.gz" ] && cp "$WORK/image-$V/rootfs.cpio.gz" "$O/"
+	[ -f "$WORK/image-$V/load-sizes.txt" ] && cp "$WORK/image-$V/load-sizes.txt" "$O/"
 	cp .config "$O/kernel.config"
 	${CROSS_COMPILE}readelf -h "$O/vmlinux" | grep -E 'Class|Machine|Type|Entry'
 	local AM=$(${CROSS_COMPILE}objdump -d "$WORK/$SRC/vmlinux" | grep -cE '\bam(swap|add|and|or|xor|max|min|cas)' || true)
@@ -86,11 +89,12 @@ if [ "$VARIANT" = "board-16m" ] || [ "$VARIANT" = "all" ]; then
 	cd "$WORK/la32r-Linux"
 	[ -d "$WORK/la32r-Linux-16m" ] || git worktree add "$WORK/la32r-Linux-16m" HEAD
 	cd "$WORK/la32r-Linux-16m"
-	for p in "$HERE"/patches/000[1-8]*.patch; do
+	for p in "$HERE"/patches/00[01][0-9]*.patch; do
 		git apply --check "$p" 2>/dev/null && git apply "$p" && echo "applied: $(basename $p)" \
 			|| echo "skip（已应用）: $(basename $p)"
 	done
 	build_one board-16m la32r-Linux-16m "CONFIG_PHYSICAL_START=0xbc300000" "$HERE/config/board-16m.fragment"
+	"$HERE/check_memory.sh" board-16m
 fi
 
 # ---------- 6. 共用产物 ----------

@@ -1,0 +1,15 @@
+diff --git a/arch/loongarch/loongson32/mem.c b/arch/loongarch/loongson32/mem.c
+index 2b617e063..000000000 100644
+--- a/arch/loongarch/loongson32/mem.c
++++ b/arch/loongarch/loongson32/mem.c
+@@ -96,8 +96,8 @@ void __init fw_init_memory(void)
+ 	/* used by finalize_initrd() */
+ 	max_low_pfn = end_pfn;
+ 
+-	/* Reserve the first 2MB */
+-	memblock_reserve(PHYS_OFFSET, 0x200000);
++	/* Reserve reset stub, boot arguments, and fixed exception vectors. */
++	memblock_reserve(0x1c000000, 0x300000);
+ 
+ 	/* Reserve the kernel text/data/bss */
+ 	memblock_reserve(__pa_symbol(&_text),

@@ -1,0 +1,14 @@
+diff --git a/arch/loongarch/mm/cache.c b/arch/loongarch/mm/cache.c
+index 5df78cac8..5345d302a 100644
+--- a/arch/loongarch/mm/cache.c
++++ b/arch/loongarch/mm/cache.c
+@@ -42,6 +42,9 @@ void local_flush_cache_all(void)
+ /* Cache operations. */
+ void local_flush_icache_range(unsigned long start, unsigned long end)
+ {
++	blast_dcache_range(start, end);
++	asm volatile ("\tdbar 0\n"::);
++	blast_icache_range(start, end);
+ 	asm volatile ("\tibar 0\n"::);
+ #ifdef BX_SOC
+ 	local_flush_cache_all();

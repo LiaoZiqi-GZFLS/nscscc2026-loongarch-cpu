@@ -10,14 +10,22 @@ TC=${CROSS_COMPILE:-loongarch32r-linux-gnusf-}
 VMLINUX=${1:?usage: mkimage.sh <vmlinux> <outdir>}
 OUT=${2:?usage: mkimage.sh <vmlinux> <outdir>}
 HERE=$(cd "$(dirname "$0")" && pwd)
+ROOTFS=${ROOTFS:-$(dirname "$HERE")/out/rootfs.cpio.gz}
+INITRD_PHYS=${INITRD_PHYS:-0x1ca00000}
+INITRD_VIRT=${INITRD_VIRT:-0xbca00000}
 mkdir -p "$OUT"
 
-KERNEL_ENTRY=$(${TC}readelf -s "$VMLINUX" | awk '/ kernel_entry$/{print "0x"$2; exit}')
+KERNEL_ENTRY=$(${TC}readelf -s "$VMLINUX" 2>/dev/null | awk '/ kernel_entry$/{print "0x"$2; exit}')
+[ -n "$KERNEL_ENTRY" ] || KERNEL_ENTRY=$(${TC}readelf -h "$VMLINUX" | awk '/Entry point address:/{print $NF; exit}')
 [ -n "$KERNEL_ENTRY" ] || { echo "kernel_entry not found"; exit 1; }
 echo "kernel_entry = $KERNEL_ENTRY"
 
 # 引导 stub（链接到复位地址 0x1c000000；CMDLINE 可按需改）
 CMDLINE=${CMDLINE:-"console=ttyS0,115200 rdinit=/init loglevel=8"}
+if [ -f "$ROOTFS" ]; then
+	cp "$ROOTFS" "$OUT/rootfs.cpio.gz"
+	CMDLINE="$CMDLINE rd_start=$INITRD_VIRT rd_size=$(stat -c %s "$ROOTFS")"
+fi
 ${TC}gcc -DKERNEL_ENTRY_ADDRESS=$KERNEL_ENTRY -DCMDLINE="\"$CMDLINE\"" \
 	-c "$HERE/start.S" -o "$OUT/start.o"
 ${TC}ld -Ttext=0x1c000000 -o "$OUT/start.elf" "$OUT/start.o"
@@ -28,10 +36,13 @@ ${TC}objcopy -O binary -j .text -j __ex_table -j .notes -j .rodata -j __param \
 	-j .sdata -j __modver -j .data -j .data..page_aligned \
 	-j .init.text -j .init.data -j .exit.text "$VMLINUX" "$OUT/vmlinux.bin"
 
+# JTAG loaders must clear MemSiz-FileSiz because objcopy does not emit .bss.
+${TC}readelf -lW "$VMLINUX" | awk '$1 == "LOAD" {print $5, $6; exit}' > "$OUT/load-sizes.txt"
+
 # verilator RAM 初始化文件
-python3 - "$VMLINUX" "$OUT" <<'EOF'
+python3 - "$VMLINUX" "$OUT" "$INITRD_PHYS" <<'EOF'
 import subprocess, sys, re
-vmlinux, out = sys.argv[1], sys.argv[2]
+vmlinux, out, initrd_phys = sys.argv[1], sys.argv[2], int(sys.argv[3], 0)
 # 内核物理加载地址 = .text vaddr - 直映窗口基址（0xa0000000 或 0x80000000）
 hdr = subprocess.check_output(['readelf', '-S', vmlinux]).decode()
 m = re.search(r'\.text\s+PROGBITS\s+([0-9a-f]+)', hdr)
@@ -45,6 +56,13 @@ with open(f"{out}/rom.vlog", "w") as f:
             '\n'.join(f"{b:02x}" for b in open(f"{out}/start.bin","rb").read()))
     f.write("\n@%x\n" % phys)
     f.write('\n'.join(f"{b:02x}" for b in open(f"{out}/vmlinux.bin","rb").read()))
+    try:
+        initrd = open(f"{out}/rootfs.cpio.gz", "rb").read()
+    except FileNotFoundError:
+        initrd = b""
+    if initrd:
+        f.write("\n@%x\n" % initrd_phys)
+        f.write('\n'.join(f"{b:02x}" for b in initrd))
     f.write("\n")
 print("rom.vlog written")
 EOF

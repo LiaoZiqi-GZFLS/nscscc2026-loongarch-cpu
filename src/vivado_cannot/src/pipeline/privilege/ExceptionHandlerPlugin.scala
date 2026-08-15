@@ -29,7 +29,6 @@ class ExceptionHandlerPlugin extends Plugin[MyCPUCore] {
 
   // ! ECFG
   val ECFG_LIE_0 = RegInit(B(0x0, 10 bits))
-  val ECFG_LIE_10 = RegInit(B(0x0, 1 bits))
   val ECFG_LIE_11 = RegInit(B(0x0, 2 bits))
 
   // ! ESTAT
@@ -47,6 +46,9 @@ class ExceptionHandlerPlugin extends Plugin[MyCPUCore] {
 
   // ! BADV
   val BADV_VADDR = RegInit(B(0x0, 32 bits))
+
+  // TLBR forces DA mode until the matching ERTN restores page translation.
+  val tlbrActive = RegInit(False)
 
   // ! EENTRY
   val EENTRY_VA = RegInit(B(0x0, 26 bits))
@@ -94,9 +96,9 @@ class ExceptionHandlerPlugin extends Plugin[MyCPUCore] {
     CSRMan.rw(
       CSRAddress.ECFG,
       0 -> ECFG_LIE_0,
-      10 -> ECFG_LIE_10,
       11 -> ECFG_LIE_11
     )
+    CSRMan.r0(CSRAddress.ECFG, 10, 1 bits)
     CSRMan.r0(CSRAddress.ECFG, 13, (31 downto 13).length bits)
 
     // ! ESTAT
@@ -158,6 +160,10 @@ class ExceptionHandlerPlugin extends Plugin[MyCPUCore] {
     val takeInt = intHandler.intPending
     val eentry = UWord()
     eentry := EENTRY_PC.asUInt
+    when(!takeInt && !exceptPayload.payload.isTLBRefill) {
+      eentry := EENTRY_PC.asUInt +
+        ((exceptPayload.payload.code.asUInt.resize(32) - U(32, 32 bits)) |<< 9)
+    }
     when(!takeInt && exceptPayload.payload.isTLBRefill) {
       eentry := MMUPlugin.TLBRENTRY_PA.asUInt @@ U(0x0, 6 bits)
     }
@@ -175,6 +181,7 @@ class ExceptionHandlerPlugin extends Plugin[MyCPUCore] {
         when(exceptPayload.isTLBRefill) {
           CRMD_DA := True
           CRMD_PG := False
+          tlbrActive := True
         }
         // ESTAT
         ESTAT_ECODE := exceptPayload.payload.code
@@ -245,9 +252,10 @@ class ExceptionHandlerPlugin extends Plugin[MyCPUCore] {
 
       CRMD_PLV := PRMD_PPLV
       CRMD_IE := PRMD_PIE
-      when(ESTAT_ECODE === B(0x3f, 6 bits)) {
+      when(tlbrActive) {
         CRMD_DA := False
         CRMD_PG := True
+        tlbrActive := False
       }
     }
   }
