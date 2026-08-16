@@ -63,7 +63,20 @@ class ROBFIFOPlugin(config: MyCPUConfig) extends Plugin[MyCPUCore] {
     port
   }
 
-  val robState = Reg(Vec(stateType, robDepth))
+  // 频率修复(200MHz):robState 分 4 bank(每 bank 8 项)。读侧并行
+  // 8:1(bank 内)+ 4:1(bank 间)两级 mux 替代 32:1 宽 mux(popPtr→
+  // robState 读曾是 200MHz 最差路径,13 级含 MUXF7×2);随机写口经
+  // 动态 bank/地址索引自然落到对应 bank,写侧结构不变。
+  val bankCount = 4
+  val bankAddrWidth = log2Up(robDepth / bankCount)
+  val robStateBanks = Vec(Reg(Vec(stateType, robDepth / bankCount)), bankCount)
+  def stateBank(idx: UInt) = idx(log2Up(bankCount) - 1 downto 0)
+  def stateAddr(idx: UInt) = idx(addressWidth - 1 downto log2Up(bankCount))
+  def readState(idx: UInt) = {
+    val bankReads = Vec(robStateBanks.map(_(stateAddr(idx))))
+    bankReads(stateBank(idx))
+  }
+  def writeState(idx: UInt) = robStateBanks(stateBank(idx))(stateAddr(idx))
 
   val pushPtr = robInfo.pushPtr
   val popPtr = robInfo.popPtr
@@ -99,7 +112,7 @@ class ROBFIFOPlugin(config: MyCPUConfig) extends Plugin[MyCPUCore] {
       fifoIO.pop(i).translateFrom(robInfo.io.pop(i)) { (entry, info) =>
         entry.info := info
         entry.state.setAsReg().allowOverride
-        entry.state := robState(popPtr + robInfo.popCount + i)
+        entry.state := readState(popPtr + robInfo.popCount + i)
       }
 
     for (i <- 0 until decodeWidth) {
@@ -107,7 +120,7 @@ class ROBFIFOPlugin(config: MyCPUConfig) extends Plugin[MyCPUCore] {
         info := entry.info
       }
       when(fifoIO.push(i).fire) {
-        robState(pushPtr + i).assignSomeByName(fifoIO.push(i).payload.state)
+        writeState(pushPtr + i).assignSomeByName(fifoIO.push(i).payload.state)
         for (j <- i until retireWidth) when(pushPtr + i === popPtr + robInfo.popCount + j) {
           fifoIO.pop(j).payload.state.assignSomeByName(fifoIO.push(i).payload.state)
         }
@@ -157,10 +170,10 @@ class ROBFIFOPlugin(config: MyCPUConfig) extends Plugin[MyCPUCore] {
 
     for (p <- aluPorts)
       when(p.valid) {
-        robState(p.robIdx) := defaultState
-        robState(p.robIdx).allowOverride()
-        robState(p.robIdx).complete := True
-        robState(p.robIdx).assignSomeByName(p.payload)
+        writeState(p.robIdx) := defaultState
+        writeState(p.robIdx).allowOverride()
+        writeState(p.robIdx).complete := True
+        writeState(p.robIdx).assignSomeByName(p.payload)
         for (j <- 0 until retireWidth) when(p.robIdx === popPtr + robInfo.popCount + j) {
           fifoIO.pop(j).payload.state := defaultState
           fifoIO.pop(j).payload.state.allowOverride()
@@ -170,10 +183,10 @@ class ROBFIFOPlugin(config: MyCPUConfig) extends Plugin[MyCPUCore] {
       }
     for (p <- bruPorts)
       when(p.valid) {
-        robState(p.robIdx) := defaultState
-        robState(p.robIdx).allowOverride()
-        robState(p.robIdx).complete := True
-        robState(p.robIdx).assignSomeByName(p.payload)
+        writeState(p.robIdx) := defaultState
+        writeState(p.robIdx).allowOverride()
+        writeState(p.robIdx).complete := True
+        writeState(p.robIdx).assignSomeByName(p.payload)
         for (j <- 0 until retireWidth) when(p.robIdx === popPtr + robInfo.popCount + j) {
           fifoIO.pop(j).payload.state := defaultState
           fifoIO.pop(j).payload.state.allowOverride()
@@ -183,10 +196,10 @@ class ROBFIFOPlugin(config: MyCPUConfig) extends Plugin[MyCPUCore] {
       }
     for (p <- lsuPorts)
       when(p.valid) {
-        robState(p.robIdx) := defaultState
-        robState(p.robIdx).allowOverride()
-        robState(p.robIdx).complete := True
-        robState(p.robIdx).assignSomeByName(p.payload)
+        writeState(p.robIdx) := defaultState
+        writeState(p.robIdx).allowOverride()
+        writeState(p.robIdx).complete := True
+        writeState(p.robIdx).assignSomeByName(p.payload)
         for (j <- 0 until retireWidth) when(p.robIdx === popPtr + robInfo.popCount + j) {
           fifoIO.pop(j).payload.state := defaultState
           fifoIO.pop(j).payload.state.allowOverride()
@@ -196,9 +209,9 @@ class ROBFIFOPlugin(config: MyCPUConfig) extends Plugin[MyCPUCore] {
       }
     for (p <- completePorts)
       when(p.valid) {
-        robState(p.payload) := defaultState
-        robState(p.payload).allowOverride()
-        robState(p.payload).complete := True
+        writeState(p.payload) := defaultState
+        writeState(p.payload).allowOverride()
+        writeState(p.payload).complete := True
         for (j <- 0 until retireWidth) when(p.payload === popPtr + robInfo.popCount + j) {
           fifoIO.pop(j).payload.state := defaultState
           fifoIO.pop(j).payload.state.allowOverride()
