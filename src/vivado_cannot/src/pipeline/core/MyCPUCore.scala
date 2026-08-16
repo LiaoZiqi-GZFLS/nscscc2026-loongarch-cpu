@@ -123,7 +123,8 @@ class MyCPUCore(config: MyCPUConfig) extends Component with MultiPipeline {
     new PhysRegFilePlugin(config.regFile),
     new ROBFIFOPlugin(config),
     new CommitPlugin(config),
-    new BypassNetworkPlugin(config.regFile),
+    // 200MHz 简化:BypassNetworkPlugin 移除(INT 流水改非推测写回,
+    // 无 EXE 级旁路;PRF 读口同拍前递仅保留 LSU 的 bypass 写口)
     // Reservation stations
     new IntIssueQueuePlugin(config),
     new MulDivIssueQueuePlugin(config),

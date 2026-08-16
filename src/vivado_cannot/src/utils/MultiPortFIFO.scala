@@ -43,15 +43,24 @@ class MultiPortFIFOSyncImpl[T <: Data](
   val pushCount = PriorityMux(io.push.zipWithIndex.map { case (p, i) =>
     !p.fire -> U(i)
   } :+ (True -> U(pushPorts)))
-  ram.io.write.valid := io.push.map(_.valid).orR && !isFull
-  ram.io.write.payload.address := pushPtr
+  // 200MHz 结构重构:写端口整拍寄存(地址/数据/掩码/valid 全部延一拍),
+  // RENAME→DISPATCH→robInfo 的长组合链在写端口边界截断;RAM 写旁路
+  // 因此覆盖的是上一拍的 push。pop 侧语义由输出端"新鲜条目"选择 mux
+  // 保全:下一拍弹出"上一拍刚 push"的条目时直接取写寄存器数据。
+  val writePayload = RAMWriteCmdWithMask(Vec(dataType, pushPorts), ram.addressWidth, pushPorts)
+  writePayload.address := pushPtr
   for (i <- 0 until pushPorts) {
     // 所有左侧均valid，且可以push
     val validTakeLeft = io.push.take(i + 1).map(_.valid).andR
     io.push(i).ready := isEmpty || i < maxPush
-    ram.io.write.payload.mask(i) := io.push(i).ready && validTakeLeft
-    ram.io.write.payload.data(i) := io.push(i).payload
+    writePayload.mask(i) := io.push(i).ready && validTakeLeft
+    writePayload.data(i) := io.push(i).payload
   }
+  val writeValid = io.push.map(_.valid).orR && !isFull
+  val writeCmd = RegNext(writePayload)
+  val writeValidReg = RegNext(writeValid)
+  ram.io.write.payload := writeCmd
+  ram.io.write.valid := writeValidReg
   pushPtr := pushPtr + pushCount
 
   // pop logic
@@ -63,12 +72,23 @@ class MultiPortFIFOSyncImpl[T <: Data](
   // 上一拍的实际弹出数:本拍读响应(rsp = popPtr(T) 起的 2*popPorts 入口)
   // 对应下一拍要弹出的条目,响应侧用它选择
   val popCountReg = RegNext(popCount.resize(log2Up(popPorts * 2) bits))
+  // 上一拍 push 的指针与计数:本拍弹出的"新鲜条目"(上一拍刚 push,
+  // 尚未写入 RAM、也不在 RAM 读窗口的旁路覆盖内)从写寄存器直取
+  val pushPtrReg = RegNext(pushPtr)
+  val pushCountReg2 = RegNext(pushCount)
   for (i <- 0 until popPorts) {
     // 所有左侧均ready，且可以pop
     val readyTakeLeft = io.pop.take(i + 1).map(_.ready).andR
     io.pop(i).valid := isFull || i < maxPop
+    val entryIdx = popPtr + i
+    val freshLane = entryIdx - pushPtrReg
+    val fresh = entryIdx >= pushPtrReg && freshLane < pushCountReg2
     // 手动复制:每个 pop 口的响应 mux 读不同的 rsp 副本,拆散扇出
-    io.pop(i).payload := ram.io.rspReplicas(i % popPorts)(popCountReg + i)
+    io.pop(i).payload := Mux(
+      fresh,
+      writeCmd.data(freshLane.resize(log2Up(pushPorts) bits)),
+      ram.io.rspReplicas(i % popPorts)(popCountReg + i)
+    )
   }
   popPtr := popPtr + popCount
   ram.io.read.cmd.valid := True

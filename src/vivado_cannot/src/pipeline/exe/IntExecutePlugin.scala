@@ -25,8 +25,6 @@ class IntExecutePlugin(val config: MyCPUConfig, val fuIdx: Int) extends Plugin[E
 
   val rrdReq = Vec(UInt(prfAddrWidth bits), rPorts)
   var rrdRsp: Vec[Bits] = null
-  val bypassReq = Vec(UInt(prfAddrWidth bits), rPorts)
-  var bypassRsp: Vec[Flow[Bits]] = null
   var clrBusy: Flow[UInt] = null
   var wPort: Flow[RegWriteBundle] = null
   var robWriteBRU: Flow[ROBStateBRUPortBundle] = null
@@ -57,18 +55,14 @@ class IntExecutePlugin(val config: MyCPUConfig, val fuIdx: Int) extends Plugin[E
 
     rrdRsp = Vec(rrdReq.map(PRF.readPort(_)))
     clrBusy = PRF.clearBusy
-    wPort = PRF.writePort(true)
+    // 200MHz 简化:INT 流水不做 EXE 级旁路(非推测写回),
+    // PRF 写口不需要 bypass 标志(读口同拍前递只保留给 LSU)
+    wPort = PRF.writePort(false)
 
     // Logic: (1) IntPipeline detects all issue slots in issue queue that can be issued
     //        (2) IntPipeline sends issue requests to IntIssueQueue
     //        (3) IntIssueQueue sends issue grants to IntPipeline
     issGrant = IQ.grantPort(issReqs)
-
-    // RRD: Read PRF
-    // EXE: Read from Bypass Network. If not found, use RRD response
-    val BYPASS = pipeline.globalService(classOf[BypassNetworkPlugin])
-    BYPASS.writePorts += wPort
-    bypassRsp = Vec(bypassReq.map(BYPASS.readPort(_)))
 
     // ! Hook with interface of ROB
     if (withBRU || withCSR || withINVTLB) robWriteBRU = ROB.bruPort
@@ -118,17 +112,8 @@ class IntExecutePlugin(val config: MyCPUConfig, val fuIdx: Int) extends Plugin[E
       IQ.issueFire clearWhen arbitration.isStuck
       arbitration.removeIt setWhen (arbitration.notStuck && (flush || !issValid))
 
-      // 本地 bypass 唤醒，早一个周期，一个周期后既能出结果，该指令也能 RRD
-      when(issValid && issSlot.uop.doRegWrite) {
-        for (i <- 0 until iqDepth) {
-          for (j <- 0 until rPorts)
-            when(issSlot.wReg === IQ.queueNext(i).rRegs(j).payload && arbitration.notStuck) {
-              // bypass wake-up with bypass network
-              IQ.queue(i).rRegs(j).valid := True
-              IQ.queueNext(i).rRegs(j).valid := True
-            }
-        }
-      }
+      // 200MHz 简化:本地提前唤醒移除(原依赖 EXE 级旁路覆盖提前窗口),
+      // 依赖消费者统一由 WB 时刻的 busy 清除远程唤醒
     }
 
     pipeline.RRD plug new Area {
@@ -139,12 +124,8 @@ class IntExecutePlugin(val config: MyCPUConfig, val fuIdx: Int) extends Plugin[E
         insert(REG_READ_RSP)(i) := rrdRsp(i)
       }
       // 远程唤醒（genGlobalWakeup）
-      // 在这个周期，当前指令指示下一周期清掉了 wReg 的 Busy
-      // 下一周期，在 IssueQueue 中使用该寄存器的指令的寄存器变成 valid 状态，可以被 ISS
-      // 再下一周期，本指令进入 WB 阶段，而使用该寄存器的指令进入 RRD 阶段，因此需要旁路
-      clrBusy.valid := arbitration.isValidNotStuck && issSlot.uop.doRegWrite
-      clrBusy.payload := issSlot.wReg
-
+      // 200MHz 简化:busy 清除移到 WB(非推测写回,见 WB 区)——数据先入
+      // PRF,消费者再被唤醒,消费端 RRD 直接读 PRF,无需 EXE 级旁路
       arbitration.haltByOther setWhen pipeline
         .globalService(classOf[SpeculativeWakeupHandler])
         .regWakeupFailed
@@ -162,14 +143,10 @@ class IntExecutePlugin(val config: MyCPUConfig, val fuIdx: Int) extends Plugin[E
       val alu = new ALU()
 
       // ! Prepare input data
+      // 200MHz 简化:无 EXE 级旁路,操作数直接来自 PRF 读响应
+      // (busy 清除在 WB 执行,消费者被唤醒时数据已在 PRF)
       val rrdRsp = input(REG_READ_RSP)
-      val regData = CombInit(rrdRsp)
-      // bypass logic
-      for (i <- 0 until rPorts) {
-        bypassReq(i) := issSlot.rRegs(i).payload
-        when(bypassRsp(i).valid) { regData(i) := bypassRsp(i).payload }
-      }
-      // Now regData is the data read from bypass network or PRF
+      val regData = rrdRsp
 
       // ! Calculate return value
       val exeResult = insert(EXE_RESULT) // return value
@@ -319,6 +296,11 @@ class IntExecutePlugin(val config: MyCPUConfig, val fuIdx: Int) extends Plugin[E
       wPort.valid := arbitration.isValidNotStuck && wbReq.valid
       wPort.payload.addr := wbReq.payload
       wPort.payload.data := wbData
+
+      // 200MHz 简化:非推测写回——busy 在 WB 清除(数据同一拍写入
+      // PRF,下一拍消费者被唤醒、再下一拍 RRD 读到新数据,无需旁路)
+      clrBusy.valid := arbitration.isValidNotStuck && wbReq.valid
+      clrBusy.payload := wbReq.payload
 
       // No except can occur in IntExecute
       val except = Flow(ExceptionPayloadBundle(false)).setIdle()
