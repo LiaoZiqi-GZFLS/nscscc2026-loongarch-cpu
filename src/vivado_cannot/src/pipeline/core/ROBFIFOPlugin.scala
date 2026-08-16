@@ -184,7 +184,11 @@ class ROBFIFOPlugin(config: MyCPUConfig) extends Plugin[MyCPUCore] {
         q.io.popped(j).valid := robInfo.io.pop(j).fire
         q.io.popped(j).robIdx := popPtr + j
       }
-      q.io.clear := fifoIO.flush
+      // straggler 防护:flush 后一拍 MEM 级指令仍会完成(旧代 robIdx),
+      // 其 push 落在已清空的队列里成为陈旧条目。clear 延长一拍覆盖
+      // 该窗口(再深处已被 removeIt 清除,不会产生完成事件)。
+      val clearHold = RegNext(fifoIO.flush) init (False)
+      q.io.clear := fifoIO.flush || clearHold
     }
 
     for (i <- 0 until decodeWidth) {
@@ -224,8 +228,8 @@ class ROBFIFOPlugin(config: MyCPUConfig) extends Plugin[MyCPUCore] {
     printf("  issue width: %d\n", portCount)
 
     // P0:完成事件入队列(状态装配与旧 robState 写完全一致);
-    // 同拍前递(robIdx 匹配当前批)保留。每队列单 when/otherwise 链
-    def pushPayload(q: CompletionQueue[_], robIdx: UInt) = {
+    // 同拍前递(robIdx 匹配当前批)保留。每队列单 when/otherwise 链。
+def pushPayload(q: CompletionQueue[_], robIdx: UInt) = {
       q.io.push.robIdx := robIdx
       val pushState = ROBEntryStateBundle(config.regFile)
       pushState := defaultState
