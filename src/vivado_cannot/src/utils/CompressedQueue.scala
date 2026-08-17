@@ -44,7 +44,14 @@ abstract class CompressedQueue[T <: IssueSlot](
     grants
   }
 
+  // round-13:槽负载复位清零,消除复位后 X 经发射选择/唤醒比较
+  // 传播的竞态(不同网表呈现不同的确定性死锁点)。
   val queue = Vec(RegFlow(slotType()), depth) // 做槽移动
+  queue.foreach { q =>
+    val z = slotType()
+    z.assignFromBits(B(0, widthOf(z) bits))
+    q.payload.init(z)
+  }
   val queueNext = CombInit(queue) // 标志对应槽的下一个值（不考虑压缩）  // 1. 不压缩时自身状态转移。同步至stateNext。
 
   val issueMask = Bits(depth bits)

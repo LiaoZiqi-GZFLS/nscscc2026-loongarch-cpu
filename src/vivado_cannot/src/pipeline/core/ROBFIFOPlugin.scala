@@ -72,7 +72,36 @@ class ROBFIFOPlugin(config: MyCPUConfig) extends Plugin[MyCPUCore] {
   // bank,写侧结构与旧版一致(不在关键路径)。
   val bankCount = 4
   val bankAddrWidth = log2Up(robDepth / bankCount)
-  val robStateBanks = Vec(Reg(Vec(stateType, robDepth / bankCount)), bankCount)
+  // round-13:robState 分体全部复位为"未完成/无异常"初值。
+  // 此前 Vec(Reg(...)) 复位后为 X:提交环的读前推把 X 带入
+  // state 寄存器,不同网表/仿真出现确定性但互异的 X 行为
+  // (功能点 16 钉死、功能点 10 钉死等)。复位后此类竞态整体消除。
+  def bankInitState() = {
+    val s = new ROBEntryStateBundle(config.regFile)
+    s.complete := False
+    s.except.setIdle()
+    s.mispredict := False
+    s.actualTaken := False
+    s.lsuUncached := False
+    s.intResult := 0
+    s.isCount := False
+    s.count64ReadValue := 0
+    s.csrRstat := False
+    s.csrRdata := 0
+    s.isLoad := False
+    s.isStore := False
+    s.isLL := False
+    s.isSC := False
+    s.lsType := LoadStoreType.WORD
+    s.vAddr := 0
+    s.pAddr := 0
+    s.storeData := 0
+    s.myPC := 0
+    s
+  }
+  val robStateBanks = Vec.fill(bankCount)(
+    RegInit(Vec.fill(robDepth / bankCount)(bankInitState()))
+  )
   def stateBank(idx: UInt) = idx(log2Up(bankCount) - 1 downto 0)
   def stateAddr(idx: UInt) = idx(addressWidth - 1 downto log2Up(bankCount))
   def readState(idx: UInt) = {
