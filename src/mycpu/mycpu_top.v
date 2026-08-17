@@ -7514,6 +7514,9 @@ module MyCPUCore (
   output     [31:0]   INT1_EXE_IntExecutePlugin_debug_exeResult,
   output     [31:0]   INT0_EXE_IntExecutePlugin_debug_exeResult
 );
+  (* max_fanout = 200 *) wire aresetn_i;
+  assign aresetn_i = aresetn;
+
   localparam LoadStoreType_BYTE_1 = 3'd0;
   localparam LoadStoreType_HALF = 3'd1;
   localparam LoadStoreType_WORD = 3'd2;
@@ -22914,11 +22917,11 @@ module MyCPUCore (
     .io_pop_2_payload_predRecover_ghr             (FetchBufferPlugin_bufferFIFO_io_pop_2_payload_predRecover_ghr[6:0]           ), //o
     .flush                                        (CommitPlugin_needFlush                                                       ), //i
     .aclk                                         (aclk                                                                         ), //i
-    .aresetn                                      (aresetn                                                                      )  //i
+    .aresetn                                      (aresetn_i                                                                      )  //i
   );
   SDPRAM ICachePlugin_dataRAMs_0 (
     .aclk                     (aclk                                                  ), //i
-    .aresetn                  (aresetn                                               ), //i
+    .aresetn                  (aresetn_i                                               ), //i
     .io_read_cmd_valid        (ICachePlugin_rValid                                   ), //i
     .io_read_cmd_payload      (ICachePlugin_dataRAMs_0_io_read_cmd_payload[5:0]      ), //i
     .io_read_rsp_0            (ICachePlugin_dataRAMs_0_io_read_rsp_0[31:0]           ), //o
@@ -22959,7 +22962,7 @@ module MyCPUCore (
   );
   SDPRAM ICachePlugin_dataRAMs_1 (
     .aclk                     (aclk                                                  ), //i
-    .aresetn                  (aresetn                                               ), //i
+    .aresetn                  (aresetn_i                                               ), //i
     .io_read_cmd_valid        (ICachePlugin_rValid                                   ), //i
     .io_read_cmd_payload      (ICachePlugin_dataRAMs_1_io_read_cmd_payload[5:0]      ), //i
     .io_read_rsp_0            (ICachePlugin_dataRAMs_1_io_read_rsp_0[31:0]           ), //o
@@ -23000,7 +23003,7 @@ module MyCPUCore (
   );
   SDPRAM_2 ICachePlugin_infoRAM (
     .aclk                         (aclk                                                   ), //i
-    .aresetn                      (aresetn                                                ), //i
+    .aresetn                      (aresetn_i                                                ), //i
     .io_read_cmd_valid            (ICachePlugin_rValid                                    ), //i
     .io_read_cmd_payload          (ICachePlugin_infoRAM_io_read_cmd_payload[5:0]          ), //i
     .io_read_rsp_lru              (ICachePlugin_infoRAM_io_read_rsp_lru                   ), //o
@@ -23014,7 +23017,7 @@ module MyCPUCore (
   );
   ReorderCacheRAM GlobalPredictorBTBPlugin_btb (
     .aclk                                          (aclk                                                                          ), //i
-    .aresetn                                       (aresetn                                                                       ), //i
+    .aresetn                                       (aresetn_i                                                                       ), //i
     .io_read_cmd_valid                             (GlobalPredictorBTBPlugin_btb_io_read_cmd_valid                                ), //i
     .io_read_cmd_payload                           (GlobalPredictorBTBPlugin_index[9:0]                                           ), //i
     .io_read_rsp_0_tag                             (GlobalPredictorBTBPlugin_btb_io_read_rsp_0_tag[19:0]                          ), //o
@@ -23069,7 +23072,7 @@ module MyCPUCore (
     .io_write_payload_ghr        (GlobalPredictorBTBPlugin_predictor_io_write_payload_ghr[6:0]       ), //i
     .io_write_payload_newCounter (GlobalPredictorBTBPlugin_predictor_io_write_payload_newCounter[1:0]), //i
     .aclk                        (aclk                                                               ), //i
-    .aresetn                     (aresetn                                                            )  //i
+    .aresetn                     (aresetn_i                                                            )  //i
   );
   unamed_1 RenamePlugin_freeList (
     .io_push_0_valid   (RenamePlugin_freeList_io_push_0_valid       ), //i
@@ -23092,7 +23095,7 @@ module MyCPUCore (
     .io_pop_2_payload  (RenamePlugin_freeList_io_pop_2_payload[5:0] ), //o
     .recover           (CommitPlugin_recoverPRF                     ), //i
     .aclk              (aclk                                        ), //i
-    .aresetn           (aresetn                                     )  //i
+    .aresetn           (aresetn_i                                     )  //i
   );
   DirtyBitsManager DCachePlugin_dirtyBitsManager (
     .io_readCmd               (DCachePlugin_dirtyBitsManager_io_readCmd[5:0]             ), //i
@@ -23102,11 +23105,11 @@ module MyCPUCore (
     .io_writeCmd_payload_way  (DCachePlugin_dirtyBitsManager_io_writeCmd_payload_way[1:0]), //i
     .io_writeCmd_payload_data (DCachePlugin_dirtyBitsManager_io_writeCmd_payload_data    ), //i
     .aclk                     (aclk                                                      ), //i
-    .aresetn                  (aresetn                                                   )  //i
+    .aresetn                  (aresetn_i                                                   )  //i
   );
   SDPRAM_3 DCachePlugin_dataRAMs_0 (
     .aclk                     (aclk                                                 ), //i
-    .aresetn                  (aresetn                                              ), //i
+    .aresetn                  (aresetn_i                                              ), //i
     .io_read_cmd_valid        (DCachePlugin_dataRAMs_0_io_read_cmd_valid            ), //i
     .io_read_cmd_payload      (DCachePlugin_dataRAMs_0_io_read_cmd_payload[9:0]     ), //i
     .io_read_rsp              (DCachePlugin_dataRAMs_0_io_read_rsp[31:0]            ), //o
@@ -23117,7 +23120,7 @@ module MyCPUCore (
   );
   SDPRAM_3 DCachePlugin_dataRAMs_1 (
     .aclk                     (aclk                                                 ), //i
-    .aresetn                  (aresetn                                              ), //i
+    .aresetn                  (aresetn_i                                              ), //i
     .io_read_cmd_valid        (DCachePlugin_dataRAMs_1_io_read_cmd_valid            ), //i
     .io_read_cmd_payload      (DCachePlugin_dataRAMs_1_io_read_cmd_payload[9:0]     ), //i
     .io_read_rsp              (DCachePlugin_dataRAMs_1_io_read_rsp[31:0]            ), //o
@@ -23128,7 +23131,7 @@ module MyCPUCore (
   );
   SDPRAM_3 DCachePlugin_dataRAMs_2 (
     .aclk                     (aclk                                                 ), //i
-    .aresetn                  (aresetn                                              ), //i
+    .aresetn                  (aresetn_i                                              ), //i
     .io_read_cmd_valid        (DCachePlugin_dataRAMs_2_io_read_cmd_valid            ), //i
     .io_read_cmd_payload      (DCachePlugin_dataRAMs_2_io_read_cmd_payload[9:0]     ), //i
     .io_read_rsp              (DCachePlugin_dataRAMs_2_io_read_rsp[31:0]            ), //o
@@ -23139,7 +23142,7 @@ module MyCPUCore (
   );
   SDPRAM_3 DCachePlugin_dataRAMs_3 (
     .aclk                     (aclk                                                 ), //i
-    .aresetn                  (aresetn                                              ), //i
+    .aresetn                  (aresetn_i                                              ), //i
     .io_read_cmd_valid        (DCachePlugin_dataRAMs_3_io_read_cmd_valid            ), //i
     .io_read_cmd_payload      (DCachePlugin_dataRAMs_3_io_read_cmd_payload[9:0]     ), //i
     .io_read_rsp              (DCachePlugin_dataRAMs_3_io_read_rsp[31:0]            ), //o
@@ -23150,7 +23153,7 @@ module MyCPUCore (
   );
   SDPRAM_7 DCachePlugin_infoRAM (
     .aclk                         (aclk                                                   ), //i
-    .aresetn                      (aresetn                                                ), //i
+    .aresetn                      (aresetn_i                                                ), //i
     .io_read_cmd_valid            (MEM_ADDR_DCachePlugin_rValid                           ), //i
     .io_read_cmd_payload          (DCachePlugin_infoRAM_io_read_cmd_payload[5:0]          ), //i
     .io_read_rsp_lru              (DCachePlugin_infoRAM_io_read_rsp_lru[1:0]              ), //o
@@ -23168,7 +23171,7 @@ module MyCPUCore (
   );
   unamed_2 ROBFIFOPlugin_robInfo (
     .aclk                                             (aclk                                                                        ), //i
-    .aresetn                                          (aresetn                                                                     ), //i
+    .aresetn                                          (aresetn_i                                                                     ), //i
     .pushPtr                                          (ROBFIFOPlugin_robInfo_pushPtr[4:0]                                          ), //o
     .popPtr                                           (ROBFIFOPlugin_robInfo_popPtr[4:0]                                           ), //o
     .io_push_0_valid                                  (ROBFIFOPlugin_fifoIO_push_0_valid                                           ), //i
@@ -23436,7 +23439,7 @@ module MyCPUCore (
     .io_rsp_payload_remainder   (unsignedDivider_2_io_rsp_payload_remainder[31:0]), //o
     .io_rsp_payload_error       (unsignedDivider_2_io_rsp_payload_error          ), //o
     .aclk                       (aclk                                            ), //i
-    .aresetn                    (aresetn                                         )  //i
+    .aresetn                    (aresetn_i                                         )  //i
   );
   UnsignedDivider_1 unsignedDivider_3 (
     .io_flush                   (1'b0                                              ), //i
@@ -23450,7 +23453,7 @@ module MyCPUCore (
     .io_rsp_payload_remainder   (unsignedDivider_3_io_rsp_payload_remainder[15:0]  ), //o
     .io_rsp_payload_error       (unsignedDivider_3_io_rsp_payload_error            ), //o
     .aclk                       (aclk                                              ), //i
-    .aresetn                    (aresetn                                           )  //i
+    .aresetn                    (aresetn_i                                           )  //i
   );
   always @(*) begin
     case(_zz_MEM_MEM1_DCACHE_VALIDS_0)
@@ -75205,8 +75208,8 @@ module MyCPUCore (
   assign when_UncachedAccess_l78 = ((MEM_MEM2_UncachedAccessPlugin_uncachedStoreFSM_awSent || io_udBus_aw_fire_1) && (MEM_MEM2_UncachedAccessPlugin_uncachedStoreFSM_wSent || io_udBus_w_fire_1));
   assign io_udBus_b_fire_1 = (io_udBus_b_valid && io_udBus_b_ready);
   assign UncachedAccessPlugin_uncachedStoreHandshake_fire_1 = (UncachedAccessPlugin_uncachedStoreHandshake_valid && UncachedAccessPlugin_uncachedStoreHandshake_ready);
-  always @(posedge aclk or negedge aresetn) begin
-    if(!aresetn) begin
+  always @(posedge aclk or negedge aresetn_i) begin
+    if(!aresetn_i) begin
       ICachePlugin_valids_0_0 <= 1'b0;
       ICachePlugin_valids_0_1 <= 1'b0;
       ICachePlugin_valids_1_0 <= 1'b0;
