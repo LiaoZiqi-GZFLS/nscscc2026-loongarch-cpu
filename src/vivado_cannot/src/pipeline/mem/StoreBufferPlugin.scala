@@ -30,6 +30,7 @@ class StoreBufferPlugin(config: MyCPUConfig) extends Plugin[MemPipeline] {
   val depth = config.storeBufferDepth
   val slotType = HardType(StoreBufferSlot(config))
   val queue = Vec(RegFlow(slotType()), depth)
+  queue.foreach { q => val z = slotType(); z.assignFromBits(B(0, widthOf(z) bits)); q.payload.init(z) } // round-14:X-sweep 槽负载复位清零
   val queueNext = CombInit(queue)
   val queueIO = new Area {
     val pushPort = Stream(slotType)

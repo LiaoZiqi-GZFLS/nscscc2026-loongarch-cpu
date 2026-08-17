@@ -108,7 +108,7 @@ class AxiBuffer(axiConfig: Axi4Config) extends Component {
     val waitW = new State
     val waitB = new State
 
-    val regEntry = Reg(bufferType)
+    val regEntry = RegInit({ val z = bufferType(); z.assignFromBits(B(0, widthOf(z) bits)); z }) // round-14:X-sweep
 
     stateBoot.whenIsActive {
       when(fifo.io.rd_rst_busy) {

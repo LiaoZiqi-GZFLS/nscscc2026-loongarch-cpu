@@ -40,10 +40,10 @@ class CorrelatingPredictor(config: FrontendConfig, fetchWidth: Int) extends Comp
     false
   )
 
-  // 注:PHT 计数器不做参数初始化(原为弱跳转 1)。XPM_MEMORY 的
-  // MEMORY_INIT_PARAM 上限 4K bit,32K 项 ×2bit ÷fetchWidth 的 bank
-  // 达 16K bit,超限会导致 Vivado 综合失败。冷启动计数 0(强不跳),
-  // 长循环基准下数个分支后即自训练收敛,性能影响可忽略。
+  // 娉?PHT 璁℃暟鍣ㄤ笉鍋氬弬鏁板垵濮嬪寲(鍘熶负寮辫烦杞?1)銆俋PM_MEMORY 鐨?
+  // MEMORY_INIT_PARAM 涓婇檺 4K bit,32K 椤?脳2bit 梅fetchWidth 鐨?bank
+  // 杈?16K bit,瓒呴檺浼氬鑷?Vivado 缁煎悎澶辫触銆傚喎鍚姩璁℃暟 0(寮轰笉璺?,
+  // 闀垮惊鐜熀鍑嗕笅鏁颁釜鍒嗘敮鍚庡嵆鑷缁冩敹鏁?鎬ц兘褰卞搷鍙拷鐣ャ€?
   io.read.globalHistory := nextGHR // snapshot must match the GHR used by the PHT read index
   when(io.updateGHR.valid) { ghr := io.updateGHR.payload }
   nextGHR := Mux(io.updateGHR.valid, io.updateGHR.payload, ghr)
@@ -71,7 +71,7 @@ class GlobalPredictorBTBPlugin(config: FrontendConfig) extends Plugin[FetchPipel
   val predictor = new CorrelatingPredictor(config, fetchWidth)
 
   val predictInterface = Flow(UWord())
-  val jumpTarget = Reg(UWord())
+  val jumpTarget = RegInit(U(0, 32 bits)) // round-14:X-sweep
 
   override def setup(pipeline: FetchPipeline): Unit = {
     val programCounter = pipeline.service(classOf[ProgramCounterPlugin])
@@ -112,8 +112,8 @@ class GlobalPredictorBTBPlugin(config: FrontendConfig) extends Plugin[FetchPipel
         val way = fetchWay + i
         when(way >= fetchWay) { // confirm not out of bound
           val entry = hitData(i)
-          // P7:BTB valid 1024:1 读由 Vec.read 的 2:1 递归(10 级)
-          // 改为 4:1 树形读(5 级)
+          // P7:BTB valid 1024:1 璇荤敱 Vec.read 鐨?2:1 閫掑綊(10 绾?
+          // 鏀逛负 4:1 鏍戝舰璇?5 绾?
           val validFlag = TreeRead(valid.map(_.asBits).toIndexedSeq, index + i).asBool && entry.tag === tag
           when(validFlag) { // matched entry
             insert(PRED_COUNTER)(i) := predictor.io.read.predCounters(i)

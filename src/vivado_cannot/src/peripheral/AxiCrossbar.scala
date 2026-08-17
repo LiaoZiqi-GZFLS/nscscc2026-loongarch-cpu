@@ -14,7 +14,7 @@ class AxiCrossbar(axiConfig: Axi4Config) extends Component {
     val busList = Seq(io.dBus, io.udBus)
     val busWithIndex = busList.zipWithIndex
     val busy = RegInit(False)
-    val grantId = Reg(UInt(1 bits))
+    val grantId = RegInit(U(0, 1 bits)) // round-14:X-sweep 复位清零
     val hasReq = busList.map(_.aw.valid).orR
     when(!busy && hasReq) {
       busy := True
@@ -34,7 +34,7 @@ class AxiCrossbar(axiConfig: Axi4Config) extends Component {
     val busList = Seq(io.iBus, io.dBus, io.udBus)
     val busWithIndex = busList.zipWithIndex
     val busy = RegInit(False)
-    val grantId = Reg(UInt(2 bits))
+    val grantId = RegInit(U(0, 2 bits)) // round-14:X-sweep 复位清零
     val hasReq = busList.map(_.ar.valid).orR
     when(!busy && hasReq) {
       busy := True

@@ -62,8 +62,11 @@ class MultiPortFIFOSyncImpl[T <: Data](
     writePayload.data(i) := io.push(i).payload
   }
   val writeValid = io.push.map(_.valid).orR && !isFull
-  val writeCmd = RegNext(writePayload)
-  val writeValidReg = RegNext(writeValid)
+  // round-14:X-sweep 写命令/valid 寄存器复位清零,消除未初始化寄存器
+  val writeCmdInit = RAMWriteCmdWithMask(Vec(dataType, pushPorts), ram.addressWidth, pushPorts)
+  writeCmdInit.assignFromBits(B(0, widthOf(writeCmdInit) bits))
+  val writeCmd = RegNext(writePayload, init = writeCmdInit)
+  val writeValidReg = RegNext(writeValid, init = False)
   ram.io.write.payload := writeCmd
   ram.io.write.valid := writeValidReg
   pushPtr := pushPtr + pushCount
@@ -76,11 +79,12 @@ class MultiPortFIFOSyncImpl[T <: Data](
   } :+ (True -> U(popPorts)))
   // 上一拍的实际弹出数:本拍读响应(rsp = popPtr(T) 起的 2*popPorts 入口)
   // 对应下一拍要弹出的条目,响应侧用它选择
-  val popCountReg = RegNext(popCount.resize(log2Up(popPorts * 2) bits))
+  // round-14:X-sweep 历史寄存器复位清零
+  val popCountReg = RegNext(popCount.resize(log2Up(popPorts * 2) bits), init = U(0, log2Up(popPorts * 2) bits))
   // 上一拍 push 的指针与计数:本拍弹出的"新鲜条目"(上一拍刚 push,
   // 尚未写入 RAM、也不在 RAM 读窗口的旁路覆盖内)从写寄存器直取
-  val pushPtrReg = RegNext(pushPtr)
-  val pushCountReg2 = RegNext(pushCount)
+  val pushPtrReg = RegNext(pushPtr, init = U(0, ram.addressWidth bits))
+  val pushCountReg2 = RegNext(pushCount, init = U(0, log2Up(pushPorts) bits))
   for (i <- 0 until popPorts) {
     // 所有左侧均ready，且可以pop
     val readyTakeLeft = io.pop.take(i + 1).map(_.ready).andR

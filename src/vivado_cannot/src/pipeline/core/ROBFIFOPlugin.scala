@@ -72,7 +72,15 @@ class ROBFIFOPlugin(config: MyCPUConfig) extends Plugin[MyCPUCore] {
   // bank,写侧结构与旧版一致(不在关键路径)。
   val bankCount = 4
   val bankAddrWidth = log2Up(robDepth / bankCount)
-  val robStateBanks = Vec(Reg(Vec(stateType, robDepth / bankCount)), bankCount)
+  // round-14:X-sweep bank 复位清零(complete=False、except idle、其余字段 0),
+  // 消除未初始化寄存器在不同网表间的 X 抖动
+  def bankInitState() = Vec.tabulate(robDepth / bankCount) { _ =>
+    val s = stateType()
+    // 全字段清零:complete=False、except valid=False(即 idle),其余字段 0
+    s.assignFromBits(B(0, widthOf(s) bits))
+    s
+  }
+  val robStateBanks = Vec.tabulate(bankCount)(_ => RegInit(bankInitState()))
   def stateBank(idx: UInt) = idx(log2Up(bankCount) - 1 downto 0)
   def stateAddr(idx: UInt) = idx(addressWidth - 1 downto log2Up(bankCount))
   def readState(idx: UInt) = {

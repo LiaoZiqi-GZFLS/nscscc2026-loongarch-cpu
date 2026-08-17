@@ -29,7 +29,7 @@ class ICachePlugin(config: MyCPUConfig) extends Plugin[FetchPipeline] {
   private val icache = config.frontend.icache
 
   // * Cache Valid/DATA/CacheLineInfo area
-  // valid有单index清空的可能，多写口
+  // valid鏈夊崟index娓呯┖鐨勫彲鑳斤紝澶氬啓鍙?
   val valids = Vec(Vec(RegInit(False), icache.ways), icache.sets) // valids[sets][ways]
   val dataRAMs =
     Seq.fill(icache.ways)(
@@ -44,17 +44,17 @@ class ICachePlugin(config: MyCPUConfig) extends Plugin[FetchPipeline] {
   private object ICACHE_INFO extends Stageable(CacheLineInfo(icache)) // CacheLineInfo
 
   // * Cache Interface
-  // iBus本身一定是read only，但对外可以转Axi4
+  // iBus鏈韩涓€瀹氭槸read only锛屼絾瀵瑰鍙互杞珹xi4
   val iBus = Axi4ReadOnly(config.axiConfig).setIdle()
 
   override def build(pipeline: FetchPipeline): Unit = pipeline plug new Area {
     // * Plugin Area into FetchPipeline
     import pipeline._
-    // I-cache重取(round-7:触发条件改为纯 FSM 状态,见 finish 态注释)
+    // I-cache閲嶅彇(round-7:瑙﹀彂鏉′欢鏀逛负绾?FSM 鐘舵€?瑙?finish 鎬佹敞閲?
     val doRefetch = False
-    // IF1为气泡的时候跳过refetch，省一个周期
+    // IF1涓烘皵娉＄殑鏃跺€欒烦杩噐efetch锛岀渷涓€涓懆鏈?
     val refetchValid = pipeline.IF1.arbitration.isValid && doRefetch
-    // 读tag按照index找行
+    // 璇籺ag鎸夌収index鎵捐
     val nextPC = pipeline.service(classOf[ProgramCounterPlugin]).nextPC
     val rValid = !pipeline.IF1.arbitration.isStuck || refetchValid
     // If refetch, read from PC, else read from nextPC
@@ -77,7 +77,7 @@ class ICachePlugin(config: MyCPUConfig) extends Plugin[FetchPipeline] {
       import IF1._
       arbitration.haltItself setWhen refetchValid
       val pc = input(pipeline.signals.PC)
-      // 读valid也插进流水线(P7:64:1 树形读,3 级)
+      // 璇籿alid涔熸彃杩涙祦姘寸嚎(P7:64:1 鏍戝舰璇?3 绾?
       insert(ICACHE_VALIDS) := TreeRead(valids.map(_.asBits).toIndexedSeq, pc(icache.indexRange)).asBools
       for (i <- 0 until icache.ways) {
         for (j <- 0 until frontend.fetchWidth) {
@@ -89,8 +89,8 @@ class ICachePlugin(config: MyCPUConfig) extends Plugin[FetchPipeline] {
     }
 
     // * Plugin Area into IF3
-    // 三级流水:IF1 发 RAM 读+TLB stage1,IF2 解析出 physPC,IF3 做
-    // VIPT 命中检查/refill/组包。PC/PC_PHYSICAL/ICACHE_* 经级间寄存器流动。
+    // 涓夌骇娴佹按:IF1 鍙?RAM 璇?TLB stage1,IF2 瑙ｆ瀽鍑?physPC,IF3 鍋?
+    // VIPT 鍛戒腑妫€鏌?refill/缁勫寘銆侾C/PC_PHYSICAL/ICACHE_* 缁忕骇闂村瘎瀛樺櫒娴佸姩銆?
     IF3 plug new Area {
       import IF3._
 
@@ -99,7 +99,7 @@ class ICachePlugin(config: MyCPUConfig) extends Plugin[FetchPipeline] {
       val reqCommit = reqValid && !arbitration.isStuck
       val virtPC = input(pipeline.signals.PC)
       val physPC = input(pipeline.signals.PC_PHYSICAL)
-      // PC在cache line中的位置，用于计算fetch word是否有效
+      // PC鍦╟ache line涓殑浣嶇疆锛岀敤浜庤绠梖etch word鏄惁鏈夋晥
       val pcWordOffset = virtPC(icache.wordOffsetRange)
 
       // Virtual Index, Physical Tag
@@ -112,18 +112,18 @@ class ICachePlugin(config: MyCPUConfig) extends Plugin[FetchPipeline] {
       val dataWs = Vec(dataRAMs.map(_.io.write.setIdle()))
       val dataMasks = Vec(dataRAMs.map(_.io.writeMask.clearAll().subdivideIn(4 bits, true)))
 
-      // cache查询
+      // cache鏌ヨ
       val hits = setValids.zip(input(ICACHE_INFO).tags).map { case (valid, t) =>
         valid && t === tag
       }
       val hit = hits.orR
       val hitData = MuxOH(hits, input(ICACHE_RSPS))
 
-      // 存储当前被填充的packet，避免IF2重取
-      val storedPacket = Vec(Reg(BWord()), frontend.fetchWidth)
+      // 瀛樺偍褰撳墠琚～鍏呯殑packet锛岄伩鍏岻F2閲嶅彇
+      val storedPacket = Vec(RegInit(B(0, 32 bits)), frontend.fetchWidth) // round-14:X-sweep
 
       when(reqCommit && hit) {
-        // 命中，提交LRU修改
+        // 鍛戒腑锛屾彁浜RU淇敼
         assert(icache.ways == 2)
         val newInfo = input(ICACHE_INFO).copy()
         newInfo.tags := input(ICACHE_INFO).tags
@@ -134,7 +134,7 @@ class ICachePlugin(config: MyCPUConfig) extends Plugin[FetchPipeline] {
         wPort.payload.data := newInfo
       }
 
-      // 解决cache miss
+      // 瑙ｅ喅cache miss
       val cacheRefillFSM = new StateMachine {
         val waitAXI = new State
         val readMem = new State
@@ -146,12 +146,12 @@ class ICachePlugin(config: MyCPUConfig) extends Plugin[FetchPipeline] {
 
         val rspId = Counter(icache.lineWords)
 
-        // 反正寄存也不增加周期，还改善时序
-        val refillValid = RegNext(iBus.r.fire)
-        val refillWord = RegNext(iBus.r.payload.data)
-        // 根据LRU选择一路
+        // 鍙嶆瀵勫瓨涔熶笉澧炲姞鍛ㄦ湡锛岃繕鏀瑰杽鏃跺簭
+        val refillValid = RegNext(iBus.r.fire, init = False) // round-14:X-sweep
+        val refillWord = RegNext(iBus.r.payload.data, init = B(0, 32 bits)) // round-14:X-sweep
+        // 鏍规嵁LRU閫夋嫨涓€璺?
         val replaceWay = input(ICACHE_INFO).lru.asUInt
-        // 填充stored packet
+        // 濉厖stored packet
         for (i <- 0 until frontend.fetchWidth) {
           when(refillValid && rspId === pcWordOffset + i) {
             storedPacket(i) := refillWord
@@ -169,7 +169,7 @@ class ICachePlugin(config: MyCPUConfig) extends Plugin[FetchPipeline] {
           arbitration.haltItself.set()
           val ar = iBus.ar
           ar.payload.id := 0
-          // 抹去offset
+          // 鎶瑰幓offset
           ar.payload.addr := physPC(31 downto icache.offsetWidth) @@ U(0, icache.offsetWidth bits)
           ar.payload.len := icache.lineWords - 1 // burst len
           ar.payload.size := 2 // burst size = 4Bytes = 32 bits
@@ -201,23 +201,23 @@ class ICachePlugin(config: MyCPUConfig) extends Plugin[FetchPipeline] {
 
         commit.whenIsActive {
           arbitration.haltItself.set()
-          // 对data写入最后一个word
+          // 瀵筪ata鍐欏叆鏈€鍚庝竴涓獁ord
           dataWs(replaceWay).valid := True
           dataWs(replaceWay).payload.address := idx
           dataWs(replaceWay).payload.data.foreach(_ := refillWord)
           dataMasks(replaceWay)(rspId).setAll()
-          // 更新info
+          // 鏇存柊info
           assert(icache.ways == 2)
           val newInfo = input(ICACHE_INFO).copy()
-          // 其它路tag保持
+          // 鍏跺畠璺痶ag淇濇寔
           newInfo.tags := input(ICACHE_INFO).tags
-          // 选择的一路写入新tag
+          // 閫夋嫨鐨勪竴璺啓鍏ユ柊tag
           newInfo.tags(replaceWay) := tag
-          // 更新LRU
+          // 鏇存柊LRU
           newInfo.lru := ~input(ICACHE_INFO).lru
-          // 设置valid
+          // 璁剧疆valid
           valids(idx)(replaceWay).set()
-          // 写入Mem
+          // 鍐欏叆Mem
           wPort.valid.set()
           wPort.payload.address := idx
           wPort.payload.data := newInfo
@@ -225,13 +225,13 @@ class ICachePlugin(config: MyCPUConfig) extends Plugin[FetchPipeline] {
         }
 
         finish.whenIsActive {
-          // 避免IF1中指令取不到新写的cache，重取
-          // 每一条都从state boot开始
-          // round-7:doRefetch 由 FSM 状态直接驱动(寄存条件),不再
-          // 依赖 !IF1.arbitration.isFlushed(round-4 top1 的跨模块
-          // 组合链:commit except→regFlush→isFlushed→refetch→IF1
-          // stall,84% 布线)。finish 期间持续用 PC 重读同一行,
-          // flush 重定向会覆盖,多读同地址无害。
+          // 閬垮厤IF1涓寚浠ゅ彇涓嶅埌鏂板啓鐨刢ache锛岄噸鍙?
+          // 姣忎竴鏉￠兘浠巗tate boot寮€濮?
+          // round-7:doRefetch 鐢?FSM 鐘舵€佺洿鎺ラ┍鍔?瀵勫瓨鏉′欢),涓嶅啀
+          // 渚濊禆 !IF1.arbitration.isFlushed(round-4 top1 鐨勮法妯″潡
+          // 缁勫悎閾?commit except鈫抮egFlush鈫抜sFlushed鈫抮efetch鈫扞F1
+          // stall,84% 甯冪嚎)銆俧inish 鏈熼棿鎸佺画鐢?PC 閲嶈鍚屼竴琛?
+          // flush 閲嶅畾鍚戜細瑕嗙洊,澶氳鍚屽湴鍧€鏃犲銆?
           doRefetch := True
           when(!arbitration.isStuck) {
             goto(stateBoot)
@@ -248,14 +248,14 @@ class ICachePlugin(config: MyCPUConfig) extends Plugin[FetchPipeline] {
 
       for (i <- 0 until frontend.fetchWidth) {
         val fetchWord = fetchPacket.insts(i)
-        // e.g. 32B = 8W, 6的时候仅0(6), 1(7)有效
+        // e.g. 32B = 8W, 6鐨勬椂鍊欎粎0(6), 1(7)鏈夋晥
         if (i == 0) fetchWord.valid := True
         else fetchWord.valid := pcWordOffset < icache.lineWords - i
         fetchWord.payload := Mux(hit, hitData(i), storedPacket(i))
       }
     }
 
-    // 解决应该清空cache的条件（只需要设置valid）
+    // 瑙ｅ喅搴旇娓呯┖cache鐨勬潯浠讹紙鍙渶瑕佽缃畍alid锛?
     val commit = new Area {
       val cacheCommit = pipeline.globalService(classOf[CommitPlugin])
       val operation = cacheCommit.cacheOp

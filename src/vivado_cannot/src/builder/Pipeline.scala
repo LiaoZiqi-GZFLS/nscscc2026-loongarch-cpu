@@ -162,9 +162,15 @@ trait Pipeline {
               .getOrElse(key, Nil)
               .foldLeft(!stage.arbitration.isStuck)(_ && !_)
             sampleEn.addAttribute("max_fanout", "250")
+            // round-14:X-sweep 级间负载寄存器复位清零:消费端均由
+            // arbitration.isValid 门控,init 不改功能语义,只消除
+            // xsim 中未初始化寄存器在不同网表间的 X 抖动。
+            val initValue = key()
+            initValue.assignFromBits(B(0, widthOf(initValue) bits))
             inputDefault := RegNextWhen(
               stageBefore.output(key),
-              sampleEn
+              sampleEn,
+              init = initValue
             ).setName(s"${stageBefore.getName()}_to_${stage.getName()}_${key.getName()}")
           }
         }

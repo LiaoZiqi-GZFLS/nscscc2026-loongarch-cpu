@@ -45,6 +45,7 @@ abstract class CompressedQueue[T <: IssueSlot](
   }
 
   val queue = Vec(RegFlow(slotType()), depth) // 做槽移动
+  queue.foreach { q => val z = slotType(); z.assignFromBits(B(0, widthOf(z) bits)); q.payload.init(z) } // round-14:X-sweep 槽负载复位清零
   val queueNext = CombInit(queue) // 标志对应槽的下一个值（不考虑压缩）  // 1. 不压缩时自身状态转移。同步至stateNext。
 
   val issueMask = Bits(depth bits)

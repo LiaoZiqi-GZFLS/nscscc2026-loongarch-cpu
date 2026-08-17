@@ -18,13 +18,13 @@ class DCachePlugin(config: MyCPUConfig) extends Plugin[MemPipeline] {
   private val dcache = config.dcache
   private val prfAddrWidth = config.regFile.prfAddrWidth
 
-  val dBus = Axi4(config.axiConfig).setIdle() // DCache的AXI总线
+  val dBus = Axi4(config.axiConfig).setIdle() // DCache鐨凙XI鎬荤嚎
   dBus.b.ready.allowOverride := True
 
-  // valid有单index清空的可能，多写口
+  // valid鏈夊崟index娓呯┖鐨勫彲鑳斤紝澶氬啓鍙?
   val valids = Vec(Vec(RegInit(False), dcache.ways), dcache.sets)
   val dirtyBitsManager = new DirtyBitsManager(config.dcache)
-  // 虽然d-cache形式上组织成例如32B一行，但是实际每次读写都只需要一个word，因此物理上这么组织最省面积和延迟
+  // 铏界劧d-cache褰㈠紡涓婄粍缁囨垚渚嬪32B涓€琛岋紝浣嗘槸瀹為檯姣忔璇诲啓閮藉彧闇€瑕佷竴涓獁ord锛屽洜姝ょ墿鐞嗕笂杩欎箞缁勭粐鏈€鐪侀潰绉拰寤惰繜
   val dataRAMs = Seq.fill(dcache.ways)(
     new SDPRAM(BWord(), dcache.lineWords * dcache.sets, true, useByteEnable = true)
   )
@@ -41,7 +41,7 @@ class DCachePlugin(config: MyCPUConfig) extends Plugin[MemPipeline] {
     import pipeline.signals._
     val rPort = infoRAM.io.read
     val dataRs = Vec(dataRAMs.map(_.io.read))
-    // 为了避免MEM1取不到MEM2写的cache，做refetch重取
+    // 涓轰簡閬垮厤MEM1鍙栦笉鍒癕EM2鍐欑殑cache锛屽仛refetch閲嶅彇
     val doRefetch = False
     val refetchValid = doRefetch
     val wordAddrRange = dcache.indexRange.high downto 2
@@ -53,10 +53,10 @@ class DCachePlugin(config: MyCPUConfig) extends Plugin[MemPipeline] {
       val memAddr = Mux(std.valid, std.addr, output(MEMORY_ADDRESS))
       val rValid = arbitration.notStuck || refetchValid
       val rAddr = Mux(refetchValid, mem1MemAddr, memAddr)
-      // 读tag按照index找行
+      // 璇籺ag鎸夌収index鎵捐
       rPort.cmd.valid := rValid
       rPort.cmd.payload := rAddr(dcache.indexRange)
-      // 读data应当直接找word
+      // 璇籨ata搴斿綋鐩存帴鎵緒ord
       dataRs.foreach { p =>
         p.cmd.valid := rValid
         p.cmd.payload := rAddr(wordAddrRange)
@@ -69,7 +69,7 @@ class DCachePlugin(config: MyCPUConfig) extends Plugin[MemPipeline] {
       val std = input(STD_SLOT)
       val memAddr = Mux(std.valid, std.addr, input(MEMORY_ADDRESS))
       mem1MemAddr := memAddr
-      // 读valid也插进流水线(P7:64:1 树形读,3 级)
+      // 璇籿alid涔熸彃杩涙祦姘寸嚎(P7:64:1 鏍戝舰璇?3 绾?
       insert(DCACHE_VALIDS) := TreeRead(valids.map(_.asBits).toIndexedSeq, memAddr(dcache.indexRange)).asBools
       dirtyBitsManager.io.readCmd := memAddr(dcache.indexRange)
       insert(DCACHE_DIRTY) := dirtyBitsManager.io.readRsp
@@ -79,7 +79,7 @@ class DCachePlugin(config: MyCPUConfig) extends Plugin[MemPipeline] {
         insert(TAG_MATCHES)(i) := input(DCACHE_INFO).tags(i) === cachePhysAddr(dcache.tagRange)
       }
 
-      // 拆issue slot
+      // 鎷唅ssue slot
       val issSlot = input(ISSUE_SLOT)
       insert(ROB_IDX) := issSlot.robIdx
       insert(IS_LOAD) := issSlot.uop.isLoad
@@ -99,7 +99,7 @@ class DCachePlugin(config: MyCPUConfig) extends Plugin[MemPipeline] {
 
       val storeBuffer = pipeline.service(classOf[StoreBufferPlugin])
       val addrCached = input(ADDRESS_CACHED)
-      // 注意这3者存在同时不满足的情况，此时为cache类指令
+      // 娉ㄦ剰杩?鑰呭瓨鍦ㄥ悓鏃朵笉婊¤冻鐨勬儏鍐碉紝姝ゆ椂涓篶ache绫绘寚浠?
       // STD = store data
       val std = input(STD_SLOT)
       val isSTD = std.valid && std.isStore && std.isCached
@@ -113,7 +113,7 @@ class DCachePlugin(config: MyCPUConfig) extends Plugin[MemPipeline] {
       val isLDU = std.valid && !std.isStore
       val isSTU = std.valid && std.isStore && !std.isCached
 
-      // 如果load发现uncached或者exception，那么跳过所有cache处理
+      // 濡傛灉load鍙戠幇uncached鎴栬€卐xception锛岄偅涔堣烦杩囨墍鏈塩ache澶勭悊
       val reqValid = (arbitration.isValidOnEntry && isLoad && addrCached && noExcept) || isSTD
       val reqCommit = reqValid && !arbitration.isStuck
       val virtAddr = input(MEMORY_ADDRESS)
@@ -128,14 +128,14 @@ class DCachePlugin(config: MyCPUConfig) extends Plugin[MemPipeline] {
       val dataWs = Vec(dataRAMs.map(_.io.write.setIdle()))
       val dataMasks = Vec(dataRAMs.map(_.io.writeMask.setAll()))
 
-      // STA忽略cache，但是无异常且cached时要在MEM2写入store buffer
+      // STA蹇界暐cache锛屼絾鏄棤寮傚父涓攃ached鏃惰鍦∕EM2鍐欏叆store buffer
       val storeBufferPush = storeBuffer.queueIO.pushPort
       val storeBufferPushValid =
         arbitration.isValid && noExcept && (isSTA || (isLoad && !addrCached))
-      // 扩展后写入store buffer的：cached store, uncached load, uncached store
+      // 鎵╁睍鍚庡啓鍏tore buffer鐨勶細cached store, uncached load, uncached store
       storeBufferPush.valid := storeBufferPushValid && arbitration.notStuck
       storeBufferPush.addr := physAddr
-      // store buffer永远放移好位的
+      // store buffer姘歌繙鏀剧Щ濂戒綅鐨?
       storeBufferPush.data := input(MEMORY_WRITE_DATA)
       storeBufferPush.be := input(MEMORY_BE)
       storeBufferPush.retired := False
@@ -144,10 +144,10 @@ class DCachePlugin(config: MyCPUConfig) extends Plugin[MemPipeline] {
       storeBufferPush.wReg := input(WRITE_REG)
       storeBufferPush.lsType := input(LOAD_STORE_TYPE)
       storeBufferPush.robIdx := input(ROB_IDX)
-      // store buffer不应push不进去，否则memory流水也执行不了STD，就死锁了
+      // store buffer涓嶅簲push涓嶈繘鍘伙紝鍚﹀垯memory娴佹按涔熸墽琛屼笉浜哠TD锛屽氨姝婚攣浜?
       arbitration.haltItself setWhen (storeBufferPushValid && !storeBufferPush.ready)
 
-      // cache查询
+      // cache鏌ヨ
       val hits = for (i <- 0 until setValids.size) yield {
         setValids(i) && input(TAG_MATCHES)(i)
       }
@@ -156,19 +156,19 @@ class DCachePlugin(config: MyCPUConfig) extends Plugin[MemPipeline] {
       val hitWay = OHToUInt(Vec(hits).asBits) // multi-way safe one-hot decode
       val replaceWay = input(DCACHE_INFO).lru.asUInt
 
-      // CACHE指令相关信息
+      // CACHE鎸囦护鐩稿叧淇℃伅
       val wayCACHE = CombInit(hitWay)
       val cacheOp = input(ISSUE_SLOT).uop.cacheOp
       val cacheSel = input(ISSUE_SLOT).uop.cacheSel
 
-      // 存储当前被填充的word，避免MEM2重取
-      val storedWord = Reg(BWord())
+      // 瀛樺偍褰撳墠琚～鍏呯殑word锛岄伩鍏峂EM2閲嶅彇
+      val storedWord = RegInit(B(0, 32 bits)) // round-14:X-sweep
       dirtyBitsManager.io.writeCmd.setIdle()
 
       when(reqCommit && hit) {
-        // Round-Robin 替换：命中不更新替换信息
+        // Round-Robin 鏇挎崲锛氬懡涓笉鏇存柊鏇挎崲淇℃伅
         when(isSTD) {
-          // STD提交写cache
+          // STD鎻愪氦鍐檆ache
           dataWs(hitWay).valid := True
           dataWs(hitWay).payload.address := std.addr(wordAddrRange)
           dataWs(hitWay).payload.data := std.data
@@ -177,22 +177,22 @@ class DCachePlugin(config: MyCPUConfig) extends Plugin[MemPipeline] {
           dirtyBitsManager.io.writeCmd.idx := idx
           dirtyBitsManager.io.writeCmd.way := hitWay
           dirtyBitsManager.io.writeCmd.data := True
-          // 并不需要重取，MEM1自然还会hit，数据可以从store buffer前传出来
+          // 骞朵笉闇€瑕侀噸鍙栵紝MEM1鑷劧杩樹細hit锛屾暟鎹彲浠ヤ粠store buffer鍓嶄紶鍑烘潵
           // doRefetch := True
         }
       }
 
-      // 触发将脏块写回内存的状态机
+      // 瑙﹀彂灏嗚剰鍧楀啓鍥炲唴瀛樼殑鐘舵€佹満
       val triggerWriteback = False
-      // 由于修复Uncached触发Writeback
+      // 鐢变簬淇Uncached瑙﹀彂Writeback
       val triggerWritebackFixUncache = False
-      // 由于CACHE指令触发Writeback
+      // 鐢变簬CACHE鎸囦护瑙﹀彂Writeback
       val triggerWritebackCACHE = False
-      // 写回块取cache需要早于读块写cache
+      // 鍐欏洖鍧楀彇cache闇€瑕佹棭浜庤鍧楀啓cache
       val lockCache = False
-      // 为了write dirty line，提前fetch出来
-      val dirtyLine = Reg(Vec(BWord(), dcache.lineWords))
-      // 仍然是同步写，但是与读内存并行了
+      // 涓轰簡write dirty line锛屾彁鍓峟etch鍑烘潵
+      val dirtyLine = Vec(RegInit(B(0, 32 bits)), dcache.lineWords) // round-14:X-sweep
+      // 浠嶇劧鏄悓姝ュ啓锛屼絾鏄笌璇诲唴瀛樺苟琛屼簡
       val dirtyLineWritebackFSM = new StateMachine {
         disableAutoStart()
         setEntry(stateBoot)
@@ -274,12 +274,12 @@ class DCachePlugin(config: MyCPUConfig) extends Plugin[MemPipeline] {
         }
       }
 
-      // 处理Cache命中但是地址变为uncached时的刷新逻辑
+      // 澶勭悊Cache鍛戒腑浣嗘槸鍦板潃鍙樹负uncached鏃剁殑鍒锋柊閫昏緫
       // NOTE:
-      // 1. 这个东西不会和下面的uncached store冲突，因为STA必然在STD之前，
-      // 所以STD不可能触发这段逻辑
-      // 2. 逻辑是isLDU或者isSTU的时候，触发dirty writeback, 写完之后，置对应cache非法
-      // 3. 握手：finishWriteback
+      // 1. 杩欎釜涓滆タ涓嶄細鍜屼笅闈㈢殑uncached store鍐茬獊锛屽洜涓篠TA蹇呯劧鍦⊿TD涔嬪墠锛?
+      // 鎵€浠TD涓嶅彲鑳借Е鍙戣繖娈甸€昏緫
+      // 2. 閫昏緫鏄痠sLDU鎴栬€卛sSTU鐨勬椂鍊欙紝瑙﹀彂dirty writeback, 鍐欏畬涔嬪悗锛岀疆瀵瑰簲cache闈炴硶
+      // 3. 鎻℃墜锛歠inishWriteback
       val fixUncacheFSM = new StateMachine {
         disableAutoStart()
         setEntry(stateBoot)
@@ -297,16 +297,16 @@ class DCachePlugin(config: MyCPUConfig) extends Plugin[MemPipeline] {
 
         waitWriteback.whenIsActive {
           triggerWritebackFixUncache := False
-          // 每条都从state boot开始
+          // 姣忔潯閮戒粠state boot寮€濮?
           when(arbitration.notStuck) {
             valids(idx)(hitWay) := False // invalidate the cache
-            doRefetch := True // valid状态改了，需要refetch
+            doRefetch := True // valid鐘舵€佹敼浜嗭紝闇€瑕乺efetch
             goto(stateBoot)
           }
         }
       }
 
-      // 处理CACHE指令可能引发的写回操作
+      // 澶勭悊CACHE鎸囦护鍙兘寮曞彂鐨勫啓鍥炴搷浣?
       val CACHEFSM = new StateMachine {
         disableAutoStart()
         setEntry(stateBoot)
@@ -314,9 +314,9 @@ class DCachePlugin(config: MyCPUConfig) extends Plugin[MemPipeline] {
         val checkWay = new State
         val writebackWay = new State
 
-        val finishAllWay = Reg(Bool())
-        val wayCounter = Reg(UInt(log2Up(dcache.ways) bits))
-        val indexCounter = Reg(UInt(log2Up(dcache.sets) bits))
+        val finishAllWay = RegInit(False) // round-14:X-sweep
+        val wayCounter = RegInit(U(0, log2Up(dcache.ways) bits)) // round-14:X-sweep
+        val indexCounter = RegInit(U(0, log2Up(dcache.sets) bits)) // round-14:X-sweep
 
         stateBoot.whenIsActive {
           when(arbitration.isValidOnEntry && isCACHE && cacheSel === CacheSelType.DCache) {
@@ -354,7 +354,7 @@ class DCachePlugin(config: MyCPUConfig) extends Plugin[MemPipeline] {
             }
           } otherwise {
             arbitration.haltItself.set()
-            // 检查此路是否dirty，若dirty则写回。无论是否写回均转状态
+            // 妫€鏌ユ璺槸鍚irty锛岃嫢dirty鍒欏啓鍥炪€傛棤璁烘槸鍚﹀啓鍥炲潎杞姸鎬?
             triggerWritebackCACHE := setValids(wayCounter) && input(DCACHE_DIRTY)(wayCounter)
             when(writebackIdle) {
               goto(writebackWay)
@@ -364,7 +364,7 @@ class DCachePlugin(config: MyCPUConfig) extends Plugin[MemPipeline] {
         writebackWay.whenIsActive {
           arbitration.haltItself.set()
           when(writebackIdle) {
-            // 清除此路valid，转下一路
+            // 娓呴櫎姝よ矾valid锛岃浆涓嬩竴璺?
             valids(idx)(wayCounter).clear()
             goto(checkWay)
             when(wayCounter === dcache.ways - 1) {
@@ -384,9 +384,9 @@ class DCachePlugin(config: MyCPUConfig) extends Plugin[MemPipeline] {
         }
       }
 
-      // 解决cache miss
-      // note. 向cache填充的不一定是目前的memory state，因为有store buffer未完成写的部分。
-      //       但是STD会将这二者都更新，并且更新前load也可以从store buffer读到最新的(包括speculative的)数据。
+      // 瑙ｅ喅cache miss
+      // note. 鍚慶ache濉厖鐨勪笉涓€瀹氭槸鐩墠鐨刴emory state锛屽洜涓烘湁store buffer鏈畬鎴愬啓鐨勯儴鍒嗐€?
+      //       浣嗘槸STD浼氬皢杩欎簩鑰呴兘鏇存柊锛屽苟涓旀洿鏂板墠load涔熷彲浠ヤ粠store buffer璇诲埌鏈€鏂扮殑(鍖呮嫭speculative鐨?鏁版嵁銆?
       val cacheRefillFSM = new StateMachine {
         // cached load
         val waitAXI = new State
@@ -400,25 +400,25 @@ class DCachePlugin(config: MyCPUConfig) extends Plugin[MemPipeline] {
         disableAutoStart()
         setEntry(stateBoot)
         val rspId = Counter(dcache.lineWords)
-        // 反正寄存也不增加周期，还改善时序
-        val refillValid = RegNext(dBus.r.fire)
-        val regBusWord = RegNext(dBus.r.payload.data)
+        // 鍙嶆瀵勫瓨涔熶笉澧炲姞鍛ㄦ湡锛岃繕鏀瑰杽鏃跺簭
+        val refillValid = RegNext(dBus.r.fire, init = False) // round-14:X-sweep
+        val regBusWord = RegNext(dBus.r.payload.data, init = B(0, 32 bits)) // round-14:X-sweep
         val refillWord = CombInit(regBusWord)
-        // STD直接往cache填入更新了本次写的数据
+        // STD鐩存帴寰€cache濉叆鏇存柊浜嗘湰娆″啓鐨勬暟鎹?
         for (i <- 0 until 4)
           when(isSTD && rspId === std.addr(dcache.wordOffsetRange) && std.be(i)) {
             refillWord(i * 8, 8 bits) := std.data(i * 8, 8 bits)
           }
-        // 根据LRU选择一路
+        // 鏍规嵁LRU閫夋嫨涓€璺?
         val dirty = setValids(replaceWay) && input(DCACHE_DIRTY)(replaceWay)
 
-        // 填充stored word
+        // 濉厖stored word
         when(refillValid && rspId === cachePhysAddr(dcache.wordOffsetRange)) {
           storedWord := refillWord
         }
 
         stateBoot.whenIsActive {
-          // write-back write allocate, STD需要refill cache
+          // write-back write allocate, STD闇€瑕乺efill cache
           when(reqValid && !hit) {
             arbitration.haltItself.set()
             rspId.clear()
@@ -436,7 +436,7 @@ class DCachePlugin(config: MyCPUConfig) extends Plugin[MemPipeline] {
           arbitration.haltItself.set()
           val ar = dBus.ar
           ar.payload.id := 1
-          // 抹去offset
+          // 鎶瑰幓offset
           ar.payload.addr := cachePhysAddr(31 downto dcache.offsetWidth) @@
             U(0, dcache.offsetWidth bits)
           ar.payload.len := dcache.lineWords - 1 // burst len
@@ -468,25 +468,25 @@ class DCachePlugin(config: MyCPUConfig) extends Plugin[MemPipeline] {
 
         commit.whenIsActive {
           arbitration.haltItself.set()
-          // 对data写入最后一个word
+          // 瀵筪ata鍐欏叆鏈€鍚庝竴涓獁ord
           dataWs(replaceWay).valid := True
           dataWs(replaceWay).payload.address := idx @@ rspId
           dataWs(replaceWay).payload.data := refillWord
-          // 更新info
+          // 鏇存柊info
           val newInfo = input(DCACHE_INFO).copy()
-          // 其它路tag保持
+          // 鍏跺畠璺痶ag淇濇寔
           newInfo.tags := input(DCACHE_INFO).tags
-          // 选择的一路写入新tag
+          // 閫夋嫨鐨勪竴璺啓鍏ユ柊tag
           newInfo.tags(replaceWay) := tag
-          // Round-Robin：refill 后 victim 计数 +1（宽度截断自然回卷）
+          // Round-Robin锛歳efill 鍚?victim 璁℃暟 +1锛堝搴︽埅鏂嚜鐒跺洖鍗凤級
           newInfo.lru := (input(DCACHE_INFO).lru.asUInt + 1).resize(log2Up(dcache.ways)).asBits
           dirtyBitsManager.io.writeCmd.valid := True
           dirtyBitsManager.io.writeCmd.idx := idx
           dirtyBitsManager.io.writeCmd.way := replaceWay
           dirtyBitsManager.io.writeCmd.data := isSTD
-          // 设置valid
+          // 璁剧疆valid
           valids(idx)(replaceWay).set()
-          // 写入Mem
+          // 鍐欏叆Mem
           wPort.valid.set()
           wPort.payload.address := idx
           wPort.payload.data := newInfo
@@ -495,7 +495,7 @@ class DCachePlugin(config: MyCPUConfig) extends Plugin[MemPipeline] {
         }
 
         finish.whenIsActive {
-          // 每一条都从state boot开始
+          // 姣忎竴鏉￠兘浠巗tate boot寮€濮?
           when(!arbitration.isStuck) {
             doRefetch := True
             goto(stateBoot)
@@ -517,8 +517,8 @@ class DCachePlugin(config: MyCPUConfig) extends Plugin[MemPipeline] {
           ar.payload.cache := 0 // device non-bufferable
           if (config.axiConfig.useQos) ar.payload.qos := 0 // no QoS scheme
           ar.payload.prot := 0 // secure and normal(non-priviledged)
-          // uncached load要等到脏行写完再进行
-          // 尽量让uncached load也不要与正在进行中的uncached store重叠
+          // uncached load瑕佺瓑鍒拌剰琛屽啓瀹屽啀杩涜
+          // 灏介噺璁﹗ncached load涔熶笉瑕佷笌姝ｅ湪杩涜涓殑uncached store閲嶅彔
           ar.valid := uncachedStoreHandshake.ready && pipeline
             .service(classOf[DCachePlugin])
             .writebackIdle
@@ -536,7 +536,7 @@ class DCachePlugin(config: MyCPUConfig) extends Plugin[MemPipeline] {
         }
 
         finishU.whenIsActive {
-          // 每一条都从state boot开始
+          // 姣忎竴鏉￠兘浠巗tate boot寮€濮?
           when(!arbitration.isStuck) {
             goto(stateBoot)
           }
@@ -548,7 +548,7 @@ class DCachePlugin(config: MyCPUConfig) extends Plugin[MemPipeline] {
       val memRData = insert(MEMORY_READ_DATA)
       memRData := cacheData
 
-      // load std前传
+      // load std鍓嶄紶
       def stdValid(stage: Stage) = {
         val std = stage.input(STD_SLOT)
         std.valid && std.isStore && std.isCached
@@ -566,13 +566,13 @@ class DCachePlugin(config: MyCPUConfig) extends Plugin[MemPipeline] {
           }
         })
 
-      // load查询store buffer
+      // load鏌ヨstore buffer
       storeBuffer.query.addr := physAddr
       for (i <- 0 until 4) when(storeBuffer.query.be(i)) {
         memRData(i * 8, 8 bits) := storeBuffer.query.data(i * 8, 8 bits)
       }
 
-      // LDU必然选stored word
+      // LDU蹇呯劧閫塻tored word
       when(isLDU) { memRData := storedWord }
     }
   }

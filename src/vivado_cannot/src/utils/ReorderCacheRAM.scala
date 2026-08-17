@@ -159,7 +159,15 @@ class ReorderCacheRAMOutReg[T <: Data](
   // 把副本全部连回同一寄存器)。副本同 D、同时钟,周期语义不变。
   val rspReplicaRegs =
     if (rspReplicaCount <= 1) Seq(io.read.rsp.setAsReg())
-    else Seq.fill(rspReplicaCount)(Reg(Vec(dataType, rPortCount)))
+    else
+      // round-14:X-sweep 响应副本复位清零,消除未初始化寄存器
+      Seq.fill(rspReplicaCount)(
+        RegInit(Vec.tabulate(rPortCount) { _ =>
+          val z = dataType()
+          z.assignFromBits(B(0, widthOf(z) bits))
+          z
+        })
+      )
   val readLogic = new Area {
     val addrHi = io.read.cmd.payload((addressWidth - 1) downto offWidth)
     val offset = io.read.cmd.payload(0, offWidth bits)

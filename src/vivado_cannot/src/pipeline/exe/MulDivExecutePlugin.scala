@@ -117,7 +117,7 @@ class MulDivExecutePlugin(val config: MyCPUConfig) extends Plugin[ExecutePipelin
       // ! Division
       val isDivision = arbitration.isValidOnEntry &&
         (issSlot.uop.fuType === FUType.DIV || issSlot.uop.fuType === FUType.MOD)
-      val isFirstCycle = RegNext(arbitration.notStuck)
+      val isFirstCycle = RegNext(arbitration.notStuck, init = False) // round-14:X-sweep
       val useEarlyOut = config.mulDiv.useDivisionEarlyOut
       val smallDivSize = config.mulDiv.divisionEarlyOutWidth
       val in16Bits =
