@@ -161,7 +161,7 @@ class DecoderArray(config: MyCPUConfig, val popPorts: Vec[Stream[InstBufferEntry
       def buildSingleDecoder(input: InstBufferEntry) =
         new Composite(input) {
           val entry = input
-          val illegalEncoding = True // Flag if the instruction is illegal, i.e. no encoding matches
+          val illegalEncoding = Bool() // Flag if the instruction is illegal, i.e. no encoding matches
 
           val fields = InstructionParser(entry.inst) // Parse
 
@@ -170,13 +170,10 @@ class DecoderArray(config: MyCPUConfig, val popPorts: Vec[Stream[InstBufferEntry
             .getOrElseUpdate(key.asInstanceOf[Stageable[Data]], key())
             .asInstanceOf[T] // If not exists, initialize a LOCAL Stageable (not in uop)
 
-          // ! Prologue: Default values for the uop (which is the return value of this decoder)
+          // ! uop(解码器返回值)。字段默认值由下方 MuxOH 的默认输入提供
+          // (P12 后不再单独赋默认,避免与 MuxOH 全赋值重叠)。
           val uop = MicroOp(config)
           private val uopElements = uop.elements.toMap // Map[String,Data]
-          for ((k, v) <- defaults) uopElements.get(k.getName()) match {
-            case Some(value) => value.assignFrom(v)
-            case None        => local(k).assignFrom(v)
-          }
 
           // Func for decoding instruction.
           def decodeInstruction(
@@ -194,10 +191,42 @@ class DecoderArray(config: MyCPUConfig, val popPorts: Vec[Stream[InstBufferEntry
             }
           }
 
-          // ! Main body for Decoding instructions
-          for ((encoding, actions) <- normalEncodings) decodeInstruction(encoding, actions)
-          // priority升序，when语句后面的覆盖前面的
-          for (encoding <- encodingsByPriority) decodeInstruction(encoding, encodings(encoding))
+          // P12(译码级数压缩):指令编码互斥(65 normal + 0 priority),
+          // 原 per-encoding when 优先级链每字段约 6-7 级;改为一次性
+          // 比较向量(65 位 one-hot,2-3 级)+ 每字段 MuxOH(约 3 级)。
+          // 无匹配(非法指令)时各字段保持默认值(追加一个默认输入,
+          // 选择位 = !anyMatch),与旧 when 链语义一致。
+          val orderedEncodings: Seq[(MaskedLiteral, Seq[(Stageable[_ <: Data], Data)])] =
+            normalEncodings.toSeq.map { case (e, a) => (e, a.toSeq) } ++
+              encodingsByPriority.map(e => (e, encodings(e).toSeq))
+          val matchBits = orderedEncodings.map { case (enc, _) => entry.inst === enc }
+          val anyMatch = matchBits.orR
+          illegalEncoding := !anyMatch
+          def valueFor(s: Stageable[_ <: Data], acts: Seq[(Stageable[_ <: Data], Data)]): Data =
+            acts.collectFirst { case (k, v) if k eq s => v }.getOrElse(defaults(s))
+
+          // object Stageable 的反射命名在本环境为空,改用 Scala object
+          // 类名("MicroOpSignals$fuType$" -> "fuType")与 uop 元素名匹配。
+          def stName(s: Stageable[_ <: Data]): String =
+            s.getClass.getSimpleName.stripSuffix("$")
+
+          for (s <- stageables) {
+            val vals = orderedEncodings.map { case (_, acts) => valueFor(s, acts) } :+ defaults(s)
+            // 注意: 不能用 matchBits.asBits() ## !anyMatch —— asBits 是
+            // MSB-first 拼接,经 asBools 回读后与 vals 整体错位 1 位
+            // (实测 ADDI 按下一编码 ANDI 译码,功能测试全挂)。
+            // 直接用 Seq[Bool] 按索引一一对应: matchBits(k) -> vals(k),
+            // !anyMatch -> vals.last(默认值),与旧 when 链语义一致。
+            val sel: IndexedSeq[Bool] = matchBits.toIndexedSeq :+ !anyMatch
+            val muxed = MuxOH(sel, vals)
+            uopElements.get(stName(s)) match {
+              case Some(value) =>
+                value.allowOverride()
+                value := muxed
+              case None =>
+                local(s.asInstanceOf[Stageable[Data]]).asInstanceOf[Data] := muxed
+            }
+          }
 
           // ! Epilogue: override some fields
           import NOP.constants.LoongArch
