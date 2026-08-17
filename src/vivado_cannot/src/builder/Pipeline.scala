@@ -211,11 +211,6 @@ trait Pipeline {
 
       stage.arbitration.isValid.setAsReg() init (False)
       stage.arbitration.isValidOnEntry.setAsReg() init (False)
-      // round-12:级间 valid 是仲裁广播网(round-12 top1 的
-      // RENAME_arbitration_isValid fo=1545,布线占 81%)。max_fanout
-      // 提示综合器按消费组复制 FF(触发器充裕,复制不加逻辑深度)。
-      stage.arbitration.isValid.addAttribute("max_fanout", "50")
-      stage.arbitration.isValidOnEntry.addAttribute("max_fanout", "50")
 
       when(!stage.arbitration.isStuck || stage.arbitration.removeIt) {
         stage.arbitration.isValid := False

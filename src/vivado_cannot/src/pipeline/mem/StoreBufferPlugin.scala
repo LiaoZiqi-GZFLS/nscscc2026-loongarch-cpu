@@ -22,20 +22,14 @@ final case class StoreBufferSlot(config: MyCPUConfig) extends Bundle {
   val robIdx = UInt(config.rob.robAddressWidth bits)
 }
 
-/** Store buffer. 闁告ê顑囩紓澶婎嚕瀵ゅ丢FO闁?
+/** Store buffer. 压缩式FIFO。
   *
   * @param config
   */
 class StoreBufferPlugin(config: MyCPUConfig) extends Plugin[MemPipeline] {
   val depth = config.storeBufferDepth
   val slotType = HardType(StoreBufferSlot(config))
-  // round-13:槽负载复位清零(消除复位后 X 经 retired/发射判断传播的竞态)
   val queue = Vec(RegFlow(slotType()), depth)
-  queue.foreach { q =>
-    val z = slotType()
-    z.assignFromBits(B(0, widthOf(z) bits))
-    q.payload.init(z)
-  }
   val queueNext = CombInit(queue)
   val queueIO = new Area {
     val pushPort = Stream(slotType)
@@ -49,7 +43,7 @@ class StoreBufferPlugin(config: MyCPUConfig) extends Plugin[MemPipeline] {
     val addr = UWord() // Input
     val data = BWord().assignDontCare() // Output
     val be = B(0, 4 bits) // Output
-    // 闁哄倹濯介々顐︽儎閺嶎兘鍋?
+    // 新覆盖老
     for (i <- 0 until depth)
       when(
         addr(2, 30 bits) === queue(i).addr(2, 30 bits) &&
@@ -70,19 +64,19 @@ class StoreBufferPlugin(config: MyCPUConfig) extends Plugin[MemPipeline] {
       yield queue(i - 1).retired && !queue(i).retired)
     for (j <- 0 until depth) {
       when(commitStore && retireFall(j)) {
-        // 閻庤鐭紞鍛村礌瑜版帒甯抽柨娑樿嫰閸垳浜搁崱妯炵幎etire
+        // 定位匹配，则将槽retire
         queue(j).retired := True
         queueNext(j).retired := True
       }
     }
 
-    // 闁稿繈鍎靛Σ锕傛焻閺勫繒甯?
+    // 入队逻辑
     val validFall = !queue(0).valid +: (for (i <- 1 until depth)
       yield queue(i - 1).valid && !queue(i).valid)
     queueIO.pushPort.ready := !queue.last.valid
     for (j <- 0 until depth) {
       when(queueIO.pushPort.valid && validFall(j)) {
-        // 閻庤鐭紞鍛村礌瑜版帒甯抽柨娑樿嫰閸垳浜搁崱妯烆偊宕楅妷鈺傂?
+        // 定位匹配，则将槽入队
         queue(j).push(queueIO.pushPort.payload)
         queueNext(j).push(queueIO.pushPort.payload)
       }
@@ -96,7 +90,7 @@ class StoreBufferPlugin(config: MyCPUConfig) extends Plugin[MemPipeline] {
       }
     }
 
-    // 闁告ê顑囩紓澶愭焻閺勫繒甯?
+    // 压缩逻辑
     for (i <- 0 until depth) {
       when(queueIO.popPort.fire) {
         if (i + 1 < depth) queue(i) := queueNext(i + 1)
