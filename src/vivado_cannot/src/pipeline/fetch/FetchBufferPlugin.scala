@@ -31,13 +31,15 @@ class FetchBufferPlugin(config: MyCPUConfig) extends Plugin[FetchPipeline] {
       InstBufferEntry(config.frontend),
       frontend.fetchBufferDepth,
       frontend.fetchWidth,
-      config.decode.decodeWidth
+      config.decode.decodeWidth,
+      useOccupancyCounter = true
     ) {
       val flush = in(Bool)
       when(flush) {
         pushPtr := 0
         popPtr := 0
         isRisingOccupancy := False
+        occupancy := 0
         // io.push.foreach(_.setBlocked())
       }
       pushPtr.asOutput()

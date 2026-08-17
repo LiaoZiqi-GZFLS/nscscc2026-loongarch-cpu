@@ -96,7 +96,11 @@ class MultiPortFIFOVecOutReg[T <: Data](
     dataInit: Int => T = null,
     pushInit: Int = 0,
     popInit: Int = 0,
-    initFull: Boolean = false
+    initFull: Boolean = false,
+    // round-6: 用显式占用计数器驱动 ready/valid(寄存器+常数比较),
+    // 替换 popPtr-pushPtr 减法链。freeList 的 recover 语义依赖指针
+    // 关系,保持默认 false。
+    useOccupancyCounter: Boolean = false
 ) extends Component {
   // pow2保证指针循环没有问题
   require(depth > 0 && isPow2(depth))
@@ -119,6 +123,9 @@ class MultiPortFIFOVecOutReg[T <: Data](
     val pop = Vec(master(Stream(dataType)), popPorts)
   }
 
+  // round-6: 可选占用计数器(见构造参数注释)。
+  val occupancy = RegInit(U(if (initFull) depth else 0, log2Up(depth + 1) bits))
+
   // pop logic
   val maxPop = pushPtr - popPtr
   // 找到第一个非fire的
@@ -128,7 +135,7 @@ class MultiPortFIFOVecOutReg[T <: Data](
   for (i <- 0 until popPorts) {
     // 所有左侧均ready，且可以pop
     val readyTakeLeft = io.pop.take(i + 1).map(_.ready).andR
-    io.pop(i).valid := isFull || i < maxPop
+    io.pop(i).valid := (if (useOccupancyCounter) occupancy >= (i + 1) else isFull || i < maxPop)
     io.pop(i).payload.setAsReg()
     io.pop(i).payload := dataVec(popPtr + popCount + i)
   }
@@ -143,7 +150,8 @@ class MultiPortFIFOVecOutReg[T <: Data](
   for (i <- 0 until pushPorts) {
     // 所有左侧均valid，且可以push
     val validTakeLeft = io.push.take(i + 1).map(_.valid).andR
-    io.push(i).ready := isEmpty || i < maxPush
+    io.push(i).ready :=
+      (if (useOccupancyCounter) occupancy <= (depth - 1 - i) else isEmpty || i < maxPush)
     when(io.push(i).ready && validTakeLeft) {
       dataVec(pushPtr + i) := io.push(i).payload
       for (j <- i until popPorts) when(pushPtr + i === popPtr + popCount + j) {
@@ -153,5 +161,8 @@ class MultiPortFIFOVecOutReg[T <: Data](
   }
   pushPtr := pushPtr + pushCount
 
+  if (useOccupancyCounter) {
+    occupancy := occupancy + pushCount - popCount
+  }
   when(pushCount =/= popCount)(isRisingOccupancy := pushCount > popCount)
 }

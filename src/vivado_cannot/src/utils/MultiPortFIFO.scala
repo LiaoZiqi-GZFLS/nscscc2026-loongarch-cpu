@@ -38,6 +38,11 @@ class MultiPortFIFOSyncImpl[T <: Data](
     val pop = Vec(master(Stream(dataType)), popPorts)
   }
   // push logic
+  // round-6:ready/valid 由显式占用计数器驱动(寄存器+常数比较,1-2 级),
+  // 替换 popPtr-pushPtr 减法链(round-3 的 pushPtr 锥:2 条 freeList
+  // +1 条 TLB 路径的源头)。语义与旧指针减法完全一致(不含同拍 pop
+  // 的保守下界)。
+  val occupancy = RegInit(U(0, log2Up(depth + 1) bits))
   val maxPush = popPtr - pushPtr
   // 找到第一个非fire的
   val pushCount = PriorityMux(io.push.zipWithIndex.map { case (p, i) =>
@@ -52,7 +57,7 @@ class MultiPortFIFOSyncImpl[T <: Data](
   for (i <- 0 until pushPorts) {
     // 所有左侧均valid，且可以push
     val validTakeLeft = io.push.take(i + 1).map(_.valid).andR
-    io.push(i).ready := isEmpty || i < maxPush
+    io.push(i).ready := occupancy <= (depth - 1 - i)
     writePayload.mask(i) := io.push(i).ready && validTakeLeft
     writePayload.data(i) := io.push(i).payload
   }
@@ -79,7 +84,7 @@ class MultiPortFIFOSyncImpl[T <: Data](
   for (i <- 0 until popPorts) {
     // 所有左侧均ready，且可以pop
     val readyTakeLeft = io.pop.take(i + 1).map(_.ready).andR
-    io.pop(i).valid := isFull || i < maxPop
+    io.pop(i).valid := occupancy >= (i + 1)
     val entryIdx = popPtr + i
     val freshLane = entryIdx - pushPtrReg
     val fresh = entryIdx >= pushPtrReg && freshLane < pushCountReg2
@@ -94,6 +99,7 @@ class MultiPortFIFOSyncImpl[T <: Data](
   ram.io.read.cmd.valid := True
   ram.io.read.cmd.payload := popPtr
 
+  occupancy := occupancy + pushCount - popCount
   when(pushCount =/= popCount)(isRisingOccupancy := pushCount > popCount)
 }
 

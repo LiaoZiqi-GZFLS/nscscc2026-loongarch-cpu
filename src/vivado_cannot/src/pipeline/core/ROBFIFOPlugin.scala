@@ -29,6 +29,7 @@ class ROBFIFOPlugin(config: MyCPUConfig) extends Plugin[MyCPUCore] {
       pushPtr := 0
       popPtr := 0
       isRisingOccupancy := False
+      occupancy := 0
       // 可pop不可push，否则数据会丢失
       // fifoIO.push.foreach(_.setBlocked())
     }
