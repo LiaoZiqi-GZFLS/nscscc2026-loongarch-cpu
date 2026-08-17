@@ -44,7 +44,9 @@ class MyCPUCore(config: MyCPUConfig) extends Component with MultiPipeline {
     override val signals = new DecodeSignals(config)
     override val ID: Stage = newStage()
     // round-5: 两拍译码(ID:65 路匹配+字段 mux;ID2:epilogue/异常)。
+    // round-10: 三拍化(ID:比较;ID2:字段 mux;ID3:epilogue)。
     override val ID2: Stage = newStage()
+    override val ID3: Stage = newStage()
     override val RENAME: Stage = newStage()
     override val DISPATCH: Stage = newStage()
 

@@ -178,31 +178,56 @@ class DecoderArray(config: MyCPUConfig, val popPorts: Vec[Stream[InstBufferEntry
         case None => False
       }
 
-    // round-5: 两拍译码。ID 拍 = 取指缓冲 pop 负载(已寄存)上的
-    // 65 路匹配 + 每字段 MuxOH + 折叠组合基;ID2 拍 = epilogue。
-    // 原单拍 15 级(round-3 top1)拆成两段 ≤8 级。
+    // round-10: 三拍译码。ID = 65 路比较+anyMatch(4-5 级);
+    // ID2 = 每字段 MuxOH+折叠组合基(4-5 级);ID3 = epilogue(≤4 级)。
+    // round-3 top1 的 15 级(比较→mux→epilogue 全在一拍)拆成三段。
     pipeline.ID plug new Area {
       import pipeline.ID._
 
       def buildStage1(input: InstBufferEntry) =
         new Composite(input) {
           val entry = input
-          val illegalEncoding = Bool() // Flag if the instruction is illegal, i.e. no encoding matches
 
           // P12(译码级数压缩):指令编码互斥(65 normal + 0 priority),
-          // 一次性比较向量(65 位 one-hot,2-3 级)+ 每字段 MuxOH(约 3 级)。
-          // 无匹配(非法指令)时各字段保持默认值(追加一个默认输入,
-          // 选择位 = !anyMatch),与旧 when 链语义一致。
+          // 一次性比较向量(65 位 one-hot,2-3 级)。
           val matchBits = orderedEncodings.map { case (enc, _) => entry.inst === enc }
           val anyMatch = matchBits.orR
-          illegalEncoding := !anyMatch
+
+          val m = DecodeMatchBundle(config)
+          m.matchBits := matchBits.asBits
+          m.anyMatch := anyMatch
+          m.pc := entry.pc
+          m.inst := entry.inst
+          m.except := entry.except
+          m.predInfo := entry.predInfo
+          m.predRecover := entry.predRecover
+        }
+
+      // 生成decoder阵列(ID 拍:比较)
+      val stage1s = for (i <- 0 until width) yield buildStage1(popPorts(i).payload)
+      val decodeMatches = insert(pipeline.signals.DECODE_MATCHES)
+      for (i <- 0 until width) {
+        decodeMatches(i).valid := popPorts(i).valid
+        decodeMatches(i).payload := stage1s(i).m
+        popPorts(i).ready := arbitration.isFiring
+      }
+    }
+
+    pipeline.ID2 plug new Area {
+      import pipeline.ID2._
+
+      def buildStage2(input: DecodeMatchBundle) =
+        new Composite(input) {
+          val m = input
+          val illegalEncoding = Bool() // Flag if the instruction is illegal, i.e. no encoding matches
+          illegalEncoding := !m.anyMatch
 
           // 注意: 不能用 matchBits.asBits() ## !anyMatch —— asBits 是
           // MSB-first 拼接,经 asBools 回读后与 vals 整体错位 1 位
           // (实测 ADDI 按下一编码 ANDI 译码,功能测试全挂)。
           // 直接用 Seq[Bool] 按索引一一对应: matchBits(k) -> vals(k),
           // !anyMatch -> vals.last(默认值),与旧 when 链语义一致。
-          val sel: IndexedSeq[Bool] = matchBits.toIndexedSeq :+ !anyMatch
+          val sel: IndexedSeq[Bool] = m.matchBits.asBools.toIndexedSeq :+ !m.anyMatch
 
           val d = DecodeFieldsBundle(config)
           private val dElements = d.elements.toMap
@@ -217,7 +242,7 @@ class DecoderArray(config: MyCPUConfig, val popPorts: Vec[Stream[InstBufferEntry
           // round-4:epilogue 的组合 OR 链(flushState/branchLike/uniqueRetire)
           // 原先是"字段 mux 输出再串 2-3 级 OR",这里按编码常量直接折叠
           // 成 matchBits 驱动的一次性 MuxOH。writeCSR(依赖 rj)/predInfo
-          // (来自取指)保留在 ID2 拍组合。
+          // (来自取指)保留在 ID3 拍组合。
           val flushStateVals = orderedEncodings.map { case (_, acts) =>
             encBool(acts, isErtn) || encBool(acts, isWait) || encTlbOpNonNone(acts) ||
               encBool(acts, operateCache) || encBool(acts, isBar) ||
@@ -236,27 +261,27 @@ class DecoderArray(config: MyCPUConfig, val popPorts: Vec[Stream[InstBufferEntry
           d.illegalEncoding := illegalEncoding
 
           // 直通
-          d.pc := entry.pc
-          d.inst := entry.inst
-          d.except := entry.except
-          d.predInfo := entry.predInfo
-          d.predRecover := entry.predRecover
+          d.pc := m.pc
+          d.inst := m.inst
+          d.except := m.except
+          d.predInfo := m.predInfo
+          d.predRecover := m.predRecover
         }
 
-      // 生成decoder阵列(ID 拍)
-      val stage1s = for (i <- 0 until width) yield buildStage1(popPorts(i).payload)
+      // 字段 mux 阵列(ID2 拍)
+      val decodeMatches = input(pipeline.signals.DECODE_MATCHES)
+      val stage2s = for (i <- 0 until width) yield buildStage2(decodeMatches(i).payload)
       val decodeFields = insert(pipeline.signals.DECODE_FIELDS)
       for (i <- 0 until width) {
-        decodeFields(i).valid := popPorts(i).valid
-        decodeFields(i).payload := stage1s(i).d
-        popPorts(i).ready := arbitration.isFiring
+        decodeFields(i).valid := decodeMatches(i).valid
+        decodeFields(i).payload := stage2s(i).d
       }
     }
 
-    pipeline.ID2 plug new Area {
-      import pipeline.ID2._
+    pipeline.ID3 plug new Area {
+      import pipeline.ID3._
 
-      def buildStage2(input: DecodeFieldsBundle) =
+      def buildStage3(input: DecodeFieldsBundle) =
         new Composite(input) {
           val d = input
           val fields = InstructionParser(d.inst) // Parse
@@ -407,13 +432,13 @@ class DecoderArray(config: MyCPUConfig, val popPorts: Vec[Stream[InstBufferEntry
           }
         }
 
-      // epilogue 阵列(ID2 拍)
+      // epilogue 阵列(ID3 拍)
       val decodeFields = input(pipeline.signals.DECODE_FIELDS)
-      val stage2s = for (i <- 0 until width) yield buildStage2(decodeFields(i).payload)
+      val stage3s = for (i <- 0 until width) yield buildStage3(decodeFields(i).payload)
       val decodePacket = insert(pipeline.signals.DECODE_PACKET)
       for (i <- 0 until width) {
         decodePacket(i).valid := decodeFields(i).valid
-        decodePacket(i).payload := stage2s(i).uop
+        decodePacket(i).payload := stage3s(i).uop
       }
     }
   }
