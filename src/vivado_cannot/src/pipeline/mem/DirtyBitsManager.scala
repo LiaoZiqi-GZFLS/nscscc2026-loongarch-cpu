@@ -24,8 +24,8 @@ class DirtyBitsManager(config: CacheBasicConfig) extends Component {
     }))
   }
   val dirtyBits = Vec(RegInit(B(0, config.ways bits)), config.sets)
-  // normal read
-  io.readRsp := dirtyBits(io.readCmd)
+  // normal read(P7:64:1 树形读,3 级,替代 Vec.read 的 2:1 递归 6 级)
+  io.readRsp := TreeRead(dirtyBits.toIndexedSeq, io.readCmd)
   // normal write
   when(io.writeCmd.valid) {
     dirtyBits(io.writeCmd.idx)(io.writeCmd.way) := io.writeCmd.data

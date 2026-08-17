@@ -112,7 +112,9 @@ class GlobalPredictorBTBPlugin(config: FrontendConfig) extends Plugin[FetchPipel
         val way = fetchWay + i
         when(way >= fetchWay) { // confirm not out of bound
           val entry = hitData(i)
-          val validFlag = valid(index + i) && entry.tag === tag
+          // P7:BTB valid 1024:1 读由 Vec.read 的 2:1 递归(10 级)
+          // 改为 4:1 树形读(5 级)
+          val validFlag = TreeRead(valid.map(_.asBits).toIndexedSeq, index + i).asBool && entry.tag === tag
           when(validFlag) { // matched entry
             insert(PRED_COUNTER)(i) := predictor.io.read.predCounters(i)
             insert(BRANCH_MASK)(i) := True // set branch mask

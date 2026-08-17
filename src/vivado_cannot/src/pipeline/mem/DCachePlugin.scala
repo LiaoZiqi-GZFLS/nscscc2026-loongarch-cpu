@@ -69,8 +69,8 @@ class DCachePlugin(config: MyCPUConfig) extends Plugin[MemPipeline] {
       val std = input(STD_SLOT)
       val memAddr = Mux(std.valid, std.addr, input(MEMORY_ADDRESS))
       mem1MemAddr := memAddr
-      // 读valid也插进流水线
-      insert(DCACHE_VALIDS) := valids(memAddr(dcache.indexRange))
+      // 读valid也插进流水线(P7:64:1 树形读,3 级)
+      insert(DCACHE_VALIDS) := TreeRead(valids.map(_.asBits).toIndexedSeq, memAddr(dcache.indexRange)).asBools
       dirtyBitsManager.io.readCmd := memAddr(dcache.indexRange)
       insert(DCACHE_DIRTY) := dirtyBitsManager.io.readRsp
       insert(DCACHE_INFO) := rPort.rsp

@@ -77,8 +77,8 @@ class ICachePlugin(config: MyCPUConfig) extends Plugin[FetchPipeline] {
       import IF1._
       arbitration.haltItself setWhen refetchValid
       val pc = input(pipeline.signals.PC)
-      // 读valid也插进流水线
-      insert(ICACHE_VALIDS) := valids(pc(icache.indexRange))
+      // 读valid也插进流水线(P7:64:1 树形读,3 级)
+      insert(ICACHE_VALIDS) := TreeRead(valids.map(_.asBits).toIndexedSeq, pc(icache.indexRange)).asBools
       for (i <- 0 until icache.ways) {
         for (j <- 0 until frontend.fetchWidth) {
           // ICACHE_RSPS: BWord[ways][fetchWidth]; dataRAMs[ways][sets]
