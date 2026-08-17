@@ -69,7 +69,7 @@ class ROBFIFOPlugin(config: MyCPUConfig) extends Plugin[MyCPUCore] {
   // needNotExecute 条目;提交按 robIdx 位置匹配队列条目,同拍完成由
   // 端口级 forward 覆盖,flush 整体清空。中央 32:1 状态读 mux 与
   // 随机写口交叉全部消失。
-  val cqDepth = 16
+  val cqDepth = 32
   val cqCount = 5 + decodeWidth
   // q0..q2: ALU0/1/2(q0 兼 BRU),q3: LSU,q4: MDU,
   // q5..q5+decodeWidth-1: 各派发 lane 的"天生完成"队列
