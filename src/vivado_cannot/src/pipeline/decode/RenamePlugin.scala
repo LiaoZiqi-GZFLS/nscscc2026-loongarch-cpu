@@ -28,7 +28,11 @@ class RenamePlugin(config: MyCPUConfig) extends Plugin[DecodePipeline] {
     retireWidth,
     decodeWidth,
     dataInit = { i => U(i + rfConfig.nArchRegs, prfAddrWidth bits) },
-    initFull = true
+    initFull = true,
+    // round-10:pushPtr 减法锥是 round-10 top60 的 21 条路径源头;
+    // 改占用计数器(寄存器+常数比较)。recover = 整个池回满(冲刷
+    // 丢弃所有未提交分配),语义与旧指针方案一致。
+    useOccupancyCounter = true
   ) {
     val recover = in(Bool)
     when(recover) {
@@ -42,6 +46,7 @@ class RenamePlugin(config: MyCPUConfig) extends Plugin[DecodePipeline] {
       // pushPtr := 0
       pushPtr := popPtr
       isRisingOccupancy := True
+      occupancy := U(rfConfig.nPhysRegs + 1 - rfConfig.nArchRegs, log2Up(rfConfig.nPhysRegs + 2 - rfConfig.nArchRegs) bits)
     }
   }
 

@@ -32,7 +32,8 @@ class FetchBufferPlugin(config: MyCPUConfig) extends Plugin[FetchPipeline] {
       frontend.fetchBufferDepth,
       frontend.fetchWidth,
       config.decode.decodeWidth,
-      useOccupancyCounter = true
+      useOccupancyCounter = true,
+      specReadPop = true
     ) {
       val flush = in(Bool)
       when(flush) {

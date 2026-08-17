@@ -100,7 +100,12 @@ class MultiPortFIFOVecOutReg[T <: Data](
     // round-6: 用显式占用计数器驱动 ready/valid(寄存器+常数比较),
     // 替换 popPtr-pushPtr 减法链。freeList 的 recover 语义依赖指针
     // 关系,保持默认 false。
-    useOccupancyCounter: Boolean = false
+    useOccupancyCounter: Boolean = false,
+    // round-10:pop 负载 D 用投机读(popPtr+0..2*popPorts-1 并行读,
+    // 地址=popPtr+常数,popCount 只做末级选择),斩断
+    // 仲裁链→popCount→读地址 的深度(round-10 top60 中 42 条
+    // 落点为 fetch buffer pop 负载寄存器)。面积约翻倍(取指缓冲用)。
+    specReadPop: Boolean = false
 ) extends Component {
   // pow2保证指针循环没有问题
   require(depth > 0 && isPow2(depth))
@@ -132,12 +137,15 @@ class MultiPortFIFOVecOutReg[T <: Data](
   val popCount = PriorityMux(io.pop.zipWithIndex.map { case (p, i) =>
     !p.fire -> U(i)
   } :+ (True -> U(popPorts)))
+  // round-10:投机读(popPtr+常数 并行读),popCount 只做末级选择
+  val specReads = if (specReadPop) Some(Vec((0 until popPorts * 2).map(k => dataVec(popPtr + k)))) else None
   for (i <- 0 until popPorts) {
     // 所有左侧均ready，且可以pop
     val readyTakeLeft = io.pop.take(i + 1).map(_.ready).andR
     io.pop(i).valid := (if (useOccupancyCounter) occupancy >= (i + 1) else isFull || i < maxPop)
     io.pop(i).payload.setAsReg()
-    io.pop(i).payload := dataVec(popPtr + popCount + i)
+    io.pop(i).payload :=
+      (if (specReadPop) specReads.get((popCount + i).resized) else dataVec(popPtr + popCount + i))
   }
   popPtr := popPtr + popCount
 
