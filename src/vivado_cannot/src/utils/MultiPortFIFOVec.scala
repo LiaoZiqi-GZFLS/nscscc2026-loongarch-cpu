@@ -138,6 +138,10 @@ class MultiPortFIFOVecOutReg[T <: Data](
     !p.fire -> U(i)
   } :+ (True -> U(popPorts)))
   // round-10:投机读(popPtr+常数 并行读),popCount 只做末级选择
+  // round-16:修复投机读索引位宽 bug - popCount(2bit)+i 在 popCount=3 时
+  // 溢出截断为 2bit(3+2=101b→01b),6 路投机读实际只有 4 路被接线,
+  // popPorts>=3 时第 2 口读错表项(功能点 1/3/4/7/8/9/11+ 全挂的根因)。
+  // 先 resize 到 log2Up(popPorts*2) 再做加法。
   val specReads = if (specReadPop) Some(Vec((0 until popPorts * 2).map(k => dataVec(popPtr + k)))) else None
   for (i <- 0 until popPorts) {
     // 所有左侧均ready，且可以pop
@@ -145,7 +149,7 @@ class MultiPortFIFOVecOutReg[T <: Data](
     io.pop(i).valid := (if (useOccupancyCounter) occupancy >= (i + 1) else isFull || i < maxPop)
     io.pop(i).payload.setAsReg()
     io.pop(i).payload :=
-      (if (specReadPop) specReads.get((popCount + i).resized) else dataVec(popPtr + popCount + i))
+      (if (specReadPop) specReads.get(popCount.resize(log2Up(popPorts * 2)) + i) else dataVec(popPtr + popCount + i))
   }
   popPtr := popPtr + popCount
 

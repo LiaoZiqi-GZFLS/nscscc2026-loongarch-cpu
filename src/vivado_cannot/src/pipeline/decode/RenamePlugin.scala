@@ -28,11 +28,12 @@ class RenamePlugin(config: MyCPUConfig) extends Plugin[DecodePipeline] {
     retireWidth,
     decodeWidth,
     dataInit = { i => U(i + rfConfig.nArchRegs, prfAddrWidth bits) },
-    initFull = true
-    // round-15: freeList 占用计数器回退 - round-11 的 useOccupancyCounter
-    // 从未在通过网表中被验证(614a0bf 的"通过"网表实为 05ad246/round-9
-    // 树产物,不含该计数器)。回退到 round-10 指针语义(pushPtr/popPtr),
+    initFull = true,
+    // round-17: 重新启用占用计数器(round-15 曾连同 specReads 一起回退,
+    // 但 round-16 已证明功能挂死的根因是投机读索引溢出,与计数器无关)。
+    // pushPtr 减法锥是 round-10 top60 的 21 条路径源头;计数器语义:
     // recover = 整个池回满(冲刷丢弃所有未提交分配)。
+    useOccupancyCounter = true
   ) {
     val recover = in(Bool)
     when(recover) {
@@ -46,6 +47,7 @@ class RenamePlugin(config: MyCPUConfig) extends Plugin[DecodePipeline] {
       // pushPtr := 0
       pushPtr := popPtr
       isRisingOccupancy := True
+      occupancy := U(rfConfig.nPhysRegs + 1 - rfConfig.nArchRegs, log2Up(rfConfig.nPhysRegs + 2 - rfConfig.nArchRegs) bits)
     }
   }
 

@@ -37,11 +37,12 @@ class FetchBufferPlugin(config: MyCPUConfig) extends Plugin[FetchPipeline] {
         z.assignFromBits(B(0, widthOf(z) bits))
         z
       }, // round-14:X-sweep 缓冲条目复位清零
-      useOccupancyCounter = true
-      // round-15: specReadPop 回退 - round-11 的投机读(ebc5167 起)是功能
-      // 回归源:614a0bf 提交的"通过"网表实为 05ad246(round-9)树产物,
-      // 不含 specReads;首个含投机读的网表(00:32)即开始确定性挂死在
-      // 功能点 1/3/4/7/8/9/11+。回退到 round-10 的 popPtr+popCount 直接读。
+      useOccupancyCounter = true,
+      // round-16: specReadPop 重新启用(round-15 曾因功能挂死回退) -
+      // 根因是投机读索引 popCount(2bit)+i 溢出截断(见 MultiPortFIFOVec
+      // round-16 修复),与投机读结构本身无关。恢复以切断
+      // 仲裁链→popCount→读地址 的深度。
+      specReadPop = true
     ) {
       val flush = in(Bool)
       when(flush) {
