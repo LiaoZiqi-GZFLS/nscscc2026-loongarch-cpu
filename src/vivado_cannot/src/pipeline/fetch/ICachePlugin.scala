@@ -50,7 +50,7 @@ class ICachePlugin(config: MyCPUConfig) extends Plugin[FetchPipeline] {
   override def build(pipeline: FetchPipeline): Unit = pipeline plug new Area {
     // * Plugin Area into FetchPipeline
     import pipeline._
-    // I-cache重取
+    // I-cache重取(round-7:触发条件改为纯 FSM 状态,见 finish 态注释)
     val doRefetch = False
     // IF1为气泡的时候跳过refetch，省一个周期
     val refetchValid = pipeline.IF1.arbitration.isValid && doRefetch
@@ -227,8 +227,13 @@ class ICachePlugin(config: MyCPUConfig) extends Plugin[FetchPipeline] {
         finish.whenIsActive {
           // 避免IF1中指令取不到新写的cache，重取
           // 每一条都从state boot开始
+          // round-7:doRefetch 由 FSM 状态直接驱动(寄存条件),不再
+          // 依赖 !IF1.arbitration.isFlushed(round-4 top1 的跨模块
+          // 组合链:commit except→regFlush→isFlushed→refetch→IF1
+          // stall,84% 布线)。finish 期间持续用 PC 重读同一行,
+          // flush 重定向会覆盖,多读同地址无害。
+          doRefetch := True
           when(!arbitration.isStuck) {
-            doRefetch := !IF1.arbitration.isFlushed
             goto(stateBoot)
           }
         }
