@@ -48,8 +48,7 @@ class FetchBufferPlugin(config: MyCPUConfig) extends Plugin[FetchPipeline] {
   def popPorts = bufferFIFO.io.pop
   override def build(pipeline: FetchPipeline): Unit = pipeline.IF3 plug new Area {
 
-    // round-8:冲刷延一拍(与退役动作拍对齐)
-    val flush = pipeline.globalService(classOf[CommitPlugin]).needFlushReg
+    val flush = pipeline.globalService(classOf[CommitPlugin]).needFlush
     bufferFIFO.flush := flush // clear when need flush. Is this OK??
 
     import pipeline.IF3._
