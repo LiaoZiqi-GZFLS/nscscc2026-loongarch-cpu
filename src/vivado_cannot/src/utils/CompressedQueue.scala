@@ -76,15 +76,13 @@ abstract class CompressedQueue[T <: IssueSlot](
   // 3. 压缩时通过stateNext同步状态转移。
   def genCompressLogic() = {
     // 压缩逻辑
+    // round-8(发射路径打散):popCounts 原为逐槽 Mux+1 的串行进位链
+    // (深度 16 级),改为每槽独立 CountOne 前缀统计(各 3 级,并行),
+    // 语义完全一致(popCounts(i) = issueMask(0..i) 的置位数)。
     val popCounts = Vec(UInt(log2Up(issueWidth + 1) bits), depth) // sized depth, prefix sum of issueMask
-    // pop等价于当前valid，下个周期不valid（被抽走了）
-    popCounts(0) := (issueFire && issueMask(0)).asUInt.resized
-    for (i <- 0 to depth - 2) {
-      popCounts(i + 1) := Mux(
-        issueFire && issueMask(i + 1),
-        popCounts(i) + 1,
-        popCounts(i)
-      )
+    val masked = issueMask.asBools.map(b => Mux(issueFire, b, False))
+    for (i <- 0 until depth) {
+      popCounts(i) := CountOne(masked.take(i + 1).asBits).resized
     }
     for (i <- 0 until depth) {
       for (j <- 1 to issueWidth) {
