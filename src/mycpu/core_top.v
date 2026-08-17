@@ -21,6 +21,7 @@
 //  4. NOP 其余观测输出（Dretire*/Difftest* 等）不连接。
 //  （本文件仅端口适配，不含逻辑；触发 CI，S3v2 重定向斩断 @105MHz 拆墙第二轮。）
 //  （触发 CI：t26-dcache-4way 分支，4-way round-robin D$ (16KB) @105MHz。）
+//  （再次触发 CI：t26-dcache-4way 分支 re-run。）
 // ============================================================================
 
 module core_top(
