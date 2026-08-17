@@ -210,6 +210,7 @@ class DecoderArray(config: MyCPUConfig, val popPorts: Vec[Stream[InstBufferEntry
           def stName(s: Stageable[_ <: Data]): String =
             s.getClass.getSimpleName.stripSuffix("$")
 
+          val sel: IndexedSeq[Bool] = matchBits.toIndexedSeq :+ !anyMatch
           for (s <- stageables) {
             val vals = orderedEncodings.map { case (_, acts) => valueFor(s, acts) } :+ defaults(s)
             // 注意: 不能用 matchBits.asBits() ## !anyMatch —— asBits 是
@@ -217,7 +218,6 @@ class DecoderArray(config: MyCPUConfig, val popPorts: Vec[Stream[InstBufferEntry
             // (实测 ADDI 按下一编码 ANDI 译码,功能测试全挂)。
             // 直接用 Seq[Bool] 按索引一一对应: matchBits(k) -> vals(k),
             // !anyMatch -> vals.last(默认值),与旧 when 链语义一致。
-            val sel: IndexedSeq[Bool] = matchBits.toIndexedSeq :+ !anyMatch
             val muxed = MuxOH(sel, vals)
             uopElements.get(stName(s)) match {
               case Some(value) =>
@@ -227,6 +227,39 @@ class DecoderArray(config: MyCPUConfig, val popPorts: Vec[Stream[InstBufferEntry
                 local(s.asInstanceOf[Stageable[Data]]).asInstanceOf[Data] := muxed
             }
           }
+
+          // round-4(译码级数压缩):epilogue 的组合 OR 链
+          // (flushState/branchLike/uniqueRetire)原先是"字段 mux 输出再
+          // 串 2-3 级 OR"(round-3 top1 路径 15 级尾部),这里按编码常量
+          // 直接折叠成 matchBits 驱动的一次性 MuxOH,每字段仍 3-4 级。
+          // writeCSR(依赖 rj)/predInfo(来自取指)保留在 epilogue 组合。
+          import MicroOpSignals._
+          def encBool(acts: Seq[(Stageable[_ <: Data], Data)], s: Stageable[Bool]): Bool =
+            acts.collectFirst { case (k, v) if k eq s => v }
+              .getOrElse(defaults(s))
+              .asInstanceOf[Bool]
+          def encTlbOpNonNone(acts: Seq[(Stageable[_ <: Data], Data)]): Bool =
+            acts.collectFirst { case (k, v) if k eq tlbOp => v } match {
+              case Some(v) =>
+                v.asInstanceOf[SpinalEnumCraft[TLBOpType.type]] =/= TLBOpType.NONE
+              case None => False
+            }
+
+          val flushStateVals = orderedEncodings.map { case (_, acts) =>
+            encBool(acts, isErtn) || encBool(acts, isWait) || encTlbOpNonNone(acts) ||
+              encBool(acts, operateCache) || encBool(acts, isBar) ||
+              encBool(acts, isLL) || encBool(acts, isSC)
+          } :+ False
+          val branchLikeVals = orderedEncodings.map { case (_, acts) =>
+            encBool(acts, isBranch) || encBool(acts, isJump) || encBool(acts, isJR)
+          } :+ False
+          val uniqueRetireVals = orderedEncodings.zipWithIndex.map { case ((_, acts), i) =>
+            flushStateVals(i) || branchLikeVals(i) ||
+              encBool(acts, isLoad) || encBool(acts, isStore)
+          } :+ False
+          val flushStateMux = MuxOH(sel, flushStateVals)
+          val branchLikeMux = MuxOH(sel, branchLikeVals)
+          val uniqueRetireMux = MuxOH(sel, uniqueRetireVals)
 
           // ! Epilogue: override some fields
           import NOP.constants.LoongArch
@@ -342,20 +375,17 @@ class DecoderArray(config: MyCPUConfig, val popPorts: Vec[Stream[InstBufferEntry
             }
           }
 
-          uop.branchLike := uop.isBranch || uop.isJump || uop.isJR
+          uop.branchLike := branchLikeMux
           // 处理unique retire类指令
-          uop.flushState := uop.isErtn || uop.writeCSR || uop.isWait ||
-            uop.operateTLB || uop.operateCache || local(isBar) || uop.isLL || uop.isSC
+          uop.flushState := flushStateMux || uop.writeCSR
           // flushState 是 uniqueRetire 的子集
 
           if (config.decode.allUnique) {
             println("[Warning] All Unique retire enabled")
             uop.uniqueRetire := True
           } else {
-            uop.uniqueRetire := uop.flushState ||
-              uop.branchLike ||
-              uop.isLoad ||
-              uop.isStore ||
+            uop.uniqueRetire := uniqueRetireMux ||
+              uop.writeCSR ||
               uop.predInfo.predictBranch
           }
         }

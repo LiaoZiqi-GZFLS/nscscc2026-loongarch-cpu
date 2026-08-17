@@ -23,7 +23,11 @@ class FetchBufferPlugin(config: MyCPUConfig) extends Plugin[FetchPipeline] {
   private val frontend = config.frontend
   private val icache = config.frontend.icache
   val bufferFIFO =
-    new MultiPortFIFOVec(
+    // round-4:pop 负载整拍寄存(MultiPortFIFOVecOutReg),切断
+    // popPtr→pop数据mux→译码的 15 级链(round-3 top60 中 41 条路径的源头)。
+    // OutReg 的读前推(popPtr+popCount+i)与组合 valid 保证对消费端
+    // (译码)协议不变:valid/payload 同拍对应同一表项。
+    new MultiPortFIFOVecOutReg(
       InstBufferEntry(config.frontend),
       frontend.fetchBufferDepth,
       frontend.fetchWidth,

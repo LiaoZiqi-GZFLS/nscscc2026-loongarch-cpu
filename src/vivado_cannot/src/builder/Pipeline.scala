@@ -155,9 +155,16 @@ trait Pipeline {
             inputDefault := stage.inserts(key)
           } else {
             val stageBefore = stages(stageIndex - 1)
+            // round-4: 级间寄存器的采样使能(!isStuck)是 fo≈1000 的广播网
+            // (round-3 布线 top60 中 dataVec CE 类路径 83% 为布线延迟)。
+            // max_fanout 提示综合器按消费组复制驱动,不改任何语义。
+            val sampleEn = stage.dontSample
+              .getOrElse(key, Nil)
+              .foldLeft(!stage.arbitration.isStuck)(_ && !_)
+            sampleEn.addAttribute("max_fanout", "250")
             inputDefault := RegNextWhen(
               stageBefore.output(key),
-              stage.dontSample.getOrElse(key, Nil).foldLeft(!stage.arbitration.isStuck)(_ && !_)
+              sampleEn
             ).setName(s"${stageBefore.getName()}_to_${stage.getName()}_${key.getName()}")
           }
         }
