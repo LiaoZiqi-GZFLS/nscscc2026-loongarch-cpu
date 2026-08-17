@@ -127,7 +127,7 @@ final case class MemIssueConfig(
 // Commit
 final case class ROBConfig(
     robDepth: Int = 32,
-    retireWidth: Int = 3
+    retireWidth: Int = 2 // round-9: 3->2, 提交侧扇出/环宽降 1/3
 ) {
   val robAddressWidth = log2Up(robDepth)
 }

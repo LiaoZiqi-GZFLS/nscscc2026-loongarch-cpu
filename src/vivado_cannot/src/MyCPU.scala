@@ -65,7 +65,7 @@ class MyCPU(config: MyCPUConfig) extends Component {
     val DCacheValid = out Bool ()
     val DCacheOpCode = out Bits (CacheOpType.None.asBits.getWidth bits)
     val DCacheSelCode = out Bits (CacheSelType.None.asBits.getWidth bits)
-    val DuncachedMask = out Bits (3 bits)
+    val DuncachedMask = out Bits (2 bits)
     val DMEMIssueQueueValid = out Bits (config.memIssue.depth bits)
     val DMEMIssueQueuePc = out Vec (Bits(32 bits), config.memIssue.depth)
 
@@ -384,7 +384,7 @@ class MyCPU(config: MyCPUConfig) extends Component {
 
       if (config.debug_difftest) {
         // InstrCommit
-        io.DifftestBundle.DifftestInstrCommitIndex := Vec(Seq(B(0x0, 8 bits), B(0x1, 8 bits), B(0x2, 8 bits)))
+        io.DifftestBundle.DifftestInstrCommitIndex := Vec(Seq.tabulate(config.rob.retireWidth)(i => B(i, 8 bits)))
         io.DifftestBundle.DifftestInstrCommitValid := Vec(ROBFIFOPlugin.debug_fifoIO.pop.map { stream_entry_bundle =>
           stream_entry_bundle.valid && stream_entry_bundle.ready
         })
@@ -394,7 +394,7 @@ class MyCPU(config: MyCPUConfig) extends Component {
         io.DifftestBundle.DifftestInstrCommitInstr := Vec(ROBFIFOPlugin.debug_fifoIO.pop.map({ stream_entry_bundle =>
           stream_entry_bundle.info.uop.inst.asBits
         }))
-        io.DifftestBundle.DifftestSkip := Vec(Seq(False, False, False))
+        io.DifftestBundle.DifftestSkip := Vec(Seq.fill(config.rob.retireWidth)(False))
         io.DifftestBundle
           .DifftestIsTlbFill(0) := ROBFIFOPlugin.debug_fifoIO.pop(0).payload.info.uop.tlbOp === TLBOpType.TLBFILL
         io.DifftestBundle.DifftestTlbFillIndex(0) := MMUPlugin.victim_idx.asBits.resized

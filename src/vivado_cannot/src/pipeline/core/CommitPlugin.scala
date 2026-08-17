@@ -30,11 +30,11 @@ class CommitPlugin(config: MyCPUConfig)
   private val retireWidth = config.rob.retireWidth
   private val decodeWidth = config.decode.decodeWidth
 
-  // 向外的提交接口
+  // 鍚戝鐨勬彁浜ゆ帴鍙?
   override val arfCommits = Vec(Flow(RegFileMappingEntryBundle(config.regFile)), retireWidth)
 
   // TODO: [NOP] Remove debug signals
-  val DuncachedMask = out Bits (3 bits)
+  val DuncachedMask = out Bits (retireWidth bits)
 
   override def build(pipeline: MyCPUCore): Unit = pipeline plug {
     val robFIFO = pipeline.service(classOf[ROBFIFOPlugin])
@@ -96,18 +96,18 @@ class CommitPlugin(config: MyCPUConfig)
       val linearRecover = Bool()
 
       // ! Calculate instructions that can be retired
-      // P3(提交环压缩):掩码展平为每口布尔式。complete 前缀、异常或、
-      // unique/recover 掩码不再经 andR/orR 树和 5 掩码相与的中间级,
-      // 每口 ready 从 state Q 起约 3-4 级(综合落 LUT6,6 输入一网)。
-      // 语义与原掩码逐位一致:exc/unique/recover 位 0 恒真(异常
-      // 只能从 0 口提交)。uncachedMask 仍由 uncached FSM 驱动。
+      // P3(鎻愪氦鐜帇缂?:鎺╃爜灞曞钩涓烘瘡鍙ｅ竷灏斿紡銆俢omplete 鍓嶇紑銆佸紓甯告垨銆?
+      // unique/recover 鎺╃爜涓嶅啀缁?andR/orR 鏍戝拰 5 鎺╃爜鐩镐笌鐨勪腑闂寸骇,
+      // 姣忓彛 ready 浠?state Q 璧风害 3-4 绾?缁煎悎钀?LUT6,6 杈撳叆涓€缃?銆?
+      // 璇箟涓庡師鎺╃爜閫愪綅涓€鑷?exc/unique/recover 浣?0 鎭掔湡(寮傚父
+      // 鍙兘浠?0 鍙ｆ彁浜?銆倁ncachedMask 浠嶇敱 uncached FSM 椹卞姩銆?
       val uncachedMask = out Bits (retireWidth bits) // uncached load/store
-      DuncachedMask := uncachedMask // TODO: [NOP] Remove debug signals
+      DuncachedMask := uncachedMask.resized // TODO: [NOP] Remove debug signals
 
       val c0 = popPorts(0).state.complete
       val blk0 = popPorts(0).state.except.valid || linearRecover
       val mp0 = popPorts(0).state.mispredict
-      // uncachedMask 是"允许位"(FSM 默认 setAll=1),直接作 AND 因子
+      // uncachedMask 鏄?鍏佽浣?(FSM 榛樿 setAll=1),鐩存帴浣?AND 鍥犲瓙
       popPorts(0).ready := c0 && uncachedMask(0)
 
       if (retireWidth > 1) {
@@ -125,35 +125,35 @@ class CommitPlugin(config: MyCPUConfig)
       }
 
       val port0Commit = new Area {
-        // port0特殊处理
+        // port0鐗规畩澶勭悊
         val port = popPorts(0)
         val entry = port.payload
         val uop = port.info.uop
         val fire = port.fire
 
-        // 中断处理：中断被当作exception提交，则自然屏蔽所有指令性提交
-        // exception分类在handler中进行，若本身就有exception，中断会被优先处理
+        // 涓柇澶勭悊锛氫腑鏂褰撲綔exception鎻愪氦锛屽垯鑷劧灞忚斀鎵€鏈夋寚浠ゆ€ф彁浜?
+        // exception鍒嗙被鍦╤andler涓繘琛岋紝鑻ユ湰韬氨鏈塭xception锛屼腑鏂細琚紭鍏堝鐞?
         val intPending = pipeline.service(classOf[InterruptHandlerPlugin]).intPending
-        val intInhibit = False // 用于在uncached开始执行后屏蔽中断的提交
+        val intInhibit = False // 鐢ㄤ簬鍦╱ncached寮€濮嬫墽琛屽悗灞忚斀涓柇鐨勬彁浜?
         hasExcept := entry.state.except.valid || (intPending && !intInhibit)
 
         val mispredict = entry.state.mispredict
 
-        // 需要flush到PC+4的情况：1. 指令本身改变影响处理器状态；2. 非branch被预测改变了控制流
+        // 闇€瑕乫lush鍒癙C+4鐨勬儏鍐碉細1. 鎸囦护鏈韩鏀瑰彉褰卞搷澶勭悊鍣ㄧ姸鎬侊紱2. 闈瀊ranch琚娴嬫敼鍙樹簡鎺у埗娴?
         linearRecover := uop.flushState || (!uop.branchLike && mispredict)
 
-        // 需要回滚处理器状态的情况：
-        // 1. 分支：预测错误
-        // 2. 异常
-        // 3. 其它提交后需要flush流水线的指令
+        // 闇€瑕佸洖婊氬鐞嗗櫒鐘舵€佺殑鎯呭喌锛?
+        // 1. 鍒嗘敮锛氶娴嬮敊璇?
+        // 2. 寮傚父
+        // 3. 鍏跺畠鎻愪氦鍚庨渶瑕乫lush娴佹按绾跨殑鎸囦护
         val recoverState = fire && (hasExcept || mispredict || linearRecover)
-        // 如果不需要等delay slot，则立即flush
+        // 濡傛灉涓嶉渶瑕佺瓑delay slot锛屽垯绔嬪嵆flush
         needFlush := recoverState
-        robFIFO.fifoIO.flush := needFlush // flush周期同时pop
+        robFIFO.fifoIO.flush := needFlush // flush鍛ㄦ湡鍚屾椂pop
 
-        // mispredict仍然会提交分支指令和delay slot，所以要先更新ARF，再回滚PRF
-        // flush的下一个周期不会pop，所以没有关系
-        recoverPRF := regFlush // regFlush 是 needFlush 延迟一个周期
+        // mispredict浠嶇劧浼氭彁浜ゅ垎鏀寚浠ゅ拰delay slot锛屾墍浠ヨ鍏堟洿鏂癆RF锛屽啀鍥炴粴PRF
+        // flush鐨勪笅涓€涓懆鏈熶笉浼歱op锛屾墍浠ユ病鏈夊叧绯?
+        recoverPRF := regFlush // regFlush 鏄?needFlush 寤惰繜涓€涓懆鏈?
 
         val jumpTarget = U(0, 32 bits)
 
@@ -161,18 +161,18 @@ class CommitPlugin(config: MyCPUConfig)
         pipeline.fetchPipeline.stages.last.arbitration.flushIt setWhen needFlush
         pipeline.decodePipeline.stages.last.arbitration.flushIt setWhen needFlush
 
-        // exception永远从0口unique发出
+        // exception姘歌繙浠?鍙nique鍙戝嚭
         except.valid := fire && hasExcept
         except.payload := entry.state.except.payload
-        // 前端异常的badVA必然是pc
+        // 鍓嶇寮傚父鐨刡adVA蹇呯劧鏄痯c
         when(entry.info.frontendExc) { except.badVA := entry.info.uop.pc }
         epc := uop.pc
 
         when(fire & !hasExcept) {
-          // 所有指令性的commit需要在没有except的时候发出
+          // 鎵€鏈夋寚浠ゆ€х殑commit闇€瑕佸湪娌℃湁except鐨勬椂鍊欏彂鍑?
 
           cacheOp.valid := uop.operateCache
-          // 复用badVA，如果没有异常的时候badVA填cache需要的物理地址
+          // 澶嶇敤badVA锛屽鏋滄病鏈夊紓甯哥殑鏃跺€檅adVA濉玞ache闇€瑕佺殑鐗╃悊鍦板潃
           cacheOp.payload.addr := entry.state.except.badVA
           cacheOp.payload.op assignFromBits entry.state.intResult(0, CacheOpType.None.asBits.getWidth bits).asBits
           cacheOp.payload.sel assignFromBits entry.state
@@ -233,9 +233,9 @@ class CommitPlugin(config: MyCPUConfig)
           }
 
           when(linearRecover && !uop.isErtn) {
-            // 这些是本身不改变控制流，但因为flush而需要改变控制流
+            // 杩欎簺鏄湰韬笉鏀瑰彉鎺у埗娴侊紝浣嗗洜涓篺lush鑰岄渶瑕佹敼鍙樻帶鍒舵祦
             jumpInterface.valid := True
-            // [NOP] 被改成了直接用 pc + 4
+            // [NOP] 琚敼鎴愪簡鐩存帴鐢?pc + 4
             jumpInterface.payload := uop.pc + 4
           }
 
@@ -244,13 +244,13 @@ class CommitPlugin(config: MyCPUConfig)
             jumpInterface.payload := jumpTarget
           }
 
-          // 以上优先级是重要的。Branch本身的跳转目标优先于delay slot中的mispredict（一定非branch）。
+          // 浠ヤ笂浼樺厛绾ф槸閲嶈鐨勩€侭ranch鏈韩鐨勮烦杞洰鏍囦紭鍏堜簬delay slot涓殑mispredict锛堜竴瀹氶潪branch锛夈€?
         }
 
         val uncachedProcess = new Area {
-          // 处理uncached load的提交问题
-          // uncached load要等待store buffer将其发射并执行到WB阶段才能提交
-          // 避免出现寄存器已经被重分配出去的问题
+          // 澶勭悊uncached load鐨勬彁浜ら棶棰?
+          // uncached load瑕佺瓑寰卻tore buffer灏嗗叾鍙戝皠骞舵墽琛屽埌WB闃舵鎵嶈兘鎻愪氦
+          // 閬垮厤鍑虹幇瀵勫瓨鍣ㄥ凡缁忚閲嶅垎閰嶅嚭鍘荤殑闂
           val isUncachedUOP = uop.isLoad && entry.state.lsuUncached
           val fsm = new StateMachine {
             disableAutoStart()
@@ -260,7 +260,7 @@ class CommitPlugin(config: MyCPUConfig)
             uncachedMask.setAll()
             stateBoot.whenIsActive {
               when(port.valid && isUncachedUOP && entry.state.complete && !hasExcept) {
-                // 不提交，等待store buffer执行
+                // 涓嶆彁浜わ紝绛夊緟store buffer鎵ц
                 uncachedMask := 0
                 commitStore := True
                 goto(execute)
@@ -273,9 +273,9 @@ class CommitPlugin(config: MyCPUConfig)
               val memWB = pipeline.memPipeline.WB
               val wbSTD = memWB.input(pipeline.memPipeline.signals.STD_SLOT)
               val isUncachedWB = wbSTD.valid && !wbSTD.isStore
-              // uncached load执行完成
+              // uncached load鎵ц瀹屾垚
               when(memWB.arbitration.notStuck && isUncachedWB) {
-                // FIXME: 需要保证此周期一定提交且不触发异常
+                // FIXME: 闇€瑕佷繚璇佹鍛ㄦ湡涓€瀹氭彁浜や笖涓嶈Е鍙戝紓甯?
                 uncachedMask.setAll()
                 goto(stateBoot)
               }
@@ -289,7 +289,7 @@ class CommitPlugin(config: MyCPUConfig)
         val uop = port.info.uop
         val rename = port.info.rename
         when(port.fire & !hasExcept) {
-          // 所有指令性的commit需要在没有except的时候发出
+          // 鎵€鏈夋寚浠ゆ€х殑commit闇€瑕佸湪娌℃湁except鐨勬椂鍊欏彂鍑?
           arfCommits(i).valid := uop.doRegWrite
           arfCommits(i).payload.addr := uop.wbAddr
           arfCommits(i).payload.prevAddr := rename.wPrevReg
