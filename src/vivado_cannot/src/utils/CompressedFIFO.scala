@@ -88,14 +88,20 @@ abstract class CompressedFIFO[T <: IssueSlot](
     // issue选择
   }
 
-  def genGlobalWakeup(prf: PhysRegFilePlugin, rPorts: Int) = prf.clearBusys.foreach { port =>
+  def genGlobalWakeup(prf: PhysRegFilePlugin, rPorts: Int) = {
+    // P5(级数压缩):与 CompressedQueue 相同,远程唤醒改为并行 OR 树
+    // (各口写常量 True,优先级链与 OR 等价)。
+    val ports = prf.clearBusys
     for (i <- 0 until depth) {
-      // 远程唤醒（监听写busy广播）
-      for (j <- 0 until rPorts)
-        when(port.valid && port.payload === queue(i).payload.rRegs(j).payload) {
+      for (j <- 0 until rPorts) {
+        val waken = ports
+          .map(p => p.valid && p.payload === queue(i).payload.rRegs(j).payload)
+          .reduceBalancedTree(_ || _)
+        when(waken) {
           queue(i).payload.rRegs(j).valid := True
           queueNext(i).payload.rRegs(j).valid := True
         }
+      }
     }
   }
 

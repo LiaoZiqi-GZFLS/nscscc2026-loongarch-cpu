@@ -52,13 +52,27 @@ class PhysRegFilePlugin(config: RegFileConfig) extends Plugin[MyCPUCore] {
     port
   }
   def readPort(addr: UInt) = {
-    val port = Mux(addr === 0, BWord(0), regs(addr - 1)) // .setCompositeName(this, "readPort", true)
+    // P6(级数压缩):63 深度读 mux 改为 3 级 LUT6 树
+    // (16x4:1 -> 4x4:1 -> 4:1),替代 Vec.read 的 2:1 递归树(约 6 级)。
+    // 零寄存器补到 64 项;addr==0(x0)在树外直接选零。
+    val all = regs.map(_.asBits) :+ B(0, 32 bits)
+    val a = addr - 1
+    val l1 = Vec((0 until 16).map(g => Vec(all.slice(g * 4, g * 4 + 4)).read(a(1 downto 0))))
+    val l2 = Vec((0 until 4).map(g => Vec(l1.slice(g * 4, g * 4 + 4)).read(a(3 downto 2))))
+    val l3 = l2.read(a(5 downto 4))
+    val port = Mux(addr === 0, B(0, 32 bits), l3)
     readPorts += (addr -> port)
     port
   }
 
   def readBusy(addr: UInt) = {
-    val port = Mux(addr === 0, False, busys(addr - 1)) // .setCompositeName(this, "readBusy", true)
+    // P6: busy 位读同样改 3 级树。
+    val all = busys.map(_.asBits) :+ B(0, 1 bits)
+    val a = addr - 1
+    val l1 = Vec((0 until 16).map(g => Vec(all.slice(g * 4, g * 4 + 4)).read(a(1 downto 0))))
+    val l2 = Vec((0 until 4).map(g => Vec(l1.slice(g * 4, g * 4 + 4)).read(a(3 downto 2))))
+    val l3 = l2.read(a(5 downto 4))
+    val port = Mux(addr === 0, False, l3.asBool)
     readBusys += (addr -> port)
     port
   }

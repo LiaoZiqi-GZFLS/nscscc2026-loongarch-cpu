@@ -121,14 +121,21 @@ abstract class CompressedQueue[T <: IssueSlot](
     issueMask := grantPorts.map(_._2.asBits).reduceBalancedTree(_ | _) // orReduce
   }
 
-  def genGlobalWakeup(prf: PhysRegFilePlugin, rPorts: Int) = prf.clearBusys.foreach { port =>
+  def genGlobalWakeup(prf: PhysRegFilePlugin, rPorts: Int) = {
+    // P5(级数压缩):远程唤醒由"逐口 when 优先级链"改为并行 OR 树。
+    // 所有口写的都是常量 True,优先级链与 OR 语义等价;比较(7 位)
+    // 与 OR 树全部并行,每个 (槽,源) 从约 5-6 级降到 3-4 级。
+    val ports = prf.clearBusys
     for (i <- 0 until depth) {
-      // 远程唤醒（监听写busy广播）
-      for (j <- 0 until rPorts)
-        when(port.valid && port.payload === queue(i).payload.rRegs(j).payload) {
+      for (j <- 0 until rPorts) {
+        val waken = ports
+          .map(p => p.valid && p.payload === queue(i).payload.rRegs(j).payload)
+          .reduceBalancedTree(_ || _)
+        when(waken) {
           queue(i).payload.rRegs(j).valid := True
           queueNext(i).payload.rRegs(j).valid := True
         }
+      }
     }
   }
 
