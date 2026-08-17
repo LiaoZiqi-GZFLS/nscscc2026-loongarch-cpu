@@ -79,7 +79,6 @@ class ROBFIFOPlugin(config: MyCPUConfig) extends Plugin[MyCPUCore] {
     bankReads(stateBank(idx))
   }
   def writeState(idx: UInt) = robStateBanks(stateBank(idx))(stateAddr(idx))
-
   val pushPtr = robInfo.pushPtr
   val popPtr = robInfo.popPtr
   val fifoIO = new Bundle {
@@ -110,11 +109,22 @@ class ROBFIFOPlugin(config: MyCPUConfig) extends Plugin[MyCPUCore] {
     }
     // FIFO与MultiPortFIFOVec完全一致，但是ROB不止FIFO端口
     // multi-port FIFO io
+    // P2(架构调整,提交环路压缩):6 路投机读(popPtr+0..5)与
+    // fire/popCount 完全并行(读地址只依赖 FF 驱动的 popPtr),
+    // popCount 到达后每口仅剩 4:1 选择(综合为 1 级 LUT6)+ 同拍
+    // 前递优先级(1 级)。提交环路(state 寄存位 → ready → fire →
+    // popCount → 4:1 选择 → state D)从约 14 级压到约 9-10 级,
+    // 且环路上只有 complete/except.valid/mispredict 3 bit;
+    // intResult/badVA 等 90bit 数据位不在环上,其路径同样缩短为
+    // popCount + 1 级选择。投机读面积 = 6 组 90bit 三级 mux,
+    // 约 1.4k LUT,可接受。
+    val specReads = Vec((0 until retireWidth * 2).map(k => readState(popPtr + k)))
     for (i <- 0 until retireWidth)
       fifoIO.pop(i).translateFrom(robInfo.io.pop(i)) { (entry, info) =>
         entry.info := info
         entry.state.setAsReg().allowOverride
-        entry.state := readState(popPtr + robInfo.popCount + i)
+        val pick = Vec((i until i + retireWidth + 1).map(k => specReads(k)))
+        entry.state := pick(robInfo.popCount)
       }
 
     for (i <- 0 until decodeWidth) {
@@ -123,7 +133,8 @@ class ROBFIFOPlugin(config: MyCPUConfig) extends Plugin[MyCPUCore] {
       }
       when(fifoIO.push(i).fire) {
         writeState(pushPtr + i).assignSomeByName(fifoIO.push(i).payload.state)
-        for (j <- i until retireWidth) when(pushPtr + i === popPtr + robInfo.popCount + j) {
+        val pushOff = pushPtr + i - popPtr
+        for (j <- i until retireWidth) when(pushOff === (robInfo.popCount + j).resized) {
           fifoIO.pop(j).payload.state.assignSomeByName(fifoIO.push(i).payload.state)
         }
       }
@@ -170,13 +181,17 @@ class ROBFIFOPlugin(config: MyCPUConfig) extends Plugin[MyCPUCore] {
     defaultState.storeData := 0
     defaultState.myPC := B(0x0eadbeef, 32 bits).asUInt
 
+    // P4(前递条件移出环):p.robIdx - popPtr 是 reg-reg 减法,与
+    // ready/popCount 并行结算;popCount 到达后环上只剩 3 位相等
+    // 比较 + 覆盖 mux,尾段从约 4 级压到 2 级。
     for (p <- aluPorts)
       when(p.valid) {
         writeState(p.robIdx) := defaultState
         writeState(p.robIdx).allowOverride()
         writeState(p.robIdx).complete := True
         writeState(p.robIdx).assignSomeByName(p.payload)
-        for (j <- 0 until retireWidth) when(p.robIdx === popPtr + robInfo.popCount + j) {
+        val fwdOff = p.robIdx - popPtr
+        for (j <- 0 until retireWidth) when(fwdOff === (robInfo.popCount + j).resized) {
           fifoIO.pop(j).payload.state := defaultState
           fifoIO.pop(j).payload.state.allowOverride()
           fifoIO.pop(j).payload.state.complete := True
@@ -189,7 +204,8 @@ class ROBFIFOPlugin(config: MyCPUConfig) extends Plugin[MyCPUCore] {
         writeState(p.robIdx).allowOverride()
         writeState(p.robIdx).complete := True
         writeState(p.robIdx).assignSomeByName(p.payload)
-        for (j <- 0 until retireWidth) when(p.robIdx === popPtr + robInfo.popCount + j) {
+        val fwdOff = p.robIdx - popPtr
+        for (j <- 0 until retireWidth) when(fwdOff === (robInfo.popCount + j).resized) {
           fifoIO.pop(j).payload.state := defaultState
           fifoIO.pop(j).payload.state.allowOverride()
           fifoIO.pop(j).payload.state.complete := True
@@ -202,7 +218,8 @@ class ROBFIFOPlugin(config: MyCPUConfig) extends Plugin[MyCPUCore] {
         writeState(p.robIdx).allowOverride()
         writeState(p.robIdx).complete := True
         writeState(p.robIdx).assignSomeByName(p.payload)
-        for (j <- 0 until retireWidth) when(p.robIdx === popPtr + robInfo.popCount + j) {
+        val fwdOff = p.robIdx - popPtr
+        for (j <- 0 until retireWidth) when(fwdOff === (robInfo.popCount + j).resized) {
           fifoIO.pop(j).payload.state := defaultState
           fifoIO.pop(j).payload.state.allowOverride()
           fifoIO.pop(j).payload.state.complete := True
@@ -214,7 +231,8 @@ class ROBFIFOPlugin(config: MyCPUConfig) extends Plugin[MyCPUCore] {
         writeState(p.payload) := defaultState
         writeState(p.payload).allowOverride()
         writeState(p.payload).complete := True
-        for (j <- 0 until retireWidth) when(p.payload === popPtr + robInfo.popCount + j) {
+        val fwdOff = p.payload - popPtr
+        for (j <- 0 until retireWidth) when(fwdOff === (robInfo.popCount + j).resized) {
           fifoIO.pop(j).payload.state := defaultState
           fifoIO.pop(j).payload.state.allowOverride()
           fifoIO.pop(j).payload.state.complete := True

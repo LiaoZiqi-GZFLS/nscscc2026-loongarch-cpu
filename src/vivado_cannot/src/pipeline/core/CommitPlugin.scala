@@ -96,46 +96,33 @@ class CommitPlugin(config: MyCPUConfig)
       val linearRecover = Bool()
 
       // ! Calculate instructions that can be retired
-      // 所有mask相与得到最终可以retire的指令
-      val completeMask = B((0 until retireWidth).map { i =>
-        // 左侧包括自己都complete
-        popPorts.take(i + 1).map(_.state.complete).andR
-      })
-      val excMask = Bits(retireWidth bits) // exception
-      val uniqueMask = Bits(retireWidth bits) // unique retire
-      val recoverMask = Bits(retireWidth bits) // mispredict recover
+      // P3(提交环压缩):掩码展平为每口布尔式。complete 前缀、异常或、
+      // unique/recover 掩码不再经 andR/orR 树和 5 掩码相与的中间级,
+      // 每口 ready 从 state Q 起约 3-4 级(综合落 LUT6,6 输入一网)。
+      // 语义与原掩码逐位一致:exc/unique/recover 位 0 恒真(异常
+      // 只能从 0 口提交)。uncachedMask 仍由 uncached FSM 驱动。
       val uncachedMask = out Bits (retireWidth bits) // uncached load/store
       DuncachedMask := uncachedMask // TODO: [NOP] Remove debug signals
 
-      excMask(0) := True
-      uniqueMask(0) := True
-      recoverMask(0) := True
+      val c0 = popPorts(0).state.complete
+      val blk0 = popPorts(0).state.except.valid || linearRecover
+      val mp0 = popPorts(0).state.mispredict
+      // uncachedMask 是"允许位"(FSM 默认 setAll=1),直接作 AND 因子
+      popPorts(0).ready := c0 && uncachedMask(0)
 
-      for (i <- 1 until retireWidth) {
-        val port = popPorts(i)
-        // 左侧包括自己没有非 delay slot 控制流转移，可以 commit
-        excMask(i) := !popPorts
-          .take(i + 1)
-          .map { p => p.state.except.valid || linearRecover }
-          .orR
-        // 1~i没有要求在0口commit的指令
-        // 这里unique retire只要求在0口commit，并不影响其它非unique指令在后面commit，
-        // 因此控制流指令不能只依赖unique retire
-        // load指令包含在了unique retire中，因此不需要另外判断uncached了
-        uniqueMask(i) := !popPorts
-          .slice(1, i + 1)
-          .map(p => p.info.uop.uniqueRetire)
-          .orR
-
-        // If port 0 mispredict, then recoverMask(1) is False
-        recoverMask(i) := !popPorts
-          .slice(0, i)
-          .map(p => p.state.mispredict)
-          .orR
+      if (retireWidth > 1) {
+        val c1 = popPorts(1).state.complete
+        val blk1 = popPorts(1).state.except.valid || linearRecover
+        val uq1 = popPorts(1).info.uop.uniqueRetire
+        popPorts(1).ready := c0 && c1 && !(blk0 || blk1) && !uq1 && !mp0 && uncachedMask(1)
+        if (retireWidth > 2) {
+          val c2 = popPorts(2).state.complete
+          val blk2 = popPorts(2).state.except.valid || linearRecover
+          val uq2 = popPorts(2).info.uop.uniqueRetire
+          val mp1 = popPorts(1).state.mispredict
+          popPorts(2).ready := c0 && c1 && c2 && !(blk0 || blk1 || blk2) && !(uq1 || uq2) && !(mp0 || mp1) && uncachedMask(2)
+        }
       }
-
-      // readyMask: which instructions can be committed (pop out from ROB)
-      val readyMask = completeMask & excMask & uniqueMask & recoverMask & uncachedMask
 
       val port0Commit = new Area {
         // port0特殊处理
@@ -301,7 +288,6 @@ class CommitPlugin(config: MyCPUConfig)
         val port = popPorts(i)
         val uop = port.info.uop
         val rename = port.info.rename
-        port.ready := readyMask(i)
         when(port.fire & !hasExcept) {
           // 所有指令性的commit需要在没有except的时候发出
           arfCommits(i).valid := uop.doRegWrite
