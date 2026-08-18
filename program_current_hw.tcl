@@ -28,7 +28,13 @@ if {$dev eq ""} {
 }
 
 puts "PROGRAM_DEVICE=$dev"
-set_property PROGRAM.FILE /mnt/d/project/T2026143250012561/bit/sys_test/bit/sys_soc_top_100mhz.bit $dev
+if {[info exists ::env(BIT_FILE)] && $::env(BIT_FILE) ne ""} {
+  set bit_file [file normalize $::env(BIT_FILE)]
+} else {
+  set bit_file /mnt/d/project/T2026143250012561/bit/sys_test/bit/sys_soc_top_100mhz.bit
+}
+if {![file exists $bit_file]} { error "Bitstream not found: $bit_file" }
+set_property PROGRAM.FILE $bit_file $dev
 program_hw_devices $dev
 refresh_hw_device $dev
 puts "PROGRAM_DONE=[get_property PROGRAM.FILE $dev]"

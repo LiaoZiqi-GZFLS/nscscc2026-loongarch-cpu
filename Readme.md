@@ -42,3 +42,32 @@
 　　　　- 编译说明  
 6. **参考与借鉴声明**
 　　- 若 CPU 设计中参考了任何资料（如教材），需在文档中明确声明。
+
+## Chiplab JTAG 功能测试上板
+
+连接开发板 JTAG 后，在仓库根目录执行快速自动验收：
+
+```shell
+sh ./chiplab_func_board.sh
+```
+
+脚本烧写 `bit/func_test/func_soc_top.bit`，通过 JTAG AXI 将 chiplab 的
+`nscscc_func/obj/main.bin` 下载到 `0x1c000000`，并轮询 CONFREG 数码管寄存器
+`0x1faff050`。正确终态是数码管显示 `3A 00 00 3A`，两颗双色 LED 均为绿色。
+
+该功能程序不输出可读 UART 文本。结束时它只向 CONFREG 虚拟 UART
+`0x1fafff10` 写入一个 `0x00` 完成标记；当前 bitstream 的 VIO 探针也未连接该
+信号。因此，应以日志中的 `NUM_DATA`、`BOARD_STATUS` 和 `CHIPLAB_FUNC_PASS`
+判断结果。Vivado 输出的 `WRITE DATA` 是 JTAG AXI 下载内容，不是 UART 数据。
+
+以约一秒一个测试点的速度观察数码管递增：
+
+```shell
+FUNC_SWITCH=C0 FUNC_TIMEOUT=120 sh ./chiplab_func_board.sh
+```
+
+最慢观察模式每个测试点约 14 秒，完整测试需要约 13 分钟：
+
+```shell
+FUNC_SWITCH=00 FUNC_TIMEOUT=900 sh ./chiplab_func_board.sh
+```

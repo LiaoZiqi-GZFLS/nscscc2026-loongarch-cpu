@@ -109,3 +109,32 @@ nscscc-team SoC 的版本。上游版本、commit 与逐处改动清单见
    载入并跳转入口 0xbc000000（trampoline 幂等，等价上游行为）。
 
 详见 PROVENANCE.md。
+
+## 自动构建与上板稳定性测试
+
+连接开发板 JTAG 和串口后，在本目录执行：
+
+```shell
+UART=/dev/ttyUSB0 ROUNDS=3 sh ./board_stability.sh
+```
+
+脚本默认完成以下步骤：
+
+1. 启动 `hw_server`，每轮烧写 `bit/sys_test/bit/sys_soc_top_100mhz.bit`，保证 SoC 和 DDR 冷启动状态一致。
+2. 调用 `build.sh` 构建并静态检查 uCore 镜像。
+3. 每轮保持 CPU 复位，通过 JTAG AXI 下载 `out/ucore.bin` 到 `0x1c000000`。
+4. 抽查镜像首部、中部和尾部，然后释放 CPU 并采集 115200 8N1 串口日志。
+5. 要求日志同时出现 `check_boot_pgdir() succeeded` 和 `user sh is running`。
+
+每轮 Vivado 和 UART 原始日志保存在 `logs/ucore-board-<时间>/`。常用参数：
+
+```shell
+# 只在全部轮次开始前烧写一次（快速测试，不等价于冷启动稳定性测试）
+PROGRAM_BIT=once UART=/dev/ttyUSB0 ROUNDS=10 sh ./board_stability.sh
+
+# 完全跳过烧写，仅用于调试当前 FPGA 状态
+PROGRAM_BIT=0 UART=/dev/ttyUSB0 ROUNDS=1 sh ./board_stability.sh
+
+# 调整单轮启动等待时间
+UART=/dev/ttyUSB0 ROUNDS=10 BOOT_TIMEOUT=45 sh ./board_stability.sh
+```

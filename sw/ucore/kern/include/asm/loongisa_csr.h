@@ -960,20 +960,27 @@
 /* Assembly instruction format:	rd, ui14.  */
 /* Data types in instruction templates:  USI, USI.  */
 // 2026-final: chiplab/nscscc adaptation
-// The loongson 8.3 gnusf toolchain (LA32 v2.0) only provides the _w-suffixed
-// CSR builtins; the unsuffixed names upstream used are not recognized by this
-// gcc and would be emitted as function calls (link failure).
-#define __csrrd(/*ui14*/ _1) ((unsigned int) __builtin_loongarch_csrrd_w ((_1)))
+#ifdef UCORE_CSR_BUILTIN_SUFFIX_W
+#define __ucore_csrrd __builtin_loongarch_csrrd_w
+#define __ucore_csrwr __builtin_loongarch_csrwr_w
+#define __ucore_csrxchg __builtin_loongarch_csrxchg_w
+#else
+#define __ucore_csrrd __builtin_loongarch_csrrd
+#define __ucore_csrwr __builtin_loongarch_csrwr
+#define __ucore_csrxchg __builtin_loongarch_csrxchg
+#endif
+
+#define __csrrd(/*ui14*/ _1) ((unsigned int) __ucore_csrrd ((_1)))
 
 /* Assembly instruction format:	rd, ui14.  */
 /* Data types in instruction templates:  USI, USI, USI.  */
 #define __csrwr(/*unsigned int*/ _1, /*ui14*/ _2) \
-  ((unsigned int) __builtin_loongarch_csrwr_w ((unsigned int) (_1), (_2)))
+  ((unsigned int) __ucore_csrwr ((unsigned int) (_1), (_2)))
 
 /* Assembly instruction format:	rd, rj, ui14.  */
 /* Data types in instruction templates:  USI, USI, USI, USI.  */
 #define __csrxchg(/*unsigned int*/ _1, /*unsigned int*/ _2, /*ui14*/ _3) \
-  ((unsigned int) __builtin_loongarch_csrxchg_w ((unsigned int) (_1), \
+  ((unsigned int) __ucore_csrxchg ((unsigned int) (_1), \
 					       (unsigned int) (_2), (_3)))
 
 void panic(const char *fmt, ...);

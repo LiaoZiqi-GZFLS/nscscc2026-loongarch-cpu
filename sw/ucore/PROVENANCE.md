@@ -28,7 +28,7 @@
 | `kern/driver/clock.c` | poll `serial_int_handler()` from the timer interrupt under LAB8 | nscscc-team SoC ties CPU `intrpt[7:0]` to 8'd0 (soc_top.v) — the 16550 RX interrupt line can never fire; without polling the shell would block forever in `dev_stdin_read()` |
 | `kern/driver/console.c` | **rev2**: UART init = DLAB -> DLL/DLM -> DL3 (frac, at reg offset 2 while DLAB=1) -> 8N1 -> FCR=0x47; defaults DLL=0x36, DL3=0x40; `-DUCORE_VERILATOR_UART` keeps divisor=1 | real-board baud: URT IP is a 24-bit fractional divider `baud=PCLK/16/dl` clocked by sys_clk=100MHz (fixed by contest rules); divisor=1 only works in verilator (its UART model ignores timing). Values match sw/boot |
 | `kern/include/loongarch.h` | **rev2**: `COM1_BAUD_DLL/DLM/DL3` derived from `UART_PCLK` (default 100MHz, overridable via `-DUART_PCLK=`) and `UART_BAUD` (115200); `CACHELINE_SIZE` 16 -> 64 | 100MHz/115200 -> dl=54.2539 -> DLL=54(0x36), DL3=64(0x40); our NOP core has 64-byte I/D cache lines (MyCPUConfig.scala), fence_i() CACOP stride must match |
-| `kern/include/asm/loongisa_csr.h` | `__builtin_loongarch_csrrd/csrwr/csrxchg` -> `_w` variants | the 8.3 gnusf gcc only provides the `_w`-suffixed builtins; unsuffixed names silently became function calls and failed the link |
+| `kern/include/asm/loongisa_csr.h` | 构建时探测 `__builtin_loongarch_csrrd/csrwr/csrxchg` 是否带 `_w` 后缀 | 2023 v2.0 GCC 使用 `_w`，chiplab 2022-05-20 GCC 使用无后缀名称；名称不匹配会变成普通函数调用并在链接时报 undefined reference |
 | `build.sh`, `PROVENANCE.md`, `out/` | new | reproducible build + ready-to-boot artifacts |
 
 ## Boot topology (two supported modes)
