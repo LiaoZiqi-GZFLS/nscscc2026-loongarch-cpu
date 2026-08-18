@@ -14,16 +14,33 @@ class MemIssueQueuePlugin(config: MyCPUConfig)
     extends CompressedFIFO(
       config.memIssue,
       config.decode.decodeWidth,
-      HardType(MemIssueSlot(config))
+      HardType(MemIssueSlot(config)),
+      config.regFile.prfAddrWidth
     ) {
   private val issConfig = config.memIssue
   val rPorts = config.regFile.rPortsEachInst
   val busyAddrs = Vec(UInt(config.regFile.prfAddrWidth bits), decodeWidth * rPorts)
+
+  // [stage2-④] 胞元逻辑区 cellArea 在 build 内创建(见下)。
+
   def fuMatch(uop: MicroOp) = uop.fuType === FUType.LSU
 
-  def build(pipeline: MyCPUCore): Unit = pipeline.DISPATCH plug new Area {
-    genIssueSelect()
-    genGlobalWakeup(pipeline.service(classOf[PhysRegFilePlugin]), rPorts)
+  def build(pipeline: MyCPUCore): Unit = {
+    // [stage2-①④] 选择/压缩/flush/唤醒/装载挂 cellArea;tag 口 = 5 口
+    // PRF clearBusys(§3.6 组合豁免网);busy 旁路已删,入队当拍竞态由
+    // post-mux 唤醒 OR 覆盖(设计书 ①.4 R1)
+    pipeline.service(classOf[PhysRegFilePlugin]).clearBusys.foreach(addGlobalTagPort)
+    val cellArea = new Area { genIssueSelect() } // 选择区(组域,comb)
+    Component.current.afterElaboration {
+      val cellAreaTail = new Area { // 压缩/flush/唤醒/装载区(组域,comb 装配)
+        genEnqueueLogic()
+        genCompressLogic()
+        genFlushLogic()
+        genCellWakeup(rPorts)
+        genCellRegister()
+      }
+    }
+    pipeline.DISPATCH plug new Area {
     import pipeline.DISPATCH._
     // 入队、唤醒与int IQ相同
     val decPacket = input(pipeline.decodePipeline.signals.DECODE_PACKET)
@@ -121,11 +138,6 @@ class MemIssueQueuePlugin(config: MyCPUConfig)
     // flush最高优先级
     val flush = pipeline.globalService(classOf[CommitPlugin]).regFlush
     queueFlush setWhen flush
-
-  }
-  Component.current.afterElaboration {
-    genEnqueueLogic()
-    genCompressLogic()
-    genFlushLogic()
+    }
   }
 }

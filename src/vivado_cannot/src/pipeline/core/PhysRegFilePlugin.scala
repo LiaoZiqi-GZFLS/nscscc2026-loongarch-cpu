@@ -1,6 +1,7 @@
 package NOP.pipeline.core
 
 import spinal.core._
+import spinal.core.sim._
 import spinal.lib._
 
 import NOP._
@@ -33,6 +34,7 @@ class PhysRegFilePlugin(config: RegFileConfig) extends Plugin[MyCPUCore] {
   debug_regs := regs
 
   val busys = Vec(RegInit(False), config.nPhysRegs)
+  busys.simPublic() // [stage2] 漏唤醒不变量检测器探针(零逻辑)
 
   private val writePorts = mutable.ArrayBuffer[PRFWritePort]()
   val clearBusys = mutable.ArrayBuffer[Flow[UInt]]()
@@ -86,12 +88,9 @@ class PhysRegFilePlugin(config: RegFileConfig) extends Plugin[MyCPUCore] {
       when(writeOH.orR) { r._2 := MuxOH(writeOH, bypassWritePorts.map(_.hw.payload.data)) }
     }
 
-    // Bypassing Logic for readBusys
-    readBusys.foreach { r =>
-      // busy需要被前传，这样write back就会唤醒正在进入IQ的指令
-      val writeOH = clearBusys.map { p => p.valid && p.payload === r._1 }
-      when(writeOH.orR) { r._2 := False }
-    }
+    // [stage2-①] readBusys 旁路已删除(原 :89-94):busy 前传给"正在入队"的
+    // 指令曾依赖此处;现由 IQ 胞元的 post-mux 唤醒 OR 覆盖入队当拍竞态
+    // (设计书 ①.4 R1 完备性证明),readBusy 直接读裸 busys FF。
 
   }
 }

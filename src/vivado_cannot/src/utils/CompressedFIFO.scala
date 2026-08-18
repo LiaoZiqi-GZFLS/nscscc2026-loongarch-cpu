@@ -9,95 +9,55 @@ import NOP.pipeline._
 import NOP.builder._
 import NOP._
 
-/** 压缩队列。
+/** CompressedQueue的退化版本,MulDiv和Mem使用。
+  * 只从队头弹出,行为类似fifo,不再需要多路的req/grant;只做单发射。
   *
-  * 压缩队列按优先级从低到高：
-  *
-  *   1. 不压缩时自身状态转移。同步至stateNext。
-  *
-  * 2. 入队时覆写为初态。同步至stateNext。
-  *
-  * 3. 压缩时通过stateNext同步状态转移。
-  *
-  * 4. flush时直接清除所有valid。直接写。最高优先级，不需要stateNext同步。
-  *
-  * @param issConfig
-  * @param decodeWidth
-  * @param slotType
+  * [stage2-①④] 胞元化改造:机制收口到 CellIssueQueueCore(fifoMode=true),
+  * 本类只做别名/服务转发。rReady 单写者位面 + post-mux tag 比较 + 压缩
+  * 移位保留,与 CompressedQueue 同写入纪律(见该类头注释)。
   */
 abstract class CompressedFIFO[T <: IssueSlot](
     issConfig: IssueConfig,
     val decodeWidth: Int,
-    val slotType: HardType[T]
+    val slotType: HardType[T],
+    val tagWidth: Int
 ) extends Plugin[MyCPUCore] {
   val issueWidth = issConfig.issueWidth
   val depth = issConfig.depth
 
-  val busyAddrs: Vec[UInt]
-  var busyRsps: Vec[Bool] = null
-  def fuMatch(uop: MicroOp): Bool
+  /** [stage2] 胞元核心(fifo 语义:仅队头出队,issueReq 驱动) */
+  val cells = new CellIssueQueueCore(depth, 1, decodeWidth, slotType, tagWidth, fifoMode = true)
 
-  val queue = out(Vec(RegFlow(slotType()), depth)) // 做槽移动
-  val queueNext = CombInit(queue) // 标志对应槽的下一个值（不考虑压缩）
+  /** 全局唤醒 tag 口(PR busy 清零广播),IQ 插件 build 时挂接 PRF.clearBusys */
+  def addGlobalTagPort(port: Flow[UInt]): Unit = cells.addGlobalTagPort(port)
 
-  val issueReq = Bool
-  val issueFire = True // issue整体使能
-  val queueFlush = False // 清除整个IQ
+  val busyAddrs: Vec[UInt] // For overwritten in subclasses
+  var busyRsps: Vec[Bool] = null // Read from PRF
+  def fuMatch(uop: MicroOp): Bool // For overwritten in subclasses
+
+  // ---- 对外别名(保持原 API;queue 维持 out 供顶层 debug 读取) ----
+  val queue = out(cells.queue) // 做槽移动
+  val issueReq = cells.issueReq // 压缩驱动的选择信号
+  val issueFire = cells.issueFire // issue整体使能
+  val queueFlush = cells.queueFlush // 清除整个IQ
 
   val queueIO = new Area {
-    val pushPorts = Vec(Stream(slotType), decodeWidth)
+    val pushPorts = cells.pushPorts
   }
 
-  def genEnqueueLogic() = {
-    val validFall = !queue(0).valid +: (for (i <- 1 until depth)
-      yield queue(i - 1).valid && !queue(i).valid)
-    // 入队逻辑
-    for (i <- 0 until decodeWidth) {
-      // 0口ready当且仅当depth-1是空的
-      queueIO.pushPorts(i).ready := !queue(depth - i - 1).valid
-      for (j <- i until depth) {
-        when(queueIO.pushPorts(i).valid && validFall(j - i)) {
-          // 定位匹配，则将槽入队
-          queue(j).push(queueIO.pushPorts(i).payload)
-          queueNext(j).push(queueIO.pushPorts(i).payload)
-        }
-      }
-    }
-  }
+  // ---- 机制转发(调用序=写入优先级,见 CellIssueQueueCore 头注释) ----
+  def genEnqueueLogic(): Unit = cells.genEnqueue()
+  def genCompressLogic(): Unit = cells.genCompress()
+  def genFlushLogic(): Unit = cells.genFlush()
 
-  def genCompressLogic() = {
-    // 压缩逻辑
-    val popCount = issueReq && issueFire
-    require(issueWidth == 1)
-    for (i <- 0 until depth) {
-      when(popCount) {
-        if (i + 1 < depth) queue(i) := queueNext(i + 1)
-        else queue(i).valid := False
-      }
-    }
-  }
+  /** [stage2-①] 唤醒:rReady 单写者位面,post-mux tag 比较。
+    * 必须在 genCompressLogic/genFlushLogic 之后调用。 */
+  def genCellWakeup(rPorts: Int): Unit = cells.genWakeup(rPorts)
 
-  def genFlushLogic() = when(queueFlush) {
-    // flush最高优先级
-    for (i <- 0 until depth) {
-      queue(i).valid := False
-    }
-  }
+  /** [stage2-①] 胞元寄存器唯一装载点,最后调用 */
+  def genCellRegister(): Unit = cells.genRegister()
 
-  def genIssueSelect() = {
-    // issue选择
-  }
-
-  def genGlobalWakeup(prf: PhysRegFilePlugin, rPorts: Int) = prf.clearBusys.foreach { port =>
-    for (i <- 0 until depth) {
-      // 远程唤醒（监听写busy广播）
-      for (j <- 0 until rPorts)
-        when(port.valid && port.payload === queue(i).payload.rRegs(j).payload) {
-          queue(i).payload.rRegs(j).valid := True
-          queueNext(i).payload.rRegs(j).valid := True
-        }
-    }
-  }
+  def genIssueSelect(): Unit = cells.genSelect()
 
   override def setup(pipeline: MyCPUCore): Unit = {
     val PRF = pipeline.service(classOf[PhysRegFilePlugin])

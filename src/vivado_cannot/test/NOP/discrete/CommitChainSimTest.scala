@@ -9,6 +9,8 @@ import spinal.lib.bus.amba4.axi.sim._
 import NOP._
 import NOP.pipeline.core._
 import NOP.pipeline.decode._
+import NOP.pipeline.exe._
+import NOP.pipeline.mem._
 
 import java.nio.file.{Files, Paths}
 
@@ -102,6 +104,15 @@ object CommitChainSim {
     val rob = core.service(classOf[ROBFIFOPlugin])
     val commit = core.service(classOf[CommitPlugin])
     val rename = core.decodePipeline.service(classOf[RenamePlugin])
+    // [stage2-①] 漏唤醒不变量检测器:rReady=0 而 busys=0 超 1 拍即报错
+    val prf = core.service(classOf[PhysRegFilePlugin])
+    val iqs = Seq(
+      ("int", core.service(classOf[IntIssueQueuePlugin]).queue),
+      ("muldiv", core.service(classOf[MulDivIssueQueuePlugin]).queue),
+      ("mem", core.service(classOf[MemIssueQueuePlugin]).queue)
+    )
+    // tag -> 首次观测到"等待但 busy 已清"的拍号
+    var wakeupDebt = Map.empty[(String, Int), Long]
 
     var prevPopPtr = 0
     var prevNeedFlush = false
@@ -151,6 +162,26 @@ object CommitChainSim {
         assert(fPush == fPop && fRising,
           s"cycle $cycle: after recover freeList not full (push=$fPush pop=$fPop rising=$fRising)")
       }
+
+      // ---- [stage2-①] 漏唤醒不变量:胞元等拍(rRegs.valid=0)且其依赖 tag 的
+      // busys 已清 0,连续超 1 拍即判漏唤醒(wakeup tag 网/post-mux OR 失效) ----
+      var nowDebt = Set.empty[(String, Int)]
+      for ((name, q) <- iqs; i <- 0 until q.length) {
+        if (q(i).valid.toBoolean) {
+          for (j <- 0 until 2) {
+            val tag = q(i).payload.rRegs(j).payload.toInt
+            if (tag != 0 && !q(i).payload.rRegs(j).valid.toBoolean && !prf.busys(tag - 1).toBoolean) {
+              val key = (name, tag)
+              nowDebt += key
+              val since = wakeupDebt.getOrElse(key, cycle)
+              assert(cycle - since <= 1,
+                s"cycle $cycle: missed wakeup in ${name}IQ slot$i rReg$j tag=$tag: rReady=0 while busys=0 for ${cycle - since} cycles")
+              wakeupDebt += key -> since
+            }
+          }
+        }
+      }
+      wakeupDebt = wakeupDebt.filter { case (k, _) => nowDebt.contains(k) }
 
       prevPopPtr = popPtr
       prevNeedFlush = needFlush

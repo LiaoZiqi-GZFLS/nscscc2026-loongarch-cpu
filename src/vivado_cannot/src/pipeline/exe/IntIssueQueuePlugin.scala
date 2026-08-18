@@ -16,11 +16,18 @@ class IntIssueQueuePlugin(config: MyCPUConfig)
     extends CompressedQueue(
       config.intIssue,
       config.decode.decodeWidth,
-      HardType(IntIssueSlot(config))
+      HardType(IntIssueSlot(config)),
+      config.regFile.prfAddrWidth
     ) {
   private val issConfig = config.intIssue
   val rPorts = config.regFile.rPortsEachInst
   val busyAddrs = Vec(UInt(config.regFile.prfAddrWidth bits), decodeWidth * rPorts)
+
+  /** [stage2-④] 胞元逻辑区:选择/压缩/flush/唤醒/装载从 DISPATCH area 移入
+    * 此类级 Area(随阶段 1 的 plugin.clockDomain 组域);DISPATCH 拍只剩入队
+    * 装配与 push 互联,不再承载选择/唤醒逻辑。 */
+  val cellArea = new Area {}
+
   def fuMatch(uop: MicroOp): Bool = {
     uop.fuType === FUType.ALU || uop.fuType === FUType.CMP ||
     uop.fuType === FUType.CSR || uop.fuType === FUType.TIMER || uop.fuType === FUType.INVTLB
@@ -51,16 +58,28 @@ class IntIssueQueuePlugin(config: MyCPUConfig)
       }
     }
 
+    // [stage2-①④] 选择/唤醒/压缩/装载挂 cellArea(组域);tag 口挂接:
+    // 5 口 PRF clearBusys(全局) + 每 INT FU 一口 localTag(本地,§3.6 豁免)
+    pipeline.service(classOf[PhysRegFilePlugin]).clearBusys.foreach(addGlobalTagPort)
+    val cellArea = new Area { // 选择区(组域,comb)
+      genIssueSelect() // 维持 OHMasking 树选版(设计书 ①.2)
+    }
+    Component.current.afterElaboration {
+      val cellAreaTail = new Area { // 压缩/flush/唤醒/装载区(组域,comb 装配)
+        genEnqueueLogic()
+        genCompressLogic()
+        genFlushLogic()
+        genCellWakeup(rPorts)
+        genCellRegister()
+      }
+    }
+
     // DISPATCH
     pipeline.DISPATCH plug new Area {
-      genIssueSelect()
-      genGlobalWakeup(pipeline.service(classOf[PhysRegFilePlugin]), rPorts)
       import pipeline.DISPATCH._
-      // 唤醒逻辑：
-      // 1. 入队唤醒（dispatch入口读busy）
-      // 2. 远程唤醒（监听写busy广播）
-      // 3. 本地唤醒（监听select结果）
-      // 入队
+      // 入队唤醒(dispatch入口读busy):[stage2-①] busy 旁路已删,busyRsps
+      // 为裸 busys FF 直读;入队当拍 busy=1 的竞态由胞元 post-mux 唤醒 OR
+      // 覆盖(设计书 ①.4 R1 完备性证明),本处代码不变。
       val decPacket = input(pipeline.decodePipeline.signals.DECODE_PACKET)
       val renameRecs = input(pipeline.decodePipeline.signals.RENAME_RECORDS)
       val robIdxs = input(pipeline.decodePipeline.signals.ROB_INDEXES)
@@ -95,12 +114,6 @@ class IntIssueQueuePlugin(config: MyCPUConfig)
       // flush最高优先级
       val flush = pipeline.globalService(classOf[CommitFlush]).regFlush
       queueFlush setWhen flush
-    }
-
-    Component.current.afterElaboration {
-      genEnqueueLogic()
-      genCompressLogic()
-      genFlushLogic()
     }
   }
 }

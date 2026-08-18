@@ -118,17 +118,12 @@ class IntExecutePlugin(val config: MyCPUConfig, val fuIdx: Int) extends Plugin[E
       IQ.issueFire clearWhen arbitration.isStuck
       arbitration.removeIt setWhen (arbitration.notStuck && (flush || !issValid))
 
-      // 本地 bypass 唤醒，早一个周期，一个周期后既能出结果，该指令也能 RRD
-      when(issValid && issSlot.uop.doRegWrite) {
-        for (i <- 0 until iqDepth) {
-          for (j <- 0 until rPorts)
-            when(issSlot.wReg === IQ.queueNext(i).rRegs(j).payload && arbitration.notStuck) {
-              // bypass wake-up with bypass network
-              IQ.queue(i).rRegs(j).valid := True
-              IQ.queueNext(i).rRegs(j).valid := True
-            }
-        }
-      }
+      // [stage2-①④] 本地 bypass 唤醒从"双写 queue/queueNext"改为驱动
+      // IntIQ 的第 6 类唤醒口 localTag(§3.6 组合豁免网,IQ 胞元内 post-mux
+      // 比较末端 OR 单写)。拍序不变:唤醒当拍即被同拍消费(ISS→RRD 早 1 拍)。
+      val localTag = IQ.localWakeupPort()
+      localTag.valid := issValid && issSlot.uop.doRegWrite && arbitration.notStuck
+      localTag.payload := issSlot.wReg
     }
 
     pipeline.RRD plug new Area {

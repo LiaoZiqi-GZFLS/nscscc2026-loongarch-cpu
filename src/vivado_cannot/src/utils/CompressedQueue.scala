@@ -11,126 +11,73 @@ import NOP._
 
 /** 压缩队列。
   *
-  * 压缩队列按优先级从低到高：
+  * [stage2-①④] 胞元化改造:队列机制收口到 CellIssueQueueCore(本类只做别名/
+  * 服务转发)。写入纪律(优先级低→高,由 IQ 插件的调用序显式给出):
   *
-  * 1. 不压缩时自身状态转移。同步至stateNext。
+  *   1. 保持/入队覆写 → queueNext(不经压缩)
+  *   2. 压缩移位 → queueD := queueNext 相邻 ≤issueWidth+1 槽多路选择
+  *   3. flush → queueD valid 清零(最高优先级)
+  *   4. 唤醒 → rReady 位面唯一写者,post-mux tag(读后赋值取 queueD 选择后的
+  *      tag)比较末端 OR;唤醒随槽移动,覆盖入队当拍竞态(设计书 ①.4 R1 证明),
+  *      不再有对 queueNext 的第二份写(fo 减半)
+  *   5. queue := queueD(胞元寄存器唯一装载点)
   *
-  * 2. 入队时覆写为初态。同步至stateNext。
+  * tag 总线为 §3.6 登记的组合豁免网(6bit 轻量):PRF clearBusys(5 口,驱动端
+  * RRD/EXE/MEM1 拍) + IntIQ 本地 localTag(ISS 拍)。收回触发器:该网进入
+  * perf 构建 top-N 违例 → 各口插 1 级 FF(档 A,+1 拍,设计书 ①.5 回退档)。
   *
-  * 3. 压缩时通过stateNext同步状态转移。
-  *
-  * 4. flush时直接清除所有valid。直接写。最高优先级，不需要stateNext同步。
-  *
-  * @param issConfig
-  * @param decodeWidth
-  * @param slotType
+  * @param issConfig 发射队列配置
+  * @param decodeWidth 最大入队个数,等于译码宽度
+  * @param slotType 队列中存放的数据类型
+  * @param tagWidth 唤醒 tag(物理寄存器号)宽度
   */
 abstract class CompressedQueue[T <: IssueSlot](
     issConfig: IssueConfig,
     val decodeWidth: Int,
-    val slotType: HardType[T]
+    val slotType: HardType[T],
+    val tagWidth: Int
 ) extends Plugin[MyCPUCore] {
   val issueWidth = issConfig.issueWidth
   val depth = issConfig.depth
+
+  /** [stage2] 胞元核心:插件与 SpinalSim 单测共用的唯一实现 */
+  val cells = new CellIssueQueueCore(depth, issueWidth, decodeWidth, slotType, tagWidth, fifoMode = false)
+
+  /** 全局唤醒 tag 口(PR busy 清零广播),IQ 插件 build 时挂接 PRF.clearBusys */
+  def addGlobalTagPort(port: Flow[UInt]): Unit = cells.addGlobalTagPort(port)
+
+  /** IntIQ 本地 bypass 唤醒口(§3.6 组合豁免网),每 INT FU 一个 */
+  def localWakeupPort(): Flow[UInt] = cells.localWakeupPort()
 
   val busyAddrs: Vec[UInt] // For overwritten in subclasses
   var busyRsps: Vec[Bool] = null // Read from PRF
   def fuMatch(uop: MicroOp): Bool // For overwritten in subclasses
 
-  private val grantPorts = mutable.ArrayBuffer[(Seq[Bool], Vec[Bool])]()
-  def grantPort(reqs: Seq[Bool]) = {
-    val grants = Vec(Bool, reqs.size)
-    grantPorts += (reqs -> grants)
-    grants
-  }
-
-  val queue = Vec(RegFlow(slotType()), depth) // 做槽移动
-  val queueNext = CombInit(queue) // 标志对应槽的下一个值（不考虑压缩）  // 1. 不压缩时自身状态转移。同步至stateNext。
-
-  val issueMask = Bits(depth bits)
-  val issueFire = True // issue整体使能
-  val queueFlush = False // 清除整个IQ
+  // ---- 对外别名(保持原 API,执行插件与 IQ 插件其余代码不变) ----
+  val queue = cells.queue // 做槽移动
+  val issueMask = cells.issueMask // issueMask是由每个fu的issueGrant的或得来
+  val issueFire = cells.issueFire // issue整体使能
+  val queueFlush = cells.queueFlush // 清除整个IQ
 
   val queueIO = new Area {
-    val pushPorts = Vec(Stream(slotType), decodeWidth)
+    val pushPorts = cells.pushPorts
   }
 
-  // 2. 入队时覆写为初态。同步至stateNext。
-  def genEnqueueLogic() = {
-    val validFall = !queue(0).valid +: (for (i <- 1 until depth)
-      yield queue(i - 1).valid && !queue(i).valid) // the length of current valid depth
-    // 入队逻辑
-    for (i <- 0 until decodeWidth) {
-      // 0口ready当且仅当depth-1是空的
-      queueIO.pushPorts(i).ready := !queue(depth - i - 1).valid
-      for (j <- i until depth) {
-        when(queueIO.pushPorts(i).valid && validFall(j - i)) {
-          // 定位匹配，则将槽入队
-          queue(j).push(queueIO.pushPorts(i).payload) // Flow.push, set valid to True and payload to that
-          queueNext(j).push(queueIO.pushPorts(i).payload)
-        }
-      }
-    }
-  }
+  def grantPort(reqs: Seq[Bool]): Vec[Bool] = cells.grantPort(reqs)
 
-  // 3. 压缩时通过stateNext同步状态转移。
-  def genCompressLogic() = {
-    // 压缩逻辑
-    val popCounts = Vec(UInt(log2Up(issueWidth + 1) bits), depth) // sized depth, prefix sum of issueMask
-    // pop等价于当前valid，下个周期不valid（被抽走了）
-    popCounts(0) := (issueFire && issueMask(0)).asUInt.resized
-    for (i <- 0 to depth - 2) {
-      popCounts(i + 1) := Mux(
-        issueFire && issueMask(i + 1),
-        popCounts(i) + 1,
-        popCounts(i)
-      )
-    }
-    for (i <- 0 until depth) {
-      for (j <- 1 to issueWidth) {
-        // 后覆盖前。考察[0, i+j-1]的清除情况。例如0被清除，则0选择1，但01都被清除，则0选择2...
-        if (i + j < depth) when(popCounts(i + j - 1) === j)(queue(i) := queueNext(i + j))
-        else when(popCounts.last === j)(queue(i).valid := False)
-      }
-    }
-  }
+  // ---- 机制转发(调用序=写入优先级,见 CellIssueQueueCore 头注释) ----
+  def genEnqueueLogic(): Unit = cells.genEnqueue()
+  def genCompressLogic(): Unit = cells.genCompress()
+  def genFlushLogic(): Unit = cells.genFlush()
 
-  // 4. flush时直接清除所有valid。直接写。最高优先级，不需要stateNext同步。
-  def genFlushLogic() = when(queueFlush) {
-    // flush最高优先级
-    for (i <- 0 until depth) {
-      queue(i).valid := False
-    }
-  }
+  /** [stage2-①] 唤醒:rReady 单写者位面,post-mux tag 比较。
+    * 必须在 genCompressLogic/genFlushLogic 之后调用。 */
+  def genCellWakeup(rPorts: Int): Unit = cells.genWakeup(rPorts)
 
-  def genIssueSelect() = {
-    // issue选择
-    require(grantPorts.size <= issueWidth)
+  /** [stage2-①] 胞元寄存器唯一装载点,最后调用 */
+  def genCellRegister(): Unit = cells.genRegister()
 
-    // Grant only one slot for each FU
-    if (grantPorts.nonEmpty) grantPorts(0)._2 := OHMasking.first(grantPorts(0)._1)
-
-    for (i <- 1 until grantPorts.size) {
-      val exeMask = grantPorts.map(_._2).take(i).reduceBalancedTree { (l, r) =>
-        (l.asBits | r.asBits).asBools
-      }
-      grantPorts(i)._2 := OHMasking.first(grantPorts(i)._1.zip(exeMask).map { case (b, m) =>
-        b && !m // Mask out already granted slots
-      })
-    }
-    issueMask := grantPorts.map(_._2.asBits).reduceBalancedTree(_ | _) // orReduce
-  }
-
-  def genGlobalWakeup(prf: PhysRegFilePlugin, rPorts: Int) = prf.clearBusys.foreach { port =>
-    for (i <- 0 until depth) {
-      // 远程唤醒（监听写busy广播）
-      for (j <- 0 until rPorts)
-        when(port.valid && port.payload === queue(i).payload.rRegs(j).payload) {
-          queue(i).payload.rRegs(j).valid := True
-          queueNext(i).payload.rRegs(j).valid := True
-        }
-    }
-  }
+  def genIssueSelect(): Unit = cells.genSelect()
 
   override def setup(pipeline: MyCPUCore): Unit = {
     val PRF = pipeline.service(classOf[PhysRegFilePlugin])
