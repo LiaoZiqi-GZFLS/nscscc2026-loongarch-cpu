@@ -29,6 +29,8 @@
 | `kern/driver/console.c` | **rev2**: UART init = DLAB -> DLL/DLM -> DL3 (frac, at reg offset 2 while DLAB=1) -> 8N1 -> FCR=0x47; defaults DLL=0x36, DL3=0x40; `-DUCORE_VERILATOR_UART` keeps divisor=1 | real-board baud: URT IP is a 24-bit fractional divider `baud=PCLK/16/dl` clocked by sys_clk=100MHz (fixed by contest rules); divisor=1 only works in verilator (its UART model ignores timing). Values match sw/boot |
 | `kern/include/loongarch.h` | **rev2**: `COM1_BAUD_DLL/DLM/DL3` derived from `UART_PCLK` (default 100MHz, overridable via `-DUART_PCLK=`) and `UART_BAUD` (115200); `CACHELINE_SIZE` 16 -> 64 | 100MHz/115200 -> dl=54.2539 -> DLL=54(0x36), DL3=64(0x40); our NOP core has 64-byte I/D cache lines (MyCPUConfig.scala), fence_i() CACOP stride must match |
 | `kern/include/asm/loongisa_csr.h` | 构建时探测 `__builtin_loongarch_csrrd/csrwr/csrxchg` 是否带 `_w` 后缀 | 2023 v2.0 GCC 使用 `_w`，chiplab 2022-05-20 GCC 使用无后缀名称；名称不匹配会变成普通函数调用并在链接时报 undefined reference |
+| `kern/fs/{vfs,sfs}`, `kern/syscall`, `user/libs`, `user/sh.c` | 补齐 SFS 文件创建、删除、重命名、多级路径和用户系统调用；增加常驻 shell 文件命令、UART 文件传输和数码管状态显示 | 在无网络、无非易失块设备的当前 SoC 上提供可交互的 RAM 文件管理，并通过 UART 与主机交换二进制文件；详见 `UART_FILE_MANAGER.md` |
+| `tools/ucore_uart.py` | 新增 128 字节分块、CRC32、ACK、重试和限速的主机传输工具 | 当前 UART RX 由 100Hz 时钟中断轮询，且 console 路径不适合透明原始二进制传输 |
 | `build.sh`, `PROVENANCE.md`, `out/` | new | reproducible build + ready-to-boot artifacts |
 
 ## Boot topology (two supported modes)

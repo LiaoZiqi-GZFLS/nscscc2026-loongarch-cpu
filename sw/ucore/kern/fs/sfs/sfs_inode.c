@@ -332,6 +332,45 @@ sfs_dirent_read_nolock(struct sfs_fs *sfs, struct sfs_inode *sin, int slot, stru
     return 0;
 }
 
+static int
+sfs_dirent_write_nolock(struct sfs_fs *sfs, struct sfs_inode *sin, int slot,
+                        struct sfs_disk_entry *entry) {
+    uint32_t ino;
+    int ret;
+    if (slot < 0 || slot > sin->din->blocks) return -E_INVAL;
+    if ((ret = sfs_bmap_load_nolock(sfs, sin, slot, &ino)) != 0) return ret;
+    return sfs_wbuf(sfs, entry, sizeof(struct sfs_disk_entry), ino, 0);
+}
+
+static int
+sfs_dirent_link_nolock(struct sfs_fs *sfs, struct sfs_inode *sin, int slot,
+                       struct sfs_inode *lnksin, const char *name) {
+    struct sfs_disk_entry entry;
+    memset(&entry, 0, sizeof(entry));
+    entry.ino = lnksin->ino;
+    strcpy(entry.name, name);
+    int ret = sfs_dirent_write_nolock(sfs, sin, slot, &entry);
+    if (ret == 0) {
+        lnksin->din->__nlinks__ ++;
+        lnksin->dirty = 1;
+    }
+    return ret;
+}
+
+static int
+sfs_dirent_unlink_nolock(struct sfs_fs *sfs, struct sfs_inode *sin, int slot,
+                         struct sfs_inode *lnksin) {
+    struct sfs_disk_entry entry;
+    memset(&entry, 0, sizeof(entry));
+    int ret = sfs_dirent_write_nolock(sfs, sin, slot, &entry);
+    if (ret == 0) {
+        assert(lnksin->din->__nlinks__ > 0);
+        lnksin->din->__nlinks__ --;
+        lnksin->dirty = 1;
+    }
+    return ret;
+}
+
 
 #define sfs_dirent_link_nolock_check(sfs, sin, slot, lnksin, name)                  \
     do {                                                                            \
@@ -407,6 +446,175 @@ sfs_lookup_once(struct sfs_fs *sfs, struct sfs_inode *sin, const char *name, str
     if (ret == 0) {
         ret = sfs_load_inode(sfs, node_store, ino);
     }
+    return ret;
+}
+
+static int
+sfs_new_inode(struct sfs_fs *sfs, uint32_t type, struct inode **node_store) {
+    uint32_t ino;
+    int ret;
+    struct sfs_disk_inode *din;
+    if ((din = kmalloc(sizeof(*din))) == NULL) return -E_NO_MEM;
+    memset(din, 0, sizeof(*din));
+    din->__type__ = type;
+    if ((ret = sfs_block_alloc(sfs, &ino)) != 0) {
+        kfree(din);
+        return ret;
+    }
+    struct inode *node;
+    if ((ret = sfs_create_inode(sfs, din, ino, &node)) != 0) {
+        sfs_block_free(sfs, ino);
+        kfree(din);
+        return ret;
+    }
+    struct sfs_inode *sin = vop_info(node, sfs_inode);
+    sin->dirty = 1;
+    lock_sfs_fs(sfs);
+    sfs_set_links(sfs, sin);
+    unlock_sfs_fs(sfs);
+    *node_store = node;
+    return 0;
+}
+
+static int
+sfs_create(struct inode *node, const char *name, bool excl, struct inode **node_store) {
+    if (strlen(name) > SFS_MAX_FNAME_LEN) return -E_TOO_BIG;
+    struct sfs_fs *sfs = fsop_info(vop_fs(node), sfs);
+    struct sfs_inode *dir = vop_info(node, sfs_inode);
+    int ret, slot, empty;
+    uint32_t ino;
+    lock_sfs_mutex(sfs);
+    lock_sin(dir);
+    ret = sfs_dirent_search_nolock(sfs, dir, name, &ino, &slot, &empty);
+    unlock_sin(dir);
+    if (ret == 0) {
+        ret = excl ? -E_EXISTS : sfs_load_inode(sfs, node_store, ino);
+        unlock_sfs_mutex(sfs);
+        return ret;
+    }
+    if (ret != -E_NOENT) {
+        unlock_sfs_mutex(sfs);
+        return ret;
+    }
+    struct inode *new_node;
+    if ((ret = sfs_new_inode(sfs, SFS_TYPE_FILE, &new_node)) != 0) {
+        unlock_sfs_mutex(sfs);
+        return ret;
+    }
+    struct sfs_inode *newsin = vop_info(new_node, sfs_inode);
+    lock_sin(dir);
+    ret = sfs_dirent_link_nolock(sfs, dir, empty, newsin, name);
+    unlock_sin(dir);
+    if (ret != 0) {
+        vop_ref_dec(new_node);
+    }
+    else {
+        *node_store = new_node;
+    }
+    unlock_sfs_mutex(sfs);
+    return ret;
+}
+
+static int
+sfs_mkdir(struct inode *node, const char *name) {
+    if (strlen(name) > SFS_MAX_FNAME_LEN) return -E_TOO_BIG;
+    struct sfs_fs *sfs = fsop_info(vop_fs(node), sfs);
+    struct sfs_inode *dir = vop_info(node, sfs_inode);
+    int ret, empty;
+    lock_sfs_mutex(sfs);
+    lock_sin(dir);
+    ret = sfs_dirent_search_nolock(sfs, dir, name, NULL, NULL, &empty);
+    unlock_sin(dir);
+    if (ret != -E_NOENT) {
+        unlock_sfs_mutex(sfs);
+        return ret == 0 ? -E_EXISTS : ret;
+    }
+    struct inode *new_node;
+    if ((ret = sfs_new_inode(sfs, SFS_TYPE_DIR, &new_node)) != 0) {
+        unlock_sfs_mutex(sfs);
+        return ret;
+    }
+    struct sfs_inode *newsin = vop_info(new_node, sfs_inode);
+    lock_sin(newsin);
+    ret = sfs_dirent_link_nolock(sfs, newsin, 0, newsin, ".");
+    if (ret == 0) ret = sfs_dirent_link_nolock(sfs, newsin, 1, dir, "..");
+    unlock_sin(newsin);
+    if (ret == 0) {
+        lock_sin(dir);
+        ret = sfs_dirent_link_nolock(sfs, dir, empty, newsin, name);
+        unlock_sin(dir);
+    }
+    vop_ref_dec(new_node);
+    unlock_sfs_mutex(sfs);
+    return ret;
+}
+
+static int
+sfs_unlink(struct inode *node, const char *name) {
+    struct sfs_fs *sfs = fsop_info(vop_fs(node), sfs);
+    struct sfs_inode *dir = vop_info(node, sfs_inode);
+    int ret, slot;
+    uint32_t ino;
+    lock_sfs_mutex(sfs);
+    lock_sin(dir);
+    ret = sfs_dirent_search_nolock(sfs, dir, name, &ino, &slot, NULL);
+    unlock_sin(dir);
+    if (ret != 0) goto out;
+    struct inode *target;
+    if ((ret = sfs_load_inode(sfs, &target, ino)) != 0) goto out;
+    struct sfs_inode *target_sin = vop_info(target, sfs_inode);
+    if (_SFS_INODE_GET_TYPE(target_sin->din) == SFS_TYPE_DIR) {
+        ret = -E_ISDIR;
+    }
+    else {
+        lock_sin(dir);
+        ret = sfs_dirent_unlink_nolock(sfs, dir, slot, target_sin);
+        unlock_sin(dir);
+    }
+    vop_ref_dec(target);
+out:
+    unlock_sfs_mutex(sfs);
+    return ret;
+}
+
+static int
+sfs_rename(struct inode *node, const char *name, struct inode *new_node,
+           const char *new_name) {
+    if (strlen(new_name) > SFS_MAX_FNAME_LEN) return -E_TOO_BIG;
+    struct sfs_fs *sfs = fsop_info(vop_fs(node), sfs);
+    struct sfs_inode *old_dir = vop_info(node, sfs_inode);
+    struct sfs_inode *new_dir = vop_info(new_node, sfs_inode);
+    int ret, old_slot, new_empty;
+    uint32_t ino;
+    lock_sfs_mutex(sfs);
+    lock_sin(old_dir);
+    ret = sfs_dirent_search_nolock(sfs, old_dir, name, &ino, &old_slot, NULL);
+    unlock_sin(old_dir);
+    if (ret != 0) goto out;
+    lock_sin(new_dir);
+    ret = sfs_dirent_search_nolock(sfs, new_dir, new_name, NULL, NULL, &new_empty);
+    unlock_sin(new_dir);
+    if (ret == 0) { ret = -E_EXISTS; goto out; }
+    if (ret != -E_NOENT) goto out;
+    struct inode *target;
+    if ((ret = sfs_load_inode(sfs, &target, ino)) != 0) goto out;
+    struct sfs_inode *target_sin = vop_info(target, sfs_inode);
+    if (_SFS_INODE_GET_TYPE(target_sin->din) == SFS_TYPE_DIR) {
+        ret = -E_ISDIR;
+        vop_ref_dec(target);
+        goto out;
+    }
+    lock_sin(new_dir);
+    ret = sfs_dirent_link_nolock(sfs, new_dir, new_empty, target_sin, new_name);
+    unlock_sin(new_dir);
+    if (ret == 0) {
+        lock_sin(old_dir);
+        ret = sfs_dirent_unlink_nolock(sfs, old_dir, old_slot, target_sin);
+        unlock_sin(old_dir);
+    }
+    vop_ref_dec(target);
+out:
+    unlock_sfs_mutex(sfs);
     return ret;
 }
 
@@ -827,14 +1035,31 @@ sfs_lookup(struct inode *node, char *path, struct inode **node_store) {
         vop_ref_dec(node);
         return -E_NOTDIR;
     }
-    struct inode *subnode;
-    int ret = sfs_lookup_once(sfs, sin, path, &subnode, NULL);
-
-	vop_ref_dec(node);
+    int ret = 0;
+    char *name = path;
+    while (*name != '\0') {
+        char *slash = strchr(name, '/');
+        if (slash != NULL) *slash = '\0';
+        if (*name != '\0') {
+            struct inode *subnode;
+            if ((ret = sfs_lookup_once(sfs, sin, name, &subnode, NULL)) != 0) break;
+            vop_ref_dec(node);
+            node = subnode;
+            sin = vop_info(node, sfs_inode);
+            if (slash != NULL && _SFS_INODE_GET_TYPE(sin->din) != SFS_TYPE_DIR) {
+                ret = -E_NOTDIR;
+                break;
+            }
+        }
+        if (slash == NULL) break;
+        name = slash + 1;
+        while (*name == '/') name ++;
+    }
     if (ret != 0) {
+        vop_ref_dec(node);
         return ret;
     }
-    *node_store = subnode;
+    *node_store = node;
     return 0;
 }
 
@@ -848,6 +1073,10 @@ static const struct inode_ops sfs_node_dirops = {
     .vop_getdirentry                = sfs_getdirentry,
     .vop_reclaim                    = sfs_reclaim,
     .vop_gettype                    = sfs_gettype,
+    .vop_create                     = sfs_create,
+    .vop_mkdir                      = sfs_mkdir,
+    .vop_unlink                     = sfs_unlink,
+    .vop_rename                     = sfs_rename,
     .vop_lookup                     = sfs_lookup,
 };
 
@@ -864,4 +1093,3 @@ static const struct inode_ops sfs_node_fileops = {
     .vop_tryseek                    = sfs_tryseek,
     .vop_truncate                   = sfs_truncfile,
 };
-

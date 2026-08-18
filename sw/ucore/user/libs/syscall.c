@@ -125,6 +125,26 @@ sys_fsync(int fd) {
 }
 
 int
+sys_chdir(const char *path) {
+    return syscall(SYS_chdir, path);
+}
+
+int
+sys_mkdir(const char *path) {
+    return syscall(SYS_mkdir, path);
+}
+
+int
+sys_unlink(const char *path) {
+    return syscall(SYS_unlink, path);
+}
+
+int
+sys_rename(const char *old_path, const char *new_path) {
+    return syscall(SYS_rename, old_path, new_path);
+}
+
+int
 sys_getcwd(char *buffer, size_t len) {
     return syscall(SYS_getcwd, buffer, len);
 }
@@ -137,4 +157,9 @@ sys_getdirentry(int fd, struct dirent *dirent) {
 int
 sys_dup(int fd1, int fd2) {
     return syscall(SYS_dup, fd1, fd2);
+}
+
+int
+sys_board_display(uint32_t value) {
+    return syscall(SYS_board_display, value);
 }

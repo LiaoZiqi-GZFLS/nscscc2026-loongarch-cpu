@@ -41,6 +41,11 @@ fsync(int fd) {
     return sys_fsync(fd);
 }
 
+int mkdir(const char *path) { return sys_mkdir(path); }
+int unlink(const char *path) { return sys_unlink(path); }
+int rename(const char *old_path, const char *new_path) { return sys_rename(old_path, new_path); }
+int board_display(uint32_t value) { return sys_board_display(value); }
+
 int
 dup2(int fd1, int fd2) {
     return sys_dup(fd1, fd2);
@@ -61,8 +66,7 @@ void
 print_stat(const char *name, int fd, struct stat *stat) {
     cprintf("[%03d] %s\n", fd, name);
     cprintf("    mode    : %c\n", transmode(stat));
-    cprintf("    links   : %lu\n", stat->st_nlinks);
-    cprintf("    blocks  : %lu\n", stat->st_blocks);
-    cprintf("    size    : %lu\n", stat->st_size);
+    cprintf("    links   : %d\n", stat->st_nlinks);
+    cprintf("    blocks  : %d\n", stat->st_blocks);
+    cprintf("    size    : %d\n", stat->st_size);
 }
-

@@ -181,6 +181,9 @@ struct inode_ops {
     int (*vop_tryseek)(struct inode *node, off_t pos);
     int (*vop_truncate)(struct inode *node, off_t len);
     int (*vop_create)(struct inode *node, const char *name, bool excl, struct inode **node_store);
+    int (*vop_mkdir)(struct inode *node, const char *name);
+    int (*vop_unlink)(struct inode *node, const char *name);
+    int (*vop_rename)(struct inode *node, const char *name, struct inode *new_dir, const char *new_name);
     int (*vop_lookup)(struct inode *node, char *path, struct inode **node_store);
 	int (*vop_ioctl)(struct inode *node, int op, void *data);
 };
@@ -212,6 +215,9 @@ void inode_check(struct inode *node, const char *opstr);
 #define vop_tryseek(node, pos)                                      (__vop_op(node, tryseek)(node, pos))
 #define vop_truncate(node, len)                                     (__vop_op(node, truncate)(node, len))
 #define vop_create(node, name, excl, node_store)                    (__vop_op(node, create)(node, name, excl, node_store))
+#define vop_mkdir(node, name)                                       (__vop_op(node, mkdir)(node, name))
+#define vop_unlink(node, name)                                      (__vop_op(node, unlink)(node, name))
+#define vop_rename(node, name, new_dir, new_name)                   (__vop_op(node, rename)(node, name, new_dir, new_name))
 #define vop_lookup(node, path, node_store)                          (__vop_op(node, lookup)(node, path, node_store))
 
 
@@ -245,4 +251,3 @@ inode_open_count(struct inode *node) {
 }
 
 #endif /* !__KERN_FS_VFS_INODE_H__ */
-

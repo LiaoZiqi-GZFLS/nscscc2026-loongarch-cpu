@@ -138,3 +138,57 @@ PROGRAM_BIT=0 UART=/dev/ttyUSB0 ROUNDS=1 sh ./board_stability.sh
 # 调整单轮启动等待时间
 UART=/dev/ttyUSB0 ROUNDS=10 BOOT_TIMEOUT=45 sh ./board_stability.sh
 ```
+
+## UART 文件管理与传输
+
+完整实现说明、协议、命令和验证记录见 [UART_FILE_MANAGER.md](UART_FILE_MANAGER.md)。
+
+当前 FPGA 镜像的 shell 提供以下内建文件命令：
+
+```text
+help
+pwd
+ls
+mkdir data
+cd data
+write hello.txt hello from uCore
+cat hello.txt
+stat hello.txt
+cp hello.txt copy.txt
+mv copy.txt moved.txt
+rm moved.txt
+cd /
+```
+
+文件系统位于内存中的 initrd。新建和修改的文件在当前开机期间有效，复位、重新
+烧写或重新加载 uCore 后会恢复为构建时内容，并不是 Flash 持久化存储。
+
+主机向 uCore 上传文件：
+
+```shell
+python3 tools/ucore_uart.py --port /dev/ttyUSB0 put ./local.bin /local.bin
+```
+
+从 uCore 下载文件：
+
+```shell
+python3 tools/ucore_uart.py --port /dev/ttyUSB0 get /local.bin ./downloaded.bin
+cmp ./local.bin ./downloaded.bin
+```
+
+传输协议使用 128 字节分块、十六进制编码、逐块 CRC32、整文件 CRC32 和逐块
+ACK，适配当前无 UART 中断、由 100Hz 时钟中断轮询接收的硬件。传输期间不要再
+打开其他串口终端，避免两个进程同时读取 `/dev/ttyUSB0`。
+
+## 数码管显示
+
+开发板上的小屏是 8 位十六进制七段数码管，只能显示 `0-9`、`A-F` 的组合，不能
+显示任意中文、英文或图像。可在 shell 中写入 8 位十六进制值：
+
+```text
+display 1234ABCD
+display C0DE2026
+```
+
+UART 文件传输会自动显示状态：`F1xxxxxx` 表示上传及已收字节数低 24 位，
+`F2xxxxxx` 表示下载，`A1/A2` 表示成功，`E1/E2` 表示失败。

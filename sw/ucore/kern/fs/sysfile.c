@@ -190,6 +190,16 @@ sysfile_chdir(const char *__path) {
 }
 
 int
+sysfile_mkdir(const char *__path) {
+    int ret;
+    char *path;
+    if ((ret = copy_path(&path, __path)) != 0) return ret;
+    ret = vfs_mkdir(path);
+    kfree(path);
+    return ret;
+}
+
+int
 sysfile_link(const char *__path1, const char *__path2) {
     int ret;
     char *old_path, *new_path;
@@ -300,4 +310,3 @@ int
 sysfile_mkfifo(const char *__name, uint32_t open_flags) {
 	return -E_UNIMP;
 }
-

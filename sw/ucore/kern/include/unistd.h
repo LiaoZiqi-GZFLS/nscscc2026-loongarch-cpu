@@ -26,9 +26,14 @@
 #define SYS_seek            104
 #define SYS_fstat           110
 #define SYS_fsync           111
+#define SYS_chdir           120
 #define SYS_getcwd          121
+#define SYS_mkdir           122
+#define SYS_unlink          123
+#define SYS_rename          124
 #define SYS_getdirentry     128
 #define SYS_dup             130
+#define SYS_board_display   140
 /* OLNY FOR LAB6 */
 #define SYS_lab6_set_priority 255
 
@@ -65,4 +70,3 @@
 #define EXEC_MAX_ARG_LEN    4095
 
 #endif /* !__LIBS_UNISTD_H__ */
-

@@ -33,13 +33,14 @@ vfs_open(char *path, uint32_t open_flags, struct inode **node_store) {
     ret = vfs_lookup(path, &node);
 
     if (ret != 0) {
-		if (ret == -16 && (create)) {
+        if (ret == -E_NOENT && create) {
 			char *name;
 			struct inode *dir;
 			if ((ret = vfs_lookup_parent(path, &dir, &name)) != 0) {
 				return ret;
 			}
 			ret = vop_create(dir, name, excl, &node);
+			vop_ref_dec(dir);
 		} else return ret;
     } else if (excl && create) {
 		return -E_EXISTS;
@@ -52,7 +53,7 @@ vfs_open(char *path, uint32_t open_flags, struct inode **node_store) {
     }
 
     vop_open_inc(node);
-    if (open_flags & O_TRUNC || create) {
+    if (open_flags & O_TRUNC) {
         if ((ret = vop_truncate(node, 0)) != 0) {
             vop_open_dec(node);
             vop_ref_dec(node);
@@ -72,13 +73,31 @@ vfs_close(struct inode *node) {
 
 int
 vfs_unlink(char *path) {
-	return -E_UNIMP;
+	char *name;
+	struct inode *dir;
+	int ret = vfs_lookup_parent(path, &dir, &name);
+	if (ret == 0) {
+		ret = vop_unlink(dir, name);
+		vop_ref_dec(dir);
+	}
+	return ret;
 }
 
 
 int
 vfs_rename(char *old_path, char *new_path) {
-	return -E_UNIMP;
+	char *old_name, *new_name;
+	struct inode *old_dir, *new_dir;
+	int ret = vfs_lookup_parent(old_path, &old_dir, &old_name);
+	if (ret != 0) return ret;
+	ret = vfs_lookup_parent(new_path, &new_dir, &new_name);
+	if (ret == 0) {
+		if (vop_fs(old_dir) != vop_fs(new_dir)) ret = -E_XDEV;
+		else ret = vop_rename(old_dir, old_name, new_dir, new_name);
+		vop_ref_dec(new_dir);
+	}
+	vop_ref_dec(old_dir);
+	return ret;
 }
 
 int
@@ -98,5 +117,12 @@ vfs_readlink(char *path, struct iobuf *iob) {
 
 int
 vfs_mkdir(char *path){
-	return -E_UNIMP;
+	char *name;
+	struct inode *dir;
+	int ret = vfs_lookup_parent(path, &dir, &name);
+	if (ret == 0) {
+		ret = vop_mkdir(dir, name);
+		vop_ref_dec(dir);
+	}
+	return ret;
 }

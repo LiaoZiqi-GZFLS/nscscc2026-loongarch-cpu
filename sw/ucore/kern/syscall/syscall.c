@@ -147,6 +147,27 @@ sys_chdir(uint32_t arg[]) {
 }
 
 static int
+sys_mkdir(uint32_t arg[]) {
+    return sysfile_mkdir((const char *)arg[0]);
+}
+
+static int
+sys_unlink(uint32_t arg[]) {
+    return sysfile_unlink((const char *)arg[0]);
+}
+
+static int
+sys_rename(uint32_t arg[]) {
+    return sysfile_rename((const char *)arg[0], (const char *)arg[1]);
+}
+
+static int
+sys_board_display(uint32_t arg[]) {
+    *(volatile uint32_t *)0x9faff050 = arg[0];
+    return 0;
+}
+
+static int
 sys_getcwd(uint32_t arg[]) {
     char *buf = (char *)arg[0];
     size_t len = (size_t)arg[1];
@@ -188,9 +209,14 @@ static int (*syscalls[])(uint32_t arg[]) = {
   [SYS_seek]              sys_seek,
   [SYS_fstat]             sys_fstat,
   [SYS_fsync]             sys_fsync,
+  [SYS_chdir]             sys_chdir,
   [SYS_getcwd]            sys_getcwd,
+  [SYS_mkdir]             sys_mkdir,
+  [SYS_unlink]            sys_unlink,
+  [SYS_rename]            sys_rename,
   [SYS_getdirentry]       sys_getdirentry,
   [SYS_dup]               sys_dup,
+  [SYS_board_display]     sys_board_display,
 };
 
 #define NUM_SYSCALLS        ((sizeof(syscalls)) / (sizeof(syscalls[0])))
@@ -218,4 +244,3 @@ syscall(void) {
   panic("undefined syscall %d, pid = %d, name = %s.\n",
       num, current->pid, current->name);
 }
-

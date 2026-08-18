@@ -78,12 +78,42 @@ vfs_lookup(char *path, struct inode **node_store) {
 
 int
 vfs_lookup_parent(char *path, struct inode **node_store, char **endp){
-	int ret;
-	struct inode *node;
-	if ((ret = get_device(path, &path, &node)) != 0) {
-		return ret;
-	}
-	*endp = path;
-	*node_store = node;
-	return 0;
+    int ret;
+    struct inode *node;
+    if ((ret = get_device(path, &path, &node)) != 0) {
+        return ret;
+    }
+    size_t len = strlen(path);
+    while (len > 0 && path[len - 1] == '/') {
+        path[-- len] = '\0';
+    }
+    if (len == 0) {
+        vop_ref_dec(node);
+        return -E_INVAL;
+    }
+    char *name = path + len;
+    while (name > path && name[-1] != '/') {
+        name --;
+    }
+    if (name == path) {
+        *node_store = node;
+    }
+    else {
+        char *slash = name - 1;
+        while (slash > path && slash[-1] == '/') {
+            slash --;
+        }
+        *slash = '\0';
+        ret = vop_lookup(node, path, node_store);
+        vop_ref_dec(node);
+        if (ret != 0) {
+            return ret;
+        }
+    }
+    if (*name == '\0' || strcmp(name, ".") == 0 || strcmp(name, "..") == 0) {
+        vop_ref_dec(*node_store);
+        return -E_INVAL;
+    }
+    *endp = name;
+    return 0;
 }
