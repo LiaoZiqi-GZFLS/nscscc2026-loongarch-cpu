@@ -43,7 +43,10 @@ class CorrelatingPredictor(config: FrontendConfig, fetchWidth: Int) extends Comp
   val memInit = Seq.fill(pht.wordsPerBank)(1)
   pht.rams.foreach(_.memGeneric.MEMORY_INIT_PARAM = memInit.mkString(","))
 
-  io.read.globalHistory := ghr
+  // Snapshot must match the PHT read index (nextGHR below), otherwise a same-cycle
+  // GHR update makes the committed GLOBAL_BRANCH_HISTORY inconsistent with the
+  // history actually used for the prediction (read index != later write index).
+  io.read.globalHistory := nextGHR
   when(io.updateGHR.valid) { ghr := io.updateGHR.payload }
   nextGHR := Mux(io.updateGHR.valid, io.updateGHR.payload, ghr)
 
