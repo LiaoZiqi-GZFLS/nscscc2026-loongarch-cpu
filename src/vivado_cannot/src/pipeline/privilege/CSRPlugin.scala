@@ -183,6 +183,10 @@ class CSRPlugin extends Plugin[MyCPUCore] {
     writeAddress := csrWritePort.payload.addr
     writeData := csrWritePort.payload.data
     askWrite := csrWritePort.valid
+    when(csrWritePort.valid && (csrWritePort.payload.addr === CSRAddress.TLBELO0 ||
+      csrWritePort.payload.addr === CSRAddress.TLBELO1 || csrWritePort.payload.addr === CSRAddress.TLBIDX)) {
+      report(L"[RAWDBG CSR-WRITE] addr=${csrWritePort.payload.addr} data=${csrWritePort.payload.data}")
+    }
 
     rCsr(CSRAddress.CRMD, DifftestCSRRegStateCRMD)
     rCsr(CSRAddress.PRMD, DifftestCSRRegStatePRMD)

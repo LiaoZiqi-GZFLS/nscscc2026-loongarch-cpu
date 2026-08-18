@@ -160,6 +160,10 @@ class CommitPlugin(config: MyCPUConfig)
         // 2. 异常
         // 3. 其它提交后需要flush流水线的指令
         val recoverState = fire && (hasExcept || mispredict || linearRecover)
+        when(fire && (hasExcept || mispredict || linearRecover) && uop.pc(19 downto 0) >= U(0x2bf88, 20 bits) &&
+          uop.pc(19 downto 0) <= U(0x2bf90, 20 bits)) {
+          report(L"[RAWDBG COMMIT] pc=${uop.pc} inst=${uop.inst} except=${hasExcept} mispredict=${mispredict} linear=${linearRecover} badva=${entry.state.except.badVA}")
+        }
         // 如果不需要等delay slot，则立即flush
         needFlush := recoverState
         robFIFO.fifoIO.flush := needFlush // flush周期同时pop

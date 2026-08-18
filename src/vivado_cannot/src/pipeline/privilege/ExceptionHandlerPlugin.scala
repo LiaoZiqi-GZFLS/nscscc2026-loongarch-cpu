@@ -168,7 +168,18 @@ class ExceptionHandlerPlugin extends Plugin[MyCPUCore] {
       eentry := MMUPlugin.TLBRENTRY_PA.asUInt @@ U(0x0, 6 bits)
     }
 
+    // Complete the refill return even if the next exception is reported now.
+    // A new refill below has later assignment priority and keeps direct mode.
+    when(exceptErtn && tlbrActive) {
+        CRMD_DA := False
+        CRMD_PG := True
+        tlbrActive := False
+    }
+
     when(exceptPayload.valid) {
+      when(exceptPayload.payload.code =/= 0) {
+        report(L"[RAWDBG EXC-TAKE] epc=${exceptEpc} code=${exceptPayload.payload.code} sub=${exceptPayload.payload.subcode} badva=${exceptPayload.payload.badVA} refill=${exceptPayload.payload.isTLBRefill} target=${eentry}")
+      }
       jumpInterface.valid := True
       jumpInterface.payload := eentry
 
@@ -182,6 +193,9 @@ class ExceptionHandlerPlugin extends Plugin[MyCPUCore] {
           CRMD_DA := True
           CRMD_PG := False
           tlbrActive := True
+          // NOP-Linux uses 4 KB pages; tlbfill consumes TLBIDX.PS even though
+          // the refill handler only writes TLBELO0/1.
+          MMUPlugin.TLBIDX_PS := 12
         }
         // ESTAT
         ESTAT_ECODE := exceptPayload.payload.code
@@ -220,7 +234,7 @@ class ExceptionHandlerPlugin extends Plugin[MyCPUCore] {
           LoongArch.ExceptionCode.PIL
         )
         when(
-          BadVUpdateCases
+          TLBEHIUpdateCases
             .map({ excCase =>
               exceptPayload.payload.code === excCase.ecode &&
               exceptPayload.payload.subcode === excCase.esubcode
@@ -240,6 +254,10 @@ class ExceptionHandlerPlugin extends Plugin[MyCPUCore] {
       ERA_PC := exceptEpc.asBits
 
     } elsewhen (excCommit.ertn) {
+
+      when(tlbrActive) {
+        report(L"[RAWDBG ERTN] era=${ERA_PC} tlbrActive=${tlbrActive} jump=${jumpInterface.payload}")
+      }
 
       when(LLBCTL_KLO) {
         LLBCTL_KLO := False

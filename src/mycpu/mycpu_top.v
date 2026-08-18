@@ -1,7 +1,7 @@
 // Generator : SpinalHDL v1.8.1    git head : 2a7592004363e5b40ec43e1f122ed8641cd8965b
 // Component : mycpu_top
-// Git hash  : cc927b823f05d25bbf5f60fe0f7a45f234a4b950
-// Date      : 06/08/2026, 12:51:17
+// Git hash  : e378f4160492b14f517b6f90a779ba3aace7f573
+// Date      : 18/08/2026, 03:11:14
 
 `timescale 1ns/1ps
 
@@ -8825,24 +8825,30 @@ module MyCPUCore (
   wire       [15:0]   _zz__zz_MemIssueQueuePlugin_queueIO_pushPorts_0_payload_uop_immField_2_4;
   reg        [1:0]    _zz__zz_when_MemIssueQueuePlugin_l115_2;
   wire       [1:0]    _zz__zz_when_MemIssueQueuePlugin_l115_2_1;
-  wire       [5:0]    _zz_when_ExceptionHandlerPlugin_l202;
-  wire       [8:0]    _zz_when_ExceptionHandlerPlugin_l202_1;
-  wire                _zz_when_ExceptionHandlerPlugin_l202_2;
-  wire                _zz_when_ExceptionHandlerPlugin_l202_3;
-  wire                _zz_when_ExceptionHandlerPlugin_l202_4;
-  wire       [0:0]    _zz_when_ExceptionHandlerPlugin_l202_5;
-  wire       [2:0]    _zz_when_ExceptionHandlerPlugin_l202_6;
-  wire       [5:0]    _zz_when_ExceptionHandlerPlugin_l222;
-  wire       [8:0]    _zz_when_ExceptionHandlerPlugin_l222_1;
-  wire                _zz_when_ExceptionHandlerPlugin_l222_2;
-  wire                _zz_when_ExceptionHandlerPlugin_l222_3;
-  wire                _zz_when_ExceptionHandlerPlugin_l222_4;
-  wire       [0:0]    _zz_when_ExceptionHandlerPlugin_l222_5;
-  wire       [2:0]    _zz_when_ExceptionHandlerPlugin_l222_6;
-  wire       [0:0]    _zz_when_MMUPlugin_l412_15;
-  wire       [5:0]    _zz_when_MMUPlugin_l412_16;
-  reg        [3:0]    _zz_MMUPlugin_TLBIDX_INDEX_4;
-  wire       [3:0]    _zz_MMUPlugin_TLBIDX_INDEX_5;
+  wire       [31:0]   _zz_ExceptionHandlerPlugin_eentry;
+  wire       [31:0]   _zz_ExceptionHandlerPlugin_eentry_1;
+  wire       [31:0]   _zz_ExceptionHandlerPlugin_eentry_2;
+  wire       [5:0]    _zz_ExceptionHandlerPlugin_eentry_3;
+  wire       [5:0]    _zz_when_ExceptionHandlerPlugin_l221;
+  wire       [8:0]    _zz_when_ExceptionHandlerPlugin_l221_1;
+  wire                _zz_when_ExceptionHandlerPlugin_l221_2;
+  wire                _zz_when_ExceptionHandlerPlugin_l221_3;
+  wire                _zz_when_ExceptionHandlerPlugin_l221_4;
+  wire       [0:0]    _zz_when_ExceptionHandlerPlugin_l221_5;
+  wire       [2:0]    _zz_when_ExceptionHandlerPlugin_l221_6;
+  wire       [5:0]    _zz_when_ExceptionHandlerPlugin_l241;
+  wire       [8:0]    _zz_when_ExceptionHandlerPlugin_l241_1;
+  wire                _zz_when_ExceptionHandlerPlugin_l241_2;
+  wire                _zz_when_ExceptionHandlerPlugin_l241_3;
+  wire                _zz_when_ExceptionHandlerPlugin_l241_4;
+  wire                _zz_when_ExceptionHandlerPlugin_l241_5;
+  wire       [0:0]    _zz_when_MMUPlugin_l415_16;
+  wire       [5:0]    _zz_when_MMUPlugin_l415_17;
+  wire       [0:0]    _zz__zz_MMUPlugin_TLBIDX_INDEX;
+  wire       [4:0]    _zz__zz_MMUPlugin_TLBIDX_INDEX_1;
+  wire       [15:0]   _zz__zz_MMUPlugin_TLBIDX_INDEX_1_1;
+  reg        [3:0]    _zz_MMUPlugin_TLBIDX_INDEX_17;
+  wire       [3:0]    _zz_MMUPlugin_TLBIDX_INDEX_18;
   reg                 _zz__zz_MMUPlugin_TLBELO0_G;
   reg                 _zz_when;
   reg        [18:0]   _zz_MMUPlugin_TLBEHI_VPPN;
@@ -8868,7 +8874,10 @@ module MyCPUCore (
   wire       [3:0]    _zz_when_ICachePlugin_l154_3;
   wire       [0:0]    _zz_IF1_InstAddrTranslatePlugin_tlbTranslateResult_TLBHit;
   wire       [5:0]    _zz_IF1_InstAddrTranslatePlugin_tlbTranslateResult_TLBHit_1;
-  reg                 _zz_IF1_InstAddrTranslatePlugin_tlbTranslateResult_TLBHitEntry_E_5;
+  wire       [0:0]    _zz__zz_IF1_InstAddrTranslatePlugin_tlbTranslateResult_TLBHitEntry_E;
+  wire       [4:0]    _zz__zz_IF1_InstAddrTranslatePlugin_tlbTranslateResult_TLBHitEntry_E_1;
+  wire       [15:0]   _zz__zz_IF1_InstAddrTranslatePlugin_tlbTranslateResult_TLBHitEntry_E_1_1;
+  reg                 _zz_IF1_InstAddrTranslatePlugin_tlbTranslateResult_TLBHitEntry_E_18;
   reg        [9:0]    _zz_IF1_InstAddrTranslatePlugin_tlbTranslateResult_TLBHitEntry_ASID;
   reg                 _zz_IF1_InstAddrTranslatePlugin_tlbTranslateResult_TLBHitEntry_G;
   reg        [5:0]    _zz_IF1_InstAddrTranslatePlugin_tlbTranslateResult_TLBHitEntry_PS;
@@ -9112,7 +9121,10 @@ module MyCPUCore (
   wire       [31:0]   _zz_MEM_ADDR_AddressGenerationPlugin_memWData_1;
   wire       [0:0]    _zz_MEM_ADDR_AddressGenerationPlugin_tlbTranslateResult_TLBHit;
   wire       [5:0]    _zz_MEM_ADDR_AddressGenerationPlugin_tlbTranslateResult_TLBHit_1;
-  reg                 _zz_MEM_ADDR_AddressGenerationPlugin_tlbTranslateResult_TLBHitEntry_E_5;
+  wire       [0:0]    _zz__zz_MEM_ADDR_AddressGenerationPlugin_tlbTranslateResult_TLBHitEntry_E;
+  wire       [4:0]    _zz__zz_MEM_ADDR_AddressGenerationPlugin_tlbTranslateResult_TLBHitEntry_E_1;
+  wire       [15:0]   _zz__zz_MEM_ADDR_AddressGenerationPlugin_tlbTranslateResult_TLBHitEntry_E_1_1;
+  reg                 _zz_MEM_ADDR_AddressGenerationPlugin_tlbTranslateResult_TLBHitEntry_E_18;
   reg        [9:0]    _zz_MEM_ADDR_AddressGenerationPlugin_tlbTranslateResult_TLBHitEntry_ASID;
   reg                 _zz_MEM_ADDR_AddressGenerationPlugin_tlbTranslateResult_TLBHitEntry_G;
   reg        [5:0]    _zz_MEM_ADDR_AddressGenerationPlugin_tlbTranslateResult_TLBHitEntry_PS;
@@ -9208,8 +9220,6 @@ module MyCPUCore (
   wire       [3:0]    MEM_MEM1_MEMORY_BE;
   wire       [3:0]    MEM_ADDR_MEMORY_BE;
   wire       [31:0]   MEM_MEM1_MEMORY_WRITE_DATA;
-  wire       [31:0]   MEM_RRD_MEMORY_WRITE_DATA;
-  wire       [31:0]   MEM_RRD_MEMORY_ADDRESS;
   wire                MEM_ISS_STD_SLOT_valid;
   wire                MEM_ISS_STD_SLOT_payload_retired;
   wire       [31:0]   MEM_ISS_STD_SLOT_payload_addr;
@@ -9751,10 +9761,6 @@ module MyCPUCore (
   wire                IF1_PREDICT_JUMP_PAYLOAD_isCall;
   wire                IF1_PREDICT_JUMP_PAYLOAD_isReturn;
   wire                IF1_PREDICT_JUMP_FLAG;
-  wire                IF1_TRANSLATE_SAVED_CSR_CRMD_DA;
-  wire                IF1_TRANSLATE_SAVED_CSR_CRMD_PG;
-  wire       [1:0]    IF1_TRANSLATE_SAVED_CSR_CRMD_DATF;
-  wire       [1:0]    IF1_TRANSLATE_SAVED_CSR_CRMD_DATM;
   wire                IF1_TLB_TRANSLATE_RESULT_valid;
   wire       [31:0]   IF1_TLB_TRANSLATE_RESULT_payload_physAddr;
   wire                IF1_TLB_TRANSLATE_RESULT_payload_cached;
@@ -9853,9 +9859,11 @@ module MyCPUCore (
   wire       [1:0]    _zz_MEM_WB_ISSUE_SLOT_uop_cacheOp;
   wire       [1:0]    _zz_MEM_WB_ISSUE_SLOT_uop_cacheSel;
   reg        [31:0]   _zz_MEM_MEM2_to_MEM_WB_MEMORY_ADDRESS;
-  reg                 _zz_when_MemExecutePlugin_l122;
+  reg                 _zz_when_MemExecutePlugin_l130;
   reg        [5:0]    _zz_MEM_MEM2_to_MEM_WB_WRITE_REG_payload;
   wire                MEM_MEM1_ADDRESS_CACHED;
+  wire       [31:0]   MEM_RRD_MEMORY_WRITE_DATA;
+  wire       [31:0]   MEM_RRD_MEMORY_ADDRESS;
   wire       [31:0]   MEM_RRD_REG_READ_RSP_0;
   wire       [31:0]   MEM_RRD_REG_READ_RSP_1;
   wire                MEM_RRD_ISSUE_SLOT_rRegs_0_valid;
@@ -10658,10 +10666,6 @@ module MyCPUCore (
   reg                 _zz_IF1_PREDICT_JUMP_PAYLOAD_isCall;
   reg                 _zz_IF1_PREDICT_JUMP_PAYLOAD_isReturn;
   reg                 _zz_IF1_PREDICT_JUMP_FLAG;
-  wire                IF2_TRANSLATE_SAVED_CSR_CRMD_DA;
-  wire                IF2_TRANSLATE_SAVED_CSR_CRMD_PG;
-  wire       [1:0]    IF2_TRANSLATE_SAVED_CSR_CRMD_DATF;
-  wire       [1:0]    IF2_TRANSLATE_SAVED_CSR_CRMD_DATM;
   wire                IF2_TLB_TRANSLATE_RESULT_valid;
   wire       [31:0]   IF2_TLB_TRANSLATE_RESULT_payload_physAddr;
   wire                IF2_TLB_TRANSLATE_RESULT_payload_cached;
@@ -10683,12 +10687,12 @@ module MyCPUCore (
   wire                IF2_InstAddrTranslatePlugin_tlbRefill;
   wire                IF2_InstAddrTranslatePlugin_pcCached;
   wire       [31:0]   IF2_InstAddrTranslatePlugin_physPC;
-  wire                IF2_EXCEPTION_OCCURRED;
   reg        [31:0]   _zz_IF1_to_IF2_BAD_VADDR;
   reg        [8:0]    _zz_IF1_to_IF2_EXCEPTION_ESUBCODE;
   reg        [5:0]    _zz_IF1_to_IF2_EXCEPTION_ECODE;
   wire                IF1_EXCEPTION_OCCURRED;
   reg                 _zz_IF1_to_IF2_EXCEPTION_OCCURRED;
+  wire                IF2_EXCEPTION_OCCURRED;
   reg        [8:0]    _zz_IF2_ICachePlugin_fetchPacket_except_payload_subcode;
   reg        [5:0]    _zz_IF2_ICachePlugin_fetchPacket_except_payload_code;
   wire       [31:0]   IF2_ICachePlugin_fetchPacket_pc;
@@ -15053,12 +15057,12 @@ module MyCPUCore (
   reg        [1:0]    ExceptionHandlerPlugin_PRMD_PPLV;
   reg                 ExceptionHandlerPlugin_PRMD_PIE;
   reg        [9:0]    ExceptionHandlerPlugin_ECFG_LIE_0;
-  reg        [0:0]    ExceptionHandlerPlugin_ECFG_LIE_10;
   reg        [1:0]    ExceptionHandlerPlugin_ECFG_LIE_11;
   reg        [5:0]    ExceptionHandlerPlugin_ESTAT_ECODE;
   reg        [8:0]    ExceptionHandlerPlugin_ESTAT_ESUBCODE;
   reg        [31:0]   ExceptionHandlerPlugin_ERA_PC;
   reg        [31:0]   ExceptionHandlerPlugin_BADV_VADDR;
+  reg                 ExceptionHandlerPlugin_tlbrActive;
   reg        [25:0]   ExceptionHandlerPlugin_EENTRY_VA;
   wire       [31:0]   ExceptionHandlerPlugin_EENTRY_PC;
   reg        [31:0]   ExceptionHandlerPlugin_SAVE0_DATA;
@@ -15356,12 +15360,13 @@ module MyCPUCore (
   wire       [22:0]   _zz_CSRPlugin_readDataInit;
   wire       [28:0]   _zz_CSRPlugin_readDataInit_1;
   wire       [31:0]   _zz_CSRPlugin_readDataInit_2;
-  wire       [18:0]   _zz_CSRPlugin_readDataInit_3;
-  wire       [0:0]    _zz_CSRPlugin_readDataInit_4;
-  wire       [2:0]    _zz_CSRPlugin_readDataInit_5;
-  wire       [0:0]    _zz_CSRPlugin_readDataInit_6;
-  wire       [5:0]    _zz_CSRPlugin_readDataInit_7;
-  wire       [30:0]   _zz_CSRPlugin_readDataInit_8;
+  wire       [0:0]    _zz_CSRPlugin_readDataInit_3;
+  wire       [18:0]   _zz_CSRPlugin_readDataInit_4;
+  wire       [0:0]    _zz_CSRPlugin_readDataInit_5;
+  wire       [2:0]    _zz_CSRPlugin_readDataInit_6;
+  wire       [0:0]    _zz_CSRPlugin_readDataInit_7;
+  wire       [5:0]    _zz_CSRPlugin_readDataInit_8;
+  wire       [30:0]   _zz_CSRPlugin_readDataInit_9;
   reg        [31:0]   IntExecutePlugin_rrdRsp_0;
   reg        [31:0]   IntExecutePlugin_rrdRsp_1;
   wire                IntExecutePlugin_clrBusy_valid;
@@ -16358,23 +16363,24 @@ module MyCPUCore (
   wire                CommitPlugin_port0Commit_fire;
   reg                 CommitPlugin_port0Commit_intInhibit;
   wire                CommitPlugin_port0Commit_recoverState;
+  wire                when_CommitPlugin_l164;
   reg        [31:0]   CommitPlugin_port0Commit_jumpTarget;
-  wire                when_CommitPlugin_l184;
+  wire                when_CommitPlugin_l188;
   wire       [1:0]    _zz_CommitPlugin_cacheOp_payload_op;
   wire       [1:0]    _zz_CommitPlugin_cacheOp_payload_sel;
-  wire                when_CommitPlugin_l238;
-  wire                when_CommitPlugin_l248;
-  wire                when_CommitPlugin_l255;
+  wire                when_CommitPlugin_l242;
+  wire                when_CommitPlugin_l252;
+  wire                when_CommitPlugin_l259;
   wire                CommitPlugin_port0Commit_uncachedProcess_isUncachedUOP;
   wire                CommitPlugin_port0Commit_uncachedProcess_fsm_wantExit;
   wire                CommitPlugin_port0Commit_uncachedProcess_fsm_wantStart;
   wire                CommitPlugin_port0Commit_uncachedProcess_fsm_wantKill;
   wire                ROBFIFOPlugin_fifoIO_pop_0_fire;
-  wire                when_CommitPlugin_l305;
+  wire                when_CommitPlugin_l309;
   wire                ROBFIFOPlugin_fifoIO_pop_1_fire;
-  wire                when_CommitPlugin_l305_1;
+  wire                when_CommitPlugin_l309_1;
   wire                ROBFIFOPlugin_fifoIO_pop_2_fire;
-  wire                when_CommitPlugin_l305_2;
+  wire                when_CommitPlugin_l309_2;
   wire                _zz_IntExecutePlugin_bypassRsp_0_payload;
   wire                _zz_IntExecutePlugin_bypassRsp_0_payload_1;
   wire                when_BypassNetworkPlugin_l36;
@@ -16778,37 +16784,52 @@ module MyCPUCore (
   wire                when_MemIssueQueuePlugin_l115_3;
   wire                when_MemIssueQueuePlugin_l115_4;
   reg        [31:0]   ExceptionHandlerPlugin_eentry;
-  wire                when_ExceptionHandlerPlugin_l161;
-  wire                when_ExceptionHandlerPlugin_l202;
-  wire                when_ExceptionHandlerPlugin_l222;
-  wire                when_ExceptionHandlerPlugin_l248;
-  wire       [0:0]    _zz_CSRPlugin_readDataInit_9;
+  wire                when_ExceptionHandlerPlugin_l163;
+  wire                when_ExceptionHandlerPlugin_l167;
+  wire                when_ExceptionHandlerPlugin_l173;
+  wire                when_ExceptionHandlerPlugin_l221;
+  wire                when_ExceptionHandlerPlugin_l241;
+  wire       [0:0]    _zz_CSRPlugin_readDataInit_10;
   reg                 _zz_when_InterruptHandlerPlugin_l93;
   wire                _zz_when_InterruptHandlerPlugin_l93_1;
   wire                _zz_when_InterruptHandlerPlugin_l93_2;
   wire                when_InterruptHandlerPlugin_l87;
   wire                when_InterruptHandlerPlugin_l93;
   wire                when_InterruptHandlerPlugin_l97;
-  wire                _zz_when_MMUPlugin_l412;
-  wire                _zz_when_MMUPlugin_l412_1;
-  wire                _zz_when_MMUPlugin_l412_2;
-  wire                _zz_when_MMUPlugin_l412_3;
-  wire                _zz_when_MMUPlugin_l412_4;
-  wire                _zz_when_MMUPlugin_l412_5;
-  wire                _zz_when_MMUPlugin_l412_6;
-  wire                _zz_when_MMUPlugin_l412_7;
-  wire                _zz_when_MMUPlugin_l412_8;
-  wire                _zz_when_MMUPlugin_l412_9;
-  wire                _zz_when_MMUPlugin_l412_10;
-  wire                _zz_when_MMUPlugin_l412_11;
-  wire                _zz_when_MMUPlugin_l412_12;
-  wire                _zz_when_MMUPlugin_l412_13;
-  wire                _zz_when_MMUPlugin_l412_14;
-  wire                when_MMUPlugin_l412;
-  wire                _zz_MMUPlugin_TLBIDX_INDEX;
-  wire                _zz_MMUPlugin_TLBIDX_INDEX_1;
+  wire                _zz_when_MMUPlugin_l415;
+  wire                _zz_when_MMUPlugin_l415_1;
+  wire                _zz_when_MMUPlugin_l415_2;
+  wire                _zz_when_MMUPlugin_l415_3;
+  wire                _zz_when_MMUPlugin_l415_4;
+  wire                _zz_when_MMUPlugin_l415_5;
+  wire                _zz_when_MMUPlugin_l415_6;
+  wire                _zz_when_MMUPlugin_l415_7;
+  wire                _zz_when_MMUPlugin_l415_8;
+  wire                _zz_when_MMUPlugin_l415_9;
+  wire                _zz_when_MMUPlugin_l415_10;
+  wire                _zz_when_MMUPlugin_l415_11;
+  wire                _zz_when_MMUPlugin_l415_12;
+  wire                _zz_when_MMUPlugin_l415_13;
+  wire                _zz_when_MMUPlugin_l415_14;
+  wire                _zz_when_MMUPlugin_l415_15;
+  wire                when_MMUPlugin_l415;
+  wire       [15:0]   _zz_MMUPlugin_TLBIDX_INDEX;
+  wire       [15:0]   _zz_MMUPlugin_TLBIDX_INDEX_1;
   wire                _zz_MMUPlugin_TLBIDX_INDEX_2;
   wire                _zz_MMUPlugin_TLBIDX_INDEX_3;
+  wire                _zz_MMUPlugin_TLBIDX_INDEX_4;
+  wire                _zz_MMUPlugin_TLBIDX_INDEX_5;
+  wire                _zz_MMUPlugin_TLBIDX_INDEX_6;
+  wire                _zz_MMUPlugin_TLBIDX_INDEX_7;
+  wire                _zz_MMUPlugin_TLBIDX_INDEX_8;
+  wire                _zz_MMUPlugin_TLBIDX_INDEX_9;
+  wire                _zz_MMUPlugin_TLBIDX_INDEX_10;
+  wire                _zz_MMUPlugin_TLBIDX_INDEX_11;
+  wire                _zz_MMUPlugin_TLBIDX_INDEX_12;
+  wire                _zz_MMUPlugin_TLBIDX_INDEX_13;
+  wire                _zz_MMUPlugin_TLBIDX_INDEX_14;
+  wire                _zz_MMUPlugin_TLBIDX_INDEX_15;
+  wire                _zz_MMUPlugin_TLBIDX_INDEX_16;
   wire       [3:0]    _zz_MMUPlugin_TLBIDX_PS;
   wire                _zz_MMUPlugin_TLBELO0_G;
   wire       [15:0]   _zz_278;
@@ -16828,7 +16849,7 @@ module MyCPUCore (
   wire                _zz_292;
   wire                _zz_293;
   wire                _zz_294;
-  wire                when_MMUPlugin_l463;
+  wire                when_MMUPlugin_l466;
   wire                _zz_MMUPlugin_TLBTable_0_E;
   wire                _zz_MMUPlugin_TLBTable_0_G;
   wire       [5:0]    _zz_MMUPlugin_TLBTable_0_PS;
@@ -16849,7 +16870,7 @@ module MyCPUCore (
   wire                _zz_309;
   wire                _zz_310;
   wire                _zz_311;
-  wire                when_MMUPlugin_l487;
+  wire                when_MMUPlugin_l490;
   wire                _zz_MMUPlugin_TLBTable_0_E_1;
   wire       [5:0]    _zz_MMUPlugin_TLBTable_0_PS_1;
   wire                _zz_MMUPlugin_TLBTable_0_G_1;
@@ -17094,7 +17115,7 @@ module MyCPUCore (
   wire                IF1_InstAddrTranslatePlugin_directTranslateResult_resultBundle_payload_exception_raisePME;
   wire                IF1_InstAddrTranslatePlugin_directTranslateResult_resultBundle_payload_exception_raisePPI;
   wire                IF1_InstAddrTranslatePlugin_directTranslateResult_resultBundle_payload_exception_raiseTLBR;
-  wire       [1:0]    switch_MMUPlugin_l298;
+  wire       [1:0]    switch_MMUPlugin_l299;
   wire                IF1_InstAddrTranslatePlugin_tlbTranslateResult_resultValid;
   wire       [31:0]   IF1_InstAddrTranslatePlugin_tlbTranslateResult_resultPhysAddr;
   wire                IF1_InstAddrTranslatePlugin_tlbTranslateResult_resultCached;
@@ -17153,11 +17174,24 @@ module MyCPUCore (
   wire                IF1_InstAddrTranslatePlugin_tlbTranslateResult_EntryHits_14;
   wire                IF1_InstAddrTranslatePlugin_tlbTranslateResult_EntryHits_15;
   wire                IF1_InstAddrTranslatePlugin_tlbTranslateResult_TLBHit;
-  wire                _zz_IF1_InstAddrTranslatePlugin_tlbTranslateResult_TLBHitEntry_E;
-  wire                _zz_IF1_InstAddrTranslatePlugin_tlbTranslateResult_TLBHitEntry_E_1;
+  wire       [15:0]   _zz_IF1_InstAddrTranslatePlugin_tlbTranslateResult_TLBHitEntry_E;
+  wire       [15:0]   _zz_IF1_InstAddrTranslatePlugin_tlbTranslateResult_TLBHitEntry_E_1;
   wire                _zz_IF1_InstAddrTranslatePlugin_tlbTranslateResult_TLBHitEntry_E_2;
   wire                _zz_IF1_InstAddrTranslatePlugin_tlbTranslateResult_TLBHitEntry_E_3;
-  wire       [3:0]    _zz_IF1_InstAddrTranslatePlugin_tlbTranslateResult_TLBHitEntry_E_4;
+  wire                _zz_IF1_InstAddrTranslatePlugin_tlbTranslateResult_TLBHitEntry_E_4;
+  wire                _zz_IF1_InstAddrTranslatePlugin_tlbTranslateResult_TLBHitEntry_E_5;
+  wire                _zz_IF1_InstAddrTranslatePlugin_tlbTranslateResult_TLBHitEntry_E_6;
+  wire                _zz_IF1_InstAddrTranslatePlugin_tlbTranslateResult_TLBHitEntry_E_7;
+  wire                _zz_IF1_InstAddrTranslatePlugin_tlbTranslateResult_TLBHitEntry_E_8;
+  wire                _zz_IF1_InstAddrTranslatePlugin_tlbTranslateResult_TLBHitEntry_E_9;
+  wire                _zz_IF1_InstAddrTranslatePlugin_tlbTranslateResult_TLBHitEntry_E_10;
+  wire                _zz_IF1_InstAddrTranslatePlugin_tlbTranslateResult_TLBHitEntry_E_11;
+  wire                _zz_IF1_InstAddrTranslatePlugin_tlbTranslateResult_TLBHitEntry_E_12;
+  wire                _zz_IF1_InstAddrTranslatePlugin_tlbTranslateResult_TLBHitEntry_E_13;
+  wire                _zz_IF1_InstAddrTranslatePlugin_tlbTranslateResult_TLBHitEntry_E_14;
+  wire                _zz_IF1_InstAddrTranslatePlugin_tlbTranslateResult_TLBHitEntry_E_15;
+  wire                _zz_IF1_InstAddrTranslatePlugin_tlbTranslateResult_TLBHitEntry_E_16;
+  wire       [3:0]    _zz_IF1_InstAddrTranslatePlugin_tlbTranslateResult_TLBHitEntry_E_17;
   wire                IF1_InstAddrTranslatePlugin_tlbTranslateResult_TLBHitEntry_E;
   wire       [9:0]    IF1_InstAddrTranslatePlugin_tlbTranslateResult_TLBHitEntry_ASID;
   wire                IF1_InstAddrTranslatePlugin_tlbTranslateResult_TLBHitEntry_G;
@@ -17178,10 +17212,10 @@ module MyCPUCore (
   wire       [1:0]    IF1_InstAddrTranslatePlugin_tlbTranslateResult_TLBHitEntry_mat;
   wire       [1:0]    IF1_InstAddrTranslatePlugin_tlbTranslateResult_TLBHitEntry_plv;
   wire       [19:0]   IF1_InstAddrTranslatePlugin_tlbTranslateResult_TLBHitEntry_ppn;
-  wire                when_MMUPlugin_l293;
-  wire                when_MMUPlugin_l297;
-  wire                when_MMUPlugin_l311;
-  wire                when_MMUPlugin_l315;
+  wire                when_MMUPlugin_l294;
+  wire                when_MMUPlugin_l298;
+  wire                when_MMUPlugin_l312;
+  wire                when_MMUPlugin_l316;
   wire                IF1_InstAddrTranslatePlugin_tlbTranslateResult_resultBundle_valid;
   wire       [31:0]   IF1_InstAddrTranslatePlugin_tlbTranslateResult_resultBundle_payload_physAddr;
   wire                IF1_InstAddrTranslatePlugin_tlbTranslateResult_resultBundle_payload_cached;
@@ -17195,6 +17229,10 @@ module MyCPUCore (
   wire                IF1_InstAddrTranslatePlugin_savedCSR_CRMD_PG;
   wire       [1:0]    IF1_InstAddrTranslatePlugin_savedCSR_CRMD_DATF;
   wire       [1:0]    IF1_InstAddrTranslatePlugin_savedCSR_CRMD_DATM;
+  wire                IF2_InstAddrTranslatePlugin_currentSavedCSR_CRMD_DA;
+  wire                IF2_InstAddrTranslatePlugin_currentSavedCSR_CRMD_PG;
+  wire       [1:0]    IF2_InstAddrTranslatePlugin_currentSavedCSR_CRMD_DATF;
+  wire       [1:0]    IF2_InstAddrTranslatePlugin_currentSavedCSR_CRMD_DATM;
   reg                 IF2_InstAddrTranslatePlugin_translateResult_resultValid;
   reg        [31:0]   IF2_InstAddrTranslatePlugin_translateResult_resultPhysAddr;
   reg                 IF2_InstAddrTranslatePlugin_translateResult_resultCached;
@@ -17204,10 +17242,10 @@ module MyCPUCore (
   reg                 IF2_InstAddrTranslatePlugin_translateResult_resultExceptionBundle_raisePME;
   reg                 IF2_InstAddrTranslatePlugin_translateResult_resultExceptionBundle_raisePPI;
   reg                 IF2_InstAddrTranslatePlugin_translateResult_resultExceptionBundle_raiseTLBR;
-  wire                when_MMUPlugin_l347;
-  wire                when_MMUPlugin_l355;
-  wire                when_MMUPlugin_l363;
-  wire                when_MMUPlugin_l367;
+  wire                when_MMUPlugin_l348;
+  wire                when_MMUPlugin_l356;
+  wire                when_MMUPlugin_l364;
+  wire                when_MMUPlugin_l370;
   wire                IF2_InstAddrTranslatePlugin_translateResult_resultBundle_valid;
   wire       [31:0]   IF2_InstAddrTranslatePlugin_translateResult_resultBundle_payload_physAddr;
   wire                IF2_InstAddrTranslatePlugin_translateResult_resultBundle_payload_cached;
@@ -18721,6 +18759,7 @@ module MyCPUCore (
   wire                when_RenamePlugin_l111;
   wire                when_RenamePlugin_l114;
   wire       [31:0]   _zz_1453;
+  wire                when_RenamePlugin_l120;
   wire                when_RenamePlugin_l85_3;
   wire                when_RenamePlugin_l92;
   wire                when_RenamePlugin_l85_4;
@@ -18736,6 +18775,7 @@ module MyCPUCore (
   wire                when_RenamePlugin_l111_1;
   wire                when_RenamePlugin_l114_1;
   wire       [31:0]   _zz_1454;
+  wire                when_RenamePlugin_l120_1;
   wire                when_RenamePlugin_l85_6;
   wire                when_RenamePlugin_l92_3;
   wire                when_RenamePlugin_l92_4;
@@ -18755,6 +18795,7 @@ module MyCPUCore (
   wire                when_RenamePlugin_l111_2;
   wire                when_RenamePlugin_l114_2;
   wire       [31:0]   _zz_1455;
+  wire                when_RenamePlugin_l120_2;
   wire                CommitPlugin_arfCommits_0_pushPort_valid;
   reg                 CommitPlugin_arfCommits_0_pushPort_ready;
   wire       [5:0]    CommitPlugin_arfCommits_0_pushPort_payload;
@@ -18763,16 +18804,16 @@ module MyCPUCore (
   reg                 CommitPlugin_arfCommits_1_pushPort_ready;
   wire       [5:0]    CommitPlugin_arfCommits_1_pushPort_payload;
   wire       [0:0]    CommitPlugin_arfCommits_1_pushIdx;
-  wire                when_RenamePlugin_l135;
-  wire                when_RenamePlugin_l135_1;
+  wire                when_RenamePlugin_l138;
+  wire                when_RenamePlugin_l138_1;
   wire       [31:0]   _zz_1457;
   wire                CommitPlugin_arfCommits_2_pushPort_valid;
   reg                 CommitPlugin_arfCommits_2_pushPort_ready;
   wire       [5:0]    CommitPlugin_arfCommits_2_pushPort_payload;
   wire       [1:0]    CommitPlugin_arfCommits_2_pushIdx;
-  wire                when_RenamePlugin_l135_2;
-  wire                when_RenamePlugin_l135_3;
-  wire                when_RenamePlugin_l135_4;
+  wire                when_RenamePlugin_l138_2;
+  wire                when_RenamePlugin_l138_3;
+  wire                when_RenamePlugin_l138_4;
   wire       [31:0]   _zz_1458;
   wire                INT2_ISS_IntExecutePlugin_validVec_0;
   wire                INT2_ISS_IntExecutePlugin_validVec_1;
@@ -18848,23 +18889,26 @@ module MyCPUCore (
   wire       [3:0]    _zz_INT2_ISS_IntExecutePlugin_issSlot_uop_tlbOp;
   wire                INT2_ISS_IntExecutePlugin_issValid;
   wire                when_IntExecutePlugin_l119;
-  wire                when_IntExecutePlugin_l122;
-  wire                when_IntExecutePlugin_l125;
-  wire                when_IntExecutePlugin_l125_1;
-  wire                when_IntExecutePlugin_l125_2;
-  wire                when_IntExecutePlugin_l125_3;
-  wire                when_IntExecutePlugin_l125_4;
-  wire                when_IntExecutePlugin_l125_5;
-  wire                when_IntExecutePlugin_l125_6;
-  wire                when_IntExecutePlugin_l125_7;
-  wire                when_IntExecutePlugin_l125_8;
-  wire                when_IntExecutePlugin_l125_9;
-  wire                when_IntExecutePlugin_l125_10;
-  wire                when_IntExecutePlugin_l125_11;
-  wire                when_IntExecutePlugin_l125_12;
-  wire                when_IntExecutePlugin_l125_13;
+  wire                when_IntExecutePlugin_l123;
+  wire                when_IntExecutePlugin_l126;
+  wire                when_IntExecutePlugin_l129;
+  wire                when_IntExecutePlugin_l129_1;
+  wire                when_IntExecutePlugin_l129_2;
+  wire                when_IntExecutePlugin_l129_3;
+  wire                when_IntExecutePlugin_l129_4;
+  wire                when_IntExecutePlugin_l129_5;
+  wire                when_IntExecutePlugin_l129_6;
+  wire                when_IntExecutePlugin_l129_7;
+  wire                when_IntExecutePlugin_l129_8;
+  wire                when_IntExecutePlugin_l129_9;
+  wire                when_IntExecutePlugin_l129_10;
+  wire                when_IntExecutePlugin_l129_11;
+  wire                when_IntExecutePlugin_l129_12;
+  wire                when_IntExecutePlugin_l129_13;
+  wire                when_IntExecutePlugin_l146;
   reg        [31:0]   INT2_EXE_IntExecutePlugin_regData_0;
   reg        [31:0]   INT2_EXE_IntExecutePlugin_regData_1;
+  wire                when_IntExecutePlugin_l181;
   reg        [31:0]   INT2_EXE_IntExecutePlugin_imm12;
   reg        [31:0]   INT2_EXE_IntExecutePlugin_alu_src1_alternative;
   reg        [31:0]   INT2_EXE_IntExecutePlugin_alu_src2_alternative;
@@ -18939,23 +18983,26 @@ module MyCPUCore (
   wire       [3:0]    _zz_INT1_ISS_IntExecutePlugin_issSlot_uop_tlbOp;
   wire                INT1_ISS_IntExecutePlugin_issValid;
   wire                when_IntExecutePlugin_l119_1;
-  wire                when_IntExecutePlugin_l122_1;
-  wire                when_IntExecutePlugin_l125_14;
-  wire                when_IntExecutePlugin_l125_15;
-  wire                when_IntExecutePlugin_l125_16;
-  wire                when_IntExecutePlugin_l125_17;
-  wire                when_IntExecutePlugin_l125_18;
-  wire                when_IntExecutePlugin_l125_19;
-  wire                when_IntExecutePlugin_l125_20;
-  wire                when_IntExecutePlugin_l125_21;
-  wire                when_IntExecutePlugin_l125_22;
-  wire                when_IntExecutePlugin_l125_23;
-  wire                when_IntExecutePlugin_l125_24;
-  wire                when_IntExecutePlugin_l125_25;
-  wire                when_IntExecutePlugin_l125_26;
-  wire                when_IntExecutePlugin_l125_27;
+  wire                when_IntExecutePlugin_l123_1;
+  wire                when_IntExecutePlugin_l126_1;
+  wire                when_IntExecutePlugin_l129_14;
+  wire                when_IntExecutePlugin_l129_15;
+  wire                when_IntExecutePlugin_l129_16;
+  wire                when_IntExecutePlugin_l129_17;
+  wire                when_IntExecutePlugin_l129_18;
+  wire                when_IntExecutePlugin_l129_19;
+  wire                when_IntExecutePlugin_l129_20;
+  wire                when_IntExecutePlugin_l129_21;
+  wire                when_IntExecutePlugin_l129_22;
+  wire                when_IntExecutePlugin_l129_23;
+  wire                when_IntExecutePlugin_l129_24;
+  wire                when_IntExecutePlugin_l129_25;
+  wire                when_IntExecutePlugin_l129_26;
+  wire                when_IntExecutePlugin_l129_27;
+  wire                when_IntExecutePlugin_l146_1;
   reg        [31:0]   INT1_EXE_IntExecutePlugin_regData_0;
   reg        [31:0]   INT1_EXE_IntExecutePlugin_regData_1;
+  wire                when_IntExecutePlugin_l181_1;
   reg        [31:0]   INT1_EXE_IntExecutePlugin_imm12;
   reg        [31:0]   INT1_EXE_IntExecutePlugin_alu_src1_alternative;
   reg        [31:0]   INT1_EXE_IntExecutePlugin_alu_src2_alternative;
@@ -19016,28 +19063,31 @@ module MyCPUCore (
   wire       [3:0]    _zz_INT0_ISS_IntExecutePlugin_issSlot_uop_tlbOp;
   wire                INT0_ISS_IntExecutePlugin_issValid;
   wire                when_IntExecutePlugin_l119_2;
-  wire                when_IntExecutePlugin_l122_2;
-  wire                when_IntExecutePlugin_l125_28;
-  wire                when_IntExecutePlugin_l125_29;
-  wire                when_IntExecutePlugin_l125_30;
-  wire                when_IntExecutePlugin_l125_31;
-  wire                when_IntExecutePlugin_l125_32;
-  wire                when_IntExecutePlugin_l125_33;
-  wire                when_IntExecutePlugin_l125_34;
-  wire                when_IntExecutePlugin_l125_35;
-  wire                when_IntExecutePlugin_l125_36;
-  wire                when_IntExecutePlugin_l125_37;
-  wire                when_IntExecutePlugin_l125_38;
-  wire                when_IntExecutePlugin_l125_39;
-  wire                when_IntExecutePlugin_l125_40;
-  wire                when_IntExecutePlugin_l125_41;
+  wire                when_IntExecutePlugin_l123_2;
+  wire                when_IntExecutePlugin_l126_2;
+  wire                when_IntExecutePlugin_l129_28;
+  wire                when_IntExecutePlugin_l129_29;
+  wire                when_IntExecutePlugin_l129_30;
+  wire                when_IntExecutePlugin_l129_31;
+  wire                when_IntExecutePlugin_l129_32;
+  wire                when_IntExecutePlugin_l129_33;
+  wire                when_IntExecutePlugin_l129_34;
+  wire                when_IntExecutePlugin_l129_35;
+  wire                when_IntExecutePlugin_l129_36;
+  wire                when_IntExecutePlugin_l129_37;
+  wire                when_IntExecutePlugin_l129_38;
+  wire                when_IntExecutePlugin_l129_39;
+  wire                when_IntExecutePlugin_l129_40;
+  wire                when_IntExecutePlugin_l129_41;
+  wire                when_IntExecutePlugin_l146_2;
   reg        [31:0]   INT0_EXE_IntExecutePlugin_regData_0;
   reg        [31:0]   INT0_EXE_IntExecutePlugin_regData_1;
+  wire                when_IntExecutePlugin_l181_2;
   reg        [31:0]   INT0_EXE_IntExecutePlugin_imm12;
   reg        [31:0]   INT0_EXE_IntExecutePlugin_alu_src1_alternative;
   reg        [31:0]   INT0_EXE_IntExecutePlugin_alu_src2_alternative;
-  wire                when_IntExecutePlugin_l253;
-  wire                when_IntExecutePlugin_l299;
+  wire                when_IntExecutePlugin_l265;
+  wire                when_IntExecutePlugin_l311;
   wire                INT0_WB_IntExecutePlugin_except_valid;
   wire       [5:0]    INT0_WB_IntExecutePlugin_except_payload_code;
   wire       [8:0]    INT0_WB_IntExecutePlugin_except_payload_subcode;
@@ -19101,7 +19151,7 @@ module MyCPUCore (
   wire                MEM_ADDR_AddressGenerationPlugin_directTranslateResult_resultBundle_payload_exception_raisePME;
   wire                MEM_ADDR_AddressGenerationPlugin_directTranslateResult_resultBundle_payload_exception_raisePPI;
   wire                MEM_ADDR_AddressGenerationPlugin_directTranslateResult_resultBundle_payload_exception_raiseTLBR;
-  wire       [1:0]    switch_MMUPlugin_l298_1;
+  wire       [1:0]    switch_MMUPlugin_l299_1;
   wire                MEM_ADDR_AddressGenerationPlugin_tlbTranslateResult_resultValid;
   wire       [31:0]   MEM_ADDR_AddressGenerationPlugin_tlbTranslateResult_resultPhysAddr;
   wire                MEM_ADDR_AddressGenerationPlugin_tlbTranslateResult_resultCached;
@@ -19160,11 +19210,24 @@ module MyCPUCore (
   wire                MEM_ADDR_AddressGenerationPlugin_tlbTranslateResult_EntryHits_14;
   wire                MEM_ADDR_AddressGenerationPlugin_tlbTranslateResult_EntryHits_15;
   wire                MEM_ADDR_AddressGenerationPlugin_tlbTranslateResult_TLBHit;
-  wire                _zz_MEM_ADDR_AddressGenerationPlugin_tlbTranslateResult_TLBHitEntry_E;
-  wire                _zz_MEM_ADDR_AddressGenerationPlugin_tlbTranslateResult_TLBHitEntry_E_1;
+  wire       [15:0]   _zz_MEM_ADDR_AddressGenerationPlugin_tlbTranslateResult_TLBHitEntry_E;
+  wire       [15:0]   _zz_MEM_ADDR_AddressGenerationPlugin_tlbTranslateResult_TLBHitEntry_E_1;
   wire                _zz_MEM_ADDR_AddressGenerationPlugin_tlbTranslateResult_TLBHitEntry_E_2;
   wire                _zz_MEM_ADDR_AddressGenerationPlugin_tlbTranslateResult_TLBHitEntry_E_3;
-  wire       [3:0]    _zz_MEM_ADDR_AddressGenerationPlugin_tlbTranslateResult_TLBHitEntry_E_4;
+  wire                _zz_MEM_ADDR_AddressGenerationPlugin_tlbTranslateResult_TLBHitEntry_E_4;
+  wire                _zz_MEM_ADDR_AddressGenerationPlugin_tlbTranslateResult_TLBHitEntry_E_5;
+  wire                _zz_MEM_ADDR_AddressGenerationPlugin_tlbTranslateResult_TLBHitEntry_E_6;
+  wire                _zz_MEM_ADDR_AddressGenerationPlugin_tlbTranslateResult_TLBHitEntry_E_7;
+  wire                _zz_MEM_ADDR_AddressGenerationPlugin_tlbTranslateResult_TLBHitEntry_E_8;
+  wire                _zz_MEM_ADDR_AddressGenerationPlugin_tlbTranslateResult_TLBHitEntry_E_9;
+  wire                _zz_MEM_ADDR_AddressGenerationPlugin_tlbTranslateResult_TLBHitEntry_E_10;
+  wire                _zz_MEM_ADDR_AddressGenerationPlugin_tlbTranslateResult_TLBHitEntry_E_11;
+  wire                _zz_MEM_ADDR_AddressGenerationPlugin_tlbTranslateResult_TLBHitEntry_E_12;
+  wire                _zz_MEM_ADDR_AddressGenerationPlugin_tlbTranslateResult_TLBHitEntry_E_13;
+  wire                _zz_MEM_ADDR_AddressGenerationPlugin_tlbTranslateResult_TLBHitEntry_E_14;
+  wire                _zz_MEM_ADDR_AddressGenerationPlugin_tlbTranslateResult_TLBHitEntry_E_15;
+  wire                _zz_MEM_ADDR_AddressGenerationPlugin_tlbTranslateResult_TLBHitEntry_E_16;
+  wire       [3:0]    _zz_MEM_ADDR_AddressGenerationPlugin_tlbTranslateResult_TLBHitEntry_E_17;
   wire                MEM_ADDR_AddressGenerationPlugin_tlbTranslateResult_TLBHitEntry_E;
   wire       [9:0]    MEM_ADDR_AddressGenerationPlugin_tlbTranslateResult_TLBHitEntry_ASID;
   wire                MEM_ADDR_AddressGenerationPlugin_tlbTranslateResult_TLBHitEntry_G;
@@ -19185,10 +19248,10 @@ module MyCPUCore (
   wire       [1:0]    MEM_ADDR_AddressGenerationPlugin_tlbTranslateResult_TLBHitEntry_mat;
   wire       [1:0]    MEM_ADDR_AddressGenerationPlugin_tlbTranslateResult_TLBHitEntry_plv;
   wire       [19:0]   MEM_ADDR_AddressGenerationPlugin_tlbTranslateResult_TLBHitEntry_ppn;
-  wire                when_MMUPlugin_l293_1;
-  wire                when_MMUPlugin_l297_1;
-  wire                when_MMUPlugin_l311_1;
-  wire                when_MMUPlugin_l315_1;
+  wire                when_MMUPlugin_l294_1;
+  wire                when_MMUPlugin_l298_1;
+  wire                when_MMUPlugin_l312_1;
+  wire                when_MMUPlugin_l316_1;
   wire                MEM_ADDR_AddressGenerationPlugin_tlbTranslateResult_resultBundle_valid;
   wire       [31:0]   MEM_ADDR_AddressGenerationPlugin_tlbTranslateResult_resultBundle_payload_physAddr;
   wire                MEM_ADDR_AddressGenerationPlugin_tlbTranslateResult_resultBundle_payload_cached;
@@ -19203,7 +19266,7 @@ module MyCPUCore (
   wire       [1:0]    MEM_ADDR_AddressGenerationPlugin_savedCSR_CRMD_DATF;
   wire       [1:0]    MEM_ADDR_AddressGenerationPlugin_savedCSR_CRMD_DATM;
   wire                MEM_MEM1_AddressGenerationPlugin_excAsLoad;
-  wire       [1:0]    _zz_when_MMUPlugin_l367;
+  wire       [1:0]    _zz_when_MMUPlugin_l370;
   reg                 MEM_MEM1_AddressGenerationPlugin_translateResult_resultValid;
   reg        [31:0]   MEM_MEM1_AddressGenerationPlugin_translateResult_resultPhysAddr;
   reg                 MEM_MEM1_AddressGenerationPlugin_translateResult_resultCached;
@@ -19213,10 +19276,10 @@ module MyCPUCore (
   reg                 MEM_MEM1_AddressGenerationPlugin_translateResult_resultExceptionBundle_raisePME;
   reg                 MEM_MEM1_AddressGenerationPlugin_translateResult_resultExceptionBundle_raisePPI;
   reg                 MEM_MEM1_AddressGenerationPlugin_translateResult_resultExceptionBundle_raiseTLBR;
-  wire                when_MMUPlugin_l347_1;
-  wire                when_MMUPlugin_l355_1;
-  wire                when_MMUPlugin_l363_1;
-  wire                when_MMUPlugin_l367_1;
+  wire                when_MMUPlugin_l348_1;
+  wire                when_MMUPlugin_l356_1;
+  wire                when_MMUPlugin_l364_1;
+  wire                when_MMUPlugin_l370_1;
   wire                MEM_MEM1_AddressGenerationPlugin_translateResult_resultBundle_valid;
   wire       [31:0]   MEM_MEM1_AddressGenerationPlugin_translateResult_resultBundle_payload_physAddr;
   wire                MEM_MEM1_AddressGenerationPlugin_translateResult_resultBundle_payload_cached;
@@ -19434,22 +19497,24 @@ module MyCPUCore (
   wire                StoreBufferPlugin_queueIO_popPort_fire_6;
   wire                StoreBufferPlugin_queueIO_popPort_fire_7;
   wire                MEM_ISS_MemExecutePlugin_waken;
+  wire                when_MemExecutePlugin_l73;
   wire                MEM_ISS_MemExecutePlugin_issueLoad;
   wire                MEM_ISS_MemExecutePlugin_issueStore;
   wire                MEM_ISS_MemExecutePlugin_stdValid;
-  wire                when_MemExecutePlugin_l80;
-  wire                when_MemExecutePlugin_l85;
-  wire                when_MemExecutePlugin_l86;
+  wire                when_MemExecutePlugin_l84;
+  wire                when_MemExecutePlugin_l89;
+  wire                when_MemExecutePlugin_l90;
   wire       [31:0]   MEM_RRD_MemExecutePlugin_addrOffset;
+  wire                when_MemExecutePlugin_l104;
   wire                MEM_MEM1_MemExecutePlugin_isLDU;
   wire                MEM_MEM1_MemExecutePlugin_wRegValid;
   wire       [5:0]    MEM_MEM1_MemExecutePlugin_wRegPayload;
   wire                MEM_MEM2_MemExecutePlugin_isLDU;
-  wire                when_MemExecutePlugin_l122;
-  wire                when_MemExecutePlugin_l129;
+  wire                when_MemExecutePlugin_l130;
+  wire                when_MemExecutePlugin_l137;
   wire                MEM_WB_MemExecutePlugin_isLDU;
-  wire                when_MemExecutePlugin_l148;
-  wire                when_MemExecutePlugin_l164;
+  wire                when_MemExecutePlugin_l156;
+  wire                when_MemExecutePlugin_l172;
   wire                when_ExceptionMuxPlugin_l45_4;
   wire                when_ExceptionMuxPlugin_l45_5;
   wire                when_ExceptionMuxPlugin_l45_6;
@@ -19503,34 +19568,29 @@ module MyCPUCore (
   reg                 IF1_to_IF2_TLB_TRANSLATE_RESULT_payload_exception_raisePPI;
   reg                 IF1_to_IF2_TLB_TRANSLATE_RESULT_payload_exception_raiseTLBR;
   wire                when_Pipeline_l158_10;
-  reg                 IF1_to_IF2_TRANSLATE_SAVED_CSR_CRMD_DA;
-  reg                 IF1_to_IF2_TRANSLATE_SAVED_CSR_CRMD_PG;
-  reg        [1:0]    IF1_to_IF2_TRANSLATE_SAVED_CSR_CRMD_DATF;
-  reg        [1:0]    IF1_to_IF2_TRANSLATE_SAVED_CSR_CRMD_DATM;
-  wire                when_Pipeline_l158_11;
   reg                 IF1_to_IF2_PREDICT_JUMP_FLAG;
-  wire                when_Pipeline_l158_12;
+  wire                when_Pipeline_l158_11;
   reg        [29:0]   IF1_to_IF2_PREDICT_JUMP_PAYLOAD_target;
   reg                 IF1_to_IF2_PREDICT_JUMP_PAYLOAD_isCall;
   reg                 IF1_to_IF2_PREDICT_JUMP_PAYLOAD_isReturn;
-  wire                when_Pipeline_l158_13;
+  wire                when_Pipeline_l158_12;
   reg        [1:0]    IF1_to_IF2_PREDICT_JUMP_WAY;
-  wire                when_Pipeline_l158_14;
+  wire                when_Pipeline_l158_13;
   reg        [3:0]    IF1_to_IF2_INSTRUCTION_MASK;
-  wire                when_Pipeline_l158_15;
+  wire                when_Pipeline_l158_14;
   reg        [3:0]    IF1_to_IF2_BRANCH_MASK;
-  wire                when_Pipeline_l158_16;
+  wire                when_Pipeline_l158_15;
   reg        [1:0]    IF1_to_IF2_PRED_COUNTER_0;
   reg        [1:0]    IF1_to_IF2_PRED_COUNTER_1;
   reg        [1:0]    IF1_to_IF2_PRED_COUNTER_2;
   reg        [1:0]    IF1_to_IF2_PRED_COUNTER_3;
-  wire                when_Pipeline_l158_17;
+  wire                when_Pipeline_l158_16;
   reg        [4:0]    IF1_to_IF2_GLOBAL_BRANCH_HISTORY;
   wire                when_Pipeline_l198;
   wire                when_Pipeline_l208;
   wire                when_Pipeline_l211;
   wire                when_Pipeline_l213;
-  wire                when_Pipeline_l158_18;
+  wire                when_Pipeline_l158_17;
   reg                 ID_to_RENAME_DECODE_PACKET_0_valid;
   reg        [31:0]   ID_to_RENAME_DECODE_PACKET_0_payload_pc;
   reg        [31:0]   ID_to_RENAME_DECODE_PACKET_0_payload_inst;
@@ -19660,7 +19720,7 @@ module MyCPUCore (
   reg                 ID_to_RENAME_DECODE_PACKET_2_payload_except_payload_isTLBRefill;
   reg                 ID_to_RENAME_DECODE_PACKET_2_payload_isErtn;
   reg                 ID_to_RENAME_DECODE_PACKET_2_payload_flushState;
-  wire                when_Pipeline_l158_19;
+  wire                when_Pipeline_l158_18;
   reg                 RENAME_to_DISPATCH_DECODE_PACKET_0_valid;
   reg        [31:0]   RENAME_to_DISPATCH_DECODE_PACKET_0_payload_pc;
   reg        [31:0]   RENAME_to_DISPATCH_DECODE_PACKET_0_payload_inst;
@@ -19790,18 +19850,18 @@ module MyCPUCore (
   reg                 RENAME_to_DISPATCH_DECODE_PACKET_2_payload_except_payload_isTLBRefill;
   reg                 RENAME_to_DISPATCH_DECODE_PACKET_2_payload_isErtn;
   reg                 RENAME_to_DISPATCH_DECODE_PACKET_2_payload_flushState;
-  wire                when_Pipeline_l158_20;
+  wire                when_Pipeline_l158_19;
   reg        [4:0]    RENAME_to_DISPATCH_ROB_INDEXES_0;
   reg        [4:0]    RENAME_to_DISPATCH_ROB_INDEXES_1;
   reg        [4:0]    RENAME_to_DISPATCH_ROB_INDEXES_2;
-  wire                when_Pipeline_l158_21;
+  wire                when_Pipeline_l158_20;
   reg                 RENAME_to_DISPATCH_PUSH_INDEXES_0_valid;
   reg        [1:0]    RENAME_to_DISPATCH_PUSH_INDEXES_0_payload;
   reg                 RENAME_to_DISPATCH_PUSH_INDEXES_1_valid;
   reg        [1:0]    RENAME_to_DISPATCH_PUSH_INDEXES_1_payload;
   reg                 RENAME_to_DISPATCH_PUSH_INDEXES_2_valid;
   reg        [1:0]    RENAME_to_DISPATCH_PUSH_INDEXES_2_payload;
-  wire                when_Pipeline_l158_22;
+  wire                when_Pipeline_l158_21;
   reg        [5:0]    RENAME_to_DISPATCH_RENAME_RECORDS_0_rRegs_0;
   reg        [5:0]    RENAME_to_DISPATCH_RENAME_RECORDS_0_rRegs_1;
   reg        [5:0]    RENAME_to_DISPATCH_RENAME_RECORDS_0_wReg;
@@ -19821,7 +19881,7 @@ module MyCPUCore (
   wire                when_Pipeline_l208_2;
   wire                when_Pipeline_l211_2;
   wire                when_Pipeline_l213_2;
-  wire                when_Pipeline_l158_23;
+  wire                when_Pipeline_l158_22;
   reg                 INT2_ISS_to_INT2_RRD_ISSUE_SLOT_rRegs_0_valid;
   reg        [5:0]    INT2_ISS_to_INT2_RRD_ISSUE_SLOT_rRegs_0_payload;
   reg                 INT2_ISS_to_INT2_RRD_ISSUE_SLOT_rRegs_1_valid;
@@ -19850,7 +19910,7 @@ module MyCPUCore (
   reg                 INT2_ISS_to_INT2_RRD_ISSUE_SLOT_uop_readTimer64ID;
   reg        [3:0]    INT2_ISS_to_INT2_RRD_ISSUE_SLOT_uop_tlbOp;
   reg        [5:0]    INT2_ISS_to_INT2_RRD_ISSUE_SLOT_wReg;
-  wire                when_Pipeline_l158_24;
+  wire                when_Pipeline_l158_23;
   reg                 INT2_RRD_to_INT2_EXE_ISSUE_SLOT_rRegs_0_valid;
   reg        [5:0]    INT2_RRD_to_INT2_EXE_ISSUE_SLOT_rRegs_0_payload;
   reg                 INT2_RRD_to_INT2_EXE_ISSUE_SLOT_rRegs_1_valid;
@@ -19879,7 +19939,7 @@ module MyCPUCore (
   reg                 INT2_RRD_to_INT2_EXE_ISSUE_SLOT_uop_readTimer64ID;
   reg        [3:0]    INT2_RRD_to_INT2_EXE_ISSUE_SLOT_uop_tlbOp;
   reg        [5:0]    INT2_RRD_to_INT2_EXE_ISSUE_SLOT_wReg;
-  wire                when_Pipeline_l158_25;
+  wire                when_Pipeline_l158_24;
   reg                 INT2_EXE_to_INT2_WB_ISSUE_SLOT_rRegs_0_valid;
   reg        [5:0]    INT2_EXE_to_INT2_WB_ISSUE_SLOT_rRegs_0_payload;
   reg                 INT2_EXE_to_INT2_WB_ISSUE_SLOT_rRegs_1_valid;
@@ -19908,31 +19968,31 @@ module MyCPUCore (
   reg                 INT2_EXE_to_INT2_WB_ISSUE_SLOT_uop_readTimer64ID;
   reg        [3:0]    INT2_EXE_to_INT2_WB_ISSUE_SLOT_uop_tlbOp;
   reg        [5:0]    INT2_EXE_to_INT2_WB_ISSUE_SLOT_wReg;
-  wire                when_Pipeline_l158_26;
+  wire                when_Pipeline_l158_25;
   reg        [31:0]   INT2_RRD_to_INT2_EXE_REG_READ_RSP_0;
   reg        [31:0]   INT2_RRD_to_INT2_EXE_REG_READ_RSP_1;
-  wire                when_Pipeline_l158_27;
+  wire                when_Pipeline_l158_26;
   reg                 INT2_RRD_to_INT2_EXE_DIFF_IS_COUNT;
-  wire                when_Pipeline_l158_28;
+  wire                when_Pipeline_l158_27;
   reg                 INT2_EXE_to_INT2_WB_DIFF_IS_COUNT;
-  wire                when_Pipeline_l158_29;
+  wire                when_Pipeline_l158_28;
   reg        [63:0]   INT2_RRD_to_INT2_EXE_DIFF_COUNT64_value;
-  wire                when_Pipeline_l158_30;
+  wire                when_Pipeline_l158_29;
   reg        [63:0]   INT2_EXE_to_INT2_WB_DIFF_COUNT64_value;
-  wire                when_Pipeline_l158_31;
+  wire                when_Pipeline_l158_30;
   reg                 INT2_RRD_to_INT2_EXE_DIFF_CSR_RSTAT;
-  wire                when_Pipeline_l158_32;
+  wire                when_Pipeline_l158_31;
   reg                 INT2_EXE_to_INT2_WB_DIFF_CSR_RSTAT;
-  wire                when_Pipeline_l158_33;
+  wire                when_Pipeline_l158_32;
   reg        [31:0]   INT2_RRD_to_INT2_EXE_DIFF_CSR_DATA;
-  wire                when_Pipeline_l158_34;
+  wire                when_Pipeline_l158_33;
   reg        [31:0]   INT2_EXE_to_INT2_WB_DIFF_CSR_DATA;
-  wire                when_Pipeline_l158_35;
+  wire                when_Pipeline_l158_34;
   reg        [31:0]   INT2_EXE_to_INT2_WB_EXE_RESULT;
-  wire                when_Pipeline_l158_36;
+  wire                when_Pipeline_l158_35;
   reg                 INT2_EXE_to_INT2_WB_WRITE_REG_valid;
   reg        [5:0]    INT2_EXE_to_INT2_WB_WRITE_REG_payload;
-  wire                when_Pipeline_l158_37;
+  wire                when_Pipeline_l158_36;
   reg        [4:0]    INT2_EXE_to_INT2_WB_ROB_IDX;
   wire                when_Pipeline_l198_2;
   wire                when_Pipeline_l208_3;
@@ -19944,7 +20004,7 @@ module MyCPUCore (
   wire                when_Pipeline_l208_5;
   wire                when_Pipeline_l211_5;
   wire                when_Pipeline_l213_5;
-  wire                when_Pipeline_l158_38;
+  wire                when_Pipeline_l158_37;
   reg                 INT1_ISS_to_INT1_RRD_ISSUE_SLOT_rRegs_0_valid;
   reg        [5:0]    INT1_ISS_to_INT1_RRD_ISSUE_SLOT_rRegs_0_payload;
   reg                 INT1_ISS_to_INT1_RRD_ISSUE_SLOT_rRegs_1_valid;
@@ -19973,7 +20033,7 @@ module MyCPUCore (
   reg                 INT1_ISS_to_INT1_RRD_ISSUE_SLOT_uop_readTimer64ID;
   reg        [3:0]    INT1_ISS_to_INT1_RRD_ISSUE_SLOT_uop_tlbOp;
   reg        [5:0]    INT1_ISS_to_INT1_RRD_ISSUE_SLOT_wReg;
-  wire                when_Pipeline_l158_39;
+  wire                when_Pipeline_l158_38;
   reg                 INT1_RRD_to_INT1_EXE_ISSUE_SLOT_rRegs_0_valid;
   reg        [5:0]    INT1_RRD_to_INT1_EXE_ISSUE_SLOT_rRegs_0_payload;
   reg                 INT1_RRD_to_INT1_EXE_ISSUE_SLOT_rRegs_1_valid;
@@ -20002,7 +20062,7 @@ module MyCPUCore (
   reg                 INT1_RRD_to_INT1_EXE_ISSUE_SLOT_uop_readTimer64ID;
   reg        [3:0]    INT1_RRD_to_INT1_EXE_ISSUE_SLOT_uop_tlbOp;
   reg        [5:0]    INT1_RRD_to_INT1_EXE_ISSUE_SLOT_wReg;
-  wire                when_Pipeline_l158_40;
+  wire                when_Pipeline_l158_39;
   reg                 INT1_EXE_to_INT1_WB_ISSUE_SLOT_rRegs_0_valid;
   reg        [5:0]    INT1_EXE_to_INT1_WB_ISSUE_SLOT_rRegs_0_payload;
   reg                 INT1_EXE_to_INT1_WB_ISSUE_SLOT_rRegs_1_valid;
@@ -20031,29 +20091,29 @@ module MyCPUCore (
   reg                 INT1_EXE_to_INT1_WB_ISSUE_SLOT_uop_readTimer64ID;
   reg        [3:0]    INT1_EXE_to_INT1_WB_ISSUE_SLOT_uop_tlbOp;
   reg        [5:0]    INT1_EXE_to_INT1_WB_ISSUE_SLOT_wReg;
-  wire                when_Pipeline_l158_41;
+  wire                when_Pipeline_l158_40;
   reg        [31:0]   INT1_RRD_to_INT1_EXE_REG_READ_RSP_0;
   reg        [31:0]   INT1_RRD_to_INT1_EXE_REG_READ_RSP_1;
-  wire                when_Pipeline_l158_42;
+  wire                when_Pipeline_l158_41;
   reg                 INT1_RRD_to_INT1_EXE_DIFF_IS_COUNT;
-  wire                when_Pipeline_l158_43;
+  wire                when_Pipeline_l158_42;
   reg                 INT1_EXE_to_INT1_WB_DIFF_IS_COUNT;
-  wire                when_Pipeline_l158_44;
+  wire                when_Pipeline_l158_43;
   reg        [63:0]   INT1_EXE_to_INT1_WB_DIFF_COUNT64_value;
-  wire                when_Pipeline_l158_45;
+  wire                when_Pipeline_l158_44;
   reg                 INT1_RRD_to_INT1_EXE_DIFF_CSR_RSTAT;
-  wire                when_Pipeline_l158_46;
+  wire                when_Pipeline_l158_45;
   reg                 INT1_EXE_to_INT1_WB_DIFF_CSR_RSTAT;
-  wire                when_Pipeline_l158_47;
+  wire                when_Pipeline_l158_46;
   reg        [31:0]   INT1_RRD_to_INT1_EXE_DIFF_CSR_DATA;
-  wire                when_Pipeline_l158_48;
+  wire                when_Pipeline_l158_47;
   reg        [31:0]   INT1_EXE_to_INT1_WB_DIFF_CSR_DATA;
-  wire                when_Pipeline_l158_49;
+  wire                when_Pipeline_l158_48;
   reg        [31:0]   INT1_EXE_to_INT1_WB_EXE_RESULT;
-  wire                when_Pipeline_l158_50;
+  wire                when_Pipeline_l158_49;
   reg                 INT1_EXE_to_INT1_WB_WRITE_REG_valid;
   reg        [5:0]    INT1_EXE_to_INT1_WB_WRITE_REG_payload;
-  wire                when_Pipeline_l158_51;
+  wire                when_Pipeline_l158_50;
   reg        [4:0]    INT1_EXE_to_INT1_WB_ROB_IDX;
   wire                when_Pipeline_l198_3;
   wire                when_Pipeline_l208_6;
@@ -20065,7 +20125,7 @@ module MyCPUCore (
   wire                when_Pipeline_l208_8;
   wire                when_Pipeline_l211_8;
   wire                when_Pipeline_l213_8;
-  wire                when_Pipeline_l158_52;
+  wire                when_Pipeline_l158_51;
   reg                 INT0_ISS_to_INT0_RRD_ISSUE_SLOT_rRegs_0_valid;
   reg        [5:0]    INT0_ISS_to_INT0_RRD_ISSUE_SLOT_rRegs_0_payload;
   reg                 INT0_ISS_to_INT0_RRD_ISSUE_SLOT_rRegs_1_valid;
@@ -20094,7 +20154,7 @@ module MyCPUCore (
   reg                 INT0_ISS_to_INT0_RRD_ISSUE_SLOT_uop_readTimer64ID;
   reg        [3:0]    INT0_ISS_to_INT0_RRD_ISSUE_SLOT_uop_tlbOp;
   reg        [5:0]    INT0_ISS_to_INT0_RRD_ISSUE_SLOT_wReg;
-  wire                when_Pipeline_l158_53;
+  wire                when_Pipeline_l158_52;
   reg                 INT0_RRD_to_INT0_EXE_ISSUE_SLOT_rRegs_0_valid;
   reg        [5:0]    INT0_RRD_to_INT0_EXE_ISSUE_SLOT_rRegs_0_payload;
   reg                 INT0_RRD_to_INT0_EXE_ISSUE_SLOT_rRegs_1_valid;
@@ -20123,25 +20183,25 @@ module MyCPUCore (
   reg                 INT0_RRD_to_INT0_EXE_ISSUE_SLOT_uop_readTimer64ID;
   reg        [3:0]    INT0_RRD_to_INT0_EXE_ISSUE_SLOT_uop_tlbOp;
   reg        [5:0]    INT0_RRD_to_INT0_EXE_ISSUE_SLOT_wReg;
-  wire                when_Pipeline_l158_54;
+  wire                when_Pipeline_l158_53;
   reg        [31:0]   INT0_RRD_to_INT0_EXE_REG_READ_RSP_0;
   reg        [31:0]   INT0_RRD_to_INT0_EXE_REG_READ_RSP_1;
-  wire                when_Pipeline_l158_55;
+  wire                when_Pipeline_l158_54;
   reg                 INT0_RRD_to_INT0_EXE_DIFF_CSR_RSTAT;
-  wire                when_Pipeline_l158_56;
+  wire                when_Pipeline_l158_55;
   reg        [31:0]   INT0_RRD_to_INT0_EXE_DIFF_CSR_DATA;
-  wire                when_Pipeline_l158_57;
+  wire                when_Pipeline_l158_56;
   reg        [31:0]   INT0_EXE_to_INT0_WB_EXE_RESULT;
-  wire                when_Pipeline_l158_58;
+  wire                when_Pipeline_l158_57;
   reg        [31:0]   INT0_EXE_to_INT0_WB_ACTUAL_TARGET;
-  wire                when_Pipeline_l158_59;
+  wire                when_Pipeline_l158_58;
   reg                 INT0_EXE_to_INT0_WB_ACTUAL_TAKEN;
-  wire                when_Pipeline_l158_60;
+  wire                when_Pipeline_l158_59;
   reg                 INT0_EXE_to_INT0_WB_MISPREDICT;
-  wire                when_Pipeline_l158_61;
+  wire                when_Pipeline_l158_60;
   reg                 INT0_EXE_to_INT0_WB_WRITE_REG_valid;
   reg        [5:0]    INT0_EXE_to_INT0_WB_WRITE_REG_payload;
-  wire                when_Pipeline_l158_62;
+  wire                when_Pipeline_l158_61;
   reg        [4:0]    INT0_EXE_to_INT0_WB_ROB_IDX;
   wire                when_Pipeline_l198_4;
   wire                when_Pipeline_l208_9;
@@ -20153,7 +20213,7 @@ module MyCPUCore (
   wire                when_Pipeline_l208_11;
   wire                when_Pipeline_l211_11;
   wire                when_Pipeline_l213_11;
-  wire                when_Pipeline_l158_63;
+  wire                when_Pipeline_l158_62;
   reg                 MULDIV_ISS_to_MULDIV_RRD_ISSUE_SLOT_rRegs_0_valid;
   reg        [5:0]    MULDIV_ISS_to_MULDIV_RRD_ISSUE_SLOT_rRegs_0_payload;
   reg                 MULDIV_ISS_to_MULDIV_RRD_ISSUE_SLOT_rRegs_1_valid;
@@ -20163,7 +20223,7 @@ module MyCPUCore (
   reg                 MULDIV_ISS_to_MULDIV_RRD_ISSUE_SLOT_uop_doRegWrite;
   reg                 MULDIV_ISS_to_MULDIV_RRD_ISSUE_SLOT_uop_signed;
   reg        [5:0]    MULDIV_ISS_to_MULDIV_RRD_ISSUE_SLOT_wReg;
-  wire                when_Pipeline_l158_64;
+  wire                when_Pipeline_l158_63;
   reg                 MULDIV_RRD_to_MULDIV_EXE_ISSUE_SLOT_rRegs_0_valid;
   reg        [5:0]    MULDIV_RRD_to_MULDIV_EXE_ISSUE_SLOT_rRegs_0_payload;
   reg                 MULDIV_RRD_to_MULDIV_EXE_ISSUE_SLOT_rRegs_1_valid;
@@ -20173,7 +20233,7 @@ module MyCPUCore (
   reg                 MULDIV_RRD_to_MULDIV_EXE_ISSUE_SLOT_uop_doRegWrite;
   reg                 MULDIV_RRD_to_MULDIV_EXE_ISSUE_SLOT_uop_signed;
   reg        [5:0]    MULDIV_RRD_to_MULDIV_EXE_ISSUE_SLOT_wReg;
-  wire                when_Pipeline_l158_65;
+  wire                when_Pipeline_l158_64;
   reg                 MULDIV_EXE_to_MULDIV_WB_ISSUE_SLOT_rRegs_0_valid;
   reg        [5:0]    MULDIV_EXE_to_MULDIV_WB_ISSUE_SLOT_rRegs_0_payload;
   reg                 MULDIV_EXE_to_MULDIV_WB_ISSUE_SLOT_rRegs_1_valid;
@@ -20183,10 +20243,10 @@ module MyCPUCore (
   reg                 MULDIV_EXE_to_MULDIV_WB_ISSUE_SLOT_uop_doRegWrite;
   reg                 MULDIV_EXE_to_MULDIV_WB_ISSUE_SLOT_uop_signed;
   reg        [5:0]    MULDIV_EXE_to_MULDIV_WB_ISSUE_SLOT_wReg;
-  wire                when_Pipeline_l158_66;
+  wire                when_Pipeline_l158_65;
   reg        [31:0]   MULDIV_RRD_to_MULDIV_EXE_REG_READ_RSP_0;
   reg        [31:0]   MULDIV_RRD_to_MULDIV_EXE_REG_READ_RSP_1;
-  wire                when_Pipeline_l158_67;
+  wire                when_Pipeline_l158_66;
   reg        [31:0]   MULDIV_EXE_to_MULDIV_WB_EXE_RESULT;
   wire                when_Pipeline_l198_5;
   wire                when_Pipeline_l208_12;
@@ -20198,7 +20258,7 @@ module MyCPUCore (
   wire                when_Pipeline_l208_14;
   wire                when_Pipeline_l211_14;
   wire                when_Pipeline_l213_14;
-  wire                when_Pipeline_l158_68;
+  wire                when_Pipeline_l158_67;
   reg                 MEM_ISS_to_MEM_RRD_ISSUE_SLOT_rRegs_0_valid;
   reg        [5:0]    MEM_ISS_to_MEM_RRD_ISSUE_SLOT_rRegs_0_payload;
   reg                 MEM_ISS_to_MEM_RRD_ISSUE_SLOT_rRegs_1_valid;
@@ -20216,7 +20276,7 @@ module MyCPUCore (
   reg        [1:0]    MEM_ISS_to_MEM_RRD_ISSUE_SLOT_uop_cacheOp;
   reg        [1:0]    MEM_ISS_to_MEM_RRD_ISSUE_SLOT_uop_cacheSel;
   reg        [5:0]    MEM_ISS_to_MEM_RRD_ISSUE_SLOT_wReg;
-  wire                when_Pipeline_l158_69;
+  wire                when_Pipeline_l158_68;
   reg                 MEM_RRD_to_MEM_ADDR_ISSUE_SLOT_rRegs_0_valid;
   reg        [5:0]    MEM_RRD_to_MEM_ADDR_ISSUE_SLOT_rRegs_0_payload;
   reg                 MEM_RRD_to_MEM_ADDR_ISSUE_SLOT_rRegs_1_valid;
@@ -20234,7 +20294,7 @@ module MyCPUCore (
   reg        [1:0]    MEM_RRD_to_MEM_ADDR_ISSUE_SLOT_uop_cacheOp;
   reg        [1:0]    MEM_RRD_to_MEM_ADDR_ISSUE_SLOT_uop_cacheSel;
   reg        [5:0]    MEM_RRD_to_MEM_ADDR_ISSUE_SLOT_wReg;
-  wire                when_Pipeline_l158_70;
+  wire                when_Pipeline_l158_69;
   reg                 MEM_ADDR_to_MEM_MEM1_ISSUE_SLOT_rRegs_0_valid;
   reg        [5:0]    MEM_ADDR_to_MEM_MEM1_ISSUE_SLOT_rRegs_0_payload;
   reg                 MEM_ADDR_to_MEM_MEM1_ISSUE_SLOT_rRegs_1_valid;
@@ -20252,7 +20312,7 @@ module MyCPUCore (
   reg        [1:0]    MEM_ADDR_to_MEM_MEM1_ISSUE_SLOT_uop_cacheOp;
   reg        [1:0]    MEM_ADDR_to_MEM_MEM1_ISSUE_SLOT_uop_cacheSel;
   reg        [5:0]    MEM_ADDR_to_MEM_MEM1_ISSUE_SLOT_wReg;
-  wire                when_Pipeline_l158_71;
+  wire                when_Pipeline_l158_70;
   reg                 MEM_MEM1_to_MEM_MEM2_ISSUE_SLOT_rRegs_0_valid;
   reg        [5:0]    MEM_MEM1_to_MEM_MEM2_ISSUE_SLOT_rRegs_0_payload;
   reg                 MEM_MEM1_to_MEM_MEM2_ISSUE_SLOT_rRegs_1_valid;
@@ -20270,7 +20330,7 @@ module MyCPUCore (
   reg        [1:0]    MEM_MEM1_to_MEM_MEM2_ISSUE_SLOT_uop_cacheOp;
   reg        [1:0]    MEM_MEM1_to_MEM_MEM2_ISSUE_SLOT_uop_cacheSel;
   reg        [5:0]    MEM_MEM1_to_MEM_MEM2_ISSUE_SLOT_wReg;
-  wire                when_Pipeline_l158_72;
+  wire                when_Pipeline_l158_71;
   reg                 MEM_MEM2_to_MEM_WB_ISSUE_SLOT_rRegs_0_valid;
   reg        [5:0]    MEM_MEM2_to_MEM_WB_ISSUE_SLOT_rRegs_0_payload;
   reg                 MEM_MEM2_to_MEM_WB_ISSUE_SLOT_rRegs_1_valid;
@@ -20288,7 +20348,7 @@ module MyCPUCore (
   reg        [1:0]    MEM_MEM2_to_MEM_WB_ISSUE_SLOT_uop_cacheOp;
   reg        [1:0]    MEM_MEM2_to_MEM_WB_ISSUE_SLOT_uop_cacheSel;
   reg        [5:0]    MEM_MEM2_to_MEM_WB_ISSUE_SLOT_wReg;
-  wire                when_Pipeline_l158_73;
+  wire                when_Pipeline_l158_72;
   reg                 MEM_ISS_to_MEM_RRD_STD_SLOT_valid;
   reg                 MEM_ISS_to_MEM_RRD_STD_SLOT_payload_retired;
   reg        [31:0]   MEM_ISS_to_MEM_RRD_STD_SLOT_payload_addr;
@@ -20300,7 +20360,7 @@ module MyCPUCore (
   reg        [5:0]    MEM_ISS_to_MEM_RRD_STD_SLOT_payload_wReg_payload;
   reg        [2:0]    MEM_ISS_to_MEM_RRD_STD_SLOT_payload_lsType;
   reg        [4:0]    MEM_ISS_to_MEM_RRD_STD_SLOT_payload_robIdx;
-  wire                when_Pipeline_l158_74;
+  wire                when_Pipeline_l158_73;
   reg                 MEM_RRD_to_MEM_ADDR_STD_SLOT_valid;
   reg                 MEM_RRD_to_MEM_ADDR_STD_SLOT_payload_retired;
   reg        [31:0]   MEM_RRD_to_MEM_ADDR_STD_SLOT_payload_addr;
@@ -20312,7 +20372,7 @@ module MyCPUCore (
   reg        [5:0]    MEM_RRD_to_MEM_ADDR_STD_SLOT_payload_wReg_payload;
   reg        [2:0]    MEM_RRD_to_MEM_ADDR_STD_SLOT_payload_lsType;
   reg        [4:0]    MEM_RRD_to_MEM_ADDR_STD_SLOT_payload_robIdx;
-  wire                when_Pipeline_l158_75;
+  wire                when_Pipeline_l158_74;
   reg                 MEM_ADDR_to_MEM_MEM1_STD_SLOT_valid;
   reg                 MEM_ADDR_to_MEM_MEM1_STD_SLOT_payload_retired;
   reg        [31:0]   MEM_ADDR_to_MEM_MEM1_STD_SLOT_payload_addr;
@@ -20324,7 +20384,7 @@ module MyCPUCore (
   reg        [5:0]    MEM_ADDR_to_MEM_MEM1_STD_SLOT_payload_wReg_payload;
   reg        [2:0]    MEM_ADDR_to_MEM_MEM1_STD_SLOT_payload_lsType;
   reg        [4:0]    MEM_ADDR_to_MEM_MEM1_STD_SLOT_payload_robIdx;
-  wire                when_Pipeline_l158_76;
+  wire                when_Pipeline_l158_75;
   reg                 MEM_MEM1_to_MEM_MEM2_STD_SLOT_valid;
   reg                 MEM_MEM1_to_MEM_MEM2_STD_SLOT_payload_retired;
   reg        [31:0]   MEM_MEM1_to_MEM_MEM2_STD_SLOT_payload_addr;
@@ -20336,7 +20396,7 @@ module MyCPUCore (
   reg        [5:0]    MEM_MEM1_to_MEM_MEM2_STD_SLOT_payload_wReg_payload;
   reg        [2:0]    MEM_MEM1_to_MEM_MEM2_STD_SLOT_payload_lsType;
   reg        [4:0]    MEM_MEM1_to_MEM_MEM2_STD_SLOT_payload_robIdx;
-  wire                when_Pipeline_l158_77;
+  wire                when_Pipeline_l158_76;
   reg                 MEM_MEM2_to_MEM_WB_STD_SLOT_valid;
   reg                 MEM_MEM2_to_MEM_WB_STD_SLOT_payload_retired;
   reg        [31:0]   MEM_MEM2_to_MEM_WB_STD_SLOT_payload_addr;
@@ -20348,7 +20408,7 @@ module MyCPUCore (
   reg        [5:0]    MEM_MEM2_to_MEM_WB_STD_SLOT_payload_wReg_payload;
   reg        [2:0]    MEM_MEM2_to_MEM_WB_STD_SLOT_payload_lsType;
   reg        [4:0]    MEM_MEM2_to_MEM_WB_STD_SLOT_payload_robIdx;
-  wire                when_Pipeline_l158_78;
+  wire                when_Pipeline_l158_77;
   reg                 MEM_WB_to_MEM_WB2_STD_SLOT_valid;
   reg                 MEM_WB_to_MEM_WB2_STD_SLOT_payload_retired;
   reg        [31:0]   MEM_WB_to_MEM_WB2_STD_SLOT_payload_addr;
@@ -20360,27 +20420,27 @@ module MyCPUCore (
   reg        [5:0]    MEM_WB_to_MEM_WB2_STD_SLOT_payload_wReg_payload;
   reg        [2:0]    MEM_WB_to_MEM_WB2_STD_SLOT_payload_lsType;
   reg        [4:0]    MEM_WB_to_MEM_WB2_STD_SLOT_payload_robIdx;
-  wire                when_Pipeline_l158_79;
+  wire                when_Pipeline_l158_78;
   reg        [31:0]   MEM_RRD_to_MEM_ADDR_MEMORY_ADDRESS;
-  wire                when_Pipeline_l158_80;
+  wire                when_Pipeline_l158_79;
   reg        [31:0]   MEM_ADDR_to_MEM_MEM1_MEMORY_ADDRESS;
-  wire                when_Pipeline_l158_81;
+  wire                when_Pipeline_l158_80;
   reg        [31:0]   MEM_MEM1_to_MEM_MEM2_MEMORY_ADDRESS;
-  wire                when_Pipeline_l158_82;
+  wire                when_Pipeline_l158_81;
   reg        [31:0]   MEM_MEM2_to_MEM_WB_MEMORY_ADDRESS;
-  wire                when_Pipeline_l158_83;
+  wire                when_Pipeline_l158_82;
   reg        [31:0]   MEM_RRD_to_MEM_ADDR_MEMORY_WRITE_DATA;
-  wire                when_Pipeline_l158_84;
+  wire                when_Pipeline_l158_83;
   reg        [31:0]   MEM_ADDR_to_MEM_MEM1_MEMORY_WRITE_DATA;
-  wire                when_Pipeline_l158_85;
+  wire                when_Pipeline_l158_84;
   reg        [31:0]   MEM_MEM1_to_MEM_MEM2_MEMORY_WRITE_DATA;
-  wire                when_Pipeline_l158_86;
+  wire                when_Pipeline_l158_85;
   reg        [31:0]   MEM_MEM2_to_MEM_WB_MEMORY_WRITE_DATA;
-  wire                when_Pipeline_l158_87;
+  wire                when_Pipeline_l158_86;
   reg        [3:0]    MEM_ADDR_to_MEM_MEM1_MEMORY_BE;
-  wire                when_Pipeline_l158_88;
+  wire                when_Pipeline_l158_87;
   reg        [3:0]    MEM_MEM1_to_MEM_MEM2_MEMORY_BE;
-  wire                when_Pipeline_l158_89;
+  wire                when_Pipeline_l158_88;
   reg                 MEM_ADDR_to_MEM_MEM1_DIRECT_TRANSLATE_RESULT_valid;
   reg        [31:0]   MEM_ADDR_to_MEM_MEM1_DIRECT_TRANSLATE_RESULT_payload_physAddr;
   reg                 MEM_ADDR_to_MEM_MEM1_DIRECT_TRANSLATE_RESULT_payload_cached;
@@ -20390,7 +20450,7 @@ module MyCPUCore (
   reg                 MEM_ADDR_to_MEM_MEM1_DIRECT_TRANSLATE_RESULT_payload_exception_raisePME;
   reg                 MEM_ADDR_to_MEM_MEM1_DIRECT_TRANSLATE_RESULT_payload_exception_raisePPI;
   reg                 MEM_ADDR_to_MEM_MEM1_DIRECT_TRANSLATE_RESULT_payload_exception_raiseTLBR;
-  wire                when_Pipeline_l158_90;
+  wire                when_Pipeline_l158_89;
   reg                 MEM_ADDR_to_MEM_MEM1_TLB_TRANSLATE_RESULT_valid;
   reg        [31:0]   MEM_ADDR_to_MEM_MEM1_TLB_TRANSLATE_RESULT_payload_physAddr;
   reg                 MEM_ADDR_to_MEM_MEM1_TLB_TRANSLATE_RESULT_payload_cached;
@@ -20400,73 +20460,73 @@ module MyCPUCore (
   reg                 MEM_ADDR_to_MEM_MEM1_TLB_TRANSLATE_RESULT_payload_exception_raisePME;
   reg                 MEM_ADDR_to_MEM_MEM1_TLB_TRANSLATE_RESULT_payload_exception_raisePPI;
   reg                 MEM_ADDR_to_MEM_MEM1_TLB_TRANSLATE_RESULT_payload_exception_raiseTLBR;
-  wire                when_Pipeline_l158_91;
+  wire                when_Pipeline_l158_90;
   reg                 MEM_ADDR_to_MEM_MEM1_TRANSLATE_SAVED_CSR_CRMD_DA;
   reg                 MEM_ADDR_to_MEM_MEM1_TRANSLATE_SAVED_CSR_CRMD_PG;
   reg        [1:0]    MEM_ADDR_to_MEM_MEM1_TRANSLATE_SAVED_CSR_CRMD_DATF;
   reg        [1:0]    MEM_ADDR_to_MEM_MEM1_TRANSLATE_SAVED_CSR_CRMD_DATM;
-  wire                when_Pipeline_l158_92;
+  wire                when_Pipeline_l158_91;
   reg                 MEM_ADDR_to_MEM_MEM1_EXCEPTION_OCCURRED;
-  wire                when_Pipeline_l158_93;
+  wire                when_Pipeline_l158_92;
   reg                 MEM_MEM1_to_MEM_MEM2_EXCEPTION_OCCURRED;
-  wire                when_Pipeline_l158_94;
+  wire                when_Pipeline_l158_93;
   reg                 MEM_MEM2_to_MEM_WB_EXCEPTION_OCCURRED;
-  wire                when_Pipeline_l158_95;
+  wire                when_Pipeline_l158_94;
   reg        [5:0]    MEM_ADDR_to_MEM_MEM1_EXCEPTION_ECODE;
-  wire                when_Pipeline_l158_96;
+  wire                when_Pipeline_l158_95;
   reg        [5:0]    MEM_MEM1_to_MEM_MEM2_EXCEPTION_ECODE;
-  wire                when_Pipeline_l158_97;
+  wire                when_Pipeline_l158_96;
   reg        [5:0]    MEM_MEM2_to_MEM_WB_EXCEPTION_ECODE;
-  wire                when_Pipeline_l158_98;
+  wire                when_Pipeline_l158_97;
   reg        [8:0]    MEM_ADDR_to_MEM_MEM1_EXCEPTION_ESUBCODE;
-  wire                when_Pipeline_l158_99;
+  wire                when_Pipeline_l158_98;
   reg        [8:0]    MEM_MEM1_to_MEM_MEM2_EXCEPTION_ESUBCODE;
-  wire                when_Pipeline_l158_100;
+  wire                when_Pipeline_l158_99;
   reg        [8:0]    MEM_MEM2_to_MEM_WB_EXCEPTION_ESUBCODE;
-  wire                when_Pipeline_l158_101;
+  wire                when_Pipeline_l158_100;
   reg        [31:0]   MEM_MEM1_to_MEM_MEM2_MEMORY_ADDRESS_PHYSICAL;
-  wire                when_Pipeline_l158_102;
+  wire                when_Pipeline_l158_101;
   reg        [31:0]   MEM_MEM2_to_MEM_WB_MEMORY_ADDRESS_PHYSICAL;
-  wire                when_Pipeline_l158_103;
+  wire                when_Pipeline_l158_102;
   reg                 MEM_MEM1_to_MEM_MEM2_ADDRESS_CACHED;
-  wire                when_Pipeline_l158_104;
+  wire                when_Pipeline_l158_103;
   reg                 MEM_MEM2_to_MEM_WB_ADDRESS_CACHED;
-  wire                when_Pipeline_l158_105;
+  wire                when_Pipeline_l158_104;
   reg                 MEM_MEM1_to_MEM_MEM2_IS_TLB_REFILL;
-  wire                when_Pipeline_l158_106;
+  wire                when_Pipeline_l158_105;
   reg                 MEM_MEM2_to_MEM_WB_IS_TLB_REFILL;
-  wire                when_Pipeline_l158_107;
+  wire                when_Pipeline_l158_106;
   reg                 MEM_MEM1_to_MEM_MEM2_DCACHE_VALIDS_0;
   reg                 MEM_MEM1_to_MEM_MEM2_DCACHE_VALIDS_1;
-  wire                when_Pipeline_l158_108;
+  wire                when_Pipeline_l158_107;
   reg        [1:0]    MEM_MEM1_to_MEM_MEM2_DCACHE_DIRTY;
-  wire                when_Pipeline_l158_109;
+  wire                when_Pipeline_l158_108;
   reg        [0:0]    MEM_MEM1_to_MEM_MEM2_DCACHE_INFO_lru;
   reg        [19:0]   MEM_MEM1_to_MEM_MEM2_DCACHE_INFO_tags_0;
   reg        [19:0]   MEM_MEM1_to_MEM_MEM2_DCACHE_INFO_tags_1;
-  wire                when_Pipeline_l158_110;
+  wire                when_Pipeline_l158_109;
   reg        [1:0]    MEM_MEM1_to_MEM_MEM2_TAG_MATCHES;
-  wire                when_Pipeline_l158_111;
+  wire                when_Pipeline_l158_110;
   reg        [4:0]    MEM_MEM1_to_MEM_MEM2_ROB_IDX;
-  wire                when_Pipeline_l158_112;
+  wire                when_Pipeline_l158_111;
   reg        [4:0]    MEM_MEM2_to_MEM_WB_ROB_IDX;
-  wire                when_Pipeline_l158_113;
+  wire                when_Pipeline_l158_112;
   reg                 MEM_MEM1_to_MEM_MEM2_IS_LOAD;
-  wire                when_Pipeline_l158_114;
+  wire                when_Pipeline_l158_113;
   reg                 MEM_MEM2_to_MEM_WB_IS_LOAD;
-  wire                when_Pipeline_l158_115;
+  wire                when_Pipeline_l158_114;
   reg                 MEM_MEM1_to_MEM_MEM2_IS_STORE;
-  wire                when_Pipeline_l158_116;
+  wire                when_Pipeline_l158_115;
   reg                 MEM_MEM2_to_MEM_WB_IS_STORE;
-  wire                when_Pipeline_l158_117;
+  wire                when_Pipeline_l158_116;
   reg                 MEM_MEM1_to_MEM_MEM2_WRITE_REG_valid;
   reg        [5:0]    MEM_MEM1_to_MEM_MEM2_WRITE_REG_payload;
-  wire                when_Pipeline_l158_118;
+  wire                when_Pipeline_l158_117;
   reg                 MEM_MEM2_to_MEM_WB_WRITE_REG_valid;
   reg        [5:0]    MEM_MEM2_to_MEM_WB_WRITE_REG_payload;
-  wire                when_Pipeline_l158_119;
+  wire                when_Pipeline_l158_118;
   reg        [2:0]    MEM_MEM1_to_MEM_MEM2_LOAD_STORE_TYPE;
-  wire                when_Pipeline_l158_120;
+  wire                when_Pipeline_l158_119;
   reg        [31:0]   MEM_MEM2_to_MEM_WB_MEMORY_READ_DATA;
   wire                when_Pipeline_l198_6;
   wire                when_Pipeline_l208_15;
@@ -20515,8 +20575,8 @@ module MyCPUCore (
   wire                when_CompressedFIFO_l73_1;
   reg        [0:0]    CommitPlugin_port0Commit_uncachedProcess_fsm_stateReg;
   reg        [0:0]    CommitPlugin_port0Commit_uncachedProcess_fsm_stateNext;
-  wire                when_CommitPlugin_l290;
-  wire                when_CommitPlugin_l275;
+  wire                when_CommitPlugin_l294;
+  wire                when_CommitPlugin_l279;
   wire                _zz_when_CompressedQueue_l67;
   wire                _zz_when_CompressedQueue_l67_1;
   wire                _zz_when_CompressedQueue_l67_2;
@@ -21565,7 +21625,7 @@ module MyCPUCore (
   reg [47:0] _zz_MemIssueQueuePlugin_queueIO_pushPorts_0_payload_uop_lsType_2_string;
   reg [119:0] _zz_MemIssueQueuePlugin_queueIO_pushPorts_0_payload_uop_cacheOp_2_string;
   reg [87:0] _zz_MemIssueQueuePlugin_queueIO_pushPorts_0_payload_uop_cacheSel_2_string;
-  reg [39:0] switch_MMUPlugin_l298_string;
+  reg [39:0] switch_MMUPlugin_l299_string;
   reg [47:0] ID_DecoderArray_decoders_0_uop_fuType_string;
   reg [31:0] ID_DecoderArray_decoders_0_uop_immExtendType_string;
   reg [71:0] ID_DecoderArray_decoders_0_uop_aluOp_string;
@@ -21599,8 +21659,8 @@ module MyCPUCore (
   reg [71:0] _zz_INT0_ISS_IntExecutePlugin_issSlot_uop_aluOp_string;
   reg [23:0] _zz_INT0_ISS_IntExecutePlugin_issSlot_uop_cmpOp_string;
   reg [55:0] _zz_INT0_ISS_IntExecutePlugin_issSlot_uop_tlbOp_string;
-  reg [39:0] switch_MMUPlugin_l298_1_string;
-  reg [39:0] _zz_when_MMUPlugin_l367_string;
+  reg [39:0] switch_MMUPlugin_l299_1_string;
+  reg [39:0] _zz_when_MMUPlugin_l370_string;
   reg [47:0] MEM_MEM2_UncachedAccessPlugin_uncachedStoreFSM_regSTD_lsType_string;
   reg [47:0] MEM_MEM2_LoadPostprocessPlugin_accessType_string;
   reg [47:0] ID_to_RENAME_DECODE_PACKET_0_payload_fuType_string;
@@ -22200,6 +22260,11 @@ module MyCPUCore (
   assign _zz__zz_MemIssueQueuePlugin_queueIO_pushPorts_0_payload_uop_immField_2_1 = {{20{_zz__zz_MemIssueQueuePlugin_queueIO_pushPorts_0_payload_uop_immField_2_2[11]}}, _zz__zz_MemIssueQueuePlugin_queueIO_pushPorts_0_payload_uop_immField_2_2};
   assign _zz__zz_MemIssueQueuePlugin_queueIO_pushPorts_0_payload_uop_immField_2_4 = {DISPATCH_DECODE_PACKET_2_payload_inst[23 : 10],2'b00};
   assign _zz__zz_MemIssueQueuePlugin_queueIO_pushPorts_0_payload_uop_immField_2_3 = {{16{_zz__zz_MemIssueQueuePlugin_queueIO_pushPorts_0_payload_uop_immField_2_4[15]}}, _zz__zz_MemIssueQueuePlugin_queueIO_pushPorts_0_payload_uop_immField_2_4};
+  assign _zz_ExceptionHandlerPlugin_eentry = (_zz_ExceptionHandlerPlugin_eentry_1 <<< 9);
+  assign _zz_ExceptionHandlerPlugin_eentry_1 = (_zz_ExceptionHandlerPlugin_eentry_2 - 32'h00000020);
+  assign _zz_ExceptionHandlerPlugin_eentry_3 = CommitPlugin_except_payload_code;
+  assign _zz_ExceptionHandlerPlugin_eentry_2 = {26'd0, _zz_ExceptionHandlerPlugin_eentry_3};
+  assign _zz__zz_MMUPlugin_TLBIDX_INDEX_1_1 = (_zz_MMUPlugin_TLBIDX_INDEX - 16'h0001);
   assign _zz_IF1_ProgramCounterPlugin_defaultPC_2 = {_zz_IF1_ProgramCounterPlugin_defaultPC,2'b00};
   assign _zz_IF1_ProgramCounterPlugin_defaultPC_1 = {27'd0, _zz_IF1_ProgramCounterPlugin_defaultPC_2};
   assign _zz_IF2_ICachePlugin_cacheRefillFSM_rspId_valueNext_1 = IF2_ICachePlugin_cacheRefillFSM_rspId_willIncrement;
@@ -22208,6 +22273,7 @@ module MyCPUCore (
   assign _zz_when_ICachePlugin_l154_1 = (IF2_ICachePlugin_pcWordOffset + 4'b0001);
   assign _zz_when_ICachePlugin_l154_2 = (IF2_ICachePlugin_pcWordOffset + 4'b0010);
   assign _zz_when_ICachePlugin_l154_3 = (IF2_ICachePlugin_pcWordOffset + 4'b0011);
+  assign _zz__zz_IF1_InstAddrTranslatePlugin_tlbTranslateResult_TLBHitEntry_E_1_1 = (_zz_IF1_InstAddrTranslatePlugin_tlbTranslateResult_TLBHitEntry_E - 16'h0001);
   assign _zz_when_GlobalPredictorBTBPlugin_l112 = (IF1_GlobalPredictorBTBPlugin_fetchWay + 4'b0011);
   assign _zz_when_GlobalPredictorBTBPlugin_l115_1 = (IF1_GlobalPredictorBTBPlugin_index + 10'h003);
   assign _zz_when_GlobalPredictorBTBPlugin_l112_1 = (IF1_GlobalPredictorBTBPlugin_fetchWay + 4'b0010);
@@ -22288,6 +22354,7 @@ module MyCPUCore (
   assign _zz_MULDIV_EXE_MulDivExecutePlugin_remainder_6 = _zz_MULDIV_EXE_MulDivExecutePlugin_remainder_1;
   assign _zz_MULDIV_EXE_MulDivExecutePlugin_remainder_5 = {32'd0, _zz_MULDIV_EXE_MulDivExecutePlugin_remainder_6};
   assign _zz_MEM_ADDR_AddressGenerationPlugin_memWData_1 = (MEM_ADDR_MEMORY_WRITE_DATA <<< 16);
+  assign _zz__zz_MEM_ADDR_AddressGenerationPlugin_tlbTranslateResult_TLBHitEntry_E_1_1 = (_zz_MEM_ADDR_AddressGenerationPlugin_tlbTranslateResult_TLBHitEntry_E - 16'h0001);
   assign _zz_MEM_MEM2_DCachePlugin_dirtyLineWritebackFSM_rspId_valueNext_1 = MEM_MEM2_DCachePlugin_dirtyLineWritebackFSM_rspId_willIncrement;
   assign _zz_MEM_MEM2_DCachePlugin_dirtyLineWritebackFSM_rspId_valueNext = {3'd0, _zz_MEM_MEM2_DCachePlugin_dirtyLineWritebackFSM_rspId_valueNext_1};
   assign _zz_MEM_MEM2_DCachePlugin_cacheRefillFSM_rspId_valueNext_1 = MEM_MEM2_DCachePlugin_cacheRefillFSM_rspId_willIncrement;
@@ -22396,7 +22463,7 @@ module MyCPUCore (
   assign _zz__zz_when_MulDivIssueQueuePlugin_l63_2_1 = {_zz_when_MulDivIssueQueuePlugin_l63_1[1],_zz_when_MulDivIssueQueuePlugin_l63_1[0]};
   assign _zz__zz_when_MemIssueQueuePlugin_l115_1 = DISPATCH_MemIssueQueuePlugin_enqueueMask[0];
   assign _zz__zz_when_MemIssueQueuePlugin_l115_2_1 = {_zz_when_MemIssueQueuePlugin_l115_1[1],_zz_when_MemIssueQueuePlugin_l115_1[0]};
-  assign _zz_MMUPlugin_TLBIDX_INDEX_5 = {_zz_MMUPlugin_TLBIDX_INDEX_3,{_zz_MMUPlugin_TLBIDX_INDEX_2,{_zz_MMUPlugin_TLBIDX_INDEX_1,_zz_MMUPlugin_TLBIDX_INDEX}}};
+  assign _zz_MMUPlugin_TLBIDX_INDEX_18 = {_zz_MMUPlugin_TLBIDX_INDEX_16,{_zz_MMUPlugin_TLBIDX_INDEX_15,{_zz_MMUPlugin_TLBIDX_INDEX_14,_zz_MMUPlugin_TLBIDX_INDEX_13}}};
   assign _zz_IF2_GlobalPredictorBTBPlugin_branchCount_10 = {_zz_IF2_GlobalPredictorBTBPlugin_branchCount[2],{_zz_IF2_GlobalPredictorBTBPlugin_branchCount[1],_zz_IF2_GlobalPredictorBTBPlugin_branchCount[0]}};
   assign _zz_RENAME_RenamePlugin_regWrites_1_popIdx_1 = RENAME_RenamePlugin_regWrites_0_req_valid;
   assign _zz_RENAME_RenamePlugin_regWrites_2_popIdx_1 = {RENAME_RenamePlugin_regWrites_1_req_valid,RENAME_RenamePlugin_regWrites_0_req_valid};
@@ -22419,24 +22486,27 @@ module MyCPUCore (
   assign _zz_IntIssueQueuePlugin_issueMask_3 = {IntExecutePlugin_issGrant_3_1,{IntExecutePlugin_issGrant_2_1,{IntExecutePlugin_issGrant_1_1,IntExecutePlugin_issGrant_0_1}}};
   assign _zz_IntIssueQueuePlugin_issueMask_4 = IntExecutePlugin_issGrant_3_2;
   assign _zz_IntIssueQueuePlugin_issueMask_5 = {IntExecutePlugin_issGrant_2_2,{IntExecutePlugin_issGrant_1_2,IntExecutePlugin_issGrant_0_2}};
-  assign _zz_when_ExceptionHandlerPlugin_l202 = 6'h03;
-  assign _zz_when_ExceptionHandlerPlugin_l202_1 = 9'h0;
-  assign _zz_when_ExceptionHandlerPlugin_l202_2 = (CommitPlugin_except_payload_code == 6'h02);
-  assign _zz_when_ExceptionHandlerPlugin_l202_3 = (CommitPlugin_except_payload_subcode == 9'h0);
-  assign _zz_when_ExceptionHandlerPlugin_l202_4 = ((CommitPlugin_except_payload_code == 6'h01) && (CommitPlugin_except_payload_subcode == 9'h0));
-  assign _zz_when_ExceptionHandlerPlugin_l202_5 = ((CommitPlugin_except_payload_code == 6'h09) && (CommitPlugin_except_payload_subcode == 9'h0));
-  assign _zz_when_ExceptionHandlerPlugin_l202_6 = {((CommitPlugin_except_payload_code == 6'h08) && (CommitPlugin_except_payload_subcode == 9'h001)),{((CommitPlugin_except_payload_code == 6'h08) && (CommitPlugin_except_payload_subcode == 9'h0)),((CommitPlugin_except_payload_code == 6'h3f) && (CommitPlugin_except_payload_subcode == 9'h0))}};
-  assign _zz_when_ExceptionHandlerPlugin_l222 = 6'h03;
-  assign _zz_when_ExceptionHandlerPlugin_l222_1 = 9'h0;
-  assign _zz_when_ExceptionHandlerPlugin_l222_2 = (CommitPlugin_except_payload_code == 6'h02);
-  assign _zz_when_ExceptionHandlerPlugin_l222_3 = (CommitPlugin_except_payload_subcode == 9'h0);
-  assign _zz_when_ExceptionHandlerPlugin_l222_4 = ((CommitPlugin_except_payload_code == 6'h01) && (CommitPlugin_except_payload_subcode == 9'h0));
-  assign _zz_when_ExceptionHandlerPlugin_l222_5 = ((CommitPlugin_except_payload_code == 6'h09) && (CommitPlugin_except_payload_subcode == 9'h0));
-  assign _zz_when_ExceptionHandlerPlugin_l222_6 = {((CommitPlugin_except_payload_code == 6'h08) && (CommitPlugin_except_payload_subcode == 9'h001)),{((CommitPlugin_except_payload_code == 6'h08) && (CommitPlugin_except_payload_subcode == 9'h0)),((CommitPlugin_except_payload_code == 6'h3f) && (CommitPlugin_except_payload_subcode == 9'h0))}};
-  assign _zz_when_MMUPlugin_l412_15 = _zz_when_MMUPlugin_l412_5;
-  assign _zz_when_MMUPlugin_l412_16 = {_zz_when_MMUPlugin_l412_4,{_zz_when_MMUPlugin_l412_3,{_zz_when_MMUPlugin_l412_2,{_zz_when_MMUPlugin_l412_1,{_zz_when_MMUPlugin_l412,((MMUPlugin_TLBTable_0_E && ((MMUPlugin_TLBTable_0_ASID == MMUPlugin_ASID_ASID) || MMUPlugin_TLBTable_0_G)) && ((MMUPlugin_TLBTable_0_PS == 6'h0c) ? (MMUPlugin_TLBTable_0_VPPN == MMUPlugin_TLBEHI_VPPN) : (MMUPlugin_TLBTable_0_VPPN[18 : 9] == MMUPlugin_TLBEHI_VPPN[18 : 9])))}}}}};
+  assign _zz_when_ExceptionHandlerPlugin_l221 = 6'h03;
+  assign _zz_when_ExceptionHandlerPlugin_l221_1 = 9'h0;
+  assign _zz_when_ExceptionHandlerPlugin_l221_2 = (CommitPlugin_except_payload_code == 6'h02);
+  assign _zz_when_ExceptionHandlerPlugin_l221_3 = (CommitPlugin_except_payload_subcode == 9'h0);
+  assign _zz_when_ExceptionHandlerPlugin_l221_4 = ((CommitPlugin_except_payload_code == 6'h01) && (CommitPlugin_except_payload_subcode == 9'h0));
+  assign _zz_when_ExceptionHandlerPlugin_l221_5 = ((CommitPlugin_except_payload_code == 6'h09) && (CommitPlugin_except_payload_subcode == 9'h0));
+  assign _zz_when_ExceptionHandlerPlugin_l221_6 = {((CommitPlugin_except_payload_code == 6'h08) && (CommitPlugin_except_payload_subcode == 9'h001)),{((CommitPlugin_except_payload_code == 6'h08) && (CommitPlugin_except_payload_subcode == 9'h0)),((CommitPlugin_except_payload_code == 6'h3f) && (CommitPlugin_except_payload_subcode == 9'h0))}};
+  assign _zz_when_ExceptionHandlerPlugin_l241 = 6'h04;
+  assign _zz_when_ExceptionHandlerPlugin_l241_1 = 9'h0;
+  assign _zz_when_ExceptionHandlerPlugin_l241_2 = (CommitPlugin_except_payload_code == 6'h07);
+  assign _zz_when_ExceptionHandlerPlugin_l241_3 = (CommitPlugin_except_payload_subcode == 9'h0);
+  assign _zz_when_ExceptionHandlerPlugin_l241_4 = ((CommitPlugin_except_payload_code == 6'h03) && (CommitPlugin_except_payload_subcode == 9'h0));
+  assign _zz_when_ExceptionHandlerPlugin_l241_5 = ((CommitPlugin_except_payload_code == 6'h3f) && (CommitPlugin_except_payload_subcode == 9'h0));
+  assign _zz_when_MMUPlugin_l415_16 = _zz_when_MMUPlugin_l415_6;
+  assign _zz_when_MMUPlugin_l415_17 = {_zz_when_MMUPlugin_l415_5,{_zz_when_MMUPlugin_l415_4,{_zz_when_MMUPlugin_l415_3,{_zz_when_MMUPlugin_l415_2,{_zz_when_MMUPlugin_l415_1,_zz_when_MMUPlugin_l415}}}}};
+  assign _zz__zz_MMUPlugin_TLBIDX_INDEX = _zz_when_MMUPlugin_l415_5;
+  assign _zz__zz_MMUPlugin_TLBIDX_INDEX_1 = {_zz_when_MMUPlugin_l415_4,{_zz_when_MMUPlugin_l415_3,{_zz_when_MMUPlugin_l415_2,{_zz_when_MMUPlugin_l415_1,_zz_when_MMUPlugin_l415}}}};
   assign _zz_IF1_InstAddrTranslatePlugin_tlbTranslateResult_TLBHit = IF1_InstAddrTranslatePlugin_tlbTranslateResult_EntryHits_6;
   assign _zz_IF1_InstAddrTranslatePlugin_tlbTranslateResult_TLBHit_1 = {IF1_InstAddrTranslatePlugin_tlbTranslateResult_EntryHits_5,{IF1_InstAddrTranslatePlugin_tlbTranslateResult_EntryHits_4,{IF1_InstAddrTranslatePlugin_tlbTranslateResult_EntryHits_3,{IF1_InstAddrTranslatePlugin_tlbTranslateResult_EntryHits_2,{IF1_InstAddrTranslatePlugin_tlbTranslateResult_EntryHits_1,IF1_InstAddrTranslatePlugin_tlbTranslateResult_EntryHits_0}}}}};
+  assign _zz__zz_IF1_InstAddrTranslatePlugin_tlbTranslateResult_TLBHitEntry_E = IF1_InstAddrTranslatePlugin_tlbTranslateResult_EntryHits_5;
+  assign _zz__zz_IF1_InstAddrTranslatePlugin_tlbTranslateResult_TLBHitEntry_E_1 = {IF1_InstAddrTranslatePlugin_tlbTranslateResult_EntryHits_4,{IF1_InstAddrTranslatePlugin_tlbTranslateResult_EntryHits_3,{IF1_InstAddrTranslatePlugin_tlbTranslateResult_EntryHits_2,{IF1_InstAddrTranslatePlugin_tlbTranslateResult_EntryHits_1,IF1_InstAddrTranslatePlugin_tlbTranslateResult_EntryHits_0}}}};
   assign _zz_when_DecoderArrayPlugin_l313 = (((((((_zz_when_DecoderArrayPlugin_l313_1 || _zz_when_DecoderArrayPlugin_l313_2) || (_zz_when_DecoderArrayPlugin_l313_3 == _zz_when_DecoderArrayPlugin_l313_4)) || ((FetchBufferPlugin_bufferFIFO_io_pop_0_payload_inst & _zz_when_DecoderArrayPlugin_l313_5) == 32'h06488000)) || ((FetchBufferPlugin_bufferFIFO_io_pop_0_payload_inst & 32'hffffffff) == 32'h06482c00)) || ((FetchBufferPlugin_bufferFIFO_io_pop_0_payload_inst & 32'hffffffff) == 32'h06483000)) || ((FetchBufferPlugin_bufferFIFO_io_pop_0_payload_inst & 32'hffffffff) == 32'h06482800)) || ((FetchBufferPlugin_bufferFIFO_io_pop_0_payload_inst & 32'hffffffff) == 32'h06483400));
   assign _zz_when_DecoderArrayPlugin_l313_6 = ((FetchBufferPlugin_bufferFIFO_io_pop_0_payload_inst & 32'hffff8000) == 32'h06498000);
   assign _zz_when_DecoderArrayPlugin_l313_7 = (FetchBufferPlugin_bufferFIFO_io_pop_0_payload_inst & 32'hfffffc00);
@@ -22477,6 +22547,8 @@ module MyCPUCore (
   assign _zz_RENAME_RenamePlugin_debug_aRAT_3 = {RenamePlugin_aRAT_8,{RenamePlugin_aRAT_7,{RenamePlugin_aRAT_6,{RenamePlugin_aRAT_5,{RenamePlugin_aRAT_4,{RenamePlugin_aRAT_3,{RenamePlugin_aRAT_2,{RenamePlugin_aRAT_1,RenamePlugin_aRAT_0}}}}}}}};
   assign _zz_MEM_ADDR_AddressGenerationPlugin_tlbTranslateResult_TLBHit = MEM_ADDR_AddressGenerationPlugin_tlbTranslateResult_EntryHits_6;
   assign _zz_MEM_ADDR_AddressGenerationPlugin_tlbTranslateResult_TLBHit_1 = {MEM_ADDR_AddressGenerationPlugin_tlbTranslateResult_EntryHits_5,{MEM_ADDR_AddressGenerationPlugin_tlbTranslateResult_EntryHits_4,{MEM_ADDR_AddressGenerationPlugin_tlbTranslateResult_EntryHits_3,{MEM_ADDR_AddressGenerationPlugin_tlbTranslateResult_EntryHits_2,{MEM_ADDR_AddressGenerationPlugin_tlbTranslateResult_EntryHits_1,MEM_ADDR_AddressGenerationPlugin_tlbTranslateResult_EntryHits_0}}}}};
+  assign _zz__zz_MEM_ADDR_AddressGenerationPlugin_tlbTranslateResult_TLBHitEntry_E = MEM_ADDR_AddressGenerationPlugin_tlbTranslateResult_EntryHits_5;
+  assign _zz__zz_MEM_ADDR_AddressGenerationPlugin_tlbTranslateResult_TLBHitEntry_E_1 = {MEM_ADDR_AddressGenerationPlugin_tlbTranslateResult_EntryHits_4,{MEM_ADDR_AddressGenerationPlugin_tlbTranslateResult_EntryHits_3,{MEM_ADDR_AddressGenerationPlugin_tlbTranslateResult_EntryHits_2,{MEM_ADDR_AddressGenerationPlugin_tlbTranslateResult_EntryHits_1,MEM_ADDR_AddressGenerationPlugin_tlbTranslateResult_EntryHits_0}}}};
   assign _zz_MEM_ISS_arbitration_isFlushed = MEM_ADDR_arbitration_flushNext;
   assign _zz_MEM_ISS_arbitration_isFlushed_1 = MEM_RRD_arbitration_flushNext;
   assign _zz_MEM_ISS_arbitration_isFlushed_2 = MEM_ADDR_arbitration_flushIt;
@@ -29423,23 +29495,23 @@ module MyCPUCore (
   end
 
   always @(*) begin
-    case(_zz_MMUPlugin_TLBIDX_INDEX_5)
-      4'b0000 : _zz_MMUPlugin_TLBIDX_INDEX_4 = 4'b0000;
-      4'b0001 : _zz_MMUPlugin_TLBIDX_INDEX_4 = 4'b0001;
-      4'b0010 : _zz_MMUPlugin_TLBIDX_INDEX_4 = 4'b0010;
-      4'b0011 : _zz_MMUPlugin_TLBIDX_INDEX_4 = 4'b0011;
-      4'b0100 : _zz_MMUPlugin_TLBIDX_INDEX_4 = 4'b0100;
-      4'b0101 : _zz_MMUPlugin_TLBIDX_INDEX_4 = 4'b0101;
-      4'b0110 : _zz_MMUPlugin_TLBIDX_INDEX_4 = 4'b0110;
-      4'b0111 : _zz_MMUPlugin_TLBIDX_INDEX_4 = 4'b0111;
-      4'b1000 : _zz_MMUPlugin_TLBIDX_INDEX_4 = 4'b1000;
-      4'b1001 : _zz_MMUPlugin_TLBIDX_INDEX_4 = 4'b1001;
-      4'b1010 : _zz_MMUPlugin_TLBIDX_INDEX_4 = 4'b1010;
-      4'b1011 : _zz_MMUPlugin_TLBIDX_INDEX_4 = 4'b1011;
-      4'b1100 : _zz_MMUPlugin_TLBIDX_INDEX_4 = 4'b1100;
-      4'b1101 : _zz_MMUPlugin_TLBIDX_INDEX_4 = 4'b1101;
-      4'b1110 : _zz_MMUPlugin_TLBIDX_INDEX_4 = 4'b1110;
-      default : _zz_MMUPlugin_TLBIDX_INDEX_4 = 4'b1111;
+    case(_zz_MMUPlugin_TLBIDX_INDEX_18)
+      4'b0000 : _zz_MMUPlugin_TLBIDX_INDEX_17 = 4'b0000;
+      4'b0001 : _zz_MMUPlugin_TLBIDX_INDEX_17 = 4'b0001;
+      4'b0010 : _zz_MMUPlugin_TLBIDX_INDEX_17 = 4'b0010;
+      4'b0011 : _zz_MMUPlugin_TLBIDX_INDEX_17 = 4'b0011;
+      4'b0100 : _zz_MMUPlugin_TLBIDX_INDEX_17 = 4'b0100;
+      4'b0101 : _zz_MMUPlugin_TLBIDX_INDEX_17 = 4'b0101;
+      4'b0110 : _zz_MMUPlugin_TLBIDX_INDEX_17 = 4'b0110;
+      4'b0111 : _zz_MMUPlugin_TLBIDX_INDEX_17 = 4'b0111;
+      4'b1000 : _zz_MMUPlugin_TLBIDX_INDEX_17 = 4'b1000;
+      4'b1001 : _zz_MMUPlugin_TLBIDX_INDEX_17 = 4'b1001;
+      4'b1010 : _zz_MMUPlugin_TLBIDX_INDEX_17 = 4'b1010;
+      4'b1011 : _zz_MMUPlugin_TLBIDX_INDEX_17 = 4'b1011;
+      4'b1100 : _zz_MMUPlugin_TLBIDX_INDEX_17 = 4'b1100;
+      4'b1101 : _zz_MMUPlugin_TLBIDX_INDEX_17 = 4'b1101;
+      4'b1110 : _zz_MMUPlugin_TLBIDX_INDEX_17 = 4'b1110;
+      default : _zz_MMUPlugin_TLBIDX_INDEX_17 = 4'b1111;
     endcase
   end
 
@@ -29721,9 +29793,9 @@ module MyCPUCore (
   end
 
   always @(*) begin
-    case(_zz_IF1_InstAddrTranslatePlugin_tlbTranslateResult_TLBHitEntry_E_4)
+    case(_zz_IF1_InstAddrTranslatePlugin_tlbTranslateResult_TLBHitEntry_E_17)
       4'b0000 : begin
-        _zz_IF1_InstAddrTranslatePlugin_tlbTranslateResult_TLBHitEntry_E_5 = MMUPlugin_TLBTable_0_E;
+        _zz_IF1_InstAddrTranslatePlugin_tlbTranslateResult_TLBHitEntry_E_18 = MMUPlugin_TLBTable_0_E;
         _zz_IF1_InstAddrTranslatePlugin_tlbTranslateResult_TLBHitEntry_ASID = MMUPlugin_TLBTable_0_ASID;
         _zz_IF1_InstAddrTranslatePlugin_tlbTranslateResult_TLBHitEntry_G = MMUPlugin_TLBTable_0_G;
         _zz_IF1_InstAddrTranslatePlugin_tlbTranslateResult_TLBHitEntry_PS = MMUPlugin_TLBTable_0_PS;
@@ -29740,7 +29812,7 @@ module MyCPUCore (
         _zz_IF1_InstAddrTranslatePlugin_tlbTranslateResult_TLBHitEntry_PPN1 = MMUPlugin_TLBTable_0_PPN1;
       end
       4'b0001 : begin
-        _zz_IF1_InstAddrTranslatePlugin_tlbTranslateResult_TLBHitEntry_E_5 = MMUPlugin_TLBTable_1_E;
+        _zz_IF1_InstAddrTranslatePlugin_tlbTranslateResult_TLBHitEntry_E_18 = MMUPlugin_TLBTable_1_E;
         _zz_IF1_InstAddrTranslatePlugin_tlbTranslateResult_TLBHitEntry_ASID = MMUPlugin_TLBTable_1_ASID;
         _zz_IF1_InstAddrTranslatePlugin_tlbTranslateResult_TLBHitEntry_G = MMUPlugin_TLBTable_1_G;
         _zz_IF1_InstAddrTranslatePlugin_tlbTranslateResult_TLBHitEntry_PS = MMUPlugin_TLBTable_1_PS;
@@ -29757,7 +29829,7 @@ module MyCPUCore (
         _zz_IF1_InstAddrTranslatePlugin_tlbTranslateResult_TLBHitEntry_PPN1 = MMUPlugin_TLBTable_1_PPN1;
       end
       4'b0010 : begin
-        _zz_IF1_InstAddrTranslatePlugin_tlbTranslateResult_TLBHitEntry_E_5 = MMUPlugin_TLBTable_2_E;
+        _zz_IF1_InstAddrTranslatePlugin_tlbTranslateResult_TLBHitEntry_E_18 = MMUPlugin_TLBTable_2_E;
         _zz_IF1_InstAddrTranslatePlugin_tlbTranslateResult_TLBHitEntry_ASID = MMUPlugin_TLBTable_2_ASID;
         _zz_IF1_InstAddrTranslatePlugin_tlbTranslateResult_TLBHitEntry_G = MMUPlugin_TLBTable_2_G;
         _zz_IF1_InstAddrTranslatePlugin_tlbTranslateResult_TLBHitEntry_PS = MMUPlugin_TLBTable_2_PS;
@@ -29774,7 +29846,7 @@ module MyCPUCore (
         _zz_IF1_InstAddrTranslatePlugin_tlbTranslateResult_TLBHitEntry_PPN1 = MMUPlugin_TLBTable_2_PPN1;
       end
       4'b0011 : begin
-        _zz_IF1_InstAddrTranslatePlugin_tlbTranslateResult_TLBHitEntry_E_5 = MMUPlugin_TLBTable_3_E;
+        _zz_IF1_InstAddrTranslatePlugin_tlbTranslateResult_TLBHitEntry_E_18 = MMUPlugin_TLBTable_3_E;
         _zz_IF1_InstAddrTranslatePlugin_tlbTranslateResult_TLBHitEntry_ASID = MMUPlugin_TLBTable_3_ASID;
         _zz_IF1_InstAddrTranslatePlugin_tlbTranslateResult_TLBHitEntry_G = MMUPlugin_TLBTable_3_G;
         _zz_IF1_InstAddrTranslatePlugin_tlbTranslateResult_TLBHitEntry_PS = MMUPlugin_TLBTable_3_PS;
@@ -29791,7 +29863,7 @@ module MyCPUCore (
         _zz_IF1_InstAddrTranslatePlugin_tlbTranslateResult_TLBHitEntry_PPN1 = MMUPlugin_TLBTable_3_PPN1;
       end
       4'b0100 : begin
-        _zz_IF1_InstAddrTranslatePlugin_tlbTranslateResult_TLBHitEntry_E_5 = MMUPlugin_TLBTable_4_E;
+        _zz_IF1_InstAddrTranslatePlugin_tlbTranslateResult_TLBHitEntry_E_18 = MMUPlugin_TLBTable_4_E;
         _zz_IF1_InstAddrTranslatePlugin_tlbTranslateResult_TLBHitEntry_ASID = MMUPlugin_TLBTable_4_ASID;
         _zz_IF1_InstAddrTranslatePlugin_tlbTranslateResult_TLBHitEntry_G = MMUPlugin_TLBTable_4_G;
         _zz_IF1_InstAddrTranslatePlugin_tlbTranslateResult_TLBHitEntry_PS = MMUPlugin_TLBTable_4_PS;
@@ -29808,7 +29880,7 @@ module MyCPUCore (
         _zz_IF1_InstAddrTranslatePlugin_tlbTranslateResult_TLBHitEntry_PPN1 = MMUPlugin_TLBTable_4_PPN1;
       end
       4'b0101 : begin
-        _zz_IF1_InstAddrTranslatePlugin_tlbTranslateResult_TLBHitEntry_E_5 = MMUPlugin_TLBTable_5_E;
+        _zz_IF1_InstAddrTranslatePlugin_tlbTranslateResult_TLBHitEntry_E_18 = MMUPlugin_TLBTable_5_E;
         _zz_IF1_InstAddrTranslatePlugin_tlbTranslateResult_TLBHitEntry_ASID = MMUPlugin_TLBTable_5_ASID;
         _zz_IF1_InstAddrTranslatePlugin_tlbTranslateResult_TLBHitEntry_G = MMUPlugin_TLBTable_5_G;
         _zz_IF1_InstAddrTranslatePlugin_tlbTranslateResult_TLBHitEntry_PS = MMUPlugin_TLBTable_5_PS;
@@ -29825,7 +29897,7 @@ module MyCPUCore (
         _zz_IF1_InstAddrTranslatePlugin_tlbTranslateResult_TLBHitEntry_PPN1 = MMUPlugin_TLBTable_5_PPN1;
       end
       4'b0110 : begin
-        _zz_IF1_InstAddrTranslatePlugin_tlbTranslateResult_TLBHitEntry_E_5 = MMUPlugin_TLBTable_6_E;
+        _zz_IF1_InstAddrTranslatePlugin_tlbTranslateResult_TLBHitEntry_E_18 = MMUPlugin_TLBTable_6_E;
         _zz_IF1_InstAddrTranslatePlugin_tlbTranslateResult_TLBHitEntry_ASID = MMUPlugin_TLBTable_6_ASID;
         _zz_IF1_InstAddrTranslatePlugin_tlbTranslateResult_TLBHitEntry_G = MMUPlugin_TLBTable_6_G;
         _zz_IF1_InstAddrTranslatePlugin_tlbTranslateResult_TLBHitEntry_PS = MMUPlugin_TLBTable_6_PS;
@@ -29842,7 +29914,7 @@ module MyCPUCore (
         _zz_IF1_InstAddrTranslatePlugin_tlbTranslateResult_TLBHitEntry_PPN1 = MMUPlugin_TLBTable_6_PPN1;
       end
       4'b0111 : begin
-        _zz_IF1_InstAddrTranslatePlugin_tlbTranslateResult_TLBHitEntry_E_5 = MMUPlugin_TLBTable_7_E;
+        _zz_IF1_InstAddrTranslatePlugin_tlbTranslateResult_TLBHitEntry_E_18 = MMUPlugin_TLBTable_7_E;
         _zz_IF1_InstAddrTranslatePlugin_tlbTranslateResult_TLBHitEntry_ASID = MMUPlugin_TLBTable_7_ASID;
         _zz_IF1_InstAddrTranslatePlugin_tlbTranslateResult_TLBHitEntry_G = MMUPlugin_TLBTable_7_G;
         _zz_IF1_InstAddrTranslatePlugin_tlbTranslateResult_TLBHitEntry_PS = MMUPlugin_TLBTable_7_PS;
@@ -29859,7 +29931,7 @@ module MyCPUCore (
         _zz_IF1_InstAddrTranslatePlugin_tlbTranslateResult_TLBHitEntry_PPN1 = MMUPlugin_TLBTable_7_PPN1;
       end
       4'b1000 : begin
-        _zz_IF1_InstAddrTranslatePlugin_tlbTranslateResult_TLBHitEntry_E_5 = MMUPlugin_TLBTable_8_E;
+        _zz_IF1_InstAddrTranslatePlugin_tlbTranslateResult_TLBHitEntry_E_18 = MMUPlugin_TLBTable_8_E;
         _zz_IF1_InstAddrTranslatePlugin_tlbTranslateResult_TLBHitEntry_ASID = MMUPlugin_TLBTable_8_ASID;
         _zz_IF1_InstAddrTranslatePlugin_tlbTranslateResult_TLBHitEntry_G = MMUPlugin_TLBTable_8_G;
         _zz_IF1_InstAddrTranslatePlugin_tlbTranslateResult_TLBHitEntry_PS = MMUPlugin_TLBTable_8_PS;
@@ -29876,7 +29948,7 @@ module MyCPUCore (
         _zz_IF1_InstAddrTranslatePlugin_tlbTranslateResult_TLBHitEntry_PPN1 = MMUPlugin_TLBTable_8_PPN1;
       end
       4'b1001 : begin
-        _zz_IF1_InstAddrTranslatePlugin_tlbTranslateResult_TLBHitEntry_E_5 = MMUPlugin_TLBTable_9_E;
+        _zz_IF1_InstAddrTranslatePlugin_tlbTranslateResult_TLBHitEntry_E_18 = MMUPlugin_TLBTable_9_E;
         _zz_IF1_InstAddrTranslatePlugin_tlbTranslateResult_TLBHitEntry_ASID = MMUPlugin_TLBTable_9_ASID;
         _zz_IF1_InstAddrTranslatePlugin_tlbTranslateResult_TLBHitEntry_G = MMUPlugin_TLBTable_9_G;
         _zz_IF1_InstAddrTranslatePlugin_tlbTranslateResult_TLBHitEntry_PS = MMUPlugin_TLBTable_9_PS;
@@ -29893,7 +29965,7 @@ module MyCPUCore (
         _zz_IF1_InstAddrTranslatePlugin_tlbTranslateResult_TLBHitEntry_PPN1 = MMUPlugin_TLBTable_9_PPN1;
       end
       4'b1010 : begin
-        _zz_IF1_InstAddrTranslatePlugin_tlbTranslateResult_TLBHitEntry_E_5 = MMUPlugin_TLBTable_10_E;
+        _zz_IF1_InstAddrTranslatePlugin_tlbTranslateResult_TLBHitEntry_E_18 = MMUPlugin_TLBTable_10_E;
         _zz_IF1_InstAddrTranslatePlugin_tlbTranslateResult_TLBHitEntry_ASID = MMUPlugin_TLBTable_10_ASID;
         _zz_IF1_InstAddrTranslatePlugin_tlbTranslateResult_TLBHitEntry_G = MMUPlugin_TLBTable_10_G;
         _zz_IF1_InstAddrTranslatePlugin_tlbTranslateResult_TLBHitEntry_PS = MMUPlugin_TLBTable_10_PS;
@@ -29910,7 +29982,7 @@ module MyCPUCore (
         _zz_IF1_InstAddrTranslatePlugin_tlbTranslateResult_TLBHitEntry_PPN1 = MMUPlugin_TLBTable_10_PPN1;
       end
       4'b1011 : begin
-        _zz_IF1_InstAddrTranslatePlugin_tlbTranslateResult_TLBHitEntry_E_5 = MMUPlugin_TLBTable_11_E;
+        _zz_IF1_InstAddrTranslatePlugin_tlbTranslateResult_TLBHitEntry_E_18 = MMUPlugin_TLBTable_11_E;
         _zz_IF1_InstAddrTranslatePlugin_tlbTranslateResult_TLBHitEntry_ASID = MMUPlugin_TLBTable_11_ASID;
         _zz_IF1_InstAddrTranslatePlugin_tlbTranslateResult_TLBHitEntry_G = MMUPlugin_TLBTable_11_G;
         _zz_IF1_InstAddrTranslatePlugin_tlbTranslateResult_TLBHitEntry_PS = MMUPlugin_TLBTable_11_PS;
@@ -29927,7 +29999,7 @@ module MyCPUCore (
         _zz_IF1_InstAddrTranslatePlugin_tlbTranslateResult_TLBHitEntry_PPN1 = MMUPlugin_TLBTable_11_PPN1;
       end
       4'b1100 : begin
-        _zz_IF1_InstAddrTranslatePlugin_tlbTranslateResult_TLBHitEntry_E_5 = MMUPlugin_TLBTable_12_E;
+        _zz_IF1_InstAddrTranslatePlugin_tlbTranslateResult_TLBHitEntry_E_18 = MMUPlugin_TLBTable_12_E;
         _zz_IF1_InstAddrTranslatePlugin_tlbTranslateResult_TLBHitEntry_ASID = MMUPlugin_TLBTable_12_ASID;
         _zz_IF1_InstAddrTranslatePlugin_tlbTranslateResult_TLBHitEntry_G = MMUPlugin_TLBTable_12_G;
         _zz_IF1_InstAddrTranslatePlugin_tlbTranslateResult_TLBHitEntry_PS = MMUPlugin_TLBTable_12_PS;
@@ -29944,7 +30016,7 @@ module MyCPUCore (
         _zz_IF1_InstAddrTranslatePlugin_tlbTranslateResult_TLBHitEntry_PPN1 = MMUPlugin_TLBTable_12_PPN1;
       end
       4'b1101 : begin
-        _zz_IF1_InstAddrTranslatePlugin_tlbTranslateResult_TLBHitEntry_E_5 = MMUPlugin_TLBTable_13_E;
+        _zz_IF1_InstAddrTranslatePlugin_tlbTranslateResult_TLBHitEntry_E_18 = MMUPlugin_TLBTable_13_E;
         _zz_IF1_InstAddrTranslatePlugin_tlbTranslateResult_TLBHitEntry_ASID = MMUPlugin_TLBTable_13_ASID;
         _zz_IF1_InstAddrTranslatePlugin_tlbTranslateResult_TLBHitEntry_G = MMUPlugin_TLBTable_13_G;
         _zz_IF1_InstAddrTranslatePlugin_tlbTranslateResult_TLBHitEntry_PS = MMUPlugin_TLBTable_13_PS;
@@ -29961,7 +30033,7 @@ module MyCPUCore (
         _zz_IF1_InstAddrTranslatePlugin_tlbTranslateResult_TLBHitEntry_PPN1 = MMUPlugin_TLBTable_13_PPN1;
       end
       4'b1110 : begin
-        _zz_IF1_InstAddrTranslatePlugin_tlbTranslateResult_TLBHitEntry_E_5 = MMUPlugin_TLBTable_14_E;
+        _zz_IF1_InstAddrTranslatePlugin_tlbTranslateResult_TLBHitEntry_E_18 = MMUPlugin_TLBTable_14_E;
         _zz_IF1_InstAddrTranslatePlugin_tlbTranslateResult_TLBHitEntry_ASID = MMUPlugin_TLBTable_14_ASID;
         _zz_IF1_InstAddrTranslatePlugin_tlbTranslateResult_TLBHitEntry_G = MMUPlugin_TLBTable_14_G;
         _zz_IF1_InstAddrTranslatePlugin_tlbTranslateResult_TLBHitEntry_PS = MMUPlugin_TLBTable_14_PS;
@@ -29978,7 +30050,7 @@ module MyCPUCore (
         _zz_IF1_InstAddrTranslatePlugin_tlbTranslateResult_TLBHitEntry_PPN1 = MMUPlugin_TLBTable_14_PPN1;
       end
       default : begin
-        _zz_IF1_InstAddrTranslatePlugin_tlbTranslateResult_TLBHitEntry_E_5 = MMUPlugin_TLBTable_15_E;
+        _zz_IF1_InstAddrTranslatePlugin_tlbTranslateResult_TLBHitEntry_E_18 = MMUPlugin_TLBTable_15_E;
         _zz_IF1_InstAddrTranslatePlugin_tlbTranslateResult_TLBHitEntry_ASID = MMUPlugin_TLBTable_15_ASID;
         _zz_IF1_InstAddrTranslatePlugin_tlbTranslateResult_TLBHitEntry_G = MMUPlugin_TLBTable_15_G;
         _zz_IF1_InstAddrTranslatePlugin_tlbTranslateResult_TLBHitEntry_PS = MMUPlugin_TLBTable_15_PS;
@@ -35154,9 +35226,9 @@ module MyCPUCore (
   end
 
   always @(*) begin
-    case(_zz_MEM_ADDR_AddressGenerationPlugin_tlbTranslateResult_TLBHitEntry_E_4)
+    case(_zz_MEM_ADDR_AddressGenerationPlugin_tlbTranslateResult_TLBHitEntry_E_17)
       4'b0000 : begin
-        _zz_MEM_ADDR_AddressGenerationPlugin_tlbTranslateResult_TLBHitEntry_E_5 = MMUPlugin_TLBTable_0_E;
+        _zz_MEM_ADDR_AddressGenerationPlugin_tlbTranslateResult_TLBHitEntry_E_18 = MMUPlugin_TLBTable_0_E;
         _zz_MEM_ADDR_AddressGenerationPlugin_tlbTranslateResult_TLBHitEntry_ASID = MMUPlugin_TLBTable_0_ASID;
         _zz_MEM_ADDR_AddressGenerationPlugin_tlbTranslateResult_TLBHitEntry_G = MMUPlugin_TLBTable_0_G;
         _zz_MEM_ADDR_AddressGenerationPlugin_tlbTranslateResult_TLBHitEntry_PS = MMUPlugin_TLBTable_0_PS;
@@ -35173,7 +35245,7 @@ module MyCPUCore (
         _zz_MEM_ADDR_AddressGenerationPlugin_tlbTranslateResult_TLBHitEntry_PPN1 = MMUPlugin_TLBTable_0_PPN1;
       end
       4'b0001 : begin
-        _zz_MEM_ADDR_AddressGenerationPlugin_tlbTranslateResult_TLBHitEntry_E_5 = MMUPlugin_TLBTable_1_E;
+        _zz_MEM_ADDR_AddressGenerationPlugin_tlbTranslateResult_TLBHitEntry_E_18 = MMUPlugin_TLBTable_1_E;
         _zz_MEM_ADDR_AddressGenerationPlugin_tlbTranslateResult_TLBHitEntry_ASID = MMUPlugin_TLBTable_1_ASID;
         _zz_MEM_ADDR_AddressGenerationPlugin_tlbTranslateResult_TLBHitEntry_G = MMUPlugin_TLBTable_1_G;
         _zz_MEM_ADDR_AddressGenerationPlugin_tlbTranslateResult_TLBHitEntry_PS = MMUPlugin_TLBTable_1_PS;
@@ -35190,7 +35262,7 @@ module MyCPUCore (
         _zz_MEM_ADDR_AddressGenerationPlugin_tlbTranslateResult_TLBHitEntry_PPN1 = MMUPlugin_TLBTable_1_PPN1;
       end
       4'b0010 : begin
-        _zz_MEM_ADDR_AddressGenerationPlugin_tlbTranslateResult_TLBHitEntry_E_5 = MMUPlugin_TLBTable_2_E;
+        _zz_MEM_ADDR_AddressGenerationPlugin_tlbTranslateResult_TLBHitEntry_E_18 = MMUPlugin_TLBTable_2_E;
         _zz_MEM_ADDR_AddressGenerationPlugin_tlbTranslateResult_TLBHitEntry_ASID = MMUPlugin_TLBTable_2_ASID;
         _zz_MEM_ADDR_AddressGenerationPlugin_tlbTranslateResult_TLBHitEntry_G = MMUPlugin_TLBTable_2_G;
         _zz_MEM_ADDR_AddressGenerationPlugin_tlbTranslateResult_TLBHitEntry_PS = MMUPlugin_TLBTable_2_PS;
@@ -35207,7 +35279,7 @@ module MyCPUCore (
         _zz_MEM_ADDR_AddressGenerationPlugin_tlbTranslateResult_TLBHitEntry_PPN1 = MMUPlugin_TLBTable_2_PPN1;
       end
       4'b0011 : begin
-        _zz_MEM_ADDR_AddressGenerationPlugin_tlbTranslateResult_TLBHitEntry_E_5 = MMUPlugin_TLBTable_3_E;
+        _zz_MEM_ADDR_AddressGenerationPlugin_tlbTranslateResult_TLBHitEntry_E_18 = MMUPlugin_TLBTable_3_E;
         _zz_MEM_ADDR_AddressGenerationPlugin_tlbTranslateResult_TLBHitEntry_ASID = MMUPlugin_TLBTable_3_ASID;
         _zz_MEM_ADDR_AddressGenerationPlugin_tlbTranslateResult_TLBHitEntry_G = MMUPlugin_TLBTable_3_G;
         _zz_MEM_ADDR_AddressGenerationPlugin_tlbTranslateResult_TLBHitEntry_PS = MMUPlugin_TLBTable_3_PS;
@@ -35224,7 +35296,7 @@ module MyCPUCore (
         _zz_MEM_ADDR_AddressGenerationPlugin_tlbTranslateResult_TLBHitEntry_PPN1 = MMUPlugin_TLBTable_3_PPN1;
       end
       4'b0100 : begin
-        _zz_MEM_ADDR_AddressGenerationPlugin_tlbTranslateResult_TLBHitEntry_E_5 = MMUPlugin_TLBTable_4_E;
+        _zz_MEM_ADDR_AddressGenerationPlugin_tlbTranslateResult_TLBHitEntry_E_18 = MMUPlugin_TLBTable_4_E;
         _zz_MEM_ADDR_AddressGenerationPlugin_tlbTranslateResult_TLBHitEntry_ASID = MMUPlugin_TLBTable_4_ASID;
         _zz_MEM_ADDR_AddressGenerationPlugin_tlbTranslateResult_TLBHitEntry_G = MMUPlugin_TLBTable_4_G;
         _zz_MEM_ADDR_AddressGenerationPlugin_tlbTranslateResult_TLBHitEntry_PS = MMUPlugin_TLBTable_4_PS;
@@ -35241,7 +35313,7 @@ module MyCPUCore (
         _zz_MEM_ADDR_AddressGenerationPlugin_tlbTranslateResult_TLBHitEntry_PPN1 = MMUPlugin_TLBTable_4_PPN1;
       end
       4'b0101 : begin
-        _zz_MEM_ADDR_AddressGenerationPlugin_tlbTranslateResult_TLBHitEntry_E_5 = MMUPlugin_TLBTable_5_E;
+        _zz_MEM_ADDR_AddressGenerationPlugin_tlbTranslateResult_TLBHitEntry_E_18 = MMUPlugin_TLBTable_5_E;
         _zz_MEM_ADDR_AddressGenerationPlugin_tlbTranslateResult_TLBHitEntry_ASID = MMUPlugin_TLBTable_5_ASID;
         _zz_MEM_ADDR_AddressGenerationPlugin_tlbTranslateResult_TLBHitEntry_G = MMUPlugin_TLBTable_5_G;
         _zz_MEM_ADDR_AddressGenerationPlugin_tlbTranslateResult_TLBHitEntry_PS = MMUPlugin_TLBTable_5_PS;
@@ -35258,7 +35330,7 @@ module MyCPUCore (
         _zz_MEM_ADDR_AddressGenerationPlugin_tlbTranslateResult_TLBHitEntry_PPN1 = MMUPlugin_TLBTable_5_PPN1;
       end
       4'b0110 : begin
-        _zz_MEM_ADDR_AddressGenerationPlugin_tlbTranslateResult_TLBHitEntry_E_5 = MMUPlugin_TLBTable_6_E;
+        _zz_MEM_ADDR_AddressGenerationPlugin_tlbTranslateResult_TLBHitEntry_E_18 = MMUPlugin_TLBTable_6_E;
         _zz_MEM_ADDR_AddressGenerationPlugin_tlbTranslateResult_TLBHitEntry_ASID = MMUPlugin_TLBTable_6_ASID;
         _zz_MEM_ADDR_AddressGenerationPlugin_tlbTranslateResult_TLBHitEntry_G = MMUPlugin_TLBTable_6_G;
         _zz_MEM_ADDR_AddressGenerationPlugin_tlbTranslateResult_TLBHitEntry_PS = MMUPlugin_TLBTable_6_PS;
@@ -35275,7 +35347,7 @@ module MyCPUCore (
         _zz_MEM_ADDR_AddressGenerationPlugin_tlbTranslateResult_TLBHitEntry_PPN1 = MMUPlugin_TLBTable_6_PPN1;
       end
       4'b0111 : begin
-        _zz_MEM_ADDR_AddressGenerationPlugin_tlbTranslateResult_TLBHitEntry_E_5 = MMUPlugin_TLBTable_7_E;
+        _zz_MEM_ADDR_AddressGenerationPlugin_tlbTranslateResult_TLBHitEntry_E_18 = MMUPlugin_TLBTable_7_E;
         _zz_MEM_ADDR_AddressGenerationPlugin_tlbTranslateResult_TLBHitEntry_ASID = MMUPlugin_TLBTable_7_ASID;
         _zz_MEM_ADDR_AddressGenerationPlugin_tlbTranslateResult_TLBHitEntry_G = MMUPlugin_TLBTable_7_G;
         _zz_MEM_ADDR_AddressGenerationPlugin_tlbTranslateResult_TLBHitEntry_PS = MMUPlugin_TLBTable_7_PS;
@@ -35292,7 +35364,7 @@ module MyCPUCore (
         _zz_MEM_ADDR_AddressGenerationPlugin_tlbTranslateResult_TLBHitEntry_PPN1 = MMUPlugin_TLBTable_7_PPN1;
       end
       4'b1000 : begin
-        _zz_MEM_ADDR_AddressGenerationPlugin_tlbTranslateResult_TLBHitEntry_E_5 = MMUPlugin_TLBTable_8_E;
+        _zz_MEM_ADDR_AddressGenerationPlugin_tlbTranslateResult_TLBHitEntry_E_18 = MMUPlugin_TLBTable_8_E;
         _zz_MEM_ADDR_AddressGenerationPlugin_tlbTranslateResult_TLBHitEntry_ASID = MMUPlugin_TLBTable_8_ASID;
         _zz_MEM_ADDR_AddressGenerationPlugin_tlbTranslateResult_TLBHitEntry_G = MMUPlugin_TLBTable_8_G;
         _zz_MEM_ADDR_AddressGenerationPlugin_tlbTranslateResult_TLBHitEntry_PS = MMUPlugin_TLBTable_8_PS;
@@ -35309,7 +35381,7 @@ module MyCPUCore (
         _zz_MEM_ADDR_AddressGenerationPlugin_tlbTranslateResult_TLBHitEntry_PPN1 = MMUPlugin_TLBTable_8_PPN1;
       end
       4'b1001 : begin
-        _zz_MEM_ADDR_AddressGenerationPlugin_tlbTranslateResult_TLBHitEntry_E_5 = MMUPlugin_TLBTable_9_E;
+        _zz_MEM_ADDR_AddressGenerationPlugin_tlbTranslateResult_TLBHitEntry_E_18 = MMUPlugin_TLBTable_9_E;
         _zz_MEM_ADDR_AddressGenerationPlugin_tlbTranslateResult_TLBHitEntry_ASID = MMUPlugin_TLBTable_9_ASID;
         _zz_MEM_ADDR_AddressGenerationPlugin_tlbTranslateResult_TLBHitEntry_G = MMUPlugin_TLBTable_9_G;
         _zz_MEM_ADDR_AddressGenerationPlugin_tlbTranslateResult_TLBHitEntry_PS = MMUPlugin_TLBTable_9_PS;
@@ -35326,7 +35398,7 @@ module MyCPUCore (
         _zz_MEM_ADDR_AddressGenerationPlugin_tlbTranslateResult_TLBHitEntry_PPN1 = MMUPlugin_TLBTable_9_PPN1;
       end
       4'b1010 : begin
-        _zz_MEM_ADDR_AddressGenerationPlugin_tlbTranslateResult_TLBHitEntry_E_5 = MMUPlugin_TLBTable_10_E;
+        _zz_MEM_ADDR_AddressGenerationPlugin_tlbTranslateResult_TLBHitEntry_E_18 = MMUPlugin_TLBTable_10_E;
         _zz_MEM_ADDR_AddressGenerationPlugin_tlbTranslateResult_TLBHitEntry_ASID = MMUPlugin_TLBTable_10_ASID;
         _zz_MEM_ADDR_AddressGenerationPlugin_tlbTranslateResult_TLBHitEntry_G = MMUPlugin_TLBTable_10_G;
         _zz_MEM_ADDR_AddressGenerationPlugin_tlbTranslateResult_TLBHitEntry_PS = MMUPlugin_TLBTable_10_PS;
@@ -35343,7 +35415,7 @@ module MyCPUCore (
         _zz_MEM_ADDR_AddressGenerationPlugin_tlbTranslateResult_TLBHitEntry_PPN1 = MMUPlugin_TLBTable_10_PPN1;
       end
       4'b1011 : begin
-        _zz_MEM_ADDR_AddressGenerationPlugin_tlbTranslateResult_TLBHitEntry_E_5 = MMUPlugin_TLBTable_11_E;
+        _zz_MEM_ADDR_AddressGenerationPlugin_tlbTranslateResult_TLBHitEntry_E_18 = MMUPlugin_TLBTable_11_E;
         _zz_MEM_ADDR_AddressGenerationPlugin_tlbTranslateResult_TLBHitEntry_ASID = MMUPlugin_TLBTable_11_ASID;
         _zz_MEM_ADDR_AddressGenerationPlugin_tlbTranslateResult_TLBHitEntry_G = MMUPlugin_TLBTable_11_G;
         _zz_MEM_ADDR_AddressGenerationPlugin_tlbTranslateResult_TLBHitEntry_PS = MMUPlugin_TLBTable_11_PS;
@@ -35360,7 +35432,7 @@ module MyCPUCore (
         _zz_MEM_ADDR_AddressGenerationPlugin_tlbTranslateResult_TLBHitEntry_PPN1 = MMUPlugin_TLBTable_11_PPN1;
       end
       4'b1100 : begin
-        _zz_MEM_ADDR_AddressGenerationPlugin_tlbTranslateResult_TLBHitEntry_E_5 = MMUPlugin_TLBTable_12_E;
+        _zz_MEM_ADDR_AddressGenerationPlugin_tlbTranslateResult_TLBHitEntry_E_18 = MMUPlugin_TLBTable_12_E;
         _zz_MEM_ADDR_AddressGenerationPlugin_tlbTranslateResult_TLBHitEntry_ASID = MMUPlugin_TLBTable_12_ASID;
         _zz_MEM_ADDR_AddressGenerationPlugin_tlbTranslateResult_TLBHitEntry_G = MMUPlugin_TLBTable_12_G;
         _zz_MEM_ADDR_AddressGenerationPlugin_tlbTranslateResult_TLBHitEntry_PS = MMUPlugin_TLBTable_12_PS;
@@ -35377,7 +35449,7 @@ module MyCPUCore (
         _zz_MEM_ADDR_AddressGenerationPlugin_tlbTranslateResult_TLBHitEntry_PPN1 = MMUPlugin_TLBTable_12_PPN1;
       end
       4'b1101 : begin
-        _zz_MEM_ADDR_AddressGenerationPlugin_tlbTranslateResult_TLBHitEntry_E_5 = MMUPlugin_TLBTable_13_E;
+        _zz_MEM_ADDR_AddressGenerationPlugin_tlbTranslateResult_TLBHitEntry_E_18 = MMUPlugin_TLBTable_13_E;
         _zz_MEM_ADDR_AddressGenerationPlugin_tlbTranslateResult_TLBHitEntry_ASID = MMUPlugin_TLBTable_13_ASID;
         _zz_MEM_ADDR_AddressGenerationPlugin_tlbTranslateResult_TLBHitEntry_G = MMUPlugin_TLBTable_13_G;
         _zz_MEM_ADDR_AddressGenerationPlugin_tlbTranslateResult_TLBHitEntry_PS = MMUPlugin_TLBTable_13_PS;
@@ -35394,7 +35466,7 @@ module MyCPUCore (
         _zz_MEM_ADDR_AddressGenerationPlugin_tlbTranslateResult_TLBHitEntry_PPN1 = MMUPlugin_TLBTable_13_PPN1;
       end
       4'b1110 : begin
-        _zz_MEM_ADDR_AddressGenerationPlugin_tlbTranslateResult_TLBHitEntry_E_5 = MMUPlugin_TLBTable_14_E;
+        _zz_MEM_ADDR_AddressGenerationPlugin_tlbTranslateResult_TLBHitEntry_E_18 = MMUPlugin_TLBTable_14_E;
         _zz_MEM_ADDR_AddressGenerationPlugin_tlbTranslateResult_TLBHitEntry_ASID = MMUPlugin_TLBTable_14_ASID;
         _zz_MEM_ADDR_AddressGenerationPlugin_tlbTranslateResult_TLBHitEntry_G = MMUPlugin_TLBTable_14_G;
         _zz_MEM_ADDR_AddressGenerationPlugin_tlbTranslateResult_TLBHitEntry_PS = MMUPlugin_TLBTable_14_PS;
@@ -35411,7 +35483,7 @@ module MyCPUCore (
         _zz_MEM_ADDR_AddressGenerationPlugin_tlbTranslateResult_TLBHitEntry_PPN1 = MMUPlugin_TLBTable_14_PPN1;
       end
       default : begin
-        _zz_MEM_ADDR_AddressGenerationPlugin_tlbTranslateResult_TLBHitEntry_E_5 = MMUPlugin_TLBTable_15_E;
+        _zz_MEM_ADDR_AddressGenerationPlugin_tlbTranslateResult_TLBHitEntry_E_18 = MMUPlugin_TLBTable_15_E;
         _zz_MEM_ADDR_AddressGenerationPlugin_tlbTranslateResult_TLBHitEntry_ASID = MMUPlugin_TLBTable_15_ASID;
         _zz_MEM_ADDR_AddressGenerationPlugin_tlbTranslateResult_TLBHitEntry_G = MMUPlugin_TLBTable_15_G;
         _zz_MEM_ADDR_AddressGenerationPlugin_tlbTranslateResult_TLBHitEntry_PS = MMUPlugin_TLBTable_15_PS;
@@ -47064,11 +47136,11 @@ module MyCPUCore (
     endcase
   end
   always @(*) begin
-    case(switch_MMUPlugin_l298)
-      MemOperationType_FETCH : switch_MMUPlugin_l298_string = "FETCH";
-      MemOperationType_LOAD : switch_MMUPlugin_l298_string = "LOAD ";
-      MemOperationType_STORE : switch_MMUPlugin_l298_string = "STORE";
-      default : switch_MMUPlugin_l298_string = "?????";
+    case(switch_MMUPlugin_l299)
+      MemOperationType_FETCH : switch_MMUPlugin_l299_string = "FETCH";
+      MemOperationType_LOAD : switch_MMUPlugin_l299_string = "LOAD ";
+      MemOperationType_STORE : switch_MMUPlugin_l299_string = "STORE";
+      default : switch_MMUPlugin_l299_string = "?????";
     endcase
   end
   always @(*) begin
@@ -47606,19 +47678,19 @@ module MyCPUCore (
     endcase
   end
   always @(*) begin
-    case(switch_MMUPlugin_l298_1)
-      MemOperationType_FETCH : switch_MMUPlugin_l298_1_string = "FETCH";
-      MemOperationType_LOAD : switch_MMUPlugin_l298_1_string = "LOAD ";
-      MemOperationType_STORE : switch_MMUPlugin_l298_1_string = "STORE";
-      default : switch_MMUPlugin_l298_1_string = "?????";
+    case(switch_MMUPlugin_l299_1)
+      MemOperationType_FETCH : switch_MMUPlugin_l299_1_string = "FETCH";
+      MemOperationType_LOAD : switch_MMUPlugin_l299_1_string = "LOAD ";
+      MemOperationType_STORE : switch_MMUPlugin_l299_1_string = "STORE";
+      default : switch_MMUPlugin_l299_1_string = "?????";
     endcase
   end
   always @(*) begin
-    case(_zz_when_MMUPlugin_l367)
-      MemOperationType_FETCH : _zz_when_MMUPlugin_l367_string = "FETCH";
-      MemOperationType_LOAD : _zz_when_MMUPlugin_l367_string = "LOAD ";
-      MemOperationType_STORE : _zz_when_MMUPlugin_l367_string = "STORE";
-      default : _zz_when_MMUPlugin_l367_string = "?????";
+    case(_zz_when_MMUPlugin_l370)
+      MemOperationType_FETCH : _zz_when_MMUPlugin_l370_string = "FETCH";
+      MemOperationType_LOAD : _zz_when_MMUPlugin_l370_string = "LOAD ";
+      MemOperationType_STORE : _zz_when_MMUPlugin_l370_string = "STORE";
+      default : _zz_when_MMUPlugin_l370_string = "?????";
     endcase
   end
   always @(*) begin
@@ -49333,8 +49405,6 @@ module MyCPUCore (
   assign MEM_MEM1_MEMORY_BE = MEM_ADDR_to_MEM_MEM1_MEMORY_BE;
   assign MEM_ADDR_MEMORY_BE = MEM_ADDR_AddressGenerationPlugin_byteEnable;
   assign MEM_MEM1_MEMORY_WRITE_DATA = MEM_ADDR_to_MEM_MEM1_MEMORY_WRITE_DATA;
-  assign MEM_RRD_MEMORY_WRITE_DATA = MEM_RRD_REG_READ_RSP_1;
-  assign MEM_RRD_MEMORY_ADDRESS = (MEM_RRD_REG_READ_RSP_0 + MEM_RRD_MemExecutePlugin_addrOffset);
   assign MEM_ISS_STD_SLOT_valid = MEM_ISS_MemExecutePlugin_stdValid;
   assign MEM_ISS_STD_SLOT_payload_retired = StoreBufferPlugin_queueIO_popPort_payload_retired;
   assign MEM_ISS_STD_SLOT_payload_addr = StoreBufferPlugin_queueIO_popPort_payload_addr;
@@ -49744,10 +49814,6 @@ module MyCPUCore (
   assign IF1_PREDICT_JUMP_PAYLOAD_isCall = _zz_IF1_PREDICT_JUMP_PAYLOAD_isCall;
   assign IF1_PREDICT_JUMP_PAYLOAD_isReturn = _zz_IF1_PREDICT_JUMP_PAYLOAD_isReturn;
   assign IF1_PREDICT_JUMP_FLAG = _zz_IF1_PREDICT_JUMP_FLAG;
-  assign IF1_TRANSLATE_SAVED_CSR_CRMD_DA = IF1_InstAddrTranslatePlugin_savedCSR_CRMD_DA;
-  assign IF1_TRANSLATE_SAVED_CSR_CRMD_PG = IF1_InstAddrTranslatePlugin_savedCSR_CRMD_PG;
-  assign IF1_TRANSLATE_SAVED_CSR_CRMD_DATF = IF1_InstAddrTranslatePlugin_savedCSR_CRMD_DATF;
-  assign IF1_TRANSLATE_SAVED_CSR_CRMD_DATM = IF1_InstAddrTranslatePlugin_savedCSR_CRMD_DATM;
   assign IF1_TLB_TRANSLATE_RESULT_valid = IF1_InstAddrTranslatePlugin_tlbTranslateResult_resultBundle_valid;
   assign IF1_TLB_TRANSLATE_RESULT_payload_physAddr = IF1_InstAddrTranslatePlugin_tlbTranslateResult_resultBundle_payload_physAddr;
   assign IF1_TLB_TRANSLATE_RESULT_payload_cached = IF1_InstAddrTranslatePlugin_tlbTranslateResult_resultBundle_payload_cached;
@@ -49946,15 +50012,15 @@ module MyCPUCore (
   assign MEM_WB_ISSUE_SLOT_wReg = MEM_MEM2_to_MEM_WB_ISSUE_SLOT_wReg;
   always @(*) begin
     _zz_MEM_MEM2_to_MEM_WB_MEMORY_ADDRESS = MEM_MEM2_MEMORY_ADDRESS;
-    if(when_MemExecutePlugin_l129) begin
+    if(when_MemExecutePlugin_l137) begin
       _zz_MEM_MEM2_to_MEM_WB_MEMORY_ADDRESS = MEM_MEM2_MEMORY_ADDRESS_PHYSICAL;
     end
   end
 
   always @(*) begin
-    _zz_when_MemExecutePlugin_l122 = MEM_MEM2_WRITE_REG_valid;
+    _zz_when_MemExecutePlugin_l130 = MEM_MEM2_WRITE_REG_valid;
     if(MEM_MEM2_MemExecutePlugin_isLDU) begin
-      _zz_when_MemExecutePlugin_l122 = MEM_MEM2_STD_SLOT_payload_wReg_valid;
+      _zz_when_MemExecutePlugin_l130 = MEM_MEM2_STD_SLOT_payload_wReg_valid;
     end
   end
 
@@ -49966,6 +50032,8 @@ module MyCPUCore (
   end
 
   assign MEM_MEM1_ADDRESS_CACHED = MEM_MEM1_AddressGenerationPlugin_translateResult_resultBundle_payload_cached;
+  assign MEM_RRD_MEMORY_WRITE_DATA = MEM_RRD_REG_READ_RSP_1;
+  assign MEM_RRD_MEMORY_ADDRESS = (MEM_RRD_REG_READ_RSP_0 + MEM_RRD_MemExecutePlugin_addrOffset);
   assign MEM_RRD_REG_READ_RSP_0 = MemExecutePlugin_rrdRsp_0;
   assign MEM_RRD_REG_READ_RSP_1 = MemExecutePlugin_rrdRsp_1;
   assign MEM_RRD_ISSUE_SLOT_rRegs_0_valid = MEM_ISS_to_MEM_RRD_ISSUE_SLOT_rRegs_0_valid;
@@ -50495,10 +50563,6 @@ module MyCPUCore (
   assign IF2_PREDICT_JUMP_PAYLOAD_isCall = IF1_to_IF2_PREDICT_JUMP_PAYLOAD_isCall;
   assign IF2_PREDICT_JUMP_PAYLOAD_isReturn = IF1_to_IF2_PREDICT_JUMP_PAYLOAD_isReturn;
   assign IF2_PREDICT_JUMP_FLAG = IF1_to_IF2_PREDICT_JUMP_FLAG;
-  assign IF2_TRANSLATE_SAVED_CSR_CRMD_DA = IF1_to_IF2_TRANSLATE_SAVED_CSR_CRMD_DA;
-  assign IF2_TRANSLATE_SAVED_CSR_CRMD_PG = IF1_to_IF2_TRANSLATE_SAVED_CSR_CRMD_PG;
-  assign IF2_TRANSLATE_SAVED_CSR_CRMD_DATF = IF1_to_IF2_TRANSLATE_SAVED_CSR_CRMD_DATF;
-  assign IF2_TRANSLATE_SAVED_CSR_CRMD_DATM = IF1_to_IF2_TRANSLATE_SAVED_CSR_CRMD_DATM;
   assign IF2_TLB_TRANSLATE_RESULT_valid = IF1_to_IF2_TLB_TRANSLATE_RESULT_valid;
   assign IF2_TLB_TRANSLATE_RESULT_payload_physAddr = IF1_to_IF2_TLB_TRANSLATE_RESULT_payload_physAddr;
   assign IF2_TLB_TRANSLATE_RESULT_payload_cached = IF1_to_IF2_TLB_TRANSLATE_RESULT_payload_cached;
@@ -50517,24 +50581,23 @@ module MyCPUCore (
   assign IF2_DIRECT_TRANSLATE_RESULT_payload_exception_raisePME = IF1_to_IF2_DIRECT_TRANSLATE_RESULT_payload_exception_raisePME;
   assign IF2_DIRECT_TRANSLATE_RESULT_payload_exception_raisePPI = IF1_to_IF2_DIRECT_TRANSLATE_RESULT_payload_exception_raisePPI;
   assign IF2_DIRECT_TRANSLATE_RESULT_payload_exception_raiseTLBR = IF1_to_IF2_DIRECT_TRANSLATE_RESULT_payload_exception_raiseTLBR;
-  assign IF2_EXCEPTION_OCCURRED = IF1_to_IF2_EXCEPTION_OCCURRED;
   always @(*) begin
     _zz_IF1_to_IF2_BAD_VADDR = IF1_BAD_VADDR;
-    if(when_ExceptionMuxPlugin_l45) begin
+    if(when_ExceptionMuxPlugin_l45_3) begin
       _zz_IF1_to_IF2_BAD_VADDR = InstAddrTranslatePlugin_badVaddr;
     end
   end
 
   always @(*) begin
     _zz_IF1_to_IF2_EXCEPTION_ESUBCODE = IF1_EXCEPTION_ESUBCODE;
-    if(when_ExceptionMuxPlugin_l45) begin
+    if(when_ExceptionMuxPlugin_l45_3) begin
       _zz_IF1_to_IF2_EXCEPTION_ESUBCODE = 9'h0;
     end
   end
 
   always @(*) begin
     _zz_IF1_to_IF2_EXCEPTION_ECODE = IF1_EXCEPTION_ECODE;
-    if(when_ExceptionMuxPlugin_l45) begin
+    if(when_ExceptionMuxPlugin_l45_3) begin
       _zz_IF1_to_IF2_EXCEPTION_ECODE = 6'h08;
     end
   end
@@ -50547,28 +50610,29 @@ module MyCPUCore (
     end
   end
 
+  assign IF2_EXCEPTION_OCCURRED = IF1_to_IF2_EXCEPTION_OCCURRED;
   always @(*) begin
     _zz_IF2_ICachePlugin_fetchPacket_except_payload_subcode = IF2_EXCEPTION_ESUBCODE;
+    if(when_ExceptionMuxPlugin_l45) begin
+      _zz_IF2_ICachePlugin_fetchPacket_except_payload_subcode = 9'h0;
+    end
     if(when_ExceptionMuxPlugin_l45_1) begin
       _zz_IF2_ICachePlugin_fetchPacket_except_payload_subcode = 9'h0;
     end
     if(when_ExceptionMuxPlugin_l45_2) begin
-      _zz_IF2_ICachePlugin_fetchPacket_except_payload_subcode = 9'h0;
-    end
-    if(when_ExceptionMuxPlugin_l45_3) begin
       _zz_IF2_ICachePlugin_fetchPacket_except_payload_subcode = 9'h0;
     end
   end
 
   always @(*) begin
     _zz_IF2_ICachePlugin_fetchPacket_except_payload_code = IF2_EXCEPTION_ECODE;
-    if(when_ExceptionMuxPlugin_l45_1) begin
+    if(when_ExceptionMuxPlugin_l45) begin
       _zz_IF2_ICachePlugin_fetchPacket_except_payload_code = 6'h07;
     end
-    if(when_ExceptionMuxPlugin_l45_2) begin
+    if(when_ExceptionMuxPlugin_l45_1) begin
       _zz_IF2_ICachePlugin_fetchPacket_except_payload_code = 6'h03;
     end
-    if(when_ExceptionMuxPlugin_l45_3) begin
+    if(when_ExceptionMuxPlugin_l45_2) begin
       _zz_IF2_ICachePlugin_fetchPacket_except_payload_code = 6'h3f;
     end
   end
@@ -51001,11 +51065,11 @@ module MyCPUCore (
   assign IF2_arbitration_notStuck = (! IF2_arbitration_isStuck);
   always @(*) begin
     ProgramCounterPlugin_backendJumpInterface_valid = 1'b0;
-    if(when_CommitPlugin_l184) begin
-      if(when_CommitPlugin_l248) begin
+    if(when_CommitPlugin_l188) begin
+      if(when_CommitPlugin_l252) begin
         ProgramCounterPlugin_backendJumpInterface_valid = 1'b1;
       end
-      if(when_CommitPlugin_l255) begin
+      if(when_CommitPlugin_l259) begin
         ProgramCounterPlugin_backendJumpInterface_valid = 1'b1;
       end
     end
@@ -51020,11 +51084,11 @@ module MyCPUCore (
 
   always @(*) begin
     ProgramCounterPlugin_backendJumpInterface_payload = 32'bxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx;
-    if(when_CommitPlugin_l184) begin
-      if(when_CommitPlugin_l248) begin
+    if(when_CommitPlugin_l188) begin
+      if(when_CommitPlugin_l252) begin
         ProgramCounterPlugin_backendJumpInterface_payload = (ROBFIFOPlugin_fifoIO_pop_0_payload_info_uop_pc + 32'h00000004);
       end
-      if(when_CommitPlugin_l255) begin
+      if(when_CommitPlugin_l259) begin
         ProgramCounterPlugin_backendJumpInterface_payload = CommitPlugin_port0Commit_jumpTarget;
       end
     end
@@ -51320,7 +51384,7 @@ module MyCPUCore (
   assign INT2_ISS_arbitration_haltByOther = 1'b0;
   always @(*) begin
     INT2_ISS_arbitration_removeIt = 1'b0;
-    if(when_IntExecutePlugin_l119) begin
+    if(when_IntExecutePlugin_l123) begin
       INT2_ISS_arbitration_removeIt = 1'b1;
     end
     if(INT2_ISS_arbitration_isFlushed) begin
@@ -51386,7 +51450,7 @@ module MyCPUCore (
   assign INT1_ISS_arbitration_haltByOther = 1'b0;
   always @(*) begin
     INT1_ISS_arbitration_removeIt = 1'b0;
-    if(when_IntExecutePlugin_l119_1) begin
+    if(when_IntExecutePlugin_l123_1) begin
       INT1_ISS_arbitration_removeIt = 1'b1;
     end
     if(INT1_ISS_arbitration_isFlushed) begin
@@ -51452,7 +51516,7 @@ module MyCPUCore (
   assign INT0_ISS_arbitration_haltByOther = 1'b0;
   always @(*) begin
     INT0_ISS_arbitration_removeIt = 1'b0;
-    if(when_IntExecutePlugin_l119_2) begin
+    if(when_IntExecutePlugin_l123_2) begin
       INT0_ISS_arbitration_removeIt = 1'b1;
     end
     if(INT0_ISS_arbitration_isFlushed) begin
@@ -51600,10 +51664,10 @@ module MyCPUCore (
   assign MEM_ISS_arbitration_haltByOther = 1'b0;
   always @(*) begin
     MEM_ISS_arbitration_removeIt = 1'b0;
-    if(when_MemExecutePlugin_l85) begin
+    if(when_MemExecutePlugin_l89) begin
       MEM_ISS_arbitration_removeIt = 1'b1;
     end
-    if(when_MemExecutePlugin_l86) begin
+    if(when_MemExecutePlugin_l90) begin
       MEM_ISS_arbitration_removeIt = 1'b1;
     end
     if(MEM_ISS_arbitration_isFlushed) begin
@@ -53353,7 +53417,7 @@ module MyCPUCore (
 
   always @(*) begin
     StoreBufferPlugin_queueIO_popPort_ready = 1'b0;
-    if(when_MemExecutePlugin_l80) begin
+    if(when_MemExecutePlugin_l84) begin
       StoreBufferPlugin_queueIO_popPort_ready = 1'b1;
     end
   end
@@ -54058,18 +54122,18 @@ module MyCPUCore (
     if(when_CompressedQueue_l128_56) begin
       IntIssueQueuePlugin_queueNext_0_payload_rRegs_0_valid = 1'b1;
     end
-    if(when_IntExecutePlugin_l122) begin
-      if(when_IntExecutePlugin_l125) begin
+    if(when_IntExecutePlugin_l126) begin
+      if(when_IntExecutePlugin_l129) begin
         IntIssueQueuePlugin_queueNext_0_payload_rRegs_0_valid = 1'b1;
       end
     end
-    if(when_IntExecutePlugin_l122_1) begin
-      if(when_IntExecutePlugin_l125_14) begin
+    if(when_IntExecutePlugin_l126_1) begin
+      if(when_IntExecutePlugin_l129_14) begin
         IntIssueQueuePlugin_queueNext_0_payload_rRegs_0_valid = 1'b1;
       end
     end
-    if(when_IntExecutePlugin_l122_2) begin
-      if(when_IntExecutePlugin_l125_28) begin
+    if(when_IntExecutePlugin_l126_2) begin
+      if(when_IntExecutePlugin_l129_28) begin
         IntIssueQueuePlugin_queueNext_0_payload_rRegs_0_valid = 1'b1;
       end
     end
@@ -54102,18 +54166,18 @@ module MyCPUCore (
     if(when_CompressedQueue_l128_57) begin
       IntIssueQueuePlugin_queueNext_0_payload_rRegs_1_valid = 1'b1;
     end
-    if(when_IntExecutePlugin_l122) begin
-      if(when_IntExecutePlugin_l125_1) begin
+    if(when_IntExecutePlugin_l126) begin
+      if(when_IntExecutePlugin_l129_1) begin
         IntIssueQueuePlugin_queueNext_0_payload_rRegs_1_valid = 1'b1;
       end
     end
-    if(when_IntExecutePlugin_l122_1) begin
-      if(when_IntExecutePlugin_l125_15) begin
+    if(when_IntExecutePlugin_l126_1) begin
+      if(when_IntExecutePlugin_l129_15) begin
         IntIssueQueuePlugin_queueNext_0_payload_rRegs_1_valid = 1'b1;
       end
     end
-    if(when_IntExecutePlugin_l122_2) begin
-      if(when_IntExecutePlugin_l125_29) begin
+    if(when_IntExecutePlugin_l126_2) begin
+      if(when_IntExecutePlugin_l129_29) begin
         IntIssueQueuePlugin_queueNext_0_payload_rRegs_1_valid = 1'b1;
       end
     end
@@ -54324,18 +54388,18 @@ module MyCPUCore (
     if(when_CompressedQueue_l128_58) begin
       IntIssueQueuePlugin_queueNext_1_payload_rRegs_0_valid = 1'b1;
     end
-    if(when_IntExecutePlugin_l122) begin
-      if(when_IntExecutePlugin_l125_2) begin
+    if(when_IntExecutePlugin_l126) begin
+      if(when_IntExecutePlugin_l129_2) begin
         IntIssueQueuePlugin_queueNext_1_payload_rRegs_0_valid = 1'b1;
       end
     end
-    if(when_IntExecutePlugin_l122_1) begin
-      if(when_IntExecutePlugin_l125_16) begin
+    if(when_IntExecutePlugin_l126_1) begin
+      if(when_IntExecutePlugin_l129_16) begin
         IntIssueQueuePlugin_queueNext_1_payload_rRegs_0_valid = 1'b1;
       end
     end
-    if(when_IntExecutePlugin_l122_2) begin
-      if(when_IntExecutePlugin_l125_30) begin
+    if(when_IntExecutePlugin_l126_2) begin
+      if(when_IntExecutePlugin_l129_30) begin
         IntIssueQueuePlugin_queueNext_1_payload_rRegs_0_valid = 1'b1;
       end
     end
@@ -54374,18 +54438,18 @@ module MyCPUCore (
     if(when_CompressedQueue_l128_59) begin
       IntIssueQueuePlugin_queueNext_1_payload_rRegs_1_valid = 1'b1;
     end
-    if(when_IntExecutePlugin_l122) begin
-      if(when_IntExecutePlugin_l125_3) begin
+    if(when_IntExecutePlugin_l126) begin
+      if(when_IntExecutePlugin_l129_3) begin
         IntIssueQueuePlugin_queueNext_1_payload_rRegs_1_valid = 1'b1;
       end
     end
-    if(when_IntExecutePlugin_l122_1) begin
-      if(when_IntExecutePlugin_l125_17) begin
+    if(when_IntExecutePlugin_l126_1) begin
+      if(when_IntExecutePlugin_l129_17) begin
         IntIssueQueuePlugin_queueNext_1_payload_rRegs_1_valid = 1'b1;
       end
     end
-    if(when_IntExecutePlugin_l122_2) begin
-      if(when_IntExecutePlugin_l125_31) begin
+    if(when_IntExecutePlugin_l126_2) begin
+      if(when_IntExecutePlugin_l129_31) begin
         IntIssueQueuePlugin_queueNext_1_payload_rRegs_1_valid = 1'b1;
       end
     end
@@ -54677,18 +54741,18 @@ module MyCPUCore (
     if(when_CompressedQueue_l128_60) begin
       IntIssueQueuePlugin_queueNext_2_payload_rRegs_0_valid = 1'b1;
     end
-    if(when_IntExecutePlugin_l122) begin
-      if(when_IntExecutePlugin_l125_4) begin
+    if(when_IntExecutePlugin_l126) begin
+      if(when_IntExecutePlugin_l129_4) begin
         IntIssueQueuePlugin_queueNext_2_payload_rRegs_0_valid = 1'b1;
       end
     end
-    if(when_IntExecutePlugin_l122_1) begin
-      if(when_IntExecutePlugin_l125_18) begin
+    if(when_IntExecutePlugin_l126_1) begin
+      if(when_IntExecutePlugin_l129_18) begin
         IntIssueQueuePlugin_queueNext_2_payload_rRegs_0_valid = 1'b1;
       end
     end
-    if(when_IntExecutePlugin_l122_2) begin
-      if(when_IntExecutePlugin_l125_32) begin
+    if(when_IntExecutePlugin_l126_2) begin
+      if(when_IntExecutePlugin_l129_32) begin
         IntIssueQueuePlugin_queueNext_2_payload_rRegs_0_valid = 1'b1;
       end
     end
@@ -54733,18 +54797,18 @@ module MyCPUCore (
     if(when_CompressedQueue_l128_61) begin
       IntIssueQueuePlugin_queueNext_2_payload_rRegs_1_valid = 1'b1;
     end
-    if(when_IntExecutePlugin_l122) begin
-      if(when_IntExecutePlugin_l125_5) begin
+    if(when_IntExecutePlugin_l126) begin
+      if(when_IntExecutePlugin_l129_5) begin
         IntIssueQueuePlugin_queueNext_2_payload_rRegs_1_valid = 1'b1;
       end
     end
-    if(when_IntExecutePlugin_l122_1) begin
-      if(when_IntExecutePlugin_l125_19) begin
+    if(when_IntExecutePlugin_l126_1) begin
+      if(when_IntExecutePlugin_l129_19) begin
         IntIssueQueuePlugin_queueNext_2_payload_rRegs_1_valid = 1'b1;
       end
     end
-    if(when_IntExecutePlugin_l122_2) begin
-      if(when_IntExecutePlugin_l125_33) begin
+    if(when_IntExecutePlugin_l126_2) begin
+      if(when_IntExecutePlugin_l129_33) begin
         IntIssueQueuePlugin_queueNext_2_payload_rRegs_1_valid = 1'b1;
       end
     end
@@ -55114,18 +55178,18 @@ module MyCPUCore (
     if(when_CompressedQueue_l128_62) begin
       IntIssueQueuePlugin_queueNext_3_payload_rRegs_0_valid = 1'b1;
     end
-    if(when_IntExecutePlugin_l122) begin
-      if(when_IntExecutePlugin_l125_6) begin
+    if(when_IntExecutePlugin_l126) begin
+      if(when_IntExecutePlugin_l129_6) begin
         IntIssueQueuePlugin_queueNext_3_payload_rRegs_0_valid = 1'b1;
       end
     end
-    if(when_IntExecutePlugin_l122_1) begin
-      if(when_IntExecutePlugin_l125_20) begin
+    if(when_IntExecutePlugin_l126_1) begin
+      if(when_IntExecutePlugin_l129_20) begin
         IntIssueQueuePlugin_queueNext_3_payload_rRegs_0_valid = 1'b1;
       end
     end
-    if(when_IntExecutePlugin_l122_2) begin
-      if(when_IntExecutePlugin_l125_34) begin
+    if(when_IntExecutePlugin_l126_2) begin
+      if(when_IntExecutePlugin_l129_34) begin
         IntIssueQueuePlugin_queueNext_3_payload_rRegs_0_valid = 1'b1;
       end
     end
@@ -55170,18 +55234,18 @@ module MyCPUCore (
     if(when_CompressedQueue_l128_63) begin
       IntIssueQueuePlugin_queueNext_3_payload_rRegs_1_valid = 1'b1;
     end
-    if(when_IntExecutePlugin_l122) begin
-      if(when_IntExecutePlugin_l125_7) begin
+    if(when_IntExecutePlugin_l126) begin
+      if(when_IntExecutePlugin_l129_7) begin
         IntIssueQueuePlugin_queueNext_3_payload_rRegs_1_valid = 1'b1;
       end
     end
-    if(when_IntExecutePlugin_l122_1) begin
-      if(when_IntExecutePlugin_l125_21) begin
+    if(when_IntExecutePlugin_l126_1) begin
+      if(when_IntExecutePlugin_l129_21) begin
         IntIssueQueuePlugin_queueNext_3_payload_rRegs_1_valid = 1'b1;
       end
     end
-    if(when_IntExecutePlugin_l122_2) begin
-      if(when_IntExecutePlugin_l125_35) begin
+    if(when_IntExecutePlugin_l126_2) begin
+      if(when_IntExecutePlugin_l129_35) begin
         IntIssueQueuePlugin_queueNext_3_payload_rRegs_1_valid = 1'b1;
       end
     end
@@ -55551,18 +55615,18 @@ module MyCPUCore (
     if(when_CompressedQueue_l128_64) begin
       IntIssueQueuePlugin_queueNext_4_payload_rRegs_0_valid = 1'b1;
     end
-    if(when_IntExecutePlugin_l122) begin
-      if(when_IntExecutePlugin_l125_8) begin
+    if(when_IntExecutePlugin_l126) begin
+      if(when_IntExecutePlugin_l129_8) begin
         IntIssueQueuePlugin_queueNext_4_payload_rRegs_0_valid = 1'b1;
       end
     end
-    if(when_IntExecutePlugin_l122_1) begin
-      if(when_IntExecutePlugin_l125_22) begin
+    if(when_IntExecutePlugin_l126_1) begin
+      if(when_IntExecutePlugin_l129_22) begin
         IntIssueQueuePlugin_queueNext_4_payload_rRegs_0_valid = 1'b1;
       end
     end
-    if(when_IntExecutePlugin_l122_2) begin
-      if(when_IntExecutePlugin_l125_36) begin
+    if(when_IntExecutePlugin_l126_2) begin
+      if(when_IntExecutePlugin_l129_36) begin
         IntIssueQueuePlugin_queueNext_4_payload_rRegs_0_valid = 1'b1;
       end
     end
@@ -55607,18 +55671,18 @@ module MyCPUCore (
     if(when_CompressedQueue_l128_65) begin
       IntIssueQueuePlugin_queueNext_4_payload_rRegs_1_valid = 1'b1;
     end
-    if(when_IntExecutePlugin_l122) begin
-      if(when_IntExecutePlugin_l125_9) begin
+    if(when_IntExecutePlugin_l126) begin
+      if(when_IntExecutePlugin_l129_9) begin
         IntIssueQueuePlugin_queueNext_4_payload_rRegs_1_valid = 1'b1;
       end
     end
-    if(when_IntExecutePlugin_l122_1) begin
-      if(when_IntExecutePlugin_l125_23) begin
+    if(when_IntExecutePlugin_l126_1) begin
+      if(when_IntExecutePlugin_l129_23) begin
         IntIssueQueuePlugin_queueNext_4_payload_rRegs_1_valid = 1'b1;
       end
     end
-    if(when_IntExecutePlugin_l122_2) begin
-      if(when_IntExecutePlugin_l125_37) begin
+    if(when_IntExecutePlugin_l126_2) begin
+      if(when_IntExecutePlugin_l129_37) begin
         IntIssueQueuePlugin_queueNext_4_payload_rRegs_1_valid = 1'b1;
       end
     end
@@ -55988,18 +56052,18 @@ module MyCPUCore (
     if(when_CompressedQueue_l128_66) begin
       IntIssueQueuePlugin_queueNext_5_payload_rRegs_0_valid = 1'b1;
     end
-    if(when_IntExecutePlugin_l122) begin
-      if(when_IntExecutePlugin_l125_10) begin
+    if(when_IntExecutePlugin_l126) begin
+      if(when_IntExecutePlugin_l129_10) begin
         IntIssueQueuePlugin_queueNext_5_payload_rRegs_0_valid = 1'b1;
       end
     end
-    if(when_IntExecutePlugin_l122_1) begin
-      if(when_IntExecutePlugin_l125_24) begin
+    if(when_IntExecutePlugin_l126_1) begin
+      if(when_IntExecutePlugin_l129_24) begin
         IntIssueQueuePlugin_queueNext_5_payload_rRegs_0_valid = 1'b1;
       end
     end
-    if(when_IntExecutePlugin_l122_2) begin
-      if(when_IntExecutePlugin_l125_38) begin
+    if(when_IntExecutePlugin_l126_2) begin
+      if(when_IntExecutePlugin_l129_38) begin
         IntIssueQueuePlugin_queueNext_5_payload_rRegs_0_valid = 1'b1;
       end
     end
@@ -56044,18 +56108,18 @@ module MyCPUCore (
     if(when_CompressedQueue_l128_67) begin
       IntIssueQueuePlugin_queueNext_5_payload_rRegs_1_valid = 1'b1;
     end
-    if(when_IntExecutePlugin_l122) begin
-      if(when_IntExecutePlugin_l125_11) begin
+    if(when_IntExecutePlugin_l126) begin
+      if(when_IntExecutePlugin_l129_11) begin
         IntIssueQueuePlugin_queueNext_5_payload_rRegs_1_valid = 1'b1;
       end
     end
-    if(when_IntExecutePlugin_l122_1) begin
-      if(when_IntExecutePlugin_l125_25) begin
+    if(when_IntExecutePlugin_l126_1) begin
+      if(when_IntExecutePlugin_l129_25) begin
         IntIssueQueuePlugin_queueNext_5_payload_rRegs_1_valid = 1'b1;
       end
     end
-    if(when_IntExecutePlugin_l122_2) begin
-      if(when_IntExecutePlugin_l125_39) begin
+    if(when_IntExecutePlugin_l126_2) begin
+      if(when_IntExecutePlugin_l129_39) begin
         IntIssueQueuePlugin_queueNext_5_payload_rRegs_1_valid = 1'b1;
       end
     end
@@ -56425,18 +56489,18 @@ module MyCPUCore (
     if(when_CompressedQueue_l128_68) begin
       IntIssueQueuePlugin_queueNext_6_payload_rRegs_0_valid = 1'b1;
     end
-    if(when_IntExecutePlugin_l122) begin
-      if(when_IntExecutePlugin_l125_12) begin
+    if(when_IntExecutePlugin_l126) begin
+      if(when_IntExecutePlugin_l129_12) begin
         IntIssueQueuePlugin_queueNext_6_payload_rRegs_0_valid = 1'b1;
       end
     end
-    if(when_IntExecutePlugin_l122_1) begin
-      if(when_IntExecutePlugin_l125_26) begin
+    if(when_IntExecutePlugin_l126_1) begin
+      if(when_IntExecutePlugin_l129_26) begin
         IntIssueQueuePlugin_queueNext_6_payload_rRegs_0_valid = 1'b1;
       end
     end
-    if(when_IntExecutePlugin_l122_2) begin
-      if(when_IntExecutePlugin_l125_40) begin
+    if(when_IntExecutePlugin_l126_2) begin
+      if(when_IntExecutePlugin_l129_40) begin
         IntIssueQueuePlugin_queueNext_6_payload_rRegs_0_valid = 1'b1;
       end
     end
@@ -56481,18 +56545,18 @@ module MyCPUCore (
     if(when_CompressedQueue_l128_69) begin
       IntIssueQueuePlugin_queueNext_6_payload_rRegs_1_valid = 1'b1;
     end
-    if(when_IntExecutePlugin_l122) begin
-      if(when_IntExecutePlugin_l125_13) begin
+    if(when_IntExecutePlugin_l126) begin
+      if(when_IntExecutePlugin_l129_13) begin
         IntIssueQueuePlugin_queueNext_6_payload_rRegs_1_valid = 1'b1;
       end
     end
-    if(when_IntExecutePlugin_l122_1) begin
-      if(when_IntExecutePlugin_l125_27) begin
+    if(when_IntExecutePlugin_l126_1) begin
+      if(when_IntExecutePlugin_l129_27) begin
         IntIssueQueuePlugin_queueNext_6_payload_rRegs_1_valid = 1'b1;
       end
     end
-    if(when_IntExecutePlugin_l122_2) begin
-      if(when_IntExecutePlugin_l125_41) begin
+    if(when_IntExecutePlugin_l126_2) begin
+      if(when_IntExecutePlugin_l129_41) begin
         IntIssueQueuePlugin_queueNext_6_payload_rRegs_1_valid = 1'b1;
       end
     end
@@ -58430,7 +58494,7 @@ module MyCPUCore (
 
   always @(*) begin
     SpeculativeWakeupHandler_wakeupFailed = 1'b0;
-    if(when_MemExecutePlugin_l122) begin
+    if(when_MemExecutePlugin_l130) begin
       SpeculativeWakeupHandler_wakeupFailed = 1'b1;
     end
   end
@@ -58466,9 +58530,9 @@ module MyCPUCore (
       end
       14'h0004 : begin
         CSRPlugin_readDataInit[9 : 0] = ExceptionHandlerPlugin_ECFG_LIE_0;
-        CSRPlugin_readDataInit[10 : 10] = ExceptionHandlerPlugin_ECFG_LIE_10;
         CSRPlugin_readDataInit[12 : 11] = ExceptionHandlerPlugin_ECFG_LIE_11;
-        CSRPlugin_readDataInit[31 : 13] = _zz_CSRPlugin_readDataInit_3;
+        CSRPlugin_readDataInit[10 : 10] = _zz_CSRPlugin_readDataInit_3;
+        CSRPlugin_readDataInit[31 : 13] = _zz_CSRPlugin_readDataInit_4;
       end
       14'h0005 : begin
         CSRPlugin_readDataInit[1 : 0] = ExceptionHandlerPlugin_ESTAT_IS_0;
@@ -58477,9 +58541,9 @@ module MyCPUCore (
         CSRPlugin_readDataInit[12 : 12] = ExceptionHandlerPlugin_ESTAT_IS_12;
         CSRPlugin_readDataInit[21 : 16] = ExceptionHandlerPlugin_ESTAT_ECODE;
         CSRPlugin_readDataInit[30 : 22] = ExceptionHandlerPlugin_ESTAT_ESUBCODE;
-        CSRPlugin_readDataInit[10 : 10] = _zz_CSRPlugin_readDataInit_4;
-        CSRPlugin_readDataInit[15 : 13] = _zz_CSRPlugin_readDataInit_5;
-        CSRPlugin_readDataInit[31 : 31] = _zz_CSRPlugin_readDataInit_6;
+        CSRPlugin_readDataInit[10 : 10] = _zz_CSRPlugin_readDataInit_5;
+        CSRPlugin_readDataInit[15 : 13] = _zz_CSRPlugin_readDataInit_6;
+        CSRPlugin_readDataInit[31 : 31] = _zz_CSRPlugin_readDataInit_7;
       end
       14'h0006 : begin
         CSRPlugin_readDataInit[31 : 0] = ExceptionHandlerPlugin_ERA_PC;
@@ -58489,7 +58553,7 @@ module MyCPUCore (
       end
       14'h000c : begin
         CSRPlugin_readDataInit[31 : 6] = ExceptionHandlerPlugin_EENTRY_VA;
-        CSRPlugin_readDataInit[5 : 0] = _zz_CSRPlugin_readDataInit_7;
+        CSRPlugin_readDataInit[5 : 0] = _zz_CSRPlugin_readDataInit_8;
       end
       14'h0020 : begin
         CSRPlugin_readDataInit[31 : 0] = 32'h0;
@@ -58522,8 +58586,8 @@ module MyCPUCore (
         CSRPlugin_readDataInit[31 : 0] = InterruptHandlerPlugin_TVAL_TIMEVAL;
       end
       14'h0044 : begin
-        CSRPlugin_readDataInit[31 : 1] = _zz_CSRPlugin_readDataInit_8;
-        CSRPlugin_readDataInit[0 : 0] = _zz_CSRPlugin_readDataInit_9;
+        CSRPlugin_readDataInit[31 : 1] = _zz_CSRPlugin_readDataInit_9;
+        CSRPlugin_readDataInit[0 : 0] = _zz_CSRPlugin_readDataInit_10;
       end
       14'h0010 : begin
         CSRPlugin_readDataInit[3 : 0] = MMUPlugin_TLBIDX_INDEX;
@@ -58773,12 +58837,13 @@ module MyCPUCore (
   assign _zz_CSRPlugin_readDataInit = 23'h0;
   assign _zz_CSRPlugin_readDataInit_1 = 29'h0;
   assign _zz_CSRPlugin_readDataInit_2 = 32'h0;
-  assign _zz_CSRPlugin_readDataInit_3 = 19'h0;
-  assign _zz_CSRPlugin_readDataInit_4 = 1'b0;
-  assign _zz_CSRPlugin_readDataInit_5 = 3'b000;
-  assign _zz_CSRPlugin_readDataInit_6 = 1'b0;
-  assign _zz_CSRPlugin_readDataInit_7 = 6'h0;
-  assign _zz_CSRPlugin_readDataInit_8 = 31'h0;
+  assign _zz_CSRPlugin_readDataInit_3 = 1'b0;
+  assign _zz_CSRPlugin_readDataInit_4 = 19'h0;
+  assign _zz_CSRPlugin_readDataInit_5 = 1'b0;
+  assign _zz_CSRPlugin_readDataInit_6 = 3'b000;
+  assign _zz_CSRPlugin_readDataInit_7 = 1'b0;
+  assign _zz_CSRPlugin_readDataInit_8 = 6'h0;
+  assign _zz_CSRPlugin_readDataInit_9 = 31'h0;
   assign MMUPlugin_PGD = (ExceptionHandlerPlugin_BADV_VADDR[31] ? MMUPlugin_PGDH_BASE : MMUPlugin_PDGL_BASE);
   always @(*) begin
     IntExecutePlugin_rrdRsp_0 = ((IntExecutePlugin_rrdReq_0 == 6'h0) ? 32'h0 : _zz_IntExecutePlugin_rrdRsp_0_9);
@@ -60029,189 +60094,189 @@ module MyCPUCore (
   assign RENAME_CommitPlugin_robIdxs_2 = (ROBFIFOPlugin_robInfo_pushPtr + 5'h02);
   always @(*) begin
     CommitPlugin_ertn = 1'b0;
-    if(when_CommitPlugin_l184) begin
+    if(when_CommitPlugin_l188) begin
       CommitPlugin_ertn = ROBFIFOPlugin_fifoIO_pop_0_payload_info_uop_isErtn;
     end
   end
 
   always @(*) begin
     CommitPlugin_arfCommits_0_valid = 1'b0;
-    if(when_CommitPlugin_l305) begin
+    if(when_CommitPlugin_l309) begin
       CommitPlugin_arfCommits_0_valid = ROBFIFOPlugin_fifoIO_pop_0_payload_info_uop_doRegWrite;
     end
   end
 
   always @(*) begin
     CommitPlugin_arfCommits_0_payload_addr = 5'bxxxxx;
-    if(when_CommitPlugin_l305) begin
+    if(when_CommitPlugin_l309) begin
       CommitPlugin_arfCommits_0_payload_addr = ROBFIFOPlugin_fifoIO_pop_0_payload_info_uop_wbAddr;
     end
   end
 
   always @(*) begin
     CommitPlugin_arfCommits_0_payload_prevAddr = 6'bxxxxxx;
-    if(when_CommitPlugin_l305) begin
+    if(when_CommitPlugin_l309) begin
       CommitPlugin_arfCommits_0_payload_prevAddr = ROBFIFOPlugin_fifoIO_pop_0_payload_info_rename_wPrevReg;
     end
   end
 
   always @(*) begin
     CommitPlugin_arfCommits_0_payload_prfAddr = 6'bxxxxxx;
-    if(when_CommitPlugin_l305) begin
+    if(when_CommitPlugin_l309) begin
       CommitPlugin_arfCommits_0_payload_prfAddr = ROBFIFOPlugin_fifoIO_pop_0_payload_info_rename_wReg;
     end
   end
 
   always @(*) begin
     CommitPlugin_arfCommits_1_valid = 1'b0;
-    if(when_CommitPlugin_l305_1) begin
+    if(when_CommitPlugin_l309_1) begin
       CommitPlugin_arfCommits_1_valid = ROBFIFOPlugin_fifoIO_pop_1_payload_info_uop_doRegWrite;
     end
   end
 
   always @(*) begin
     CommitPlugin_arfCommits_1_payload_addr = 5'bxxxxx;
-    if(when_CommitPlugin_l305_1) begin
+    if(when_CommitPlugin_l309_1) begin
       CommitPlugin_arfCommits_1_payload_addr = ROBFIFOPlugin_fifoIO_pop_1_payload_info_uop_wbAddr;
     end
   end
 
   always @(*) begin
     CommitPlugin_arfCommits_1_payload_prevAddr = 6'bxxxxxx;
-    if(when_CommitPlugin_l305_1) begin
+    if(when_CommitPlugin_l309_1) begin
       CommitPlugin_arfCommits_1_payload_prevAddr = ROBFIFOPlugin_fifoIO_pop_1_payload_info_rename_wPrevReg;
     end
   end
 
   always @(*) begin
     CommitPlugin_arfCommits_1_payload_prfAddr = 6'bxxxxxx;
-    if(when_CommitPlugin_l305_1) begin
+    if(when_CommitPlugin_l309_1) begin
       CommitPlugin_arfCommits_1_payload_prfAddr = ROBFIFOPlugin_fifoIO_pop_1_payload_info_rename_wReg;
     end
   end
 
   always @(*) begin
     CommitPlugin_arfCommits_2_valid = 1'b0;
-    if(when_CommitPlugin_l305_2) begin
+    if(when_CommitPlugin_l309_2) begin
       CommitPlugin_arfCommits_2_valid = ROBFIFOPlugin_fifoIO_pop_2_payload_info_uop_doRegWrite;
     end
   end
 
   always @(*) begin
     CommitPlugin_arfCommits_2_payload_addr = 5'bxxxxx;
-    if(when_CommitPlugin_l305_2) begin
+    if(when_CommitPlugin_l309_2) begin
       CommitPlugin_arfCommits_2_payload_addr = ROBFIFOPlugin_fifoIO_pop_2_payload_info_uop_wbAddr;
     end
   end
 
   always @(*) begin
     CommitPlugin_arfCommits_2_payload_prevAddr = 6'bxxxxxx;
-    if(when_CommitPlugin_l305_2) begin
+    if(when_CommitPlugin_l309_2) begin
       CommitPlugin_arfCommits_2_payload_prevAddr = ROBFIFOPlugin_fifoIO_pop_2_payload_info_rename_wPrevReg;
     end
   end
 
   always @(*) begin
     CommitPlugin_arfCommits_2_payload_prfAddr = 6'bxxxxxx;
-    if(when_CommitPlugin_l305_2) begin
+    if(when_CommitPlugin_l309_2) begin
       CommitPlugin_arfCommits_2_payload_prfAddr = ROBFIFOPlugin_fifoIO_pop_2_payload_info_rename_wReg;
     end
   end
 
   always @(*) begin
     CommitPlugin_predUpdate_valid = 1'b0;
-    if(when_CommitPlugin_l184) begin
+    if(when_CommitPlugin_l188) begin
       CommitPlugin_predUpdate_valid = (ROBFIFOPlugin_fifoIO_pop_0_payload_info_uop_branchLike || ROBFIFOPlugin_fifoIO_pop_0_payload_info_uop_predInfo_predictBranch);
     end
   end
 
   always @(*) begin
     CommitPlugin_predUpdate_payload_predInfo_predictBranch = 1'bx;
-    if(when_CommitPlugin_l184) begin
+    if(when_CommitPlugin_l188) begin
       CommitPlugin_predUpdate_payload_predInfo_predictBranch = ROBFIFOPlugin_fifoIO_pop_0_payload_info_uop_predInfo_predictBranch;
     end
   end
 
   always @(*) begin
     CommitPlugin_predUpdate_payload_predInfo_predictTaken = 1'bx;
-    if(when_CommitPlugin_l184) begin
+    if(when_CommitPlugin_l188) begin
       CommitPlugin_predUpdate_payload_predInfo_predictTaken = ROBFIFOPlugin_fifoIO_pop_0_payload_info_uop_predInfo_predictTaken;
     end
   end
 
   always @(*) begin
     CommitPlugin_predUpdate_payload_predRecover_recoverTop = 3'bxxx;
-    if(when_CommitPlugin_l184) begin
+    if(when_CommitPlugin_l188) begin
       CommitPlugin_predUpdate_payload_predRecover_recoverTop = ROBFIFOPlugin_fifoIO_pop_0_payload_info_uop_predRecover_recoverTop;
     end
   end
 
   always @(*) begin
     CommitPlugin_predUpdate_payload_predRecover_predictCounter = 2'bxx;
-    if(when_CommitPlugin_l184) begin
+    if(when_CommitPlugin_l188) begin
       CommitPlugin_predUpdate_payload_predRecover_predictCounter = ROBFIFOPlugin_fifoIO_pop_0_payload_info_uop_predRecover_predictCounter;
     end
   end
 
   always @(*) begin
     CommitPlugin_predUpdate_payload_predRecover_ghr = 5'bxxxxx;
-    if(when_CommitPlugin_l184) begin
+    if(when_CommitPlugin_l188) begin
       CommitPlugin_predUpdate_payload_predRecover_ghr = ROBFIFOPlugin_fifoIO_pop_0_payload_info_uop_predRecover_ghr;
     end
   end
 
   always @(*) begin
     CommitPlugin_predUpdate_payload_branchLike = 1'bx;
-    if(when_CommitPlugin_l184) begin
+    if(when_CommitPlugin_l188) begin
       CommitPlugin_predUpdate_payload_branchLike = ((ROBFIFOPlugin_fifoIO_pop_0_payload_info_uop_isBranch || ROBFIFOPlugin_fifoIO_pop_0_payload_info_uop_isJump) || ROBFIFOPlugin_fifoIO_pop_0_payload_info_uop_isJR);
     end
   end
 
   always @(*) begin
     CommitPlugin_predUpdate_payload_isTaken = 1'bx;
-    if(when_CommitPlugin_l184) begin
+    if(when_CommitPlugin_l188) begin
       CommitPlugin_predUpdate_payload_isTaken = (((ROBFIFOPlugin_fifoIO_pop_0_payload_state_mispredict ^ ROBFIFOPlugin_fifoIO_pop_0_payload_info_uop_predInfo_predictTaken) || ROBFIFOPlugin_fifoIO_pop_0_payload_info_uop_isJump) || ROBFIFOPlugin_fifoIO_pop_0_payload_info_uop_isJR);
     end
   end
 
   always @(*) begin
     CommitPlugin_predUpdate_payload_isRet = 1'bx;
-    if(when_CommitPlugin_l184) begin
+    if(when_CommitPlugin_l188) begin
       CommitPlugin_predUpdate_payload_isRet = (32'h4c000020 == ROBFIFOPlugin_fifoIO_pop_0_payload_info_uop_inst);
     end
   end
 
   always @(*) begin
     CommitPlugin_predUpdate_payload_isCall = 1'bx;
-    if(when_CommitPlugin_l184) begin
+    if(when_CommitPlugin_l188) begin
       CommitPlugin_predUpdate_payload_isCall = ((ROBFIFOPlugin_fifoIO_pop_0_payload_info_uop_isJR && (ROBFIFOPlugin_fifoIO_pop_0_payload_info_uop_inst[4 : 0] == 5'h01)) || (ROBFIFOPlugin_fifoIO_pop_0_payload_info_uop_isJump && ROBFIFOPlugin_fifoIO_pop_0_payload_info_uop_inst[26]));
     end
   end
 
   always @(*) begin
     CommitPlugin_predUpdate_payload_mispredict = 1'bx;
-    if(when_CommitPlugin_l184) begin
+    if(when_CommitPlugin_l188) begin
       CommitPlugin_predUpdate_payload_mispredict = ROBFIFOPlugin_fifoIO_pop_0_payload_state_mispredict;
     end
   end
 
   always @(*) begin
     CommitPlugin_predUpdate_payload_pc = 32'bxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx;
-    if(when_CommitPlugin_l184) begin
+    if(when_CommitPlugin_l188) begin
       CommitPlugin_predUpdate_payload_pc = ROBFIFOPlugin_fifoIO_pop_0_payload_info_uop_pc;
     end
   end
 
   always @(*) begin
     CommitPlugin_predUpdate_payload_target = 32'bxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx;
-    if(when_CommitPlugin_l184) begin
+    if(when_CommitPlugin_l188) begin
       CommitPlugin_predUpdate_payload_target = ROBFIFOPlugin_fifoIO_pop_0_payload_state_intResult;
     end
   end
 
   always @(*) begin
     CommitPlugin_commitStore = 1'b0;
-    if(when_CommitPlugin_l184) begin
+    if(when_CommitPlugin_l188) begin
       CommitPlugin_commitStore = ROBFIFOPlugin_fifoIO_pop_0_payload_info_uop_isStore;
       if(ROBFIFOPlugin_fifoIO_pop_0_payload_info_uop_isSC) begin
         if(!ExceptionHandlerPlugin_LLBCTL_LLBIT) begin
@@ -60223,7 +60288,7 @@ module MyCPUCore (
       CommitPlugin_port0Commit_uncachedProcess_fsm_enumDef_execute : begin
       end
       default : begin
-        if(when_CommitPlugin_l275) begin
+        if(when_CommitPlugin_l279) begin
           CommitPlugin_commitStore = 1'b1;
         end
       end
@@ -60232,14 +60297,14 @@ module MyCPUCore (
 
   always @(*) begin
     CommitPlugin_doWait = 1'b0;
-    if(when_CommitPlugin_l184) begin
+    if(when_CommitPlugin_l188) begin
       CommitPlugin_doWait = ROBFIFOPlugin_fifoIO_pop_0_payload_info_uop_isWait;
     end
   end
 
   always @(*) begin
     CommitPlugin_CSRWrite_valid = 1'b0;
-    if(when_CommitPlugin_l184) begin
+    if(when_CommitPlugin_l188) begin
       if(ROBFIFOPlugin_fifoIO_pop_0_payload_info_uop_writeCSR) begin
         CommitPlugin_CSRWrite_valid = 1'b1;
       end
@@ -60248,7 +60313,7 @@ module MyCPUCore (
 
   always @(*) begin
     CommitPlugin_CSRWrite_payload_addr = 14'bxxxxxxxxxxxxxx;
-    if(when_CommitPlugin_l184) begin
+    if(when_CommitPlugin_l188) begin
       if(ROBFIFOPlugin_fifoIO_pop_0_payload_info_uop_writeCSR) begin
         CommitPlugin_CSRWrite_payload_addr = ROBFIFOPlugin_fifoIO_pop_0_payload_info_uop_inst[23 : 10];
       end
@@ -60257,7 +60322,7 @@ module MyCPUCore (
 
   always @(*) begin
     CommitPlugin_CSRWrite_payload_data = 32'bxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx;
-    if(when_CommitPlugin_l184) begin
+    if(when_CommitPlugin_l188) begin
       if(ROBFIFOPlugin_fifoIO_pop_0_payload_info_uop_writeCSR) begin
         CommitPlugin_CSRWrite_payload_data = ROBFIFOPlugin_fifoIO_pop_0_payload_state_intResult;
       end
@@ -60266,49 +60331,49 @@ module MyCPUCore (
 
   always @(*) begin
     CommitPlugin_tlbOp = TLBOpType_NONE;
-    if(when_CommitPlugin_l184) begin
+    if(when_CommitPlugin_l188) begin
       CommitPlugin_tlbOp = ROBFIFOPlugin_fifoIO_pop_0_payload_info_uop_tlbOp;
     end
   end
 
   always @(*) begin
     CommitPlugin_tlbInvASID = 10'h0;
-    if(when_CommitPlugin_l184) begin
+    if(when_CommitPlugin_l188) begin
       CommitPlugin_tlbInvASID = ROBFIFOPlugin_fifoIO_pop_0_payload_state_intResult[9 : 0];
     end
   end
 
   always @(*) begin
     CommitPlugin_tlbInvVPPN = 19'h0;
-    if(when_CommitPlugin_l184) begin
+    if(when_CommitPlugin_l188) begin
       CommitPlugin_tlbInvVPPN = ROBFIFOPlugin_fifoIO_pop_0_payload_state_intResult[28 : 10];
     end
   end
 
   always @(*) begin
     CommitPlugin_cacheOp_valid = 1'b0;
-    if(when_CommitPlugin_l184) begin
+    if(when_CommitPlugin_l188) begin
       CommitPlugin_cacheOp_valid = ROBFIFOPlugin_fifoIO_pop_0_payload_info_uop_operateCache;
     end
   end
 
   always @(*) begin
     CommitPlugin_cacheOp_payload_addr = 32'bxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx;
-    if(when_CommitPlugin_l184) begin
+    if(when_CommitPlugin_l188) begin
       CommitPlugin_cacheOp_payload_addr = ROBFIFOPlugin_fifoIO_pop_0_payload_state_except_payload_badVA;
     end
   end
 
   always @(*) begin
     CommitPlugin_cacheOp_payload_sel = (2'bxx);
-    if(when_CommitPlugin_l184) begin
+    if(when_CommitPlugin_l188) begin
       CommitPlugin_cacheOp_payload_sel = _zz_CommitPlugin_cacheOp_payload_sel;
     end
   end
 
   always @(*) begin
     CommitPlugin_cacheOp_payload_op = (2'bxx);
-    if(when_CommitPlugin_l184) begin
+    if(when_CommitPlugin_l188) begin
       CommitPlugin_cacheOp_payload_op = _zz_CommitPlugin_cacheOp_payload_op;
     end
   end
@@ -60349,13 +60414,14 @@ module MyCPUCore (
   assign CommitPlugin_hasExcept = (ROBFIFOPlugin_fifoIO_pop_0_payload_state_except_valid || (InterruptHandlerPlugin_intPending && (! CommitPlugin_port0Commit_intInhibit)));
   assign CommitPlugin_linearRecover = (ROBFIFOPlugin_fifoIO_pop_0_payload_info_uop_flushState || ((! ROBFIFOPlugin_fifoIO_pop_0_payload_info_uop_branchLike) && ROBFIFOPlugin_fifoIO_pop_0_payload_state_mispredict));
   assign CommitPlugin_port0Commit_recoverState = (CommitPlugin_port0Commit_fire && ((CommitPlugin_hasExcept || ROBFIFOPlugin_fifoIO_pop_0_payload_state_mispredict) || CommitPlugin_linearRecover));
+  assign when_CommitPlugin_l164 = (((CommitPlugin_port0Commit_fire && ((CommitPlugin_hasExcept || ROBFIFOPlugin_fifoIO_pop_0_payload_state_mispredict) || CommitPlugin_linearRecover)) && (20'h2bf88 <= ROBFIFOPlugin_fifoIO_pop_0_payload_info_uop_pc[19 : 0])) && (ROBFIFOPlugin_fifoIO_pop_0_payload_info_uop_pc[19 : 0] <= 20'h2bf90));
   assign CommitPlugin_needFlush = CommitPlugin_port0Commit_recoverState;
   assign ROBFIFOPlugin_fifoIO_flush = CommitPlugin_needFlush;
   assign CommitPlugin_recoverPRF = CommitPlugin_regFlush;
   always @(*) begin
     CommitPlugin_port0Commit_jumpTarget = 32'h0;
-    if(when_CommitPlugin_l184) begin
-      if(when_CommitPlugin_l238) begin
+    if(when_CommitPlugin_l188) begin
+      if(when_CommitPlugin_l242) begin
         CommitPlugin_port0Commit_jumpTarget = ROBFIFOPlugin_fifoIO_pop_0_payload_state_intResult;
       end else begin
         CommitPlugin_port0Commit_jumpTarget = (ROBFIFOPlugin_fifoIO_pop_0_payload_state_actualTaken ? ROBFIFOPlugin_fifoIO_pop_0_payload_state_intResult : _zz_CommitPlugin_port0Commit_jumpTarget);
@@ -60375,12 +60441,12 @@ module MyCPUCore (
 
   assign CommitPlugin_except_payload_isTLBRefill = ROBFIFOPlugin_fifoIO_pop_0_payload_state_except_payload_isTLBRefill;
   assign CommitPlugin_epc = ROBFIFOPlugin_fifoIO_pop_0_payload_info_uop_pc;
-  assign when_CommitPlugin_l184 = (CommitPlugin_port0Commit_fire && (! CommitPlugin_hasExcept));
+  assign when_CommitPlugin_l188 = (CommitPlugin_port0Commit_fire && (! CommitPlugin_hasExcept));
   assign _zz_CommitPlugin_cacheOp_payload_op = ROBFIFOPlugin_fifoIO_pop_0_payload_state_intResult[1 : 0];
   assign _zz_CommitPlugin_cacheOp_payload_sel = ROBFIFOPlugin_fifoIO_pop_0_payload_state_intResult[3 : 2];
-  assign when_CommitPlugin_l238 = (ROBFIFOPlugin_fifoIO_pop_0_payload_info_uop_isJump || ROBFIFOPlugin_fifoIO_pop_0_payload_info_uop_isJR);
-  assign when_CommitPlugin_l248 = (CommitPlugin_linearRecover && (! ROBFIFOPlugin_fifoIO_pop_0_payload_info_uop_isErtn));
-  assign when_CommitPlugin_l255 = (ROBFIFOPlugin_fifoIO_pop_0_payload_state_mispredict && ROBFIFOPlugin_fifoIO_pop_0_payload_info_uop_branchLike);
+  assign when_CommitPlugin_l242 = (ROBFIFOPlugin_fifoIO_pop_0_payload_info_uop_isJump || ROBFIFOPlugin_fifoIO_pop_0_payload_info_uop_isJR);
+  assign when_CommitPlugin_l252 = (CommitPlugin_linearRecover && (! ROBFIFOPlugin_fifoIO_pop_0_payload_info_uop_isErtn));
+  assign when_CommitPlugin_l259 = (ROBFIFOPlugin_fifoIO_pop_0_payload_state_mispredict && ROBFIFOPlugin_fifoIO_pop_0_payload_info_uop_branchLike);
   assign CommitPlugin_port0Commit_uncachedProcess_isUncachedUOP = (ROBFIFOPlugin_fifoIO_pop_0_payload_info_uop_isLoad && ROBFIFOPlugin_fifoIO_pop_0_payload_state_lsuUncached);
   assign CommitPlugin_port0Commit_uncachedProcess_fsm_wantExit = 1'b0;
   assign CommitPlugin_port0Commit_uncachedProcess_fsm_wantStart = 1'b0;
@@ -60390,12 +60456,12 @@ module MyCPUCore (
     case(CommitPlugin_port0Commit_uncachedProcess_fsm_stateReg)
       CommitPlugin_port0Commit_uncachedProcess_fsm_enumDef_execute : begin
         CommitPlugin_uncachedMask = 3'b000;
-        if(when_CommitPlugin_l290) begin
+        if(when_CommitPlugin_l294) begin
           CommitPlugin_uncachedMask = 3'b111;
         end
       end
       default : begin
-        if(when_CommitPlugin_l275) begin
+        if(when_CommitPlugin_l279) begin
           CommitPlugin_uncachedMask = 3'b000;
         end
       end
@@ -60404,13 +60470,13 @@ module MyCPUCore (
 
   assign ROBFIFOPlugin_fifoIO_pop_0_ready = CommitPlugin_readyMask[0];
   assign ROBFIFOPlugin_fifoIO_pop_0_fire = (ROBFIFOPlugin_fifoIO_pop_0_valid && ROBFIFOPlugin_fifoIO_pop_0_ready);
-  assign when_CommitPlugin_l305 = (ROBFIFOPlugin_fifoIO_pop_0_fire && (! CommitPlugin_hasExcept));
+  assign when_CommitPlugin_l309 = (ROBFIFOPlugin_fifoIO_pop_0_fire && (! CommitPlugin_hasExcept));
   assign ROBFIFOPlugin_fifoIO_pop_1_ready = CommitPlugin_readyMask[1];
   assign ROBFIFOPlugin_fifoIO_pop_1_fire = (ROBFIFOPlugin_fifoIO_pop_1_valid && ROBFIFOPlugin_fifoIO_pop_1_ready);
-  assign when_CommitPlugin_l305_1 = (ROBFIFOPlugin_fifoIO_pop_1_fire && (! CommitPlugin_hasExcept));
+  assign when_CommitPlugin_l309_1 = (ROBFIFOPlugin_fifoIO_pop_1_fire && (! CommitPlugin_hasExcept));
   assign ROBFIFOPlugin_fifoIO_pop_2_ready = CommitPlugin_readyMask[2];
   assign ROBFIFOPlugin_fifoIO_pop_2_fire = (ROBFIFOPlugin_fifoIO_pop_2_valid && ROBFIFOPlugin_fifoIO_pop_2_ready);
-  assign when_CommitPlugin_l305_2 = (ROBFIFOPlugin_fifoIO_pop_2_fire && (! CommitPlugin_hasExcept));
+  assign when_CommitPlugin_l309_2 = (ROBFIFOPlugin_fifoIO_pop_2_fire && (! CommitPlugin_hasExcept));
   assign _zz_IntExecutePlugin_bypassRsp_0_payload = (IntExecutePlugin_wPort_valid_1 && (IntExecutePlugin_wPort_payload_addr_1 == IntExecutePlugin_bypassReq_0));
   assign _zz_IntExecutePlugin_bypassRsp_0_payload_1 = (IntExecutePlugin_wPort_valid_2 && (IntExecutePlugin_wPort_payload_addr_2 == IntExecutePlugin_bypassReq_0));
   assign when_BypassNetworkPlugin_l36 = ({_zz_IntExecutePlugin_bypassRsp_0_payload_1,{_zz_IntExecutePlugin_bypassRsp_0_payload,(IntExecutePlugin_wPort_valid && (IntExecutePlugin_wPort_payload_addr == IntExecutePlugin_bypassReq_0))}} != 3'b000);
@@ -62109,16 +62175,20 @@ module MyCPUCore (
   assign Timer64Plugin_lowBits = Timer64Plugin_timer64[31 : 0];
   always @(*) begin
     ExceptionHandlerPlugin_eentry = ExceptionHandlerPlugin_EENTRY_PC;
-    if(when_ExceptionHandlerPlugin_l161) begin
+    if(when_ExceptionHandlerPlugin_l163) begin
+      ExceptionHandlerPlugin_eentry = (ExceptionHandlerPlugin_EENTRY_PC + _zz_ExceptionHandlerPlugin_eentry);
+    end
+    if(when_ExceptionHandlerPlugin_l167) begin
       ExceptionHandlerPlugin_eentry = {MMUPlugin_TLBRENTRY_PA,6'h0};
     end
   end
 
-  assign when_ExceptionHandlerPlugin_l161 = ((! InterruptHandlerPlugin_intPending) && CommitPlugin_except_payload_isTLBRefill);
-  assign when_ExceptionHandlerPlugin_l202 = ({((CommitPlugin_except_payload_code == 6'h07) && (CommitPlugin_except_payload_subcode == 9'h0)),{((CommitPlugin_except_payload_code == 6'h04) && (CommitPlugin_except_payload_subcode == 9'h0)),{((CommitPlugin_except_payload_code == _zz_when_ExceptionHandlerPlugin_l202) && (CommitPlugin_except_payload_subcode == _zz_when_ExceptionHandlerPlugin_l202_1)),{(_zz_when_ExceptionHandlerPlugin_l202_2 && _zz_when_ExceptionHandlerPlugin_l202_3),{_zz_when_ExceptionHandlerPlugin_l202_4,{_zz_when_ExceptionHandlerPlugin_l202_5,_zz_when_ExceptionHandlerPlugin_l202_6}}}}}} != 9'h0);
-  assign when_ExceptionHandlerPlugin_l222 = ({((CommitPlugin_except_payload_code == 6'h07) && (CommitPlugin_except_payload_subcode == 9'h0)),{((CommitPlugin_except_payload_code == 6'h04) && (CommitPlugin_except_payload_subcode == 9'h0)),{((CommitPlugin_except_payload_code == _zz_when_ExceptionHandlerPlugin_l222) && (CommitPlugin_except_payload_subcode == _zz_when_ExceptionHandlerPlugin_l222_1)),{(_zz_when_ExceptionHandlerPlugin_l222_2 && _zz_when_ExceptionHandlerPlugin_l222_3),{_zz_when_ExceptionHandlerPlugin_l222_4,{_zz_when_ExceptionHandlerPlugin_l222_5,_zz_when_ExceptionHandlerPlugin_l222_6}}}}}} != 9'h0);
-  assign when_ExceptionHandlerPlugin_l248 = (ExceptionHandlerPlugin_ESTAT_ECODE == 6'h3f);
-  assign _zz_CSRPlugin_readDataInit_9 = 1'b0;
+  assign when_ExceptionHandlerPlugin_l163 = ((! InterruptHandlerPlugin_intPending) && (! CommitPlugin_except_payload_isTLBRefill));
+  assign when_ExceptionHandlerPlugin_l167 = ((! InterruptHandlerPlugin_intPending) && CommitPlugin_except_payload_isTLBRefill);
+  assign when_ExceptionHandlerPlugin_l173 = (CommitPlugin_ertn && ExceptionHandlerPlugin_tlbrActive);
+  assign when_ExceptionHandlerPlugin_l221 = ({((CommitPlugin_except_payload_code == 6'h07) && (CommitPlugin_except_payload_subcode == 9'h0)),{((CommitPlugin_except_payload_code == 6'h04) && (CommitPlugin_except_payload_subcode == 9'h0)),{((CommitPlugin_except_payload_code == _zz_when_ExceptionHandlerPlugin_l221) && (CommitPlugin_except_payload_subcode == _zz_when_ExceptionHandlerPlugin_l221_1)),{(_zz_when_ExceptionHandlerPlugin_l221_2 && _zz_when_ExceptionHandlerPlugin_l221_3),{_zz_when_ExceptionHandlerPlugin_l221_4,{_zz_when_ExceptionHandlerPlugin_l221_5,_zz_when_ExceptionHandlerPlugin_l221_6}}}}}} != 9'h0);
+  assign when_ExceptionHandlerPlugin_l241 = ({((CommitPlugin_except_payload_code == 6'h01) && (CommitPlugin_except_payload_subcode == 9'h0)),{((CommitPlugin_except_payload_code == 6'h02) && (CommitPlugin_except_payload_subcode == 9'h0)),{((CommitPlugin_except_payload_code == _zz_when_ExceptionHandlerPlugin_l241) && (CommitPlugin_except_payload_subcode == _zz_when_ExceptionHandlerPlugin_l241_1)),{(_zz_when_ExceptionHandlerPlugin_l241_2 && _zz_when_ExceptionHandlerPlugin_l241_3),{_zz_when_ExceptionHandlerPlugin_l241_4,_zz_when_ExceptionHandlerPlugin_l241_5}}}}} != 6'h0);
+  assign _zz_CSRPlugin_readDataInit_10 = 1'b0;
   assign _zz_1629 = zz__zz_when_InterruptHandlerPlugin_l93(1'b0);
   always @(*) _zz_when_InterruptHandlerPlugin_l93 = _zz_1629;
   assign _zz_when_InterruptHandlerPlugin_l93_1 = 1'b1;
@@ -62161,9 +62231,9 @@ module MyCPUCore (
   always @(*) begin
     _zz_CSRPlugin_DifftestCSRRegStateECFG = 64'h0;
     _zz_CSRPlugin_DifftestCSRRegStateECFG[9 : 0] = ExceptionHandlerPlugin_ECFG_LIE_0;
-    _zz_CSRPlugin_DifftestCSRRegStateECFG[10 : 10] = ExceptionHandlerPlugin_ECFG_LIE_10;
     _zz_CSRPlugin_DifftestCSRRegStateECFG[12 : 11] = ExceptionHandlerPlugin_ECFG_LIE_11;
-    _zz_CSRPlugin_DifftestCSRRegStateECFG[31 : 13] = _zz_CSRPlugin_readDataInit_3;
+    _zz_CSRPlugin_DifftestCSRRegStateECFG[10 : 10] = _zz_CSRPlugin_readDataInit_3;
+    _zz_CSRPlugin_DifftestCSRRegStateECFG[31 : 13] = _zz_CSRPlugin_readDataInit_4;
   end
 
   assign CSRPlugin_DifftestCSRRegStateECFG = _zz_CSRPlugin_DifftestCSRRegStateECFG;
@@ -62175,9 +62245,9 @@ module MyCPUCore (
     _zz_CSRPlugin_DifftestCSRRegStateESTAT[12 : 12] = ExceptionHandlerPlugin_ESTAT_IS_12;
     _zz_CSRPlugin_DifftestCSRRegStateESTAT[21 : 16] = ExceptionHandlerPlugin_ESTAT_ECODE;
     _zz_CSRPlugin_DifftestCSRRegStateESTAT[30 : 22] = ExceptionHandlerPlugin_ESTAT_ESUBCODE;
-    _zz_CSRPlugin_DifftestCSRRegStateESTAT[10 : 10] = _zz_CSRPlugin_readDataInit_4;
-    _zz_CSRPlugin_DifftestCSRRegStateESTAT[15 : 13] = _zz_CSRPlugin_readDataInit_5;
-    _zz_CSRPlugin_DifftestCSRRegStateESTAT[31 : 31] = _zz_CSRPlugin_readDataInit_6;
+    _zz_CSRPlugin_DifftestCSRRegStateESTAT[10 : 10] = _zz_CSRPlugin_readDataInit_5;
+    _zz_CSRPlugin_DifftestCSRRegStateESTAT[15 : 13] = _zz_CSRPlugin_readDataInit_6;
+    _zz_CSRPlugin_DifftestCSRRegStateESTAT[31 : 31] = _zz_CSRPlugin_readDataInit_7;
   end
 
   assign CSRPlugin_DifftestCSRRegStateESTAT = _zz_CSRPlugin_DifftestCSRRegStateESTAT;
@@ -62196,7 +62266,7 @@ module MyCPUCore (
   always @(*) begin
     _zz_CSRPlugin_DifftestCSRRegStateEENTRY = 64'h0;
     _zz_CSRPlugin_DifftestCSRRegStateEENTRY[31 : 6] = ExceptionHandlerPlugin_EENTRY_VA;
-    _zz_CSRPlugin_DifftestCSRRegStateEENTRY[5 : 0] = _zz_CSRPlugin_readDataInit_7;
+    _zz_CSRPlugin_DifftestCSRRegStateEENTRY[5 : 0] = _zz_CSRPlugin_readDataInit_8;
   end
 
   assign CSRPlugin_DifftestCSRRegStateEENTRY = _zz_CSRPlugin_DifftestCSRRegStateEENTRY;
@@ -62301,8 +62371,8 @@ module MyCPUCore (
   assign CSRPlugin_DifftestCSRRegStateTVAL = _zz_CSRPlugin_DifftestCSRRegStateTVAL;
   always @(*) begin
     _zz_CSRPlugin_DifftestCSRRegStateTICLR = 64'h0;
-    _zz_CSRPlugin_DifftestCSRRegStateTICLR[31 : 1] = _zz_CSRPlugin_readDataInit_8;
-    _zz_CSRPlugin_DifftestCSRRegStateTICLR[0 : 0] = _zz_CSRPlugin_readDataInit_9;
+    _zz_CSRPlugin_DifftestCSRRegStateTICLR[31 : 1] = _zz_CSRPlugin_readDataInit_9;
+    _zz_CSRPlugin_DifftestCSRRegStateTICLR[0 : 0] = _zz_CSRPlugin_readDataInit_10;
   end
 
   assign CSRPlugin_DifftestCSRRegStateTICLR = _zz_CSRPlugin_DifftestCSRRegStateTICLR;
@@ -62339,26 +62409,40 @@ module MyCPUCore (
   end
 
   assign CSRPlugin_DifftestCSRRegStateDMW1 = _zz_CSRPlugin_DifftestCSRRegStateDMW1;
-  assign _zz_when_MMUPlugin_l412 = ((MMUPlugin_TLBTable_1_E && ((MMUPlugin_TLBTable_1_ASID == MMUPlugin_ASID_ASID) || MMUPlugin_TLBTable_1_G)) && ((MMUPlugin_TLBTable_1_PS == 6'h0c) ? (MMUPlugin_TLBTable_1_VPPN == MMUPlugin_TLBEHI_VPPN) : (MMUPlugin_TLBTable_1_VPPN[18 : 9] == MMUPlugin_TLBEHI_VPPN[18 : 9])));
-  assign _zz_when_MMUPlugin_l412_1 = ((MMUPlugin_TLBTable_2_E && ((MMUPlugin_TLBTable_2_ASID == MMUPlugin_ASID_ASID) || MMUPlugin_TLBTable_2_G)) && ((MMUPlugin_TLBTable_2_PS == 6'h0c) ? (MMUPlugin_TLBTable_2_VPPN == MMUPlugin_TLBEHI_VPPN) : (MMUPlugin_TLBTable_2_VPPN[18 : 9] == MMUPlugin_TLBEHI_VPPN[18 : 9])));
-  assign _zz_when_MMUPlugin_l412_2 = ((MMUPlugin_TLBTable_3_E && ((MMUPlugin_TLBTable_3_ASID == MMUPlugin_ASID_ASID) || MMUPlugin_TLBTable_3_G)) && ((MMUPlugin_TLBTable_3_PS == 6'h0c) ? (MMUPlugin_TLBTable_3_VPPN == MMUPlugin_TLBEHI_VPPN) : (MMUPlugin_TLBTable_3_VPPN[18 : 9] == MMUPlugin_TLBEHI_VPPN[18 : 9])));
-  assign _zz_when_MMUPlugin_l412_3 = ((MMUPlugin_TLBTable_4_E && ((MMUPlugin_TLBTable_4_ASID == MMUPlugin_ASID_ASID) || MMUPlugin_TLBTable_4_G)) && ((MMUPlugin_TLBTable_4_PS == 6'h0c) ? (MMUPlugin_TLBTable_4_VPPN == MMUPlugin_TLBEHI_VPPN) : (MMUPlugin_TLBTable_4_VPPN[18 : 9] == MMUPlugin_TLBEHI_VPPN[18 : 9])));
-  assign _zz_when_MMUPlugin_l412_4 = ((MMUPlugin_TLBTable_5_E && ((MMUPlugin_TLBTable_5_ASID == MMUPlugin_ASID_ASID) || MMUPlugin_TLBTable_5_G)) && ((MMUPlugin_TLBTable_5_PS == 6'h0c) ? (MMUPlugin_TLBTable_5_VPPN == MMUPlugin_TLBEHI_VPPN) : (MMUPlugin_TLBTable_5_VPPN[18 : 9] == MMUPlugin_TLBEHI_VPPN[18 : 9])));
-  assign _zz_when_MMUPlugin_l412_5 = ((MMUPlugin_TLBTable_6_E && ((MMUPlugin_TLBTable_6_ASID == MMUPlugin_ASID_ASID) || MMUPlugin_TLBTable_6_G)) && ((MMUPlugin_TLBTable_6_PS == 6'h0c) ? (MMUPlugin_TLBTable_6_VPPN == MMUPlugin_TLBEHI_VPPN) : (MMUPlugin_TLBTable_6_VPPN[18 : 9] == MMUPlugin_TLBEHI_VPPN[18 : 9])));
-  assign _zz_when_MMUPlugin_l412_6 = ((MMUPlugin_TLBTable_7_E && ((MMUPlugin_TLBTable_7_ASID == MMUPlugin_ASID_ASID) || MMUPlugin_TLBTable_7_G)) && ((MMUPlugin_TLBTable_7_PS == 6'h0c) ? (MMUPlugin_TLBTable_7_VPPN == MMUPlugin_TLBEHI_VPPN) : (MMUPlugin_TLBTable_7_VPPN[18 : 9] == MMUPlugin_TLBEHI_VPPN[18 : 9])));
-  assign _zz_when_MMUPlugin_l412_7 = ((MMUPlugin_TLBTable_8_E && ((MMUPlugin_TLBTable_8_ASID == MMUPlugin_ASID_ASID) || MMUPlugin_TLBTable_8_G)) && ((MMUPlugin_TLBTable_8_PS == 6'h0c) ? (MMUPlugin_TLBTable_8_VPPN == MMUPlugin_TLBEHI_VPPN) : (MMUPlugin_TLBTable_8_VPPN[18 : 9] == MMUPlugin_TLBEHI_VPPN[18 : 9])));
-  assign _zz_when_MMUPlugin_l412_8 = ((MMUPlugin_TLBTable_9_E && ((MMUPlugin_TLBTable_9_ASID == MMUPlugin_ASID_ASID) || MMUPlugin_TLBTable_9_G)) && ((MMUPlugin_TLBTable_9_PS == 6'h0c) ? (MMUPlugin_TLBTable_9_VPPN == MMUPlugin_TLBEHI_VPPN) : (MMUPlugin_TLBTable_9_VPPN[18 : 9] == MMUPlugin_TLBEHI_VPPN[18 : 9])));
-  assign _zz_when_MMUPlugin_l412_9 = ((MMUPlugin_TLBTable_10_E && ((MMUPlugin_TLBTable_10_ASID == MMUPlugin_ASID_ASID) || MMUPlugin_TLBTable_10_G)) && ((MMUPlugin_TLBTable_10_PS == 6'h0c) ? (MMUPlugin_TLBTable_10_VPPN == MMUPlugin_TLBEHI_VPPN) : (MMUPlugin_TLBTable_10_VPPN[18 : 9] == MMUPlugin_TLBEHI_VPPN[18 : 9])));
-  assign _zz_when_MMUPlugin_l412_10 = ((MMUPlugin_TLBTable_11_E && ((MMUPlugin_TLBTable_11_ASID == MMUPlugin_ASID_ASID) || MMUPlugin_TLBTable_11_G)) && ((MMUPlugin_TLBTable_11_PS == 6'h0c) ? (MMUPlugin_TLBTable_11_VPPN == MMUPlugin_TLBEHI_VPPN) : (MMUPlugin_TLBTable_11_VPPN[18 : 9] == MMUPlugin_TLBEHI_VPPN[18 : 9])));
-  assign _zz_when_MMUPlugin_l412_11 = ((MMUPlugin_TLBTable_12_E && ((MMUPlugin_TLBTable_12_ASID == MMUPlugin_ASID_ASID) || MMUPlugin_TLBTable_12_G)) && ((MMUPlugin_TLBTable_12_PS == 6'h0c) ? (MMUPlugin_TLBTable_12_VPPN == MMUPlugin_TLBEHI_VPPN) : (MMUPlugin_TLBTable_12_VPPN[18 : 9] == MMUPlugin_TLBEHI_VPPN[18 : 9])));
-  assign _zz_when_MMUPlugin_l412_12 = ((MMUPlugin_TLBTable_13_E && ((MMUPlugin_TLBTable_13_ASID == MMUPlugin_ASID_ASID) || MMUPlugin_TLBTable_13_G)) && ((MMUPlugin_TLBTable_13_PS == 6'h0c) ? (MMUPlugin_TLBTable_13_VPPN == MMUPlugin_TLBEHI_VPPN) : (MMUPlugin_TLBTable_13_VPPN[18 : 9] == MMUPlugin_TLBEHI_VPPN[18 : 9])));
-  assign _zz_when_MMUPlugin_l412_13 = ((MMUPlugin_TLBTable_14_E && ((MMUPlugin_TLBTable_14_ASID == MMUPlugin_ASID_ASID) || MMUPlugin_TLBTable_14_G)) && ((MMUPlugin_TLBTable_14_PS == 6'h0c) ? (MMUPlugin_TLBTable_14_VPPN == MMUPlugin_TLBEHI_VPPN) : (MMUPlugin_TLBTable_14_VPPN[18 : 9] == MMUPlugin_TLBEHI_VPPN[18 : 9])));
-  assign _zz_when_MMUPlugin_l412_14 = ((MMUPlugin_TLBTable_15_E && ((MMUPlugin_TLBTable_15_ASID == MMUPlugin_ASID_ASID) || MMUPlugin_TLBTable_15_G)) && ((MMUPlugin_TLBTable_15_PS == 6'h0c) ? (MMUPlugin_TLBTable_15_VPPN == MMUPlugin_TLBEHI_VPPN) : (MMUPlugin_TLBTable_15_VPPN[18 : 9] == MMUPlugin_TLBEHI_VPPN[18 : 9])));
-  assign when_MMUPlugin_l412 = ({_zz_when_MMUPlugin_l412_14,{_zz_when_MMUPlugin_l412_13,{_zz_when_MMUPlugin_l412_12,{_zz_when_MMUPlugin_l412_11,{_zz_when_MMUPlugin_l412_10,{_zz_when_MMUPlugin_l412_9,{_zz_when_MMUPlugin_l412_8,{_zz_when_MMUPlugin_l412_7,{_zz_when_MMUPlugin_l412_6,{_zz_when_MMUPlugin_l412_15,_zz_when_MMUPlugin_l412_16}}}}}}}}}} != 16'h0);
-  assign _zz_MMUPlugin_TLBIDX_INDEX = (((((((_zz_when_MMUPlugin_l412 || _zz_when_MMUPlugin_l412_2) || _zz_when_MMUPlugin_l412_4) || _zz_when_MMUPlugin_l412_6) || _zz_when_MMUPlugin_l412_8) || _zz_when_MMUPlugin_l412_10) || _zz_when_MMUPlugin_l412_12) || _zz_when_MMUPlugin_l412_14);
-  assign _zz_MMUPlugin_TLBIDX_INDEX_1 = (((((((_zz_when_MMUPlugin_l412_1 || _zz_when_MMUPlugin_l412_2) || _zz_when_MMUPlugin_l412_5) || _zz_when_MMUPlugin_l412_6) || _zz_when_MMUPlugin_l412_9) || _zz_when_MMUPlugin_l412_10) || _zz_when_MMUPlugin_l412_13) || _zz_when_MMUPlugin_l412_14);
-  assign _zz_MMUPlugin_TLBIDX_INDEX_2 = (((((((_zz_when_MMUPlugin_l412_3 || _zz_when_MMUPlugin_l412_4) || _zz_when_MMUPlugin_l412_5) || _zz_when_MMUPlugin_l412_6) || _zz_when_MMUPlugin_l412_11) || _zz_when_MMUPlugin_l412_12) || _zz_when_MMUPlugin_l412_13) || _zz_when_MMUPlugin_l412_14);
-  assign _zz_MMUPlugin_TLBIDX_INDEX_3 = (((((((_zz_when_MMUPlugin_l412_7 || _zz_when_MMUPlugin_l412_8) || _zz_when_MMUPlugin_l412_9) || _zz_when_MMUPlugin_l412_10) || _zz_when_MMUPlugin_l412_11) || _zz_when_MMUPlugin_l412_12) || _zz_when_MMUPlugin_l412_13) || _zz_when_MMUPlugin_l412_14);
+  assign _zz_when_MMUPlugin_l415 = ((MMUPlugin_TLBTable_0_E && ((MMUPlugin_TLBTable_0_ASID == MMUPlugin_ASID_ASID) || MMUPlugin_TLBTable_0_G)) && ((MMUPlugin_TLBTable_0_PS == 6'h0c) ? (MMUPlugin_TLBTable_0_VPPN == MMUPlugin_TLBEHI_VPPN) : (MMUPlugin_TLBTable_0_VPPN[18 : 9] == MMUPlugin_TLBEHI_VPPN[18 : 9])));
+  assign _zz_when_MMUPlugin_l415_1 = ((MMUPlugin_TLBTable_1_E && ((MMUPlugin_TLBTable_1_ASID == MMUPlugin_ASID_ASID) || MMUPlugin_TLBTable_1_G)) && ((MMUPlugin_TLBTable_1_PS == 6'h0c) ? (MMUPlugin_TLBTable_1_VPPN == MMUPlugin_TLBEHI_VPPN) : (MMUPlugin_TLBTable_1_VPPN[18 : 9] == MMUPlugin_TLBEHI_VPPN[18 : 9])));
+  assign _zz_when_MMUPlugin_l415_2 = ((MMUPlugin_TLBTable_2_E && ((MMUPlugin_TLBTable_2_ASID == MMUPlugin_ASID_ASID) || MMUPlugin_TLBTable_2_G)) && ((MMUPlugin_TLBTable_2_PS == 6'h0c) ? (MMUPlugin_TLBTable_2_VPPN == MMUPlugin_TLBEHI_VPPN) : (MMUPlugin_TLBTable_2_VPPN[18 : 9] == MMUPlugin_TLBEHI_VPPN[18 : 9])));
+  assign _zz_when_MMUPlugin_l415_3 = ((MMUPlugin_TLBTable_3_E && ((MMUPlugin_TLBTable_3_ASID == MMUPlugin_ASID_ASID) || MMUPlugin_TLBTable_3_G)) && ((MMUPlugin_TLBTable_3_PS == 6'h0c) ? (MMUPlugin_TLBTable_3_VPPN == MMUPlugin_TLBEHI_VPPN) : (MMUPlugin_TLBTable_3_VPPN[18 : 9] == MMUPlugin_TLBEHI_VPPN[18 : 9])));
+  assign _zz_when_MMUPlugin_l415_4 = ((MMUPlugin_TLBTable_4_E && ((MMUPlugin_TLBTable_4_ASID == MMUPlugin_ASID_ASID) || MMUPlugin_TLBTable_4_G)) && ((MMUPlugin_TLBTable_4_PS == 6'h0c) ? (MMUPlugin_TLBTable_4_VPPN == MMUPlugin_TLBEHI_VPPN) : (MMUPlugin_TLBTable_4_VPPN[18 : 9] == MMUPlugin_TLBEHI_VPPN[18 : 9])));
+  assign _zz_when_MMUPlugin_l415_5 = ((MMUPlugin_TLBTable_5_E && ((MMUPlugin_TLBTable_5_ASID == MMUPlugin_ASID_ASID) || MMUPlugin_TLBTable_5_G)) && ((MMUPlugin_TLBTable_5_PS == 6'h0c) ? (MMUPlugin_TLBTable_5_VPPN == MMUPlugin_TLBEHI_VPPN) : (MMUPlugin_TLBTable_5_VPPN[18 : 9] == MMUPlugin_TLBEHI_VPPN[18 : 9])));
+  assign _zz_when_MMUPlugin_l415_6 = ((MMUPlugin_TLBTable_6_E && ((MMUPlugin_TLBTable_6_ASID == MMUPlugin_ASID_ASID) || MMUPlugin_TLBTable_6_G)) && ((MMUPlugin_TLBTable_6_PS == 6'h0c) ? (MMUPlugin_TLBTable_6_VPPN == MMUPlugin_TLBEHI_VPPN) : (MMUPlugin_TLBTable_6_VPPN[18 : 9] == MMUPlugin_TLBEHI_VPPN[18 : 9])));
+  assign _zz_when_MMUPlugin_l415_7 = ((MMUPlugin_TLBTable_7_E && ((MMUPlugin_TLBTable_7_ASID == MMUPlugin_ASID_ASID) || MMUPlugin_TLBTable_7_G)) && ((MMUPlugin_TLBTable_7_PS == 6'h0c) ? (MMUPlugin_TLBTable_7_VPPN == MMUPlugin_TLBEHI_VPPN) : (MMUPlugin_TLBTable_7_VPPN[18 : 9] == MMUPlugin_TLBEHI_VPPN[18 : 9])));
+  assign _zz_when_MMUPlugin_l415_8 = ((MMUPlugin_TLBTable_8_E && ((MMUPlugin_TLBTable_8_ASID == MMUPlugin_ASID_ASID) || MMUPlugin_TLBTable_8_G)) && ((MMUPlugin_TLBTable_8_PS == 6'h0c) ? (MMUPlugin_TLBTable_8_VPPN == MMUPlugin_TLBEHI_VPPN) : (MMUPlugin_TLBTable_8_VPPN[18 : 9] == MMUPlugin_TLBEHI_VPPN[18 : 9])));
+  assign _zz_when_MMUPlugin_l415_9 = ((MMUPlugin_TLBTable_9_E && ((MMUPlugin_TLBTable_9_ASID == MMUPlugin_ASID_ASID) || MMUPlugin_TLBTable_9_G)) && ((MMUPlugin_TLBTable_9_PS == 6'h0c) ? (MMUPlugin_TLBTable_9_VPPN == MMUPlugin_TLBEHI_VPPN) : (MMUPlugin_TLBTable_9_VPPN[18 : 9] == MMUPlugin_TLBEHI_VPPN[18 : 9])));
+  assign _zz_when_MMUPlugin_l415_10 = ((MMUPlugin_TLBTable_10_E && ((MMUPlugin_TLBTable_10_ASID == MMUPlugin_ASID_ASID) || MMUPlugin_TLBTable_10_G)) && ((MMUPlugin_TLBTable_10_PS == 6'h0c) ? (MMUPlugin_TLBTable_10_VPPN == MMUPlugin_TLBEHI_VPPN) : (MMUPlugin_TLBTable_10_VPPN[18 : 9] == MMUPlugin_TLBEHI_VPPN[18 : 9])));
+  assign _zz_when_MMUPlugin_l415_11 = ((MMUPlugin_TLBTable_11_E && ((MMUPlugin_TLBTable_11_ASID == MMUPlugin_ASID_ASID) || MMUPlugin_TLBTable_11_G)) && ((MMUPlugin_TLBTable_11_PS == 6'h0c) ? (MMUPlugin_TLBTable_11_VPPN == MMUPlugin_TLBEHI_VPPN) : (MMUPlugin_TLBTable_11_VPPN[18 : 9] == MMUPlugin_TLBEHI_VPPN[18 : 9])));
+  assign _zz_when_MMUPlugin_l415_12 = ((MMUPlugin_TLBTable_12_E && ((MMUPlugin_TLBTable_12_ASID == MMUPlugin_ASID_ASID) || MMUPlugin_TLBTable_12_G)) && ((MMUPlugin_TLBTable_12_PS == 6'h0c) ? (MMUPlugin_TLBTable_12_VPPN == MMUPlugin_TLBEHI_VPPN) : (MMUPlugin_TLBTable_12_VPPN[18 : 9] == MMUPlugin_TLBEHI_VPPN[18 : 9])));
+  assign _zz_when_MMUPlugin_l415_13 = ((MMUPlugin_TLBTable_13_E && ((MMUPlugin_TLBTable_13_ASID == MMUPlugin_ASID_ASID) || MMUPlugin_TLBTable_13_G)) && ((MMUPlugin_TLBTable_13_PS == 6'h0c) ? (MMUPlugin_TLBTable_13_VPPN == MMUPlugin_TLBEHI_VPPN) : (MMUPlugin_TLBTable_13_VPPN[18 : 9] == MMUPlugin_TLBEHI_VPPN[18 : 9])));
+  assign _zz_when_MMUPlugin_l415_14 = ((MMUPlugin_TLBTable_14_E && ((MMUPlugin_TLBTable_14_ASID == MMUPlugin_ASID_ASID) || MMUPlugin_TLBTable_14_G)) && ((MMUPlugin_TLBTable_14_PS == 6'h0c) ? (MMUPlugin_TLBTable_14_VPPN == MMUPlugin_TLBEHI_VPPN) : (MMUPlugin_TLBTable_14_VPPN[18 : 9] == MMUPlugin_TLBEHI_VPPN[18 : 9])));
+  assign _zz_when_MMUPlugin_l415_15 = ((MMUPlugin_TLBTable_15_E && ((MMUPlugin_TLBTable_15_ASID == MMUPlugin_ASID_ASID) || MMUPlugin_TLBTable_15_G)) && ((MMUPlugin_TLBTable_15_PS == 6'h0c) ? (MMUPlugin_TLBTable_15_VPPN == MMUPlugin_TLBEHI_VPPN) : (MMUPlugin_TLBTable_15_VPPN[18 : 9] == MMUPlugin_TLBEHI_VPPN[18 : 9])));
+  assign when_MMUPlugin_l415 = ({_zz_when_MMUPlugin_l415_15,{_zz_when_MMUPlugin_l415_14,{_zz_when_MMUPlugin_l415_13,{_zz_when_MMUPlugin_l415_12,{_zz_when_MMUPlugin_l415_11,{_zz_when_MMUPlugin_l415_10,{_zz_when_MMUPlugin_l415_9,{_zz_when_MMUPlugin_l415_8,{_zz_when_MMUPlugin_l415_7,{_zz_when_MMUPlugin_l415_16,_zz_when_MMUPlugin_l415_17}}}}}}}}}} != 16'h0);
+  assign _zz_MMUPlugin_TLBIDX_INDEX = {_zz_when_MMUPlugin_l415_15,{_zz_when_MMUPlugin_l415_14,{_zz_when_MMUPlugin_l415_13,{_zz_when_MMUPlugin_l415_12,{_zz_when_MMUPlugin_l415_11,{_zz_when_MMUPlugin_l415_10,{_zz_when_MMUPlugin_l415_9,{_zz_when_MMUPlugin_l415_8,{_zz_when_MMUPlugin_l415_7,{_zz_when_MMUPlugin_l415_6,{_zz__zz_MMUPlugin_TLBIDX_INDEX,_zz__zz_MMUPlugin_TLBIDX_INDEX_1}}}}}}}}}}};
+  assign _zz_MMUPlugin_TLBIDX_INDEX_1 = (_zz_MMUPlugin_TLBIDX_INDEX & (~ _zz__zz_MMUPlugin_TLBIDX_INDEX_1_1));
+  assign _zz_MMUPlugin_TLBIDX_INDEX_2 = _zz_MMUPlugin_TLBIDX_INDEX_1[3];
+  assign _zz_MMUPlugin_TLBIDX_INDEX_3 = _zz_MMUPlugin_TLBIDX_INDEX_1[5];
+  assign _zz_MMUPlugin_TLBIDX_INDEX_4 = _zz_MMUPlugin_TLBIDX_INDEX_1[6];
+  assign _zz_MMUPlugin_TLBIDX_INDEX_5 = _zz_MMUPlugin_TLBIDX_INDEX_1[7];
+  assign _zz_MMUPlugin_TLBIDX_INDEX_6 = _zz_MMUPlugin_TLBIDX_INDEX_1[9];
+  assign _zz_MMUPlugin_TLBIDX_INDEX_7 = _zz_MMUPlugin_TLBIDX_INDEX_1[10];
+  assign _zz_MMUPlugin_TLBIDX_INDEX_8 = _zz_MMUPlugin_TLBIDX_INDEX_1[11];
+  assign _zz_MMUPlugin_TLBIDX_INDEX_9 = _zz_MMUPlugin_TLBIDX_INDEX_1[12];
+  assign _zz_MMUPlugin_TLBIDX_INDEX_10 = _zz_MMUPlugin_TLBIDX_INDEX_1[13];
+  assign _zz_MMUPlugin_TLBIDX_INDEX_11 = _zz_MMUPlugin_TLBIDX_INDEX_1[14];
+  assign _zz_MMUPlugin_TLBIDX_INDEX_12 = _zz_MMUPlugin_TLBIDX_INDEX_1[15];
+  assign _zz_MMUPlugin_TLBIDX_INDEX_13 = (((((((_zz_MMUPlugin_TLBIDX_INDEX_1[1] || _zz_MMUPlugin_TLBIDX_INDEX_2) || _zz_MMUPlugin_TLBIDX_INDEX_3) || _zz_MMUPlugin_TLBIDX_INDEX_5) || _zz_MMUPlugin_TLBIDX_INDEX_6) || _zz_MMUPlugin_TLBIDX_INDEX_8) || _zz_MMUPlugin_TLBIDX_INDEX_10) || _zz_MMUPlugin_TLBIDX_INDEX_12);
+  assign _zz_MMUPlugin_TLBIDX_INDEX_14 = (((((((_zz_MMUPlugin_TLBIDX_INDEX_1[2] || _zz_MMUPlugin_TLBIDX_INDEX_2) || _zz_MMUPlugin_TLBIDX_INDEX_4) || _zz_MMUPlugin_TLBIDX_INDEX_5) || _zz_MMUPlugin_TLBIDX_INDEX_7) || _zz_MMUPlugin_TLBIDX_INDEX_8) || _zz_MMUPlugin_TLBIDX_INDEX_11) || _zz_MMUPlugin_TLBIDX_INDEX_12);
+  assign _zz_MMUPlugin_TLBIDX_INDEX_15 = (((((((_zz_MMUPlugin_TLBIDX_INDEX_1[4] || _zz_MMUPlugin_TLBIDX_INDEX_3) || _zz_MMUPlugin_TLBIDX_INDEX_4) || _zz_MMUPlugin_TLBIDX_INDEX_5) || _zz_MMUPlugin_TLBIDX_INDEX_9) || _zz_MMUPlugin_TLBIDX_INDEX_10) || _zz_MMUPlugin_TLBIDX_INDEX_11) || _zz_MMUPlugin_TLBIDX_INDEX_12);
+  assign _zz_MMUPlugin_TLBIDX_INDEX_16 = (((((((_zz_MMUPlugin_TLBIDX_INDEX_1[8] || _zz_MMUPlugin_TLBIDX_INDEX_6) || _zz_MMUPlugin_TLBIDX_INDEX_7) || _zz_MMUPlugin_TLBIDX_INDEX_8) || _zz_MMUPlugin_TLBIDX_INDEX_9) || _zz_MMUPlugin_TLBIDX_INDEX_10) || _zz_MMUPlugin_TLBIDX_INDEX_11) || _zz_MMUPlugin_TLBIDX_INDEX_12);
   assign _zz_MMUPlugin_TLBIDX_PS = MMUPlugin_TLBIDX_INDEX;
   assign _zz_MMUPlugin_TLBELO0_G = _zz__zz_MMUPlugin_TLBELO0_G;
   assign _zz_278 = ({15'd0,1'b1} <<< MMUPlugin_TLBIDX_INDEX);
@@ -62378,7 +62462,7 @@ module MyCPUCore (
   assign _zz_292 = _zz_278[13];
   assign _zz_293 = _zz_278[14];
   assign _zz_294 = _zz_278[15];
-  assign when_MMUPlugin_l463 = (ExceptionHandlerPlugin_ESTAT_ECODE == 6'h3f);
+  assign when_MMUPlugin_l466 = (ExceptionHandlerPlugin_ESTAT_ECODE == 6'h3f);
   assign _zz_MMUPlugin_TLBTable_0_E = (! MMUPlugin_TLBIDX_NE);
   assign _zz_MMUPlugin_TLBTable_0_G = (MMUPlugin_TLBELO0_G && MMUPlugin_TLBELO1_G);
   assign _zz_MMUPlugin_TLBTable_0_PS = MMUPlugin_TLBIDX_PS;
@@ -62399,7 +62483,7 @@ module MyCPUCore (
   assign _zz_309 = _zz_295[13];
   assign _zz_310 = _zz_295[14];
   assign _zz_311 = _zz_295[15];
-  assign when_MMUPlugin_l487 = (ExceptionHandlerPlugin_ESTAT_ECODE == 6'h3f);
+  assign when_MMUPlugin_l490 = (ExceptionHandlerPlugin_ESTAT_ECODE == 6'h3f);
   assign _zz_MMUPlugin_TLBTable_0_E_1 = (! MMUPlugin_TLBIDX_NE);
   assign _zz_MMUPlugin_TLBTable_0_PS_1 = MMUPlugin_TLBIDX_PS;
   assign _zz_MMUPlugin_TLBTable_0_G_1 = (MMUPlugin_TLBELO0_G && MMUPlugin_TLBELO1_G);
@@ -64417,10 +64501,10 @@ module MyCPUCore (
   assign _zz_423 = _zz_360[62];
   assign _zz_424 = _zz_360[63];
   assign _zz_425 = ({1'd0,1'b1} <<< ICachePlugin_commit_way);
-  assign when_ExceptionMuxPlugin_l45 = ((! IF1_EXCEPTION_OCCURRED) && InstAddrTranslatePlugin_ADEF);
-  assign when_ExceptionMuxPlugin_l45_1 = ((! IF2_EXCEPTION_OCCURRED) && InstAddrTranslatePlugin_PPI);
-  assign when_ExceptionMuxPlugin_l45_2 = ((! IF2_EXCEPTION_OCCURRED) && InstAddrTranslatePlugin_PIF);
-  assign when_ExceptionMuxPlugin_l45_3 = ((! IF2_EXCEPTION_OCCURRED) && InstAddrTranslatePlugin_TLBR);
+  assign when_ExceptionMuxPlugin_l45 = ((! IF2_EXCEPTION_OCCURRED) && InstAddrTranslatePlugin_PPI);
+  assign when_ExceptionMuxPlugin_l45_1 = ((! IF2_EXCEPTION_OCCURRED) && InstAddrTranslatePlugin_PIF);
+  assign when_ExceptionMuxPlugin_l45_2 = ((! IF2_EXCEPTION_OCCURRED) && InstAddrTranslatePlugin_TLBR);
+  assign when_ExceptionMuxPlugin_l45_3 = ((! IF1_EXCEPTION_OCCURRED) && InstAddrTranslatePlugin_ADEF);
   assign InstAddrTranslatePlugin_badVaddr = IF1_PC;
   assign InstAddrTranslatePlugin_ADEF = (IF1_PC[0] || IF1_PC[1]);
   assign IF1_InstAddrTranslatePlugin_directTranslateResult_resultExceptionBundle_raisePIL = 1'b0;
@@ -64447,12 +64531,12 @@ module MyCPUCore (
   assign IF1_InstAddrTranslatePlugin_directTranslateResult_resultBundle_payload_exception_raisePME = IF1_InstAddrTranslatePlugin_directTranslateResult_resultExceptionBundle_raisePME;
   assign IF1_InstAddrTranslatePlugin_directTranslateResult_resultBundle_payload_exception_raisePPI = IF1_InstAddrTranslatePlugin_directTranslateResult_resultExceptionBundle_raisePPI;
   assign IF1_InstAddrTranslatePlugin_directTranslateResult_resultBundle_payload_exception_raiseTLBR = IF1_InstAddrTranslatePlugin_directTranslateResult_resultExceptionBundle_raiseTLBR;
-  assign switch_MMUPlugin_l298 = MemOperationType_FETCH;
+  assign switch_MMUPlugin_l299 = MemOperationType_FETCH;
   assign IF1_InstAddrTranslatePlugin_tlbTranslateResult_resultValid = 1'b1;
   always @(*) begin
     IF1_InstAddrTranslatePlugin_tlbTranslateResult_resultExceptionBundle_raisePIL = 1'b0;
-    if(when_MMUPlugin_l297) begin
-      case(switch_MMUPlugin_l298)
+    if(when_MMUPlugin_l298) begin
+      case(switch_MMUPlugin_l299)
         MemOperationType_FETCH : begin
         end
         MemOperationType_LOAD : begin
@@ -64466,8 +64550,8 @@ module MyCPUCore (
 
   always @(*) begin
     IF1_InstAddrTranslatePlugin_tlbTranslateResult_resultExceptionBundle_raisePIS = 1'b0;
-    if(when_MMUPlugin_l297) begin
-      case(switch_MMUPlugin_l298)
+    if(when_MMUPlugin_l298) begin
+      case(switch_MMUPlugin_l299)
         MemOperationType_FETCH : begin
         end
         MemOperationType_LOAD : begin
@@ -64481,8 +64565,8 @@ module MyCPUCore (
 
   always @(*) begin
     IF1_InstAddrTranslatePlugin_tlbTranslateResult_resultExceptionBundle_raisePIF = 1'b0;
-    if(when_MMUPlugin_l297) begin
-      case(switch_MMUPlugin_l298)
+    if(when_MMUPlugin_l298) begin
+      case(switch_MMUPlugin_l299)
         MemOperationType_FETCH : begin
           IF1_InstAddrTranslatePlugin_tlbTranslateResult_resultExceptionBundle_raisePIF = 1'b1;
         end
@@ -64496,21 +64580,21 @@ module MyCPUCore (
 
   always @(*) begin
     IF1_InstAddrTranslatePlugin_tlbTranslateResult_resultExceptionBundle_raisePME = 1'b0;
-    if(when_MMUPlugin_l315) begin
+    if(when_MMUPlugin_l316) begin
       IF1_InstAddrTranslatePlugin_tlbTranslateResult_resultExceptionBundle_raisePME = 1'b1;
     end
   end
 
   always @(*) begin
     IF1_InstAddrTranslatePlugin_tlbTranslateResult_resultExceptionBundle_raisePPI = 1'b0;
-    if(when_MMUPlugin_l311) begin
+    if(when_MMUPlugin_l312) begin
       IF1_InstAddrTranslatePlugin_tlbTranslateResult_resultExceptionBundle_raisePPI = 1'b1;
     end
   end
 
   always @(*) begin
     IF1_InstAddrTranslatePlugin_tlbTranslateResult_resultExceptionBundle_raiseTLBR = 1'b0;
-    if(when_MMUPlugin_l293) begin
+    if(when_MMUPlugin_l294) begin
       IF1_InstAddrTranslatePlugin_tlbTranslateResult_resultExceptionBundle_raiseTLBR = 1'b1;
     end
   end
@@ -64564,12 +64648,25 @@ module MyCPUCore (
   assign IF1_InstAddrTranslatePlugin_tlbTranslateResult_EntryHits_14 = ((MMUPlugin_TLBTable_14_E && IF1_InstAddrTranslatePlugin_tlbTranslateResult_ASIDMatches_14) && IF1_InstAddrTranslatePlugin_tlbTranslateResult_VPPNMatches_14);
   assign IF1_InstAddrTranslatePlugin_tlbTranslateResult_EntryHits_15 = ((MMUPlugin_TLBTable_15_E && IF1_InstAddrTranslatePlugin_tlbTranslateResult_ASIDMatches_15) && IF1_InstAddrTranslatePlugin_tlbTranslateResult_VPPNMatches_15);
   assign IF1_InstAddrTranslatePlugin_tlbTranslateResult_TLBHit = ({IF1_InstAddrTranslatePlugin_tlbTranslateResult_EntryHits_15,{IF1_InstAddrTranslatePlugin_tlbTranslateResult_EntryHits_14,{IF1_InstAddrTranslatePlugin_tlbTranslateResult_EntryHits_13,{IF1_InstAddrTranslatePlugin_tlbTranslateResult_EntryHits_12,{IF1_InstAddrTranslatePlugin_tlbTranslateResult_EntryHits_11,{IF1_InstAddrTranslatePlugin_tlbTranslateResult_EntryHits_10,{IF1_InstAddrTranslatePlugin_tlbTranslateResult_EntryHits_9,{IF1_InstAddrTranslatePlugin_tlbTranslateResult_EntryHits_8,{IF1_InstAddrTranslatePlugin_tlbTranslateResult_EntryHits_7,{_zz_IF1_InstAddrTranslatePlugin_tlbTranslateResult_TLBHit,_zz_IF1_InstAddrTranslatePlugin_tlbTranslateResult_TLBHit_1}}}}}}}}}} != 16'h0);
-  assign _zz_IF1_InstAddrTranslatePlugin_tlbTranslateResult_TLBHitEntry_E = (((((((IF1_InstAddrTranslatePlugin_tlbTranslateResult_EntryHits_1 || IF1_InstAddrTranslatePlugin_tlbTranslateResult_EntryHits_3) || IF1_InstAddrTranslatePlugin_tlbTranslateResult_EntryHits_5) || IF1_InstAddrTranslatePlugin_tlbTranslateResult_EntryHits_7) || IF1_InstAddrTranslatePlugin_tlbTranslateResult_EntryHits_9) || IF1_InstAddrTranslatePlugin_tlbTranslateResult_EntryHits_11) || IF1_InstAddrTranslatePlugin_tlbTranslateResult_EntryHits_13) || IF1_InstAddrTranslatePlugin_tlbTranslateResult_EntryHits_15);
-  assign _zz_IF1_InstAddrTranslatePlugin_tlbTranslateResult_TLBHitEntry_E_1 = (((((((IF1_InstAddrTranslatePlugin_tlbTranslateResult_EntryHits_2 || IF1_InstAddrTranslatePlugin_tlbTranslateResult_EntryHits_3) || IF1_InstAddrTranslatePlugin_tlbTranslateResult_EntryHits_6) || IF1_InstAddrTranslatePlugin_tlbTranslateResult_EntryHits_7) || IF1_InstAddrTranslatePlugin_tlbTranslateResult_EntryHits_10) || IF1_InstAddrTranslatePlugin_tlbTranslateResult_EntryHits_11) || IF1_InstAddrTranslatePlugin_tlbTranslateResult_EntryHits_14) || IF1_InstAddrTranslatePlugin_tlbTranslateResult_EntryHits_15);
-  assign _zz_IF1_InstAddrTranslatePlugin_tlbTranslateResult_TLBHitEntry_E_2 = (((((((IF1_InstAddrTranslatePlugin_tlbTranslateResult_EntryHits_4 || IF1_InstAddrTranslatePlugin_tlbTranslateResult_EntryHits_5) || IF1_InstAddrTranslatePlugin_tlbTranslateResult_EntryHits_6) || IF1_InstAddrTranslatePlugin_tlbTranslateResult_EntryHits_7) || IF1_InstAddrTranslatePlugin_tlbTranslateResult_EntryHits_12) || IF1_InstAddrTranslatePlugin_tlbTranslateResult_EntryHits_13) || IF1_InstAddrTranslatePlugin_tlbTranslateResult_EntryHits_14) || IF1_InstAddrTranslatePlugin_tlbTranslateResult_EntryHits_15);
-  assign _zz_IF1_InstAddrTranslatePlugin_tlbTranslateResult_TLBHitEntry_E_3 = (((((((IF1_InstAddrTranslatePlugin_tlbTranslateResult_EntryHits_8 || IF1_InstAddrTranslatePlugin_tlbTranslateResult_EntryHits_9) || IF1_InstAddrTranslatePlugin_tlbTranslateResult_EntryHits_10) || IF1_InstAddrTranslatePlugin_tlbTranslateResult_EntryHits_11) || IF1_InstAddrTranslatePlugin_tlbTranslateResult_EntryHits_12) || IF1_InstAddrTranslatePlugin_tlbTranslateResult_EntryHits_13) || IF1_InstAddrTranslatePlugin_tlbTranslateResult_EntryHits_14) || IF1_InstAddrTranslatePlugin_tlbTranslateResult_EntryHits_15);
-  assign _zz_IF1_InstAddrTranslatePlugin_tlbTranslateResult_TLBHitEntry_E_4 = {_zz_IF1_InstAddrTranslatePlugin_tlbTranslateResult_TLBHitEntry_E_3,{_zz_IF1_InstAddrTranslatePlugin_tlbTranslateResult_TLBHitEntry_E_2,{_zz_IF1_InstAddrTranslatePlugin_tlbTranslateResult_TLBHitEntry_E_1,_zz_IF1_InstAddrTranslatePlugin_tlbTranslateResult_TLBHitEntry_E}}};
-  assign IF1_InstAddrTranslatePlugin_tlbTranslateResult_TLBHitEntry_E = _zz_IF1_InstAddrTranslatePlugin_tlbTranslateResult_TLBHitEntry_E_5;
+  assign _zz_IF1_InstAddrTranslatePlugin_tlbTranslateResult_TLBHitEntry_E = {IF1_InstAddrTranslatePlugin_tlbTranslateResult_EntryHits_15,{IF1_InstAddrTranslatePlugin_tlbTranslateResult_EntryHits_14,{IF1_InstAddrTranslatePlugin_tlbTranslateResult_EntryHits_13,{IF1_InstAddrTranslatePlugin_tlbTranslateResult_EntryHits_12,{IF1_InstAddrTranslatePlugin_tlbTranslateResult_EntryHits_11,{IF1_InstAddrTranslatePlugin_tlbTranslateResult_EntryHits_10,{IF1_InstAddrTranslatePlugin_tlbTranslateResult_EntryHits_9,{IF1_InstAddrTranslatePlugin_tlbTranslateResult_EntryHits_8,{IF1_InstAddrTranslatePlugin_tlbTranslateResult_EntryHits_7,{IF1_InstAddrTranslatePlugin_tlbTranslateResult_EntryHits_6,{_zz__zz_IF1_InstAddrTranslatePlugin_tlbTranslateResult_TLBHitEntry_E,_zz__zz_IF1_InstAddrTranslatePlugin_tlbTranslateResult_TLBHitEntry_E_1}}}}}}}}}}};
+  assign _zz_IF1_InstAddrTranslatePlugin_tlbTranslateResult_TLBHitEntry_E_1 = (_zz_IF1_InstAddrTranslatePlugin_tlbTranslateResult_TLBHitEntry_E & (~ _zz__zz_IF1_InstAddrTranslatePlugin_tlbTranslateResult_TLBHitEntry_E_1_1));
+  assign _zz_IF1_InstAddrTranslatePlugin_tlbTranslateResult_TLBHitEntry_E_2 = _zz_IF1_InstAddrTranslatePlugin_tlbTranslateResult_TLBHitEntry_E_1[3];
+  assign _zz_IF1_InstAddrTranslatePlugin_tlbTranslateResult_TLBHitEntry_E_3 = _zz_IF1_InstAddrTranslatePlugin_tlbTranslateResult_TLBHitEntry_E_1[5];
+  assign _zz_IF1_InstAddrTranslatePlugin_tlbTranslateResult_TLBHitEntry_E_4 = _zz_IF1_InstAddrTranslatePlugin_tlbTranslateResult_TLBHitEntry_E_1[6];
+  assign _zz_IF1_InstAddrTranslatePlugin_tlbTranslateResult_TLBHitEntry_E_5 = _zz_IF1_InstAddrTranslatePlugin_tlbTranslateResult_TLBHitEntry_E_1[7];
+  assign _zz_IF1_InstAddrTranslatePlugin_tlbTranslateResult_TLBHitEntry_E_6 = _zz_IF1_InstAddrTranslatePlugin_tlbTranslateResult_TLBHitEntry_E_1[9];
+  assign _zz_IF1_InstAddrTranslatePlugin_tlbTranslateResult_TLBHitEntry_E_7 = _zz_IF1_InstAddrTranslatePlugin_tlbTranslateResult_TLBHitEntry_E_1[10];
+  assign _zz_IF1_InstAddrTranslatePlugin_tlbTranslateResult_TLBHitEntry_E_8 = _zz_IF1_InstAddrTranslatePlugin_tlbTranslateResult_TLBHitEntry_E_1[11];
+  assign _zz_IF1_InstAddrTranslatePlugin_tlbTranslateResult_TLBHitEntry_E_9 = _zz_IF1_InstAddrTranslatePlugin_tlbTranslateResult_TLBHitEntry_E_1[12];
+  assign _zz_IF1_InstAddrTranslatePlugin_tlbTranslateResult_TLBHitEntry_E_10 = _zz_IF1_InstAddrTranslatePlugin_tlbTranslateResult_TLBHitEntry_E_1[13];
+  assign _zz_IF1_InstAddrTranslatePlugin_tlbTranslateResult_TLBHitEntry_E_11 = _zz_IF1_InstAddrTranslatePlugin_tlbTranslateResult_TLBHitEntry_E_1[14];
+  assign _zz_IF1_InstAddrTranslatePlugin_tlbTranslateResult_TLBHitEntry_E_12 = _zz_IF1_InstAddrTranslatePlugin_tlbTranslateResult_TLBHitEntry_E_1[15];
+  assign _zz_IF1_InstAddrTranslatePlugin_tlbTranslateResult_TLBHitEntry_E_13 = (((((((_zz_IF1_InstAddrTranslatePlugin_tlbTranslateResult_TLBHitEntry_E_1[1] || _zz_IF1_InstAddrTranslatePlugin_tlbTranslateResult_TLBHitEntry_E_2) || _zz_IF1_InstAddrTranslatePlugin_tlbTranslateResult_TLBHitEntry_E_3) || _zz_IF1_InstAddrTranslatePlugin_tlbTranslateResult_TLBHitEntry_E_5) || _zz_IF1_InstAddrTranslatePlugin_tlbTranslateResult_TLBHitEntry_E_6) || _zz_IF1_InstAddrTranslatePlugin_tlbTranslateResult_TLBHitEntry_E_8) || _zz_IF1_InstAddrTranslatePlugin_tlbTranslateResult_TLBHitEntry_E_10) || _zz_IF1_InstAddrTranslatePlugin_tlbTranslateResult_TLBHitEntry_E_12);
+  assign _zz_IF1_InstAddrTranslatePlugin_tlbTranslateResult_TLBHitEntry_E_14 = (((((((_zz_IF1_InstAddrTranslatePlugin_tlbTranslateResult_TLBHitEntry_E_1[2] || _zz_IF1_InstAddrTranslatePlugin_tlbTranslateResult_TLBHitEntry_E_2) || _zz_IF1_InstAddrTranslatePlugin_tlbTranslateResult_TLBHitEntry_E_4) || _zz_IF1_InstAddrTranslatePlugin_tlbTranslateResult_TLBHitEntry_E_5) || _zz_IF1_InstAddrTranslatePlugin_tlbTranslateResult_TLBHitEntry_E_7) || _zz_IF1_InstAddrTranslatePlugin_tlbTranslateResult_TLBHitEntry_E_8) || _zz_IF1_InstAddrTranslatePlugin_tlbTranslateResult_TLBHitEntry_E_11) || _zz_IF1_InstAddrTranslatePlugin_tlbTranslateResult_TLBHitEntry_E_12);
+  assign _zz_IF1_InstAddrTranslatePlugin_tlbTranslateResult_TLBHitEntry_E_15 = (((((((_zz_IF1_InstAddrTranslatePlugin_tlbTranslateResult_TLBHitEntry_E_1[4] || _zz_IF1_InstAddrTranslatePlugin_tlbTranslateResult_TLBHitEntry_E_3) || _zz_IF1_InstAddrTranslatePlugin_tlbTranslateResult_TLBHitEntry_E_4) || _zz_IF1_InstAddrTranslatePlugin_tlbTranslateResult_TLBHitEntry_E_5) || _zz_IF1_InstAddrTranslatePlugin_tlbTranslateResult_TLBHitEntry_E_9) || _zz_IF1_InstAddrTranslatePlugin_tlbTranslateResult_TLBHitEntry_E_10) || _zz_IF1_InstAddrTranslatePlugin_tlbTranslateResult_TLBHitEntry_E_11) || _zz_IF1_InstAddrTranslatePlugin_tlbTranslateResult_TLBHitEntry_E_12);
+  assign _zz_IF1_InstAddrTranslatePlugin_tlbTranslateResult_TLBHitEntry_E_16 = (((((((_zz_IF1_InstAddrTranslatePlugin_tlbTranslateResult_TLBHitEntry_E_1[8] || _zz_IF1_InstAddrTranslatePlugin_tlbTranslateResult_TLBHitEntry_E_6) || _zz_IF1_InstAddrTranslatePlugin_tlbTranslateResult_TLBHitEntry_E_7) || _zz_IF1_InstAddrTranslatePlugin_tlbTranslateResult_TLBHitEntry_E_8) || _zz_IF1_InstAddrTranslatePlugin_tlbTranslateResult_TLBHitEntry_E_9) || _zz_IF1_InstAddrTranslatePlugin_tlbTranslateResult_TLBHitEntry_E_10) || _zz_IF1_InstAddrTranslatePlugin_tlbTranslateResult_TLBHitEntry_E_11) || _zz_IF1_InstAddrTranslatePlugin_tlbTranslateResult_TLBHitEntry_E_12);
+  assign _zz_IF1_InstAddrTranslatePlugin_tlbTranslateResult_TLBHitEntry_E_17 = {_zz_IF1_InstAddrTranslatePlugin_tlbTranslateResult_TLBHitEntry_E_16,{_zz_IF1_InstAddrTranslatePlugin_tlbTranslateResult_TLBHitEntry_E_15,{_zz_IF1_InstAddrTranslatePlugin_tlbTranslateResult_TLBHitEntry_E_14,_zz_IF1_InstAddrTranslatePlugin_tlbTranslateResult_TLBHitEntry_E_13}}};
+  assign IF1_InstAddrTranslatePlugin_tlbTranslateResult_TLBHitEntry_E = _zz_IF1_InstAddrTranslatePlugin_tlbTranslateResult_TLBHitEntry_E_18;
   assign IF1_InstAddrTranslatePlugin_tlbTranslateResult_TLBHitEntry_ASID = _zz_IF1_InstAddrTranslatePlugin_tlbTranslateResult_TLBHitEntry_ASID;
   assign IF1_InstAddrTranslatePlugin_tlbTranslateResult_TLBHitEntry_G = _zz_IF1_InstAddrTranslatePlugin_tlbTranslateResult_TLBHitEntry_G;
   assign IF1_InstAddrTranslatePlugin_tlbTranslateResult_TLBHitEntry_PS = _zz_IF1_InstAddrTranslatePlugin_tlbTranslateResult_TLBHitEntry_PS;
@@ -64589,10 +64686,10 @@ module MyCPUCore (
   assign IF1_InstAddrTranslatePlugin_tlbTranslateResult_TLBHitEntry_mat = (IF1_PC[IF1_InstAddrTranslatePlugin_tlbTranslateResult_TLBHitEntry_PS[4 : 0]] ? IF1_InstAddrTranslatePlugin_tlbTranslateResult_TLBHitEntry_MAT1 : IF1_InstAddrTranslatePlugin_tlbTranslateResult_TLBHitEntry_MAT0);
   assign IF1_InstAddrTranslatePlugin_tlbTranslateResult_TLBHitEntry_plv = (IF1_PC[IF1_InstAddrTranslatePlugin_tlbTranslateResult_TLBHitEntry_PS[4 : 0]] ? IF1_InstAddrTranslatePlugin_tlbTranslateResult_TLBHitEntry_PLV1 : IF1_InstAddrTranslatePlugin_tlbTranslateResult_TLBHitEntry_PLV0);
   assign IF1_InstAddrTranslatePlugin_tlbTranslateResult_TLBHitEntry_ppn = (IF1_PC[IF1_InstAddrTranslatePlugin_tlbTranslateResult_TLBHitEntry_PS[4 : 0]] ? IF1_InstAddrTranslatePlugin_tlbTranslateResult_TLBHitEntry_PPN1 : IF1_InstAddrTranslatePlugin_tlbTranslateResult_TLBHitEntry_PPN0);
-  assign when_MMUPlugin_l293 = (! IF1_InstAddrTranslatePlugin_tlbTranslateResult_TLBHit);
-  assign when_MMUPlugin_l297 = (! IF1_InstAddrTranslatePlugin_tlbTranslateResult_TLBHitEntry_v);
-  assign when_MMUPlugin_l311 = (IF1_InstAddrTranslatePlugin_tlbTranslateResult_TLBHitEntry_plv < ExceptionHandlerPlugin_CRMD_PLV);
-  assign when_MMUPlugin_l315 = ((switch_MMUPlugin_l298 == MemOperationType_STORE) && (! IF1_InstAddrTranslatePlugin_tlbTranslateResult_TLBHitEntry_d));
+  assign when_MMUPlugin_l294 = (! IF1_InstAddrTranslatePlugin_tlbTranslateResult_TLBHit);
+  assign when_MMUPlugin_l298 = (! IF1_InstAddrTranslatePlugin_tlbTranslateResult_TLBHitEntry_v);
+  assign when_MMUPlugin_l312 = (IF1_InstAddrTranslatePlugin_tlbTranslateResult_TLBHitEntry_plv < ExceptionHandlerPlugin_CRMD_PLV);
+  assign when_MMUPlugin_l316 = ((switch_MMUPlugin_l299 == MemOperationType_STORE) && (! IF1_InstAddrTranslatePlugin_tlbTranslateResult_TLBHitEntry_d));
   assign IF1_InstAddrTranslatePlugin_tlbTranslateResult_resultPhysAddr = ((IF1_InstAddrTranslatePlugin_tlbTranslateResult_TLBHitEntry_PS == 6'h0c) ? {IF1_InstAddrTranslatePlugin_tlbTranslateResult_TLBHitEntry_ppn,IF1_PC[11 : 0]} : {IF1_InstAddrTranslatePlugin_tlbTranslateResult_TLBHitEntry_ppn[19 : 9],IF1_PC[20 : 0]});
   assign IF1_InstAddrTranslatePlugin_tlbTranslateResult_resultCached = IF1_InstAddrTranslatePlugin_tlbTranslateResult_TLBHitEntry_mat[0];
   assign IF1_InstAddrTranslatePlugin_tlbTranslateResult_resultBundle_valid = IF1_InstAddrTranslatePlugin_tlbTranslateResult_resultValid;
@@ -64609,131 +64706,135 @@ module MyCPUCore (
   assign IF1_InstAddrTranslatePlugin_savedCSR_CRMD_DATF = ExceptionHandlerPlugin_CRMD_DATF;
   assign IF1_InstAddrTranslatePlugin_savedCSR_CRMD_DATM = ExceptionHandlerPlugin_CRMD_DATM;
   assign InstAddrTranslatePlugin_badVaddr2 = IF2_PC;
+  assign IF2_InstAddrTranslatePlugin_currentSavedCSR_CRMD_DA = ExceptionHandlerPlugin_CRMD_DA;
+  assign IF2_InstAddrTranslatePlugin_currentSavedCSR_CRMD_PG = ExceptionHandlerPlugin_CRMD_PG;
+  assign IF2_InstAddrTranslatePlugin_currentSavedCSR_CRMD_DATF = ExceptionHandlerPlugin_CRMD_DATF;
+  assign IF2_InstAddrTranslatePlugin_currentSavedCSR_CRMD_DATM = ExceptionHandlerPlugin_CRMD_DATM;
   always @(*) begin
     IF2_InstAddrTranslatePlugin_translateResult_resultValid = 1'b0;
-    if(when_MMUPlugin_l347) begin
+    if(when_MMUPlugin_l348) begin
       IF2_InstAddrTranslatePlugin_translateResult_resultValid = IF2_TLB_TRANSLATE_RESULT_valid;
     end
-    if(when_MMUPlugin_l355) begin
+    if(when_MMUPlugin_l356) begin
       IF2_InstAddrTranslatePlugin_translateResult_resultValid = IF2_DIRECT_TRANSLATE_RESULT_valid;
     end
-    if(when_MMUPlugin_l363) begin
+    if(when_MMUPlugin_l364) begin
       IF2_InstAddrTranslatePlugin_translateResult_resultValid = 1'b1;
     end
   end
 
   always @(*) begin
     IF2_InstAddrTranslatePlugin_translateResult_resultPhysAddr = 32'h0;
-    if(when_MMUPlugin_l347) begin
+    if(when_MMUPlugin_l348) begin
       IF2_InstAddrTranslatePlugin_translateResult_resultPhysAddr = IF2_TLB_TRANSLATE_RESULT_payload_physAddr;
     end
-    if(when_MMUPlugin_l355) begin
+    if(when_MMUPlugin_l356) begin
       IF2_InstAddrTranslatePlugin_translateResult_resultPhysAddr = IF2_DIRECT_TRANSLATE_RESULT_payload_physAddr;
     end
-    if(when_MMUPlugin_l363) begin
-      IF2_InstAddrTranslatePlugin_translateResult_resultPhysAddr = IF2_PC;
+    if(when_MMUPlugin_l364) begin
+      IF2_InstAddrTranslatePlugin_translateResult_resultPhysAddr = {3'b000,IF2_PC[28 : 0]};
     end
   end
 
   always @(*) begin
     IF2_InstAddrTranslatePlugin_translateResult_resultCached = 1'b0;
-    if(when_MMUPlugin_l347) begin
+    if(when_MMUPlugin_l348) begin
       IF2_InstAddrTranslatePlugin_translateResult_resultCached = IF2_TLB_TRANSLATE_RESULT_payload_cached;
     end
-    if(when_MMUPlugin_l355) begin
+    if(when_MMUPlugin_l356) begin
       IF2_InstAddrTranslatePlugin_translateResult_resultCached = IF2_DIRECT_TRANSLATE_RESULT_payload_cached;
     end
-    if(when_MMUPlugin_l363) begin
-      if(when_MMUPlugin_l367) begin
-        IF2_InstAddrTranslatePlugin_translateResult_resultCached = IF2_TRANSLATE_SAVED_CSR_CRMD_DATF[0];
+    if(when_MMUPlugin_l364) begin
+      if(when_MMUPlugin_l370) begin
+        IF2_InstAddrTranslatePlugin_translateResult_resultCached = IF2_InstAddrTranslatePlugin_currentSavedCSR_CRMD_DATF[0];
       end else begin
-        IF2_InstAddrTranslatePlugin_translateResult_resultCached = IF2_TRANSLATE_SAVED_CSR_CRMD_DATM[0];
+        IF2_InstAddrTranslatePlugin_translateResult_resultCached = IF2_InstAddrTranslatePlugin_currentSavedCSR_CRMD_DATM[0];
       end
     end
   end
 
   always @(*) begin
     IF2_InstAddrTranslatePlugin_translateResult_resultExceptionBundle_raisePIL = 1'b0;
-    if(when_MMUPlugin_l347) begin
+    if(when_MMUPlugin_l348) begin
       IF2_InstAddrTranslatePlugin_translateResult_resultExceptionBundle_raisePIL = IF2_TLB_TRANSLATE_RESULT_payload_exception_raisePIL;
     end
-    if(when_MMUPlugin_l355) begin
+    if(when_MMUPlugin_l356) begin
       IF2_InstAddrTranslatePlugin_translateResult_resultExceptionBundle_raisePIL = IF2_DIRECT_TRANSLATE_RESULT_payload_exception_raisePIL;
     end
-    if(when_MMUPlugin_l363) begin
+    if(when_MMUPlugin_l364) begin
       IF2_InstAddrTranslatePlugin_translateResult_resultExceptionBundle_raisePIL = 1'b0;
     end
   end
 
   always @(*) begin
     IF2_InstAddrTranslatePlugin_translateResult_resultExceptionBundle_raisePIS = 1'b0;
-    if(when_MMUPlugin_l347) begin
+    if(when_MMUPlugin_l348) begin
       IF2_InstAddrTranslatePlugin_translateResult_resultExceptionBundle_raisePIS = IF2_TLB_TRANSLATE_RESULT_payload_exception_raisePIS;
     end
-    if(when_MMUPlugin_l355) begin
+    if(when_MMUPlugin_l356) begin
       IF2_InstAddrTranslatePlugin_translateResult_resultExceptionBundle_raisePIS = IF2_DIRECT_TRANSLATE_RESULT_payload_exception_raisePIS;
     end
-    if(when_MMUPlugin_l363) begin
+    if(when_MMUPlugin_l364) begin
       IF2_InstAddrTranslatePlugin_translateResult_resultExceptionBundle_raisePIS = 1'b0;
     end
   end
 
   always @(*) begin
     IF2_InstAddrTranslatePlugin_translateResult_resultExceptionBundle_raisePIF = 1'b0;
-    if(when_MMUPlugin_l347) begin
+    if(when_MMUPlugin_l348) begin
       IF2_InstAddrTranslatePlugin_translateResult_resultExceptionBundle_raisePIF = IF2_TLB_TRANSLATE_RESULT_payload_exception_raisePIF;
     end
-    if(when_MMUPlugin_l355) begin
+    if(when_MMUPlugin_l356) begin
       IF2_InstAddrTranslatePlugin_translateResult_resultExceptionBundle_raisePIF = IF2_DIRECT_TRANSLATE_RESULT_payload_exception_raisePIF;
     end
-    if(when_MMUPlugin_l363) begin
+    if(when_MMUPlugin_l364) begin
       IF2_InstAddrTranslatePlugin_translateResult_resultExceptionBundle_raisePIF = 1'b0;
     end
   end
 
   always @(*) begin
     IF2_InstAddrTranslatePlugin_translateResult_resultExceptionBundle_raisePME = 1'b0;
-    if(when_MMUPlugin_l347) begin
+    if(when_MMUPlugin_l348) begin
       IF2_InstAddrTranslatePlugin_translateResult_resultExceptionBundle_raisePME = IF2_TLB_TRANSLATE_RESULT_payload_exception_raisePME;
     end
-    if(when_MMUPlugin_l355) begin
+    if(when_MMUPlugin_l356) begin
       IF2_InstAddrTranslatePlugin_translateResult_resultExceptionBundle_raisePME = IF2_DIRECT_TRANSLATE_RESULT_payload_exception_raisePME;
     end
-    if(when_MMUPlugin_l363) begin
+    if(when_MMUPlugin_l364) begin
       IF2_InstAddrTranslatePlugin_translateResult_resultExceptionBundle_raisePME = 1'b0;
     end
   end
 
   always @(*) begin
     IF2_InstAddrTranslatePlugin_translateResult_resultExceptionBundle_raisePPI = 1'b0;
-    if(when_MMUPlugin_l347) begin
+    if(when_MMUPlugin_l348) begin
       IF2_InstAddrTranslatePlugin_translateResult_resultExceptionBundle_raisePPI = IF2_TLB_TRANSLATE_RESULT_payload_exception_raisePPI;
     end
-    if(when_MMUPlugin_l355) begin
+    if(when_MMUPlugin_l356) begin
       IF2_InstAddrTranslatePlugin_translateResult_resultExceptionBundle_raisePPI = IF2_DIRECT_TRANSLATE_RESULT_payload_exception_raisePPI;
     end
-    if(when_MMUPlugin_l363) begin
+    if(when_MMUPlugin_l364) begin
       IF2_InstAddrTranslatePlugin_translateResult_resultExceptionBundle_raisePPI = 1'b0;
     end
   end
 
   always @(*) begin
     IF2_InstAddrTranslatePlugin_translateResult_resultExceptionBundle_raiseTLBR = 1'b0;
-    if(when_MMUPlugin_l347) begin
+    if(when_MMUPlugin_l348) begin
       IF2_InstAddrTranslatePlugin_translateResult_resultExceptionBundle_raiseTLBR = IF2_TLB_TRANSLATE_RESULT_payload_exception_raiseTLBR;
     end
-    if(when_MMUPlugin_l355) begin
+    if(when_MMUPlugin_l356) begin
       IF2_InstAddrTranslatePlugin_translateResult_resultExceptionBundle_raiseTLBR = IF2_DIRECT_TRANSLATE_RESULT_payload_exception_raiseTLBR;
     end
-    if(when_MMUPlugin_l363) begin
+    if(when_MMUPlugin_l364) begin
       IF2_InstAddrTranslatePlugin_translateResult_resultExceptionBundle_raiseTLBR = 1'b0;
     end
   end
 
-  assign when_MMUPlugin_l347 = (((! IF2_TRANSLATE_SAVED_CSR_CRMD_DA) && IF2_TRANSLATE_SAVED_CSR_CRMD_PG) && IF2_TLB_TRANSLATE_RESULT_valid);
-  assign when_MMUPlugin_l355 = (((! IF2_TRANSLATE_SAVED_CSR_CRMD_DA) && IF2_TRANSLATE_SAVED_CSR_CRMD_PG) && IF2_DIRECT_TRANSLATE_RESULT_valid);
-  assign when_MMUPlugin_l363 = (IF2_TRANSLATE_SAVED_CSR_CRMD_DA && (! IF2_TRANSLATE_SAVED_CSR_CRMD_PG));
-  assign when_MMUPlugin_l367 = (MemOperationType_FETCH == MemOperationType_FETCH);
+  assign when_MMUPlugin_l348 = (((! IF2_InstAddrTranslatePlugin_currentSavedCSR_CRMD_DA) && IF2_InstAddrTranslatePlugin_currentSavedCSR_CRMD_PG) && IF2_TLB_TRANSLATE_RESULT_valid);
+  assign when_MMUPlugin_l356 = (((! IF2_InstAddrTranslatePlugin_currentSavedCSR_CRMD_DA) && IF2_InstAddrTranslatePlugin_currentSavedCSR_CRMD_PG) && IF2_DIRECT_TRANSLATE_RESULT_valid);
+  assign when_MMUPlugin_l364 = (IF2_InstAddrTranslatePlugin_currentSavedCSR_CRMD_DA && (! IF2_InstAddrTranslatePlugin_currentSavedCSR_CRMD_PG));
+  assign when_MMUPlugin_l370 = (MemOperationType_FETCH == MemOperationType_FETCH);
   assign IF2_InstAddrTranslatePlugin_translateResult_resultBundle_valid = IF2_InstAddrTranslatePlugin_translateResult_resultValid;
   assign IF2_InstAddrTranslatePlugin_translateResult_resultBundle_payload_physAddr = IF2_InstAddrTranslatePlugin_translateResult_resultPhysAddr;
   assign IF2_InstAddrTranslatePlugin_translateResult_resultBundle_payload_cached = IF2_InstAddrTranslatePlugin_translateResult_resultCached;
@@ -70754,6 +70855,7 @@ module MyCPUCore (
   assign RENAME_RenamePlugin_regWrites_0_rsp = RENAME_RenamePlugin_regWrites_0_popPort_payload;
   assign when_RenamePlugin_l114 = ((RENAME_arbitration_isValid && (! RENAME_arbitration_isStuck)) && RENAME_RenamePlugin_regWrites_0_req_valid);
   assign _zz_1453 = ({31'd0,1'b1} <<< _zz__zz_1453);
+  assign when_RenamePlugin_l120 = ((RENAME_DECODE_PACKET_0_valid && (20'h2bf88 <= RENAME_DECODE_PACKET_0_payload_pc[19 : 0])) && (RENAME_DECODE_PACKET_0_payload_pc[19 : 0] <= 20'h2bf90));
   assign RENAME_RenamePlugin_regReads_1_0_req_valid = (RENAME_DECODE_PACKET_1_payload_useRj && RENAME_DECODE_PACKET_1_valid);
   assign RENAME_RenamePlugin_regReads_1_0_req_payload = RENAME_DECODE_PACKET_1_payload_inst[9 : 5];
   assign RENAME_RenamePlugin_regReads_1_1_req_valid = ((RENAME_DECODE_PACKET_1_payload_useRk || RENAME_DECODE_PACKET_1_payload_useRd) && RENAME_DECODE_PACKET_1_valid);
@@ -70829,6 +70931,7 @@ module MyCPUCore (
   assign RENAME_RenamePlugin_regWrites_1_rsp = RENAME_RenamePlugin_regWrites_1_popPort_payload;
   assign when_RenamePlugin_l114_1 = ((RENAME_arbitration_isValid && (! RENAME_arbitration_isStuck)) && RENAME_RenamePlugin_regWrites_1_req_valid);
   assign _zz_1454 = ({31'd0,1'b1} <<< _zz__zz_1454);
+  assign when_RenamePlugin_l120_1 = ((RENAME_DECODE_PACKET_1_valid && (20'h2bf88 <= RENAME_DECODE_PACKET_1_payload_pc[19 : 0])) && (RENAME_DECODE_PACKET_1_payload_pc[19 : 0] <= 20'h2bf90));
   assign RENAME_RenamePlugin_regReads_2_0_req_valid = (RENAME_DECODE_PACKET_2_payload_useRj && RENAME_DECODE_PACKET_2_valid);
   assign RENAME_RenamePlugin_regReads_2_0_req_payload = RENAME_DECODE_PACKET_2_payload_inst[9 : 5];
   assign RENAME_RenamePlugin_regReads_2_1_req_valid = ((RENAME_DECODE_PACKET_2_payload_useRk || RENAME_DECODE_PACKET_2_payload_useRd) && RENAME_DECODE_PACKET_2_valid);
@@ -70923,15 +71026,16 @@ module MyCPUCore (
   assign RENAME_RenamePlugin_regWrites_2_rsp = RENAME_RenamePlugin_regWrites_2_popPort_payload;
   assign when_RenamePlugin_l114_2 = ((RENAME_arbitration_isValid && (! RENAME_arbitration_isStuck)) && RENAME_RenamePlugin_regWrites_2_req_valid);
   assign _zz_1455 = ({31'd0,1'b1} <<< _zz__zz_1455);
+  assign when_RenamePlugin_l120_2 = ((RENAME_DECODE_PACKET_2_valid && (20'h2bf88 <= RENAME_DECODE_PACKET_2_payload_pc[19 : 0])) && (RENAME_DECODE_PACKET_2_payload_pc[19 : 0] <= 20'h2bf90));
   always @(*) begin
     RenamePlugin_freeList_io_push_0_valid = 1'b0;
     if(CommitPlugin_arfCommits_0_valid) begin
       RenamePlugin_freeList_io_push_0_valid = CommitPlugin_arfCommits_0_pushPort_valid;
     end
-    if(when_RenamePlugin_l135) begin
+    if(when_RenamePlugin_l138) begin
       RenamePlugin_freeList_io_push_0_valid = CommitPlugin_arfCommits_1_pushPort_valid;
     end
-    if(when_RenamePlugin_l135_2) begin
+    if(when_RenamePlugin_l138_2) begin
       RenamePlugin_freeList_io_push_0_valid = CommitPlugin_arfCommits_2_pushPort_valid;
     end
   end
@@ -70941,44 +71045,44 @@ module MyCPUCore (
     if(CommitPlugin_arfCommits_0_valid) begin
       RenamePlugin_freeList_io_push_0_payload = CommitPlugin_arfCommits_0_pushPort_payload;
     end
-    if(when_RenamePlugin_l135) begin
+    if(when_RenamePlugin_l138) begin
       RenamePlugin_freeList_io_push_0_payload = CommitPlugin_arfCommits_1_pushPort_payload;
     end
-    if(when_RenamePlugin_l135_2) begin
+    if(when_RenamePlugin_l138_2) begin
       RenamePlugin_freeList_io_push_0_payload = CommitPlugin_arfCommits_2_pushPort_payload;
     end
   end
 
   always @(*) begin
     RenamePlugin_freeList_io_push_1_valid = 1'b0;
-    if(when_RenamePlugin_l135_1) begin
+    if(when_RenamePlugin_l138_1) begin
       RenamePlugin_freeList_io_push_1_valid = CommitPlugin_arfCommits_1_pushPort_valid;
     end
-    if(when_RenamePlugin_l135_3) begin
+    if(when_RenamePlugin_l138_3) begin
       RenamePlugin_freeList_io_push_1_valid = CommitPlugin_arfCommits_2_pushPort_valid;
     end
   end
 
   always @(*) begin
     RenamePlugin_freeList_io_push_1_payload = 6'bxxxxxx;
-    if(when_RenamePlugin_l135_1) begin
+    if(when_RenamePlugin_l138_1) begin
       RenamePlugin_freeList_io_push_1_payload = CommitPlugin_arfCommits_1_pushPort_payload;
     end
-    if(when_RenamePlugin_l135_3) begin
+    if(when_RenamePlugin_l138_3) begin
       RenamePlugin_freeList_io_push_1_payload = CommitPlugin_arfCommits_2_pushPort_payload;
     end
   end
 
   always @(*) begin
     RenamePlugin_freeList_io_push_2_valid = 1'b0;
-    if(when_RenamePlugin_l135_4) begin
+    if(when_RenamePlugin_l138_4) begin
       RenamePlugin_freeList_io_push_2_valid = CommitPlugin_arfCommits_2_pushPort_valid;
     end
   end
 
   always @(*) begin
     RenamePlugin_freeList_io_push_2_payload = 6'bxxxxxx;
-    if(when_RenamePlugin_l135_4) begin
+    if(when_RenamePlugin_l138_4) begin
       RenamePlugin_freeList_io_push_2_payload = CommitPlugin_arfCommits_2_pushPort_payload;
     end
   end
@@ -70995,37 +71099,37 @@ module MyCPUCore (
   assign _zz_1456 = ({31'd0,1'b1} <<< _zz__zz_1456);
   always @(*) begin
     CommitPlugin_arfCommits_1_pushPort_ready = 1'b0;
-    if(when_RenamePlugin_l135) begin
+    if(when_RenamePlugin_l138) begin
       CommitPlugin_arfCommits_1_pushPort_ready = RenamePlugin_freeList_io_push_0_ready;
     end
-    if(when_RenamePlugin_l135_1) begin
+    if(when_RenamePlugin_l138_1) begin
       CommitPlugin_arfCommits_1_pushPort_ready = RenamePlugin_freeList_io_push_1_ready;
     end
   end
 
   assign CommitPlugin_arfCommits_1_pushIdx = _zz_CommitPlugin_arfCommits_1_pushIdx;
-  assign when_RenamePlugin_l135 = ((CommitPlugin_arfCommits_1_pushIdx == 1'b0) && CommitPlugin_arfCommits_1_valid);
-  assign when_RenamePlugin_l135_1 = ((CommitPlugin_arfCommits_1_pushIdx == 1'b1) && CommitPlugin_arfCommits_1_valid);
+  assign when_RenamePlugin_l138 = ((CommitPlugin_arfCommits_1_pushIdx == 1'b0) && CommitPlugin_arfCommits_1_valid);
+  assign when_RenamePlugin_l138_1 = ((CommitPlugin_arfCommits_1_pushIdx == 1'b1) && CommitPlugin_arfCommits_1_valid);
   assign CommitPlugin_arfCommits_1_pushPort_valid = CommitPlugin_arfCommits_1_valid;
   assign CommitPlugin_arfCommits_1_pushPort_payload = CommitPlugin_arfCommits_1_payload_prevAddr;
   assign _zz_1457 = ({31'd0,1'b1} <<< _zz__zz_1457);
   always @(*) begin
     CommitPlugin_arfCommits_2_pushPort_ready = 1'b0;
-    if(when_RenamePlugin_l135_2) begin
+    if(when_RenamePlugin_l138_2) begin
       CommitPlugin_arfCommits_2_pushPort_ready = RenamePlugin_freeList_io_push_0_ready;
     end
-    if(when_RenamePlugin_l135_3) begin
+    if(when_RenamePlugin_l138_3) begin
       CommitPlugin_arfCommits_2_pushPort_ready = RenamePlugin_freeList_io_push_1_ready;
     end
-    if(when_RenamePlugin_l135_4) begin
+    if(when_RenamePlugin_l138_4) begin
       CommitPlugin_arfCommits_2_pushPort_ready = RenamePlugin_freeList_io_push_2_ready;
     end
   end
 
   assign CommitPlugin_arfCommits_2_pushIdx = _zz_CommitPlugin_arfCommits_2_pushIdx;
-  assign when_RenamePlugin_l135_2 = ((CommitPlugin_arfCommits_2_pushIdx == 2'b00) && CommitPlugin_arfCommits_2_valid);
-  assign when_RenamePlugin_l135_3 = ((CommitPlugin_arfCommits_2_pushIdx == 2'b01) && CommitPlugin_arfCommits_2_valid);
-  assign when_RenamePlugin_l135_4 = ((CommitPlugin_arfCommits_2_pushIdx == 2'b10) && CommitPlugin_arfCommits_2_valid);
+  assign when_RenamePlugin_l138_2 = ((CommitPlugin_arfCommits_2_pushIdx == 2'b00) && CommitPlugin_arfCommits_2_valid);
+  assign when_RenamePlugin_l138_3 = ((CommitPlugin_arfCommits_2_pushIdx == 2'b01) && CommitPlugin_arfCommits_2_valid);
+  assign when_RenamePlugin_l138_4 = ((CommitPlugin_arfCommits_2_pushIdx == 2'b10) && CommitPlugin_arfCommits_2_valid);
   assign CommitPlugin_arfCommits_2_pushPort_valid = CommitPlugin_arfCommits_2_valid;
   assign CommitPlugin_arfCommits_2_pushPort_payload = CommitPlugin_arfCommits_2_payload_prevAddr;
   assign _zz_1458 = ({31'd0,1'b1} <<< _zz__zz_1458);
@@ -71242,24 +71346,26 @@ module MyCPUCore (
   assign INT2_ISS_IntExecutePlugin_issSlot_uop_tlbOp = _zz_INT2_ISS_IntExecutePlugin_issSlot_uop_tlbOp;
   assign INT2_ISS_IntExecutePlugin_issSlot_wReg = _zz_INT2_ISS_IntExecutePlugin_issSlot_wReg;
   assign INT2_ISS_IntExecutePlugin_issValid = ({IntExecutePlugin_issGrant_6,{IntExecutePlugin_issGrant_5,{IntExecutePlugin_issGrant_4,{IntExecutePlugin_issGrant_3,{IntExecutePlugin_issGrant_2,{IntExecutePlugin_issGrant_1,IntExecutePlugin_issGrant_0}}}}}} != 7'h0);
-  assign when_IntExecutePlugin_l119 = (INT2_ISS_arbitration_notStuck && (CommitPlugin_regFlush || (! INT2_ISS_IntExecutePlugin_issValid)));
-  assign when_IntExecutePlugin_l122 = (INT2_ISS_IntExecutePlugin_issValid && INT2_ISS_IntExecutePlugin_issSlot_uop_doRegWrite);
-  assign when_IntExecutePlugin_l125 = ((INT2_ISS_IntExecutePlugin_issSlot_wReg == IntIssueQueuePlugin_queueNext_0_payload_rRegs_0_payload) && INT2_ISS_arbitration_notStuck);
-  assign when_IntExecutePlugin_l125_1 = ((INT2_ISS_IntExecutePlugin_issSlot_wReg == IntIssueQueuePlugin_queueNext_0_payload_rRegs_1_payload) && INT2_ISS_arbitration_notStuck);
-  assign when_IntExecutePlugin_l125_2 = ((INT2_ISS_IntExecutePlugin_issSlot_wReg == IntIssueQueuePlugin_queueNext_1_payload_rRegs_0_payload) && INT2_ISS_arbitration_notStuck);
-  assign when_IntExecutePlugin_l125_3 = ((INT2_ISS_IntExecutePlugin_issSlot_wReg == IntIssueQueuePlugin_queueNext_1_payload_rRegs_1_payload) && INT2_ISS_arbitration_notStuck);
-  assign when_IntExecutePlugin_l125_4 = ((INT2_ISS_IntExecutePlugin_issSlot_wReg == IntIssueQueuePlugin_queueNext_2_payload_rRegs_0_payload) && INT2_ISS_arbitration_notStuck);
-  assign when_IntExecutePlugin_l125_5 = ((INT2_ISS_IntExecutePlugin_issSlot_wReg == IntIssueQueuePlugin_queueNext_2_payload_rRegs_1_payload) && INT2_ISS_arbitration_notStuck);
-  assign when_IntExecutePlugin_l125_6 = ((INT2_ISS_IntExecutePlugin_issSlot_wReg == IntIssueQueuePlugin_queueNext_3_payload_rRegs_0_payload) && INT2_ISS_arbitration_notStuck);
-  assign when_IntExecutePlugin_l125_7 = ((INT2_ISS_IntExecutePlugin_issSlot_wReg == IntIssueQueuePlugin_queueNext_3_payload_rRegs_1_payload) && INT2_ISS_arbitration_notStuck);
-  assign when_IntExecutePlugin_l125_8 = ((INT2_ISS_IntExecutePlugin_issSlot_wReg == IntIssueQueuePlugin_queueNext_4_payload_rRegs_0_payload) && INT2_ISS_arbitration_notStuck);
-  assign when_IntExecutePlugin_l125_9 = ((INT2_ISS_IntExecutePlugin_issSlot_wReg == IntIssueQueuePlugin_queueNext_4_payload_rRegs_1_payload) && INT2_ISS_arbitration_notStuck);
-  assign when_IntExecutePlugin_l125_10 = ((INT2_ISS_IntExecutePlugin_issSlot_wReg == IntIssueQueuePlugin_queueNext_5_payload_rRegs_0_payload) && INT2_ISS_arbitration_notStuck);
-  assign when_IntExecutePlugin_l125_11 = ((INT2_ISS_IntExecutePlugin_issSlot_wReg == IntIssueQueuePlugin_queueNext_5_payload_rRegs_1_payload) && INT2_ISS_arbitration_notStuck);
-  assign when_IntExecutePlugin_l125_12 = ((INT2_ISS_IntExecutePlugin_issSlot_wReg == IntIssueQueuePlugin_queueNext_6_payload_rRegs_0_payload) && INT2_ISS_arbitration_notStuck);
-  assign when_IntExecutePlugin_l125_13 = ((INT2_ISS_IntExecutePlugin_issSlot_wReg == IntIssueQueuePlugin_queueNext_6_payload_rRegs_1_payload) && INT2_ISS_arbitration_notStuck);
+  assign when_IntExecutePlugin_l119 = ((INT2_ISS_IntExecutePlugin_issValid && (20'h2bf88 <= INT2_ISS_IntExecutePlugin_issSlot_uop_pc[19 : 0])) && (INT2_ISS_IntExecutePlugin_issSlot_uop_pc[19 : 0] <= 20'h2bf90));
+  assign when_IntExecutePlugin_l123 = (INT2_ISS_arbitration_notStuck && (CommitPlugin_regFlush || (! INT2_ISS_IntExecutePlugin_issValid)));
+  assign when_IntExecutePlugin_l126 = (INT2_ISS_IntExecutePlugin_issValid && INT2_ISS_IntExecutePlugin_issSlot_uop_doRegWrite);
+  assign when_IntExecutePlugin_l129 = ((INT2_ISS_IntExecutePlugin_issSlot_wReg == IntIssueQueuePlugin_queueNext_0_payload_rRegs_0_payload) && INT2_ISS_arbitration_notStuck);
+  assign when_IntExecutePlugin_l129_1 = ((INT2_ISS_IntExecutePlugin_issSlot_wReg == IntIssueQueuePlugin_queueNext_0_payload_rRegs_1_payload) && INT2_ISS_arbitration_notStuck);
+  assign when_IntExecutePlugin_l129_2 = ((INT2_ISS_IntExecutePlugin_issSlot_wReg == IntIssueQueuePlugin_queueNext_1_payload_rRegs_0_payload) && INT2_ISS_arbitration_notStuck);
+  assign when_IntExecutePlugin_l129_3 = ((INT2_ISS_IntExecutePlugin_issSlot_wReg == IntIssueQueuePlugin_queueNext_1_payload_rRegs_1_payload) && INT2_ISS_arbitration_notStuck);
+  assign when_IntExecutePlugin_l129_4 = ((INT2_ISS_IntExecutePlugin_issSlot_wReg == IntIssueQueuePlugin_queueNext_2_payload_rRegs_0_payload) && INT2_ISS_arbitration_notStuck);
+  assign when_IntExecutePlugin_l129_5 = ((INT2_ISS_IntExecutePlugin_issSlot_wReg == IntIssueQueuePlugin_queueNext_2_payload_rRegs_1_payload) && INT2_ISS_arbitration_notStuck);
+  assign when_IntExecutePlugin_l129_6 = ((INT2_ISS_IntExecutePlugin_issSlot_wReg == IntIssueQueuePlugin_queueNext_3_payload_rRegs_0_payload) && INT2_ISS_arbitration_notStuck);
+  assign when_IntExecutePlugin_l129_7 = ((INT2_ISS_IntExecutePlugin_issSlot_wReg == IntIssueQueuePlugin_queueNext_3_payload_rRegs_1_payload) && INT2_ISS_arbitration_notStuck);
+  assign when_IntExecutePlugin_l129_8 = ((INT2_ISS_IntExecutePlugin_issSlot_wReg == IntIssueQueuePlugin_queueNext_4_payload_rRegs_0_payload) && INT2_ISS_arbitration_notStuck);
+  assign when_IntExecutePlugin_l129_9 = ((INT2_ISS_IntExecutePlugin_issSlot_wReg == IntIssueQueuePlugin_queueNext_4_payload_rRegs_1_payload) && INT2_ISS_arbitration_notStuck);
+  assign when_IntExecutePlugin_l129_10 = ((INT2_ISS_IntExecutePlugin_issSlot_wReg == IntIssueQueuePlugin_queueNext_5_payload_rRegs_0_payload) && INT2_ISS_arbitration_notStuck);
+  assign when_IntExecutePlugin_l129_11 = ((INT2_ISS_IntExecutePlugin_issSlot_wReg == IntIssueQueuePlugin_queueNext_5_payload_rRegs_1_payload) && INT2_ISS_arbitration_notStuck);
+  assign when_IntExecutePlugin_l129_12 = ((INT2_ISS_IntExecutePlugin_issSlot_wReg == IntIssueQueuePlugin_queueNext_6_payload_rRegs_0_payload) && INT2_ISS_arbitration_notStuck);
+  assign when_IntExecutePlugin_l129_13 = ((INT2_ISS_IntExecutePlugin_issSlot_wReg == IntIssueQueuePlugin_queueNext_6_payload_rRegs_1_payload) && INT2_ISS_arbitration_notStuck);
   assign IntExecutePlugin_rrdReq_0 = INT2_RRD_ISSUE_SLOT_rRegs_0_payload;
   assign IntExecutePlugin_rrdReq_1 = INT2_RRD_ISSUE_SLOT_rRegs_1_payload;
+  assign when_IntExecutePlugin_l146 = ((20'h2bf88 <= INT2_RRD_ISSUE_SLOT_uop_pc[19 : 0]) && (INT2_RRD_ISSUE_SLOT_uop_pc[19 : 0] <= 20'h2bf90));
   assign IntExecutePlugin_clrBusy_valid = ((INT2_RRD_arbitration_isValid && (! INT2_RRD_arbitration_isStuck)) && INT2_RRD_ISSUE_SLOT_uop_doRegWrite);
   assign IntExecutePlugin_clrBusy_payload = INT2_RRD_ISSUE_SLOT_wReg;
   always @(*) begin
@@ -71278,6 +71384,7 @@ module MyCPUCore (
 
   assign IntExecutePlugin_bypassReq_0 = INT2_EXE_ISSUE_SLOT_rRegs_0_payload;
   assign IntExecutePlugin_bypassReq_1 = INT2_EXE_ISSUE_SLOT_rRegs_1_payload;
+  assign when_IntExecutePlugin_l181 = ((20'h2bf88 <= INT2_EXE_ISSUE_SLOT_uop_pc[19 : 0]) && (INT2_EXE_ISSUE_SLOT_uop_pc[19 : 0] <= 20'h2bf90));
   assign INT2_EXE_IntExecutePlugin_debug_exeResult = INT2_EXE_IntExecutePlugin_exeResult;
   always @(*) begin
     case(INT2_EXE_ISSUE_SLOT_uop_immExtendType)
@@ -71532,24 +71639,26 @@ module MyCPUCore (
   assign INT1_ISS_IntExecutePlugin_issSlot_uop_tlbOp = _zz_INT1_ISS_IntExecutePlugin_issSlot_uop_tlbOp;
   assign INT1_ISS_IntExecutePlugin_issSlot_wReg = _zz_INT1_ISS_IntExecutePlugin_issSlot_wReg;
   assign INT1_ISS_IntExecutePlugin_issValid = ({IntExecutePlugin_issGrant_6_1,{IntExecutePlugin_issGrant_5_1,{IntExecutePlugin_issGrant_4_1,{IntExecutePlugin_issGrant_3_1,{IntExecutePlugin_issGrant_2_1,{IntExecutePlugin_issGrant_1_1,IntExecutePlugin_issGrant_0_1}}}}}} != 7'h0);
-  assign when_IntExecutePlugin_l119_1 = (INT1_ISS_arbitration_notStuck && (CommitPlugin_regFlush || (! INT1_ISS_IntExecutePlugin_issValid)));
-  assign when_IntExecutePlugin_l122_1 = (INT1_ISS_IntExecutePlugin_issValid && INT1_ISS_IntExecutePlugin_issSlot_uop_doRegWrite);
-  assign when_IntExecutePlugin_l125_14 = ((INT1_ISS_IntExecutePlugin_issSlot_wReg == IntIssueQueuePlugin_queueNext_0_payload_rRegs_0_payload) && INT1_ISS_arbitration_notStuck);
-  assign when_IntExecutePlugin_l125_15 = ((INT1_ISS_IntExecutePlugin_issSlot_wReg == IntIssueQueuePlugin_queueNext_0_payload_rRegs_1_payload) && INT1_ISS_arbitration_notStuck);
-  assign when_IntExecutePlugin_l125_16 = ((INT1_ISS_IntExecutePlugin_issSlot_wReg == IntIssueQueuePlugin_queueNext_1_payload_rRegs_0_payload) && INT1_ISS_arbitration_notStuck);
-  assign when_IntExecutePlugin_l125_17 = ((INT1_ISS_IntExecutePlugin_issSlot_wReg == IntIssueQueuePlugin_queueNext_1_payload_rRegs_1_payload) && INT1_ISS_arbitration_notStuck);
-  assign when_IntExecutePlugin_l125_18 = ((INT1_ISS_IntExecutePlugin_issSlot_wReg == IntIssueQueuePlugin_queueNext_2_payload_rRegs_0_payload) && INT1_ISS_arbitration_notStuck);
-  assign when_IntExecutePlugin_l125_19 = ((INT1_ISS_IntExecutePlugin_issSlot_wReg == IntIssueQueuePlugin_queueNext_2_payload_rRegs_1_payload) && INT1_ISS_arbitration_notStuck);
-  assign when_IntExecutePlugin_l125_20 = ((INT1_ISS_IntExecutePlugin_issSlot_wReg == IntIssueQueuePlugin_queueNext_3_payload_rRegs_0_payload) && INT1_ISS_arbitration_notStuck);
-  assign when_IntExecutePlugin_l125_21 = ((INT1_ISS_IntExecutePlugin_issSlot_wReg == IntIssueQueuePlugin_queueNext_3_payload_rRegs_1_payload) && INT1_ISS_arbitration_notStuck);
-  assign when_IntExecutePlugin_l125_22 = ((INT1_ISS_IntExecutePlugin_issSlot_wReg == IntIssueQueuePlugin_queueNext_4_payload_rRegs_0_payload) && INT1_ISS_arbitration_notStuck);
-  assign when_IntExecutePlugin_l125_23 = ((INT1_ISS_IntExecutePlugin_issSlot_wReg == IntIssueQueuePlugin_queueNext_4_payload_rRegs_1_payload) && INT1_ISS_arbitration_notStuck);
-  assign when_IntExecutePlugin_l125_24 = ((INT1_ISS_IntExecutePlugin_issSlot_wReg == IntIssueQueuePlugin_queueNext_5_payload_rRegs_0_payload) && INT1_ISS_arbitration_notStuck);
-  assign when_IntExecutePlugin_l125_25 = ((INT1_ISS_IntExecutePlugin_issSlot_wReg == IntIssueQueuePlugin_queueNext_5_payload_rRegs_1_payload) && INT1_ISS_arbitration_notStuck);
-  assign when_IntExecutePlugin_l125_26 = ((INT1_ISS_IntExecutePlugin_issSlot_wReg == IntIssueQueuePlugin_queueNext_6_payload_rRegs_0_payload) && INT1_ISS_arbitration_notStuck);
-  assign when_IntExecutePlugin_l125_27 = ((INT1_ISS_IntExecutePlugin_issSlot_wReg == IntIssueQueuePlugin_queueNext_6_payload_rRegs_1_payload) && INT1_ISS_arbitration_notStuck);
+  assign when_IntExecutePlugin_l119_1 = ((INT1_ISS_IntExecutePlugin_issValid && (20'h2bf88 <= INT1_ISS_IntExecutePlugin_issSlot_uop_pc[19 : 0])) && (INT1_ISS_IntExecutePlugin_issSlot_uop_pc[19 : 0] <= 20'h2bf90));
+  assign when_IntExecutePlugin_l123_1 = (INT1_ISS_arbitration_notStuck && (CommitPlugin_regFlush || (! INT1_ISS_IntExecutePlugin_issValid)));
+  assign when_IntExecutePlugin_l126_1 = (INT1_ISS_IntExecutePlugin_issValid && INT1_ISS_IntExecutePlugin_issSlot_uop_doRegWrite);
+  assign when_IntExecutePlugin_l129_14 = ((INT1_ISS_IntExecutePlugin_issSlot_wReg == IntIssueQueuePlugin_queueNext_0_payload_rRegs_0_payload) && INT1_ISS_arbitration_notStuck);
+  assign when_IntExecutePlugin_l129_15 = ((INT1_ISS_IntExecutePlugin_issSlot_wReg == IntIssueQueuePlugin_queueNext_0_payload_rRegs_1_payload) && INT1_ISS_arbitration_notStuck);
+  assign when_IntExecutePlugin_l129_16 = ((INT1_ISS_IntExecutePlugin_issSlot_wReg == IntIssueQueuePlugin_queueNext_1_payload_rRegs_0_payload) && INT1_ISS_arbitration_notStuck);
+  assign when_IntExecutePlugin_l129_17 = ((INT1_ISS_IntExecutePlugin_issSlot_wReg == IntIssueQueuePlugin_queueNext_1_payload_rRegs_1_payload) && INT1_ISS_arbitration_notStuck);
+  assign when_IntExecutePlugin_l129_18 = ((INT1_ISS_IntExecutePlugin_issSlot_wReg == IntIssueQueuePlugin_queueNext_2_payload_rRegs_0_payload) && INT1_ISS_arbitration_notStuck);
+  assign when_IntExecutePlugin_l129_19 = ((INT1_ISS_IntExecutePlugin_issSlot_wReg == IntIssueQueuePlugin_queueNext_2_payload_rRegs_1_payload) && INT1_ISS_arbitration_notStuck);
+  assign when_IntExecutePlugin_l129_20 = ((INT1_ISS_IntExecutePlugin_issSlot_wReg == IntIssueQueuePlugin_queueNext_3_payload_rRegs_0_payload) && INT1_ISS_arbitration_notStuck);
+  assign when_IntExecutePlugin_l129_21 = ((INT1_ISS_IntExecutePlugin_issSlot_wReg == IntIssueQueuePlugin_queueNext_3_payload_rRegs_1_payload) && INT1_ISS_arbitration_notStuck);
+  assign when_IntExecutePlugin_l129_22 = ((INT1_ISS_IntExecutePlugin_issSlot_wReg == IntIssueQueuePlugin_queueNext_4_payload_rRegs_0_payload) && INT1_ISS_arbitration_notStuck);
+  assign when_IntExecutePlugin_l129_23 = ((INT1_ISS_IntExecutePlugin_issSlot_wReg == IntIssueQueuePlugin_queueNext_4_payload_rRegs_1_payload) && INT1_ISS_arbitration_notStuck);
+  assign when_IntExecutePlugin_l129_24 = ((INT1_ISS_IntExecutePlugin_issSlot_wReg == IntIssueQueuePlugin_queueNext_5_payload_rRegs_0_payload) && INT1_ISS_arbitration_notStuck);
+  assign when_IntExecutePlugin_l129_25 = ((INT1_ISS_IntExecutePlugin_issSlot_wReg == IntIssueQueuePlugin_queueNext_5_payload_rRegs_1_payload) && INT1_ISS_arbitration_notStuck);
+  assign when_IntExecutePlugin_l129_26 = ((INT1_ISS_IntExecutePlugin_issSlot_wReg == IntIssueQueuePlugin_queueNext_6_payload_rRegs_0_payload) && INT1_ISS_arbitration_notStuck);
+  assign when_IntExecutePlugin_l129_27 = ((INT1_ISS_IntExecutePlugin_issSlot_wReg == IntIssueQueuePlugin_queueNext_6_payload_rRegs_1_payload) && INT1_ISS_arbitration_notStuck);
   assign IntExecutePlugin_rrdReq_0_1 = INT1_RRD_ISSUE_SLOT_rRegs_0_payload;
   assign IntExecutePlugin_rrdReq_1_1 = INT1_RRD_ISSUE_SLOT_rRegs_1_payload;
+  assign when_IntExecutePlugin_l146_1 = ((20'h2bf88 <= INT1_RRD_ISSUE_SLOT_uop_pc[19 : 0]) && (INT1_RRD_ISSUE_SLOT_uop_pc[19 : 0] <= 20'h2bf90));
   assign IntExecutePlugin_clrBusy_valid_1 = ((INT1_RRD_arbitration_isValid && (! INT1_RRD_arbitration_isStuck)) && INT1_RRD_ISSUE_SLOT_uop_doRegWrite);
   assign IntExecutePlugin_clrBusy_payload_1 = INT1_RRD_ISSUE_SLOT_wReg;
   always @(*) begin
@@ -71568,6 +71677,7 @@ module MyCPUCore (
 
   assign IntExecutePlugin_bypassReq_0_1 = INT1_EXE_ISSUE_SLOT_rRegs_0_payload;
   assign IntExecutePlugin_bypassReq_1_1 = INT1_EXE_ISSUE_SLOT_rRegs_1_payload;
+  assign when_IntExecutePlugin_l181_1 = ((20'h2bf88 <= INT1_EXE_ISSUE_SLOT_uop_pc[19 : 0]) && (INT1_EXE_ISSUE_SLOT_uop_pc[19 : 0] <= 20'h2bf90));
   assign INT1_EXE_IntExecutePlugin_debug_exeResult = INT1_EXE_IntExecutePlugin_exeResult;
   always @(*) begin
     case(INT1_EXE_ISSUE_SLOT_uop_immExtendType)
@@ -71778,24 +71888,26 @@ module MyCPUCore (
   assign INT0_ISS_IntExecutePlugin_issSlot_uop_tlbOp = _zz_INT0_ISS_IntExecutePlugin_issSlot_uop_tlbOp;
   assign INT0_ISS_IntExecutePlugin_issSlot_wReg = _zz_INT0_ISS_IntExecutePlugin_issSlot_wReg;
   assign INT0_ISS_IntExecutePlugin_issValid = ({IntExecutePlugin_issGrant_6_2,{IntExecutePlugin_issGrant_5_2,{IntExecutePlugin_issGrant_4_2,{IntExecutePlugin_issGrant_3_2,{IntExecutePlugin_issGrant_2_2,{IntExecutePlugin_issGrant_1_2,IntExecutePlugin_issGrant_0_2}}}}}} != 7'h0);
-  assign when_IntExecutePlugin_l119_2 = (INT0_ISS_arbitration_notStuck && (CommitPlugin_regFlush || (! INT0_ISS_IntExecutePlugin_issValid)));
-  assign when_IntExecutePlugin_l122_2 = (INT0_ISS_IntExecutePlugin_issValid && INT0_ISS_IntExecutePlugin_issSlot_uop_doRegWrite);
-  assign when_IntExecutePlugin_l125_28 = ((INT0_ISS_IntExecutePlugin_issSlot_wReg == IntIssueQueuePlugin_queueNext_0_payload_rRegs_0_payload) && INT0_ISS_arbitration_notStuck);
-  assign when_IntExecutePlugin_l125_29 = ((INT0_ISS_IntExecutePlugin_issSlot_wReg == IntIssueQueuePlugin_queueNext_0_payload_rRegs_1_payload) && INT0_ISS_arbitration_notStuck);
-  assign when_IntExecutePlugin_l125_30 = ((INT0_ISS_IntExecutePlugin_issSlot_wReg == IntIssueQueuePlugin_queueNext_1_payload_rRegs_0_payload) && INT0_ISS_arbitration_notStuck);
-  assign when_IntExecutePlugin_l125_31 = ((INT0_ISS_IntExecutePlugin_issSlot_wReg == IntIssueQueuePlugin_queueNext_1_payload_rRegs_1_payload) && INT0_ISS_arbitration_notStuck);
-  assign when_IntExecutePlugin_l125_32 = ((INT0_ISS_IntExecutePlugin_issSlot_wReg == IntIssueQueuePlugin_queueNext_2_payload_rRegs_0_payload) && INT0_ISS_arbitration_notStuck);
-  assign when_IntExecutePlugin_l125_33 = ((INT0_ISS_IntExecutePlugin_issSlot_wReg == IntIssueQueuePlugin_queueNext_2_payload_rRegs_1_payload) && INT0_ISS_arbitration_notStuck);
-  assign when_IntExecutePlugin_l125_34 = ((INT0_ISS_IntExecutePlugin_issSlot_wReg == IntIssueQueuePlugin_queueNext_3_payload_rRegs_0_payload) && INT0_ISS_arbitration_notStuck);
-  assign when_IntExecutePlugin_l125_35 = ((INT0_ISS_IntExecutePlugin_issSlot_wReg == IntIssueQueuePlugin_queueNext_3_payload_rRegs_1_payload) && INT0_ISS_arbitration_notStuck);
-  assign when_IntExecutePlugin_l125_36 = ((INT0_ISS_IntExecutePlugin_issSlot_wReg == IntIssueQueuePlugin_queueNext_4_payload_rRegs_0_payload) && INT0_ISS_arbitration_notStuck);
-  assign when_IntExecutePlugin_l125_37 = ((INT0_ISS_IntExecutePlugin_issSlot_wReg == IntIssueQueuePlugin_queueNext_4_payload_rRegs_1_payload) && INT0_ISS_arbitration_notStuck);
-  assign when_IntExecutePlugin_l125_38 = ((INT0_ISS_IntExecutePlugin_issSlot_wReg == IntIssueQueuePlugin_queueNext_5_payload_rRegs_0_payload) && INT0_ISS_arbitration_notStuck);
-  assign when_IntExecutePlugin_l125_39 = ((INT0_ISS_IntExecutePlugin_issSlot_wReg == IntIssueQueuePlugin_queueNext_5_payload_rRegs_1_payload) && INT0_ISS_arbitration_notStuck);
-  assign when_IntExecutePlugin_l125_40 = ((INT0_ISS_IntExecutePlugin_issSlot_wReg == IntIssueQueuePlugin_queueNext_6_payload_rRegs_0_payload) && INT0_ISS_arbitration_notStuck);
-  assign when_IntExecutePlugin_l125_41 = ((INT0_ISS_IntExecutePlugin_issSlot_wReg == IntIssueQueuePlugin_queueNext_6_payload_rRegs_1_payload) && INT0_ISS_arbitration_notStuck);
+  assign when_IntExecutePlugin_l119_2 = ((INT0_ISS_IntExecutePlugin_issValid && (20'h2bf88 <= INT0_ISS_IntExecutePlugin_issSlot_uop_pc[19 : 0])) && (INT0_ISS_IntExecutePlugin_issSlot_uop_pc[19 : 0] <= 20'h2bf90));
+  assign when_IntExecutePlugin_l123_2 = (INT0_ISS_arbitration_notStuck && (CommitPlugin_regFlush || (! INT0_ISS_IntExecutePlugin_issValid)));
+  assign when_IntExecutePlugin_l126_2 = (INT0_ISS_IntExecutePlugin_issValid && INT0_ISS_IntExecutePlugin_issSlot_uop_doRegWrite);
+  assign when_IntExecutePlugin_l129_28 = ((INT0_ISS_IntExecutePlugin_issSlot_wReg == IntIssueQueuePlugin_queueNext_0_payload_rRegs_0_payload) && INT0_ISS_arbitration_notStuck);
+  assign when_IntExecutePlugin_l129_29 = ((INT0_ISS_IntExecutePlugin_issSlot_wReg == IntIssueQueuePlugin_queueNext_0_payload_rRegs_1_payload) && INT0_ISS_arbitration_notStuck);
+  assign when_IntExecutePlugin_l129_30 = ((INT0_ISS_IntExecutePlugin_issSlot_wReg == IntIssueQueuePlugin_queueNext_1_payload_rRegs_0_payload) && INT0_ISS_arbitration_notStuck);
+  assign when_IntExecutePlugin_l129_31 = ((INT0_ISS_IntExecutePlugin_issSlot_wReg == IntIssueQueuePlugin_queueNext_1_payload_rRegs_1_payload) && INT0_ISS_arbitration_notStuck);
+  assign when_IntExecutePlugin_l129_32 = ((INT0_ISS_IntExecutePlugin_issSlot_wReg == IntIssueQueuePlugin_queueNext_2_payload_rRegs_0_payload) && INT0_ISS_arbitration_notStuck);
+  assign when_IntExecutePlugin_l129_33 = ((INT0_ISS_IntExecutePlugin_issSlot_wReg == IntIssueQueuePlugin_queueNext_2_payload_rRegs_1_payload) && INT0_ISS_arbitration_notStuck);
+  assign when_IntExecutePlugin_l129_34 = ((INT0_ISS_IntExecutePlugin_issSlot_wReg == IntIssueQueuePlugin_queueNext_3_payload_rRegs_0_payload) && INT0_ISS_arbitration_notStuck);
+  assign when_IntExecutePlugin_l129_35 = ((INT0_ISS_IntExecutePlugin_issSlot_wReg == IntIssueQueuePlugin_queueNext_3_payload_rRegs_1_payload) && INT0_ISS_arbitration_notStuck);
+  assign when_IntExecutePlugin_l129_36 = ((INT0_ISS_IntExecutePlugin_issSlot_wReg == IntIssueQueuePlugin_queueNext_4_payload_rRegs_0_payload) && INT0_ISS_arbitration_notStuck);
+  assign when_IntExecutePlugin_l129_37 = ((INT0_ISS_IntExecutePlugin_issSlot_wReg == IntIssueQueuePlugin_queueNext_4_payload_rRegs_1_payload) && INT0_ISS_arbitration_notStuck);
+  assign when_IntExecutePlugin_l129_38 = ((INT0_ISS_IntExecutePlugin_issSlot_wReg == IntIssueQueuePlugin_queueNext_5_payload_rRegs_0_payload) && INT0_ISS_arbitration_notStuck);
+  assign when_IntExecutePlugin_l129_39 = ((INT0_ISS_IntExecutePlugin_issSlot_wReg == IntIssueQueuePlugin_queueNext_5_payload_rRegs_1_payload) && INT0_ISS_arbitration_notStuck);
+  assign when_IntExecutePlugin_l129_40 = ((INT0_ISS_IntExecutePlugin_issSlot_wReg == IntIssueQueuePlugin_queueNext_6_payload_rRegs_0_payload) && INT0_ISS_arbitration_notStuck);
+  assign when_IntExecutePlugin_l129_41 = ((INT0_ISS_IntExecutePlugin_issSlot_wReg == IntIssueQueuePlugin_queueNext_6_payload_rRegs_1_payload) && INT0_ISS_arbitration_notStuck);
   assign IntExecutePlugin_rrdReq_0_2 = INT0_RRD_ISSUE_SLOT_rRegs_0_payload;
   assign IntExecutePlugin_rrdReq_1_2 = INT0_RRD_ISSUE_SLOT_rRegs_1_payload;
+  assign when_IntExecutePlugin_l146_2 = ((20'h2bf88 <= INT0_RRD_ISSUE_SLOT_uop_pc[19 : 0]) && (INT0_RRD_ISSUE_SLOT_uop_pc[19 : 0] <= 20'h2bf90));
   assign IntExecutePlugin_clrBusy_valid_2 = ((INT0_RRD_arbitration_isValid && (! INT0_RRD_arbitration_isStuck)) && INT0_RRD_ISSUE_SLOT_uop_doRegWrite);
   assign IntExecutePlugin_clrBusy_payload_2 = INT0_RRD_ISSUE_SLOT_wReg;
   always @(*) begin
@@ -71814,6 +71926,7 @@ module MyCPUCore (
 
   assign IntExecutePlugin_bypassReq_0_2 = INT0_EXE_ISSUE_SLOT_rRegs_0_payload;
   assign IntExecutePlugin_bypassReq_1_2 = INT0_EXE_ISSUE_SLOT_rRegs_1_payload;
+  assign when_IntExecutePlugin_l181_2 = ((20'h2bf88 <= INT0_EXE_ISSUE_SLOT_uop_pc[19 : 0]) && (INT0_EXE_ISSUE_SLOT_uop_pc[19 : 0] <= 20'h2bf90));
   assign INT0_EXE_IntExecutePlugin_debug_exeResult = INT0_EXE_IntExecutePlugin_exeResult;
   always @(*) begin
     case(INT0_EXE_ISSUE_SLOT_uop_immExtendType)
@@ -71865,7 +71978,7 @@ module MyCPUCore (
   assign INT0_EXE_IntExecutePlugin_alu_io_sa = (INT0_EXE_ISSUE_SLOT_uop_useRk ? _zz_io_sa_2[4 : 0] : INT0_EXE_ISSUE_SLOT_uop_inst[14 : 10]);
   always @(*) begin
     INT0_EXE_IntExecutePlugin_exeResult = INT0_EXE_IntExecutePlugin_alu_io_result;
-    if(when_IntExecutePlugin_l253) begin
+    if(when_IntExecutePlugin_l265) begin
       INT0_EXE_IntExecutePlugin_exeResult = _zz_INT0_EXE_IntExecutePlugin_exeResult;
     end
     if(INT0_EXE_ISSUE_SLOT_uop_readCSR) begin
@@ -71885,16 +71998,16 @@ module MyCPUCore (
         _zz_INT0_EXE_ACTUAL_TARGET = INT0_EXE_IntExecutePlugin_regData_1;
       end
     end
-    if(when_IntExecutePlugin_l299) begin
+    if(when_IntExecutePlugin_l311) begin
       _zz_INT0_EXE_ACTUAL_TARGET[9 : 0] = _zz__zz_INT0_EXE_ACTUAL_TARGET[9 : 0];
       _zz_INT0_EXE_ACTUAL_TARGET[28 : 10] = _zz__zz_INT0_EXE_ACTUAL_TARGET_1[31 : 13];
       _zz_INT0_EXE_ACTUAL_TARGET[31 : 29] = 3'b000;
     end
   end
 
-  assign when_IntExecutePlugin_l253 = (INT0_EXE_ISSUE_SLOT_uop_isJump || INT0_EXE_ISSUE_SLOT_uop_isJR);
+  assign when_IntExecutePlugin_l265 = (INT0_EXE_ISSUE_SLOT_uop_isJump || INT0_EXE_ISSUE_SLOT_uop_isJR);
   assign CSRPlugin_readAddress = INT0_EXE_ISSUE_SLOT_uop_inst[23 : 10];
-  assign when_IntExecutePlugin_l299 = (INT0_EXE_ISSUE_SLOT_uop_tlbOp != TLBOpType_NONE);
+  assign when_IntExecutePlugin_l311 = (INT0_EXE_ISSUE_SLOT_uop_tlbOp != TLBOpType_NONE);
   assign IntExecutePlugin_wPort_valid_2 = ((INT0_WB_arbitration_isValid && (! INT0_WB_arbitration_isStuck)) && INT0_WB_WRITE_REG_valid);
   assign IntExecutePlugin_wPort_payload_addr_2 = INT0_WB_WRITE_REG_payload;
   assign IntExecutePlugin_wPort_payload_data_2 = INT0_WB_EXE_RESULT;
@@ -72096,12 +72209,12 @@ module MyCPUCore (
   assign MEM_ADDR_AddressGenerationPlugin_directTranslateResult_resultBundle_payload_exception_raisePME = MEM_ADDR_AddressGenerationPlugin_directTranslateResult_resultExceptionBundle_raisePME;
   assign MEM_ADDR_AddressGenerationPlugin_directTranslateResult_resultBundle_payload_exception_raisePPI = MEM_ADDR_AddressGenerationPlugin_directTranslateResult_resultExceptionBundle_raisePPI;
   assign MEM_ADDR_AddressGenerationPlugin_directTranslateResult_resultBundle_payload_exception_raiseTLBR = MEM_ADDR_AddressGenerationPlugin_directTranslateResult_resultExceptionBundle_raiseTLBR;
-  assign switch_MMUPlugin_l298_1 = (MEM_ADDR_ISSUE_SLOT_uop_isStore ? MemOperationType_STORE : MemOperationType_LOAD);
+  assign switch_MMUPlugin_l299_1 = (MEM_ADDR_ISSUE_SLOT_uop_isStore ? MemOperationType_STORE : MemOperationType_LOAD);
   assign MEM_ADDR_AddressGenerationPlugin_tlbTranslateResult_resultValid = 1'b1;
   always @(*) begin
     MEM_ADDR_AddressGenerationPlugin_tlbTranslateResult_resultExceptionBundle_raisePIL = 1'b0;
-    if(when_MMUPlugin_l297_1) begin
-      case(switch_MMUPlugin_l298_1)
+    if(when_MMUPlugin_l298_1) begin
+      case(switch_MMUPlugin_l299_1)
         MemOperationType_FETCH : begin
         end
         MemOperationType_LOAD : begin
@@ -72115,8 +72228,8 @@ module MyCPUCore (
 
   always @(*) begin
     MEM_ADDR_AddressGenerationPlugin_tlbTranslateResult_resultExceptionBundle_raisePIS = 1'b0;
-    if(when_MMUPlugin_l297_1) begin
-      case(switch_MMUPlugin_l298_1)
+    if(when_MMUPlugin_l298_1) begin
+      case(switch_MMUPlugin_l299_1)
         MemOperationType_FETCH : begin
         end
         MemOperationType_LOAD : begin
@@ -72130,8 +72243,8 @@ module MyCPUCore (
 
   always @(*) begin
     MEM_ADDR_AddressGenerationPlugin_tlbTranslateResult_resultExceptionBundle_raisePIF = 1'b0;
-    if(when_MMUPlugin_l297_1) begin
-      case(switch_MMUPlugin_l298_1)
+    if(when_MMUPlugin_l298_1) begin
+      case(switch_MMUPlugin_l299_1)
         MemOperationType_FETCH : begin
           MEM_ADDR_AddressGenerationPlugin_tlbTranslateResult_resultExceptionBundle_raisePIF = 1'b1;
         end
@@ -72145,21 +72258,21 @@ module MyCPUCore (
 
   always @(*) begin
     MEM_ADDR_AddressGenerationPlugin_tlbTranslateResult_resultExceptionBundle_raisePME = 1'b0;
-    if(when_MMUPlugin_l315_1) begin
+    if(when_MMUPlugin_l316_1) begin
       MEM_ADDR_AddressGenerationPlugin_tlbTranslateResult_resultExceptionBundle_raisePME = 1'b1;
     end
   end
 
   always @(*) begin
     MEM_ADDR_AddressGenerationPlugin_tlbTranslateResult_resultExceptionBundle_raisePPI = 1'b0;
-    if(when_MMUPlugin_l311_1) begin
+    if(when_MMUPlugin_l312_1) begin
       MEM_ADDR_AddressGenerationPlugin_tlbTranslateResult_resultExceptionBundle_raisePPI = 1'b1;
     end
   end
 
   always @(*) begin
     MEM_ADDR_AddressGenerationPlugin_tlbTranslateResult_resultExceptionBundle_raiseTLBR = 1'b0;
-    if(when_MMUPlugin_l293_1) begin
+    if(when_MMUPlugin_l294_1) begin
       MEM_ADDR_AddressGenerationPlugin_tlbTranslateResult_resultExceptionBundle_raiseTLBR = 1'b1;
     end
   end
@@ -72213,12 +72326,25 @@ module MyCPUCore (
   assign MEM_ADDR_AddressGenerationPlugin_tlbTranslateResult_EntryHits_14 = ((MMUPlugin_TLBTable_14_E && MEM_ADDR_AddressGenerationPlugin_tlbTranslateResult_ASIDMatches_14) && MEM_ADDR_AddressGenerationPlugin_tlbTranslateResult_VPPNMatches_14);
   assign MEM_ADDR_AddressGenerationPlugin_tlbTranslateResult_EntryHits_15 = ((MMUPlugin_TLBTable_15_E && MEM_ADDR_AddressGenerationPlugin_tlbTranslateResult_ASIDMatches_15) && MEM_ADDR_AddressGenerationPlugin_tlbTranslateResult_VPPNMatches_15);
   assign MEM_ADDR_AddressGenerationPlugin_tlbTranslateResult_TLBHit = ({MEM_ADDR_AddressGenerationPlugin_tlbTranslateResult_EntryHits_15,{MEM_ADDR_AddressGenerationPlugin_tlbTranslateResult_EntryHits_14,{MEM_ADDR_AddressGenerationPlugin_tlbTranslateResult_EntryHits_13,{MEM_ADDR_AddressGenerationPlugin_tlbTranslateResult_EntryHits_12,{MEM_ADDR_AddressGenerationPlugin_tlbTranslateResult_EntryHits_11,{MEM_ADDR_AddressGenerationPlugin_tlbTranslateResult_EntryHits_10,{MEM_ADDR_AddressGenerationPlugin_tlbTranslateResult_EntryHits_9,{MEM_ADDR_AddressGenerationPlugin_tlbTranslateResult_EntryHits_8,{MEM_ADDR_AddressGenerationPlugin_tlbTranslateResult_EntryHits_7,{_zz_MEM_ADDR_AddressGenerationPlugin_tlbTranslateResult_TLBHit,_zz_MEM_ADDR_AddressGenerationPlugin_tlbTranslateResult_TLBHit_1}}}}}}}}}} != 16'h0);
-  assign _zz_MEM_ADDR_AddressGenerationPlugin_tlbTranslateResult_TLBHitEntry_E = (((((((MEM_ADDR_AddressGenerationPlugin_tlbTranslateResult_EntryHits_1 || MEM_ADDR_AddressGenerationPlugin_tlbTranslateResult_EntryHits_3) || MEM_ADDR_AddressGenerationPlugin_tlbTranslateResult_EntryHits_5) || MEM_ADDR_AddressGenerationPlugin_tlbTranslateResult_EntryHits_7) || MEM_ADDR_AddressGenerationPlugin_tlbTranslateResult_EntryHits_9) || MEM_ADDR_AddressGenerationPlugin_tlbTranslateResult_EntryHits_11) || MEM_ADDR_AddressGenerationPlugin_tlbTranslateResult_EntryHits_13) || MEM_ADDR_AddressGenerationPlugin_tlbTranslateResult_EntryHits_15);
-  assign _zz_MEM_ADDR_AddressGenerationPlugin_tlbTranslateResult_TLBHitEntry_E_1 = (((((((MEM_ADDR_AddressGenerationPlugin_tlbTranslateResult_EntryHits_2 || MEM_ADDR_AddressGenerationPlugin_tlbTranslateResult_EntryHits_3) || MEM_ADDR_AddressGenerationPlugin_tlbTranslateResult_EntryHits_6) || MEM_ADDR_AddressGenerationPlugin_tlbTranslateResult_EntryHits_7) || MEM_ADDR_AddressGenerationPlugin_tlbTranslateResult_EntryHits_10) || MEM_ADDR_AddressGenerationPlugin_tlbTranslateResult_EntryHits_11) || MEM_ADDR_AddressGenerationPlugin_tlbTranslateResult_EntryHits_14) || MEM_ADDR_AddressGenerationPlugin_tlbTranslateResult_EntryHits_15);
-  assign _zz_MEM_ADDR_AddressGenerationPlugin_tlbTranslateResult_TLBHitEntry_E_2 = (((((((MEM_ADDR_AddressGenerationPlugin_tlbTranslateResult_EntryHits_4 || MEM_ADDR_AddressGenerationPlugin_tlbTranslateResult_EntryHits_5) || MEM_ADDR_AddressGenerationPlugin_tlbTranslateResult_EntryHits_6) || MEM_ADDR_AddressGenerationPlugin_tlbTranslateResult_EntryHits_7) || MEM_ADDR_AddressGenerationPlugin_tlbTranslateResult_EntryHits_12) || MEM_ADDR_AddressGenerationPlugin_tlbTranslateResult_EntryHits_13) || MEM_ADDR_AddressGenerationPlugin_tlbTranslateResult_EntryHits_14) || MEM_ADDR_AddressGenerationPlugin_tlbTranslateResult_EntryHits_15);
-  assign _zz_MEM_ADDR_AddressGenerationPlugin_tlbTranslateResult_TLBHitEntry_E_3 = (((((((MEM_ADDR_AddressGenerationPlugin_tlbTranslateResult_EntryHits_8 || MEM_ADDR_AddressGenerationPlugin_tlbTranslateResult_EntryHits_9) || MEM_ADDR_AddressGenerationPlugin_tlbTranslateResult_EntryHits_10) || MEM_ADDR_AddressGenerationPlugin_tlbTranslateResult_EntryHits_11) || MEM_ADDR_AddressGenerationPlugin_tlbTranslateResult_EntryHits_12) || MEM_ADDR_AddressGenerationPlugin_tlbTranslateResult_EntryHits_13) || MEM_ADDR_AddressGenerationPlugin_tlbTranslateResult_EntryHits_14) || MEM_ADDR_AddressGenerationPlugin_tlbTranslateResult_EntryHits_15);
-  assign _zz_MEM_ADDR_AddressGenerationPlugin_tlbTranslateResult_TLBHitEntry_E_4 = {_zz_MEM_ADDR_AddressGenerationPlugin_tlbTranslateResult_TLBHitEntry_E_3,{_zz_MEM_ADDR_AddressGenerationPlugin_tlbTranslateResult_TLBHitEntry_E_2,{_zz_MEM_ADDR_AddressGenerationPlugin_tlbTranslateResult_TLBHitEntry_E_1,_zz_MEM_ADDR_AddressGenerationPlugin_tlbTranslateResult_TLBHitEntry_E}}};
-  assign MEM_ADDR_AddressGenerationPlugin_tlbTranslateResult_TLBHitEntry_E = _zz_MEM_ADDR_AddressGenerationPlugin_tlbTranslateResult_TLBHitEntry_E_5;
+  assign _zz_MEM_ADDR_AddressGenerationPlugin_tlbTranslateResult_TLBHitEntry_E = {MEM_ADDR_AddressGenerationPlugin_tlbTranslateResult_EntryHits_15,{MEM_ADDR_AddressGenerationPlugin_tlbTranslateResult_EntryHits_14,{MEM_ADDR_AddressGenerationPlugin_tlbTranslateResult_EntryHits_13,{MEM_ADDR_AddressGenerationPlugin_tlbTranslateResult_EntryHits_12,{MEM_ADDR_AddressGenerationPlugin_tlbTranslateResult_EntryHits_11,{MEM_ADDR_AddressGenerationPlugin_tlbTranslateResult_EntryHits_10,{MEM_ADDR_AddressGenerationPlugin_tlbTranslateResult_EntryHits_9,{MEM_ADDR_AddressGenerationPlugin_tlbTranslateResult_EntryHits_8,{MEM_ADDR_AddressGenerationPlugin_tlbTranslateResult_EntryHits_7,{MEM_ADDR_AddressGenerationPlugin_tlbTranslateResult_EntryHits_6,{_zz__zz_MEM_ADDR_AddressGenerationPlugin_tlbTranslateResult_TLBHitEntry_E,_zz__zz_MEM_ADDR_AddressGenerationPlugin_tlbTranslateResult_TLBHitEntry_E_1}}}}}}}}}}};
+  assign _zz_MEM_ADDR_AddressGenerationPlugin_tlbTranslateResult_TLBHitEntry_E_1 = (_zz_MEM_ADDR_AddressGenerationPlugin_tlbTranslateResult_TLBHitEntry_E & (~ _zz__zz_MEM_ADDR_AddressGenerationPlugin_tlbTranslateResult_TLBHitEntry_E_1_1));
+  assign _zz_MEM_ADDR_AddressGenerationPlugin_tlbTranslateResult_TLBHitEntry_E_2 = _zz_MEM_ADDR_AddressGenerationPlugin_tlbTranslateResult_TLBHitEntry_E_1[3];
+  assign _zz_MEM_ADDR_AddressGenerationPlugin_tlbTranslateResult_TLBHitEntry_E_3 = _zz_MEM_ADDR_AddressGenerationPlugin_tlbTranslateResult_TLBHitEntry_E_1[5];
+  assign _zz_MEM_ADDR_AddressGenerationPlugin_tlbTranslateResult_TLBHitEntry_E_4 = _zz_MEM_ADDR_AddressGenerationPlugin_tlbTranslateResult_TLBHitEntry_E_1[6];
+  assign _zz_MEM_ADDR_AddressGenerationPlugin_tlbTranslateResult_TLBHitEntry_E_5 = _zz_MEM_ADDR_AddressGenerationPlugin_tlbTranslateResult_TLBHitEntry_E_1[7];
+  assign _zz_MEM_ADDR_AddressGenerationPlugin_tlbTranslateResult_TLBHitEntry_E_6 = _zz_MEM_ADDR_AddressGenerationPlugin_tlbTranslateResult_TLBHitEntry_E_1[9];
+  assign _zz_MEM_ADDR_AddressGenerationPlugin_tlbTranslateResult_TLBHitEntry_E_7 = _zz_MEM_ADDR_AddressGenerationPlugin_tlbTranslateResult_TLBHitEntry_E_1[10];
+  assign _zz_MEM_ADDR_AddressGenerationPlugin_tlbTranslateResult_TLBHitEntry_E_8 = _zz_MEM_ADDR_AddressGenerationPlugin_tlbTranslateResult_TLBHitEntry_E_1[11];
+  assign _zz_MEM_ADDR_AddressGenerationPlugin_tlbTranslateResult_TLBHitEntry_E_9 = _zz_MEM_ADDR_AddressGenerationPlugin_tlbTranslateResult_TLBHitEntry_E_1[12];
+  assign _zz_MEM_ADDR_AddressGenerationPlugin_tlbTranslateResult_TLBHitEntry_E_10 = _zz_MEM_ADDR_AddressGenerationPlugin_tlbTranslateResult_TLBHitEntry_E_1[13];
+  assign _zz_MEM_ADDR_AddressGenerationPlugin_tlbTranslateResult_TLBHitEntry_E_11 = _zz_MEM_ADDR_AddressGenerationPlugin_tlbTranslateResult_TLBHitEntry_E_1[14];
+  assign _zz_MEM_ADDR_AddressGenerationPlugin_tlbTranslateResult_TLBHitEntry_E_12 = _zz_MEM_ADDR_AddressGenerationPlugin_tlbTranslateResult_TLBHitEntry_E_1[15];
+  assign _zz_MEM_ADDR_AddressGenerationPlugin_tlbTranslateResult_TLBHitEntry_E_13 = (((((((_zz_MEM_ADDR_AddressGenerationPlugin_tlbTranslateResult_TLBHitEntry_E_1[1] || _zz_MEM_ADDR_AddressGenerationPlugin_tlbTranslateResult_TLBHitEntry_E_2) || _zz_MEM_ADDR_AddressGenerationPlugin_tlbTranslateResult_TLBHitEntry_E_3) || _zz_MEM_ADDR_AddressGenerationPlugin_tlbTranslateResult_TLBHitEntry_E_5) || _zz_MEM_ADDR_AddressGenerationPlugin_tlbTranslateResult_TLBHitEntry_E_6) || _zz_MEM_ADDR_AddressGenerationPlugin_tlbTranslateResult_TLBHitEntry_E_8) || _zz_MEM_ADDR_AddressGenerationPlugin_tlbTranslateResult_TLBHitEntry_E_10) || _zz_MEM_ADDR_AddressGenerationPlugin_tlbTranslateResult_TLBHitEntry_E_12);
+  assign _zz_MEM_ADDR_AddressGenerationPlugin_tlbTranslateResult_TLBHitEntry_E_14 = (((((((_zz_MEM_ADDR_AddressGenerationPlugin_tlbTranslateResult_TLBHitEntry_E_1[2] || _zz_MEM_ADDR_AddressGenerationPlugin_tlbTranslateResult_TLBHitEntry_E_2) || _zz_MEM_ADDR_AddressGenerationPlugin_tlbTranslateResult_TLBHitEntry_E_4) || _zz_MEM_ADDR_AddressGenerationPlugin_tlbTranslateResult_TLBHitEntry_E_5) || _zz_MEM_ADDR_AddressGenerationPlugin_tlbTranslateResult_TLBHitEntry_E_7) || _zz_MEM_ADDR_AddressGenerationPlugin_tlbTranslateResult_TLBHitEntry_E_8) || _zz_MEM_ADDR_AddressGenerationPlugin_tlbTranslateResult_TLBHitEntry_E_11) || _zz_MEM_ADDR_AddressGenerationPlugin_tlbTranslateResult_TLBHitEntry_E_12);
+  assign _zz_MEM_ADDR_AddressGenerationPlugin_tlbTranslateResult_TLBHitEntry_E_15 = (((((((_zz_MEM_ADDR_AddressGenerationPlugin_tlbTranslateResult_TLBHitEntry_E_1[4] || _zz_MEM_ADDR_AddressGenerationPlugin_tlbTranslateResult_TLBHitEntry_E_3) || _zz_MEM_ADDR_AddressGenerationPlugin_tlbTranslateResult_TLBHitEntry_E_4) || _zz_MEM_ADDR_AddressGenerationPlugin_tlbTranslateResult_TLBHitEntry_E_5) || _zz_MEM_ADDR_AddressGenerationPlugin_tlbTranslateResult_TLBHitEntry_E_9) || _zz_MEM_ADDR_AddressGenerationPlugin_tlbTranslateResult_TLBHitEntry_E_10) || _zz_MEM_ADDR_AddressGenerationPlugin_tlbTranslateResult_TLBHitEntry_E_11) || _zz_MEM_ADDR_AddressGenerationPlugin_tlbTranslateResult_TLBHitEntry_E_12);
+  assign _zz_MEM_ADDR_AddressGenerationPlugin_tlbTranslateResult_TLBHitEntry_E_16 = (((((((_zz_MEM_ADDR_AddressGenerationPlugin_tlbTranslateResult_TLBHitEntry_E_1[8] || _zz_MEM_ADDR_AddressGenerationPlugin_tlbTranslateResult_TLBHitEntry_E_6) || _zz_MEM_ADDR_AddressGenerationPlugin_tlbTranslateResult_TLBHitEntry_E_7) || _zz_MEM_ADDR_AddressGenerationPlugin_tlbTranslateResult_TLBHitEntry_E_8) || _zz_MEM_ADDR_AddressGenerationPlugin_tlbTranslateResult_TLBHitEntry_E_9) || _zz_MEM_ADDR_AddressGenerationPlugin_tlbTranslateResult_TLBHitEntry_E_10) || _zz_MEM_ADDR_AddressGenerationPlugin_tlbTranslateResult_TLBHitEntry_E_11) || _zz_MEM_ADDR_AddressGenerationPlugin_tlbTranslateResult_TLBHitEntry_E_12);
+  assign _zz_MEM_ADDR_AddressGenerationPlugin_tlbTranslateResult_TLBHitEntry_E_17 = {_zz_MEM_ADDR_AddressGenerationPlugin_tlbTranslateResult_TLBHitEntry_E_16,{_zz_MEM_ADDR_AddressGenerationPlugin_tlbTranslateResult_TLBHitEntry_E_15,{_zz_MEM_ADDR_AddressGenerationPlugin_tlbTranslateResult_TLBHitEntry_E_14,_zz_MEM_ADDR_AddressGenerationPlugin_tlbTranslateResult_TLBHitEntry_E_13}}};
+  assign MEM_ADDR_AddressGenerationPlugin_tlbTranslateResult_TLBHitEntry_E = _zz_MEM_ADDR_AddressGenerationPlugin_tlbTranslateResult_TLBHitEntry_E_18;
   assign MEM_ADDR_AddressGenerationPlugin_tlbTranslateResult_TLBHitEntry_ASID = _zz_MEM_ADDR_AddressGenerationPlugin_tlbTranslateResult_TLBHitEntry_ASID;
   assign MEM_ADDR_AddressGenerationPlugin_tlbTranslateResult_TLBHitEntry_G = _zz_MEM_ADDR_AddressGenerationPlugin_tlbTranslateResult_TLBHitEntry_G;
   assign MEM_ADDR_AddressGenerationPlugin_tlbTranslateResult_TLBHitEntry_PS = _zz_MEM_ADDR_AddressGenerationPlugin_tlbTranslateResult_TLBHitEntry_PS;
@@ -72238,10 +72364,10 @@ module MyCPUCore (
   assign MEM_ADDR_AddressGenerationPlugin_tlbTranslateResult_TLBHitEntry_mat = (MEM_ADDR_MEMORY_ADDRESS[MEM_ADDR_AddressGenerationPlugin_tlbTranslateResult_TLBHitEntry_PS[4 : 0]] ? MEM_ADDR_AddressGenerationPlugin_tlbTranslateResult_TLBHitEntry_MAT1 : MEM_ADDR_AddressGenerationPlugin_tlbTranslateResult_TLBHitEntry_MAT0);
   assign MEM_ADDR_AddressGenerationPlugin_tlbTranslateResult_TLBHitEntry_plv = (MEM_ADDR_MEMORY_ADDRESS[MEM_ADDR_AddressGenerationPlugin_tlbTranslateResult_TLBHitEntry_PS[4 : 0]] ? MEM_ADDR_AddressGenerationPlugin_tlbTranslateResult_TLBHitEntry_PLV1 : MEM_ADDR_AddressGenerationPlugin_tlbTranslateResult_TLBHitEntry_PLV0);
   assign MEM_ADDR_AddressGenerationPlugin_tlbTranslateResult_TLBHitEntry_ppn = (MEM_ADDR_MEMORY_ADDRESS[MEM_ADDR_AddressGenerationPlugin_tlbTranslateResult_TLBHitEntry_PS[4 : 0]] ? MEM_ADDR_AddressGenerationPlugin_tlbTranslateResult_TLBHitEntry_PPN1 : MEM_ADDR_AddressGenerationPlugin_tlbTranslateResult_TLBHitEntry_PPN0);
-  assign when_MMUPlugin_l293_1 = (! MEM_ADDR_AddressGenerationPlugin_tlbTranslateResult_TLBHit);
-  assign when_MMUPlugin_l297_1 = (! MEM_ADDR_AddressGenerationPlugin_tlbTranslateResult_TLBHitEntry_v);
-  assign when_MMUPlugin_l311_1 = (MEM_ADDR_AddressGenerationPlugin_tlbTranslateResult_TLBHitEntry_plv < ExceptionHandlerPlugin_CRMD_PLV);
-  assign when_MMUPlugin_l315_1 = ((switch_MMUPlugin_l298_1 == MemOperationType_STORE) && (! MEM_ADDR_AddressGenerationPlugin_tlbTranslateResult_TLBHitEntry_d));
+  assign when_MMUPlugin_l294_1 = (! MEM_ADDR_AddressGenerationPlugin_tlbTranslateResult_TLBHit);
+  assign when_MMUPlugin_l298_1 = (! MEM_ADDR_AddressGenerationPlugin_tlbTranslateResult_TLBHitEntry_v);
+  assign when_MMUPlugin_l312_1 = (MEM_ADDR_AddressGenerationPlugin_tlbTranslateResult_TLBHitEntry_plv < ExceptionHandlerPlugin_CRMD_PLV);
+  assign when_MMUPlugin_l316_1 = ((switch_MMUPlugin_l299_1 == MemOperationType_STORE) && (! MEM_ADDR_AddressGenerationPlugin_tlbTranslateResult_TLBHitEntry_d));
   assign MEM_ADDR_AddressGenerationPlugin_tlbTranslateResult_resultPhysAddr = ((MEM_ADDR_AddressGenerationPlugin_tlbTranslateResult_TLBHitEntry_PS == 6'h0c) ? {MEM_ADDR_AddressGenerationPlugin_tlbTranslateResult_TLBHitEntry_ppn,MEM_ADDR_MEMORY_ADDRESS[11 : 0]} : {MEM_ADDR_AddressGenerationPlugin_tlbTranslateResult_TLBHitEntry_ppn[19 : 9],MEM_ADDR_MEMORY_ADDRESS[20 : 0]});
   assign MEM_ADDR_AddressGenerationPlugin_tlbTranslateResult_resultCached = MEM_ADDR_AddressGenerationPlugin_tlbTranslateResult_TLBHitEntry_mat[0];
   assign MEM_ADDR_AddressGenerationPlugin_tlbTranslateResult_resultBundle_valid = MEM_ADDR_AddressGenerationPlugin_tlbTranslateResult_resultValid;
@@ -72258,43 +72384,43 @@ module MyCPUCore (
   assign MEM_ADDR_AddressGenerationPlugin_savedCSR_CRMD_DATF = ExceptionHandlerPlugin_CRMD_DATF;
   assign MEM_ADDR_AddressGenerationPlugin_savedCSR_CRMD_DATM = ExceptionHandlerPlugin_CRMD_DATM;
   assign MEM_MEM1_AddressGenerationPlugin_excAsLoad = (! MEM_MEM1_ISSUE_SLOT_uop_isStore);
-  assign _zz_when_MMUPlugin_l367 = (MEM_MEM1_ISSUE_SLOT_uop_isStore ? MemOperationType_STORE : MemOperationType_LOAD);
+  assign _zz_when_MMUPlugin_l370 = (MEM_MEM1_ISSUE_SLOT_uop_isStore ? MemOperationType_STORE : MemOperationType_LOAD);
   always @(*) begin
     MEM_MEM1_AddressGenerationPlugin_translateResult_resultValid = 1'b0;
-    if(when_MMUPlugin_l347_1) begin
+    if(when_MMUPlugin_l348_1) begin
       MEM_MEM1_AddressGenerationPlugin_translateResult_resultValid = MEM_MEM1_TLB_TRANSLATE_RESULT_valid;
     end
-    if(when_MMUPlugin_l355_1) begin
+    if(when_MMUPlugin_l356_1) begin
       MEM_MEM1_AddressGenerationPlugin_translateResult_resultValid = MEM_MEM1_DIRECT_TRANSLATE_RESULT_valid;
     end
-    if(when_MMUPlugin_l363_1) begin
+    if(when_MMUPlugin_l364_1) begin
       MEM_MEM1_AddressGenerationPlugin_translateResult_resultValid = 1'b1;
     end
   end
 
   always @(*) begin
     MEM_MEM1_AddressGenerationPlugin_translateResult_resultPhysAddr = 32'h0;
-    if(when_MMUPlugin_l347_1) begin
+    if(when_MMUPlugin_l348_1) begin
       MEM_MEM1_AddressGenerationPlugin_translateResult_resultPhysAddr = MEM_MEM1_TLB_TRANSLATE_RESULT_payload_physAddr;
     end
-    if(when_MMUPlugin_l355_1) begin
+    if(when_MMUPlugin_l356_1) begin
       MEM_MEM1_AddressGenerationPlugin_translateResult_resultPhysAddr = MEM_MEM1_DIRECT_TRANSLATE_RESULT_payload_physAddr;
     end
-    if(when_MMUPlugin_l363_1) begin
-      MEM_MEM1_AddressGenerationPlugin_translateResult_resultPhysAddr = MEM_MEM1_MEMORY_ADDRESS;
+    if(when_MMUPlugin_l364_1) begin
+      MEM_MEM1_AddressGenerationPlugin_translateResult_resultPhysAddr = {3'b000,MEM_MEM1_MEMORY_ADDRESS[28 : 0]};
     end
   end
 
   always @(*) begin
     MEM_MEM1_AddressGenerationPlugin_translateResult_resultCached = 1'b0;
-    if(when_MMUPlugin_l347_1) begin
+    if(when_MMUPlugin_l348_1) begin
       MEM_MEM1_AddressGenerationPlugin_translateResult_resultCached = MEM_MEM1_TLB_TRANSLATE_RESULT_payload_cached;
     end
-    if(when_MMUPlugin_l355_1) begin
+    if(when_MMUPlugin_l356_1) begin
       MEM_MEM1_AddressGenerationPlugin_translateResult_resultCached = MEM_MEM1_DIRECT_TRANSLATE_RESULT_payload_cached;
     end
-    if(when_MMUPlugin_l363_1) begin
-      if(when_MMUPlugin_l367_1) begin
+    if(when_MMUPlugin_l364_1) begin
+      if(when_MMUPlugin_l370_1) begin
         MEM_MEM1_AddressGenerationPlugin_translateResult_resultCached = MEM_MEM1_TRANSLATE_SAVED_CSR_CRMD_DATF[0];
       end else begin
         MEM_MEM1_AddressGenerationPlugin_translateResult_resultCached = MEM_MEM1_TRANSLATE_SAVED_CSR_CRMD_DATM[0];
@@ -72304,86 +72430,86 @@ module MyCPUCore (
 
   always @(*) begin
     MEM_MEM1_AddressGenerationPlugin_translateResult_resultExceptionBundle_raisePIL = 1'b0;
-    if(when_MMUPlugin_l347_1) begin
+    if(when_MMUPlugin_l348_1) begin
       MEM_MEM1_AddressGenerationPlugin_translateResult_resultExceptionBundle_raisePIL = MEM_MEM1_TLB_TRANSLATE_RESULT_payload_exception_raisePIL;
     end
-    if(when_MMUPlugin_l355_1) begin
+    if(when_MMUPlugin_l356_1) begin
       MEM_MEM1_AddressGenerationPlugin_translateResult_resultExceptionBundle_raisePIL = MEM_MEM1_DIRECT_TRANSLATE_RESULT_payload_exception_raisePIL;
     end
-    if(when_MMUPlugin_l363_1) begin
+    if(when_MMUPlugin_l364_1) begin
       MEM_MEM1_AddressGenerationPlugin_translateResult_resultExceptionBundle_raisePIL = 1'b0;
     end
   end
 
   always @(*) begin
     MEM_MEM1_AddressGenerationPlugin_translateResult_resultExceptionBundle_raisePIS = 1'b0;
-    if(when_MMUPlugin_l347_1) begin
+    if(when_MMUPlugin_l348_1) begin
       MEM_MEM1_AddressGenerationPlugin_translateResult_resultExceptionBundle_raisePIS = MEM_MEM1_TLB_TRANSLATE_RESULT_payload_exception_raisePIS;
     end
-    if(when_MMUPlugin_l355_1) begin
+    if(when_MMUPlugin_l356_1) begin
       MEM_MEM1_AddressGenerationPlugin_translateResult_resultExceptionBundle_raisePIS = MEM_MEM1_DIRECT_TRANSLATE_RESULT_payload_exception_raisePIS;
     end
-    if(when_MMUPlugin_l363_1) begin
+    if(when_MMUPlugin_l364_1) begin
       MEM_MEM1_AddressGenerationPlugin_translateResult_resultExceptionBundle_raisePIS = 1'b0;
     end
   end
 
   always @(*) begin
     MEM_MEM1_AddressGenerationPlugin_translateResult_resultExceptionBundle_raisePIF = 1'b0;
-    if(when_MMUPlugin_l347_1) begin
+    if(when_MMUPlugin_l348_1) begin
       MEM_MEM1_AddressGenerationPlugin_translateResult_resultExceptionBundle_raisePIF = MEM_MEM1_TLB_TRANSLATE_RESULT_payload_exception_raisePIF;
     end
-    if(when_MMUPlugin_l355_1) begin
+    if(when_MMUPlugin_l356_1) begin
       MEM_MEM1_AddressGenerationPlugin_translateResult_resultExceptionBundle_raisePIF = MEM_MEM1_DIRECT_TRANSLATE_RESULT_payload_exception_raisePIF;
     end
-    if(when_MMUPlugin_l363_1) begin
+    if(when_MMUPlugin_l364_1) begin
       MEM_MEM1_AddressGenerationPlugin_translateResult_resultExceptionBundle_raisePIF = 1'b0;
     end
   end
 
   always @(*) begin
     MEM_MEM1_AddressGenerationPlugin_translateResult_resultExceptionBundle_raisePME = 1'b0;
-    if(when_MMUPlugin_l347_1) begin
+    if(when_MMUPlugin_l348_1) begin
       MEM_MEM1_AddressGenerationPlugin_translateResult_resultExceptionBundle_raisePME = MEM_MEM1_TLB_TRANSLATE_RESULT_payload_exception_raisePME;
     end
-    if(when_MMUPlugin_l355_1) begin
+    if(when_MMUPlugin_l356_1) begin
       MEM_MEM1_AddressGenerationPlugin_translateResult_resultExceptionBundle_raisePME = MEM_MEM1_DIRECT_TRANSLATE_RESULT_payload_exception_raisePME;
     end
-    if(when_MMUPlugin_l363_1) begin
+    if(when_MMUPlugin_l364_1) begin
       MEM_MEM1_AddressGenerationPlugin_translateResult_resultExceptionBundle_raisePME = 1'b0;
     end
   end
 
   always @(*) begin
     MEM_MEM1_AddressGenerationPlugin_translateResult_resultExceptionBundle_raisePPI = 1'b0;
-    if(when_MMUPlugin_l347_1) begin
+    if(when_MMUPlugin_l348_1) begin
       MEM_MEM1_AddressGenerationPlugin_translateResult_resultExceptionBundle_raisePPI = MEM_MEM1_TLB_TRANSLATE_RESULT_payload_exception_raisePPI;
     end
-    if(when_MMUPlugin_l355_1) begin
+    if(when_MMUPlugin_l356_1) begin
       MEM_MEM1_AddressGenerationPlugin_translateResult_resultExceptionBundle_raisePPI = MEM_MEM1_DIRECT_TRANSLATE_RESULT_payload_exception_raisePPI;
     end
-    if(when_MMUPlugin_l363_1) begin
+    if(when_MMUPlugin_l364_1) begin
       MEM_MEM1_AddressGenerationPlugin_translateResult_resultExceptionBundle_raisePPI = 1'b0;
     end
   end
 
   always @(*) begin
     MEM_MEM1_AddressGenerationPlugin_translateResult_resultExceptionBundle_raiseTLBR = 1'b0;
-    if(when_MMUPlugin_l347_1) begin
+    if(when_MMUPlugin_l348_1) begin
       MEM_MEM1_AddressGenerationPlugin_translateResult_resultExceptionBundle_raiseTLBR = MEM_MEM1_TLB_TRANSLATE_RESULT_payload_exception_raiseTLBR;
     end
-    if(when_MMUPlugin_l355_1) begin
+    if(when_MMUPlugin_l356_1) begin
       MEM_MEM1_AddressGenerationPlugin_translateResult_resultExceptionBundle_raiseTLBR = MEM_MEM1_DIRECT_TRANSLATE_RESULT_payload_exception_raiseTLBR;
     end
-    if(when_MMUPlugin_l363_1) begin
+    if(when_MMUPlugin_l364_1) begin
       MEM_MEM1_AddressGenerationPlugin_translateResult_resultExceptionBundle_raiseTLBR = 1'b0;
     end
   end
 
-  assign when_MMUPlugin_l347_1 = (((! MEM_MEM1_TRANSLATE_SAVED_CSR_CRMD_DA) && MEM_MEM1_TRANSLATE_SAVED_CSR_CRMD_PG) && MEM_MEM1_TLB_TRANSLATE_RESULT_valid);
-  assign when_MMUPlugin_l355_1 = (((! MEM_MEM1_TRANSLATE_SAVED_CSR_CRMD_DA) && MEM_MEM1_TRANSLATE_SAVED_CSR_CRMD_PG) && MEM_MEM1_DIRECT_TRANSLATE_RESULT_valid);
-  assign when_MMUPlugin_l363_1 = (MEM_MEM1_TRANSLATE_SAVED_CSR_CRMD_DA && (! MEM_MEM1_TRANSLATE_SAVED_CSR_CRMD_PG));
-  assign when_MMUPlugin_l367_1 = (_zz_when_MMUPlugin_l367 == MemOperationType_FETCH);
+  assign when_MMUPlugin_l348_1 = (((! MEM_MEM1_TRANSLATE_SAVED_CSR_CRMD_DA) && MEM_MEM1_TRANSLATE_SAVED_CSR_CRMD_PG) && MEM_MEM1_TLB_TRANSLATE_RESULT_valid);
+  assign when_MMUPlugin_l356_1 = (((! MEM_MEM1_TRANSLATE_SAVED_CSR_CRMD_DA) && MEM_MEM1_TRANSLATE_SAVED_CSR_CRMD_PG) && MEM_MEM1_DIRECT_TRANSLATE_RESULT_valid);
+  assign when_MMUPlugin_l364_1 = (MEM_MEM1_TRANSLATE_SAVED_CSR_CRMD_DA && (! MEM_MEM1_TRANSLATE_SAVED_CSR_CRMD_PG));
+  assign when_MMUPlugin_l370_1 = (_zz_when_MMUPlugin_l370 == MemOperationType_FETCH);
   assign MEM_MEM1_AddressGenerationPlugin_translateResult_resultBundle_valid = MEM_MEM1_AddressGenerationPlugin_translateResult_resultValid;
   assign MEM_MEM1_AddressGenerationPlugin_translateResult_resultBundle_payload_physAddr = MEM_MEM1_AddressGenerationPlugin_translateResult_resultPhysAddr;
   assign MEM_MEM1_AddressGenerationPlugin_translateResult_resultBundle_payload_cached = MEM_MEM1_AddressGenerationPlugin_translateResult_resultCached;
@@ -73580,42 +73706,44 @@ module MyCPUCore (
   assign MEM_ISS_MemExecutePlugin_issSlot_uop_cacheOp = MemIssueQueuePlugin_queue_0_payload_uop_cacheOp;
   assign MEM_ISS_MemExecutePlugin_issSlot_uop_cacheSel = MemIssueQueuePlugin_queue_0_payload_uop_cacheSel;
   assign MEM_ISS_MemExecutePlugin_issSlot_wReg = MemIssueQueuePlugin_queue_0_payload_wReg;
+  assign when_MemExecutePlugin_l73 = ((MemIssueQueuePlugin_issueReq && (20'h2bf88 <= MemIssueQueuePlugin_queue_0_payload_uop_pc[19 : 0])) && (MemIssueQueuePlugin_queue_0_payload_uop_pc[19 : 0] <= 20'h2bf90));
   assign MEM_ISS_MemExecutePlugin_issueLoad = (MemIssueQueuePlugin_issueReq && MemIssueQueuePlugin_queue_0_payload_uop_isLoad);
   assign MEM_ISS_MemExecutePlugin_issueStore = (MemIssueQueuePlugin_issueReq && MemIssueQueuePlugin_queue_0_payload_uop_isStore);
   assign MEM_ISS_MemExecutePlugin_stdValid = ((StoreBufferPlugin_queueIO_popPort_valid && StoreBufferPlugin_queueIO_popPort_payload_retired) && ((MEM_ISS_MemExecutePlugin_issueStore && (! MemIssueQueuePlugin_queue_0_payload_uop_isSC)) || (! MemIssueQueuePlugin_issueReq)));
-  assign when_MemExecutePlugin_l80 = ((! MEM_ISS_arbitration_isStuck) && MEM_ISS_MemExecutePlugin_stdValid);
+  assign when_MemExecutePlugin_l84 = ((! MEM_ISS_arbitration_isStuck) && MEM_ISS_MemExecutePlugin_stdValid);
   assign _zz_MEM_ISS_STD_SLOT_payload_lsType_1 = StoreBufferPlugin_queueIO_popPort_payload_lsType;
-  assign when_MemExecutePlugin_l85 = ((! MEM_ISS_arbitration_isStuck) && (! MemIssueQueuePlugin_issueReq));
-  assign when_MemExecutePlugin_l86 = (CommitPlugin_regFlush && (! MEM_ISS_arbitration_isStuck));
+  assign when_MemExecutePlugin_l89 = ((! MEM_ISS_arbitration_isStuck) && (! MemIssueQueuePlugin_issueReq));
+  assign when_MemExecutePlugin_l90 = (CommitPlugin_regFlush && (! MEM_ISS_arbitration_isStuck));
   assign MemExecutePlugin_rrdReq_0 = MEM_RRD_ISSUE_SLOT_rRegs_0_payload;
   assign MemExecutePlugin_rrdReq_1 = MEM_RRD_ISSUE_SLOT_rRegs_1_payload;
   assign MEM_RRD_MemExecutePlugin_addrOffset = _zz_MEM_RRD_MemExecutePlugin_addrOffset;
+  assign when_MemExecutePlugin_l104 = ((20'h2bf88 <= MEM_RRD_ISSUE_SLOT_uop_pc[19 : 0]) && (MEM_RRD_ISSUE_SLOT_uop_pc[19 : 0] <= 20'h2bf90));
   assign MEM_MEM1_MemExecutePlugin_isLDU = (MEM_MEM1_STD_SLOT_valid && (! MEM_MEM1_STD_SLOT_payload_isStore));
   assign MEM_MEM1_MemExecutePlugin_wRegValid = (MEM_MEM1_STD_SLOT_valid ? MEM_MEM1_STD_SLOT_payload_wReg_valid : MEM_MEM1_ISSUE_SLOT_uop_doRegWrite);
   assign MEM_MEM1_MemExecutePlugin_wRegPayload = (MEM_MEM1_STD_SLOT_valid ? MEM_MEM1_STD_SLOT_payload_wReg_payload : MEM_MEM1_ISSUE_SLOT_wReg);
   assign MemExecutePlugin_clrBusy_valid = ((((MEM_MEM1_arbitration_isValid && (MEM_MEM1_ADDRESS_CACHED || MEM_MEM1_ISSUE_SLOT_uop_isSC)) || MEM_MEM1_MemExecutePlugin_isLDU) && MEM_MEM1_arbitration_notStuck) && MEM_MEM1_MemExecutePlugin_wRegValid);
   assign MemExecutePlugin_clrBusy_payload = MEM_MEM1_MemExecutePlugin_wRegPayload;
   assign MEM_MEM2_MemExecutePlugin_isLDU = (MEM_MEM2_STD_SLOT_valid && (! MEM_MEM2_STD_SLOT_payload_isStore));
-  assign when_MemExecutePlugin_l122 = (MEM_MEM2_arbitration_isStuck && _zz_when_MemExecutePlugin_l122);
-  assign when_MemExecutePlugin_l129 = (! MEM_MEM2_EXCEPTION_OCCURRED);
+  assign when_MemExecutePlugin_l130 = (MEM_MEM2_arbitration_isStuck && _zz_when_MemExecutePlugin_l130);
+  assign when_MemExecutePlugin_l137 = (! MEM_MEM2_EXCEPTION_OCCURRED);
   assign MEM_WB_MemExecutePlugin_isLDU = (MEM_WB_STD_SLOT_valid && (! MEM_WB_STD_SLOT_payload_isStore));
-  assign MemExecutePlugin_wPort_valid = ((((MEM_WB_arbitration_isValid && (MEM_WB_ADDRESS_CACHED || MEM_WB_ISSUE_SLOT_uop_isSC)) || MEM_WB_MemExecutePlugin_isLDU) && MEM_WB_arbitration_notStuck) && MEM_WB_WRITE_REG_valid);
+  assign MemExecutePlugin_wPort_valid = (((((MEM_WB_arbitration_isValid && (MEM_WB_ADDRESS_CACHED || MEM_WB_ISSUE_SLOT_uop_isSC)) || MEM_WB_MemExecutePlugin_isLDU) && MEM_WB_arbitration_notStuck) && (! MEM_WB_arbitration_removeIt)) && MEM_WB_WRITE_REG_valid);
   always @(*) begin
     MemExecutePlugin_wPort_payload_addr = MEM_WB_WRITE_REG_payload;
-    if(when_MemExecutePlugin_l148) begin
+    if(when_MemExecutePlugin_l156) begin
       MemExecutePlugin_wPort_payload_addr = MEM_WB_ISSUE_SLOT_wReg;
     end
   end
 
   always @(*) begin
     MemExecutePlugin_wPort_payload_data = MEM_WB_MEMORY_READ_DATA;
-    if(when_MemExecutePlugin_l148) begin
+    if(when_MemExecutePlugin_l156) begin
       MemExecutePlugin_wPort_payload_data = _zz_MemExecutePlugin_wPort_payload_data;
     end
   end
 
-  assign when_MemExecutePlugin_l148 = (MEM_WB_arbitration_isValid && MEM_WB_ISSUE_SLOT_uop_isSC);
-  assign MemExecutePlugin_robWrite_valid = (MEM_WB_arbitration_isValid && (! MEM_WB_arbitration_isStuck));
+  assign when_MemExecutePlugin_l156 = (MEM_WB_arbitration_isValid && MEM_WB_ISSUE_SLOT_uop_isSC);
+  assign MemExecutePlugin_robWrite_valid = ((MEM_WB_arbitration_isValid && (! MEM_WB_arbitration_isStuck)) && (! MEM_WB_arbitration_removeIt));
   assign MemExecutePlugin_robWrite_payload_robIdx = MEM_WB_ROB_IDX;
   assign MemExecutePlugin_robWrite_payload_except_valid = (MemExecutePlugin_robWrite_valid && MEM_WB_EXCEPTION_OCCURRED);
   assign MemExecutePlugin_robWrite_payload_except_payload_code = MEM_WB_EXCEPTION_ECODE;
@@ -73625,13 +73753,13 @@ module MyCPUCore (
   assign MemExecutePlugin_robWrite_payload_lsuUncached = (! MEM_WB_ADDRESS_CACHED);
   always @(*) begin
     MemExecutePlugin_robWrite_payload_intResult = MemExecutePlugin_wPort_payload_data;
-    if(when_MemExecutePlugin_l164) begin
+    if(when_MemExecutePlugin_l172) begin
       MemExecutePlugin_robWrite_payload_intResult[1 : 0] = MEM_WB_ISSUE_SLOT_uop_cacheOp;
       MemExecutePlugin_robWrite_payload_intResult[3 : 2] = MEM_WB_ISSUE_SLOT_uop_cacheSel;
     end
   end
 
-  assign when_MemExecutePlugin_l164 = (MEM_WB_ISSUE_SLOT_uop_cacheOp != CacheOpType_None);
+  assign when_MemExecutePlugin_l172 = (MEM_WB_ISSUE_SLOT_uop_cacheOp != CacheOpType_None);
   assign MemExecutePlugin_robWrite_payload_isLoad = (MEM_WB_IS_LOAD && MemExecutePlugin_robWrite_valid);
   assign MemExecutePlugin_robWrite_payload_isStore = (MEM_WB_IS_STORE && MemExecutePlugin_robWrite_valid);
   assign MemExecutePlugin_robWrite_payload_isLL = (MEM_WB_ISSUE_SLOT_uop_isLL && MemExecutePlugin_robWrite_valid);
@@ -73664,7 +73792,6 @@ module MyCPUCore (
   assign when_Pipeline_l158_14 = (! IF2_arbitration_isStuck);
   assign when_Pipeline_l158_15 = (! IF2_arbitration_isStuck);
   assign when_Pipeline_l158_16 = (! IF2_arbitration_isStuck);
-  assign when_Pipeline_l158_17 = (! IF2_arbitration_isStuck);
   assign IF1_arbitration_isFlushed = ((IF2_arbitration_flushNext != 1'b0) || ({IF2_arbitration_flushIt,IF1_arbitration_flushIt} != 2'b00));
   assign IF2_arbitration_isFlushed = (1'b0 || (IF2_arbitration_flushIt != 1'b0));
   assign IF1_arbitration_isStuckByOthers = (IF1_arbitration_haltByOther || (1'b0 || IF2_arbitration_isStuck));
@@ -73734,7 +73861,7 @@ module MyCPUCore (
   assign _zz_ID_DECODE_PACKET_2_payload_lsType = ID_DecoderArray_decodePacket_2_payload_lsType;
   assign _zz_ID_DECODE_PACKET_2_payload_cmpOp = ID_DecoderArray_decodePacket_2_payload_cmpOp;
   assign _zz_ID_DECODE_PACKET_2_payload_tlbOp = ID_DecoderArray_decodePacket_2_payload_tlbOp;
-  assign when_Pipeline_l158_18 = (! RENAME_arbitration_isStuck);
+  assign when_Pipeline_l158_17 = (! RENAME_arbitration_isStuck);
   assign _zz_RENAME_DECODE_PACKET_0_payload_fuType = ID_to_RENAME_DECODE_PACKET_0_payload_fuType;
   assign _zz_RENAME_DECODE_PACKET_0_payload_immExtendType = ID_to_RENAME_DECODE_PACKET_0_payload_immExtendType;
   assign _zz_RENAME_DECODE_PACKET_0_payload_aluOp = ID_to_RENAME_DECODE_PACKET_0_payload_aluOp;
@@ -73753,7 +73880,7 @@ module MyCPUCore (
   assign _zz_RENAME_DECODE_PACKET_2_payload_lsType = ID_to_RENAME_DECODE_PACKET_2_payload_lsType;
   assign _zz_RENAME_DECODE_PACKET_2_payload_cmpOp = ID_to_RENAME_DECODE_PACKET_2_payload_cmpOp;
   assign _zz_RENAME_DECODE_PACKET_2_payload_tlbOp = ID_to_RENAME_DECODE_PACKET_2_payload_tlbOp;
-  assign when_Pipeline_l158_19 = (! DISPATCH_arbitration_isStuck);
+  assign when_Pipeline_l158_18 = (! DISPATCH_arbitration_isStuck);
   assign _zz_DISPATCH_DECODE_PACKET_0_payload_fuType = RENAME_to_DISPATCH_DECODE_PACKET_0_payload_fuType;
   assign _zz_DISPATCH_DECODE_PACKET_0_payload_immExtendType = RENAME_to_DISPATCH_DECODE_PACKET_0_payload_immExtendType;
   assign _zz_DISPATCH_DECODE_PACKET_0_payload_aluOp = RENAME_to_DISPATCH_DECODE_PACKET_0_payload_aluOp;
@@ -73772,9 +73899,9 @@ module MyCPUCore (
   assign _zz_DISPATCH_DECODE_PACKET_2_payload_lsType = RENAME_to_DISPATCH_DECODE_PACKET_2_payload_lsType;
   assign _zz_DISPATCH_DECODE_PACKET_2_payload_cmpOp = RENAME_to_DISPATCH_DECODE_PACKET_2_payload_cmpOp;
   assign _zz_DISPATCH_DECODE_PACKET_2_payload_tlbOp = RENAME_to_DISPATCH_DECODE_PACKET_2_payload_tlbOp;
+  assign when_Pipeline_l158_19 = (! DISPATCH_arbitration_isStuck);
   assign when_Pipeline_l158_20 = (! DISPATCH_arbitration_isStuck);
   assign when_Pipeline_l158_21 = (! DISPATCH_arbitration_isStuck);
-  assign when_Pipeline_l158_22 = (! DISPATCH_arbitration_isStuck);
   assign ID_arbitration_isFlushed = (({DISPATCH_arbitration_flushNext,RENAME_arbitration_flushNext} != 2'b00) || ({DISPATCH_arbitration_flushIt,{RENAME_arbitration_flushIt,ID_arbitration_flushIt}} != 3'b000));
   assign RENAME_arbitration_isFlushed = ((DISPATCH_arbitration_flushNext != 1'b0) || ({DISPATCH_arbitration_flushIt,RENAME_arbitration_flushIt} != 2'b00));
   assign DISPATCH_arbitration_isFlushed = (1'b0 || (DISPATCH_arbitration_flushIt != 1'b0));
@@ -73818,36 +73945,36 @@ module MyCPUCore (
   assign _zz_INT2_ISS_ISSUE_SLOT_uop_aluOp = INT2_ISS_IntExecutePlugin_issSlot_uop_aluOp;
   assign _zz_INT2_ISS_ISSUE_SLOT_uop_cmpOp = INT2_ISS_IntExecutePlugin_issSlot_uop_cmpOp;
   assign _zz_INT2_ISS_ISSUE_SLOT_uop_tlbOp = INT2_ISS_IntExecutePlugin_issSlot_uop_tlbOp;
-  assign when_Pipeline_l158_23 = (! INT2_RRD_arbitration_isStuck);
+  assign when_Pipeline_l158_22 = (! INT2_RRD_arbitration_isStuck);
   assign _zz_INT2_RRD_ISSUE_SLOT_uop_fuType = INT2_ISS_to_INT2_RRD_ISSUE_SLOT_uop_fuType;
   assign _zz_INT2_RRD_ISSUE_SLOT_uop_immExtendType = INT2_ISS_to_INT2_RRD_ISSUE_SLOT_uop_immExtendType;
   assign _zz_INT2_RRD_ISSUE_SLOT_uop_aluOp = INT2_ISS_to_INT2_RRD_ISSUE_SLOT_uop_aluOp;
   assign _zz_INT2_RRD_ISSUE_SLOT_uop_cmpOp = INT2_ISS_to_INT2_RRD_ISSUE_SLOT_uop_cmpOp;
   assign _zz_INT2_RRD_ISSUE_SLOT_uop_tlbOp = INT2_ISS_to_INT2_RRD_ISSUE_SLOT_uop_tlbOp;
-  assign when_Pipeline_l158_24 = (! INT2_EXE_arbitration_isStuck);
+  assign when_Pipeline_l158_23 = (! INT2_EXE_arbitration_isStuck);
   assign _zz_INT2_EXE_ISSUE_SLOT_uop_fuType = INT2_RRD_to_INT2_EXE_ISSUE_SLOT_uop_fuType;
   assign _zz_INT2_EXE_ISSUE_SLOT_uop_immExtendType = INT2_RRD_to_INT2_EXE_ISSUE_SLOT_uop_immExtendType;
   assign _zz_INT2_EXE_ISSUE_SLOT_uop_aluOp = INT2_RRD_to_INT2_EXE_ISSUE_SLOT_uop_aluOp;
   assign _zz_INT2_EXE_ISSUE_SLOT_uop_cmpOp = INT2_RRD_to_INT2_EXE_ISSUE_SLOT_uop_cmpOp;
   assign _zz_INT2_EXE_ISSUE_SLOT_uop_tlbOp = INT2_RRD_to_INT2_EXE_ISSUE_SLOT_uop_tlbOp;
-  assign when_Pipeline_l158_25 = (! INT2_WB_arbitration_isStuck);
+  assign when_Pipeline_l158_24 = (! INT2_WB_arbitration_isStuck);
   assign _zz_INT2_WB_ISSUE_SLOT_uop_fuType = INT2_EXE_to_INT2_WB_ISSUE_SLOT_uop_fuType;
   assign _zz_INT2_WB_ISSUE_SLOT_uop_immExtendType = INT2_EXE_to_INT2_WB_ISSUE_SLOT_uop_immExtendType;
   assign _zz_INT2_WB_ISSUE_SLOT_uop_aluOp = INT2_EXE_to_INT2_WB_ISSUE_SLOT_uop_aluOp;
   assign _zz_INT2_WB_ISSUE_SLOT_uop_cmpOp = INT2_EXE_to_INT2_WB_ISSUE_SLOT_uop_cmpOp;
   assign _zz_INT2_WB_ISSUE_SLOT_uop_tlbOp = INT2_EXE_to_INT2_WB_ISSUE_SLOT_uop_tlbOp;
+  assign when_Pipeline_l158_25 = (! INT2_EXE_arbitration_isStuck);
   assign when_Pipeline_l158_26 = (! INT2_EXE_arbitration_isStuck);
-  assign when_Pipeline_l158_27 = (! INT2_EXE_arbitration_isStuck);
-  assign when_Pipeline_l158_28 = (! INT2_WB_arbitration_isStuck);
-  assign when_Pipeline_l158_29 = (! INT2_EXE_arbitration_isStuck);
-  assign when_Pipeline_l158_30 = (! INT2_WB_arbitration_isStuck);
-  assign when_Pipeline_l158_31 = (! INT2_EXE_arbitration_isStuck);
-  assign when_Pipeline_l158_32 = (! INT2_WB_arbitration_isStuck);
-  assign when_Pipeline_l158_33 = (! INT2_EXE_arbitration_isStuck);
+  assign when_Pipeline_l158_27 = (! INT2_WB_arbitration_isStuck);
+  assign when_Pipeline_l158_28 = (! INT2_EXE_arbitration_isStuck);
+  assign when_Pipeline_l158_29 = (! INT2_WB_arbitration_isStuck);
+  assign when_Pipeline_l158_30 = (! INT2_EXE_arbitration_isStuck);
+  assign when_Pipeline_l158_31 = (! INT2_WB_arbitration_isStuck);
+  assign when_Pipeline_l158_32 = (! INT2_EXE_arbitration_isStuck);
+  assign when_Pipeline_l158_33 = (! INT2_WB_arbitration_isStuck);
   assign when_Pipeline_l158_34 = (! INT2_WB_arbitration_isStuck);
   assign when_Pipeline_l158_35 = (! INT2_WB_arbitration_isStuck);
   assign when_Pipeline_l158_36 = (! INT2_WB_arbitration_isStuck);
-  assign when_Pipeline_l158_37 = (! INT2_WB_arbitration_isStuck);
   assign INT2_ISS_arbitration_isFlushed = (({INT2_WB_arbitration_flushNext,{INT2_EXE_arbitration_flushNext,INT2_RRD_arbitration_flushNext}} != 3'b000) || ({INT2_WB_arbitration_flushIt,{INT2_EXE_arbitration_flushIt,{INT2_RRD_arbitration_flushIt,INT2_ISS_arbitration_flushIt}}} != 4'b0000));
   assign INT2_RRD_arbitration_isFlushed = (({INT2_WB_arbitration_flushNext,INT2_EXE_arbitration_flushNext} != 2'b00) || ({INT2_WB_arbitration_flushIt,{INT2_EXE_arbitration_flushIt,INT2_RRD_arbitration_flushIt}} != 3'b000));
   assign INT2_EXE_arbitration_isFlushed = ((INT2_WB_arbitration_flushNext != 1'b0) || ({INT2_WB_arbitration_flushIt,INT2_EXE_arbitration_flushIt} != 2'b00));
@@ -73899,35 +74026,35 @@ module MyCPUCore (
   assign _zz_INT1_ISS_ISSUE_SLOT_uop_aluOp = INT1_ISS_IntExecutePlugin_issSlot_uop_aluOp;
   assign _zz_INT1_ISS_ISSUE_SLOT_uop_cmpOp = INT1_ISS_IntExecutePlugin_issSlot_uop_cmpOp;
   assign _zz_INT1_ISS_ISSUE_SLOT_uop_tlbOp = INT1_ISS_IntExecutePlugin_issSlot_uop_tlbOp;
-  assign when_Pipeline_l158_38 = (! INT1_RRD_arbitration_isStuck);
+  assign when_Pipeline_l158_37 = (! INT1_RRD_arbitration_isStuck);
   assign _zz_INT1_RRD_ISSUE_SLOT_uop_fuType = INT1_ISS_to_INT1_RRD_ISSUE_SLOT_uop_fuType;
   assign _zz_INT1_RRD_ISSUE_SLOT_uop_immExtendType = INT1_ISS_to_INT1_RRD_ISSUE_SLOT_uop_immExtendType;
   assign _zz_INT1_RRD_ISSUE_SLOT_uop_aluOp = INT1_ISS_to_INT1_RRD_ISSUE_SLOT_uop_aluOp;
   assign _zz_INT1_RRD_ISSUE_SLOT_uop_cmpOp = INT1_ISS_to_INT1_RRD_ISSUE_SLOT_uop_cmpOp;
   assign _zz_INT1_RRD_ISSUE_SLOT_uop_tlbOp = INT1_ISS_to_INT1_RRD_ISSUE_SLOT_uop_tlbOp;
-  assign when_Pipeline_l158_39 = (! INT1_EXE_arbitration_isStuck);
+  assign when_Pipeline_l158_38 = (! INT1_EXE_arbitration_isStuck);
   assign _zz_INT1_EXE_ISSUE_SLOT_uop_fuType = INT1_RRD_to_INT1_EXE_ISSUE_SLOT_uop_fuType;
   assign _zz_INT1_EXE_ISSUE_SLOT_uop_immExtendType = INT1_RRD_to_INT1_EXE_ISSUE_SLOT_uop_immExtendType;
   assign _zz_INT1_EXE_ISSUE_SLOT_uop_aluOp = INT1_RRD_to_INT1_EXE_ISSUE_SLOT_uop_aluOp;
   assign _zz_INT1_EXE_ISSUE_SLOT_uop_cmpOp = INT1_RRD_to_INT1_EXE_ISSUE_SLOT_uop_cmpOp;
   assign _zz_INT1_EXE_ISSUE_SLOT_uop_tlbOp = INT1_RRD_to_INT1_EXE_ISSUE_SLOT_uop_tlbOp;
-  assign when_Pipeline_l158_40 = (! INT1_WB_arbitration_isStuck);
+  assign when_Pipeline_l158_39 = (! INT1_WB_arbitration_isStuck);
   assign _zz_INT1_WB_ISSUE_SLOT_uop_fuType = INT1_EXE_to_INT1_WB_ISSUE_SLOT_uop_fuType;
   assign _zz_INT1_WB_ISSUE_SLOT_uop_immExtendType = INT1_EXE_to_INT1_WB_ISSUE_SLOT_uop_immExtendType;
   assign _zz_INT1_WB_ISSUE_SLOT_uop_aluOp = INT1_EXE_to_INT1_WB_ISSUE_SLOT_uop_aluOp;
   assign _zz_INT1_WB_ISSUE_SLOT_uop_cmpOp = INT1_EXE_to_INT1_WB_ISSUE_SLOT_uop_cmpOp;
   assign _zz_INT1_WB_ISSUE_SLOT_uop_tlbOp = INT1_EXE_to_INT1_WB_ISSUE_SLOT_uop_tlbOp;
+  assign when_Pipeline_l158_40 = (! INT1_EXE_arbitration_isStuck);
   assign when_Pipeline_l158_41 = (! INT1_EXE_arbitration_isStuck);
-  assign when_Pipeline_l158_42 = (! INT1_EXE_arbitration_isStuck);
+  assign when_Pipeline_l158_42 = (! INT1_WB_arbitration_isStuck);
   assign when_Pipeline_l158_43 = (! INT1_WB_arbitration_isStuck);
-  assign when_Pipeline_l158_44 = (! INT1_WB_arbitration_isStuck);
-  assign when_Pipeline_l158_45 = (! INT1_EXE_arbitration_isStuck);
-  assign when_Pipeline_l158_46 = (! INT1_WB_arbitration_isStuck);
-  assign when_Pipeline_l158_47 = (! INT1_EXE_arbitration_isStuck);
+  assign when_Pipeline_l158_44 = (! INT1_EXE_arbitration_isStuck);
+  assign when_Pipeline_l158_45 = (! INT1_WB_arbitration_isStuck);
+  assign when_Pipeline_l158_46 = (! INT1_EXE_arbitration_isStuck);
+  assign when_Pipeline_l158_47 = (! INT1_WB_arbitration_isStuck);
   assign when_Pipeline_l158_48 = (! INT1_WB_arbitration_isStuck);
   assign when_Pipeline_l158_49 = (! INT1_WB_arbitration_isStuck);
   assign when_Pipeline_l158_50 = (! INT1_WB_arbitration_isStuck);
-  assign when_Pipeline_l158_51 = (! INT1_WB_arbitration_isStuck);
   assign INT1_ISS_arbitration_isFlushed = (({INT1_WB_arbitration_flushNext,{INT1_EXE_arbitration_flushNext,INT1_RRD_arbitration_flushNext}} != 3'b000) || ({INT1_WB_arbitration_flushIt,{INT1_EXE_arbitration_flushIt,{INT1_RRD_arbitration_flushIt,INT1_ISS_arbitration_flushIt}}} != 4'b0000));
   assign INT1_RRD_arbitration_isFlushed = (({INT1_WB_arbitration_flushNext,INT1_EXE_arbitration_flushNext} != 2'b00) || ({INT1_WB_arbitration_flushIt,{INT1_EXE_arbitration_flushIt,INT1_RRD_arbitration_flushIt}} != 3'b000));
   assign INT1_EXE_arbitration_isFlushed = ((INT1_WB_arbitration_flushNext != 1'b0) || ({INT1_WB_arbitration_flushIt,INT1_EXE_arbitration_flushIt} != 2'b00));
@@ -73974,27 +74101,27 @@ module MyCPUCore (
   assign _zz_INT0_ISS_ISSUE_SLOT_uop_aluOp = INT0_ISS_IntExecutePlugin_issSlot_uop_aluOp;
   assign _zz_INT0_ISS_ISSUE_SLOT_uop_cmpOp = INT0_ISS_IntExecutePlugin_issSlot_uop_cmpOp;
   assign _zz_INT0_ISS_ISSUE_SLOT_uop_tlbOp = INT0_ISS_IntExecutePlugin_issSlot_uop_tlbOp;
-  assign when_Pipeline_l158_52 = (! INT0_RRD_arbitration_isStuck);
+  assign when_Pipeline_l158_51 = (! INT0_RRD_arbitration_isStuck);
   assign _zz_INT0_RRD_ISSUE_SLOT_uop_fuType = INT0_ISS_to_INT0_RRD_ISSUE_SLOT_uop_fuType;
   assign _zz_INT0_RRD_ISSUE_SLOT_uop_immExtendType = INT0_ISS_to_INT0_RRD_ISSUE_SLOT_uop_immExtendType;
   assign _zz_INT0_RRD_ISSUE_SLOT_uop_aluOp = INT0_ISS_to_INT0_RRD_ISSUE_SLOT_uop_aluOp;
   assign _zz_INT0_RRD_ISSUE_SLOT_uop_cmpOp = INT0_ISS_to_INT0_RRD_ISSUE_SLOT_uop_cmpOp;
   assign _zz_INT0_RRD_ISSUE_SLOT_uop_tlbOp = INT0_ISS_to_INT0_RRD_ISSUE_SLOT_uop_tlbOp;
-  assign when_Pipeline_l158_53 = (! INT0_EXE_arbitration_isStuck);
+  assign when_Pipeline_l158_52 = (! INT0_EXE_arbitration_isStuck);
   assign _zz_INT0_EXE_ISSUE_SLOT_uop_fuType = INT0_RRD_to_INT0_EXE_ISSUE_SLOT_uop_fuType;
   assign _zz_INT0_EXE_ISSUE_SLOT_uop_immExtendType = INT0_RRD_to_INT0_EXE_ISSUE_SLOT_uop_immExtendType;
   assign _zz_INT0_EXE_ISSUE_SLOT_uop_aluOp = INT0_RRD_to_INT0_EXE_ISSUE_SLOT_uop_aluOp;
   assign _zz_INT0_EXE_ISSUE_SLOT_uop_cmpOp = INT0_RRD_to_INT0_EXE_ISSUE_SLOT_uop_cmpOp;
   assign _zz_INT0_EXE_ISSUE_SLOT_uop_tlbOp = INT0_RRD_to_INT0_EXE_ISSUE_SLOT_uop_tlbOp;
+  assign when_Pipeline_l158_53 = (! INT0_EXE_arbitration_isStuck);
   assign when_Pipeline_l158_54 = (! INT0_EXE_arbitration_isStuck);
   assign when_Pipeline_l158_55 = (! INT0_EXE_arbitration_isStuck);
-  assign when_Pipeline_l158_56 = (! INT0_EXE_arbitration_isStuck);
+  assign when_Pipeline_l158_56 = (! INT0_WB_arbitration_isStuck);
   assign when_Pipeline_l158_57 = (! INT0_WB_arbitration_isStuck);
   assign when_Pipeline_l158_58 = (! INT0_WB_arbitration_isStuck);
   assign when_Pipeline_l158_59 = (! INT0_WB_arbitration_isStuck);
   assign when_Pipeline_l158_60 = (! INT0_WB_arbitration_isStuck);
   assign when_Pipeline_l158_61 = (! INT0_WB_arbitration_isStuck);
-  assign when_Pipeline_l158_62 = (! INT0_WB_arbitration_isStuck);
   assign INT0_ISS_arbitration_isFlushed = (({INT0_WB_arbitration_flushNext,{INT0_EXE_arbitration_flushNext,INT0_RRD_arbitration_flushNext}} != 3'b000) || ({INT0_WB_arbitration_flushIt,{INT0_EXE_arbitration_flushIt,{INT0_RRD_arbitration_flushIt,INT0_ISS_arbitration_flushIt}}} != 4'b0000));
   assign INT0_RRD_arbitration_isFlushed = (({INT0_WB_arbitration_flushNext,INT0_EXE_arbitration_flushNext} != 2'b00) || ({INT0_WB_arbitration_flushIt,{INT0_EXE_arbitration_flushIt,INT0_RRD_arbitration_flushIt}} != 3'b000));
   assign INT0_EXE_arbitration_isFlushed = ((INT0_WB_arbitration_flushNext != 1'b0) || ({INT0_WB_arbitration_flushIt,INT0_EXE_arbitration_flushIt} != 2'b00));
@@ -74030,14 +74157,14 @@ module MyCPUCore (
   assign _zz_MULDIV_RRD_to_MULDIV_EXE_ISSUE_SLOT_uop_fuType_1 = MULDIV_RRD_ISSUE_SLOT_uop_fuType;
   assign _zz_MULDIV_EXE_to_MULDIV_WB_ISSUE_SLOT_uop_fuType_1 = MULDIV_EXE_ISSUE_SLOT_uop_fuType;
   assign _zz_MULDIV_ISS_ISSUE_SLOT_uop_fuType = MULDIV_ISS_MulDivExecutePlugin_issSlot_uop_fuType;
-  assign when_Pipeline_l158_63 = (! MULDIV_RRD_arbitration_isStuck);
+  assign when_Pipeline_l158_62 = (! MULDIV_RRD_arbitration_isStuck);
   assign _zz_MULDIV_RRD_ISSUE_SLOT_uop_fuType = MULDIV_ISS_to_MULDIV_RRD_ISSUE_SLOT_uop_fuType;
-  assign when_Pipeline_l158_64 = (! MULDIV_EXE_arbitration_isStuck);
+  assign when_Pipeline_l158_63 = (! MULDIV_EXE_arbitration_isStuck);
   assign _zz_MULDIV_EXE_ISSUE_SLOT_uop_fuType = MULDIV_RRD_to_MULDIV_EXE_ISSUE_SLOT_uop_fuType;
-  assign when_Pipeline_l158_65 = (! MULDIV_WB_arbitration_isStuck);
+  assign when_Pipeline_l158_64 = (! MULDIV_WB_arbitration_isStuck);
   assign _zz_MULDIV_WB_ISSUE_SLOT_uop_fuType = MULDIV_EXE_to_MULDIV_WB_ISSUE_SLOT_uop_fuType;
-  assign when_Pipeline_l158_66 = (! MULDIV_EXE_arbitration_isStuck);
-  assign when_Pipeline_l158_67 = (! MULDIV_WB_arbitration_isStuck);
+  assign when_Pipeline_l158_65 = (! MULDIV_EXE_arbitration_isStuck);
+  assign when_Pipeline_l158_66 = (! MULDIV_WB_arbitration_isStuck);
   assign MULDIV_ISS_arbitration_isFlushed = (({MULDIV_WB_arbitration_flushNext,{MULDIV_EXE_arbitration_flushNext,MULDIV_RRD_arbitration_flushNext}} != 3'b000) || ({MULDIV_WB_arbitration_flushIt,{MULDIV_EXE_arbitration_flushIt,{MULDIV_RRD_arbitration_flushIt,MULDIV_ISS_arbitration_flushIt}}} != 4'b0000));
   assign MULDIV_RRD_arbitration_isFlushed = (({MULDIV_WB_arbitration_flushNext,MULDIV_EXE_arbitration_flushNext} != 2'b00) || ({MULDIV_WB_arbitration_flushIt,{MULDIV_EXE_arbitration_flushIt,MULDIV_RRD_arbitration_flushIt}} != 3'b000));
   assign MULDIV_EXE_arbitration_isFlushed = ((MULDIV_WB_arbitration_flushNext != 1'b0) || ({MULDIV_WB_arbitration_flushIt,MULDIV_EXE_arbitration_flushIt} != 2'b00));
@@ -74087,23 +74214,23 @@ module MyCPUCore (
   assign _zz_MEM_ISS_ISSUE_SLOT_uop_lsType = MEM_ISS_MemExecutePlugin_issSlot_uop_lsType;
   assign _zz_MEM_ISS_ISSUE_SLOT_uop_cacheOp = MEM_ISS_MemExecutePlugin_issSlot_uop_cacheOp;
   assign _zz_MEM_ISS_ISSUE_SLOT_uop_cacheSel = MEM_ISS_MemExecutePlugin_issSlot_uop_cacheSel;
-  assign when_Pipeline_l158_68 = (! MEM_RRD_arbitration_isStuck);
+  assign when_Pipeline_l158_67 = (! MEM_RRD_arbitration_isStuck);
   assign _zz_MEM_RRD_ISSUE_SLOT_uop_lsType = MEM_ISS_to_MEM_RRD_ISSUE_SLOT_uop_lsType;
   assign _zz_MEM_RRD_ISSUE_SLOT_uop_cacheOp = MEM_ISS_to_MEM_RRD_ISSUE_SLOT_uop_cacheOp;
   assign _zz_MEM_RRD_ISSUE_SLOT_uop_cacheSel = MEM_ISS_to_MEM_RRD_ISSUE_SLOT_uop_cacheSel;
-  assign when_Pipeline_l158_69 = (! MEM_ADDR_arbitration_isStuck);
+  assign when_Pipeline_l158_68 = (! MEM_ADDR_arbitration_isStuck);
   assign _zz_MEM_ADDR_ISSUE_SLOT_uop_lsType = MEM_RRD_to_MEM_ADDR_ISSUE_SLOT_uop_lsType;
   assign _zz_MEM_ADDR_ISSUE_SLOT_uop_cacheOp = MEM_RRD_to_MEM_ADDR_ISSUE_SLOT_uop_cacheOp;
   assign _zz_MEM_ADDR_ISSUE_SLOT_uop_cacheSel = MEM_RRD_to_MEM_ADDR_ISSUE_SLOT_uop_cacheSel;
-  assign when_Pipeline_l158_70 = (! MEM_MEM1_arbitration_isStuck);
+  assign when_Pipeline_l158_69 = (! MEM_MEM1_arbitration_isStuck);
   assign _zz_MEM_MEM1_ISSUE_SLOT_uop_lsType = MEM_ADDR_to_MEM_MEM1_ISSUE_SLOT_uop_lsType;
   assign _zz_MEM_MEM1_ISSUE_SLOT_uop_cacheOp = MEM_ADDR_to_MEM_MEM1_ISSUE_SLOT_uop_cacheOp;
   assign _zz_MEM_MEM1_ISSUE_SLOT_uop_cacheSel = MEM_ADDR_to_MEM_MEM1_ISSUE_SLOT_uop_cacheSel;
-  assign when_Pipeline_l158_71 = (! MEM_MEM2_arbitration_isStuck);
+  assign when_Pipeline_l158_70 = (! MEM_MEM2_arbitration_isStuck);
   assign _zz_MEM_MEM2_ISSUE_SLOT_uop_lsType = MEM_MEM1_to_MEM_MEM2_ISSUE_SLOT_uop_lsType;
   assign _zz_MEM_MEM2_ISSUE_SLOT_uop_cacheOp = MEM_MEM1_to_MEM_MEM2_ISSUE_SLOT_uop_cacheOp;
   assign _zz_MEM_MEM2_ISSUE_SLOT_uop_cacheSel = MEM_MEM1_to_MEM_MEM2_ISSUE_SLOT_uop_cacheSel;
-  assign when_Pipeline_l158_72 = (! MEM_WB_arbitration_isStuck);
+  assign when_Pipeline_l158_71 = (! MEM_WB_arbitration_isStuck);
   assign _zz_MEM_WB_ISSUE_SLOT_uop_lsType = MEM_MEM2_to_MEM_WB_ISSUE_SLOT_uop_lsType;
   assign _zz_MEM_WB_ISSUE_SLOT_uop_cacheOp = MEM_MEM2_to_MEM_WB_ISSUE_SLOT_uop_cacheOp;
   assign _zz_MEM_WB_ISSUE_SLOT_uop_cacheSel = MEM_MEM2_to_MEM_WB_ISSUE_SLOT_uop_cacheSel;
@@ -74114,63 +74241,63 @@ module MyCPUCore (
   assign _zz_MEM_MEM2_to_MEM_WB_STD_SLOT_payload_lsType_1 = MEM_MEM2_STD_SLOT_payload_lsType;
   assign _zz_MEM_WB_to_MEM_WB2_STD_SLOT_payload_lsType_1 = MEM_WB_STD_SLOT_payload_lsType;
   assign _zz_MEM_ISS_STD_SLOT_payload_lsType = _zz_MEM_ISS_STD_SLOT_payload_lsType_1;
-  assign when_Pipeline_l158_73 = (! MEM_RRD_arbitration_isStuck);
+  assign when_Pipeline_l158_72 = (! MEM_RRD_arbitration_isStuck);
   assign _zz_MEM_RRD_STD_SLOT_payload_lsType = MEM_ISS_to_MEM_RRD_STD_SLOT_payload_lsType;
-  assign when_Pipeline_l158_74 = (! MEM_ADDR_arbitration_isStuck);
+  assign when_Pipeline_l158_73 = (! MEM_ADDR_arbitration_isStuck);
   assign _zz_MEM_ADDR_STD_SLOT_payload_lsType = MEM_RRD_to_MEM_ADDR_STD_SLOT_payload_lsType;
-  assign when_Pipeline_l158_75 = (! MEM_MEM1_arbitration_isStuck);
+  assign when_Pipeline_l158_74 = (! MEM_MEM1_arbitration_isStuck);
   assign _zz_MEM_MEM1_STD_SLOT_payload_lsType = MEM_ADDR_to_MEM_MEM1_STD_SLOT_payload_lsType;
-  assign when_Pipeline_l158_76 = (! MEM_MEM2_arbitration_isStuck);
+  assign when_Pipeline_l158_75 = (! MEM_MEM2_arbitration_isStuck);
   assign _zz_MEM_MEM2_STD_SLOT_payload_lsType = MEM_MEM1_to_MEM_MEM2_STD_SLOT_payload_lsType;
-  assign when_Pipeline_l158_77 = (! MEM_WB_arbitration_isStuck);
+  assign when_Pipeline_l158_76 = (! MEM_WB_arbitration_isStuck);
   assign _zz_MEM_WB_STD_SLOT_payload_lsType = MEM_MEM2_to_MEM_WB_STD_SLOT_payload_lsType;
-  assign when_Pipeline_l158_78 = (! MEM_WB2_arbitration_isStuck);
+  assign when_Pipeline_l158_77 = (! MEM_WB2_arbitration_isStuck);
   assign _zz_MEM_WB2_STD_SLOT_payload_lsType = MEM_WB_to_MEM_WB2_STD_SLOT_payload_lsType;
-  assign when_Pipeline_l158_79 = (! MEM_ADDR_arbitration_isStuck);
-  assign when_Pipeline_l158_80 = (! MEM_MEM1_arbitration_isStuck);
-  assign when_Pipeline_l158_81 = (! MEM_MEM2_arbitration_isStuck);
-  assign when_Pipeline_l158_82 = (! MEM_WB_arbitration_isStuck);
-  assign when_Pipeline_l158_83 = (! MEM_ADDR_arbitration_isStuck);
-  assign when_Pipeline_l158_84 = (! MEM_MEM1_arbitration_isStuck);
-  assign when_Pipeline_l158_85 = (! MEM_MEM2_arbitration_isStuck);
-  assign when_Pipeline_l158_86 = (! MEM_WB_arbitration_isStuck);
-  assign when_Pipeline_l158_87 = (! MEM_MEM1_arbitration_isStuck);
-  assign when_Pipeline_l158_88 = (! MEM_MEM2_arbitration_isStuck);
+  assign when_Pipeline_l158_78 = (! MEM_ADDR_arbitration_isStuck);
+  assign when_Pipeline_l158_79 = (! MEM_MEM1_arbitration_isStuck);
+  assign when_Pipeline_l158_80 = (! MEM_MEM2_arbitration_isStuck);
+  assign when_Pipeline_l158_81 = (! MEM_WB_arbitration_isStuck);
+  assign when_Pipeline_l158_82 = (! MEM_ADDR_arbitration_isStuck);
+  assign when_Pipeline_l158_83 = (! MEM_MEM1_arbitration_isStuck);
+  assign when_Pipeline_l158_84 = (! MEM_MEM2_arbitration_isStuck);
+  assign when_Pipeline_l158_85 = (! MEM_WB_arbitration_isStuck);
+  assign when_Pipeline_l158_86 = (! MEM_MEM1_arbitration_isStuck);
+  assign when_Pipeline_l158_87 = (! MEM_MEM2_arbitration_isStuck);
+  assign when_Pipeline_l158_88 = (! MEM_MEM1_arbitration_isStuck);
   assign when_Pipeline_l158_89 = (! MEM_MEM1_arbitration_isStuck);
   assign when_Pipeline_l158_90 = (! MEM_MEM1_arbitration_isStuck);
   assign when_Pipeline_l158_91 = (! MEM_MEM1_arbitration_isStuck);
-  assign when_Pipeline_l158_92 = (! MEM_MEM1_arbitration_isStuck);
-  assign when_Pipeline_l158_93 = (! MEM_MEM2_arbitration_isStuck);
-  assign when_Pipeline_l158_94 = (! MEM_WB_arbitration_isStuck);
-  assign when_Pipeline_l158_95 = (! MEM_MEM1_arbitration_isStuck);
-  assign when_Pipeline_l158_96 = (! MEM_MEM2_arbitration_isStuck);
-  assign when_Pipeline_l158_97 = (! MEM_WB_arbitration_isStuck);
-  assign when_Pipeline_l158_98 = (! MEM_MEM1_arbitration_isStuck);
-  assign when_Pipeline_l158_99 = (! MEM_MEM2_arbitration_isStuck);
-  assign when_Pipeline_l158_100 = (! MEM_WB_arbitration_isStuck);
-  assign when_Pipeline_l158_101 = (! MEM_MEM2_arbitration_isStuck);
-  assign when_Pipeline_l158_102 = (! MEM_WB_arbitration_isStuck);
-  assign when_Pipeline_l158_103 = (! MEM_MEM2_arbitration_isStuck);
-  assign when_Pipeline_l158_104 = (! MEM_WB_arbitration_isStuck);
-  assign when_Pipeline_l158_105 = (! MEM_MEM2_arbitration_isStuck);
-  assign when_Pipeline_l158_106 = (! MEM_WB_arbitration_isStuck);
+  assign when_Pipeline_l158_92 = (! MEM_MEM2_arbitration_isStuck);
+  assign when_Pipeline_l158_93 = (! MEM_WB_arbitration_isStuck);
+  assign when_Pipeline_l158_94 = (! MEM_MEM1_arbitration_isStuck);
+  assign when_Pipeline_l158_95 = (! MEM_MEM2_arbitration_isStuck);
+  assign when_Pipeline_l158_96 = (! MEM_WB_arbitration_isStuck);
+  assign when_Pipeline_l158_97 = (! MEM_MEM1_arbitration_isStuck);
+  assign when_Pipeline_l158_98 = (! MEM_MEM2_arbitration_isStuck);
+  assign when_Pipeline_l158_99 = (! MEM_WB_arbitration_isStuck);
+  assign when_Pipeline_l158_100 = (! MEM_MEM2_arbitration_isStuck);
+  assign when_Pipeline_l158_101 = (! MEM_WB_arbitration_isStuck);
+  assign when_Pipeline_l158_102 = (! MEM_MEM2_arbitration_isStuck);
+  assign when_Pipeline_l158_103 = (! MEM_WB_arbitration_isStuck);
+  assign when_Pipeline_l158_104 = (! MEM_MEM2_arbitration_isStuck);
+  assign when_Pipeline_l158_105 = (! MEM_WB_arbitration_isStuck);
+  assign when_Pipeline_l158_106 = (! MEM_MEM2_arbitration_isStuck);
   assign when_Pipeline_l158_107 = (! MEM_MEM2_arbitration_isStuck);
   assign when_Pipeline_l158_108 = (! MEM_MEM2_arbitration_isStuck);
   assign when_Pipeline_l158_109 = (! MEM_MEM2_arbitration_isStuck);
   assign when_Pipeline_l158_110 = (! MEM_MEM2_arbitration_isStuck);
-  assign when_Pipeline_l158_111 = (! MEM_MEM2_arbitration_isStuck);
-  assign when_Pipeline_l158_112 = (! MEM_WB_arbitration_isStuck);
-  assign when_Pipeline_l158_113 = (! MEM_MEM2_arbitration_isStuck);
-  assign when_Pipeline_l158_114 = (! MEM_WB_arbitration_isStuck);
-  assign when_Pipeline_l158_115 = (! MEM_MEM2_arbitration_isStuck);
-  assign when_Pipeline_l158_116 = (! MEM_WB_arbitration_isStuck);
-  assign when_Pipeline_l158_117 = (! MEM_MEM2_arbitration_isStuck);
-  assign when_Pipeline_l158_118 = (! MEM_WB_arbitration_isStuck);
+  assign when_Pipeline_l158_111 = (! MEM_WB_arbitration_isStuck);
+  assign when_Pipeline_l158_112 = (! MEM_MEM2_arbitration_isStuck);
+  assign when_Pipeline_l158_113 = (! MEM_WB_arbitration_isStuck);
+  assign when_Pipeline_l158_114 = (! MEM_MEM2_arbitration_isStuck);
+  assign when_Pipeline_l158_115 = (! MEM_WB_arbitration_isStuck);
+  assign when_Pipeline_l158_116 = (! MEM_MEM2_arbitration_isStuck);
+  assign when_Pipeline_l158_117 = (! MEM_WB_arbitration_isStuck);
   assign _zz_MEM_MEM1_to_MEM_MEM2_LOAD_STORE_TYPE_1 = MEM_MEM1_LOAD_STORE_TYPE;
   assign _zz_MEM_MEM1_LOAD_STORE_TYPE = _zz_MEM_MEM1_LOAD_STORE_TYPE_1;
-  assign when_Pipeline_l158_119 = (! MEM_MEM2_arbitration_isStuck);
+  assign when_Pipeline_l158_118 = (! MEM_MEM2_arbitration_isStuck);
   assign _zz_MEM_MEM2_LOAD_STORE_TYPE = MEM_MEM1_to_MEM_MEM2_LOAD_STORE_TYPE;
-  assign when_Pipeline_l158_120 = (! MEM_WB_arbitration_isStuck);
+  assign when_Pipeline_l158_119 = (! MEM_WB_arbitration_isStuck);
   assign MEM_ISS_arbitration_isFlushed = (({MEM_WB2_arbitration_flushNext,{MEM_WB_arbitration_flushNext,{MEM_MEM2_arbitration_flushNext,{MEM_MEM1_arbitration_flushNext,{_zz_MEM_ISS_arbitration_isFlushed,_zz_MEM_ISS_arbitration_isFlushed_1}}}}} != 6'h0) || ({MEM_WB2_arbitration_flushIt,{MEM_WB_arbitration_flushIt,{MEM_MEM2_arbitration_flushIt,{MEM_MEM1_arbitration_flushIt,{_zz_MEM_ISS_arbitration_isFlushed_2,_zz_MEM_ISS_arbitration_isFlushed_3}}}}} != 7'h0));
   assign MEM_RRD_arbitration_isFlushed = (({MEM_WB2_arbitration_flushNext,{MEM_WB_arbitration_flushNext,{MEM_MEM2_arbitration_flushNext,{MEM_MEM1_arbitration_flushNext,MEM_ADDR_arbitration_flushNext}}}} != 5'h0) || ({MEM_WB2_arbitration_flushIt,{MEM_WB_arbitration_flushIt,{MEM_MEM2_arbitration_flushIt,{MEM_MEM1_arbitration_flushIt,{_zz_MEM_RRD_arbitration_isFlushed,_zz_MEM_RRD_arbitration_isFlushed_1}}}}} != 6'h0));
   assign MEM_ADDR_arbitration_isFlushed = (({MEM_WB2_arbitration_flushNext,{MEM_WB_arbitration_flushNext,{MEM_MEM2_arbitration_flushNext,MEM_MEM1_arbitration_flushNext}}} != 4'b0000) || ({MEM_WB2_arbitration_flushIt,{MEM_WB_arbitration_flushIt,{MEM_MEM2_arbitration_flushIt,{MEM_MEM1_arbitration_flushIt,MEM_ADDR_arbitration_flushIt}}}} != 5'h0));
@@ -74262,12 +74389,12 @@ module MyCPUCore (
     CommitPlugin_port0Commit_uncachedProcess_fsm_stateNext = CommitPlugin_port0Commit_uncachedProcess_fsm_stateReg;
     case(CommitPlugin_port0Commit_uncachedProcess_fsm_stateReg)
       CommitPlugin_port0Commit_uncachedProcess_fsm_enumDef_execute : begin
-        if(when_CommitPlugin_l290) begin
+        if(when_CommitPlugin_l294) begin
           CommitPlugin_port0Commit_uncachedProcess_fsm_stateNext = CommitPlugin_port0Commit_uncachedProcess_fsm_enumDef_BOOT;
         end
       end
       default : begin
-        if(when_CommitPlugin_l275) begin
+        if(when_CommitPlugin_l279) begin
           CommitPlugin_port0Commit_uncachedProcess_fsm_stateNext = CommitPlugin_port0Commit_uncachedProcess_fsm_enumDef_execute;
         end
       end
@@ -74277,8 +74404,8 @@ module MyCPUCore (
     end
   end
 
-  assign when_CommitPlugin_l290 = (MEM_WB_arbitration_notStuck && (MEM_WB_STD_SLOT_valid && (! MEM_WB_STD_SLOT_payload_isStore)));
-  assign when_CommitPlugin_l275 = (((ROBFIFOPlugin_fifoIO_pop_0_valid && CommitPlugin_port0Commit_uncachedProcess_isUncachedUOP) && ROBFIFOPlugin_fifoIO_pop_0_payload_state_complete) && (! CommitPlugin_hasExcept));
+  assign when_CommitPlugin_l294 = (MEM_WB_arbitration_notStuck && (MEM_WB_STD_SLOT_valid && (! MEM_WB_STD_SLOT_payload_isStore)));
+  assign when_CommitPlugin_l279 = (((ROBFIFOPlugin_fifoIO_pop_0_valid && CommitPlugin_port0Commit_uncachedProcess_isUncachedUOP) && ROBFIFOPlugin_fifoIO_pop_0_payload_state_complete) && (! CommitPlugin_hasExcept));
   assign _zz_when_CompressedQueue_l67 = (! IntIssueQueuePlugin_queue_0_valid);
   assign _zz_when_CompressedQueue_l67_1 = (IntIssueQueuePlugin_queue_0_valid && (! IntIssueQueuePlugin_queue_1_valid));
   assign _zz_when_CompressedQueue_l67_2 = (IntIssueQueuePlugin_queue_1_valid && (! IntIssueQueuePlugin_queue_2_valid));
@@ -76295,7 +76422,6 @@ module MyCPUCore (
       ExceptionHandlerPlugin_PRMD_PPLV <= 2'b00;
       ExceptionHandlerPlugin_PRMD_PIE <= 1'b0;
       ExceptionHandlerPlugin_ECFG_LIE_0 <= 10'h0;
-      ExceptionHandlerPlugin_ECFG_LIE_10 <= 1'b0;
       ExceptionHandlerPlugin_ECFG_LIE_11 <= 2'b00;
       ExceptionHandlerPlugin_ESTAT_IS_0 <= 2'b00;
       ExceptionHandlerPlugin_ESTAT_IS_2 <= 8'h0;
@@ -76304,6 +76430,7 @@ module MyCPUCore (
       ExceptionHandlerPlugin_ESTAT_ESUBCODE <= 9'h0;
       ExceptionHandlerPlugin_ERA_PC <= 32'h0;
       ExceptionHandlerPlugin_BADV_VADDR <= 32'h0;
+      ExceptionHandlerPlugin_tlbrActive <= 1'b0;
       ExceptionHandlerPlugin_EENTRY_VA <= 26'h0;
       ExceptionHandlerPlugin_SAVE0_DATA <= 32'h0;
       ExceptionHandlerPlugin_SAVE1_DATA <= 32'h0;
@@ -79336,7 +79463,18 @@ module MyCPUCore (
       if(when_PhysRegFilePlugin_l75_62) begin
         PhysRegFilePlugin_regs_62 <= _zz_PhysRegFilePlugin_regs_62_3;
       end
-      if(when_CommitPlugin_l184) begin
+      if(when_CommitPlugin_l164) begin
+        `ifndef SYNTHESIS
+          `ifdef FORMAL
+            assert(1'b0); // core.scala:L521
+          `else
+            if(!1'b0) begin
+              $display("NOTE [RAWDBG COMMIT] pc=%x inst=%x except=%x mispredict=%x linear=%x badva=%x", ROBFIFOPlugin_fifoIO_pop_0_payload_info_uop_pc, ROBFIFOPlugin_fifoIO_pop_0_payload_info_uop_inst, CommitPlugin_hasExcept, ROBFIFOPlugin_fifoIO_pop_0_payload_state_mispredict, CommitPlugin_linearRecover, ROBFIFOPlugin_fifoIO_pop_0_payload_state_except_payload_badVA); // core.scala:L521
+            end
+          `endif
+        `endif
+      end
+      if(when_CommitPlugin_l188) begin
         if(ROBFIFOPlugin_fifoIO_pop_0_payload_info_uop_isLL) begin
           ExceptionHandlerPlugin_LLBCTL_LLBIT <= 1'b1;
         end
@@ -79347,7 +79485,21 @@ module MyCPUCore (
         end
       end
       Timer64Plugin_timer64 <= (Timer64Plugin_timer64 + 64'h0000000000000001);
+      if(when_ExceptionHandlerPlugin_l173) begin
+        ExceptionHandlerPlugin_CRMD_DA <= 1'b0;
+        ExceptionHandlerPlugin_CRMD_PG <= 1'b1;
+        ExceptionHandlerPlugin_tlbrActive <= 1'b0;
+      end
       if(CommitPlugin_except_valid) begin
+        `ifndef SYNTHESIS
+          `ifdef FORMAL
+            assert(1'b0); // core.scala:L521
+          `else
+            if(!1'b0) begin
+              $display("NOTE [RAWDBG EXC-TAKE] epc=%x code=%x sub=%x badva=%x refill=%x target=%x", CommitPlugin_epc, CommitPlugin_except_payload_code, CommitPlugin_except_payload_subcode, CommitPlugin_except_payload_badVA, CommitPlugin_except_payload_isTLBRefill, ExceptionHandlerPlugin_eentry); // core.scala:L521
+            end
+          `endif
+        `endif
         if(InterruptHandlerPlugin_intPending) begin
           ExceptionHandlerPlugin_ESTAT_ECODE <= 6'h0;
           ExceptionHandlerPlugin_ESTAT_ESUBCODE <= 9'h0;
@@ -79355,13 +79507,15 @@ module MyCPUCore (
           if(CommitPlugin_except_payload_isTLBRefill) begin
             ExceptionHandlerPlugin_CRMD_DA <= 1'b1;
             ExceptionHandlerPlugin_CRMD_PG <= 1'b0;
+            ExceptionHandlerPlugin_tlbrActive <= 1'b1;
+            MMUPlugin_TLBIDX_PS <= 6'h0c;
           end
           ExceptionHandlerPlugin_ESTAT_ECODE <= CommitPlugin_except_payload_code;
           ExceptionHandlerPlugin_ESTAT_ESUBCODE <= CommitPlugin_except_payload_subcode;
-          if(when_ExceptionHandlerPlugin_l202) begin
+          if(when_ExceptionHandlerPlugin_l221) begin
             ExceptionHandlerPlugin_BADV_VADDR <= CommitPlugin_except_payload_badVA;
           end
-          if(when_ExceptionHandlerPlugin_l222) begin
+          if(when_ExceptionHandlerPlugin_l241) begin
             MMUPlugin_TLBEHI_VPPN <= CommitPlugin_except_payload_badVA[31 : 13];
           end
         end
@@ -79372,6 +79526,15 @@ module MyCPUCore (
         ExceptionHandlerPlugin_ERA_PC <= CommitPlugin_epc;
       end else begin
         if(CommitPlugin_ertn) begin
+          `ifndef SYNTHESIS
+            `ifdef FORMAL
+              assert(1'b0); // core.scala:L521
+            `else
+              if(!1'b0) begin
+                $display("NOTE [RAWDBG ERTN] era=%x tlbrActive=%x jump=%x", ExceptionHandlerPlugin_ERA_PC, ExceptionHandlerPlugin_tlbrActive, ProgramCounterPlugin_backendJumpInterface_payload); // core.scala:L521
+              end
+            `endif
+          `endif
           if(ExceptionHandlerPlugin_LLBCTL_KLO) begin
             ExceptionHandlerPlugin_LLBCTL_KLO <= 1'b0;
           end else begin
@@ -79379,9 +79542,10 @@ module MyCPUCore (
           end
           ExceptionHandlerPlugin_CRMD_PLV <= ExceptionHandlerPlugin_PRMD_PPLV;
           ExceptionHandlerPlugin_CRMD_IE <= ExceptionHandlerPlugin_PRMD_PIE;
-          if(when_ExceptionHandlerPlugin_l248) begin
+          if(ExceptionHandlerPlugin_tlbrActive) begin
             ExceptionHandlerPlugin_CRMD_DA <= 1'b0;
             ExceptionHandlerPlugin_CRMD_PG <= 1'b1;
+            ExceptionHandlerPlugin_tlbrActive <= 1'b0;
           end
         end
       end
@@ -79406,8 +79570,8 @@ module MyCPUCore (
         TLBOpType_NONE : begin
         end
         TLBOpType_TLBSRCH : begin
-          if(when_MMUPlugin_l412) begin
-            MMUPlugin_TLBIDX_INDEX <= _zz_MMUPlugin_TLBIDX_INDEX_4;
+          if(when_MMUPlugin_l415) begin
+            MMUPlugin_TLBIDX_INDEX <= _zz_MMUPlugin_TLBIDX_INDEX_17;
             MMUPlugin_TLBIDX_NE <= 1'b0;
           end else begin
             MMUPlugin_TLBIDX_NE <= 1'b1;
@@ -79451,7 +79615,7 @@ module MyCPUCore (
           end
         end
         TLBOpType_TLBWR : begin
-          if(when_MMUPlugin_l463) begin
+          if(when_MMUPlugin_l466) begin
             if(_zz_279) begin
               MMUPlugin_TLBTable_0_E <= 1'b1;
             end
@@ -80225,7 +80389,7 @@ module MyCPUCore (
         end
         TLBOpType_TLBFILL : begin
           MMUPlugin_victim_idx <= (MMUPlugin_victim_idx + 4'b0001);
-          if(when_MMUPlugin_l487) begin
+          if(when_MMUPlugin_l490) begin
             if(_zz_296) begin
               MMUPlugin_TLBTable_0_E <= 1'b1;
             end
@@ -88292,6 +88456,17 @@ module MyCPUCore (
           RenamePlugin_sRAT_30 <= RENAME_RenamePlugin_regWrites_0_rsp;
         end
       end
+      if(when_RenamePlugin_l120) begin
+        `ifndef SYNTHESIS
+          `ifdef FORMAL
+            assert(1'b0); // core.scala:L521
+          `else
+            if(!1'b0) begin
+              $display("NOTE [RAWDBG RENAME] pc=%x inst=%x r0=%x r1=%x w=%x srat0=%x srat1=%x", RENAME_DECODE_PACKET_0_payload_pc, RENAME_DECODE_PACKET_0_payload_inst, RENAME_RenamePlugin_regReads_0_0_rsp, RENAME_RenamePlugin_regReads_0_1_rsp, RENAME_RenamePlugin_regWrites_0_rsp, RenamePlugin_sRAT_0, RenamePlugin_sRAT_1); // core.scala:L521
+            end
+          `endif
+        `endif
+      end
       if(when_RenamePlugin_l114_1) begin
         if(_zz_1454[0]) begin
           RenamePlugin_sRAT_0 <= RENAME_RenamePlugin_regWrites_1_rsp;
@@ -88387,6 +88562,17 @@ module MyCPUCore (
           RenamePlugin_sRAT_30 <= RENAME_RenamePlugin_regWrites_1_rsp;
         end
       end
+      if(when_RenamePlugin_l120_1) begin
+        `ifndef SYNTHESIS
+          `ifdef FORMAL
+            assert(1'b0); // core.scala:L521
+          `else
+            if(!1'b0) begin
+              $display("NOTE [RAWDBG RENAME] pc=%x inst=%x r0=%x r1=%x w=%x srat0=%x srat1=%x", RENAME_DECODE_PACKET_1_payload_pc, RENAME_DECODE_PACKET_1_payload_inst, RENAME_RenamePlugin_regReads_1_0_rsp, RENAME_RenamePlugin_regReads_1_1_rsp, RENAME_RenamePlugin_regWrites_1_rsp, RenamePlugin_sRAT_0, RenamePlugin_sRAT_1); // core.scala:L521
+            end
+          `endif
+        `endif
+      end
       if(when_RenamePlugin_l114_2) begin
         if(_zz_1455[0]) begin
           RenamePlugin_sRAT_0 <= RENAME_RenamePlugin_regWrites_2_rsp;
@@ -88481,6 +88667,17 @@ module MyCPUCore (
         if(_zz_1455[30]) begin
           RenamePlugin_sRAT_30 <= RENAME_RenamePlugin_regWrites_2_rsp;
         end
+      end
+      if(when_RenamePlugin_l120_2) begin
+        `ifndef SYNTHESIS
+          `ifdef FORMAL
+            assert(1'b0); // core.scala:L521
+          `else
+            if(!1'b0) begin
+              $display("NOTE [RAWDBG RENAME] pc=%x inst=%x r0=%x r1=%x w=%x srat0=%x srat1=%x", RENAME_DECODE_PACKET_2_payload_pc, RENAME_DECODE_PACKET_2_payload_inst, RENAME_RenamePlugin_regReads_2_0_rsp, RENAME_RenamePlugin_regReads_2_1_rsp, RENAME_RenamePlugin_regWrites_2_rsp, RenamePlugin_sRAT_0, RenamePlugin_sRAT_1); // core.scala:L521
+            end
+          `endif
+        `endif
       end
       if(CommitPlugin_arfCommits_0_valid) begin
         if(_zz_1456[0]) begin
@@ -88800,6 +88997,105 @@ module MyCPUCore (
         RenamePlugin_sRAT_29 <= RenamePlugin_aRAT_29;
         RenamePlugin_sRAT_30 <= RenamePlugin_aRAT_30;
       end
+      if(when_IntExecutePlugin_l119) begin
+        `ifndef SYNTHESIS
+          `ifdef FORMAL
+            assert(1'b0); // core.scala:L521
+          `else
+            if(!1'b0) begin
+              $display("NOTE [RAWDBG INT-ISS] pc=%x inst=%x r0=%x v0=%x r1=%x v1=%x", INT2_ISS_IntExecutePlugin_issSlot_uop_pc, INT2_ISS_IntExecutePlugin_issSlot_uop_inst, INT2_ISS_IntExecutePlugin_issSlot_rRegs_0_payload, INT2_ISS_IntExecutePlugin_issSlot_rRegs_0_valid, INT2_ISS_IntExecutePlugin_issSlot_rRegs_1_payload, INT2_ISS_IntExecutePlugin_issSlot_rRegs_1_valid); // core.scala:L521
+            end
+          `endif
+        `endif
+      end
+      if(when_IntExecutePlugin_l146) begin
+        `ifndef SYNTHESIS
+          `ifdef FORMAL
+            assert(1'b0); // core.scala:L521
+          `else
+            if(!1'b0) begin
+              $display("NOTE [RAWDBG INT-RRD] pc=%x inst=%x r0=%x d0=%x r1=%x d1=%x", INT2_RRD_ISSUE_SLOT_uop_pc, INT2_RRD_ISSUE_SLOT_uop_inst, IntExecutePlugin_rrdReq_0, IntExecutePlugin_rrdRsp_0, IntExecutePlugin_rrdReq_1, IntExecutePlugin_rrdRsp_1); // core.scala:L521
+            end
+          `endif
+        `endif
+      end
+      if(when_IntExecutePlugin_l181) begin
+        `ifndef SYNTHESIS
+          `ifdef FORMAL
+            assert(1'b0); // core.scala:L521
+          `else
+            if(!1'b0) begin
+              $display("NOTE [RAWDBG INT-EXE] pc=%x inst=%x d0=%x bp0=%x d1=%x bp1=%x result=%x", INT2_EXE_ISSUE_SLOT_uop_pc, INT2_EXE_ISSUE_SLOT_uop_inst, INT2_EXE_IntExecutePlugin_regData_0, IntExecutePlugin_bypassRsp_0_valid, INT2_EXE_IntExecutePlugin_regData_1, IntExecutePlugin_bypassRsp_1_valid, INT2_EXE_IntExecutePlugin_alu_io_result); // core.scala:L521
+            end
+          `endif
+        `endif
+      end
+      if(when_IntExecutePlugin_l119_1) begin
+        `ifndef SYNTHESIS
+          `ifdef FORMAL
+            assert(1'b0); // core.scala:L521
+          `else
+            if(!1'b0) begin
+              $display("NOTE [RAWDBG INT-ISS] pc=%x inst=%x r0=%x v0=%x r1=%x v1=%x", INT1_ISS_IntExecutePlugin_issSlot_uop_pc, INT1_ISS_IntExecutePlugin_issSlot_uop_inst, INT1_ISS_IntExecutePlugin_issSlot_rRegs_0_payload, INT1_ISS_IntExecutePlugin_issSlot_rRegs_0_valid, INT1_ISS_IntExecutePlugin_issSlot_rRegs_1_payload, INT1_ISS_IntExecutePlugin_issSlot_rRegs_1_valid); // core.scala:L521
+            end
+          `endif
+        `endif
+      end
+      if(when_IntExecutePlugin_l146_1) begin
+        `ifndef SYNTHESIS
+          `ifdef FORMAL
+            assert(1'b0); // core.scala:L521
+          `else
+            if(!1'b0) begin
+              $display("NOTE [RAWDBG INT-RRD] pc=%x inst=%x r0=%x d0=%x r1=%x d1=%x", INT1_RRD_ISSUE_SLOT_uop_pc, INT1_RRD_ISSUE_SLOT_uop_inst, IntExecutePlugin_rrdReq_0_1, IntExecutePlugin_rrdRsp_0_1, IntExecutePlugin_rrdReq_1_1, IntExecutePlugin_rrdRsp_1_1); // core.scala:L521
+            end
+          `endif
+        `endif
+      end
+      if(when_IntExecutePlugin_l181_1) begin
+        `ifndef SYNTHESIS
+          `ifdef FORMAL
+            assert(1'b0); // core.scala:L521
+          `else
+            if(!1'b0) begin
+              $display("NOTE [RAWDBG INT-EXE] pc=%x inst=%x d0=%x bp0=%x d1=%x bp1=%x result=%x", INT1_EXE_ISSUE_SLOT_uop_pc, INT1_EXE_ISSUE_SLOT_uop_inst, INT1_EXE_IntExecutePlugin_regData_0, IntExecutePlugin_bypassRsp_0_valid_1, INT1_EXE_IntExecutePlugin_regData_1, IntExecutePlugin_bypassRsp_1_valid_1, INT1_EXE_IntExecutePlugin_alu_io_result); // core.scala:L521
+            end
+          `endif
+        `endif
+      end
+      if(when_IntExecutePlugin_l119_2) begin
+        `ifndef SYNTHESIS
+          `ifdef FORMAL
+            assert(1'b0); // core.scala:L521
+          `else
+            if(!1'b0) begin
+              $display("NOTE [RAWDBG INT-ISS] pc=%x inst=%x r0=%x v0=%x r1=%x v1=%x", INT0_ISS_IntExecutePlugin_issSlot_uop_pc, INT0_ISS_IntExecutePlugin_issSlot_uop_inst, INT0_ISS_IntExecutePlugin_issSlot_rRegs_0_payload, INT0_ISS_IntExecutePlugin_issSlot_rRegs_0_valid, INT0_ISS_IntExecutePlugin_issSlot_rRegs_1_payload, INT0_ISS_IntExecutePlugin_issSlot_rRegs_1_valid); // core.scala:L521
+            end
+          `endif
+        `endif
+      end
+      if(when_IntExecutePlugin_l146_2) begin
+        `ifndef SYNTHESIS
+          `ifdef FORMAL
+            assert(1'b0); // core.scala:L521
+          `else
+            if(!1'b0) begin
+              $display("NOTE [RAWDBG INT-RRD] pc=%x inst=%x r0=%x d0=%x r1=%x d1=%x", INT0_RRD_ISSUE_SLOT_uop_pc, INT0_RRD_ISSUE_SLOT_uop_inst, IntExecutePlugin_rrdReq_0_2, IntExecutePlugin_rrdRsp_0_2, IntExecutePlugin_rrdReq_1_2, IntExecutePlugin_rrdRsp_1_2); // core.scala:L521
+            end
+          `endif
+        `endif
+      end
+      if(when_IntExecutePlugin_l181_2) begin
+        `ifndef SYNTHESIS
+          `ifdef FORMAL
+            assert(1'b0); // core.scala:L521
+          `else
+            if(!1'b0) begin
+              $display("NOTE [RAWDBG INT-EXE] pc=%x inst=%x d0=%x bp0=%x d1=%x bp1=%x result=%x", INT0_EXE_ISSUE_SLOT_uop_pc, INT0_EXE_ISSUE_SLOT_uop_inst, INT0_EXE_IntExecutePlugin_regData_0, IntExecutePlugin_bypassRsp_0_valid_2, INT0_EXE_IntExecutePlugin_regData_1, IntExecutePlugin_bypassRsp_1_valid_2, INT0_EXE_IntExecutePlugin_alu_io_result); // core.scala:L521
+            end
+          `endif
+        `endif
+      end
       MULDIV_EXE_MulDivExecutePlugin_mulCounter_value <= MULDIV_EXE_MulDivExecutePlugin_mulCounter_valueNext;
       MEM_MEM2_DCachePlugin_dirtyLineWritebackFSM_rspId_value <= MEM_MEM2_DCachePlugin_dirtyLineWritebackFSM_rspId_valueNext;
       MEM_MEM2_DCachePlugin_cacheRefillFSM_rspId_value <= MEM_MEM2_DCachePlugin_cacheRefillFSM_rspId_valueNext;
@@ -88885,6 +89181,28 @@ module MyCPUCore (
       end
       if(StoreBufferPlugin_queueIO_popPort_fire_7) begin
         StoreBufferPlugin_queue_7_valid <= 1'b0;
+      end
+      if(when_MemExecutePlugin_l73) begin
+        `ifndef SYNTHESIS
+          `ifdef FORMAL
+            assert(1'b0); // core.scala:L521
+          `else
+            if(!1'b0) begin
+              $display("NOTE [RAWDBG MEM-ISS] pc=%x inst=%x r0=%x v0=%x r1=%x v1=%x", MemIssueQueuePlugin_queue_0_payload_uop_pc, MemIssueQueuePlugin_queue_0_payload_uop_inst, MemIssueQueuePlugin_queue_0_payload_rRegs_0_payload, MemIssueQueuePlugin_queue_0_payload_rRegs_0_valid, MemIssueQueuePlugin_queue_0_payload_rRegs_1_payload, MemIssueQueuePlugin_queue_0_payload_rRegs_1_valid); // core.scala:L521
+            end
+          `endif
+        `endif
+      end
+      if(when_MemExecutePlugin_l104) begin
+        `ifndef SYNTHESIS
+          `ifdef FORMAL
+            assert(1'b0); // core.scala:L521
+          `else
+            if(!1'b0) begin
+              $display("NOTE [RAWDBG MEM-RRD] pc=%x inst=%x r0=%x d0=%x r1=%x d1=%x addr=%x data=%x", MEM_RRD_ISSUE_SLOT_uop_pc, MEM_RRD_ISSUE_SLOT_uop_inst, MemExecutePlugin_rrdReq_0, MemExecutePlugin_rrdRsp_0, MemExecutePlugin_rrdReq_1, MemExecutePlugin_rrdRsp_1, MEM_RRD_MEMORY_ADDRESS, MEM_RRD_MEMORY_WRITE_DATA); // core.scala:L521
+            end
+          `endif
+        `endif
       end
       if(IF1_arbitration_removeIt) begin
         IF1_arbitration_isValid <= 1'b0;
@@ -89072,22 +89390,22 @@ module MyCPUCore (
         MULDIV_WB_arbitration_isValid <= MULDIV_EXE_arbitration_isValid;
         MULDIV_WB_arbitration_isValidOnEntry <= MULDIV_EXE_arbitration_isValid;
       end
-      if(when_Pipeline_l158_73) begin
+      if(when_Pipeline_l158_72) begin
         MEM_ISS_to_MEM_RRD_STD_SLOT_valid <= _zz_MEM_ISS_to_MEM_RRD_STD_SLOT_valid;
       end
-      if(when_Pipeline_l158_74) begin
+      if(when_Pipeline_l158_73) begin
         MEM_RRD_to_MEM_ADDR_STD_SLOT_valid <= _zz_MEM_RRD_to_MEM_ADDR_STD_SLOT_valid;
       end
-      if(when_Pipeline_l158_75) begin
+      if(when_Pipeline_l158_74) begin
         MEM_ADDR_to_MEM_MEM1_STD_SLOT_valid <= _zz_MEM_ADDR_to_MEM_MEM1_STD_SLOT_valid;
       end
-      if(when_Pipeline_l158_76) begin
+      if(when_Pipeline_l158_75) begin
         MEM_MEM1_to_MEM_MEM2_STD_SLOT_valid <= _zz_MEM_MEM1_to_MEM_MEM2_STD_SLOT_valid;
       end
-      if(when_Pipeline_l158_77) begin
+      if(when_Pipeline_l158_76) begin
         MEM_MEM2_to_MEM_WB_STD_SLOT_valid <= _zz_MEM_MEM2_to_MEM_WB_STD_SLOT_valid;
       end
-      if(when_Pipeline_l158_78) begin
+      if(when_Pipeline_l158_77) begin
         MEM_WB_to_MEM_WB2_STD_SLOT_valid <= _zz_MEM_WB_to_MEM_WB2_STD_SLOT_valid;
       end
       if(MEM_ISS_arbitration_removeIt) begin
@@ -89405,9 +89723,6 @@ module MyCPUCore (
         14'h0004 : begin
           if(CSRPlugin_doWrite) begin
             ExceptionHandlerPlugin_ECFG_LIE_0 <= CSRPlugin_writeData[9 : 0];
-          end
-          if(CSRPlugin_doWrite) begin
-            ExceptionHandlerPlugin_ECFG_LIE_10 <= CSRPlugin_writeData[10 : 10];
           end
           if(CSRPlugin_doWrite) begin
             ExceptionHandlerPlugin_ECFG_LIE_11 <= CSRPlugin_writeData[12 : 11];
@@ -110570,135 +110885,135 @@ module MyCPUCore (
     if(when_ICachePlugin_l154_3) begin
       IF2_ICachePlugin_storedPacket_3 <= IF2_ICachePlugin_cacheRefillFSM_refillWord;
     end
-    if(when_IntExecutePlugin_l122) begin
-      if(when_IntExecutePlugin_l125) begin
+    if(when_IntExecutePlugin_l126) begin
+      if(when_IntExecutePlugin_l129) begin
         IntIssueQueuePlugin_queue_0_payload_rRegs_0_valid <= 1'b1;
       end
-      if(when_IntExecutePlugin_l125_1) begin
+      if(when_IntExecutePlugin_l129_1) begin
         IntIssueQueuePlugin_queue_0_payload_rRegs_1_valid <= 1'b1;
       end
-      if(when_IntExecutePlugin_l125_2) begin
+      if(when_IntExecutePlugin_l129_2) begin
         IntIssueQueuePlugin_queue_1_payload_rRegs_0_valid <= 1'b1;
       end
-      if(when_IntExecutePlugin_l125_3) begin
+      if(when_IntExecutePlugin_l129_3) begin
         IntIssueQueuePlugin_queue_1_payload_rRegs_1_valid <= 1'b1;
       end
-      if(when_IntExecutePlugin_l125_4) begin
+      if(when_IntExecutePlugin_l129_4) begin
         IntIssueQueuePlugin_queue_2_payload_rRegs_0_valid <= 1'b1;
       end
-      if(when_IntExecutePlugin_l125_5) begin
+      if(when_IntExecutePlugin_l129_5) begin
         IntIssueQueuePlugin_queue_2_payload_rRegs_1_valid <= 1'b1;
       end
-      if(when_IntExecutePlugin_l125_6) begin
+      if(when_IntExecutePlugin_l129_6) begin
         IntIssueQueuePlugin_queue_3_payload_rRegs_0_valid <= 1'b1;
       end
-      if(when_IntExecutePlugin_l125_7) begin
+      if(when_IntExecutePlugin_l129_7) begin
         IntIssueQueuePlugin_queue_3_payload_rRegs_1_valid <= 1'b1;
       end
-      if(when_IntExecutePlugin_l125_8) begin
+      if(when_IntExecutePlugin_l129_8) begin
         IntIssueQueuePlugin_queue_4_payload_rRegs_0_valid <= 1'b1;
       end
-      if(when_IntExecutePlugin_l125_9) begin
+      if(when_IntExecutePlugin_l129_9) begin
         IntIssueQueuePlugin_queue_4_payload_rRegs_1_valid <= 1'b1;
       end
-      if(when_IntExecutePlugin_l125_10) begin
+      if(when_IntExecutePlugin_l129_10) begin
         IntIssueQueuePlugin_queue_5_payload_rRegs_0_valid <= 1'b1;
       end
-      if(when_IntExecutePlugin_l125_11) begin
+      if(when_IntExecutePlugin_l129_11) begin
         IntIssueQueuePlugin_queue_5_payload_rRegs_1_valid <= 1'b1;
       end
-      if(when_IntExecutePlugin_l125_12) begin
+      if(when_IntExecutePlugin_l129_12) begin
         IntIssueQueuePlugin_queue_6_payload_rRegs_0_valid <= 1'b1;
       end
-      if(when_IntExecutePlugin_l125_13) begin
+      if(when_IntExecutePlugin_l129_13) begin
         IntIssueQueuePlugin_queue_6_payload_rRegs_1_valid <= 1'b1;
       end
     end
-    if(when_IntExecutePlugin_l122_1) begin
-      if(when_IntExecutePlugin_l125_14) begin
+    if(when_IntExecutePlugin_l126_1) begin
+      if(when_IntExecutePlugin_l129_14) begin
         IntIssueQueuePlugin_queue_0_payload_rRegs_0_valid <= 1'b1;
       end
-      if(when_IntExecutePlugin_l125_15) begin
+      if(when_IntExecutePlugin_l129_15) begin
         IntIssueQueuePlugin_queue_0_payload_rRegs_1_valid <= 1'b1;
       end
-      if(when_IntExecutePlugin_l125_16) begin
+      if(when_IntExecutePlugin_l129_16) begin
         IntIssueQueuePlugin_queue_1_payload_rRegs_0_valid <= 1'b1;
       end
-      if(when_IntExecutePlugin_l125_17) begin
+      if(when_IntExecutePlugin_l129_17) begin
         IntIssueQueuePlugin_queue_1_payload_rRegs_1_valid <= 1'b1;
       end
-      if(when_IntExecutePlugin_l125_18) begin
+      if(when_IntExecutePlugin_l129_18) begin
         IntIssueQueuePlugin_queue_2_payload_rRegs_0_valid <= 1'b1;
       end
-      if(when_IntExecutePlugin_l125_19) begin
+      if(when_IntExecutePlugin_l129_19) begin
         IntIssueQueuePlugin_queue_2_payload_rRegs_1_valid <= 1'b1;
       end
-      if(when_IntExecutePlugin_l125_20) begin
+      if(when_IntExecutePlugin_l129_20) begin
         IntIssueQueuePlugin_queue_3_payload_rRegs_0_valid <= 1'b1;
       end
-      if(when_IntExecutePlugin_l125_21) begin
+      if(when_IntExecutePlugin_l129_21) begin
         IntIssueQueuePlugin_queue_3_payload_rRegs_1_valid <= 1'b1;
       end
-      if(when_IntExecutePlugin_l125_22) begin
+      if(when_IntExecutePlugin_l129_22) begin
         IntIssueQueuePlugin_queue_4_payload_rRegs_0_valid <= 1'b1;
       end
-      if(when_IntExecutePlugin_l125_23) begin
+      if(when_IntExecutePlugin_l129_23) begin
         IntIssueQueuePlugin_queue_4_payload_rRegs_1_valid <= 1'b1;
       end
-      if(when_IntExecutePlugin_l125_24) begin
+      if(when_IntExecutePlugin_l129_24) begin
         IntIssueQueuePlugin_queue_5_payload_rRegs_0_valid <= 1'b1;
       end
-      if(when_IntExecutePlugin_l125_25) begin
+      if(when_IntExecutePlugin_l129_25) begin
         IntIssueQueuePlugin_queue_5_payload_rRegs_1_valid <= 1'b1;
       end
-      if(when_IntExecutePlugin_l125_26) begin
+      if(when_IntExecutePlugin_l129_26) begin
         IntIssueQueuePlugin_queue_6_payload_rRegs_0_valid <= 1'b1;
       end
-      if(when_IntExecutePlugin_l125_27) begin
+      if(when_IntExecutePlugin_l129_27) begin
         IntIssueQueuePlugin_queue_6_payload_rRegs_1_valid <= 1'b1;
       end
     end
-    if(when_IntExecutePlugin_l122_2) begin
-      if(when_IntExecutePlugin_l125_28) begin
+    if(when_IntExecutePlugin_l126_2) begin
+      if(when_IntExecutePlugin_l129_28) begin
         IntIssueQueuePlugin_queue_0_payload_rRegs_0_valid <= 1'b1;
       end
-      if(when_IntExecutePlugin_l125_29) begin
+      if(when_IntExecutePlugin_l129_29) begin
         IntIssueQueuePlugin_queue_0_payload_rRegs_1_valid <= 1'b1;
       end
-      if(when_IntExecutePlugin_l125_30) begin
+      if(when_IntExecutePlugin_l129_30) begin
         IntIssueQueuePlugin_queue_1_payload_rRegs_0_valid <= 1'b1;
       end
-      if(when_IntExecutePlugin_l125_31) begin
+      if(when_IntExecutePlugin_l129_31) begin
         IntIssueQueuePlugin_queue_1_payload_rRegs_1_valid <= 1'b1;
       end
-      if(when_IntExecutePlugin_l125_32) begin
+      if(when_IntExecutePlugin_l129_32) begin
         IntIssueQueuePlugin_queue_2_payload_rRegs_0_valid <= 1'b1;
       end
-      if(when_IntExecutePlugin_l125_33) begin
+      if(when_IntExecutePlugin_l129_33) begin
         IntIssueQueuePlugin_queue_2_payload_rRegs_1_valid <= 1'b1;
       end
-      if(when_IntExecutePlugin_l125_34) begin
+      if(when_IntExecutePlugin_l129_34) begin
         IntIssueQueuePlugin_queue_3_payload_rRegs_0_valid <= 1'b1;
       end
-      if(when_IntExecutePlugin_l125_35) begin
+      if(when_IntExecutePlugin_l129_35) begin
         IntIssueQueuePlugin_queue_3_payload_rRegs_1_valid <= 1'b1;
       end
-      if(when_IntExecutePlugin_l125_36) begin
+      if(when_IntExecutePlugin_l129_36) begin
         IntIssueQueuePlugin_queue_4_payload_rRegs_0_valid <= 1'b1;
       end
-      if(when_IntExecutePlugin_l125_37) begin
+      if(when_IntExecutePlugin_l129_37) begin
         IntIssueQueuePlugin_queue_4_payload_rRegs_1_valid <= 1'b1;
       end
-      if(when_IntExecutePlugin_l125_38) begin
+      if(when_IntExecutePlugin_l129_38) begin
         IntIssueQueuePlugin_queue_5_payload_rRegs_0_valid <= 1'b1;
       end
-      if(when_IntExecutePlugin_l125_39) begin
+      if(when_IntExecutePlugin_l129_39) begin
         IntIssueQueuePlugin_queue_5_payload_rRegs_1_valid <= 1'b1;
       end
-      if(when_IntExecutePlugin_l125_40) begin
+      if(when_IntExecutePlugin_l129_40) begin
         IntIssueQueuePlugin_queue_6_payload_rRegs_0_valid <= 1'b1;
       end
-      if(when_IntExecutePlugin_l125_41) begin
+      if(when_IntExecutePlugin_l129_41) begin
         IntIssueQueuePlugin_queue_6_payload_rRegs_1_valid <= 1'b1;
       end
     end
@@ -110983,38 +111298,32 @@ module MyCPUCore (
       IF1_to_IF2_TLB_TRANSLATE_RESULT_payload_exception_raiseTLBR <= IF1_TLB_TRANSLATE_RESULT_payload_exception_raiseTLBR;
     end
     if(when_Pipeline_l158_10) begin
-      IF1_to_IF2_TRANSLATE_SAVED_CSR_CRMD_DA <= IF1_TRANSLATE_SAVED_CSR_CRMD_DA;
-      IF1_to_IF2_TRANSLATE_SAVED_CSR_CRMD_PG <= IF1_TRANSLATE_SAVED_CSR_CRMD_PG;
-      IF1_to_IF2_TRANSLATE_SAVED_CSR_CRMD_DATF <= IF1_TRANSLATE_SAVED_CSR_CRMD_DATF;
-      IF1_to_IF2_TRANSLATE_SAVED_CSR_CRMD_DATM <= IF1_TRANSLATE_SAVED_CSR_CRMD_DATM;
-    end
-    if(when_Pipeline_l158_11) begin
       IF1_to_IF2_PREDICT_JUMP_FLAG <= IF1_PREDICT_JUMP_FLAG;
     end
-    if(when_Pipeline_l158_12) begin
+    if(when_Pipeline_l158_11) begin
       IF1_to_IF2_PREDICT_JUMP_PAYLOAD_target <= IF1_PREDICT_JUMP_PAYLOAD_target;
       IF1_to_IF2_PREDICT_JUMP_PAYLOAD_isCall <= IF1_PREDICT_JUMP_PAYLOAD_isCall;
       IF1_to_IF2_PREDICT_JUMP_PAYLOAD_isReturn <= IF1_PREDICT_JUMP_PAYLOAD_isReturn;
     end
-    if(when_Pipeline_l158_13) begin
+    if(when_Pipeline_l158_12) begin
       IF1_to_IF2_PREDICT_JUMP_WAY <= IF1_PREDICT_JUMP_WAY;
     end
-    if(when_Pipeline_l158_14) begin
+    if(when_Pipeline_l158_13) begin
       IF1_to_IF2_INSTRUCTION_MASK <= IF1_INSTRUCTION_MASK;
     end
-    if(when_Pipeline_l158_15) begin
+    if(when_Pipeline_l158_14) begin
       IF1_to_IF2_BRANCH_MASK <= IF1_BRANCH_MASK;
     end
-    if(when_Pipeline_l158_16) begin
+    if(when_Pipeline_l158_15) begin
       IF1_to_IF2_PRED_COUNTER_0 <= IF1_PRED_COUNTER_0;
       IF1_to_IF2_PRED_COUNTER_1 <= IF1_PRED_COUNTER_1;
       IF1_to_IF2_PRED_COUNTER_2 <= IF1_PRED_COUNTER_2;
       IF1_to_IF2_PRED_COUNTER_3 <= IF1_PRED_COUNTER_3;
     end
-    if(when_Pipeline_l158_17) begin
+    if(when_Pipeline_l158_16) begin
       IF1_to_IF2_GLOBAL_BRANCH_HISTORY <= IF1_GLOBAL_BRANCH_HISTORY;
     end
-    if(when_Pipeline_l158_18) begin
+    if(when_Pipeline_l158_17) begin
       ID_to_RENAME_DECODE_PACKET_0_valid <= ID_DECODE_PACKET_0_valid;
       ID_to_RENAME_DECODE_PACKET_0_payload_pc <= ID_DECODE_PACKET_0_payload_pc;
       ID_to_RENAME_DECODE_PACKET_0_payload_inst <= ID_DECODE_PACKET_0_payload_inst;
@@ -111145,7 +111454,7 @@ module MyCPUCore (
       ID_to_RENAME_DECODE_PACKET_2_payload_isErtn <= ID_DECODE_PACKET_2_payload_isErtn;
       ID_to_RENAME_DECODE_PACKET_2_payload_flushState <= ID_DECODE_PACKET_2_payload_flushState;
     end
-    if(when_Pipeline_l158_19) begin
+    if(when_Pipeline_l158_18) begin
       RENAME_to_DISPATCH_DECODE_PACKET_0_valid <= RENAME_DECODE_PACKET_0_valid;
       RENAME_to_DISPATCH_DECODE_PACKET_0_payload_pc <= RENAME_DECODE_PACKET_0_payload_pc;
       RENAME_to_DISPATCH_DECODE_PACKET_0_payload_inst <= RENAME_DECODE_PACKET_0_payload_inst;
@@ -111276,12 +111585,12 @@ module MyCPUCore (
       RENAME_to_DISPATCH_DECODE_PACKET_2_payload_isErtn <= RENAME_DECODE_PACKET_2_payload_isErtn;
       RENAME_to_DISPATCH_DECODE_PACKET_2_payload_flushState <= RENAME_DECODE_PACKET_2_payload_flushState;
     end
-    if(when_Pipeline_l158_20) begin
+    if(when_Pipeline_l158_19) begin
       RENAME_to_DISPATCH_ROB_INDEXES_0 <= RENAME_ROB_INDEXES_0;
       RENAME_to_DISPATCH_ROB_INDEXES_1 <= RENAME_ROB_INDEXES_1;
       RENAME_to_DISPATCH_ROB_INDEXES_2 <= RENAME_ROB_INDEXES_2;
     end
-    if(when_Pipeline_l158_21) begin
+    if(when_Pipeline_l158_20) begin
       RENAME_to_DISPATCH_PUSH_INDEXES_0_valid <= RENAME_PUSH_INDEXES_0_valid;
       RENAME_to_DISPATCH_PUSH_INDEXES_0_payload <= RENAME_PUSH_INDEXES_0_payload;
       RENAME_to_DISPATCH_PUSH_INDEXES_1_valid <= RENAME_PUSH_INDEXES_1_valid;
@@ -111289,7 +111598,7 @@ module MyCPUCore (
       RENAME_to_DISPATCH_PUSH_INDEXES_2_valid <= RENAME_PUSH_INDEXES_2_valid;
       RENAME_to_DISPATCH_PUSH_INDEXES_2_payload <= RENAME_PUSH_INDEXES_2_payload;
     end
-    if(when_Pipeline_l158_22) begin
+    if(when_Pipeline_l158_21) begin
       RENAME_to_DISPATCH_RENAME_RECORDS_0_rRegs_0 <= RENAME_RENAME_RECORDS_0_rRegs_0;
       RENAME_to_DISPATCH_RENAME_RECORDS_0_rRegs_1 <= RENAME_RENAME_RECORDS_0_rRegs_1;
       RENAME_to_DISPATCH_RENAME_RECORDS_0_wReg <= RENAME_RENAME_RECORDS_0_wReg;
@@ -111303,7 +111612,7 @@ module MyCPUCore (
       RENAME_to_DISPATCH_RENAME_RECORDS_2_wReg <= RENAME_RENAME_RECORDS_2_wReg;
       RENAME_to_DISPATCH_RENAME_RECORDS_2_wPrevReg <= RENAME_RENAME_RECORDS_2_wPrevReg;
     end
-    if(when_Pipeline_l158_23) begin
+    if(when_Pipeline_l158_22) begin
       INT2_ISS_to_INT2_RRD_ISSUE_SLOT_rRegs_0_valid <= INT2_ISS_ISSUE_SLOT_rRegs_0_valid;
       INT2_ISS_to_INT2_RRD_ISSUE_SLOT_rRegs_0_payload <= INT2_ISS_ISSUE_SLOT_rRegs_0_payload;
       INT2_ISS_to_INT2_RRD_ISSUE_SLOT_rRegs_1_valid <= INT2_ISS_ISSUE_SLOT_rRegs_1_valid;
@@ -111333,7 +111642,7 @@ module MyCPUCore (
       INT2_ISS_to_INT2_RRD_ISSUE_SLOT_uop_tlbOp <= _zz_INT2_ISS_to_INT2_RRD_ISSUE_SLOT_uop_tlbOp;
       INT2_ISS_to_INT2_RRD_ISSUE_SLOT_wReg <= INT2_ISS_ISSUE_SLOT_wReg;
     end
-    if(when_Pipeline_l158_24) begin
+    if(when_Pipeline_l158_23) begin
       INT2_RRD_to_INT2_EXE_ISSUE_SLOT_rRegs_0_valid <= INT2_RRD_ISSUE_SLOT_rRegs_0_valid;
       INT2_RRD_to_INT2_EXE_ISSUE_SLOT_rRegs_0_payload <= INT2_RRD_ISSUE_SLOT_rRegs_0_payload;
       INT2_RRD_to_INT2_EXE_ISSUE_SLOT_rRegs_1_valid <= INT2_RRD_ISSUE_SLOT_rRegs_1_valid;
@@ -111363,7 +111672,7 @@ module MyCPUCore (
       INT2_RRD_to_INT2_EXE_ISSUE_SLOT_uop_tlbOp <= _zz_INT2_RRD_to_INT2_EXE_ISSUE_SLOT_uop_tlbOp;
       INT2_RRD_to_INT2_EXE_ISSUE_SLOT_wReg <= INT2_RRD_ISSUE_SLOT_wReg;
     end
-    if(when_Pipeline_l158_25) begin
+    if(when_Pipeline_l158_24) begin
       INT2_EXE_to_INT2_WB_ISSUE_SLOT_rRegs_0_valid <= INT2_EXE_ISSUE_SLOT_rRegs_0_valid;
       INT2_EXE_to_INT2_WB_ISSUE_SLOT_rRegs_0_payload <= INT2_EXE_ISSUE_SLOT_rRegs_0_payload;
       INT2_EXE_to_INT2_WB_ISSUE_SLOT_rRegs_1_valid <= INT2_EXE_ISSUE_SLOT_rRegs_1_valid;
@@ -111393,45 +111702,45 @@ module MyCPUCore (
       INT2_EXE_to_INT2_WB_ISSUE_SLOT_uop_tlbOp <= _zz_INT2_EXE_to_INT2_WB_ISSUE_SLOT_uop_tlbOp;
       INT2_EXE_to_INT2_WB_ISSUE_SLOT_wReg <= INT2_EXE_ISSUE_SLOT_wReg;
     end
-    if(when_Pipeline_l158_26) begin
+    if(when_Pipeline_l158_25) begin
       INT2_RRD_to_INT2_EXE_REG_READ_RSP_0 <= INT2_RRD_REG_READ_RSP_0;
       INT2_RRD_to_INT2_EXE_REG_READ_RSP_1 <= INT2_RRD_REG_READ_RSP_1;
     end
-    if(when_Pipeline_l158_27) begin
+    if(when_Pipeline_l158_26) begin
       INT2_RRD_to_INT2_EXE_DIFF_IS_COUNT <= INT2_RRD_DIFF_IS_COUNT;
     end
-    if(when_Pipeline_l158_28) begin
+    if(when_Pipeline_l158_27) begin
       INT2_EXE_to_INT2_WB_DIFF_IS_COUNT <= INT2_EXE_DIFF_IS_COUNT;
     end
-    if(when_Pipeline_l158_29) begin
+    if(when_Pipeline_l158_28) begin
       INT2_RRD_to_INT2_EXE_DIFF_COUNT64_value <= INT2_RRD_DIFF_COUNT64_value;
     end
-    if(when_Pipeline_l158_30) begin
+    if(when_Pipeline_l158_29) begin
       INT2_EXE_to_INT2_WB_DIFF_COUNT64_value <= INT2_EXE_DIFF_COUNT64_value;
     end
-    if(when_Pipeline_l158_31) begin
+    if(when_Pipeline_l158_30) begin
       INT2_RRD_to_INT2_EXE_DIFF_CSR_RSTAT <= INT2_RRD_DIFF_CSR_RSTAT;
     end
-    if(when_Pipeline_l158_32) begin
+    if(when_Pipeline_l158_31) begin
       INT2_EXE_to_INT2_WB_DIFF_CSR_RSTAT <= INT2_EXE_DIFF_CSR_RSTAT;
     end
-    if(when_Pipeline_l158_33) begin
+    if(when_Pipeline_l158_32) begin
       INT2_RRD_to_INT2_EXE_DIFF_CSR_DATA <= INT2_RRD_DIFF_CSR_DATA;
     end
-    if(when_Pipeline_l158_34) begin
+    if(when_Pipeline_l158_33) begin
       INT2_EXE_to_INT2_WB_DIFF_CSR_DATA <= INT2_EXE_DIFF_CSR_DATA;
     end
-    if(when_Pipeline_l158_35) begin
+    if(when_Pipeline_l158_34) begin
       INT2_EXE_to_INT2_WB_EXE_RESULT <= INT2_EXE_EXE_RESULT;
     end
-    if(when_Pipeline_l158_36) begin
+    if(when_Pipeline_l158_35) begin
       INT2_EXE_to_INT2_WB_WRITE_REG_valid <= INT2_EXE_WRITE_REG_valid;
       INT2_EXE_to_INT2_WB_WRITE_REG_payload <= INT2_EXE_WRITE_REG_payload;
     end
-    if(when_Pipeline_l158_37) begin
+    if(when_Pipeline_l158_36) begin
       INT2_EXE_to_INT2_WB_ROB_IDX <= INT2_EXE_ROB_IDX;
     end
-    if(when_Pipeline_l158_38) begin
+    if(when_Pipeline_l158_37) begin
       INT1_ISS_to_INT1_RRD_ISSUE_SLOT_rRegs_0_valid <= INT1_ISS_ISSUE_SLOT_rRegs_0_valid;
       INT1_ISS_to_INT1_RRD_ISSUE_SLOT_rRegs_0_payload <= INT1_ISS_ISSUE_SLOT_rRegs_0_payload;
       INT1_ISS_to_INT1_RRD_ISSUE_SLOT_rRegs_1_valid <= INT1_ISS_ISSUE_SLOT_rRegs_1_valid;
@@ -111461,7 +111770,7 @@ module MyCPUCore (
       INT1_ISS_to_INT1_RRD_ISSUE_SLOT_uop_tlbOp <= _zz_INT1_ISS_to_INT1_RRD_ISSUE_SLOT_uop_tlbOp;
       INT1_ISS_to_INT1_RRD_ISSUE_SLOT_wReg <= INT1_ISS_ISSUE_SLOT_wReg;
     end
-    if(when_Pipeline_l158_39) begin
+    if(when_Pipeline_l158_38) begin
       INT1_RRD_to_INT1_EXE_ISSUE_SLOT_rRegs_0_valid <= INT1_RRD_ISSUE_SLOT_rRegs_0_valid;
       INT1_RRD_to_INT1_EXE_ISSUE_SLOT_rRegs_0_payload <= INT1_RRD_ISSUE_SLOT_rRegs_0_payload;
       INT1_RRD_to_INT1_EXE_ISSUE_SLOT_rRegs_1_valid <= INT1_RRD_ISSUE_SLOT_rRegs_1_valid;
@@ -111491,7 +111800,7 @@ module MyCPUCore (
       INT1_RRD_to_INT1_EXE_ISSUE_SLOT_uop_tlbOp <= _zz_INT1_RRD_to_INT1_EXE_ISSUE_SLOT_uop_tlbOp;
       INT1_RRD_to_INT1_EXE_ISSUE_SLOT_wReg <= INT1_RRD_ISSUE_SLOT_wReg;
     end
-    if(when_Pipeline_l158_40) begin
+    if(when_Pipeline_l158_39) begin
       INT1_EXE_to_INT1_WB_ISSUE_SLOT_rRegs_0_valid <= INT1_EXE_ISSUE_SLOT_rRegs_0_valid;
       INT1_EXE_to_INT1_WB_ISSUE_SLOT_rRegs_0_payload <= INT1_EXE_ISSUE_SLOT_rRegs_0_payload;
       INT1_EXE_to_INT1_WB_ISSUE_SLOT_rRegs_1_valid <= INT1_EXE_ISSUE_SLOT_rRegs_1_valid;
@@ -111521,42 +111830,42 @@ module MyCPUCore (
       INT1_EXE_to_INT1_WB_ISSUE_SLOT_uop_tlbOp <= _zz_INT1_EXE_to_INT1_WB_ISSUE_SLOT_uop_tlbOp;
       INT1_EXE_to_INT1_WB_ISSUE_SLOT_wReg <= INT1_EXE_ISSUE_SLOT_wReg;
     end
-    if(when_Pipeline_l158_41) begin
+    if(when_Pipeline_l158_40) begin
       INT1_RRD_to_INT1_EXE_REG_READ_RSP_0 <= INT1_RRD_REG_READ_RSP_0;
       INT1_RRD_to_INT1_EXE_REG_READ_RSP_1 <= INT1_RRD_REG_READ_RSP_1;
     end
-    if(when_Pipeline_l158_42) begin
+    if(when_Pipeline_l158_41) begin
       INT1_RRD_to_INT1_EXE_DIFF_IS_COUNT <= INT1_RRD_DIFF_IS_COUNT;
     end
-    if(when_Pipeline_l158_43) begin
+    if(when_Pipeline_l158_42) begin
       INT1_EXE_to_INT1_WB_DIFF_IS_COUNT <= _zz_INT1_EXE_to_INT1_WB_DIFF_IS_COUNT;
     end
-    if(when_Pipeline_l158_44) begin
+    if(when_Pipeline_l158_43) begin
       INT1_EXE_to_INT1_WB_DIFF_COUNT64_value <= INT1_EXE_DIFF_COUNT64_value;
     end
-    if(when_Pipeline_l158_45) begin
+    if(when_Pipeline_l158_44) begin
       INT1_RRD_to_INT1_EXE_DIFF_CSR_RSTAT <= INT1_RRD_DIFF_CSR_RSTAT;
     end
-    if(when_Pipeline_l158_46) begin
+    if(when_Pipeline_l158_45) begin
       INT1_EXE_to_INT1_WB_DIFF_CSR_RSTAT <= INT1_EXE_DIFF_CSR_RSTAT;
     end
-    if(when_Pipeline_l158_47) begin
+    if(when_Pipeline_l158_46) begin
       INT1_RRD_to_INT1_EXE_DIFF_CSR_DATA <= INT1_RRD_DIFF_CSR_DATA;
     end
-    if(when_Pipeline_l158_48) begin
+    if(when_Pipeline_l158_47) begin
       INT1_EXE_to_INT1_WB_DIFF_CSR_DATA <= INT1_EXE_DIFF_CSR_DATA;
     end
-    if(when_Pipeline_l158_49) begin
+    if(when_Pipeline_l158_48) begin
       INT1_EXE_to_INT1_WB_EXE_RESULT <= INT1_EXE_EXE_RESULT;
     end
-    if(when_Pipeline_l158_50) begin
+    if(when_Pipeline_l158_49) begin
       INT1_EXE_to_INT1_WB_WRITE_REG_valid <= INT1_EXE_WRITE_REG_valid;
       INT1_EXE_to_INT1_WB_WRITE_REG_payload <= INT1_EXE_WRITE_REG_payload;
     end
-    if(when_Pipeline_l158_51) begin
+    if(when_Pipeline_l158_50) begin
       INT1_EXE_to_INT1_WB_ROB_IDX <= INT1_EXE_ROB_IDX;
     end
-    if(when_Pipeline_l158_52) begin
+    if(when_Pipeline_l158_51) begin
       INT0_ISS_to_INT0_RRD_ISSUE_SLOT_rRegs_0_valid <= INT0_ISS_ISSUE_SLOT_rRegs_0_valid;
       INT0_ISS_to_INT0_RRD_ISSUE_SLOT_rRegs_0_payload <= INT0_ISS_ISSUE_SLOT_rRegs_0_payload;
       INT0_ISS_to_INT0_RRD_ISSUE_SLOT_rRegs_1_valid <= INT0_ISS_ISSUE_SLOT_rRegs_1_valid;
@@ -111586,7 +111895,7 @@ module MyCPUCore (
       INT0_ISS_to_INT0_RRD_ISSUE_SLOT_uop_tlbOp <= _zz_INT0_ISS_to_INT0_RRD_ISSUE_SLOT_uop_tlbOp;
       INT0_ISS_to_INT0_RRD_ISSUE_SLOT_wReg <= INT0_ISS_ISSUE_SLOT_wReg;
     end
-    if(when_Pipeline_l158_53) begin
+    if(when_Pipeline_l158_52) begin
       INT0_RRD_to_INT0_EXE_ISSUE_SLOT_rRegs_0_valid <= INT0_RRD_ISSUE_SLOT_rRegs_0_valid;
       INT0_RRD_to_INT0_EXE_ISSUE_SLOT_rRegs_0_payload <= INT0_RRD_ISSUE_SLOT_rRegs_0_payload;
       INT0_RRD_to_INT0_EXE_ISSUE_SLOT_rRegs_1_valid <= INT0_RRD_ISSUE_SLOT_rRegs_1_valid;
@@ -111616,36 +111925,36 @@ module MyCPUCore (
       INT0_RRD_to_INT0_EXE_ISSUE_SLOT_uop_tlbOp <= _zz_INT0_RRD_to_INT0_EXE_ISSUE_SLOT_uop_tlbOp;
       INT0_RRD_to_INT0_EXE_ISSUE_SLOT_wReg <= INT0_RRD_ISSUE_SLOT_wReg;
     end
-    if(when_Pipeline_l158_54) begin
+    if(when_Pipeline_l158_53) begin
       INT0_RRD_to_INT0_EXE_REG_READ_RSP_0 <= INT0_RRD_REG_READ_RSP_0;
       INT0_RRD_to_INT0_EXE_REG_READ_RSP_1 <= INT0_RRD_REG_READ_RSP_1;
     end
-    if(when_Pipeline_l158_55) begin
+    if(when_Pipeline_l158_54) begin
       INT0_RRD_to_INT0_EXE_DIFF_CSR_RSTAT <= INT0_RRD_DIFF_CSR_RSTAT;
     end
-    if(when_Pipeline_l158_56) begin
+    if(when_Pipeline_l158_55) begin
       INT0_RRD_to_INT0_EXE_DIFF_CSR_DATA <= INT0_RRD_DIFF_CSR_DATA;
     end
-    if(when_Pipeline_l158_57) begin
+    if(when_Pipeline_l158_56) begin
       INT0_EXE_to_INT0_WB_EXE_RESULT <= INT0_EXE_EXE_RESULT;
     end
-    if(when_Pipeline_l158_58) begin
+    if(when_Pipeline_l158_57) begin
       INT0_EXE_to_INT0_WB_ACTUAL_TARGET <= INT0_EXE_ACTUAL_TARGET;
     end
-    if(when_Pipeline_l158_59) begin
+    if(when_Pipeline_l158_58) begin
       INT0_EXE_to_INT0_WB_ACTUAL_TAKEN <= INT0_EXE_ACTUAL_TAKEN;
     end
-    if(when_Pipeline_l158_60) begin
+    if(when_Pipeline_l158_59) begin
       INT0_EXE_to_INT0_WB_MISPREDICT <= INT0_EXE_MISPREDICT;
     end
-    if(when_Pipeline_l158_61) begin
+    if(when_Pipeline_l158_60) begin
       INT0_EXE_to_INT0_WB_WRITE_REG_valid <= INT0_EXE_WRITE_REG_valid;
       INT0_EXE_to_INT0_WB_WRITE_REG_payload <= INT0_EXE_WRITE_REG_payload;
     end
-    if(when_Pipeline_l158_62) begin
+    if(when_Pipeline_l158_61) begin
       INT0_EXE_to_INT0_WB_ROB_IDX <= INT0_EXE_ROB_IDX;
     end
-    if(when_Pipeline_l158_63) begin
+    if(when_Pipeline_l158_62) begin
       MULDIV_ISS_to_MULDIV_RRD_ISSUE_SLOT_rRegs_0_valid <= MULDIV_ISS_ISSUE_SLOT_rRegs_0_valid;
       MULDIV_ISS_to_MULDIV_RRD_ISSUE_SLOT_rRegs_0_payload <= MULDIV_ISS_ISSUE_SLOT_rRegs_0_payload;
       MULDIV_ISS_to_MULDIV_RRD_ISSUE_SLOT_rRegs_1_valid <= MULDIV_ISS_ISSUE_SLOT_rRegs_1_valid;
@@ -111656,7 +111965,7 @@ module MyCPUCore (
       MULDIV_ISS_to_MULDIV_RRD_ISSUE_SLOT_uop_signed <= MULDIV_ISS_ISSUE_SLOT_uop_signed;
       MULDIV_ISS_to_MULDIV_RRD_ISSUE_SLOT_wReg <= MULDIV_ISS_ISSUE_SLOT_wReg;
     end
-    if(when_Pipeline_l158_64) begin
+    if(when_Pipeline_l158_63) begin
       MULDIV_RRD_to_MULDIV_EXE_ISSUE_SLOT_rRegs_0_valid <= MULDIV_RRD_ISSUE_SLOT_rRegs_0_valid;
       MULDIV_RRD_to_MULDIV_EXE_ISSUE_SLOT_rRegs_0_payload <= MULDIV_RRD_ISSUE_SLOT_rRegs_0_payload;
       MULDIV_RRD_to_MULDIV_EXE_ISSUE_SLOT_rRegs_1_valid <= MULDIV_RRD_ISSUE_SLOT_rRegs_1_valid;
@@ -111667,7 +111976,7 @@ module MyCPUCore (
       MULDIV_RRD_to_MULDIV_EXE_ISSUE_SLOT_uop_signed <= MULDIV_RRD_ISSUE_SLOT_uop_signed;
       MULDIV_RRD_to_MULDIV_EXE_ISSUE_SLOT_wReg <= MULDIV_RRD_ISSUE_SLOT_wReg;
     end
-    if(when_Pipeline_l158_65) begin
+    if(when_Pipeline_l158_64) begin
       MULDIV_EXE_to_MULDIV_WB_ISSUE_SLOT_rRegs_0_valid <= MULDIV_EXE_ISSUE_SLOT_rRegs_0_valid;
       MULDIV_EXE_to_MULDIV_WB_ISSUE_SLOT_rRegs_0_payload <= MULDIV_EXE_ISSUE_SLOT_rRegs_0_payload;
       MULDIV_EXE_to_MULDIV_WB_ISSUE_SLOT_rRegs_1_valid <= MULDIV_EXE_ISSUE_SLOT_rRegs_1_valid;
@@ -111678,14 +111987,14 @@ module MyCPUCore (
       MULDIV_EXE_to_MULDIV_WB_ISSUE_SLOT_uop_signed <= MULDIV_EXE_ISSUE_SLOT_uop_signed;
       MULDIV_EXE_to_MULDIV_WB_ISSUE_SLOT_wReg <= MULDIV_EXE_ISSUE_SLOT_wReg;
     end
-    if(when_Pipeline_l158_66) begin
+    if(when_Pipeline_l158_65) begin
       MULDIV_RRD_to_MULDIV_EXE_REG_READ_RSP_0 <= MULDIV_RRD_REG_READ_RSP_0;
       MULDIV_RRD_to_MULDIV_EXE_REG_READ_RSP_1 <= MULDIV_RRD_REG_READ_RSP_1;
     end
-    if(when_Pipeline_l158_67) begin
+    if(when_Pipeline_l158_66) begin
       MULDIV_EXE_to_MULDIV_WB_EXE_RESULT <= MULDIV_EXE_EXE_RESULT;
     end
-    if(when_Pipeline_l158_68) begin
+    if(when_Pipeline_l158_67) begin
       MEM_ISS_to_MEM_RRD_ISSUE_SLOT_rRegs_0_valid <= MEM_ISS_ISSUE_SLOT_rRegs_0_valid;
       MEM_ISS_to_MEM_RRD_ISSUE_SLOT_rRegs_0_payload <= MEM_ISS_ISSUE_SLOT_rRegs_0_payload;
       MEM_ISS_to_MEM_RRD_ISSUE_SLOT_rRegs_1_valid <= MEM_ISS_ISSUE_SLOT_rRegs_1_valid;
@@ -111704,7 +112013,7 @@ module MyCPUCore (
       MEM_ISS_to_MEM_RRD_ISSUE_SLOT_uop_cacheSel <= _zz_MEM_ISS_to_MEM_RRD_ISSUE_SLOT_uop_cacheSel;
       MEM_ISS_to_MEM_RRD_ISSUE_SLOT_wReg <= MEM_ISS_ISSUE_SLOT_wReg;
     end
-    if(when_Pipeline_l158_69) begin
+    if(when_Pipeline_l158_68) begin
       MEM_RRD_to_MEM_ADDR_ISSUE_SLOT_rRegs_0_valid <= MEM_RRD_ISSUE_SLOT_rRegs_0_valid;
       MEM_RRD_to_MEM_ADDR_ISSUE_SLOT_rRegs_0_payload <= MEM_RRD_ISSUE_SLOT_rRegs_0_payload;
       MEM_RRD_to_MEM_ADDR_ISSUE_SLOT_rRegs_1_valid <= MEM_RRD_ISSUE_SLOT_rRegs_1_valid;
@@ -111723,7 +112032,7 @@ module MyCPUCore (
       MEM_RRD_to_MEM_ADDR_ISSUE_SLOT_uop_cacheSel <= _zz_MEM_RRD_to_MEM_ADDR_ISSUE_SLOT_uop_cacheSel;
       MEM_RRD_to_MEM_ADDR_ISSUE_SLOT_wReg <= MEM_RRD_ISSUE_SLOT_wReg;
     end
-    if(when_Pipeline_l158_70) begin
+    if(when_Pipeline_l158_69) begin
       MEM_ADDR_to_MEM_MEM1_ISSUE_SLOT_rRegs_0_valid <= MEM_ADDR_ISSUE_SLOT_rRegs_0_valid;
       MEM_ADDR_to_MEM_MEM1_ISSUE_SLOT_rRegs_0_payload <= MEM_ADDR_ISSUE_SLOT_rRegs_0_payload;
       MEM_ADDR_to_MEM_MEM1_ISSUE_SLOT_rRegs_1_valid <= MEM_ADDR_ISSUE_SLOT_rRegs_1_valid;
@@ -111742,7 +112051,7 @@ module MyCPUCore (
       MEM_ADDR_to_MEM_MEM1_ISSUE_SLOT_uop_cacheSel <= _zz_MEM_ADDR_to_MEM_MEM1_ISSUE_SLOT_uop_cacheSel;
       MEM_ADDR_to_MEM_MEM1_ISSUE_SLOT_wReg <= MEM_ADDR_ISSUE_SLOT_wReg;
     end
-    if(when_Pipeline_l158_71) begin
+    if(when_Pipeline_l158_70) begin
       MEM_MEM1_to_MEM_MEM2_ISSUE_SLOT_rRegs_0_valid <= MEM_MEM1_ISSUE_SLOT_rRegs_0_valid;
       MEM_MEM1_to_MEM_MEM2_ISSUE_SLOT_rRegs_0_payload <= MEM_MEM1_ISSUE_SLOT_rRegs_0_payload;
       MEM_MEM1_to_MEM_MEM2_ISSUE_SLOT_rRegs_1_valid <= MEM_MEM1_ISSUE_SLOT_rRegs_1_valid;
@@ -111761,7 +112070,7 @@ module MyCPUCore (
       MEM_MEM1_to_MEM_MEM2_ISSUE_SLOT_uop_cacheSel <= _zz_MEM_MEM1_to_MEM_MEM2_ISSUE_SLOT_uop_cacheSel;
       MEM_MEM1_to_MEM_MEM2_ISSUE_SLOT_wReg <= MEM_MEM1_ISSUE_SLOT_wReg;
     end
-    if(when_Pipeline_l158_72) begin
+    if(when_Pipeline_l158_71) begin
       MEM_MEM2_to_MEM_WB_ISSUE_SLOT_rRegs_0_valid <= MEM_MEM2_ISSUE_SLOT_rRegs_0_valid;
       MEM_MEM2_to_MEM_WB_ISSUE_SLOT_rRegs_0_payload <= MEM_MEM2_ISSUE_SLOT_rRegs_0_payload;
       MEM_MEM2_to_MEM_WB_ISSUE_SLOT_rRegs_1_valid <= MEM_MEM2_ISSUE_SLOT_rRegs_1_valid;
@@ -111780,7 +112089,7 @@ module MyCPUCore (
       MEM_MEM2_to_MEM_WB_ISSUE_SLOT_uop_cacheSel <= _zz_MEM_MEM2_to_MEM_WB_ISSUE_SLOT_uop_cacheSel;
       MEM_MEM2_to_MEM_WB_ISSUE_SLOT_wReg <= MEM_MEM2_ISSUE_SLOT_wReg;
     end
-    if(when_Pipeline_l158_73) begin
+    if(when_Pipeline_l158_72) begin
       MEM_ISS_to_MEM_RRD_STD_SLOT_payload_retired <= MEM_ISS_STD_SLOT_payload_retired;
       MEM_ISS_to_MEM_RRD_STD_SLOT_payload_addr <= MEM_ISS_STD_SLOT_payload_addr;
       MEM_ISS_to_MEM_RRD_STD_SLOT_payload_be <= MEM_ISS_STD_SLOT_payload_be;
@@ -111792,7 +112101,7 @@ module MyCPUCore (
       MEM_ISS_to_MEM_RRD_STD_SLOT_payload_lsType <= _zz_MEM_ISS_to_MEM_RRD_STD_SLOT_payload_lsType;
       MEM_ISS_to_MEM_RRD_STD_SLOT_payload_robIdx <= MEM_ISS_STD_SLOT_payload_robIdx;
     end
-    if(when_Pipeline_l158_74) begin
+    if(when_Pipeline_l158_73) begin
       MEM_RRD_to_MEM_ADDR_STD_SLOT_payload_retired <= MEM_RRD_STD_SLOT_payload_retired;
       MEM_RRD_to_MEM_ADDR_STD_SLOT_payload_addr <= MEM_RRD_STD_SLOT_payload_addr;
       MEM_RRD_to_MEM_ADDR_STD_SLOT_payload_be <= MEM_RRD_STD_SLOT_payload_be;
@@ -111804,7 +112113,7 @@ module MyCPUCore (
       MEM_RRD_to_MEM_ADDR_STD_SLOT_payload_lsType <= _zz_MEM_RRD_to_MEM_ADDR_STD_SLOT_payload_lsType;
       MEM_RRD_to_MEM_ADDR_STD_SLOT_payload_robIdx <= MEM_RRD_STD_SLOT_payload_robIdx;
     end
-    if(when_Pipeline_l158_75) begin
+    if(when_Pipeline_l158_74) begin
       MEM_ADDR_to_MEM_MEM1_STD_SLOT_payload_retired <= MEM_ADDR_STD_SLOT_payload_retired;
       MEM_ADDR_to_MEM_MEM1_STD_SLOT_payload_addr <= MEM_ADDR_STD_SLOT_payload_addr;
       MEM_ADDR_to_MEM_MEM1_STD_SLOT_payload_be <= MEM_ADDR_STD_SLOT_payload_be;
@@ -111816,7 +112125,7 @@ module MyCPUCore (
       MEM_ADDR_to_MEM_MEM1_STD_SLOT_payload_lsType <= _zz_MEM_ADDR_to_MEM_MEM1_STD_SLOT_payload_lsType;
       MEM_ADDR_to_MEM_MEM1_STD_SLOT_payload_robIdx <= MEM_ADDR_STD_SLOT_payload_robIdx;
     end
-    if(when_Pipeline_l158_76) begin
+    if(when_Pipeline_l158_75) begin
       MEM_MEM1_to_MEM_MEM2_STD_SLOT_payload_retired <= MEM_MEM1_STD_SLOT_payload_retired;
       MEM_MEM1_to_MEM_MEM2_STD_SLOT_payload_addr <= MEM_MEM1_STD_SLOT_payload_addr;
       MEM_MEM1_to_MEM_MEM2_STD_SLOT_payload_be <= MEM_MEM1_STD_SLOT_payload_be;
@@ -111828,7 +112137,7 @@ module MyCPUCore (
       MEM_MEM1_to_MEM_MEM2_STD_SLOT_payload_lsType <= _zz_MEM_MEM1_to_MEM_MEM2_STD_SLOT_payload_lsType;
       MEM_MEM1_to_MEM_MEM2_STD_SLOT_payload_robIdx <= MEM_MEM1_STD_SLOT_payload_robIdx;
     end
-    if(when_Pipeline_l158_77) begin
+    if(when_Pipeline_l158_76) begin
       MEM_MEM2_to_MEM_WB_STD_SLOT_payload_retired <= MEM_MEM2_STD_SLOT_payload_retired;
       MEM_MEM2_to_MEM_WB_STD_SLOT_payload_addr <= MEM_MEM2_STD_SLOT_payload_addr;
       MEM_MEM2_to_MEM_WB_STD_SLOT_payload_be <= MEM_MEM2_STD_SLOT_payload_be;
@@ -111840,7 +112149,7 @@ module MyCPUCore (
       MEM_MEM2_to_MEM_WB_STD_SLOT_payload_lsType <= _zz_MEM_MEM2_to_MEM_WB_STD_SLOT_payload_lsType;
       MEM_MEM2_to_MEM_WB_STD_SLOT_payload_robIdx <= MEM_MEM2_STD_SLOT_payload_robIdx;
     end
-    if(when_Pipeline_l158_78) begin
+    if(when_Pipeline_l158_77) begin
       MEM_WB_to_MEM_WB2_STD_SLOT_payload_retired <= MEM_WB_STD_SLOT_payload_retired;
       MEM_WB_to_MEM_WB2_STD_SLOT_payload_addr <= MEM_WB_STD_SLOT_payload_addr;
       MEM_WB_to_MEM_WB2_STD_SLOT_payload_be <= MEM_WB_STD_SLOT_payload_be;
@@ -111852,37 +112161,37 @@ module MyCPUCore (
       MEM_WB_to_MEM_WB2_STD_SLOT_payload_lsType <= _zz_MEM_WB_to_MEM_WB2_STD_SLOT_payload_lsType;
       MEM_WB_to_MEM_WB2_STD_SLOT_payload_robIdx <= MEM_WB_STD_SLOT_payload_robIdx;
     end
-    if(when_Pipeline_l158_79) begin
+    if(when_Pipeline_l158_78) begin
       MEM_RRD_to_MEM_ADDR_MEMORY_ADDRESS <= MEM_RRD_MEMORY_ADDRESS;
     end
-    if(when_Pipeline_l158_80) begin
+    if(when_Pipeline_l158_79) begin
       MEM_ADDR_to_MEM_MEM1_MEMORY_ADDRESS <= _zz_MEM_ADDR_DCachePlugin_memAddr;
     end
-    if(when_Pipeline_l158_81) begin
+    if(when_Pipeline_l158_80) begin
       MEM_MEM1_to_MEM_MEM2_MEMORY_ADDRESS <= MEM_MEM1_MEMORY_ADDRESS;
     end
-    if(when_Pipeline_l158_82) begin
+    if(when_Pipeline_l158_81) begin
       MEM_MEM2_to_MEM_WB_MEMORY_ADDRESS <= _zz_MEM_MEM2_to_MEM_WB_MEMORY_ADDRESS;
     end
-    if(when_Pipeline_l158_83) begin
+    if(when_Pipeline_l158_82) begin
       MEM_RRD_to_MEM_ADDR_MEMORY_WRITE_DATA <= MEM_RRD_MEMORY_WRITE_DATA;
     end
-    if(when_Pipeline_l158_84) begin
+    if(when_Pipeline_l158_83) begin
       MEM_ADDR_to_MEM_MEM1_MEMORY_WRITE_DATA <= MEM_ADDR_AddressGenerationPlugin_memWData;
     end
-    if(when_Pipeline_l158_85) begin
+    if(when_Pipeline_l158_84) begin
       MEM_MEM1_to_MEM_MEM2_MEMORY_WRITE_DATA <= MEM_MEM1_MEMORY_WRITE_DATA;
     end
-    if(when_Pipeline_l158_86) begin
+    if(when_Pipeline_l158_85) begin
       MEM_MEM2_to_MEM_WB_MEMORY_WRITE_DATA <= MEM_MEM2_MEMORY_WRITE_DATA;
     end
-    if(when_Pipeline_l158_87) begin
+    if(when_Pipeline_l158_86) begin
       MEM_ADDR_to_MEM_MEM1_MEMORY_BE <= MEM_ADDR_MEMORY_BE;
     end
-    if(when_Pipeline_l158_88) begin
+    if(when_Pipeline_l158_87) begin
       MEM_MEM1_to_MEM_MEM2_MEMORY_BE <= MEM_MEM1_MEMORY_BE;
     end
-    if(when_Pipeline_l158_89) begin
+    if(when_Pipeline_l158_88) begin
       MEM_ADDR_to_MEM_MEM1_DIRECT_TRANSLATE_RESULT_valid <= MEM_ADDR_DIRECT_TRANSLATE_RESULT_valid;
       MEM_ADDR_to_MEM_MEM1_DIRECT_TRANSLATE_RESULT_payload_physAddr <= MEM_ADDR_DIRECT_TRANSLATE_RESULT_payload_physAddr;
       MEM_ADDR_to_MEM_MEM1_DIRECT_TRANSLATE_RESULT_payload_cached <= MEM_ADDR_DIRECT_TRANSLATE_RESULT_payload_cached;
@@ -111893,7 +112202,7 @@ module MyCPUCore (
       MEM_ADDR_to_MEM_MEM1_DIRECT_TRANSLATE_RESULT_payload_exception_raisePPI <= MEM_ADDR_DIRECT_TRANSLATE_RESULT_payload_exception_raisePPI;
       MEM_ADDR_to_MEM_MEM1_DIRECT_TRANSLATE_RESULT_payload_exception_raiseTLBR <= MEM_ADDR_DIRECT_TRANSLATE_RESULT_payload_exception_raiseTLBR;
     end
-    if(when_Pipeline_l158_90) begin
+    if(when_Pipeline_l158_89) begin
       MEM_ADDR_to_MEM_MEM1_TLB_TRANSLATE_RESULT_valid <= MEM_ADDR_TLB_TRANSLATE_RESULT_valid;
       MEM_ADDR_to_MEM_MEM1_TLB_TRANSLATE_RESULT_payload_physAddr <= MEM_ADDR_TLB_TRANSLATE_RESULT_payload_physAddr;
       MEM_ADDR_to_MEM_MEM1_TLB_TRANSLATE_RESULT_payload_cached <= MEM_ADDR_TLB_TRANSLATE_RESULT_payload_cached;
@@ -111904,102 +112213,102 @@ module MyCPUCore (
       MEM_ADDR_to_MEM_MEM1_TLB_TRANSLATE_RESULT_payload_exception_raisePPI <= MEM_ADDR_TLB_TRANSLATE_RESULT_payload_exception_raisePPI;
       MEM_ADDR_to_MEM_MEM1_TLB_TRANSLATE_RESULT_payload_exception_raiseTLBR <= MEM_ADDR_TLB_TRANSLATE_RESULT_payload_exception_raiseTLBR;
     end
-    if(when_Pipeline_l158_91) begin
+    if(when_Pipeline_l158_90) begin
       MEM_ADDR_to_MEM_MEM1_TRANSLATE_SAVED_CSR_CRMD_DA <= MEM_ADDR_TRANSLATE_SAVED_CSR_CRMD_DA;
       MEM_ADDR_to_MEM_MEM1_TRANSLATE_SAVED_CSR_CRMD_PG <= MEM_ADDR_TRANSLATE_SAVED_CSR_CRMD_PG;
       MEM_ADDR_to_MEM_MEM1_TRANSLATE_SAVED_CSR_CRMD_DATF <= MEM_ADDR_TRANSLATE_SAVED_CSR_CRMD_DATF;
       MEM_ADDR_to_MEM_MEM1_TRANSLATE_SAVED_CSR_CRMD_DATM <= MEM_ADDR_TRANSLATE_SAVED_CSR_CRMD_DATM;
     end
-    if(when_Pipeline_l158_92) begin
+    if(when_Pipeline_l158_91) begin
       MEM_ADDR_to_MEM_MEM1_EXCEPTION_OCCURRED <= _zz_MEM_ADDR_to_MEM_MEM1_EXCEPTION_OCCURRED;
     end
-    if(when_Pipeline_l158_93) begin
+    if(when_Pipeline_l158_92) begin
       MEM_MEM1_to_MEM_MEM2_EXCEPTION_OCCURRED <= _zz_MEM_MEM1_to_MEM_MEM2_EXCEPTION_OCCURRED;
     end
-    if(when_Pipeline_l158_94) begin
+    if(when_Pipeline_l158_93) begin
       MEM_MEM2_to_MEM_WB_EXCEPTION_OCCURRED <= MEM_MEM2_EXCEPTION_OCCURRED;
     end
-    if(when_Pipeline_l158_95) begin
+    if(when_Pipeline_l158_94) begin
       MEM_ADDR_to_MEM_MEM1_EXCEPTION_ECODE <= _zz_MEM_ADDR_to_MEM_MEM1_EXCEPTION_ECODE;
     end
-    if(when_Pipeline_l158_96) begin
+    if(when_Pipeline_l158_95) begin
       MEM_MEM1_to_MEM_MEM2_EXCEPTION_ECODE <= _zz_MEM_MEM1_to_MEM_MEM2_EXCEPTION_ECODE;
     end
-    if(when_Pipeline_l158_97) begin
+    if(when_Pipeline_l158_96) begin
       MEM_MEM2_to_MEM_WB_EXCEPTION_ECODE <= MEM_MEM2_EXCEPTION_ECODE;
     end
-    if(when_Pipeline_l158_98) begin
+    if(when_Pipeline_l158_97) begin
       MEM_ADDR_to_MEM_MEM1_EXCEPTION_ESUBCODE <= _zz_MEM_ADDR_to_MEM_MEM1_EXCEPTION_ESUBCODE;
     end
-    if(when_Pipeline_l158_99) begin
+    if(when_Pipeline_l158_98) begin
       MEM_MEM1_to_MEM_MEM2_EXCEPTION_ESUBCODE <= _zz_MEM_MEM1_to_MEM_MEM2_EXCEPTION_ESUBCODE;
     end
-    if(when_Pipeline_l158_100) begin
+    if(when_Pipeline_l158_99) begin
       MEM_MEM2_to_MEM_WB_EXCEPTION_ESUBCODE <= MEM_MEM2_EXCEPTION_ESUBCODE;
     end
-    if(when_Pipeline_l158_101) begin
+    if(when_Pipeline_l158_100) begin
       MEM_MEM1_to_MEM_MEM2_MEMORY_ADDRESS_PHYSICAL <= MEM_MEM1_MEMORY_ADDRESS_PHYSICAL;
     end
-    if(when_Pipeline_l158_102) begin
+    if(when_Pipeline_l158_101) begin
       MEM_MEM2_to_MEM_WB_MEMORY_ADDRESS_PHYSICAL <= MEM_MEM2_MEMORY_ADDRESS_PHYSICAL;
     end
-    if(when_Pipeline_l158_103) begin
+    if(when_Pipeline_l158_102) begin
       MEM_MEM1_to_MEM_MEM2_ADDRESS_CACHED <= MEM_MEM1_ADDRESS_CACHED;
     end
-    if(when_Pipeline_l158_104) begin
+    if(when_Pipeline_l158_103) begin
       MEM_MEM2_to_MEM_WB_ADDRESS_CACHED <= MEM_MEM2_ADDRESS_CACHED;
     end
-    if(when_Pipeline_l158_105) begin
+    if(when_Pipeline_l158_104) begin
       MEM_MEM1_to_MEM_MEM2_IS_TLB_REFILL <= MEM_MEM1_IS_TLB_REFILL;
     end
-    if(when_Pipeline_l158_106) begin
+    if(when_Pipeline_l158_105) begin
       MEM_MEM2_to_MEM_WB_IS_TLB_REFILL <= MEM_MEM2_IS_TLB_REFILL;
     end
-    if(when_Pipeline_l158_107) begin
+    if(when_Pipeline_l158_106) begin
       MEM_MEM1_to_MEM_MEM2_DCACHE_VALIDS_0 <= MEM_MEM1_DCACHE_VALIDS_0;
       MEM_MEM1_to_MEM_MEM2_DCACHE_VALIDS_1 <= MEM_MEM1_DCACHE_VALIDS_1;
     end
-    if(when_Pipeline_l158_108) begin
+    if(when_Pipeline_l158_107) begin
       MEM_MEM1_to_MEM_MEM2_DCACHE_DIRTY <= MEM_MEM1_DCACHE_DIRTY;
     end
-    if(when_Pipeline_l158_109) begin
+    if(when_Pipeline_l158_108) begin
       MEM_MEM1_to_MEM_MEM2_DCACHE_INFO_lru <= MEM_MEM1_DCACHE_INFO_lru;
       MEM_MEM1_to_MEM_MEM2_DCACHE_INFO_tags_0 <= MEM_MEM1_DCACHE_INFO_tags_0;
       MEM_MEM1_to_MEM_MEM2_DCACHE_INFO_tags_1 <= MEM_MEM1_DCACHE_INFO_tags_1;
     end
-    if(when_Pipeline_l158_110) begin
+    if(when_Pipeline_l158_109) begin
       MEM_MEM1_to_MEM_MEM2_TAG_MATCHES <= MEM_MEM1_TAG_MATCHES;
     end
-    if(when_Pipeline_l158_111) begin
+    if(when_Pipeline_l158_110) begin
       MEM_MEM1_to_MEM_MEM2_ROB_IDX <= MEM_MEM1_ROB_IDX;
     end
-    if(when_Pipeline_l158_112) begin
+    if(when_Pipeline_l158_111) begin
       MEM_MEM2_to_MEM_WB_ROB_IDX <= MEM_MEM2_ROB_IDX;
     end
-    if(when_Pipeline_l158_113) begin
+    if(when_Pipeline_l158_112) begin
       MEM_MEM1_to_MEM_MEM2_IS_LOAD <= MEM_MEM1_IS_LOAD;
     end
-    if(when_Pipeline_l158_114) begin
+    if(when_Pipeline_l158_113) begin
       MEM_MEM2_to_MEM_WB_IS_LOAD <= MEM_MEM2_IS_LOAD;
     end
-    if(when_Pipeline_l158_115) begin
+    if(when_Pipeline_l158_114) begin
       MEM_MEM1_to_MEM_MEM2_IS_STORE <= MEM_MEM1_IS_STORE;
     end
-    if(when_Pipeline_l158_116) begin
+    if(when_Pipeline_l158_115) begin
       MEM_MEM2_to_MEM_WB_IS_STORE <= MEM_MEM2_IS_STORE;
     end
-    if(when_Pipeline_l158_117) begin
+    if(when_Pipeline_l158_116) begin
       MEM_MEM1_to_MEM_MEM2_WRITE_REG_valid <= MEM_MEM1_WRITE_REG_valid;
       MEM_MEM1_to_MEM_MEM2_WRITE_REG_payload <= MEM_MEM1_WRITE_REG_payload;
     end
-    if(when_Pipeline_l158_118) begin
-      MEM_MEM2_to_MEM_WB_WRITE_REG_valid <= _zz_when_MemExecutePlugin_l122;
+    if(when_Pipeline_l158_117) begin
+      MEM_MEM2_to_MEM_WB_WRITE_REG_valid <= _zz_when_MemExecutePlugin_l130;
       MEM_MEM2_to_MEM_WB_WRITE_REG_payload <= _zz_MEM_MEM2_to_MEM_WB_WRITE_REG_payload;
     end
-    if(when_Pipeline_l158_119) begin
+    if(when_Pipeline_l158_118) begin
       MEM_MEM1_to_MEM_MEM2_LOAD_STORE_TYPE <= _zz_MEM_MEM1_to_MEM_MEM2_LOAD_STORE_TYPE;
     end
-    if(when_Pipeline_l158_120) begin
+    if(when_Pipeline_l158_119) begin
       MEM_MEM2_to_MEM_WB_MEMORY_READ_DATA <= MEM_MEM2_LoadPostprocessPlugin_wbWord;
     end
     if(when_CompressedFIFO_l59) begin

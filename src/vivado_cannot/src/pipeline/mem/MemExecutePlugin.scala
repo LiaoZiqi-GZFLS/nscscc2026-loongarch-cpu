@@ -68,7 +68,11 @@ class MemExecutePlugin(config: MyCPUConfig) extends Plugin[MemPipeline] {
       // one-hot插入issue slot，并设置valid
       val issSlot = insert(ISSUE_SLOT)
       issSlot := IQ.queue(QUEUE_HEAD).payload
-      val issValid = IQ.issueReq
+       val issValid = IQ.issueReq
+       when(issValid && IQ.queue(QUEUE_HEAD).uop.pc(19 downto 0) >= U(0x2bf88, 20 bits) &&
+         IQ.queue(QUEUE_HEAD).uop.pc(19 downto 0) <= U(0x2bf90, 20 bits)) {
+         report(L"[RAWDBG MEM-ISS] pc=${IQ.queue(QUEUE_HEAD).uop.pc} inst=${slot.uop.inst} r0=${slot.rRegs(0).payload} v0=${slot.rRegs(0).valid} r1=${slot.rRegs(1).payload} v1=${slot.rRegs(1).valid}")
+       }
       // load address / cache operation / store address
       val issueLoad = issValid && IQ.queue(QUEUE_HEAD).uop.isLoad
       val issueStore = issValid && IQ.queue(QUEUE_HEAD).uop.isStore
@@ -94,8 +98,12 @@ class MemExecutePlugin(config: MyCPUConfig) extends Plugin[MemPipeline] {
         insert(REG_READ_RSP)(i) := rrdRsp(i)
       }
       val addrOffset = issSlot.uop.immField.asSInt.resize(32 bits).asUInt
-      insert(MEMORY_ADDRESS) := input(REG_READ_RSP)(0).asUInt + addrOffset
-      insert(MEMORY_WRITE_DATA) := input(REG_READ_RSP)(1)
+       insert(MEMORY_ADDRESS) := input(REG_READ_RSP)(0).asUInt + addrOffset
+       insert(MEMORY_WRITE_DATA) := input(REG_READ_RSP)(1)
+       when(issSlot.uop.pc(19 downto 0) >= U(0x2bf88, 20 bits) &&
+         issSlot.uop.pc(19 downto 0) <= U(0x2bf90, 20 bits)) {
+         report(L"[RAWDBG MEM-RRD] pc=${issSlot.uop.pc} inst=${issSlot.uop.inst} r0=${rrdReq(0)} d0=${rrdRsp(0)} r1=${rrdReq(1)} d1=${rrdRsp(1)} addr=${input(MEMORY_ADDRESS)} data=${input(MEMORY_WRITE_DATA)}")
+       }
     }
 
     pipeline.MEM1 plug new Area {
@@ -141,9 +149,12 @@ class MemExecutePlugin(config: MyCPUConfig) extends Plugin[MemPipeline] {
       val std = input(STD_SLOT)
       val isLDU = std.valid && !std.isStore
       wPort.valid := ((arbitration.isValid && (input(ADDRESS_CACHED) || issSlot.uop.isSC)) || isLDU) &&
-        arbitration.notStuck && input(WRITE_REG).valid
+        arbitration.notStuck && !arbitration.removeIt && input(WRITE_REG).valid
       wPort.addr := input(WRITE_REG).payload
       wPort.data := input(MEMORY_READ_DATA)
+      when(wPort.valid && wPort.addr === 9 && wPort.data === B(2, 32 bits)) {
+        report(L"[RAWDBG PRF-WRITE9-MEM] pc=${issSlot.uop.pc} inst=${issSlot.uop.inst}")
+      }
 
       when(arbitration.isValid && issSlot.uop.isSC) {
         val excHandler = pipeline.globalService(classOf[ExceptionHandlerPlugin])
@@ -152,7 +163,7 @@ class MemExecutePlugin(config: MyCPUConfig) extends Plugin[MemPipeline] {
       }
 
       val ROB = pipeline.globalService(classOf[ROBFIFOPlugin])
-      robWrite.valid := arbitration.isValidNotStuck
+      robWrite.valid := arbitration.isValidNotStuck && !arbitration.removeIt
       robWrite.robIdx := input(ROB_IDX)
       robWrite.except.valid := robWrite.valid && input(EXC_SIGNALS.EXCEPTION_OCCURRED)
       robWrite.except.payload.code := input(EXC_SIGNALS.EXCEPTION_ECODE)

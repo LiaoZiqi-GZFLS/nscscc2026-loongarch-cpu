@@ -43,6 +43,9 @@ class PhysRegFilePlugin(config: RegFileConfig) extends Plugin[MyCPUCore] {
     val port = Flow(RegWriteBundle(config.prfAddrWidth)) // .setCompositeName(this, "writePort", true)
     writePorts += PRFWritePort(port, bypass)
     when(port.valid)(regs(port.payload.addr - 1) := port.payload.data)
+    when(port.valid && port.payload.addr === 9) {
+      report(L"[RAWDBG PRF-WRITE9] data=${port.payload.data}")
+    }
     port
   }
   def clearBusy = {

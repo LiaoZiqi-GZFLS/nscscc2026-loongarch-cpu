@@ -40,6 +40,19 @@ export PATH=<工具链>/bin:$PATH     # loongarch32r-linux-gnusf-gcc 须在 PATH
 
 host 依赖：`gcc make flex bison bc perl python3 gzip git curl`。
 
+构建完成后，`check_memory.sh` 会按 ELF 的加载内存大小（含 `.bss`）检查
+board-16m 镜像是否越过 16MB DDR，并默认要求镜像末端后至少保留 4MB：
+
+```sh
+./check_memory.sh board-16m
+```
+
+真板一键加载、释放 CPU 并进入 UART 终端：
+
+```sh
+../../tools/start_linux.sh --port /dev/ttyUSB1
+```
+
 ## 3. 相对上游的改动清单（patches/，按序 git apply）
 
 | 补丁 | 内容 | 理由 |
@@ -52,6 +65,8 @@ host 依赖：`gcc make flex bison bc perl python3 gzip git curl`。
 | 0006 | `boot_param.h`：`screen_info` 改由 uapi 头引入 | 同上，VT=n 时 `struct screen_info` 不完整 |
 | 0007 | `kernel/setup.c`：`screen_info` 无条件定义 | VT=n 时 env.c/efi earlycon 仍引用它，链接失败 |
 | 0008 | **cache 几何修正**：`cache.c` probe_pcache 硬编码 `0xfe994cd3`(16B/256sets/2way)→`0xfe2914d3`(**64B/64sets/2way**，按内核自身解码公式)；`waybit` 赋值（原全树恒 0，blast 全清只覆盖 way 0）；`cacheflush.h` 补 `cache64_unroll32` 与 blast_*64 实例，`cache.c` 两处 `blast_dcache16()`→`blast_dcache64()` | 本核 ICache/DCache 各 64sets×64B×2way（8KB VIPT）。内核按错误 line/index 位宽做 index 类 cacop 维护 → 清不全/清错位置 |
+| 0009 | `init/main.c`：保存命令行时使用架构层返回的 `command_line` | 早期参数解析后全局 `boot_command_line` 在本移植中退化为 `earlycon`；架构层缓冲区仍包含完整的 `console=ttyS0 rdinit=/init`，应作为后续参数解析和 `/proc/cmdline` 的来源 |
+| 0010 | `loongson32/mem.c`：保留 `0x1c000000-0x1c2fffff` 启动区 | 上游保留 `PHYS_OFFSET` 起 2MB，但本移植 `PHYS_OFFSET=0`、DDR 从 `0x1c000000` 开始，导致 start stub、boot 参数和固定异常向量区被 memblock 重新分配覆盖 |
 
 配置增量：`config/chiplab-la32.fragment`（INITRAMFS_SOURCE 说明，两变体通用）、
 `config/board-16m.fragment`（board-16m 裁剪：关 NET/VT/MODULES/CGROUPS/BPF/
@@ -79,7 +94,7 @@ host 依赖：`gcc make flex bison bc perl python3 gzip git curl`。
 ## 6. 启动协议（两变体通用，boot/start.S 实现）
 
 1. CPU 复位 @`0x1c000000`（start.bin 位置）。
-2. start.S 初始化 16550（除数=1 兜底打印）→ 写 DMW0=0xa0000011 /
+2. start.S 初始化 16550（100MHz 下 DLL=0x36、DL3=0x40）→ 写 DMW0=0xa0000011 /
    DMW1=0x80000001（0xa0000000 缓存 / 0x80000000 非缓存窗口，512MB 段均映到
    物理段 0，覆盖 0x0~0x1fffffff）→ CRMD 开 PG → 跳 kernel_entry（从 vmlinux
    ELF 符号表读取，mkimage.sh 自动提取）。

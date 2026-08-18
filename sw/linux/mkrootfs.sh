@@ -29,6 +29,7 @@ dir  /proc  755 0 0
 dir  /sys   755 0 0
 dir  /etc   755 0 0
 dir  /tmp   755 0 0
+dir  /run   755 0 0
 dir  /mnt   755 0 0
 nod  /dev/console 600 0 0 c 5 1
 nod  /dev/null    666 0 0 c 1 3
@@ -37,7 +38,7 @@ EOF
 echo "file /bin/busybox $BUSYBOX 755 0 0"
 echo "file /init $HERE/rootfs/init 755 0 0"
 # 常用 applet 软链接（init 脚本里还有 busybox --install 兜底）
-for a in sh ls mount cat echo ps pwd mkdir cp mv rm dmesg uname hostname env ln chmod sync reboot poweroff free vi clear grep find; do
+for a in sh ls mount cat echo ps pwd mkdir cp mv rm dmesg uname hostname env ln chmod sync reboot poweroff free awk vi clear grep find; do
 	echo "slink /bin/$a /bin/busybox 777 0 0"
 done
 echo "slink /sbin/init /bin/busybox 777 0 0"

@@ -1,17 +1,23 @@
 #!/bin/sh
 # T2026143250012561 chiplab LA32R 最小根文件系统 init
 # 内核以 rdinit=/init 启动本脚本
+echo "init: shell entered"
 /bin/busybox --install -s /bin >/dev/null 2>&1
+echo "init: applets installed"
 export PATH=/bin:/sbin
 export HOME=/
 
 mount -t proc     proc /proc  2>/dev/null
 mount -t sysfs    sys  /sys   2>/dev/null
 mount -t devtmpfs dev  /dev   2>/dev/null
+mount -t tmpfs -o mode=1777 tmpfs /tmp 2>/dev/null
+mount -t tmpfs -o mode=755 tmpfs /run 2>/dev/null
 
 echo "=========================================="
 echo " T2026143250012561 LA32R chiplab Linux"
 /bin/uname -a
+echo "RAM: $(/bin/free 2>/dev/null | /bin/awk 'NR==2 {print $2 " KB total, " $4 " KB free"}')"
+echo "Filesystem: initramfs (RAM-backed), tmpfs=/tmp,/run"
 echo "=========================================="
 
 # 直接进交互 shell（控制台为 /dev/console）

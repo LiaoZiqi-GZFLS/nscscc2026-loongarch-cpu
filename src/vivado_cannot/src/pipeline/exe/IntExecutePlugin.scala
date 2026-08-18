@@ -114,8 +114,12 @@ class IntExecutePlugin(val config: MyCPUConfig, val fuIdx: Int) extends Plugin[E
       val issSlot = insert(ISSUE_SLOT)
       issSlot := MuxOH(issGrant, IQ.queue.map(_.payload))
 
-      val issValid = issGrant.orR
-      IQ.issueFire clearWhen arbitration.isStuck
+       val issValid = issGrant.orR
+       when(issValid && issSlot.uop.pc(19 downto 0) >= U(0x2bf88, 20 bits) &&
+         issSlot.uop.pc(19 downto 0) <= U(0x2bf90, 20 bits)) {
+         report(L"[RAWDBG INT-ISS] pc=${issSlot.uop.pc} inst=${issSlot.uop.inst} r0=${issSlot.rRegs(0).payload} v0=${issSlot.rRegs(0).valid} r1=${issSlot.rRegs(1).payload} v1=${issSlot.rRegs(1).valid}")
+       }
+       IQ.issueFire clearWhen arbitration.isStuck
       arbitration.removeIt setWhen (arbitration.notStuck && (flush || !issValid))
 
       // 本地 bypass 唤醒，早一个周期，一个周期后既能出结果，该指令也能 RRD
@@ -134,10 +138,14 @@ class IntExecutePlugin(val config: MyCPUConfig, val fuIdx: Int) extends Plugin[E
     pipeline.RRD plug new Area {
       import pipeline.RRD._
       val issSlot = input(ISSUE_SLOT)
-      for (i <- 0 until rPorts) {
-        rrdReq(i) := issSlot.rRegs(i).payload
-        insert(REG_READ_RSP)(i) := rrdRsp(i)
-      }
+       for (i <- 0 until rPorts) {
+         rrdReq(i) := issSlot.rRegs(i).payload
+         insert(REG_READ_RSP)(i) := rrdRsp(i)
+       }
+       when(issSlot.uop.pc(19 downto 0) >= U(0x2bf88, 20 bits) &&
+         issSlot.uop.pc(19 downto 0) <= U(0x2bf90, 20 bits)) {
+         report(L"[RAWDBG INT-RRD] pc=${issSlot.uop.pc} inst=${issSlot.uop.inst} r0=${rrdReq(0)} d0=${rrdRsp(0)} r1=${rrdReq(1)} d1=${rrdRsp(1)}")
+       }
       // 远程唤醒（genGlobalWakeup）
       // 在这个周期，当前指令指示下一周期清掉了 wReg 的 Busy
       // 下一周期，在 IssueQueue 中使用该寄存器的指令的寄存器变成 valid 状态，可以被 ISS
@@ -163,12 +171,16 @@ class IntExecutePlugin(val config: MyCPUConfig, val fuIdx: Int) extends Plugin[E
 
       // ! Prepare input data
       val rrdRsp = input(REG_READ_RSP)
-      val regData = CombInit(rrdRsp)
+       val regData = CombInit(rrdRsp)
       // bypass logic
-      for (i <- 0 until rPorts) {
-        bypassReq(i) := issSlot.rRegs(i).payload
-        when(bypassRsp(i).valid) { regData(i) := bypassRsp(i).payload }
-      }
+       for (i <- 0 until rPorts) {
+         bypassReq(i) := issSlot.rRegs(i).payload
+         when(bypassRsp(i).valid) { regData(i) := bypassRsp(i).payload }
+       }
+       when(issSlot.uop.pc(19 downto 0) >= U(0x2bf88, 20 bits) &&
+         issSlot.uop.pc(19 downto 0) <= U(0x2bf90, 20 bits)) {
+         report(L"[RAWDBG INT-EXE] pc=${issSlot.uop.pc} inst=${issSlot.uop.inst} d0=${regData(0)} bp0=${bypassRsp(0).valid} d1=${regData(1)} bp1=${bypassRsp(1).valid} result=${alu.io.result}")
+       }
       // Now regData is the data read from bypass network or PRF
 
       // ! Calculate return value
@@ -319,6 +331,9 @@ class IntExecutePlugin(val config: MyCPUConfig, val fuIdx: Int) extends Plugin[E
       wPort.valid := arbitration.isValidNotStuck && wbReq.valid
       wPort.payload.addr := wbReq.payload
       wPort.payload.data := wbData
+      when(wPort.valid && wPort.payload.addr === 9 && wPort.payload.data === B(2, 32 bits)) {
+        report(L"[RAWDBG PRF-WRITE9-INT] pc=${input(ISSUE_SLOT).uop.pc} inst=${input(ISSUE_SLOT).uop.inst}")
+      }
 
       // No except can occur in IntExecute
       val except = Flow(ExceptionPayloadBundle(false)).setIdle()

@@ -291,6 +291,10 @@ class MMUPlugin(config: MyCPUConfig) extends Plugin[MyCPUCore] {
     val TLBHitEntry_plv = Mux(virtAddr(TLBHitEntry.PS(4 downto 0)), TLBHitEntry.PLV1, TLBHitEntry.PLV0)
     val TLBHitEntry_ppn = Mux(virtAddr(TLBHitEntry.PS(4 downto 0)), TLBHitEntry.PPN1, TLBHitEntry.PPN0)
 
+    when(virtAddr === U(0x00247e6c, 32 bits)) {
+      report(L"[RAWDBG TLB-LOOKUP] hit=${TLBHit} ps=${TLBHitEntry.PS} odd=${virtAddr(TLBHitEntry.PS(4 downto 0))} v=${TLBHitEntry_v} d=${TLBHitEntry_d} plv=${TLBHitEntry_plv} mat=${TLBHitEntry_mat} ppn=${TLBHitEntry_ppn} phys=${resultPhysAddr}")
+    }
+
     when(~TLBHit) {
       resultExceptionBundle.raiseTLBR.set()
     }
@@ -364,7 +368,9 @@ class MMUPlugin(config: MyCPUConfig) extends Plugin[MyCPUCore] {
     when(savedCSR.CRMD_DA && ~savedCSR.CRMD_PG) {
       // 直接地址翻译
       resultValid := True
-      resultPhysAddr := virtAddr
+      // The board implements a 29-bit physical address space. Kernel DMW
+      // aliases must therefore remain usable while TLBR forces DA mode.
+      resultPhysAddr := U(0, 3 bits) @@ virtAddr(28 downto 0)
       when(memOperation === MemOperationType.FETCH) {
         resultCached := savedCSR.CRMD_DATF(0)
       } otherwise {
@@ -461,6 +467,7 @@ class MMUPlugin(config: MyCPUConfig) extends Plugin[MyCPUCore] {
       }
       is(TLBOpType.TLBWR) {
         val TLBEntry = TLBTable(TLBIDX_INDEX.asUInt)
+        report(L"[RAWDBG TLBWR] index=${TLBIDX_INDEX} estat=${excHandler.ESTAT_ECODE} ps=${TLBIDX_PS} vppn=${TLBEHI_VPPN} v0=${TLBELO0_V} d0=${TLBELO0_D} plv0=${TLBELO0_PLV} mat0=${TLBELO0_MAT} ppn0=${TLBELO0_PPN} v1=${TLBELO1_V} d1=${TLBELO1_D} plv1=${TLBELO1_PLV} mat1=${TLBELO1_MAT} ppn1=${TLBELO1_PPN}")
         when(excHandler.ESTAT_ECODE === 0x3f) {
           TLBEntry.E := True
         } otherwise {
@@ -485,6 +492,7 @@ class MMUPlugin(config: MyCPUConfig) extends Plugin[MyCPUCore] {
         // First select a victim entry
         victim_idx := victim_idx + 1
         val TLBEntry = TLBTable(victim_idx)
+        report(L"[RAWDBG TLBFILL] victim=${victim_idx} estat=${excHandler.ESTAT_ECODE} ps=${TLBIDX_PS} v0=${TLBELO0_V} d0=${TLBELO0_D} plv0=${TLBELO0_PLV} mat0=${TLBELO0_MAT} ppn0=${TLBELO0_PPN} v1=${TLBELO1_V} d1=${TLBELO1_D} plv1=${TLBELO1_PLV} mat1=${TLBELO1_MAT} ppn1=${TLBELO1_PPN}")
         when(excHandler.ESTAT_ECODE === 0x3f) {
           TLBEntry.E := True
         } otherwise {

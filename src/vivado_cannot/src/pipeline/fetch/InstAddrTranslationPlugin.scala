@@ -68,12 +68,19 @@ class InstAddrTranslatePlugin() extends Plugin[FetchPipeline] {
       val pcCached = insert(ADDRESS_CACHED)
       val tlbRefill = insert(IS_TLB_REFILL)
 
+      // CRMD changes on exception entry/ertn while a fetch may be held in IF2.
+      // Keep the latched address candidates, but select them using current mode.
+      val currentSavedCSR = TranslateCSRBundle()
+      currentSavedCSR.CRMD_DA := excHandler.CRMD_DA
+      currentSavedCSR.CRMD_PG := excHandler.CRMD_PG
+      currentSavedCSR.CRMD_DATF := excHandler.CRMD_DATF
+      currentSavedCSR.CRMD_DATM := excHandler.CRMD_DATM
       val translateResult = mmu.translate(
         virtPC,
         MemOperationType.FETCH,
         input(DIRECT_TRANSLATE_RESULT),
         input(TLB_TRANSLATE_RESULT),
-        input(TRANSLATE_SAVED_CSR)
+        currentSavedCSR
       )
       PIF := translateResult.resultExceptionBundle.raisePIF
       PPI := translateResult.resultExceptionBundle.raisePPI
