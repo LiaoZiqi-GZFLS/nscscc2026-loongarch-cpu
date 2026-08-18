@@ -20,6 +20,14 @@ trait Pipeline {
   var unremovableStages = mutable.Set[Stage]()
   val things = mutable.LinkedHashMap[PipelineThing[_], Any]()
 
+  // stage1 reset tree split: group clock domain of this pipeline.
+  // null (default) -> ambient domain at build time: legacy behavior, zero change.
+  // (named groupCd: `clockDomain` would clash with Component.clockDomain in MyCPUCore)
+  var groupCd: ClockDomain = null
+
+  def resolveClockDomain: ClockDomain =
+    if (groupCd != null) groupCd else ClockDomain.current
+
   val dangling_signals: mutable.LinkedHashMap[String, Bits] = mutable.LinkedHashMap[String, Bits]()
 //  val services = ArrayBuffer[Any]()
 
@@ -74,10 +82,13 @@ trait Pipeline {
   }
 
   def buildPlugins(): Unit = {
-    plugins.foreach(_.build(this.asInstanceOf[T]))
+    // stage1: build each plugin under its resolved clock domain (plugins build in
+    // PrePopTask, so the construction-time ClockingArea does NOT cover build()).
+    plugins.foreach(p => p.resolveClockDomain(p.build(this.asInstanceOf[T])))
   }
 
-  def connectStages(): Unit = {
+  def connectStages(): Unit = resolveClockDomain {
+    // stage1: inter-stage registers belong to this pipeline's group domain
 
     // Interconnect stages
     class KeyInfo {

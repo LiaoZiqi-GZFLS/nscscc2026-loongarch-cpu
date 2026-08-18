@@ -281,25 +281,52 @@ class MyCPU(config: MyCPUConfig) extends Component {
 
   }
 
-  val defaultClockDomain = ClockDomain(
+  // ---- stage1: reset tree split (async assert / sync release, per-group SYNC reset) ----
+  val resetGroupCount = 12
+
+  // Async domain: only hosts the reset synchronizer tree and the AxiBuffer
+  // (XPM FIFO primitive must keep fifo_rst = !aresetn, see design book C.2).
+  val asyncClockDomain = ClockDomain(
     clock = io.aclk,
     reset = io.aresetn,
     config = ClockDomainConfig(resetActiveLevel = LOW)
   )
 
-  val defaultClockArea = new ClockingArea(defaultClockDomain) {
-    val cpu = new NOP.pipeline.core.MyCPUCore(config)
+  // Reset synchronizer tree: aresetn low clears the chain asynchronously (async assert);
+  // after aresetn raises, the group reset nets raise 2 aclk cycles later, all in-phase
+  // (sync release, zero inter-group skew: every replica samples the same stage2).
+  val rstSync = new ClockingArea(asyncClockDomain) {
+    val stage1 = RegInit(False)
+    val stage2 = RegInit(False)
+    stage1 := True
+    stage2 := stage1
+    val rstg = Vec.fill(resetGroupCount)(RegInit(False))
+    rstg.foreach(_ := stage2)
+  }.setCompositeName(this)
 
+  // Per-group main domains: synchronous reset, active low (Vivado maps to FDRE/FDPE SR).
+  val groupClockDomains: Seq[ClockDomain] = rstSync.rstg.map { r =>
+    ClockDomain(
+      clock = io.aclk,
+      reset = r,
+      config = ClockDomainConfig(resetActiveLevel = LOW, resetKind = SYNC)
+    )
+  }
+
+  val cpu = new NOP.pipeline.core.MyCPUCore(config, groupClockDomains)
+
+  // Connect io to CPUCore
+  cpu.io.intrpt := io.intrpt
+  if (config.debug) {
+    io.debug0 := cpu.io.debug
+  } else {
+    io.debug0.assignDontCare()
+  }
+
+  // g11: AXI peripherals (synchronous reset group)
+  val axiPeriArea = new ClockingArea(groupClockDomains(11)) {
     // Connect AXI
     io.wid := RegNextWhen(io.axi.aw.id, io.axi.aw.valid, U(0))
-
-    // Connect io to CPUCore
-    cpu.io.intrpt := io.intrpt
-    if (config.debug) {
-      io.debug0 := cpu.io.debug
-    } else {
-      io.debug0.assignDontCare()
-    }
 
     // arbitor
     val crossbar = new NOP.peripheral.AxiCrossbar(config.axiConfig)
@@ -307,12 +334,17 @@ class MyCPU(config: MyCPUConfig) extends Component {
     cpu.io.dBus >> crossbar.io.dBus
 
     crossbar.io.cpuBus >> io.axi
+  }
 
+  // AxiBuffer stays in the async domain so the XPM FIFO keeps fifo_rst = !aresetn
+  val axiBufArea = new ClockingArea(asyncClockDomain) {
     // udBus: uncached DBus
     val axiBuffer = new NOP.peripheral.AxiBuffer(config.axiConfig)
     cpu.io.udBus <> axiBuffer.io.in_axi
-    axiBuffer.io.out_axi >> crossbar.io.udBus
+    axiBuffer.io.out_axi >> axiPeriArea.crossbar.io.udBus
+  }
 
+  val debugArea = new ClockingArea(asyncClockDomain) {
     // Debug Area
     config.weDebug generate {
       val ROBFIFOPlugin = cpu.service(classOf[ROBFIFOPlugin])
@@ -569,8 +601,7 @@ class MyCPU(config: MyCPUConfig) extends Component {
         io.DifftestBundle.assignDontCare()
       }
     }
-
-  }.setCompositeName(this)
+  }
 
   addPrePopTask { () =>
     Axi4Rename.Rename(io) // To make Axi4 signals match with loongchip

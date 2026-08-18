@@ -97,7 +97,8 @@ object CommitChainSim {
     dut.io.aresetn #= true
 
     // ---- 内部探针 ----
-    val core = dut.defaultClockArea.cpu
+    // (stage1 复位网拆分后 MyCPUCore 是顶层直接成员)
+    val core = dut.cpu
     val rob = core.service(classOf[ROBFIFOPlugin])
     val commit = core.service(classOf[CommitPlugin])
     val rename = core.decodePipeline.service(classOf[RenamePlugin])
