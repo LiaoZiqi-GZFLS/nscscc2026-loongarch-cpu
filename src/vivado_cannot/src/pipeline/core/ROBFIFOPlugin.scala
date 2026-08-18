@@ -157,6 +157,8 @@ class ROBFIFOPlugin(config: MyCPUConfig) extends Plugin[MyCPUCore] {
     // 分支预测恢复信息
     defaultState.mispredict := False
     defaultState.actualTaken := False
+    // stage2-③
+    defaultState.earlyResolved := False
 
     // When full is true
     // LSU检测到uncached区段，需要提交时操作

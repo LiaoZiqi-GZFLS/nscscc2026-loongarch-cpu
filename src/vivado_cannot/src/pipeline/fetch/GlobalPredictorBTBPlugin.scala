@@ -6,6 +6,7 @@ import NOP.utils._
 import NOP._
 import NOP.pipeline.core.CommitPlugin
 import spinal.core._
+import spinal.core.sim._
 import spinal.lib._
 
 import scala.collection.mutable.ArrayBuffer
@@ -71,6 +72,15 @@ class GlobalPredictorBTBPlugin(config: FrontendConfig) extends Plugin[FetchPipel
 
   val predictInterface = Flow(UWord())
   val jumpTarget = Reg(UWord())
+
+  // [stage2-③] SpinalSim 探针别名(零硬件影响)
+  var probeGhr: UInt = null
+  var probeUpdateGhrValid: Bool = null
+  var probeUpdateGhrPayload: UInt = null
+  var probeExeGhrFire: Bool = null
+  var probeExeGhrValue: UInt = null
+  var probeCommitGhrFire: Bool = null
+  var probeCommitGhrValue: UInt = null
 
   override def setup(pipeline: FetchPipeline): Unit = {
     val programCounter = pipeline.service(classOf[ProgramCounterPlugin])
@@ -185,6 +195,8 @@ class GlobalPredictorBTBPlugin(config: FrontendConfig) extends Plugin[FetchPipel
       // commit area
       val bpuCommit = pipeline.globalService(classOf[CommitPlugin])
       val predUpdate = bpuCommit.predUpdate
+      // stage2-③: GHR 早修复口(IntExecutePlugin FU0 WB 拍经 CommitPlugin 驱动)
+      val exeGhrRestore = bpuCommit.exeGhrRestoreIn
 
       btb.io.write.setIdle()
       predictor.io.write.setIdle()
@@ -239,11 +251,32 @@ class GlobalPredictorBTBPlugin(config: FrontendConfig) extends Plugin[FetchPipel
           predictor.io.write.valid := True
         }
 
+        // stage2-③ R11 三写者优先级:提交恢复 > EXE 早修复 > IF2 投机移位
+        // (本 commit area 细化顺序晚于 IF2 area,条件赋值覆盖投机 push)
         when(payload.mispredict) {
           // restore GHR
           predictor.io.updateGHR.push((predUpdate.predRecover.ghr @@ payload.isTaken).resized)
+        } elsewhen(exeGhrRestore.valid) {
+          predictor.io.updateGHR.push(exeGhrRestore.payload)
         }
       }
+
+      // [stage2-③] SpinalSim 探针(R11 优先级/GHR 修复断言用)
+      predictor.ghr.simPublic()
+      predictor.io.updateGHR.valid.simPublic()
+      predictor.io.updateGHR.payload.simPublic()
+      exeGhrRestore.valid.simPublic()
+      exeGhrRestore.payload.simPublic()
+      val commitGhrFire = (predUpdate.valid && predUpdate.payload.mispredict).simPublic()
+      val commitGhrValue =
+        ((predUpdate.predRecover.ghr @@ predUpdate.payload.isTaken).resized).simPublic()
+      probeGhr = predictor.ghr
+      probeUpdateGhrValid = predictor.io.updateGHR.valid
+      probeUpdateGhrPayload = predictor.io.updateGHR.payload
+      probeExeGhrFire = exeGhrRestore.valid
+      probeExeGhrValue = exeGhrRestore.payload
+      probeCommitGhrFire = commitGhrFire
+      probeCommitGhrValue = commitGhrValue
     }
   }
 }

@@ -28,6 +28,12 @@ class IntIssueQueuePlugin(config: MyCPUConfig)
     * 装配与 push 互联,不再承载选择/唤醒逻辑。 */
   val cellArea = new Area {}
 
+  /** [stage2-③] 胞元链 ctlHazard 前缀(③.4 iqPrefix):prefixUnsafe(i)=
+    * cell(i) 前方(更老侧)存在 branch/CSR/TLB 控制冒险。组合链,逐槽 1 LUT 本地传递;
+    * IntExecutePlugin(FU0) 在分支授权拍采样 !prefixUnsafe(授权槽)。 */
+  val ctlHazardPerCell = Vec(Bool(), issConfig.depth)
+  val prefixUnsafe = Vec(Bool(), issConfig.depth)
+
   def fuMatch(uop: MicroOp): Bool = {
     uop.fuType === FUType.ALU || uop.fuType === FUType.CMP ||
     uop.fuType === FUType.CSR || uop.fuType === FUType.TIMER || uop.fuType === FUType.INVTLB
@@ -74,6 +80,15 @@ class IntIssueQueuePlugin(config: MyCPUConfig)
       }
     }
 
+    // [stage2-③] 胞元链 prefix 链(组域,comb;cell(0)=最老)
+    val prefixArea = new Area {
+      for (i <- 0 until issConfig.depth) {
+        ctlHazardPerCell(i) := queue(i).valid &&
+          (queue(i).uop.branchLike || queue(i).uop.writeCSR || queue(i).uop.operateTLB)
+        prefixUnsafe(i) := (if (i == 0) False else prefixUnsafe(i - 1) || ctlHazardPerCell(i - 1))
+      }
+    }
+
     // DISPATCH
     pipeline.DISPATCH plug new Area {
       import pipeline.DISPATCH._
@@ -114,6 +129,9 @@ class IntIssueQueuePlugin(config: MyCPUConfig)
       // flush最高优先级
       val flush = pipeline.globalService(classOf[CommitFlush]).regFlush
       queueFlush setWhen flush
+
+      // stage2-③ R9-1: holdDispatch 期间冻结入队(wrong-path 槽由 regFlush 统一清除,③.3-4)
+      arbitration.haltItself setWhen pipeline.globalService(classOf[CommitFlush]).holdDispatch
     }
   }
 }

@@ -55,4 +55,16 @@ trait StoreBufferCommit {
 trait CommitFlush {
   val needFlush = Bool
   val regFlush = RegNext(needFlush, init = False)
+
+  // ---- stage2-③: EXE 提前重定向（needFlush 分裂 + 早重定向通道）----
+  // flushBackend 即原 needFlush 语义（ROB flush / regFlush / IQ/exe/mem flush 全部沿用）；
+  // flushFrontend 仅在前端确需重引导时置位（早 resolved 的误预测不再冲刷前端）
+  val flushBackend = Bool()
+  val flushFrontend = Bool()
+  // IntExecutePlugin(FU0/BRU) EXE 拍驱动的提前重定向脉冲（payload=target）
+  val exeRedirectIn = Stream(UWord()).setIdle()
+  // exeRedirectFire 的寄存副本（T_e+1），FetchBufferPlugin 冲刷用
+  val exeFlushReg = RegNext(exeRedirectIn.valid, init = False)
+  // R9-1 互锁：早重定向后冻结 RENAME/DISPATCH，直到提交侧清理完成（regFlush）
+  val holdDispatch = RegInit(False)
 }

@@ -137,13 +137,15 @@ final case class MicroOp(config: MyCPUConfig) extends Bundle {
   def needNotExecute = except.valid || fuType === FUType.NONE
 }
 
-final case class IntIQMicroOp() extends Bundle {
+final case class IntIQMicroOp(config: MyCPUConfig) extends Bundle {
   // Meta information
   val pc = UInt(32 bits)
   val inst = Bits(32 bits)
 
   // Branch prediction
   val predInfo = BranchPredictInfoBundle()
+  // stage2-③: GHR 早修复需随胞元携带 predRecover（DISPATCH assignSomeByName 自动带上）
+  val predRecover = PredictRecoverBundle(config.frontend)
 
   // dispatch信息
   val fuType = FUType()

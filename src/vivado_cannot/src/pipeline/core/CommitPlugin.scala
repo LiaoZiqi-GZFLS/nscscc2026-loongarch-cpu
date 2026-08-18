@@ -38,12 +38,31 @@ final case class CommitMailboxBundle(config: MyCPUConfig) extends Bundle {
   val excPayload = ExceptionPayloadBundle(true)
   val mispredict = Bool()
   val actualTaken = Bool()
+  // stage2-③: 误预测已在 EXE 拍提前重定向(前端引导+GHR 修复已做)
+  val earlyResolved = Bool()
   val intResult = UWord()
   // 每口 ARF/freeList 瘦身字段(port0 的 ARF 提交也经此,与 uop/rename 冗余但统一装配)
   val arf = Vec(CommitMailboxArfBundle(config.regFile), config.rob.retireWidth)
   // 决策字段快照(CM1 拍值,含 intPending 采样)
   val hasExcept = Bool()
   val linearRecover = Bool()
+}
+
+/** stage2-③ prefix 检查探针总线(精度守卫,纯组合发布;仅 enableEarlyRedirect 时
+  * 由各执行管道插件驱动、IntExecutePlugin(FU0) 在 ISS 拍消费)。
+  */
+final case class IntPipeHazardProbe(robW: Int) extends Bundle {
+  val exeValid = Bool()
+  val exeCtl = Bool() // branchLike || writeCSR || operateTLB
+  val exeRobIdx = UInt(robW bits)
+  val wbValid = Bool()
+  val wbCtl = Bool()
+  val wbRobIdx = UInt(robW bits)
+}
+
+final case class MemPipeHazardProbe(robW: Int) extends Bundle {
+  val valid = Bool()
+  val robIdx = UInt(robW bits)
 }
 
 class CommitPlugin(config: MyCPUConfig)
@@ -77,6 +96,21 @@ class CommitPlugin(config: MyCPUConfig)
   var probeUncachedKickReg: Bool = null
   var probeReadyMask: Bits = null
 
+  // ---- stage2-③: EXE 提前重定向 ----
+  // GHR 早修复通道(IntExecutePlugin FU0 WB 拍驱动,GlobalPredictorBTBPlugin 消费)
+  val exeGhrRestoreIn = Flow(UInt(config.frontend.bpu.historyWidth bits)).setIdle()
+  // prefix 检查探针总线(③.4;仅 enableEarlyRedirect 时驱动/消费)
+  val intPipeProbes = Vec(IntPipeHazardProbe(config.rob.robAddressWidth), config.intIssue.issueWidth)
+  val memPipeProbes = Vec(MemPipeHazardProbe(config.rob.robAddressWidth), 7) // ISS/RRD/MEMADDR/MEM1/MEM2/WB/WB2
+  // [stage2-③] SpinalSim 探针别名
+  var probeFlushBackend: Bool = null
+  var probeFlushFrontend: Bool = null
+  var probeExeRedirectFire: Bool = null
+  var probeHoldDispatch: Bool = null
+  var probeEarlyMispredictCommit: Bool = null
+  var probeRenameFire: Bool = null
+  var probeExeGhrRestoreFire: Bool = null
+
   override def build(pipeline: MyCPUCore): Unit = pipeline plug {
     val robFIFO = pipeline.service(classOf[ROBFIFOPlugin])
     val jumpInterface = pipeline.fetchPipeline.service(classOf[ProgramCounterPlugin]).backendJumpInterface
@@ -107,9 +141,12 @@ class CommitPlugin(config: MyCPUConfig)
         entry.state.except.assignSomeByName(uop.except)
         entry.state.mispredict := !uop.branchLike && uop.predInfo.predictTaken
         entry.state.actualTaken := False
+        entry.state.earlyResolved := False // stage2-③: WB 拍由 robWriteBRU 写入
 
         port.valid := arbitration.isValidNotStuck && valid
         arbitration.haltItself setWhen (arbitration.isValid && valid && !port.ready)
+        // stage2-③ R9-1: 早重定向后冻结 rename，直到提交侧清理完成（regFlush）
+        arbitration.haltItself setWhen holdDispatch
         robIdxs(i) := robFIFO.pushPtr + i
       }
     }
@@ -206,7 +243,12 @@ class CommitPlugin(config: MyCPUConfig)
       // ======================= CM2 执行拍(周期 T+1) =======================
       // needFlush 驱动源随邮箱自然寄存化:mbox FF Q → ≤3 级译码 → 4 处扇出
       val cm2Fire0 = mboxValid && mbox.arf(0).fire
-      needFlush := cm2Fire0 && (mbox.hasExcept || mbox.mispredict || mbox.linearRecover)
+      // stage2-③ needFlush 分裂:flushBackend=原 needFlush 语义(ROB flush/regFlush/
+      // IQ/exe/mem flush 全沿用);flushFrontend 对早 resolved 的误预测不再冲刷前端
+      flushBackend := cm2Fire0 && (mbox.hasExcept || mbox.mispredict || mbox.linearRecover)
+      flushFrontend := cm2Fire0 &&
+        (mbox.hasExcept || mbox.linearRecover || (mbox.mispredict && !mbox.earlyResolved))
+      needFlush := flushBackend // CommitTraits 兼容别名(语义不变)
 
       // flush/pop 对齐协议 R1:flush 拍禁止邮箱装载。T+1 拍 wrong-path 条目
       // 可能 fire(popPtr 悬空前进,被同拍 flush 覆盖,R2),但其不进邮箱、
@@ -297,6 +339,7 @@ class CommitPlugin(config: MyCPUConfig)
         mbox.excPayload := popPorts(0).state.except.payload
         mbox.mispredict := popPorts(0).state.mispredict
         mbox.actualTaken := popPorts(0).state.actualTaken
+        mbox.earlyResolved := popPorts(0).state.earlyResolved // stage2-③
         mbox.intResult := popPorts(0).state.intResult
         mbox.hasExcept := hasExcept
         mbox.linearRecover := linearRecover
@@ -310,11 +353,16 @@ class CommitPlugin(config: MyCPUConfig)
       }
 
       // ======================= CM2 提交动作(只读邮箱) =======================
-      robFIFO.fifoIO.flush := needFlush // flush 周期覆盖 wrong-path pop 的指针前进
+      robFIFO.fifoIO.flush := flushBackend // flush 周期覆盖 wrong-path pop 的指针前进
 
-      // clear frontend pipelines
-      pipeline.fetchPipeline.stages.last.arbitration.flushIt setWhen needFlush
-      pipeline.decodePipeline.stages.last.arbitration.flushIt setWhen needFlush
+      // clear frontend pipelines(stage2-③: 早 resolved 的误预测不再冲刷前端)
+      pipeline.fetchPipeline.stages.last.arbitration.flushIt setWhen flushFrontend
+      pipeline.decodePipeline.stages.last.arbitration.flushIt setWhen flushFrontend
+      if (config.frontend.enableEarlyRedirect) {
+        // stage2-③ T_e 拍组合冲刷 fetch/decode(R9:原位,与 needFlush 同机制)
+        pipeline.fetchPipeline.stages.last.arbitration.flushIt setWhen exeRedirectIn.valid
+        pipeline.decodePipeline.stages.last.arbitration.flushIt setWhen exeRedirectIn.valid
+      }
 
       // exception永远从0口unique发出
       except.valid := cm2Fire0 && mbox.hasExcept
@@ -397,7 +445,9 @@ class CommitPlugin(config: MyCPUConfig)
           jumpInterface.payload := uop.pc + 4
         }
 
-        when(mbox.mispredict && uop.branchLike) {
+        // stage2-③: 早 resolved 的误预测不再发 jumpInterface(前端已引导);
+        // linearRecover 分支不经门控
+        when(mbox.mispredict && uop.branchLike && !mbox.earlyResolved) {
           jumpInterface.valid := True
           jumpInterface.payload := jumpTarget
         }
@@ -418,6 +468,19 @@ class CommitPlugin(config: MyCPUConfig)
         arfCommits(i).payload.prfAddr := mbox.arf(i).wReg
       }
 
+      // ---- stage2-③ R9-1 互锁:holdDispatch set/clear(set 优先,嵌套重定向场景) ----
+      when(regFlush) { holdDispatch := False }
+      when(exeRedirectIn.valid) { holdDispatch := True }
+
+      // 开关关闭时探针总线置零(不被消费,仅避免悬空)
+      if (!config.frontend.enableEarlyRedirect) {
+        intPipeProbes.foreach { p =>
+          p.exeValid := False; p.exeCtl := False; p.exeRobIdx := 0
+          p.wbValid := False; p.wbCtl := False; p.wbRobIdx := 0
+        }
+        memPipeProbes.foreach { p => p.valid := False; p.robIdx := 0 }
+      }
+
       // [stage1] SpinalSim 断言挂钩(零逻辑测试探针)
       needFlush.simPublic()
       regFlush.simPublic()
@@ -432,6 +495,22 @@ class CommitPlugin(config: MyCPUConfig)
       probeUncachedMask = uncachedMask
       probeUncachedKickReg = uncachedKickReg
       probeReadyMask = readyMask
+
+      // [stage2-③] SpinalSim 探针(仅挂属性/别名,零硬件影响)
+      flushBackend.simPublic()
+      flushFrontend.simPublic()
+      exeRedirectIn.valid.simPublic()
+      exeGhrRestoreIn.valid.simPublic()
+      holdDispatch.simPublic()
+      val earlyMispredictCommit = (cm2Fire0 && mbox.mispredict && mbox.earlyResolved).simPublic()
+      val renameFire = pipeline.RENAME.arbitration.isFiring.simPublic()
+      probeFlushBackend = flushBackend
+      probeFlushFrontend = flushFrontend
+      probeExeRedirectFire = exeRedirectIn.valid
+      probeExeGhrRestoreFire = exeGhrRestoreIn.valid
+      probeHoldDispatch = holdDispatch
+      probeEarlyMispredictCommit = earlyMispredictCommit
+      probeRenameFire = renameFire
     }
 
     retire

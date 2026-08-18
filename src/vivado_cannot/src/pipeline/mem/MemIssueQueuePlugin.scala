@@ -138,6 +138,9 @@ class MemIssueQueuePlugin(config: MyCPUConfig)
     // flush最高优先级
     val flush = pipeline.globalService(classOf[CommitPlugin]).regFlush
     queueFlush setWhen flush
+
+    // stage2-③ R9-1: holdDispatch 期间冻结入队
+    arbitration.haltItself setWhen pipeline.globalService(classOf[CommitFlush]).holdDispatch
     }
   }
 }
