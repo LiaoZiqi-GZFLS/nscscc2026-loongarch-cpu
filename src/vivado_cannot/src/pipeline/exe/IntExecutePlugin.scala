@@ -47,6 +47,12 @@ class IntExecutePlugin(val config: MyCPUConfig, val fuIdx: Int) extends Plugin[E
   object ACTUAL_TAKEN extends Stageable(Bool)
   object MISPREDICT extends Stageable(Bool)
 
+  // stage2-③: EXE 提前重定向
+  object EARLY_RESOLVED extends Stageable(Bool) // EXE→WB:本拍已早重定向
+  object PREFIX_OK extends Stageable(Bool) // ISS 拍采样的前缀位(③.4)
+  object WB_CTL extends Stageable(Bool) // EXE→WB:ctlHazard 标记(pipePrefix 探针用,1bit 瘦路由)
+  object GHR_RESTORE extends Stageable(UInt(config.frontend.bpu.historyWidth bits)) // EXE→WB:GHR 修复值
+
   val issReqs = Vec(Bool, iqDepth)
   var issGrant: Vec[Bool] = null
 
@@ -124,6 +130,27 @@ class IntExecutePlugin(val config: MyCPUConfig, val fuIdx: Int) extends Plugin[E
       val localTag = IQ.localWakeupPort()
       localTag.valid := issValid && issSlot.uop.doRegWrite && arbitration.notStuck
       localTag.payload := issSlot.wReg
+
+      // stage2-③: 分支授权拍采样 prefixOk(③.4)。prefix 为精度守卫而非正确性前提。
+      if (withBRU && config.frontend.enableEarlyRedirect) {
+        val commit = pipeline.globalService(classOf[CommitPlugin])
+        // 模 32 年龄比较:x 比 b 老 ⟺ (b - x) ∈ [1,15](5bit 减法 + 符号位)
+        def olderThan(x: UInt, b: UInt): Bool = {
+          val d = b - x
+          d =/= 0 && !d.msb
+        }
+        val bRobIdx = issSlot.robIdx
+        // ① iqPrefix: 授权槽前方(更老侧)无 ctl hazard(胞元链前缀)
+        val grantedPrefixUnsafe =
+          (0 until iqDepth).map(i => issGrant(i) && IQ.prefixUnsafe(i)).orR
+        // ② pipePrefix: 3 条 INT 管 EXE/WB 更老 ctl hazard + MEM 管道各级更老 uop(MULDIV 免查)
+        val intHazards = commit.intPipeProbes.map { p =>
+          (p.exeValid && p.exeCtl && olderThan(p.exeRobIdx, bRobIdx)) ||
+            (p.wbValid && p.wbCtl && olderThan(p.wbRobIdx, bRobIdx))
+        }
+        val memHazards = commit.memPipeProbes.map(p => p.valid && olderThan(p.robIdx, bRobIdx))
+        insert(PREFIX_OK) := !grantedPrefixUnsafe && !intHazards.orR && !memHazards.orR
+      }
     }
 
     pipeline.RRD plug new Area {
@@ -244,6 +271,24 @@ class IntExecutePlugin(val config: MyCPUConfig, val fuIdx: Int) extends Plugin[E
         insert(ACTUAL_TAKEN) := comparator.io.result || issSlot.uop.isJR || issSlot.uop.isJump
         insert(MISPREDICT) := bru.io.mispredict
 
+        // stage2-③: EXE 提前重定向(T_e 拍;fetch/decode 原位组合冲刷由 CommitPlugin 施加)
+        if (config.frontend.enableEarlyRedirect) {
+          val commit = pipeline.globalService(classOf[CommitPlugin])
+          // 设计勘误 #3(已裁决):holdDispatch 窗口内到达 EXE 的分支必然 wrong-path,
+          // 压制其二次早重定向(被压的更老分支走原提交路径,flushFrontend+jump 全冲刷)
+          val exeRedirectFire = arbitration.isValidNotStuck && insert(MISPREDICT) &&
+            issSlot.uop.branchLike && input(PREFIX_OK) && !commit.holdDispatch
+          when(exeRedirectFire) { commit.exeRedirectIn.valid := True }
+          commit.exeRedirectIn.payload := insert(ACTUAL_TARGET)
+          insert(EARLY_RESOLVED) := exeRedirectFire
+          // WB 拍 GHR 修复值随级寄存(predRecover.ghr @@ actualTaken)
+          insert(GHR_RESTORE) := (issSlot.uop.predRecover.ghr @@ insert(ACTUAL_TAKEN)).resized
+          // WB 级 ctl 标记(pipePrefix 探针)
+          insert(WB_CTL) := issSlot.uop.branchLike || issSlot.uop.writeCSR || issSlot.uop.operateTLB
+        } else {
+          insert(EARLY_RESOLVED) := False
+        }
+
         // Just set exeResult is okay!
         when(issSlot.uop.isJump || issSlot.uop.isJR) {
           exeResult := (issSlot.uop.pc + UWord(4)).asBits
@@ -302,6 +347,14 @@ class IntExecutePlugin(val config: MyCPUConfig, val fuIdx: Int) extends Plugin[E
       insert(WRITE_REG).valid := issSlot.uop.doRegWrite
       insert(WRITE_REG).payload := issSlot.wReg
       insert(ROB_IDX) := issSlot.robIdx
+
+      // stage2-③: 本管 EXE 级 prefix 探针发布(③.4②;纯组合,FU0 ISS 拍消费)
+      if (config.frontend.enableEarlyRedirect) {
+        val probe = pipeline.globalService(classOf[CommitPlugin]).intPipeProbes(fuIdx)
+        probe.exeValid := arbitration.isValid
+        probe.exeCtl := issSlot.uop.branchLike || issSlot.uop.writeCSR || issSlot.uop.operateTLB
+        probe.exeRobIdx := issSlot.robIdx
+      }
     }
 
     pipeline.WB plug new Area {
@@ -326,6 +379,18 @@ class IntExecutePlugin(val config: MyCPUConfig, val fuIdx: Int) extends Plugin[E
         robWriteBRU.intResult := input(ACTUAL_TARGET)
         robWriteBRU.mispredict := input(MISPREDICT)
         robWriteBRU.actualTaken := input(ACTUAL_TAKEN)
+        // stage2-③: earlyResolved 经 robWriteBRU 写 robState(T_e+1)
+        if (withBRU && config.frontend.enableEarlyRedirect) {
+          robWriteBRU.earlyResolved := input(EARLY_RESOLVED)
+          // stage2-③ T_e+1: GHR 早修复(R11 优先级:提交恢复 > 本口 > IF2 投机移位)
+          val commit = pipeline.globalService(classOf[CommitPlugin])
+          when(arbitration.isValid && input(EARLY_RESOLVED)) {
+            commit.exeGhrRestoreIn.valid := True
+          }
+          commit.exeGhrRestoreIn.payload := input(GHR_RESTORE)
+        } else {
+          robWriteBRU.earlyResolved := False
+        }
       } else {
         robWrite.valid := arbitration.isValidNotStuck
         robWrite.robIdx := robIdx
@@ -336,6 +401,20 @@ class IntExecutePlugin(val config: MyCPUConfig, val fuIdx: Int) extends Plugin[E
         robWrite.csrRstat := input(DIFF_CSR_RSTAT) && robWrite.valid
         robWrite.csrRdata := input(DIFF_CSR_DATA)
         robWrite.myPC := input(ISSUE_SLOT).uop.pc
+      }
+
+      // stage2-③: 本管 WB 级 prefix 探针发布(③.4②)
+      if (config.frontend.enableEarlyRedirect) {
+        val probe = pipeline.globalService(classOf[CommitPlugin]).intPipeProbes(fuIdx)
+        probe.wbValid := arbitration.isValid
+        if (withBRU) {
+          probe.wbCtl := input(WB_CTL)
+          probe.wbRobIdx := robIdx
+        } else {
+          // 本管不可能出现 ctl 操作(bruIdx=csrIdx=invTLBIdx=0 之外的 FU)
+          probe.wbCtl := False
+          probe.wbRobIdx := 0
+        }
       }
     }
   }

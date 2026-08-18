@@ -47,6 +47,27 @@ class MemExecutePlugin(config: MyCPUConfig) extends Plugin[MemPipeline] {
       }
     }
 
+    // stage2-③: MEM 管道在飞探针发布(③.4②;精度守卫——各级 valid && robIdx 比
+    // 分支老则阻塞其早重定向;访存异常直到 WB 才可能发生,故覆盖全部 7 级)
+    if (config.frontend.enableEarlyRedirect) {
+      pipeline plug new Area {
+        val commit = pipeline.globalService(classOf[CommitPlugin])
+        val stageList = Seq(
+          pipeline.ISS,
+          pipeline.RRD,
+          pipeline.MEMADDR,
+          pipeline.MEM1,
+          pipeline.MEM2,
+          pipeline.WB,
+          pipeline.WB2
+        )
+        for ((st, i) <- stageList.zipWithIndex) {
+          commit.memPipeProbes(i).valid := st.arbitration.isValid
+          commit.memPipeProbes(i).robIdx := st.input(pipeline.signals.ISSUE_SLOT).robIdx
+        }
+      }
+    }
+
     pipeline.ISS plug new Area {
       import pipeline.ISS._
       val storeBuffer = pipeline.service(classOf[StoreBufferPlugin])

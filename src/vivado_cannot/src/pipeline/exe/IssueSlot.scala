@@ -19,7 +19,7 @@ class IssueSlot(config: MyCPUConfig, rPorts: Int) extends Bundle {
 
 final case class IntIssueSlot(config: MyCPUConfig) extends IssueSlot(config, 2) {
   // 这里也不需要完整的uop，但是和ROB需要的uop又不一样
-  val uop = IntIQMicroOp()
+  val uop = IntIQMicroOp(config)
   val wReg = UInt(rfConfig.prfAddrWidth bits)
 }
 

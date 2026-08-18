@@ -1,11 +1,13 @@
 package NOP.pipeline.fetch
 
 import NOP.pipeline._
+import NOP.pipeline.core._
 import NOP.builder._
 import NOP.utils._
 import NOP._
 
 import spinal.core._
+import spinal.core.sim._
 import spinal.lib._
 import scala.collection.mutable.ArrayBuffer
 
@@ -27,6 +29,15 @@ class ProgramCounterPlugin(config: FrontendConfig) extends Plugin[FetchPipeline]
   // * inner signals
   val nextPC = UWord()
   val backendJumpInterface = Stream(UWord()).setIdle()
+
+  // [stage2-③] SpinalSim 探针别名(零硬件影响)
+  var probeJumpPipeValid: Bool = null
+  var probeJumpPipeTarget: UInt = null
+  var probeExeJumpPipeValid: Bool = null
+  var probeExeJumpPipeTarget: UInt = null
+  var probeRegPC: UInt = null
+  var probeIf1Stuck: Bool = null
+
   override def build(pipeline: FetchPipeline): Unit = pipeline.IF1 plug new Area {
     import pipeline.IF1._
     // S3v2：s2mPipe→m2sPipe。s2mPipe 只寄存 ready，skid 空时 valid/payload
@@ -42,6 +53,11 @@ class ProgramCounterPlugin(config: FrontendConfig) extends Plugin[FetchPipeline]
     // （rValid 不受 flushIt 影响）在 T+2 与 regPC(T+2)=target 自洽配对。
     arbitration.flushIt setWhen jumpPipe.valid
     jumpPipe.ready := !arbitration.isStuck
+
+    // stage2-③: EXE 提前重定向(m2sPipe 副本,T_e+1 到达 PC;R9-3 优先级低于 jumpPipe)
+    val exeJumpPipe = pipeline.globalService(classOf[CommitFlush]).exeRedirectIn.m2sPipe()
+    arbitration.flushIt setWhen exeJumpPipe.valid
+    exeJumpPipe.ready := !arbitration.isStuck
     val cacheLineWords = config.icache.lineWords
 
     // ! declare regPC
@@ -66,7 +82,24 @@ class ProgramCounterPlugin(config: FrontendConfig) extends Plugin[FetchPipeline]
       when(predict.valid)(nextPC := predict.payload)
     }
 
+    // ! nextPC branch 2.5, EXE 提前重定向(stage2-③;低于提交侧 jumpPipe)
+    when(exeJumpPipe.valid)(nextPC := exeJumpPipe.payload)
+
     // ! nextPC branch 3 (highest priority), backend jump
     when(jumpPipe.valid)(nextPC := jumpPipe.payload)
+
+    // [stage2-③] SpinalSim 探针
+    jumpPipe.valid.simPublic()
+    jumpPipe.payload.simPublic()
+    exeJumpPipe.valid.simPublic()
+    exeJumpPipe.payload.simPublic()
+    regPC.simPublic()
+    arbitration.isStuck.simPublic()
+    probeJumpPipeValid = jumpPipe.valid
+    probeJumpPipeTarget = jumpPipe.payload
+    probeExeJumpPipeValid = exeJumpPipe.valid
+    probeExeJumpPipeTarget = exeJumpPipe.payload
+    probeRegPC = regPC
+    probeIf1Stuck = arbitration.isStuck
   }
 }

@@ -71,7 +71,10 @@ final case class FrontendConfig(
     btb: BTBConfig = BTBConfig(),
     bpu: BPUConfig = BPUConfig(),
     fetchWidth: Int = 4,
-    fetchBufferDepth: Int = 8
+    fetchBufferDepth: Int = 8,
+    // stage2-③: EXE 提前重定向总开关（回退档；关闭时 exeRedirect 恒 idle、earlyResolved 恒 False，
+    // 逐拍等价于 ②-only 基线，用于 A/B 对账与现场止损）
+    enableEarlyRedirect: Boolean = true
 )
 
 final case class RegFileConfig(

@@ -57,6 +57,9 @@ final case class ROBEntryStateBundle(config: RegFileConfig, full: Boolean = true
   // 分支预测恢复信息
   val mispredict = Bool
   val actualTaken = Bool
+  // stage2-③: 该分支的误预测已在 EXE 拍提前重定向（前端引导+GHR 修复已做），
+  // 提交时 flushFrontend/jumpInterface 被其门控；由 robWriteBRU 在 WB 拍写入
+  val earlyResolved = Bool
 
   // When full is true
   // LSU检测到uncached区段，需要提交时操作
@@ -122,4 +125,6 @@ final case class ROBStateBRUPortBundle(config: MyCPUConfig) extends Bundle {
   val mispredict = Bool
   val intResult = UWord()
   val actualTaken = Bool
+  // stage2-③
+  val earlyResolved = Bool
 }
