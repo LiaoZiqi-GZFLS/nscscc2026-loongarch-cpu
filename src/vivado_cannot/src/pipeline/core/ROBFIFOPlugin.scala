@@ -1,6 +1,7 @@
 package NOP.pipeline.core
 
 import spinal.core._
+import spinal.core.sim._
 import spinal.lib._
 import NOP._
 import NOP.utils._
@@ -67,6 +68,18 @@ class ROBFIFOPlugin(config: MyCPUConfig) extends Plugin[MyCPUCore] {
 
   val pushPtr = robInfo.pushPtr
   val popPtr = robInfo.popPtr
+
+  /** [stage1] pop 口 state 投机读的陈旧值标记。
+    *
+    * pop(j).state 是 robState(popPtr+popCount+j) 的投机读寄存器,与派发写口
+    * 同沿装载——派发写入的槽位要下一拍才能被投机读采到新值;若该槽位次拍
+    * 恰位于 pop 窗口(空/浅 ROB 快通道),pop 口会看到上一占用者的陈旧 state
+    * (其 complete 可能为 1)。F3 用派发旁路折叠掩盖该窗口;阶段 1 删除旁路后
+    * 改为由 CommitPlugin 禁止 stale 口 fire(仅推迟 1 拍)。
+    * 只索引 popPtr,不引入 popCount 扇出锥。
+    */
+  val popStateStale = out(Vec(Bool(), retireWidth))
+
   val fifoIO = new Bundle {
 
     /** push的valid，pop的ready，都要遵循连续性，从头开始的第一个0就表示了停止的位置，后面的1都会被忽略。
@@ -108,12 +121,23 @@ class ROBFIFOPlugin(config: MyCPUConfig) extends Plugin[MyCPUCore] {
       }
       when(fifoIO.push(i).fire) {
         robState(pushPtr + i).assignSomeByName(fifoIO.push(i).payload.state)
-        for (j <- i until retireWidth) when(pushPtr + i === popPtr + robInfo.popCount + j) {
-          fifoIO.pop(j).payload.state.assignSomeByName(fifoIO.push(i).payload.state)
-        }
       }
     }
     robInfo.flush := fifoIO.flush
+
+    // [stage1] 陈旧投机读防护:记录本拍派发写入的槽位,次拍对应 pop 口
+    // 的 state 为陈旧值(见 popStateStale 注释)。
+    val dispatchWritten = Bits(robDepth bits)
+    dispatchWritten := 0
+    for (i <- 0 until decodeWidth) {
+      when(fifoIO.push(i).fire) {
+        dispatchWritten(pushPtr + i) := True
+      }
+    }
+    val dispatchWrittenReg = RegNext(dispatchWritten, init = B(0, robDepth bits))
+    for (j <- 0 until retireWidth) {
+      popStateStale(j) := dispatchWrittenReg(popPtr + j)
+    }
 
     // random write ports
     println("ROB port summary:")
@@ -155,18 +179,15 @@ class ROBFIFOPlugin(config: MyCPUConfig) extends Plugin[MyCPUCore] {
     defaultState.storeData := 0
     defaultState.myPC := B(0x0eadbeef, 32 bits).asUInt
 
+    // [stage1] 4 组写口的 pop payload 旁路折叠已删除(原 F3 行为依赖见
+    // popStateStale 注释):robState 写口与投机读之间隔完整一拍,WB(n) 完成的
+    // 指令最早 n+2 退役(v2 §5.3 方案 a)。
     for (p <- aluPorts)
       when(p.valid) {
         robState(p.robIdx) := defaultState
         robState(p.robIdx).allowOverride()
         robState(p.robIdx).complete := True
         robState(p.robIdx).assignSomeByName(p.payload)
-        for (j <- 0 until retireWidth) when(p.robIdx === popPtr + robInfo.popCount + j) {
-          fifoIO.pop(j).payload.state := defaultState
-          fifoIO.pop(j).payload.state.allowOverride()
-          fifoIO.pop(j).payload.state.complete := True
-          fifoIO.pop(j).payload.state.assignSomeByName(p.payload)
-        }
       }
     for (p <- bruPorts)
       when(p.valid) {
@@ -174,12 +195,6 @@ class ROBFIFOPlugin(config: MyCPUConfig) extends Plugin[MyCPUCore] {
         robState(p.robIdx).allowOverride()
         robState(p.robIdx).complete := True
         robState(p.robIdx).assignSomeByName(p.payload)
-        for (j <- 0 until retireWidth) when(p.robIdx === popPtr + robInfo.popCount + j) {
-          fifoIO.pop(j).payload.state := defaultState
-          fifoIO.pop(j).payload.state.allowOverride()
-          fifoIO.pop(j).payload.state.complete := True
-          fifoIO.pop(j).payload.state.assignSomeByName(p.payload)
-        }
       }
     for (p <- lsuPorts)
       when(p.valid) {
@@ -187,23 +202,18 @@ class ROBFIFOPlugin(config: MyCPUConfig) extends Plugin[MyCPUCore] {
         robState(p.robIdx).allowOverride()
         robState(p.robIdx).complete := True
         robState(p.robIdx).assignSomeByName(p.payload)
-        for (j <- 0 until retireWidth) when(p.robIdx === popPtr + robInfo.popCount + j) {
-          fifoIO.pop(j).payload.state := defaultState
-          fifoIO.pop(j).payload.state.allowOverride()
-          fifoIO.pop(j).payload.state.complete := True
-          fifoIO.pop(j).payload.state.assignSomeByName(p.payload)
-        }
       }
     for (p <- completePorts)
       when(p.valid) {
         robState(p.payload) := defaultState
         robState(p.payload).allowOverride()
         robState(p.payload).complete := True
-        for (j <- 0 until retireWidth) when(p.payload === popPtr + robInfo.popCount + j) {
-          fifoIO.pop(j).payload.state := defaultState
-          fifoIO.pop(j).payload.state.allowOverride()
-          fifoIO.pop(j).payload.state.complete := True
-        }
       }
+
+    // [stage1] SpinalSim 断言挂钩(零逻辑测试探针)
+    popPtr.simPublic()
+    pushPtr.simPublic()
+    robInfo.isRisingOccupancy.simPublic()
+    popStateStale.simPublic()
   }
 }

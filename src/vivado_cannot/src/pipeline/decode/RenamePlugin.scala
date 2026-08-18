@@ -45,6 +45,12 @@ class RenamePlugin(config: MyCPUConfig) extends Plugin[DecodePipeline] {
     }
   }
 
+  // [stage1] SpinalSim 断言探针(零逻辑,不改变任何功能/时序)
+  import spinal.core.sim._
+  freeList.pushPtr.simPublic()
+  freeList.popPtr.simPublic()
+  freeList.isRisingOccupancy.simPublic()
+
   override def build(pipeline: DecodePipeline): Unit = pipeline.RENAME plug new Area {
     import pipeline.RENAME._
 
