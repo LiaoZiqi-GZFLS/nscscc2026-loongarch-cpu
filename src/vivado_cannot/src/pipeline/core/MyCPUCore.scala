@@ -72,7 +72,10 @@ class MyCPUCore(config: MyCPUConfig, resetDomains: Seq[ClockDomain] = null) exte
     new DecodePipeline {
 
       override val signals = new DecodeSignals(config)
-      override val ID: Stage = newStage()
+      // stage2-②: 译码 3 拍化（ID1=FB pop 寄存 / ID2=65 路匹配+字段 mux / ID3=epilogue）
+      override val ID1: Stage = newStage()
+      override val ID2: Stage = newStage()
+      override val ID3: Stage = newStage()
       override val RENAME: Stage = newStage()
       override val DISPATCH: Stage = newStage()
 

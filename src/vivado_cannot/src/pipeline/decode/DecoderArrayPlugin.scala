@@ -1,6 +1,7 @@
 package NOP.pipeline.decode
 
 import spinal.core._
+import spinal.core.sim._
 import spinal.lib._
 
 import scala.collection._
@@ -30,6 +31,13 @@ class DecoderArray(config: MyCPUConfig, val popPorts: Vec[Stream[InstBufferEntry
     mutable.LinkedHashMap[MaskedLiteral, mutable.ArrayBuffer[(Stageable[_ <: Data], Data)]]()
   private val priorities = mutable.LinkedHashMap[MaskedLiteral, Int]()
   private val stageables = mutable.HashSet[Stageable[_ <: Data]]()
+
+  // stage2-② 定向仿真探针（simPublic：仅保留进 Verilator 模型，对综合网表零影响）
+  val probeId1Fire = Bool().simPublic()
+  val probeId2Fire = Bool().simPublic()
+  val probeId3Fire = Bool().simPublic()
+  val probeId1LaneValid = Bits(config.decode.decodeWidth bits).simPublic()
+  val probeId3PacketValid = Bits(config.decode.decodeWidth bits).simPublic()
 
   /** 添加多个指令编码。
     *
@@ -114,15 +122,15 @@ class DecoderArray(config: MyCPUConfig, val popPorts: Vec[Stream[InstBufferEntry
     priorities(key) = priority
   }
 
-  // Build array of decoder
+  // Build array of decoder (stage2-②: ID 单级拆为 ID1=FB pop / ID2=匹配 / ID3=epilogue)
   override def build(pipeline: DecodePipeline): Unit = {
 
     BuildLoongArch(pipeline)
 
-    pipeline.ID plug new Area {
-      import pipeline.ID._
+    import pipeline.signals._
 
-      // val excHandler = pipeline.globalService[ExceptionHandler]
+    // ---- 译码表装配期检查（与节拍无关，留在 build 顶层）----
+    {
       // build stageable list
       stageables ++= encodings.flatMap(_._2.map(_._1))
       val noDefaultList = mutable.ArrayBuffer[Stageable[_ <: Data]]()
@@ -143,203 +151,302 @@ class DecoderArray(config: MyCPUConfig, val popPorts: Vec[Stream[InstBufferEntry
         }
         stageables += s
       }
+    }
 
-      val normalEncodings =
-        mutable.ArrayBuffer[(MaskedLiteral, mutable.ArrayBuffer[(Stageable[_ <: Data], Data)])]()
-      val priorEncodings = mutable.ArrayBuffer[(Int, MaskedLiteral)]()
-      for ((encoding, actions) <- encodings) {
-        priorities.get(encoding) match {
-          case Some(value) => priorEncodings += (value -> encoding)
-          case None        => normalEncodings += (encoding -> actions)
+    val normalEncodings =
+      mutable.ArrayBuffer[(MaskedLiteral, mutable.ArrayBuffer[(Stageable[_ <: Data], Data)])]()
+    val priorEncodings = mutable.ArrayBuffer[(Int, MaskedLiteral)]()
+    for ((encoding, actions) <- encodings) {
+      priorities.get(encoding) match {
+        case Some(value) => priorEncodings += (value -> encoding)
+        case None        => normalEncodings += (encoding -> actions)
+      }
+    }
+    val encodingsByPriority = priorEncodings.sortBy(_._1).map(_._2)
+    println(
+      s"Decoder array: ${normalEncodings.size} normal encoding(s) and ${priorEncodings.size} priority encoding(s)"
+    )
+
+    // R6 对策：epilogue（ID3）消费的 local 键集合（与 DecodeLocalsBundle 字段一一对应）。
+    // 构建期断言（见 ID2 area）保证译码物化的 local 集合恰等于它——漏寄存=静默功能错。
+    val expectedLocalKeys: Set[Stageable[Data]] = Seq(
+      MicroOpSignals.isSyscall,
+      MicroOpSignals.isBreak,
+      MicroOpSignals.isRegWrite,
+      MicroOpSignals.overrideRdToRA,
+      MicroOpSignals.overrideRdToRj,
+      MicroOpSignals.isBar
+    ).map(_.asInstanceOf[Stageable[Data]]).toSet
+
+    // ID2 匹配器：prologue 默认值 + 65 路编码匹配 + 字段 mux，产出 epilogue 前基 uop。
+    // epilogue 专属字段在此给安全默认值（在 ID3 被覆盖）。
+    def buildDecoderMatcher(input: InstBufferEntry) =
+      new Composite(input) {
+        val entry = input
+        val illegalEncoding = True // Flag if the instruction is illegal, i.e. no encoding matches
+
+        val fields = InstructionParser(entry.inst) // Parse
+
+        val locals = mutable.LinkedHashMap[Stageable[Data], Data]()
+        def local[T <: Data](key: Stageable[T]): T = locals
+          .getOrElseUpdate(key.asInstanceOf[Stageable[Data]], key())
+          .asInstanceOf[T] // If not exists, initialize a LOCAL Stageable (not in uop)
+
+        // ! Prologue: Default values for the uop (which is the return value of this decoder)
+        val uop = MicroOp(config)
+        private val uopElements = uop.elements.toMap // Map[String,Data]
+        for ((k, v) <- defaults) uopElements.get(k.getName()) match {
+          case Some(value) => value.assignFrom(v)
+          case None        => local(k).assignFrom(v)
+        }
+
+        // 字段直拷（原 epilogue 的纯连线部分，随基 uop 一并寄存）
+        uop.pc := entry.pc
+        uop.inst := entry.inst
+        uop.predInfo := entry.predInfo
+        uop.predRecover := entry.predRecover
+
+        // epilogue（ID3）专属字段的安全默认
+        uop.wbAddr := 0
+        uop.doRegWrite := False
+        uop.branchLike := False
+        uop.writeCSR := False
+        uop.readTimer64L := False
+        uop.readTimer64ID := False
+        uop.except.valid := False
+        uop.except.payload.assignDontCare() // ID3 无条件以 entry.except 覆盖整个 except
+        uop.flushState := False
+        uop.uniqueRetire := False
+
+        // Func for decoding instruction.
+        def decodeInstruction(
+            encoding: MaskedLiteral,
+            actions: Seq[(Stageable[_ <: Data], Data)]
+        ) {
+          when(entry.inst === encoding) {
+            // 如果要增加Verilog可读性，则通过类似Stageable的方式获取编码的指令名，给when条件setName
+            // 全覆盖的错误可以通过assignment overlap检查出（通常出现于复制忘了改）
+            illegalEncoding.clear()
+            for ((k, v) <- actions) uopElements.get(k.getName()) match {
+              case Some(value) => value.assignFrom(v)
+              case None        => local(k).assignFrom(v)
+            }
+          }
+        }
+
+        // ! Main body for Decoding instructions
+        for ((encoding, actions) <- normalEncodings) decodeInstruction(encoding, actions)
+        // priority升序，when语句后面的覆盖前面的
+        for (encoding <- encodingsByPriority) decodeInstruction(encoding, encodings(encoding))
+
+        // locals 收敛寄存（R6：epilogue 所需的全部 local 经 DecodeLocalsBundle 跨拍）
+        val localsOut = DecodeLocalsBundle()
+        localsOut.isSyscall := local(MicroOpSignals.isSyscall)
+        localsOut.isBreak := local(MicroOpSignals.isBreak)
+        localsOut.isRegWrite := local(MicroOpSignals.isRegWrite)
+        localsOut.overrideRdToRA := local(MicroOpSignals.overrideRdToRA)
+        localsOut.overrideRdToRj := local(MicroOpSignals.overrideRdToRj)
+        localsOut.isBar := local(MicroOpSignals.isBar)
+        localsOut.illegalEncoding := illegalEncoding
+      }
+
+    // ID3 epilogue：覆盖逻辑（输入全部为 ID2 寄存器 + CSR FF 源 CRMD_PLV）
+    def buildEpilogue(
+        entry: InstBufferEntry,
+        base: MicroOp,
+        locs: DecodeLocalsBundle
+    ): MicroOp = {
+      import NOP.constants.LoongArch
+      val fields = InstructionParser(entry.inst) // 对寄存的 inst 重新解析（纯组合）
+
+      val uop = MicroOp(config)
+      uop := base
+      // 本拍无条件重驱动基 uop 字段的覆盖许可
+      uop.writeCSR.allowOverride()
+      uop.useRd.allowOverride()
+      uop.useRj.allowOverride()
+      uop.readTimer64L.allowOverride()
+      uop.readTimer64ID.allowOverride()
+      uop.doRegWrite.allowOverride()
+      uop.branchLike.allowOverride()
+      uop.flushState.allowOverride()
+      uop.uniqueRetire.allowOverride()
+      uop.except.valid.allowOverride()
+      uop.except.allowOverride()
+
+      // 原 epilogue :229 对 local(overrideRdToRj) 的本拍叠加（Timer RDCNT 改写 rd<-rj），
+      // locals 跨拍后为只读，故用本拍组合信号等效
+      val overrideRdToRjEff = Bool()
+      overrideRdToRjEff := locs.overrideRdToRj
+
+      // CSR
+      uop.writeCSR := uop.readCSR && (fields.rj =/= 0)
+      when(uop.writeCSR) {
+        uop.useRd.set()
+      }
+      when(uop.writeCSR && fields.rj =/= 1) {
+        uop.useRj.set()
+      }
+
+      // Timer
+      uop.readTimer64L.clear()
+      uop.readTimer64ID.clear()
+      when(uop.fuType === FUType.TIMER && ~uop.readTimer64H) {
+        when(fields.rd === 0) {
+          overrideRdToRjEff := True
+          uop.readTimer64ID.set()
+        } otherwise {
+          uop.readTimer64L.set()
         }
       }
-      val encodingsByPriority = priorEncodings.sortBy(_._1).map(_._2)
-      println(
-        s"Decoder array: ${normalEncodings.size} normal encoding(s) and ${priorEncodings.size} priority encoding(s)"
-      )
 
-      def buildSingleDecoder(input: InstBufferEntry) =
-        new Composite(input) {
-          val entry = input
-          val illegalEncoding = True // Flag if the instruction is illegal, i.e. no encoding matches
+      // REG W
+      when(locs.overrideRdToRA) {
+        uop.wbAddr := U(1, config.regFile.arfAddrWidth bits)
+      } otherwise {
+        when(overrideRdToRjEff) {
+          uop.wbAddr := fields.rj
+        } otherwise {
+          uop.wbAddr := fields.rd
+        }
+      }
+      uop.doRegWrite := locs.isRegWrite & (uop.wbAddr =/= 0)
 
-          val fields = InstructionParser(entry.inst) // Parse
+      // decode异常
+      uop.except.valid := False
+      uop.except := entry.except
+      when(!entry.except.valid) {
+        uop.except.payload.isTLBRefill := False
+        when(locs.isSyscall) {
+          uop.except.valid := True
+          uop.except.payload.code := ExceptionCode.SYS.ecode
+          uop.except.payload.subcode := ExceptionCode.SYS.esubcode
+        }
+        when(locs.isBreak) {
+          uop.except.valid := True
+          uop.except.payload.code := ExceptionCode.BRK.ecode
+          uop.except.payload.subcode := ExceptionCode.BRK.esubcode
+        }
+        when(locs.illegalEncoding) {
+          uop.except.valid := True
+          uop.except.payload.code := ExceptionCode.INE.ecode
+          uop.except.payload.subcode := ExceptionCode.INE.esubcode
+        }
 
-          val locals = mutable.LinkedHashMap[Stageable[Data], Data]()
-          def local[T <: Data](key: Stageable[T]): T = locals
-            .getOrElseUpdate(key.asInstanceOf[Stageable[Data]], key())
-            .asInstanceOf[T] // If not exists, initialize a LOCAL Stageable (not in uop)
-
-          // ! Prologue: Default values for the uop (which is the return value of this decoder)
-          val uop = MicroOp(config)
-          private val uopElements = uop.elements.toMap // Map[String,Data]
-          for ((k, v) <- defaults) uopElements.get(k.getName()) match {
-            case Some(value) => value.assignFrom(v)
-            case None        => local(k).assignFrom(v)
-          }
-
-          // Func for decoding instruction.
-          def decodeInstruction(
-              encoding: MaskedLiteral,
-              actions: Seq[(Stageable[_ <: Data], Data)]
-          ) {
-            when(entry.inst === encoding) {
-              // 如果要增加Verilog可读性，则通过类似Stageable的方式获取编码的指令名，给when条件setName
-              // 全覆盖的错误可以通过assignment overlap检查出（通常出现于复制忘了改）
-              illegalEncoding.clear()
-              for ((k, v) <- actions) uopElements.get(k.getName()) match {
-                case Some(value) => value.assignFrom(v)
-                case None        => local(k).assignFrom(v)
-              }
+        // TLB
+        when(LoongArch.INVTLB === entry.inst && uop.useRj && uop.useRk) {
+          // INVTLB
+          val opCode = entry.inst(4 downto 0)
+          switch(opCode) {
+            is(0, 1) {
+              uop.tlbOp := TLBOpType.INVTLB1
             }
-          }
-
-          // ! Main body for Decoding instructions
-          for ((encoding, actions) <- normalEncodings) decodeInstruction(encoding, actions)
-          // priority升序，when语句后面的覆盖前面的
-          for (encoding <- encodingsByPriority) decodeInstruction(encoding, encodings(encoding))
-
-          // ! Epilogue: override some fields
-          import NOP.constants.LoongArch
-          import MicroOpSignals._
-          // Start Assigning retval (uop)
-          uop.pc := entry.pc
-          uop.inst := entry.inst
-
-          // Branch Prediction
-          uop.predInfo := entry.predInfo
-          uop.predRecover := entry.predRecover
-
-          // CSR
-          uop.writeCSR := uop.readCSR && (fields.rj =/= 0)
-          uop.useRd.allowOverride()
-          when(uop.writeCSR) {
-            uop.useRd.set()
-          }
-          uop.useRj.allowOverride()
-          when(uop.writeCSR && fields.rj =/= 1) {
-            uop.useRj.set()
-          }
-
-          // Timer
-          uop.readTimer64L.clear()
-          uop.readTimer64ID.clear()
-          when(uop.fuType === FUType.TIMER && ~uop.readTimer64H) {
-            when(fields.rd === 0) {
-              local(overrideRdToRj).set()
-              uop.readTimer64ID.set()
-            } otherwise {
-              uop.readTimer64L.set()
+            is(2) {
+              uop.tlbOp := TLBOpType.INVTLB2
             }
-          }
-
-          // REG W
-          when(local(overrideRdToRA)) {
-            uop.wbAddr := U(1, config.regFile.arfAddrWidth bits)
-          } otherwise {
-            when(local(overrideRdToRj)) {
-              uop.wbAddr := fields.rj
-            } otherwise {
-              uop.wbAddr := fields.rd
+            is(3) {
+              uop.tlbOp := TLBOpType.INVTLB3
             }
-          }
-          uop.doRegWrite := local(isRegWrite) & (uop.wbAddr =/= 0)
-
-          // decode异常
-          uop.except.valid := False
-          uop.except.allowOverride()
-          uop.except := entry.except
-          when(!entry.except.valid) {
-            uop.except.payload.isTLBRefill := False
-            when(local(isSyscall)) {
-              uop.except.valid := True
-              uop.except.payload.code := ExceptionCode.SYS.ecode
-              uop.except.payload.subcode := ExceptionCode.SYS.esubcode
+            is(4) {
+              uop.tlbOp := TLBOpType.INVTLB4
             }
-            when(local(isBreak)) {
-              uop.except.valid := True
-              uop.except.payload.code := ExceptionCode.BRK.ecode
-              uop.except.payload.subcode := ExceptionCode.BRK.esubcode
+            is(5) {
+              uop.tlbOp := TLBOpType.INVTLB5
             }
-            when(illegalEncoding) {
+            is(6) {
+              uop.tlbOp := TLBOpType.INVTLB6
+            }
+            default {
               uop.except.valid := True
               uop.except.payload.code := ExceptionCode.INE.ecode
               uop.except.payload.subcode := ExceptionCode.INE.esubcode
             }
-
-            // TLB
-            when(LoongArch.INVTLB === entry.inst && uop.useRj && uop.useRk) {
-              // INVTLB
-              val opCode = entry.inst(4 downto 0)
-              switch(opCode) {
-                is(0, 1) {
-                  uop.tlbOp := TLBOpType.INVTLB1
-                }
-                is(2) {
-                  uop.tlbOp := TLBOpType.INVTLB2
-                }
-                is(3) {
-                  uop.tlbOp := TLBOpType.INVTLB3
-                }
-                is(4) {
-                  uop.tlbOp := TLBOpType.INVTLB4
-                }
-                is(5) {
-                  uop.tlbOp := TLBOpType.INVTLB5
-                }
-                is(6) {
-                  uop.tlbOp := TLBOpType.INVTLB6
-                }
-                default {
-                  uop.except.valid := True
-                  uop.except.payload.code := ExceptionCode.INE.ecode
-                  uop.except.payload.subcode := ExceptionCode.INE.esubcode
-                }
-              }
-            }
-
-            // IPE
-            import NOP.constants.LoongArch
-            val privInst =
-              entry.inst === LoongArch.CSR || entry.inst === LoongArch.CACOP || entry.inst === LoongArch.ERTN ||
-                entry.inst === LoongArch.IDLE || entry.inst === LoongArch.TLBRD || entry.inst === LoongArch.TLBWR ||
-                entry.inst === LoongArch.TLBSRCH || entry.inst === LoongArch.TLBFILL || entry.inst === LoongArch.INVTLB
-
-            val privLvl = pipeline.globalService(classOf[ExceptionHandlerPlugin]).CRMD_PLV
-            when(privLvl =/= 0 && privInst) {
-              uop.except.valid := True
-              uop.except.payload.code := ExceptionCode.IPE.ecode
-              uop.except.payload.subcode := ExceptionCode.IPE.esubcode
-            }
-          }
-
-          uop.branchLike := uop.isBranch || uop.isJump || uop.isJR
-          // 处理unique retire类指令
-          uop.flushState := uop.isErtn || uop.writeCSR || uop.isWait ||
-            uop.operateTLB || uop.operateCache || local(isBar) || uop.isLL || uop.isSC
-          // flushState 是 uniqueRetire 的子集
-
-          if (config.decode.allUnique) {
-            println("[Warning] All Unique retire enabled")
-            uop.uniqueRetire := True
-          } else {
-            uop.uniqueRetire := uop.flushState ||
-              uop.branchLike ||
-              uop.isLoad ||
-              uop.isStore ||
-              uop.predInfo.predictBranch
           }
         }
 
-      // 生成decoder阵列
-      val decoders = for (i <- 0 until width) yield buildSingleDecoder(popPorts(i).payload)
-      val decodePacket = insert(pipeline.signals.DECODE_PACKET)
-      for (i <- 0 until width) {
-        decodePacket(i).valid := popPorts(i).valid
-        decodePacket(i).payload := decoders(i).uop
-        popPorts(i).ready := arbitration.isFiring
+        // IPE
+        val privInst =
+          entry.inst === LoongArch.CSR || entry.inst === LoongArch.CACOP || entry.inst === LoongArch.ERTN ||
+            entry.inst === LoongArch.IDLE || entry.inst === LoongArch.TLBRD || entry.inst === LoongArch.TLBWR ||
+            entry.inst === LoongArch.TLBSRCH || entry.inst === LoongArch.TLBFILL || entry.inst === LoongArch.INVTLB
+
+        val privLvl = pipeline.globalService(classOf[ExceptionHandlerPlugin]).CRMD_PLV
+        when(privLvl =/= 0 && privInst) {
+          uop.except.valid := True
+          uop.except.payload.code := ExceptionCode.IPE.ecode
+          uop.except.payload.subcode := ExceptionCode.IPE.esubcode
+        }
       }
 
+      uop.branchLike := uop.isBranch || uop.isJump || uop.isJR
+      // 处理unique retire类指令
+      uop.flushState := uop.isErtn || uop.writeCSR || uop.isWait ||
+        uop.operateTLB || uop.operateCache || locs.isBar || uop.isLL || uop.isSC
+      // flushState 是 uniqueRetire 的子集
+
+      if (config.decode.allUnique) {
+        println("[Warning] All Unique retire enabled")
+        uop.uniqueRetire := True
+      } else {
+        uop.uniqueRetire := uop.flushState ||
+          uop.branchLike ||
+          uop.isLoad ||
+          uop.isStore ||
+          uop.predInfo.predictBranch
+      }
+      uop
+    }
+
+    // ---- ID1：FetchBuffer pop 独立成拍，entry 与逐 lane valid 整体寄存 ----
+    pipeline.ID1 plug new Area {
+      import pipeline.ID1._
+
+      val entry = insert(DECODE_ENTRY)
+      val entryValid = insert(DECODE_VALID)
+      for (i <- 0 until width) {
+        entry(i) := popPorts(i).payload
+        entryValid(i) := popPorts(i).valid
+        popPorts(i).ready := arbitration.isFiring
+      }
+      probeId1Fire := arbitration.isFiring
+      probeId1LaneValid := Cat(entryValid)
+    }
+
+    // ---- ID2：65 路编码匹配 + 字段 mux ----
+    pipeline.ID2 plug new Area {
+      import pipeline.ID2._
+
+      val entries = input(DECODE_ENTRY)
+      val baseUop = insert(DECODE_BASE_UOP)
+      val localsReg = insert(DECODE_LOCALS)
+      probeId2Fire := arbitration.isFiring
+      val matchers = for (i <- 0 until width) yield buildDecoderMatcher(entries(i))
+      for (i <- 0 until width) {
+        baseUop(i) := matchers(i).uop
+        localsReg(i) := matchers(i).localsOut
+        // R6 构建期断言：匹配物化的 local 集合必须恰等于 DecodeLocalsBundle 的覆盖
+        assert(
+          matchers(i).locals.keySet.toSet == expectedLocalKeys,
+          s"Decode locals drifted from DecodeLocalsBundle coverage: ${matchers(i).locals.keySet.map(_.getName())}"
+        )
+      }
+    }
+
+    // ---- ID3：epilogue + DECODE_PACKET（RENAME/DISPATCH 消费端零改动，框架跨级路由）----
+    pipeline.ID3 plug new Area {
+      import pipeline.ID3._
+
+      val entries = input(DECODE_ENTRY)
+      val entriesValid = input(DECODE_VALID)
+      val baseUops = input(DECODE_BASE_UOP)
+      val localsIn = input(DECODE_LOCALS)
+      val decodePacket = insert(DECODE_PACKET)
+      for (i <- 0 until width) {
+        decodePacket(i).payload := buildEpilogue(entries(i), baseUops(i), localsIn(i))
+        decodePacket(i).valid := entriesValid(i)
+      }
+      probeId3Fire := arbitration.isFiring
+      probeId3PacketValid := Cat(decodePacket.map(_.valid))
     }
   }
 
