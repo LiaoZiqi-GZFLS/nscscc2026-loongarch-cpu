@@ -1,6 +1,7 @@
 // Generator : SpinalHDL v1.8.1    git head : 2a7592004363e5b40ec43e1f122ed8641cd8965b
 // Component : mycpu_top
-// Date      : 18/08/2026, 01:19:15
+// Git hash  : 966a960eacb50acaa5b0d330701eb17cf84e8ef3
+// Date      : 18/08/2026, 07:58:12
 
 `timescale 1ns/1ps
 
@@ -10698,12 +10699,12 @@ module MyCPUCore (
   wire                IF2_InstAddrTranslatePlugin_tlbRefill;
   wire                IF2_InstAddrTranslatePlugin_pcCached;
   wire       [31:0]   IF2_InstAddrTranslatePlugin_physPC;
-  wire                IF2_EXCEPTION_OCCURRED;
   reg        [31:0]   _zz_IF1_to_IF2_BAD_VADDR;
   reg        [8:0]    _zz_IF1_to_IF2_EXCEPTION_ESUBCODE;
   reg        [5:0]    _zz_IF1_to_IF2_EXCEPTION_ECODE;
   wire                IF1_EXCEPTION_OCCURRED;
   reg                 _zz_IF1_to_IF2_EXCEPTION_OCCURRED;
+  wire                IF2_EXCEPTION_OCCURRED;
   reg        [8:0]    _zz_IF2_ICachePlugin_fetchPacket_except_payload_subcode;
   reg        [5:0]    _zz_IF2_ICachePlugin_fetchPacket_except_payload_code;
   wire       [31:0]   IF2_ICachePlugin_fetchPacket_pc;
@@ -19184,10 +19185,12 @@ module MyCPUCore (
   wire                MULDIV_EXE_MulDivExecutePlugin_isDivision;
   reg                 MULDIV_EXE_MulDivExecutePlugin_isFirstCycle;
   wire                MULDIV_EXE_MulDivExecutePlugin_in16Bits;
+  reg                 MULDIV_EXE_MulDivExecutePlugin_in16BitsHeld;
+  wire                when_MulDivExecutePlugin_l134;
   reg        [31:0]   _zz_MULDIV_EXE_MulDivExecutePlugin_quotient;
   reg        [31:0]   _zz_MULDIV_EXE_MulDivExecutePlugin_remainder;
-  wire                when_MulDivExecutePlugin_l147;
-  wire                when_MulDivExecutePlugin_l148;
+  wire                when_MulDivExecutePlugin_l158;
+  wire                when_MulDivExecutePlugin_l159;
   wire                _zz_MULDIV_EXE_MulDivExecutePlugin_quotient_1;
   wire       [31:0]   MULDIV_EXE_MulDivExecutePlugin_quotient;
   wire                _zz_MULDIV_EXE_MulDivExecutePlugin_remainder_1;
@@ -23224,7 +23227,7 @@ module MyCPUCore (
     .P   (MULDIV_EXE_MulDivExecutePlugin_multiplier_P[63:0])  //o
   );
   UnsignedDivider unsignedDivider_2 (
-    .io_flush                   (1'b0                                            ), //i
+    .io_flush                   (CommitPlugin_regFlush                           ), //i
     .io_cmd_valid               (unsignedDivider_2_io_cmd_valid                  ), //i
     .io_cmd_ready               (unsignedDivider_2_io_cmd_ready                  ), //o
     .io_cmd_payload_numerator   (MULDIV_EXE_MulDivExecutePlugin_absRj[31:0]      ), //i
@@ -23238,7 +23241,7 @@ module MyCPUCore (
     .aresetn                    (aresetn                                         )  //i
   );
   UnsignedDivider_1 unsignedDivider_3 (
-    .io_flush                   (1'b0                                              ), //i
+    .io_flush                   (CommitPlugin_regFlush                             ), //i
     .io_cmd_valid               (unsignedDivider_3_io_cmd_valid                    ), //i
     .io_cmd_ready               (unsignedDivider_3_io_cmd_ready                    ), //o
     .io_cmd_payload_numerator   (unsignedDivider_3_io_cmd_payload_numerator[15:0]  ), //i
@@ -50712,24 +50715,23 @@ module MyCPUCore (
   assign IF2_DIRECT_TRANSLATE_RESULT_payload_exception_raisePME = IF1_to_IF2_DIRECT_TRANSLATE_RESULT_payload_exception_raisePME;
   assign IF2_DIRECT_TRANSLATE_RESULT_payload_exception_raisePPI = IF1_to_IF2_DIRECT_TRANSLATE_RESULT_payload_exception_raisePPI;
   assign IF2_DIRECT_TRANSLATE_RESULT_payload_exception_raiseTLBR = IF1_to_IF2_DIRECT_TRANSLATE_RESULT_payload_exception_raiseTLBR;
-  assign IF2_EXCEPTION_OCCURRED = IF1_to_IF2_EXCEPTION_OCCURRED;
   always @(*) begin
     _zz_IF1_to_IF2_BAD_VADDR = IF1_BAD_VADDR;
-    if(when_ExceptionMuxPlugin_l45) begin
+    if(when_ExceptionMuxPlugin_l45_3) begin
       _zz_IF1_to_IF2_BAD_VADDR = InstAddrTranslatePlugin_badVaddr;
     end
   end
 
   always @(*) begin
     _zz_IF1_to_IF2_EXCEPTION_ESUBCODE = IF1_EXCEPTION_ESUBCODE;
-    if(when_ExceptionMuxPlugin_l45) begin
+    if(when_ExceptionMuxPlugin_l45_3) begin
       _zz_IF1_to_IF2_EXCEPTION_ESUBCODE = 9'h0;
     end
   end
 
   always @(*) begin
     _zz_IF1_to_IF2_EXCEPTION_ECODE = IF1_EXCEPTION_ECODE;
-    if(when_ExceptionMuxPlugin_l45) begin
+    if(when_ExceptionMuxPlugin_l45_3) begin
       _zz_IF1_to_IF2_EXCEPTION_ECODE = 6'h08;
     end
   end
@@ -50742,28 +50744,29 @@ module MyCPUCore (
     end
   end
 
+  assign IF2_EXCEPTION_OCCURRED = IF1_to_IF2_EXCEPTION_OCCURRED;
   always @(*) begin
     _zz_IF2_ICachePlugin_fetchPacket_except_payload_subcode = IF2_EXCEPTION_ESUBCODE;
+    if(when_ExceptionMuxPlugin_l45) begin
+      _zz_IF2_ICachePlugin_fetchPacket_except_payload_subcode = 9'h0;
+    end
     if(when_ExceptionMuxPlugin_l45_1) begin
       _zz_IF2_ICachePlugin_fetchPacket_except_payload_subcode = 9'h0;
     end
     if(when_ExceptionMuxPlugin_l45_2) begin
-      _zz_IF2_ICachePlugin_fetchPacket_except_payload_subcode = 9'h0;
-    end
-    if(when_ExceptionMuxPlugin_l45_3) begin
       _zz_IF2_ICachePlugin_fetchPacket_except_payload_subcode = 9'h0;
     end
   end
 
   always @(*) begin
     _zz_IF2_ICachePlugin_fetchPacket_except_payload_code = IF2_EXCEPTION_ECODE;
-    if(when_ExceptionMuxPlugin_l45_1) begin
+    if(when_ExceptionMuxPlugin_l45) begin
       _zz_IF2_ICachePlugin_fetchPacket_except_payload_code = 6'h07;
     end
-    if(when_ExceptionMuxPlugin_l45_2) begin
+    if(when_ExceptionMuxPlugin_l45_1) begin
       _zz_IF2_ICachePlugin_fetchPacket_except_payload_code = 6'h03;
     end
-    if(when_ExceptionMuxPlugin_l45_3) begin
+    if(when_ExceptionMuxPlugin_l45_2) begin
       _zz_IF2_ICachePlugin_fetchPacket_except_payload_code = 6'h3f;
     end
   end
@@ -51753,10 +51756,10 @@ module MyCPUCore (
       end
     end
     if(MULDIV_EXE_MulDivExecutePlugin_isDivision) begin
-      if(when_MulDivExecutePlugin_l147) begin
+      if(when_MulDivExecutePlugin_l158) begin
         MULDIV_EXE_arbitration_haltItself = 1'b1;
       end
-      if(when_MulDivExecutePlugin_l148) begin
+      if(when_MulDivExecutePlugin_l159) begin
         MULDIV_EXE_arbitration_haltItself = 1'b1;
       end
     end
@@ -64603,10 +64606,10 @@ module MyCPUCore (
   assign _zz_423 = _zz_360[62];
   assign _zz_424 = _zz_360[63];
   assign _zz_425 = ({1'd0,1'b1} <<< ICachePlugin_commit_way);
-  assign when_ExceptionMuxPlugin_l45 = ((! IF1_EXCEPTION_OCCURRED) && InstAddrTranslatePlugin_ADEF);
-  assign when_ExceptionMuxPlugin_l45_1 = ((! IF2_EXCEPTION_OCCURRED) && InstAddrTranslatePlugin_PPI);
-  assign when_ExceptionMuxPlugin_l45_2 = ((! IF2_EXCEPTION_OCCURRED) && InstAddrTranslatePlugin_PIF);
-  assign when_ExceptionMuxPlugin_l45_3 = ((! IF2_EXCEPTION_OCCURRED) && InstAddrTranslatePlugin_TLBR);
+  assign when_ExceptionMuxPlugin_l45 = ((! IF2_EXCEPTION_OCCURRED) && InstAddrTranslatePlugin_PPI);
+  assign when_ExceptionMuxPlugin_l45_1 = ((! IF2_EXCEPTION_OCCURRED) && InstAddrTranslatePlugin_PIF);
+  assign when_ExceptionMuxPlugin_l45_2 = ((! IF2_EXCEPTION_OCCURRED) && InstAddrTranslatePlugin_TLBR);
+  assign when_ExceptionMuxPlugin_l45_3 = ((! IF1_EXCEPTION_OCCURRED) && InstAddrTranslatePlugin_ADEF);
   assign InstAddrTranslatePlugin_badVaddr = IF1_PC;
   assign InstAddrTranslatePlugin_ADEF = (IF1_PC[0] || IF1_PC[1]);
   assign IF1_InstAddrTranslatePlugin_directTranslateResult_resultExceptionBundle_raisePIL = 1'b0;
@@ -71867,16 +71870,17 @@ module MyCPUCore (
   assign when_MulDivExecutePlugin_l112 = (! MULDIV_EXE_MulDivExecutePlugin_mulCounter_willOverflowIfInc);
   assign MULDIV_EXE_MulDivExecutePlugin_isDivision = (MULDIV_EXE_arbitration_isValidOnEntry && ((MULDIV_EXE_ISSUE_SLOT_uop_fuType == FUType_DIV) || (MULDIV_EXE_ISSUE_SLOT_uop_fuType == FUType_MOD_1)));
   assign MULDIV_EXE_MulDivExecutePlugin_in16Bits = ((MULDIV_EXE_MulDivExecutePlugin_absRj[31 : 16] == 16'h0) && (MULDIV_EXE_MulDivExecutePlugin_absRk[31 : 16] == 16'h0));
+  assign when_MulDivExecutePlugin_l134 = (MULDIV_EXE_MulDivExecutePlugin_isDivision && MULDIV_EXE_MulDivExecutePlugin_isFirstCycle);
   assign unsignedDivider_2_io_cmd_valid = ((MULDIV_EXE_MulDivExecutePlugin_isDivision && MULDIV_EXE_MulDivExecutePlugin_isFirstCycle) && (! MULDIV_EXE_MulDivExecutePlugin_in16Bits));
   assign unsignedDivider_2_io_rsp_ready = (! MULDIV_EXE_arbitration_isStuckByOthers);
   assign unsignedDivider_3_io_cmd_valid = (MULDIV_EXE_MulDivExecutePlugin_isDivision && MULDIV_EXE_MulDivExecutePlugin_isFirstCycle);
   assign unsignedDivider_3_io_cmd_payload_numerator = MULDIV_EXE_MulDivExecutePlugin_absRj[15:0];
   assign unsignedDivider_3_io_cmd_payload_denominator = MULDIV_EXE_MulDivExecutePlugin_absRk[15:0];
   assign unsignedDivider_3_io_rsp_ready = (! MULDIV_EXE_arbitration_isStuckByOthers);
-  assign when_MulDivExecutePlugin_l147 = ((! MULDIV_EXE_MulDivExecutePlugin_in16Bits) && (! unsignedDivider_2_io_rsp_valid));
-  assign when_MulDivExecutePlugin_l148 = (MULDIV_EXE_MulDivExecutePlugin_in16Bits && (! unsignedDivider_3_io_rsp_valid));
+  assign when_MulDivExecutePlugin_l158 = ((! MULDIV_EXE_MulDivExecutePlugin_in16BitsHeld) && (! unsignedDivider_2_io_rsp_valid));
+  assign when_MulDivExecutePlugin_l159 = (MULDIV_EXE_MulDivExecutePlugin_in16BitsHeld && (! unsignedDivider_3_io_rsp_valid));
   always @(*) begin
-    if(MULDIV_EXE_MulDivExecutePlugin_in16Bits) begin
+    if(MULDIV_EXE_MulDivExecutePlugin_in16BitsHeld) begin
       _zz_MULDIV_EXE_MulDivExecutePlugin_quotient = {16'd0, unsignedDivider_3_io_rsp_payload_quotient};
     end else begin
       _zz_MULDIV_EXE_MulDivExecutePlugin_quotient = unsignedDivider_2_io_rsp_payload_quotient;
@@ -71884,7 +71888,7 @@ module MyCPUCore (
   end
 
   always @(*) begin
-    if(MULDIV_EXE_MulDivExecutePlugin_in16Bits) begin
+    if(MULDIV_EXE_MulDivExecutePlugin_in16BitsHeld) begin
       _zz_MULDIV_EXE_MulDivExecutePlugin_remainder = {16'd0, unsignedDivider_3_io_rsp_payload_remainder};
     end else begin
       _zz_MULDIV_EXE_MulDivExecutePlugin_remainder = unsignedDivider_2_io_rsp_payload_remainder;
@@ -76995,6 +76999,7 @@ module MyCPUCore (
       IF1_ProgramCounterPlugin_regPC <= 32'h1c000000;
       IF2_ICachePlugin_cacheRefillFSM_rspId_value <= 4'b0000;
       MULDIV_EXE_MulDivExecutePlugin_mulCounter_value <= 2'b00;
+      MULDIV_EXE_MulDivExecutePlugin_in16BitsHeld <= 1'b0;
       MEM_MEM2_DCachePlugin_dirtyLineWritebackFSM_wayIdx <= 2'b00;
       MEM_MEM2_DCachePlugin_dirtyLineWritebackFSM_rspId_value <= 4'b0000;
       MEM_MEM2_DCachePlugin_cacheRefillFSM_rspId_value <= 4'b0000;
@@ -89203,6 +89208,9 @@ module MyCPUCore (
         RenamePlugin_sRAT_30 <= RenamePlugin_aRAT_30;
       end
       MULDIV_EXE_MulDivExecutePlugin_mulCounter_value <= MULDIV_EXE_MulDivExecutePlugin_mulCounter_valueNext;
+      if(when_MulDivExecutePlugin_l134) begin
+        MULDIV_EXE_MulDivExecutePlugin_in16BitsHeld <= MULDIV_EXE_MulDivExecutePlugin_in16Bits;
+      end
       MEM_MEM2_DCachePlugin_dirtyLineWritebackFSM_rspId_value <= MEM_MEM2_DCachePlugin_dirtyLineWritebackFSM_rspId_valueNext;
       MEM_MEM2_DCachePlugin_cacheRefillFSM_rspId_value <= MEM_MEM2_DCachePlugin_cacheRefillFSM_rspId_valueNext;
       if(io_udBus_aw_fire) begin

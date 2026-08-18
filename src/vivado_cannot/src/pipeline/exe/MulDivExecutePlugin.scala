@@ -125,9 +125,20 @@ class MulDivExecutePlugin(val config: MyCPUConfig) extends Plugin[ExecutePipelin
           absRj(31 downto smallDivSize) === 0 && absRk(31 downto smallDivSize) === 0
         else
           False
+      // Hold the early-out decision for the whole division:
+      //  - cuts the combinational absRk carry-chain -> haltItself -> wakeup broadcast path (timing)
+      //  - the halt/mux logic never re-evaluates a stale combinational in16Bits mid-division
+      val in16BitsHeld =
+        if (useEarlyOut) {
+          val reg = RegInit(False)
+          when(isDivision && isFirstCycle) { reg := in16Bits }
+          reg
+        } else False
       val (quotient, remainder) = {
         val divider = new math.UnsignedDivider(32, 32, false)
-        divider.io.flush := False
+        // Real flush: a division killed by commit flush must not leave a stale rsp
+        // that a later division's first cycle could mistake for its own result.
+        divider.io.flush := flush
         divider.io.cmd.valid := isDivision && isFirstCycle && !in16Bits
         divider.io.cmd.numerator := absRj
         divider.io.cmd.denominator := absRk
@@ -137,17 +148,17 @@ class MulDivExecutePlugin(val config: MyCPUConfig) extends Plugin[ExecutePipelin
 
         if (useEarlyOut) {
           val divider16 = new math.UnsignedDivider(16, 16, false)
-          divider16.io.flush := False
+          divider16.io.flush := flush
           divider16.io.cmd.valid := isDivision && isFirstCycle
           divider16.io.cmd.numerator := absRj.resized
           divider16.io.cmd.denominator := absRk.resized
           divider16.io.rsp.ready := !arbitration.isStuckByOthers
 
           when(isDivision) {
-            arbitration.haltItself setWhen (!in16Bits && !divider.io.rsp.valid)
-            arbitration.haltItself setWhen (in16Bits && !divider16.io.rsp.valid)
+            arbitration.haltItself setWhen (!in16BitsHeld && !divider.io.rsp.valid)
+            arbitration.haltItself setWhen (in16BitsHeld && !divider16.io.rsp.valid)
           }
-          when(in16Bits) {
+          when(in16BitsHeld) {
             absQuotient := divider16.io.rsp.quotient.resized
             absRemainder := divider16.io.rsp.remainder.resized
           } otherwise {
