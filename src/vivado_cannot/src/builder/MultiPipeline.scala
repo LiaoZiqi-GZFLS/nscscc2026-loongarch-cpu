@@ -33,6 +33,9 @@ trait MultiPipeline extends Pipeline {
 
   def addPipeline(pipeline: Pipeline): Unit = {
     pipeline.setGlobalCtx(this)
+    // stage1: sub-pipelines without an explicit group domain inherit the
+    // multi-pipeline's domain (both may stay null -> legacy ambient behavior)
+    if (pipeline.groupCd == null) pipeline.groupCd = groupCd
     pipelines += pipeline
   }
 

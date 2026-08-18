@@ -1,7 +1,7 @@
 // Generator : SpinalHDL v1.8.1    git head : 2a7592004363e5b40ec43e1f122ed8641cd8965b
 // Component : DiscreteSkeleton
-// Git hash  : 966a960eacb50acaa5b0d330701eb17cf84e8ef3
-// Date      : 18/08/2026, 17:19:38
+// Git hash  : 5389bf0c84b66a27bb72f49d339657af04b63262
+// Date      : 18/08/2026, 18:17:11
 
 `timescale 1ns/1ps
 
