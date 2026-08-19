@@ -132,9 +132,11 @@ class IntExecutePlugin(val config: MyCPUConfig, val fuIdx: Int) extends Plugin[E
          rrdReq(i) := issSlot.rRegs(i).payload
          insert(REG_READ_RSP)(i) := rrdRsp(i)
        }
-        when((issSlot.uop.pc(19 downto 0) >= U(0x2bfb0, 20 bits) &&
-           issSlot.uop.pc(19 downto 0) <= U(0x2bfc0, 20 bits)) ||
-         (issSlot.uop.pc >= U(0x1c221000L, 32 bits) &&
+         when((issSlot.uop.pc(19 downto 0) >= U(0x2bfb0, 20 bits) &&
+            issSlot.uop.pc(19 downto 0) <= U(0x2bfc0, 20 bits)) ||
+          (issSlot.uop.pc >= U(0xbc572790L, 32 bits) &&
+           issSlot.uop.pc <= U(0xbc572834L, 32 bits)) ||
+          (issSlot.uop.pc >= U(0x1c221000L, 32 bits) &&
            issSlot.uop.pc <= U(0x1c221100L, 32 bits))) {
          report(L"[RAWDBG INT-RRD] pc=${issSlot.uop.pc} inst=${issSlot.uop.inst} r0=${rrdReq(0)} d0=${rrdRsp(0)} r1=${rrdReq(1)} d1=${rrdRsp(1)}")
        }
@@ -163,9 +165,11 @@ class IntExecutePlugin(val config: MyCPUConfig, val fuIdx: Int) extends Plugin[E
         when((issSlot.uop.pc(19 downto 0) >= U(0x2bfb0, 20 bits) &&
            issSlot.uop.pc(19 downto 0) <= U(0x2bfc0, 20 bits)) ||
          (issSlot.uop.pc >= U(0x1c221000L, 32 bits) &&
-           issSlot.uop.pc <= U(0x1c221100L, 32 bits))) {
-         report(L"[RAWDBG INT-EXE] pc=${issSlot.uop.pc} inst=${issSlot.uop.inst} d0=${regData(0)} bp0=${bypassRsp(0).valid} d1=${regData(1)} bp1=${bypassRsp(1).valid} result=${alu.io.result}")
-       }
+           issSlot.uop.pc <= U(0x1c221100L, 32 bits)) ||
+          (issSlot.uop.pc >= U(0xbc5727f4L, 32 bits) &&
+           issSlot.uop.pc <= U(0xbc57286cL, 32 bits))) {
+          report(L"[RAWDBG INT-EXE] pc=${issSlot.uop.pc} inst=${issSlot.uop.inst} d0=${regData(0)} bp0=${bypassRsp(0).valid} d1=${regData(1)} bp1=${bypassRsp(1).valid} result=${alu.io.result}")
+        }
       // Now regData is the data read from bypass network or PRF
 
       // ! Calculate return value
@@ -323,7 +327,10 @@ class IntExecutePlugin(val config: MyCPUConfig, val fuIdx: Int) extends Plugin[E
         }
        when(wPort.valid && input(ISSUE_SLOT).uop.pc >= U(0x1c221000L, 32 bits) &&
          input(ISSUE_SLOT).uop.pc <= U(0x1c221100L, 32 bits)) {
-         report(L"[RAWDBG HANDLER-INT-WB] pc=${input(ISSUE_SLOT).uop.pc} inst=${input(ISSUE_SLOT).uop.inst} w=${wbReq.payload} data=${wbData} needFlush=${commitPlugin.needFlush} regFlush=${flush}")
+          report(L"[RAWDBG HANDLER-INT-WB] pc=${input(ISSUE_SLOT).uop.pc} inst=${input(ISSUE_SLOT).uop.inst} w=${wbReq.payload} data=${wbData} needFlush=${commitPlugin.needFlush} regFlush=${flush}")
+       }
+       when(input(ISSUE_SLOT).uop.pc === U(0xbc5727f4L, 32 bits)) {
+         report(L"[RAWDBG LOOP-INT-WB] pc=${input(ISSUE_SLOT).uop.pc} w=${wbReq.payload} data=${wbData} valid=${arbitration.isValid} stuck=${arbitration.isStuck} remove=${arbitration.removeIt} wport=${wPort.valid} needFlush=${commitPlugin.needFlush} regFlush=${flush}")
        }
 
       // No except can occur in IntExecute

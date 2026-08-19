@@ -291,15 +291,11 @@ class MMUPlugin(config: MyCPUConfig) extends Plugin[MyCPUCore] {
     val TLBHitEntry_plv = Mux(virtAddr(TLBHitEntry.PS(4 downto 0)), TLBHitEntry.PLV1, TLBHitEntry.PLV0)
     val TLBHitEntry_ppn = Mux(virtAddr(TLBHitEntry.PS(4 downto 0)), TLBHitEntry.PPN1, TLBHitEntry.PPN0)
 
-    when(virtAddr === U(0x00247e6c, 32 bits)) {
-      report(L"[RAWDBG TLB-LOOKUP] hit=${TLBHit} ps=${TLBHitEntry.PS} odd=${virtAddr(TLBHitEntry.PS(4 downto 0))} v=${TLBHitEntry_v} d=${TLBHitEntry_d} plv=${TLBHitEntry_plv} mat=${TLBHitEntry_mat} ppn=${TLBHitEntry_ppn} phys=${resultPhysAddr}")
-    }
-
     when(~TLBHit) {
       resultExceptionBundle.raiseTLBR.set()
     }
 
-    when(~TLBHitEntry_v) {
+    when(TLBHit && ~TLBHitEntry_v) {
       switch(memOperation) {
         is(MemOperationType.FETCH) {
           resultExceptionBundle.raisePIF := True
@@ -313,11 +309,11 @@ class MMUPlugin(config: MyCPUConfig) extends Plugin[MyCPUCore] {
       }
     }
 
-    when(excHandler.CRMD_PLV.asUInt > TLBHitEntry_plv.asUInt) {
+    when(TLBHit && excHandler.CRMD_PLV.asUInt > TLBHitEntry_plv.asUInt) {
       resultExceptionBundle.raisePPI.set()
     }
 
-    when(memOperation === MemOperationType.STORE && ~TLBHitEntry_d) {
+    when(TLBHit && memOperation === MemOperationType.STORE && ~TLBHitEntry_d) {
       resultExceptionBundle.raisePME.set()
     }
 

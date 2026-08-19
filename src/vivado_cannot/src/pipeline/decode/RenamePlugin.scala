@@ -117,8 +117,11 @@ class RenamePlugin(config: MyCPUConfig) extends Plugin[DecodePipeline] {
       for (j <- 0 until rfConfig.rPortsEachInst) {
         insert(RENAME_RECORDS)(i).rRegs(j) := regReads(i)(j).rsp
       }
-       when(valid && uop.pc(19 downto 0) >= U(0x2bfb0, 20 bits) && uop.pc(19 downto 0) <= U(0x2bfc0, 20 bits)) {
+      when(valid && uop.pc(19 downto 0) >= U(0x2bfb0, 20 bits) && uop.pc(19 downto 0) <= U(0x2bfc0, 20 bits)) {
         report(L"[RAWDBG RENAME] pc=${uop.pc} inst=${uop.inst} r0=${regReads(i)(0).rsp} r1=${regReads(i)(1).rsp} w=${regWrites(i).rsp} srat0=${sRAT(0)} srat1=${sRAT(1)}")
+      }
+      when(valid && uop.pc >= U(0xbc5727f4L, 32 bits) && uop.pc <= U(0xbc57286cL, 32 bits)) {
+        report(L"[RAWDBG LOOP-RENAME] pc=${uop.pc} inst=${uop.inst} r0=${regReads(i)(0).rsp} r1=${regReads(i)(1).rsp} w=${regWrites(i).rsp} wb=${uop.wbAddr} wr=${uop.doRegWrite}")
       }
       when(valid && uop.pc >= U(0x1c221000L, 32 bits) && uop.pc <= U(0x1c221100L, 32 bits)) {
         report(L"[RAWDBG HANDLER-RENAME] pc=${uop.pc} inst=${uop.inst} r0=${regReads(i)(0).rsp} r1=${regReads(i)(1).rsp} w=${regWrites(i).rsp} prev=${regReads(i)(2).rsp}")
@@ -147,11 +150,15 @@ class RenamePlugin(config: MyCPUConfig) extends Plugin[DecodePipeline] {
       port.payload := commit.payload.prevAddr
       when(commit.valid) {
         aRAT(commit.payload.addr - 1) := commit.payload.prfAddr
+        when(commit.payload.addr === U(27, arfAddrWidth bits)) {
+          report(L"[RAWDBG R27-COMMIT] port=${U(i, log2Up(retireWidth) bits)} new=${commit.payload.prfAddr} prev=${commit.payload.prevAddr} arat=${aRAT(26)} srat=${sRAT(26)}")
+        }
       }
     }
     freeList.io.push.drop(retireWidth).foreach(_.setIdle())
     // 分支预测恢复时，将aRAT拷贝进sRAT
     when(arfCommit.recoverPRF) {
+      report(L"[RAWDBG RAT-RECOVER] r27Arat=${aRAT(26)} r27Srat=${sRAT(26)}")
       sRAT := aRAT
     }
     // 预测恢复时freeList也要恢复

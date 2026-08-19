@@ -116,6 +116,9 @@ class ICachePlugin(config: MyCPUConfig) extends Plugin[FetchPipeline] {
       }
       val hit = hits.orR
       val hitData = MuxOH(hits, input(ICACHE_RSPS))
+      when(virtPC === U(0xbc39fcc0L, 32 bits) || virtPC === U(0xbc201a00L, 32 bits)) {
+        report(L"[RAWDBG IFETCH] pc=${virtPC} phys=${physPC} idx=${idx} tag=${tag} hit=${hit} way0=${hits(0)} way1=${hits(1)} inst0=${hitData(0)}")
+      }
 
       // 存储当前被填充的packet，避免IF2重取
       val storedPacket = Vec(Reg(BWord()), frontend.fetchWidth)
@@ -145,8 +148,8 @@ class ICachePlugin(config: MyCPUConfig) extends Plugin[FetchPipeline] {
         val rspId = Counter(icache.lineWords)
 
         // 反正寄存也不增加周期，还改善时序
-        val refillValid = RegNext(iBus.r.fire)
-        val refillWord = RegNext(iBus.r.payload.data)
+        val refillValid = iBus.r.fire
+        val refillWord = iBus.r.payload.data
         // 根据LRU选择一路
         val replaceWay = input(ICACHE_INFO).lru.asUInt
         // 填充stored packet
@@ -178,6 +181,9 @@ class ICachePlugin(config: MyCPUConfig) extends Plugin[FetchPipeline] {
           ar.payload.prot := 0 // secure and normal(non-priviledged)
           ar.valid := True
           when(ar.ready) {
+            when(virtPC === U(0xbc39fcc0L, 32 bits) || virtPC === U(0xbc201a00L, 32 bits)) {
+              report(L"[RAWDBG I-AR] pc=${virtPC} phys=${physPC} addr=${ar.payload.addr} idx=${idx} tag=${tag}")
+            }
             rspId.clear()
             goto(readMem)
           }
@@ -187,6 +193,9 @@ class ICachePlugin(config: MyCPUConfig) extends Plugin[FetchPipeline] {
           arbitration.haltItself.set()
           val r = iBus.r
           r.ready.set()
+          when(r.fire && (virtPC === U(0xbc39fcc0L, 32 bits) || virtPC === U(0xbc201a00L, 32 bits))) {
+            report(L"[RAWDBG I-RSP] pc=${virtPC} rspId=${rspId.value} data=${r.payload.data} last=${r.payload.last}")
+          }
           when(refillValid) {
             dataWs(replaceWay).valid := True
             dataWs(replaceWay).payload.address := idx
@@ -199,11 +208,6 @@ class ICachePlugin(config: MyCPUConfig) extends Plugin[FetchPipeline] {
 
         commit.whenIsActive {
           arbitration.haltItself.set()
-          // 对data写入最后一个word
-          dataWs(replaceWay).valid := True
-          dataWs(replaceWay).payload.address := idx
-          dataWs(replaceWay).payload.data.foreach(_ := refillWord)
-          dataMasks(replaceWay)(rspId).setAll()
           // 更新info
           assert(icache.ways == 2)
           val newInfo = input(ICACHE_INFO).copy()

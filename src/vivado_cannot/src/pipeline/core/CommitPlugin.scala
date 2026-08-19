@@ -170,6 +170,10 @@ class CommitPlugin(config: MyCPUConfig)
            uop.pc(19 downto 0) <= U(0x2bfc0, 20 bits)) {
           report(L"[RAWDBG COMMIT] pc=${uop.pc} inst=${uop.inst} except=${hasExcept} mispredict=${mispredict} linear=${linearRecover} badva=${entry.state.except.badVA}")
         }
+        when(fire && (hasExcept || mispredict || linearRecover) &&
+          uop.pc >= U(0xbc572790L, 32 bits) && uop.pc <= U(0xbc5728e4L, 32 bits)) {
+          report(L"[RAWDBG LOOP-FLUSH] pc=${uop.pc} inst=${uop.inst} except=${hasExcept} mispredict=${mispredict} linear=${linearRecover} target=${entry.state.intResult}")
+        }
          // 如果不需要等delay slot，则立即flush
          needFlush := recoverState
         robFIFO.fifoIO.flush := needFlush // flush周期同时pop

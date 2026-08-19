@@ -158,13 +158,14 @@ class ExceptionHandlerPlugin extends Plugin[MyCPUCore] {
     val exceptEpc = excCommit.epc
 
     val takeInt = intHandler.intPending
+    val effectiveTLBRefill = exceptPayload.payload.isTLBRefill
     val eentry = UWord()
     eentry := EENTRY_PC.asUInt
-    when(!takeInt && !exceptPayload.payload.isTLBRefill) {
+    when(!takeInt && !effectiveTLBRefill) {
       eentry := EENTRY_PC.asUInt +
         ((exceptPayload.payload.code.asUInt.resize(32) - U(32, 32 bits)) |<< 9)
     }
-    when(!takeInt && exceptPayload.payload.isTLBRefill) {
+    when(!takeInt && effectiveTLBRefill) {
       eentry := MMUPlugin.TLBRENTRY_PA.asUInt @@ U(0x0, 6 bits)
     }
 
@@ -177,8 +178,8 @@ class ExceptionHandlerPlugin extends Plugin[MyCPUCore] {
     }
 
     when(exceptPayload.valid) {
-      when(exceptPayload.payload.code =/= 0) {
-        report(L"[RAWDBG EXC-TAKE] epc=${exceptEpc} code=${exceptPayload.payload.code} sub=${exceptPayload.payload.subcode} badva=${exceptPayload.payload.badVA} refill=${exceptPayload.payload.isTLBRefill} target=${eentry}")
+      when(exceptPayload.payload.code =/= 0 || effectiveTLBRefill) {
+        report(L"[RAWDBG EXC-TAKE] epc=${exceptEpc} code=${exceptPayload.payload.code} sub=${exceptPayload.payload.subcode} badva=${exceptPayload.payload.badVA} refill=${effectiveTLBRefill} target=${eentry} crmdDA=${CRMD_DA} crmdPG=${CRMD_PG} era=${ERA_PC} tlbrActive=${tlbrActive}")
       }
       jumpInterface.valid := True
       jumpInterface.payload := eentry
@@ -189,7 +190,7 @@ class ExceptionHandlerPlugin extends Plugin[MyCPUCore] {
         ESTAT_ESUBCODE := B(LoongArch.ExceptionCode.INT.esubcode, 9 bits)
       } otherwise {
         // Exception
-        when(exceptPayload.isTLBRefill) {
+        when(effectiveTLBRefill) {
           CRMD_DA := True
           CRMD_PG := False
           tlbrActive := True

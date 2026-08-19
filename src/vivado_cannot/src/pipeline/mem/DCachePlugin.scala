@@ -26,7 +26,7 @@ class DCachePlugin(config: MyCPUConfig) extends Plugin[MemPipeline] {
   val dirtyBitsManager = new DirtyBitsManager(config.dcache)
   // 虽然d-cache形式上组织成例如32B一行，但是实际每次读写都只需要一个word，因此物理上这么组织最省面积和延迟
   val dataRAMs = Seq.fill(dcache.ways)(
-    new SDPRAM(BWord(), dcache.lineWords * dcache.sets, true, useByteEnable = true)
+    new SDPRAM(BWord(), dcache.lineWords * dcache.sets, false, useByteEnable = true)
   )
   val infoRAM = new SDPRAM(CacheLineInfo(dcache), dcache.sets, false)
 
@@ -42,8 +42,9 @@ class DCachePlugin(config: MyCPUConfig) extends Plugin[MemPipeline] {
     val rPort = infoRAM.io.read
     val dataRs = Vec(dataRAMs.map(_.io.read))
     // 为了避免MEM1取不到MEM2写的cache，做refetch重取
-    val doRefetch = False
-    val refetchValid = doRefetch
+       val doRefetch = False
+       val refetchValid = doRefetch
+       val lockCache = False
     val wordAddrRange = dcache.indexRange.high downto 2
     val mem1MemAddr = UWord()
 
@@ -51,16 +52,17 @@ class DCachePlugin(config: MyCPUConfig) extends Plugin[MemPipeline] {
       import pipeline.MEMADDR._
       val std = input(STD_SLOT)
       val memAddr = Mux(std.valid, std.addr, output(MEMORY_ADDRESS))
-      val rValid = arbitration.notStuck || refetchValid
-      val rAddr = Mux(refetchValid, mem1MemAddr, memAddr)
-      // 读tag按照index找行
-      rPort.cmd.valid := rValid
-      rPort.cmd.payload := rAddr(dcache.indexRange)
-      // 读data应当直接找word
-      dataRs.foreach { p =>
-        p.cmd.valid := rValid
-        p.cmd.payload := rAddr(wordAddrRange)
-      }
+       // A writeback owns the data RAM read port while capturing its victim line.
+       val rValid = arbitration.notStuck || refetchValid
+       val rAddr = Mux(refetchValid, mem1MemAddr, memAddr)
+       // 读tag按照index找行
+       rPort.cmd.valid := rValid
+       rPort.cmd.payload := rAddr(dcache.indexRange)
+       // 读data应当直接找word
+       dataRs.foreach { p =>
+         p.cmd.valid := rValid && !lockCache
+         p.cmd.payload := rAddr(wordAddrRange)
+       }
     }
 
     pipeline.MEM1 plug new Area {
@@ -121,6 +123,9 @@ class DCachePlugin(config: MyCPUConfig) extends Plugin[MemPipeline] {
       val physAddr = input(MEMORY_ADDRESS_PHYSICAL)
       val memWData = input(MEMORY_WRITE_DATA)
       val memBE = input(MEMORY_BE)
+      when(arbitration.isValidOnEntry && input(EXC_SIGNALS.EXCEPTION_OCCURRED)) {
+        report(L"[RAWDBG DCACHE-EXC] pc=${input(ISSUE_SLOT).uop.pc} va=${virtAddr} pa=${physAddr} code=${input(EXC_SIGNALS.EXCEPTION_ECODE)} sub=${input(EXC_SIGNALS.EXCEPTION_ESUBCODE)} badva=${input(EXC_SIGNALS.BAD_VADDR)} tlbr=${input(IS_TLB_REFILL)} cached=${addrCached}")
+      }
       val cachePhysAddr = Mux(std.valid, std.addr, input(MEMORY_ADDRESS_PHYSICAL))
       val idx = cachePhysAddr(dcache.indexRange)
       val tag = cachePhysAddr(dcache.tagRange) // physical tag
@@ -169,6 +174,7 @@ class DCachePlugin(config: MyCPUConfig) extends Plugin[MemPipeline] {
       }
       dirtyBitsManager.io.writeCmd.setIdle()
 
+
       when(reqCommit && hit) {
         // 命中，提交LRU修改
         assert(dcache.ways == 2)
@@ -201,7 +207,6 @@ class DCachePlugin(config: MyCPUConfig) extends Plugin[MemPipeline] {
       // 由于CACHE指令触发Writeback
       val triggerWritebackCACHE = False
       // 写回块取cache需要早于读块写cache
-      val lockCache = False
       // 为了write dirty line，提前fetch出来
       val dirtyLine = Reg(Vec(BWord(), dcache.lineWords))
       // 仍然是同步写，但是与读内存并行了
@@ -209,38 +214,64 @@ class DCachePlugin(config: MyCPUConfig) extends Plugin[MemPipeline] {
         disableAutoStart()
         setEntry(stateBoot)
         val fetchCache = new State
+        val waitRead = new State
+        val captureRead = new State
         val waitAW = new State
         val writeMem = new State
         val waitB = new State
 
         // val wayIdx = ~input(DCACHE_INFO).lru.asUInt
         val wayIdx = RegInit(U(0, log2Up(config.dcache.ways) bits)) // Change to register
-        val rspId = Counter(dcache.lineWords)
-        val rspIdDelayed = Delay(rspId.value, 2)
+        val requestId = Counter(dcache.lineWords)
+        val writeId = Counter(dcache.lineWords)
+        val victimIdx = Reg(UInt(dcache.indexWidth bits))
+        val victimTag = Reg(UInt(dcache.tagRange.size bits))
 
         stateBoot.whenIsActive {
           writebackIdle := True
           when(triggerWriteback || triggerWritebackFixUncache || triggerWritebackCACHE) {
-            rspId.clear()
+            requestId.clear()
+            writeId.clear()
+            victimIdx := idx
             goto(fetchCache)
             when(triggerWriteback) {
               wayIdx := replaceWay
+              victimTag := input(DCACHE_INFO).tags(replaceWay)
             } elsewhen (triggerWritebackFixUncache) {
               wayIdx := hitWay
+              victimTag := input(DCACHE_INFO).tags(hitWay)
             } otherwise {
               // triggerWritebackCACHE
               wayIdx := wayCACHE
+              victimTag := input(DCACHE_INFO).tags(wayCACHE)
             }
           }
         }
         fetchCache.whenIsActive {
           arbitration.haltItself.set()
           lockCache := True
-          rspId.increment()
-          dataRs.foreach(_.cmd.push(idx @@ rspId))
-          dirtyLine(rspIdDelayed) := Vec(dataRAMs.map(_.io.read.rsp))(wayIdx)
-          when(rspIdDelayed === dcache.lineWords - 1) {
+          dataRs.foreach(_.cmd.push(victimIdx @@ requestId))
+          goto(waitRead)
+        }
+        waitRead.whenIsActive {
+          arbitration.haltItself.set()
+          lockCache := True
+          dataRs.foreach(_.cmd.push(victimIdx @@ requestId))
+          goto(captureRead)
+        }
+         captureRead.whenIsActive {
+           arbitration.haltItself.set()
+           lockCache := True
+           dirtyLine(requestId) := Vec(dataRAMs.map(_.io.read.rsp))(wayIdx)
+           when((victimTag @@ victimIdx @@ U(0, dcache.offsetWidth bits)) >= U(0x1c627ec0L, 32 bits) &&
+             (victimTag @@ victimIdx @@ U(0, dcache.offsetWidth bits)) < U(0x1c627f00L, 32 bits)) {
+             report(L"[RAWDBG D-WB-CAP] idx=${victimIdx} word=${requestId.value} data=${Vec(dataRAMs.map(_.io.read.rsp))(wayIdx)}")
+           }
+          when(requestId === dcache.lineWords - 1) {
             goto(waitAW)
+          } otherwise {
+            requestId.increment()
+            goto(fetchCache)
           }
         }
         // write-back dirty block
@@ -249,7 +280,7 @@ class DCachePlugin(config: MyCPUConfig) extends Plugin[MemPipeline] {
           val aw = dBus.aw
           aw.valid := True
           aw.payload.id := 1
-          aw.payload.addr := input(DCACHE_INFO).tags(wayIdx) @@ idx @@ U(0, dcache.offsetWidth bits)
+          aw.payload.addr := victimTag @@ victimIdx @@ U(0, dcache.offsetWidth bits)
           aw.payload.len := dcache.lineWords - 1 // burst len
           aw.payload.size := 2
           aw.payload.burst := 1 // burst type = INCR
@@ -258,19 +289,27 @@ class DCachePlugin(config: MyCPUConfig) extends Plugin[MemPipeline] {
           if (config.axiConfig.useQos) aw.payload.qos := 0
           aw.payload.prot := 0
           when(aw.ready) {
-            rspId.clear()
+            when(aw.payload.addr >= U(0x1c627ec0L, 32 bits) && aw.payload.addr < U(0x1c627f00L, 32 bits)) {
+              report(L"[RAWDBG D-WB-AW] addr=${aw.payload.addr} len=${aw.payload.len}")
+            }
+            writeId.clear()
             goto(writeMem)
           }
         }
-        writeMem.whenIsActive {
+         writeMem.whenIsActive {
           arbitration.haltItself.set()
           val w = dBus.w
           w.valid := True
-          w.data := dirtyLine(rspId)
-          w.strb.setAll()
-          w.last := rspId.willOverflowIfInc
+           w.data := dirtyLine(writeId)
+           w.strb.setAll()
+           w.last := writeId.willOverflowIfInc
+           when(w.valid && w.ready &&
+             (victimTag @@ victimIdx @@ U(0, dcache.offsetWidth bits)) >= U(0x1c627ec0L, 32 bits) &&
+             (victimTag @@ victimIdx @@ U(0, dcache.offsetWidth bits)) < U(0x1c627f00L, 32 bits)) {
+             report(L"[RAWDBG D-WB-W] word=${writeId.value} data=${w.data} last=${w.last}")
+           }
           when(w.ready) {
-            rspId.increment()
+            writeId.increment()
             when(w.last) {
               goto(waitB)
             }
@@ -412,10 +451,9 @@ class DCachePlugin(config: MyCPUConfig) extends Plugin[MemPipeline] {
         disableAutoStart()
         setEntry(stateBoot)
         val rspId = Counter(dcache.lineWords)
-        // 反正寄存也不增加周期，还改善时序
-        val refillValid = RegNext(dBus.r.fire)
-        val regBusWord = RegNext(dBus.r.payload.data)
-        val refillWord = CombInit(regBusWord)
+        val refillValid = dBus.r.fire
+        val refillWord = BWord()
+        refillWord := dBus.r.payload.data
         // STD直接往cache填入更新了本次写的数据
         for (i <- 0 until 4)
           when(isSTD && rspId === std.addr(dcache.wordOffsetRange) && std.be(i)) {
@@ -462,6 +500,9 @@ class DCachePlugin(config: MyCPUConfig) extends Plugin[MemPipeline] {
           when(ar.valid && ar.ready && handlerTrace) {
             report(L"[RAWDBG HANDLER-DCACHE-AR] pc=${input(ISSUE_SLOT).uop.pc} addr=${ar.payload.addr} hit=${hit} pa=${cachePhysAddr}")
           }
+          when(ar.fire) {
+            report(L"[RAWDBG AXI-D-AR] pc=${input(ISSUE_SLOT).uop.pc} addr=${ar.payload.addr} len=${ar.payload.len} id=${ar.payload.id} pa=${cachePhysAddr} va=${virtAddr}")
+          }
           when(ar.ready) {
             rspId.clear()
             goto(readMem)
@@ -475,6 +516,9 @@ class DCachePlugin(config: MyCPUConfig) extends Plugin[MemPipeline] {
           when(r.valid && r.ready && handlerTrace) {
             report(L"[RAWDBG HANDLER-DCACHE-R] pc=${input(ISSUE_SLOT).uop.pc} data=${r.payload.data} last=${r.payload.last}")
           }
+          when(r.fire && r.payload.last) {
+            report(L"[RAWDBG AXI-D-R-LAST] pc=${input(ISSUE_SLOT).uop.pc} data=${r.payload.data} id=${r.payload.id} pa=${cachePhysAddr} va=${virtAddr}")
+          }
           when(refillValid) {
             dataWs(replaceWay).valid := True
             dataWs(replaceWay).payload.address := idx @@ rspId
@@ -486,10 +530,6 @@ class DCachePlugin(config: MyCPUConfig) extends Plugin[MemPipeline] {
 
         commit.whenIsActive {
           arbitration.haltItself.set()
-          // 对data写入最后一个word
-          dataWs(replaceWay).valid := True
-          dataWs(replaceWay).payload.address := idx @@ rspId
-          dataWs(replaceWay).payload.data := refillWord
           // 更新info
           assert(dcache.ways == 2)
           val newInfo = input(DCACHE_INFO).copy()
@@ -566,9 +606,14 @@ class DCachePlugin(config: MyCPUConfig) extends Plugin[MemPipeline] {
       }
 
       // ! Load Logic: assemble MEMORY_READ_DATA
-      val cacheData = Mux(hit, hitData, storedWord)
-      val memRData = insert(MEMORY_READ_DATA)
-      memRData := cacheData
+       val cacheData = Mux(hit, hitData, storedWord)
+       val memRData = insert(MEMORY_READ_DATA)
+       memRData := cacheData
+       when(arbitration.isValidOnEntry && isLoad &&
+         input(ISSUE_SLOT).uop.pc >= U(0xbc3436c0L, 32 bits) &&
+         input(ISSUE_SLOT).uop.pc <= U(0xbc343710L, 32 bits)) {
+         report(L"[RAWDBG BADPTR-DCACHE] pc=${input(ISSUE_SLOT).uop.pc} va=${virtAddr} pa=${physAddr} hit=${hit} hitData=${hitData} stored=${storedWord} cacheData=${cacheData} req=${reqValid} cached=${addrCached}")
+       }
 
       // load std前传
       def stdValid(stage: Stage) = {

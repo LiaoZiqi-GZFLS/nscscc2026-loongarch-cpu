@@ -199,10 +199,13 @@ class DecoderArray(config: MyCPUConfig, val popPorts: Vec[Stream[InstBufferEntry
           // priority升序，when语句后面的覆盖前面的
           for (encoding <- encodingsByPriority) decodeInstruction(encoding, encodings(encoding))
 
-          // ! Epilogue: override some fields
-          import NOP.constants.LoongArch
-          import MicroOpSignals._
-          // Start Assigning retval (uop)
+           // ! Epilogue: override some fields
+           import NOP.constants.LoongArch
+           import MicroOpSignals._
+           when(entry.pc === U(0xbc39fcc0L, 32 bits) || entry.pc === U(0xbc201a00L, 32 bits)) {
+             report(L"[RAWDBG DECODE] pc=${entry.pc} inst=${entry.inst} pcaddu=${entry.inst === LoongArch.PCADDU12I} illegal=${illegalEncoding} except=${uop.except.valid} code=${uop.except.payload.code}")
+           }
+           // Start Assigning retval (uop)
           uop.pc := entry.pc
           uop.inst := entry.inst
 

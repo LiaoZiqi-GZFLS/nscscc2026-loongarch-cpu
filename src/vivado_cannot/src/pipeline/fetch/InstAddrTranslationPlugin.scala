@@ -26,7 +26,7 @@ class InstAddrTranslatePlugin() extends Plugin[FetchPipeline] {
     import LoongArch.ExceptionCode
     val iExec = pipeline.service(classOf[ExceptionMuxPlugin[FetchPipeline]])
     iExec.addExceptionSource(pipeline.IF1, ExceptionCode.ADEF, ADEF, badVaddr, priority = 100)
-    iExec.addExceptionSource(pipeline.IF2, ExceptionCode.TLBR, TLBR, badVaddr2, priority = 90)
+    iExec.addExceptionSource(pipeline.IF2, ExceptionCode.TLBR, TLBR, badVaddr2, priority = 110)
     iExec.addExceptionSource(pipeline.IF2, ExceptionCode.PIF, PIF, badVaddr2, priority = 80)
     iExec.addExceptionSource(pipeline.IF2, ExceptionCode.PPI, PPI, badVaddr2, priority = 70)
   }
@@ -75,16 +75,22 @@ class InstAddrTranslatePlugin() extends Plugin[FetchPipeline] {
       currentSavedCSR.CRMD_PG := excHandler.CRMD_PG
       currentSavedCSR.CRMD_DATF := excHandler.CRMD_DATF
       currentSavedCSR.CRMD_DATM := excHandler.CRMD_DATM
-      val translateResult = mmu.translate(
+       val translateResult = mmu.translate(
         virtPC,
         MemOperationType.FETCH,
         input(DIRECT_TRANSLATE_RESULT),
         input(TLB_TRANSLATE_RESULT),
         currentSavedCSR
-      )
-      PIF := translateResult.resultExceptionBundle.raisePIF
-      PPI := translateResult.resultExceptionBundle.raisePPI
-      TLBR := translateResult.resultExceptionBundle.raiseTLBR
+       )
+       val rawTLBR = translateResult.resultExceptionBundle.raiseTLBR
+       val rawPIF = translateResult.resultExceptionBundle.raisePIF
+       val rawPPI = translateResult.resultExceptionBundle.raisePPI
+       TLBR := rawTLBR
+       PIF := rawPIF && !rawTLBR
+       PPI := rawPPI && !rawTLBR
+       when(virtPC === U(0xbc39fcc0L, 32 bits) || virtPC === U(0xbc201a00L, 32 bits)) {
+         report(L"[RAWDBG IF2-EXC] pc=${virtPC} rawTLBR=${rawTLBR} rawPIF=${rawPIF} rawPPI=${rawPPI} refill=${tlbRefill}")
+       }
 
       physPC := translateResult.resultPhysAddr
       pcCached := translateResult.resultCached

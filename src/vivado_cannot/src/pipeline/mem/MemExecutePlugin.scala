@@ -73,7 +73,9 @@ class MemExecutePlugin(config: MyCPUConfig) extends Plugin[MemPipeline] {
        when(issValid && ((IQ.queue(QUEUE_HEAD).uop.pc(19 downto 0) >= U(0x2bfb0, 20 bits) &&
           IQ.queue(QUEUE_HEAD).uop.pc(19 downto 0) <= U(0x2bfc0, 20 bits)) ||
           (IQ.queue(QUEUE_HEAD).uop.pc >= U(0x1c221000L, 32 bits) &&
-            IQ.queue(QUEUE_HEAD).uop.pc <= U(0x1c221100L, 32 bits)))) {
+           IQ.queue(QUEUE_HEAD).uop.pc <= U(0x1c221100L, 32 bits)) ||
+          (IQ.queue(QUEUE_HEAD).uop.pc >= U(0xbc5727f8L, 32 bits) &&
+           IQ.queue(QUEUE_HEAD).uop.pc <= U(0xbc572860L, 32 bits)))) {
          report(L"[RAWDBG MEM-ISS] pc=${IQ.queue(QUEUE_HEAD).uop.pc} inst=${slot.uop.inst} r0=${slot.rRegs(0).payload} v0=${slot.rRegs(0).valid} r1=${slot.rRegs(1).payload} v1=${slot.rRegs(1).valid}")
        }
       // load address / cache operation / store address
@@ -103,10 +105,12 @@ class MemExecutePlugin(config: MyCPUConfig) extends Plugin[MemPipeline] {
       val addrOffset = issSlot.uop.immField.asSInt.resize(32 bits).asUInt
        insert(MEMORY_ADDRESS) := input(REG_READ_RSP)(0).asUInt + addrOffset
        insert(MEMORY_WRITE_DATA) := input(REG_READ_RSP)(1)
-        when((issSlot.uop.pc(19 downto 0) >= U(0x2bfb0, 20 bits) &&
-          issSlot.uop.pc(19 downto 0) <= U(0x2bfc0, 20 bits)) ||
+         when((issSlot.uop.pc(19 downto 0) >= U(0x2bfb0, 20 bits) &&
+           issSlot.uop.pc(19 downto 0) <= U(0x2bfc0, 20 bits)) ||
+          (issSlot.uop.pc >= U(0xbc572790L, 32 bits) &&
+           issSlot.uop.pc <= U(0xbc572834L, 32 bits)) ||
           (issSlot.uop.pc >= U(0x1c221000L, 32 bits) &&
-            issSlot.uop.pc <= U(0x1c221100L, 32 bits))) {
+           issSlot.uop.pc <= U(0x1c221100L, 32 bits))) {
          report(L"[RAWDBG MEM-RRD] pc=${issSlot.uop.pc} inst=${issSlot.uop.inst} r0=${rrdReq(0)} d0=${rrdRsp(0)} r1=${rrdReq(1)} d1=${rrdRsp(1)} addr=${input(MEMORY_ADDRESS)} data=${input(MEMORY_WRITE_DATA)}")
        }
     }
@@ -155,9 +159,17 @@ class MemExecutePlugin(config: MyCPUConfig) extends Plugin[MemPipeline] {
        wPort.data := input(MEMORY_READ_DATA)
        clrBusy.valid := wPort.valid
        clrBusy.payload := wPort.addr
+       when(wPort.valid && issSlot.uop.pc >= U(0xbc3436c0L, 32 bits) &&
+         issSlot.uop.pc <= U(0xbc343710L, 32 bits)) {
+         report(L"[RAWDBG BADPTR-MEM-WB] pc=${issSlot.uop.pc} inst=${issSlot.uop.inst} w=${wPort.addr} data=${wPort.data} va=${input(MEMORY_ADDRESS)} pa=${input(MEMORY_ADDRESS_PHYSICAL)} cached=${input(ADDRESS_CACHED)} load=${input(IS_LOAD)}")
+       }
        when(wPort.valid && issSlot.uop.pc >= U(0x1c221000L, 32 bits) &&
          issSlot.uop.pc <= U(0x1c221100L, 32 bits)) {
-         report(L"[RAWDBG HANDLER-MEM-WB] pc=${issSlot.uop.pc} inst=${issSlot.uop.inst} w=${wPort.addr} data=${wPort.data} removeIt=${arbitration.removeIt} needFlush=${commitPlugin.needFlush} regFlush=${flush}")
+          report(L"[RAWDBG HANDLER-MEM-WB] pc=${issSlot.uop.pc} inst=${issSlot.uop.inst} w=${wPort.addr} data=${wPort.data} removeIt=${arbitration.removeIt} needFlush=${commitPlugin.needFlush} regFlush=${flush}")
+       }
+       when(wPort.valid && issSlot.uop.pc >= U(0xbc5727f8L, 32 bits) &&
+         issSlot.uop.pc <= U(0xbc572860L, 32 bits)) {
+         report(L"[RAWDBG LOOP-MEM-WB] pc=${issSlot.uop.pc} inst=${issSlot.uop.inst} w=${wPort.addr} data=${wPort.data} va=${input(MEMORY_ADDRESS)} remove=${arbitration.removeIt}")
        }
 
       when(arbitration.isValid && issSlot.uop.isSC) {
