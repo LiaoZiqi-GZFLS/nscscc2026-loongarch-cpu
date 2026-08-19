@@ -28,12 +28,18 @@ class DCachePlugin(config: MyCPUConfig) extends Plugin[MemPipeline] {
   val dataRAMs = Seq.fill(dcache.ways)(
     new SDPRAM(BWord(), dcache.lineWords * dcache.sets, true, useByteEnable = true)
   )
-  val infoRAM = new SDPRAM(CacheLineInfo(dcache), dcache.sets, false)
+  // stage3-⑥ 勘误#4: outputReg=false→true(READ_LATENCY_B 1→2)。
+  // 新增 MEMTLB 级后 MEM1 比 MEMADDR 晚 2 拍,infoRAM rsp 必须与级位对齐;
+  // 配套 refetchValid 延长 1 拍(refetch 采样窗口随之后移,见下)。
+  val infoRAM = new SDPRAM(CacheLineInfo(dcache), dcache.sets, true)
 
   private object DCACHE_VALIDS extends Stageable(valids.dataType())
   private object DCACHE_DIRTY extends Stageable(dirtyBitsManager.dirtyBits.dataType())
   private object DCACHE_INFO extends Stageable(CacheLineInfo(dcache))
   private object TAG_MATCHES extends Stageable(Bits(dcache.ways bits))
+  // stage3-⑥ 勘误#4: dataRAMs(READ_LATENCY_B=2,XPM 上限)rsp 在 8 级管道下于 MEM1 拍新鲜,
+  // 经框架 stall 门控寄存器送到 MEM2(裸 RegNext 会在 MEM2 反压时采错拍)
+  private object DATA_RSP extends Stageable(Vec(BWord(), dcache.ways))
 
   val writebackIdle = False
 
@@ -43,7 +49,9 @@ class DCachePlugin(config: MyCPUConfig) extends Plugin[MemPipeline] {
     val dataRs = Vec(dataRAMs.map(_.io.read))
     // 为了避免MEM1取不到MEM2写的cache，做refetch重取
     val doRefetch = False
-    val refetchValid = doRefetch
+    // stage3-⑥ 勘误#4: infoRAM 延迟 1→2,refetch 采样窗口从 T+1 后移到 T+2,
+    // halt 相应延长 1 拍(T、T+1 两拍保持,指令于 T+2 采样新鲜 rsp 后前进)
+    val refetchValid = doRefetch || RegNext(doRefetch, init = False)
     val wordAddrRange = dcache.indexRange.high downto 2
     val mem1MemAddr = UWord()
 
@@ -74,6 +82,8 @@ class DCachePlugin(config: MyCPUConfig) extends Plugin[MemPipeline] {
       dirtyBitsManager.io.readCmd := memAddr(dcache.indexRange)
       insert(DCACHE_DIRTY) := dirtyBitsManager.io.readRsp
       insert(DCACHE_INFO) := rPort.rsp
+      // stage3-⑥ 勘误#4: dataRAMs rsp 本拍新鲜(cmd@MEMADDR(T) → rsp@T+2=MEM1),送 MEM2
+      insert(DATA_RSP) := Vec(dataRs.map(_.rsp))
       val cachePhysAddr = Mux(std.valid, std.addr, input(MEMORY_ADDRESS_PHYSICAL))
       for (i <- 0 until dcache.ways) {
         insert(TAG_MATCHES)(i) := input(DCACHE_INFO).tags(i) === cachePhysAddr(dcache.tagRange)
@@ -152,7 +162,8 @@ class DCachePlugin(config: MyCPUConfig) extends Plugin[MemPipeline] {
         setValids(i) && input(TAG_MATCHES)(i)
       }
       val hit = hits.orR
-      val hitData = MuxOH(hits, dataRAMs.map(_.io.read.rsp))
+      // stage3-⑥ 勘误#4: rsp 经 DATA_RSP(MEM1 采样,框架 stall 门控)到达,与 MEM2 级位对齐
+      val hitData = MuxOH(hits, input(DATA_RSP))
       val hitWay = OHToUInt(Vec(hits).asBits) // multi-way safe one-hot decode
       val replaceWay = input(DCACHE_INFO).lru.asUInt
 

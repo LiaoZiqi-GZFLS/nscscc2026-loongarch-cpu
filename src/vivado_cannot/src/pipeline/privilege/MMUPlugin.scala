@@ -36,6 +36,22 @@ final case class TranslateCSRBundle() extends Bundle {
   val CRMD_DATM = Bits(2 bits)
 }
 
+// stage3-⑥: TLB 结果路径切片(S1)——MEMADDR 拍 1 预解析的 per-entry 页选择字段
+final case class TlbSelFieldBundle() extends Bundle {
+  val v = Bool()
+  val d = Bool()
+  val mat = Bits(2 bits)
+  val plv = Bits(2 bits)
+  val ppn = Bits(20 bits)
+}
+
+// 胖切点寄存内容: hits(16b) + selFields(16×26b) + ps(16×6b) ≈ 530b
+final case class TlbPartialBundle(numEntries: Int) extends Bundle {
+  val hits = Bits(numEntries bits)
+  val selFields = Vec(TlbSelFieldBundle(), numEntries)
+  val ps = Vec(UInt(6 bits), numEntries)
+}
+
 class MMUPlugin(config: MyCPUConfig) extends Plugin[MyCPUCore] {
   val tlbConfig = config.tlbConfig
   var CSRMan: CSRPlugin = null
@@ -251,12 +267,10 @@ class MMUPlugin(config: MyCPUConfig) extends Plugin[MyCPUCore] {
   })
   // TODO: [NOP] Remove debug signals
 
-  def tlbTranslate(virtAddr: UInt, memOperation: NOP.constants.enum.MemOperationType.C) = new Area {
-    val resultValid = True
-    val resultPhysAddr = UInt(32 bits)
-    val resultCached = Bool()
-    val resultExceptionBundle = new TranslateResultExceptionBundle
-
+  // stage3-⑥ S1 切片:tlbTranslate 拆为 拍1预解析(MEMADDR) + 拍2命中选择/异常/拼接(MEMTLB)。
+  // 等价性: finish(partial(vaddr), vaddr) 与原单拍 tlbTranslate(vaddr) 逐比特一致。
+  // ! Page Mapped 拍 1(MEMADDR):VPPN 比较 + EntryHits + per-entry 页选择预解析
+  def tlbTranslatePartial(virtAddr: UInt) = new Area {
     val EntryEnabled = TLBTable.map { entry => entry.E }
     val ASIDMatches = TLBTable.map { entry => entry.G || entry.ASID === ASID_ASID }
     val VPPNMatches = Vec(TLBTable.map { entry =>
@@ -267,26 +281,40 @@ class MMUPlugin(config: MyCPUConfig) extends Plugin[MyCPUCore] {
       )
     })
 
-    val EntryHits = Seq.fill(tlbConfig.numEntries)(Bool())
+    val partial = TlbPartialBundle(tlbConfig.numEntries)
     for (i <- 0 until tlbConfig.numEntries) {
-      EntryHits(i) := EntryEnabled(i) && ASIDMatches(i) && VPPNMatches(i)
+      val entry = TLBTable(i)
+      val sel = virtAddr(entry.PS(4 downto 0)) // 动态位选(与各 entry 并行)
+      partial.hits(i) := EntryEnabled(i) && ASIDMatches(i) && VPPNMatches(i)
+      partial.selFields(i).v := Mux(sel, entry.V1, entry.V0)
+      partial.selFields(i).d := Mux(sel, entry.D1, entry.D0)
+      partial.selFields(i).mat := Mux(sel, entry.MAT1, entry.MAT0)
+      partial.selFields(i).plv := Mux(sel, entry.PLV1, entry.PLV0)
+      partial.selFields(i).ppn := Mux(sel, entry.PPN1, entry.PPN0)
+      partial.ps(i) := entry.PS
     }
+  }
 
-    val TLBHit = EntryHits.orR
-    val TLBHitEntry = MuxOH(Vec(EntryHits), TLBTable)
+  // ! Page Mapped 拍 2(MEMTLB):MuxOH 16:1 + 异常合成 + physAddr 拼接 + cached
+  def tlbTranslateFinish(
+      partial: TlbPartialBundle,
+      virtAddr: UInt,
+      memOperation: NOP.constants.enum.MemOperationType.C
+  ) = new Area {
+    val resultValid = True
+    val resultPhysAddr = UInt(32 bits)
+    val resultCached = Bool()
+    val resultExceptionBundle = new TranslateResultExceptionBundle
 
-    // Extract entry. Use (virtAddr[TLBHitEntry.PS]) as mux.
-    val TLBHitEntry_v = Mux(virtAddr(TLBHitEntry.PS(4 downto 0)), TLBHitEntry.V1, TLBHitEntry.V0)
-    val TLBHitEntry_d = Mux(virtAddr(TLBHitEntry.PS(4 downto 0)), TLBHitEntry.D1, TLBHitEntry.D0)
-    val TLBHitEntry_mat = Mux(virtAddr(TLBHitEntry.PS(4 downto 0)), TLBHitEntry.MAT1, TLBHitEntry.MAT0)
-    val TLBHitEntry_plv = Mux(virtAddr(TLBHitEntry.PS(4 downto 0)), TLBHitEntry.PLV1, TLBHitEntry.PLV0)
-    val TLBHitEntry_ppn = Mux(virtAddr(TLBHitEntry.PS(4 downto 0)), TLBHitEntry.PPN1, TLBHitEntry.PPN0)
+    val TLBHit = partial.hits.orR
+    val hitSel = MuxOH(partial.hits, partial.selFields)
+    val hitPs = MuxOH(partial.hits, partial.ps)
 
     when(~TLBHit) {
       resultExceptionBundle.raiseTLBR.set()
     }
 
-    when(~TLBHitEntry_v) {
+    when(~hitSel.v) {
       switch(memOperation) {
         is(MemOperationType.FETCH) {
           resultExceptionBundle.raisePIF := True
@@ -300,27 +328,35 @@ class MMUPlugin(config: MyCPUConfig) extends Plugin[MyCPUCore] {
       }
     }
 
-    when(excHandler.CRMD_PLV.asUInt > TLBHitEntry_plv.asUInt) {
+    when(excHandler.CRMD_PLV.asUInt > hitSel.plv.asUInt) {
       resultExceptionBundle.raisePPI.set()
     }
 
-    when(memOperation === MemOperationType.STORE && ~TLBHitEntry_d) {
+    when(memOperation === MemOperationType.STORE && ~hitSel.d) {
       resultExceptionBundle.raisePME.set()
     }
 
     // (31 downto PS) is 1, (PS - 1 downto 0) is 0
     resultPhysAddr := Mux(
-      TLBHitEntry.PS === 12,
-      TLBHitEntry_ppn ## virtAddr(11 downto 0),
-      TLBHitEntry_ppn(19 downto 9) ## virtAddr(20 downto 0)
+      hitPs === 12,
+      hitSel.ppn ## virtAddr(11 downto 0),
+      hitSel.ppn(19 downto 9) ## virtAddr(20 downto 0)
     ).asUInt
-    resultCached := TLBHitEntry_mat(0)
+    resultCached := hitSel.mat(0)
 
     val resultBundle = Flow(TranslateResultBundle())
     resultBundle.valid := resultValid
     resultBundle.payload.physAddr := resultPhysAddr
     resultBundle.payload.cached := resultCached
     resultBundle.payload.exception := resultExceptionBundle
+  }
+
+  // ! Page Mapped 单拍组合版(IFU 用——fetch 管道不在 ⑥ 切片范围):partial→finish 纯组合复合,
+  // 逻辑上与原 tlbTranslate 逐比特等价
+  def tlbTranslate(virtAddr: UInt, memOperation: NOP.constants.enum.MemOperationType.C) = new Area {
+    val partialArea = tlbTranslatePartial(virtAddr)
+    val finishArea = tlbTranslateFinish(partialArea.partial, virtAddr, memOperation)
+    val resultBundle = finishArea.resultBundle
   }
 
   def translate(

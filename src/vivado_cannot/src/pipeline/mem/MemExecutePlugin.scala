@@ -1,6 +1,7 @@
 package NOP.pipeline.mem
 
 import spinal.core._
+import spinal.core.sim._
 import spinal.lib._
 import NOP.utils._
 import NOP.constants.enum._
@@ -22,6 +23,11 @@ class MemExecutePlugin(config: MyCPUConfig) extends Plugin[MemPipeline] {
   var clrBusy: Flow[UInt] = null
   var wPort: Flow[RegWriteBundle] = null
   var robWrite: Flow[ROBStateLSUPortBundle] = null
+
+  // [stage3-⑥] SpinalSim 探针别名
+  var probeMemTlbValid: Bool = null
+  var probeMemTlbStuck: Bool = null
+  var probeMemTlbRemove: Bool = null
 
   override def setup(pipeline: MemPipeline): Unit = {
     val PRF = pipeline.globalService(classOf[PhysRegFilePlugin])
@@ -48,26 +54,27 @@ class MemExecutePlugin(config: MyCPUConfig) extends Plugin[MemPipeline] {
       }
     }
 
-    // stage2-③: MEM 管道在飞探针发布(③.4②;精度守卫——各级 valid && robIdx 比
-    // 分支老则阻塞其早重定向;访存异常直到 WB 才可能发生,故覆盖全部 7 级)
+    // stage2-③: MEM 管道在飞探针发布(③.4②)。
+    // stage3-⑥: taps 由 pipeline.stages 派生(7→8 随 MEMTLB 自动扩展,杜绝硬编码)
     if (config.frontend.enableEarlyRedirect) {
       pipeline plug new Area {
         val commit = pipeline.globalService(classOf[CommitPlugin])
-        val stageList = Seq(
-          pipeline.ISS,
-          pipeline.RRD,
-          pipeline.MEMADDR,
-          pipeline.MEM1,
-          pipeline.MEM2,
-          pipeline.WB,
-          pipeline.WB2
-        )
-        for ((st, i) <- stageList.zipWithIndex) {
+        for ((st, i) <- pipeline.stages.zipWithIndex) {
           commit.memPipeProbes(i).valid := st.arbitration.isValid
           commit.memPipeProbes(i).robIdx := st.input(pipeline.signals.ISSUE_SLOT).robIdx
         }
       }
     }
+
+    // [stage3-⑥] SpinalSim 探针(MEMTLB 级 stall/flush 一致性定向断言用,零硬件影响)
+    val memTlbArea = pipeline plug new Area {
+      val tlbValid = pipeline.MEMTLB.arbitration.isValid.simPublic()
+      val tlbStuck = pipeline.MEMTLB.arbitration.isStuck.simPublic()
+      val tlbRemove = pipeline.MEMTLB.arbitration.removeIt.simPublic()
+    }
+    probeMemTlbValid = memTlbArea.tlbValid
+    probeMemTlbStuck = memTlbArea.tlbStuck
+    probeMemTlbRemove = memTlbArea.tlbRemove
 
     pipeline.ISS plug new Area {
       import pipeline.ISS._

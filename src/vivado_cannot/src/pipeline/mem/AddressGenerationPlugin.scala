@@ -85,7 +85,6 @@ class AddressGenerationPlugin(config: MyCPUConfig) extends Plugin[MemPipeline] {
       val mmu = pipeline.globalService(classOf[MMUPlugin])
       val directTranslateResult =
         mmu.directTranslate(virtAddr, Mux(isStore, MemOperationType.STORE, MemOperationType.LOAD))
-      val tlbTranslateResult = mmu.tlbTranslate(virtAddr, Mux(isStore, MemOperationType.STORE, MemOperationType.LOAD))
       val savedCSR = TranslateCSRBundle()
       savedCSR.CRMD_DA := excHandler.CRMD_DA
       savedCSR.CRMD_PG := excHandler.CRMD_PG
@@ -93,8 +92,31 @@ class AddressGenerationPlugin(config: MyCPUConfig) extends Plugin[MemPipeline] {
       savedCSR.CRMD_DATM := excHandler.CRMD_DATM
 
       insert(DIRECT_TRANSLATE_RESULT) := directTranslateResult.resultBundle
-      insert(TLB_TRANSLATE_RESULT) := tlbTranslateResult.resultBundle
       insert(TRANSLATE_SAVED_CSR) := savedCSR
+
+      // stage3-⑥ S1 拍 1:TLB 预解析胖寄存器落于 MEMADDR→MEMTLB 边界;OFF 态直通组合
+      if (config.memPipeline.splitTlbStage) {
+        insert(TLB_PARTIAL) := mmu.tlbTranslatePartial(virtAddr).partial
+      }
+    }
+
+    // stage3-⑥ S1 拍 2:MuxOH 16:1 + 异常合成 + physAddr 拼接 + cached
+    pipeline.MEMTLB plug new Area {
+
+      import pipeline.MEMTLB._
+      import pipeline.signals._
+
+      val issSlot = input(ISSUE_SLOT)
+      val uop = issSlot.uop
+      val virtAddr = input(MEMORY_ADDRESS)
+      val isStore = uop.isStore
+      val mmu = pipeline.globalService(classOf[MMUPlugin])
+      val partial =
+        if (config.memPipeline.splitTlbStage) input(TLB_PARTIAL)
+        else mmu.tlbTranslatePartial(virtAddr).partial // 回退档:直通组合(单拍锥)
+      val tlbTranslateResult =
+        mmu.tlbTranslateFinish(partial, virtAddr, Mux(isStore, MemOperationType.STORE, MemOperationType.LOAD))
+      insert(TLB_TRANSLATE_RESULT) := tlbTranslateResult.resultBundle
     }
 
     pipeline.MEM1 plug new Area {
