@@ -45,6 +45,18 @@
 
 ## Chiplab JTAG 功能测试上板
 
+如果 JTAG 由 Windows 原生 `hw_server` 管理，可在 WSL 中指定远程服务：
+
+```shell
+HW_SERVER_URL=WINDOWS_HOST_IP:3121 sh ./chiplab_func_board.sh
+```
+
+此模式不会在 WSL 中启动本地 `hw_server`。Windows 负责访问 USB JTAG，WSL
+继续负责 Vivado Tcl 客户端、镜像文件和构建。
+
+脚本会在执行 Vivado 前自动检查 `WINDOWS_HOST_IP:3121` 是否可达；成功时输出
+`hw_server reachable`，失败时停止并提示检查 Windows 服务、防火墙和 WSL 主机地址。
+
 连接开发板 JTAG 后，在仓库根目录执行快速自动验收：
 
 ```shell

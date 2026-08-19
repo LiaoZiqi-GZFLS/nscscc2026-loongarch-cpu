@@ -89,8 +89,13 @@ if {[scan $sizes "%x %x" kernel_file_size kernel_mem_size] != 2} {
   error "Invalid kernel load metadata: $sizes"
 }
 
+proc env_or {name default} {
+  if {[info exists ::env($name)] && $::env($name) ne ""} { return $::env($name) }
+  return $default
+}
+
 open_hw_manager
-connect_hw_server -url localhost:3121 -allow_non_jtag
+connect_hw_server -url [env_or HW_SERVER_URL localhost:3121] -allow_non_jtag
 set_msg_config -id {Labtoolstcl 44-481} -suppress
 refresh_hw_server [get_hw_servers]
 set targets [get_hw_targets]

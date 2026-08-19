@@ -4,6 +4,7 @@ set -eu
 cd "$(dirname "$0")"
 VIVADO=${VIVADO:-vivado}
 HW_SERVER=${HW_SERVER:-hw_server}
+HW_SERVER_URL=${HW_SERVER_URL:-localhost:3121}
 FUNC_BIT=${FUNC_BIT:-$PWD/bit/func_test/func_soc_top.bit}
 FUNC_BIN=${FUNC_BIN:-/home/cjy/chiplab/software/examples/nscscc_func/obj/main.bin}
 FUNC_LTX=${FUNC_LTX:-/home/cjy/T2026143250012561-build/artifacts/soc_top.ltx}
@@ -16,10 +17,25 @@ test -f "$FUNC_BIN" || { echo "Missing function-test image: $FUNC_BIN" >&2; exit
 test -f "$FUNC_LTX" || { echo "Missing probes file: $FUNC_LTX" >&2; exit 1; }
 mkdir -p "$(dirname "$LOG")"
 
-if ! pgrep -x hw_server >/dev/null 2>&1; then
-    "$HW_SERVER" -d -s tcp::3121
-    sleep 1
-fi
+case "$HW_SERVER_URL" in
+    localhost:3121|127.0.0.1:3121)
+      if ! pgrep -x hw_server >/dev/null 2>&1; then
+          "$HW_SERVER" -d -s tcp::3121
+          sleep 1
+      fi
+      ;;
+    *)
+      echo "Using remote hw_server at $HW_SERVER_URL"
+      HW_SERVER_HOST=${HW_SERVER_URL%:*}
+      HW_SERVER_PORT=${HW_SERVER_URL##*:}
+      if ! timeout 2 bash -c "</dev/tcp/$HW_SERVER_HOST/$HW_SERVER_PORT" 2>/dev/null; then
+          echo "Cannot reach remote hw_server at $HW_SERVER_URL" >&2
+          echo "Check Windows hw_server, firewall, and WSL host address" >&2
+          exit 1
+      fi
+      echo "hw_server reachable: $HW_SERVER_URL"
+      ;;
+esac
 
 echo "FUNC_BIT=$FUNC_BIT"
 echo "FUNC_BIN=$FUNC_BIN"
@@ -27,6 +43,7 @@ echo "FUNC_LTX=$FUNC_LTX"
 echo "FUNC_SWITCH=$FUNC_SWITCH FUNC_TIMEOUT=$FUNC_TIMEOUT LOG=$LOG"
 
 if FUNC_BIT="$FUNC_BIT" FUNC_BIN="$FUNC_BIN" FUNC_LTX="$FUNC_LTX" \
+    HW_SERVER_URL="$HW_SERVER_URL" \
     FUNC_SWITCH="$FUNC_SWITCH" FUNC_TIMEOUT="$FUNC_TIMEOUT" \
     "$VIVADO" -mode batch -nojournal -nolog -source "$PWD/tools/chiplab_func_board.tcl" \
     >"$LOG" 2>&1; then

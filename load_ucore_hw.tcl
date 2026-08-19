@@ -50,7 +50,7 @@ proc write_bin {axi filename start_addr} {
 
 set image "/mnt/d/project/T2026143250012561/sw/ucore/out/ucore.bin"
 open_hw_manager
-connect_hw_server -url localhost:3121 -allow_non_jtag
+connect_hw_server -url [env_or HW_SERVER_URL localhost:3121] -allow_non_jtag
 refresh_hw_server [get_hw_servers]
 current_hw_target [lindex [get_hw_targets] 0]
 open_hw_target
@@ -65,3 +65,7 @@ puts "VERIFY=[read_reg $axi 1C000000]"
 write_reg $axi 40000000 00000000
 puts "UCORE_CPU_RELEASED"
 exit
+proc env_or {name default} {
+  if {[info exists ::env($name)] && $::env($name) ne ""} { return $::env($name) }
+  return $default
+}

@@ -112,6 +112,17 @@ nscscc-team SoC 的版本。上游版本、commit 与逐处改动清单见
 
 ## 自动构建与上板稳定性测试
 
+默认脚本在本机启动 `hw_server`。如果 JTAG 由 Windows 原生 `hw_server` 管理，
+在 WSL 中使用其地址：
+
+```shell
+HW_SERVER_URL=WINDOWS_HOST_IP:3121 UART=/dev/ttyUSB2 ROUNDS=1 sh ./board_stability.sh
+```
+
+远程模式不会启动 WSL 内的本地 `hw_server`；Windows 只负责 USB JTAG，WSL 仍
+负责 Vivado Tcl 客户端、uCore 构建和 UART 采集。
+脚本会先执行 TCP 连通性检查，成功时输出 `hw_server reachable`。
+
 连接开发板 JTAG 和串口后，在本目录执行：
 
 ```shell
