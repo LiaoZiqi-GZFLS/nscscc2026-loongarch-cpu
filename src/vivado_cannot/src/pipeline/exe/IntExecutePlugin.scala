@@ -134,7 +134,9 @@ class IntExecutePlugin(val config: MyCPUConfig, val fuIdx: Int) extends Plugin[E
       // stage2-③: 分支授权拍采样 prefixOk(③.4)。prefix 为精度守卫而非正确性前提。
       if (withBRU && config.frontend.enableEarlyRedirect) {
         val commit = pipeline.globalService(classOf[CommitPlugin])
-        // 模 32 年龄比较:x 比 b 老 ⟺ (b - x) ∈ [1,15](5bit 减法 + 符号位)
+        // 模 robDepth 年龄比较:x 比 b 老 ⟺ (b - x) mod robDepth ∈ [1, robDepth/2-1]
+        // (robAddressWidth 减法 + 符号位;stage3-③ ROB=64 后为 6bit,d∈[1,31] 判老,
+        // d.msb 即 d(5),代码随 robAddressWidth 自动参数化,无需改逻辑)
         def olderThan(x: UInt, b: UInt): Bool = {
           val d = b - x
           d =/= 0 && !d.msb

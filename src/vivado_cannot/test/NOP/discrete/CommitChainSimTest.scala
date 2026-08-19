@@ -143,7 +143,7 @@ object CommitChainSim {
       if (prevNeedFlush) {
         assert(popPtr == 0, s"cycle $cycle: popPtr=$popPtr after flush, expect 0")
       } else {
-        val delta = (popPtr - prevPopPtr) & 0x1f
+        val delta = (popPtr - prevPopPtr) & 0x3f // stage3-③: ROB 64,popPtr 模 64 回卷
         assert(delta <= 3, s"cycle $cycle: popPtr non-monotone, prev=$prevPopPtr now=$popPtr")
       }
       assert(!(needFlush && mboxWen), s"cycle $cycle: flushMutex violated (needFlush && mboxWen)")

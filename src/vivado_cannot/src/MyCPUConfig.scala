@@ -104,7 +104,8 @@ final case class IntIssueConfig(
     csrIdx: Int = 0,
     timerIdx: Int = 1,
     invTLBIdx: Int = 0,
-    depth: Int = 7
+    // stage3-③: 容量扩张 7->10(选择树 log2 7=3 -> log2 10=4,+1 级,预算已登记)
+    depth: Int = 10
 ) extends IssueConfig {
   require(0 <= bruIdx && bruIdx < issueWidth)
   require(0 <= csrIdx && csrIdx < issueWidth)
@@ -129,7 +130,9 @@ final case class MemIssueConfig(
 
 // Commit
 final case class ROBConfig(
-    robDepth: Int = 32,
+    // stage3-③: 容量扩张 32->64(保 pow2,指针/年龄比较/ReorderCacheRAM 行回卷
+    // 全部走自然模 64;设计书 stage3_design ③.0 案 B)
+    robDepth: Int = 64,
     retireWidth: Int = 3
 ) {
   val robAddressWidth = log2Up(robDepth)
