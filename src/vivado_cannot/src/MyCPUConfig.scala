@@ -111,7 +111,7 @@ final case class IntIssueConfig(
     //   广播,PRF busys 清零与胞元唤醒统一读总线;
     // false=档 B(回退/A/B 对账):5 口 clearBusys 组合豁免网 + 3 口 localTag,
     //   行为 ≡ t26-stage2-int(28ffec15)
-    registeredWakeup: Boolean = true,
+    registeredWakeup: Boolean = false, // s3b 保险档：关双总线唤醒
     aluBusEntries: Int = 4, // INT0..2(ISS→RRD 沿采样) + MULDIV(EXE 拍打拍)
     memBusEntries: Int = 1 // MEM 加载(M1:MEM1 锥打拍,MEM2 广播)
 ) extends IssueConfig {
