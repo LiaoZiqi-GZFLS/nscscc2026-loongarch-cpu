@@ -9,3 +9,6 @@ Loongarch/
 
 # Raw hardware test logs
 logs/*.log
+
+# Local exhibition-material mirror (the active archive is kept at ~/show)
+/show-archive/
