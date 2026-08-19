@@ -28,7 +28,8 @@ class MemExecutePlugin(config: MyCPUConfig) extends Plugin[MemPipeline] {
     val IQ = pipeline.globalService(classOf[MemIssueQueuePlugin])
     val ROB = pipeline.globalService(classOf[ROBFIFOPlugin])
     rrdRsp = Vec(rrdReq.map(PRF.readPort(_)))
-    clrBusy = PRF.clearBusy
+    // [stage3-①②] 档 A:busys 清零读总线,不再开 clearBusy 口
+    if (!config.intIssue.registeredWakeup) clrBusy = PRF.clearBusy
     wPort = PRF.writePort(true)
     robWrite = ROB.lsuPort
   }
@@ -128,9 +129,22 @@ class MemExecutePlugin(config: MyCPUConfig) extends Plugin[MemPipeline] {
       val wRegPayload = Mux(std.valid, std.payload.wReg.payload, issSlot.wReg)
       // 推测唤醒，一个气泡
       // 若推测失败（MEM2非hit），则暂停所有其余流水的RRD
-      clrBusy.valid := ((arbitration.isValid && (input(ADDRESS_CACHED) || issSlot.uop.isSC)) || isLDU) &&
-        arbitration.notStuck && wRegValid
-      clrBusy.payload := wRegPayload
+      // [stage3-①②] 档 A(M1 保守案):MEM1 拍 valid 锥原样打拍进
+      // memWakeupBus(0),MEM2 拍广播;推测语义不变(SpeculativeWakeupHandler
+      // 仍在 MEM2 检测)。档 B:保留 MEM1 拍 clearBusy 直驱。
+      if (config.intIssue.registeredWakeup) {
+        val bus = pipeline.globalService(classOf[WakeupBusPlugin]).memWakeupBus(0)
+        bus.valid := RegNext(
+          ((arbitration.isValid && (input(ADDRESS_CACHED) || issSlot.uop.isSC)) || isLDU) &&
+            arbitration.notStuck && wRegValid,
+          init = False
+        )
+        bus.payload := RegNext(wRegPayload)
+      } else {
+        clrBusy.valid := ((arbitration.isValid && (input(ADDRESS_CACHED) || issSlot.uop.isSC)) || isLDU) &&
+          arbitration.notStuck && wRegValid
+        clrBusy.payload := wRegPayload
+      }
     }
 
     pipeline.MEM2 plug new Area {

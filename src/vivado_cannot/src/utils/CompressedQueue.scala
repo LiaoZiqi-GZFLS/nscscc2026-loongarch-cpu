@@ -35,19 +35,28 @@ abstract class CompressedQueue[T <: IssueSlot](
     issConfig: IssueConfig,
     val decodeWidth: Int,
     val slotType: HardType[T],
-    val tagWidth: Int
+    val tagWidth: Int,
+    aluBusEntries: Int = 4,
+    memBusEntries: Int = 1
 ) extends Plugin[MyCPUCore] {
   val issueWidth = issConfig.issueWidth
   val depth = issConfig.depth
 
   /** [stage2] 胞元核心:插件与 SpinalSim 单测共用的唯一实现 */
-  val cells = new CellIssueQueueCore(depth, issueWidth, decodeWidth, slotType, tagWidth, fifoMode = false)
+  val cells = new CellIssueQueueCore(
+    depth, issueWidth, decodeWidth, slotType, tagWidth,
+    fifoMode = false, aluBusEntries, memBusEntries
+  )
 
   /** 全局唤醒 tag 口(PR busy 清零广播),IQ 插件 build 时挂接 PRF.clearBusys */
   def addGlobalTagPort(port: Flow[UInt]): Unit = cells.addGlobalTagPort(port)
 
-  /** IntIQ 本地 bypass 唤醒口(§3.6 组合豁免网),每 INT FU 一个 */
+  /** IntIQ 本地 bypass 唤醒口(档 B 回退用),每 INT FU 一个 */
   def localWakeupPort(): Flow[UInt] = cells.localWakeupPort()
+
+  /** [stage3-①②] 档 A 挂双总线 / 档 B tie-off,由 IQ 插件 build 期调用其一 */
+  def connectBuses(alu: Vec[Flow[UInt]], mem: Vec[Flow[UInt]]): Unit = cells.connectBuses(alu, mem)
+  def tieOffBuses(): Unit = cells.tieOffBuses()
 
   val busyAddrs: Vec[UInt] // For overwritten in subclasses
   var busyRsps: Vec[Bool] = null // Read from PRF

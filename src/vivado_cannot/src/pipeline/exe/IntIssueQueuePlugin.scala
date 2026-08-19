@@ -66,7 +66,15 @@ class IntIssueQueuePlugin(config: MyCPUConfig)
 
     // [stage2-①④] 选择/唤醒/压缩/装载挂 cellArea(组域);tag 口挂接:
     // 5 口 PRF clearBusys(全局) + 每 INT FU 一口 localTag(本地,§3.6 豁免)
-    pipeline.service(classOf[PhysRegFilePlugin]).clearBusys.foreach(addGlobalTagPort)
+    // [stage3-①②] 唤醒 tag 来源:档 A 挂 WakeupBusPlugin 双总线(FF 直驱);
+    // 档 B 回退走 5 口 clearBusys 豁免网 + 3 口 localTag(行为 ≡ 28ffec15)
+    if (config.intIssue.registeredWakeup) {
+      val wb = pipeline.globalService(classOf[WakeupBusPlugin])
+      connectBuses(wb.aluWakeupBus, wb.memWakeupBus)
+    } else {
+      tieOffBuses()
+      pipeline.service(classOf[PhysRegFilePlugin]).clearBusys.foreach(addGlobalTagPort)
+    }
     val cellArea = new Area { // 选择区(组域,comb)
       genIssueSelect() // 维持 OHMasking 树选版(设计书 ①.2)
     }

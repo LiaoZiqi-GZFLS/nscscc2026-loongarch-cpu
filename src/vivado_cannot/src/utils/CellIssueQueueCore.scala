@@ -37,7 +37,10 @@ class CellIssueQueueCore[T <: IssueSlot](
     val decodeWidth: Int,
     val slotType: HardType[T],
     val tagWidth: Int,
-    val fifoMode: Boolean
+    val fifoMode: Boolean,
+    // [stage3-①②] 双总线固定形态口(档 A);档 B 回退仍用下方两个 ArrayBuffer 口
+    val aluBusEntries: Int = 4,
+    val memBusEntries: Int = 1
 ) extends Area {
 
   /** 胞元阵列(寄存器 Q) */
@@ -52,7 +55,14 @@ class CellIssueQueueCore[T <: IssueSlot](
   /** 入队口(DISPATCH 级驱动) */
   val pushPorts = Vec(Stream(slotType()), decodeWidth)
 
-  /** 唤醒 tag 口:全局(PR busy 清零广播)+ 本地(IntIQ 早唤醒),组合豁免网 */
+  /** [stage3-①②] 唤醒 tag 双总线(档 A,FF 直驱向量网,由 IQ 插件挂接
+    * WakeupBusPlugin;档 B 时由 IQ 插件 tie-off)。aluBus: INT0..2 + MULDIV;
+    * memBus: MEM 加载。 */
+  val aluTagBus = Vec(Flow(UInt(tagWidth bits)), aluBusEntries)
+  val memTagBus = Vec(Flow(UInt(tagWidth bits)), memBusEntries)
+
+  /** 唤醒 tag 口(档 B 回退路径):全局(PR busy 清零广播)+ 本地(IntIQ 早唤醒),
+    * §3.6 组合豁免网;档 A 下不使用(保持为空) */
   val globalTagPorts = mutable.ArrayBuffer[Flow[UInt]]()
   val localTagPorts = mutable.ArrayBuffer[Flow[UInt]]()
 
@@ -82,11 +92,36 @@ class CellIssueQueueCore[T <: IssueSlot](
     globalTagPorts += port
   }
 
-  /** IntIQ 本地 bypass 唤醒口(替代 IntExecutePlugin 原 ISS 拍双写块,拍序不变) */
+  /** IntIQ 本地 bypass 唤醒口(档 B 回退用,§3.6 组合豁免网),每 INT FU 一个 */
   def localWakeupPort(): Flow[UInt] = {
     val port = Flow(UInt(tagWidth bits))
     localTagPorts += port
     port
+  }
+
+  /** [stage3-①②] 档 A:挂接 WakeupBusPlugin 双总线(FF 直驱) */
+  def connectBuses(alu: Vec[Flow[UInt]], mem: Vec[Flow[UInt]]): Unit = {
+    require(alu.length == aluBusEntries && mem.length == memBusEntries)
+    for (k <- 0 until aluBusEntries) {
+      aluTagBus(k).valid := alu(k).valid
+      aluTagBus(k).payload := alu(k).payload
+    }
+    for (k <- 0 until memBusEntries) {
+      memTagBus(k).valid := mem(k).valid
+      memTagBus(k).payload := mem(k).payload
+    }
+  }
+
+  /** [stage3-①②] 档 B:总线口 tie-off(唤醒全走旧豁免网口) */
+  def tieOffBuses(): Unit = {
+    aluTagBus.foreach { b =>
+      b.valid := False
+      b.payload := 0
+    }
+    memTagBus.foreach { b =>
+      b.valid := False
+      b.payload := 0
+    }
   }
 
   /** 1. 入队:定位匹配写入 queueNext(首次空位);pushPorts.ready 由尾部占用给出 */
@@ -146,9 +181,11 @@ class CellIssueQueueCore[T <: IssueSlot](
   }
 
   /** 4. 唤醒:rReady 位面唯一写者,post-mux tag 比较末端 OR(设计书 ①.2/①.4)。
-    * 必须在 genCompress/genFlush 之后调用(读后赋值取多路选择后的 tag)。 */
+    * 必须在 genCompress/genFlush 之后调用(读后赋值取多路选择后的 tag)。
+    * [stage3-①②] tag 来源 = 双总线(档 A) ++ 旧豁免网口(档 B 回退,档 A 下为空);
+    * 优先级链与调用序逐字不动。 */
   def genWakeup(rPorts: Int): Unit = {
-    val tagPorts = globalTagPorts.toSeq ++ localTagPorts.toSeq
+    val tagPorts = (aluTagBus ++ memTagBus).toSeq ++ globalTagPorts.toSeq ++ localTagPorts.toSeq
     for (i <- 0 until depth; j <- 0 until rPorts) {
       val postMuxTag = queueD(i).payload.rRegs(j).payload
       val hit = tagPorts.map(p => p.valid && p.payload === postMuxTag).orR

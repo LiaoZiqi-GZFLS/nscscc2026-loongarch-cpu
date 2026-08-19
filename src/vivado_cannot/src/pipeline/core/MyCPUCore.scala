@@ -171,6 +171,8 @@ class MyCPUCore(config: MyCPUConfig, resetDomains: Seq[ClockDomain] = null) exte
     grp(7)(new ROBFIFOPlugin(config)),
     grp(7)(new CommitPlugin(config)),
     grp(7)(new BypassNetworkPlugin(config.regFile)),
+    // [stage3-①②] 唤醒总线聚合(双总线,档 A;组 3 与 INT 管同组)
+    grp(3)(new WakeupBusPlugin(config)),
     // Reservation stations
     grp(3)(new IntIssueQueuePlugin(config)),
     grp(4)(new MulDivIssueQueuePlugin(config)),
