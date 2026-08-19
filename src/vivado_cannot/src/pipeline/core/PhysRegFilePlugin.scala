@@ -27,7 +27,13 @@ class PhysRegFilePlugin(config: RegFileConfig) extends Plugin[MyCPUCore] {
   // 1. 被写分配，此后的指令都应该读新值，但是新值尚未写回。
   // 2. 写完成，此后的读都可以直接读寄存器。
   // 3. 释放，此后不应该有读发生。
-  val regs = Vec(RegInit(BWord(0)), config.nPhysRegs)
+  // [stage3④] PRF 数据位免复位：去除 RegInit，组 8 复位网 2079→63 bit（-97%）。
+  // 正确性论证（stage3_design.md ④.2）：
+  //   - r0 恒 0 由 readPort 的 Mux(addr===0, 0, regs(addr-1)) 组合保证，regs(0) 永不寻址；
+  //   - 任何 arch reg 首读必先经 rename 分配 + busy 置位 + 写回 + 清 busy，已写路径受 busy 协议保护；
+  //   - LA32 未规定复位后通用寄存器初值；R10（测试程序隐式零初值依赖）由 xsim 双跑终验。
+  // busys/sRAT/freeList 复位保留（语义必需），不在本项范围。
+  val regs = Vec(Reg(BWord()), config.nPhysRegs)
 
   // TODO: [NOP] delete this debug code
   val debug_regs = out(Vec(Bits(32 bits), config.nPhysRegs))
