@@ -121,6 +121,14 @@ final case class MulDivConfig(
   def useDivisionEarlyOut = divisionEarlyOutWidth > 0
 }
 
+// stage3-⑥: MEM 管道配置
+final case class MemPipelineConfig(
+    // MEM_ADDR→MEM1 TLB 结果路径切片(S1:新增 MEMTLB 级,胖切点 TLB_PARTIAL 寄存)。
+    // 默认 true=8 级;false 时 MEMTLB 级仍存在但 TLB partial 直通组合
+    // (恢复单拍 TLB 锥,用于 A/B 对账与现场止损;完全去级 = revert commit)
+    splitTlbStage: Boolean = true
+)
+
 final case class MemIssueConfig(
     depth: Int = 5
 ) extends IssueConfig {
@@ -170,6 +178,7 @@ final case class MyCPUConfig(
     // MEM
     dcache: DCacheConfig = DCacheConfig(),
     memIssue: MemIssueConfig = MemIssueConfig(),
+    memPipeline: MemPipelineConfig = MemPipelineConfig(), // stage3-⑥
     storeBufferDepth: Int = 8,
     // Commit
     rob: ROBConfig = ROBConfig(),

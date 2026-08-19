@@ -101,7 +101,9 @@ class CommitPlugin(config: MyCPUConfig)
   val exeGhrRestoreIn = Flow(UInt(config.frontend.bpu.historyWidth bits)).setIdle()
   // prefix 检查探针总线(③.4;仅 enableEarlyRedirect 时驱动/消费)
   val intPipeProbes = Vec(IntPipeHazardProbe(config.rob.robAddressWidth), config.intIssue.issueWidth)
-  val memPipeProbes = Vec(MemPipeHazardProbe(config.rob.robAddressWidth), 7) // ISS/RRD/MEMADDR/MEM1/MEM2/WB/WB2
+  // stage3-⑥: taps 宽度由 memPipeline.stages.size 派生(杜绝硬编码;build 期初始化)
+  private var memPipeProbesVar: Vec[MemPipeHazardProbe] = null
+  def memPipeProbes: Vec[MemPipeHazardProbe] = memPipeProbesVar
   // [stage2-③] SpinalSim 探针别名
   var probeFlushBackend: Bool = null
   var probeFlushFrontend: Bool = null
@@ -114,6 +116,8 @@ class CommitPlugin(config: MyCPUConfig)
   override def build(pipeline: MyCPUCore): Unit = pipeline plug {
     val robFIFO = pipeline.service(classOf[ROBFIFOPlugin])
     val jumpInterface = pipeline.fetchPipeline.service(classOf[ProgramCounterPlugin]).backendJumpInterface
+    // stage3-⑥: MEM 探针总线宽度 = MEM 管道级数(8=ISS/RRD/MEMADDR/MEMTLB/MEM1/MEM2/WB/WB2)
+    memPipeProbesVar = Vec(MemPipeHazardProbe(config.rob.robAddressWidth), pipeline.memPipeline.stages.size)
 
     // Insert into RENAME stage
     pipeline.RENAME plug new Area {

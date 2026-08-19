@@ -31,6 +31,9 @@ class MemSignals(config: MyCPUConfig) {
   object TMP_RESULT extends Stageable(BWord())
 
   object DIRECT_TRANSLATE_RESULT extends Stageable(Flow(TranslateResultBundle()))
+  // stage3-⑥: MEMADDR(拍1) TLB 预解析胖切点(hits 16b + selFields 16×26b + ps 16×6b ≈ 530b),
+  // 寄存于 MEMADDR→MEMTLB 边界;MEMTLB(拍2) MuxOH+异常+拼接后产出 TLB_TRANSLATE_RESULT
+  object TLB_PARTIAL extends Stageable(TlbPartialBundle(config.tlbConfig.numEntries))
   object TLB_TRANSLATE_RESULT extends Stageable(Flow(TranslateResultBundle()))
   object TRANSLATE_SAVED_CSR extends Stageable(TranslateCSRBundle())
 
@@ -46,6 +49,7 @@ trait MemPipeline extends Pipeline {
   val ISS: Stage = null // issue/select
   val RRD: Stage = null // register read
   val MEMADDR: Stage = null
+  val MEMTLB: Stage = null // stage3-⑥: TLB 结果路径切片(MuxOH+异常+拼接)
   val MEM1: Stage = null
   val MEM2: Stage = null
   val WB: Stage = null

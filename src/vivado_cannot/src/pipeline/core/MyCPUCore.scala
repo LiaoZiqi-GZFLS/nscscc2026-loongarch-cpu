@@ -130,6 +130,7 @@ class MyCPUCore(config: MyCPUConfig, resetDomains: Seq[ClockDomain] = null) exte
       override val ISS: Stage = newStage().setName("MEM_ISS")
       override val RRD: Stage = newStage().setName("MEM_RRD")
       override val MEMADDR: Stage = newStage().setName("MEM_ADDR")
+      override val MEMTLB: Stage = newStage().setName("MEM_MEMTLB") // stage3-⑥
       override val MEM1: Stage = newStage().setName("MEM_MEM1")
       override val MEM2: Stage = newStage().setName("MEM_MEM2")
       override val WB: Stage = newStage().setName("MEM_WB")
