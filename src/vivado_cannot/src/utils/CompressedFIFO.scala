@@ -20,16 +20,25 @@ abstract class CompressedFIFO[T <: IssueSlot](
     issConfig: IssueConfig,
     val decodeWidth: Int,
     val slotType: HardType[T],
-    val tagWidth: Int
+    val tagWidth: Int,
+    aluBusEntries: Int = 4,
+    memBusEntries: Int = 1
 ) extends Plugin[MyCPUCore] {
   val issueWidth = issConfig.issueWidth
   val depth = issConfig.depth
 
   /** [stage2] 胞元核心(fifo 语义:仅队头出队,issueReq 驱动) */
-  val cells = new CellIssueQueueCore(depth, 1, decodeWidth, slotType, tagWidth, fifoMode = true)
+  val cells = new CellIssueQueueCore(
+    depth, 1, decodeWidth, slotType, tagWidth,
+    fifoMode = true, aluBusEntries, memBusEntries
+  )
 
-  /** 全局唤醒 tag 口(PR busy 清零广播),IQ 插件 build 时挂接 PRF.clearBusys */
+  /** 全局唤醒 tag 口(档 B:PR busy 清零广播),IQ 插件 build 时挂接 PRF.clearBusys */
   def addGlobalTagPort(port: Flow[UInt]): Unit = cells.addGlobalTagPort(port)
+
+  /** [stage3-①②] 档 A 挂双总线 / 档 B tie-off,由 IQ 插件 build 期调用其一 */
+  def connectBuses(alu: Vec[Flow[UInt]], mem: Vec[Flow[UInt]]): Unit = cells.connectBuses(alu, mem)
+  def tieOffBuses(): Unit = cells.tieOffBuses()
 
   val busyAddrs: Vec[UInt] // For overwritten in subclasses
   var busyRsps: Vec[Bool] = null // Read from PRF

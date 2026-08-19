@@ -32,7 +32,8 @@ class MulDivExecutePlugin(val config: MyCPUConfig) extends Plugin[ExecutePipelin
     val PRF = pipeline.globalService(classOf[PhysRegFilePlugin])
     val ROB = pipeline.globalService(classOf[ROBFIFOPlugin])
     rrdRsp = Vec(rrdReq.map(PRF.readPort(_)))
-    clrBusy = PRF.clearBusy
+    // [stage3-①②] 档 A:busys 清零读总线,不再开 clearBusy 口
+    if (!config.intIssue.registeredWakeup) clrBusy = PRF.clearBusy
     wPort = PRF.writePort(true)
     robWrite = ROB.completePort
   }
@@ -183,8 +184,17 @@ class MulDivExecutePlugin(val config: MyCPUConfig) extends Plugin[ExecutePipelin
       }
 
       // 远程唤醒
-      clrBusy.valid := arbitration.isValid && wakeupCycle && issSlot.uop.doRegWrite
-      clrBusy.payload := issSlot.wReg
+      // [stage3-①②] 档 A:EXE 拍 {wakeupCycle && doRegWrite, wReg} 打拍进
+      // aluWakeupBus(3),次拍广播;wakeupCycle 锥(mulCounter/in16Bits)入 FF 的
+      // D 端即被斩断,不再进胞元。档 B:保留 EXE 拍 clearBusy 直驱。
+      if (config.intIssue.registeredWakeup) {
+        val bus = pipeline.globalService(classOf[WakeupBusPlugin]).aluWakeupBus(3)
+        bus.valid := RegNext(arbitration.isValid && wakeupCycle && issSlot.uop.doRegWrite, init = False)
+        bus.payload := RegNext(issSlot.wReg)
+      } else {
+        clrBusy.valid := arbitration.isValid && wakeupCycle && issSlot.uop.doRegWrite
+        clrBusy.payload := issSlot.wReg
+      }
     }
 
     pipeline.WB plug new Area {

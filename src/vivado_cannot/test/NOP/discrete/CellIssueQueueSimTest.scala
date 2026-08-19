@@ -31,7 +31,9 @@ class CellQueueTestTop(
 
   val io = new Bundle {
     val push = Vec(slave Stream (IntIssueSlot(config)), decodeWidth)
-    val tags = Vec(slave Flow (UInt(tagWidth bits)), 2)
+    // [stage3-①②] 双总线形态:alu 4 条目 + mem 1 条目(替代旧 Vec(2) 注入口)
+    val aluTags = Vec(slave Flow (UInt(tagWidth bits)), 4)
+    val memTags = Vec(slave Flow (UInt(tagWidth bits)), 1)
     val flush = in Bool ()
     val issueReq = in Bool () // fifo 模式
   }
@@ -41,11 +43,15 @@ class CellQueueTestTop(
     cells.pushPorts(i).payload := io.push(i).payload
     io.push(i).ready := cells.pushPorts(i).ready
   }
-  for (i <- 0 until 2) {
-    val tp = Flow(UInt(tagWidth bits))
-    cells.addGlobalTagPort(tp)
-    tp.valid := io.tags(i).valid
-    tp.payload := io.tags(i).payload
+  // 胞元双总线直接由测试驱动(总线聚合 FF 在 WakeupBusPlugin,不在胞元内,
+  // 拍序不变:广播拍 T → rReady T+1 可见)
+  for (k <- 0 until 4) {
+    cells.aluTagBus(k).valid := io.aluTags(k).valid
+    cells.aluTagBus(k).payload := io.aluTags(k).payload
+  }
+  for (k <- 0 until 1) {
+    cells.memTagBus(k).valid := io.memTags(k).valid
+    cells.memTagBus(k).payload := io.memTags(k).payload
   }
   cells.queueFlush setWhen io.flush
   if (fifoMode) cells.issueReq := io.issueReq // queue 模式由 genSelect 占住驱动
@@ -109,7 +115,11 @@ object CellQueueSim {
         p.payload.wReg #= 0
         p.payload.robIdx #= 0
       }
-      dut.io.tags.foreach { t =>
+      dut.io.aluTags.foreach { t =>
+        t.valid #= false
+        t.payload #= 0
+      }
+      dut.io.memTags.foreach { t =>
         t.valid #= false
         t.payload #= 0
       }
@@ -125,6 +135,7 @@ object CellQueueSim {
       val alive = mutable.ArrayBuffer[Cell]()
       val liveTags = mutable.Set[Int]()
       var nextTag = 1
+      var lastWakeTag = -1 // (c) 重播用
 
       def rtlSeq(): Seq[Int] =
         (0 until depth).flatMap { i =>
@@ -195,15 +206,28 @@ object CellQueueSim {
             val preReady = rnd.nextInt(100) < 30 // 30% 入队即就绪
             enqCells += Cell(tag, preReady)
           }
+          // 唤醒:45% 触发;权重覆盖 stage3 ①.6 三类定向:
+          //  (a) 总线口同拍多条目命中(多生产者同拍,向量总线无仲裁)
+          //  (b) 总线广播与入队同拍(入队当拍竞态,R1/post-mux OR)
+          //  (c) 同一 tag 连续多拍广播(stall 重播幂等,①.7 R4)
+          // 模型口径不变:wakeup(tag) 命中所有等 tag 存活胞元。
           if (rnd.nextInt(100) < 45) {
             val notReady = alive.filterNot(_.ready).toSeq
-            if (notReady.nonEmpty && rnd.nextInt(100) < 55) {
+            val roll = rnd.nextInt(100)
+            if (roll < 20 && notReady.nonEmpty) {
+              // (a) 同拍多条目:同一或不同 tag 打 2~3 条 alu 条目
+              val n = 2 + rnd.nextInt(2)
+              for (_ <- 0 until n) wakeTags += notReady(rnd.nextInt(notReady.size)).uopId
+            } else if (roll < 40 && enqCells.nonEmpty) {
+              wakeTags += enqCells.head.uopId // (b) 入队当拍唤醒竞态
+            } else if (roll < 55 && lastWakeTag >= 0) {
+              wakeTags += lastWakeTag // (c) 重播上一拍 tag(幂等)
+            } else if (notReady.nonEmpty && rnd.nextInt(100) < 60) {
               wakeTags += notReady(rnd.nextInt(notReady.size)).uopId
-            } else if (enqCells.nonEmpty && rnd.nextInt(100) < 40) {
-              wakeTags += enqCells.head.uopId // 入队当拍唤醒竞态(R1)
             } else {
               wakeTags += rnd.nextInt(64)
             }
+            // mem 条目(1 口)偶发参与:并入条目流,驱动段分配
             if (rnd.nextInt(100) < 25) wakeTags += rnd.nextInt(64)
           }
         }
@@ -221,14 +245,25 @@ object CellQueueSim {
             dut.io.push(p).valid #= false
           }
         }
-        for (k <- 0 until 2) {
-          if (k < wakeTags.size) {
-            dut.io.tags(k).valid #= true
-            dut.io.tags(k).payload #= wakeTags(k)
+        // 驱动双总线:wakeTags 依次装 alu 条目;30% 把最后一个 tag 挪到 mem 条目
+        // (模型不关心条目归属——所有口都进同一比较 OR)
+        val toMem = wakeTags.nonEmpty && rnd.nextInt(100) < 30
+        val aluList = if (toMem) wakeTags.dropRight(1) else wakeTags
+        for (k <- 0 until 4) {
+          if (k < aluList.size) {
+            dut.io.aluTags(k).valid #= true
+            dut.io.aluTags(k).payload #= aluList(k)
           } else {
-            dut.io.tags(k).valid #= false
+            dut.io.aluTags(k).valid #= false
           }
         }
+        if (toMem) {
+          dut.io.memTags(0).valid #= true
+          dut.io.memTags(0).payload #= wakeTags.last
+        } else {
+          dut.io.memTags(0).valid #= false
+        }
+        if (wakeTags.nonEmpty) lastWakeTag = wakeTags.head
         dut.io.flush #= doFlush
         if (fifoMode) {
           val headReady = alive.headOption.exists(_.ready)

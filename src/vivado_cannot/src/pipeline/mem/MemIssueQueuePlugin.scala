@@ -29,7 +29,14 @@ class MemIssueQueuePlugin(config: MyCPUConfig)
     // [stage2-①④] 选择/压缩/flush/唤醒/装载挂 cellArea;tag 口 = 5 口
     // PRF clearBusys(§3.6 组合豁免网);busy 旁路已删,入队当拍竞态由
     // post-mux 唤醒 OR 覆盖(设计书 ①.4 R1)
-    pipeline.service(classOf[PhysRegFilePlugin]).clearBusys.foreach(addGlobalTagPort)
+    // [stage3-①②] 唤醒 tag 来源:档 A 双总线 / 档 B 旧豁免网
+    if (config.intIssue.registeredWakeup) {
+      val wb = pipeline.globalService(classOf[WakeupBusPlugin])
+      connectBuses(wb.aluWakeupBus, wb.memWakeupBus)
+    } else {
+      tieOffBuses()
+      pipeline.service(classOf[PhysRegFilePlugin]).clearBusys.foreach(addGlobalTagPort)
+    }
     val cellArea = new Area { genIssueSelect() } // 选择区(组域,comb)
     Component.current.afterElaboration {
       val cellAreaTail = new Area { // 压缩/flush/唤醒/装载区(组域,comb 装配)

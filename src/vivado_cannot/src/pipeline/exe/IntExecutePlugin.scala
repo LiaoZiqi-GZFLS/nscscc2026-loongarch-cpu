@@ -62,7 +62,8 @@ class IntExecutePlugin(val config: MyCPUConfig, val fuIdx: Int) extends Plugin[E
     val ROB = pipeline.globalService(classOf[ROBFIFOPlugin])
 
     rrdRsp = Vec(rrdReq.map(PRF.readPort(_)))
-    clrBusy = PRF.clearBusy
+    // [stage3-①②] 档 A:busys 清零读总线,不再开 clearBusy 口
+    if (!config.intIssue.registeredWakeup) clrBusy = PRF.clearBusy
     wPort = PRF.writePort(true)
 
     // Logic: (1) IntPipeline detects all issue slots in issue queue that can be issued
@@ -124,12 +125,20 @@ class IntExecutePlugin(val config: MyCPUConfig, val fuIdx: Int) extends Plugin[E
       IQ.issueFire clearWhen arbitration.isStuck
       arbitration.removeIt setWhen (arbitration.notStuck && (flush || !issValid))
 
-      // [stage2-①④] 本地 bypass 唤醒从"双写 queue/queueNext"改为驱动
-      // IntIQ 的第 6 类唤醒口 localTag(§3.6 组合豁免网,IQ 胞元内 post-mux
-      // 比较末端 OR 单写)。拍序不变:唤醒当拍即被同拍消费(ISS→RRD 早 1 拍)。
-      val localTag = IQ.localWakeupPort()
-      localTag.valid := issValid && issSlot.uop.doRegWrite && arbitration.notStuck
-      localTag.payload := issSlot.wReg
+      // [stage3-①②] 唤醒广播分两档:
+      // 档 A(registeredWakeup=true,默认):ISS→RRD 沿采样 {valid 锥, wReg} 进
+      //   aluWakeupBus(fuIdx) FF,RRD 拍广播(纯 FF Q);与原 RRD clearBusy 同拍位,
+      //   比 localTag 晚 1 拍(INT 背靠背链 4→5 拍,设计书 ①.4)。
+      // 档 B(回退):驱动 IntIQ 本地 localTag(§3.6 组合豁免网,拍序不变)。
+      if (config.intIssue.registeredWakeup) {
+        val bus = pipeline.globalService(classOf[WakeupBusPlugin]).aluWakeupBus(fuIdx)
+        bus.valid := RegNext(issValid && issSlot.uop.doRegWrite && arbitration.notStuck, init = False)
+        bus.payload := RegNext(issSlot.wReg)
+      } else {
+        val localTag = IQ.localWakeupPort()
+        localTag.valid := issValid && issSlot.uop.doRegWrite && arbitration.notStuck
+        localTag.payload := issSlot.wReg
+      }
 
       // stage2-③: 分支授权拍采样 prefixOk(③.4)。prefix 为精度守卫而非正确性前提。
       if (withBRU && config.frontend.enableEarlyRedirect) {
@@ -160,12 +169,14 @@ class IntExecutePlugin(val config: MyCPUConfig, val fuIdx: Int) extends Plugin[E
         rrdReq(i) := issSlot.rRegs(i).payload
         insert(REG_READ_RSP)(i) := rrdRsp(i)
       }
-      // 远程唤醒（genGlobalWakeup）
-      // 在这个周期，当前指令指示下一周期清掉了 wReg 的 Busy
-      // 下一周期，在 IssueQueue 中使用该寄存器的指令的寄存器变成 valid 状态，可以被 ISS
-      // 再下一周期，本指令进入 WB 阶段，而使用该寄存器的指令进入 RRD 阶段，因此需要旁路
-      clrBusy.valid := arbitration.isValidNotStuck && issSlot.uop.doRegWrite
-      clrBusy.payload := issSlot.wReg
+      // 远程唤醒
+      // [stage3-①②] 档 A:busys 清零由 WakeupBusPlugin 读 aluWakeupBus 驱动
+      // (同拍位:bus FF 于 RRD 拍有效,busys 于 RRD→EXE 沿清零,与本口原时序一致);
+      // 档 B:保留 RRD clearBusy 口驱动。
+      if (!config.intIssue.registeredWakeup) {
+        clrBusy.valid := arbitration.isValidNotStuck && issSlot.uop.doRegWrite
+        clrBusy.payload := issSlot.wReg
+      }
 
       arbitration.haltByOther setWhen pipeline
         .globalService(classOf[SpeculativeWakeupHandler])

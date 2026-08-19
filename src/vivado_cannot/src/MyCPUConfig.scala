@@ -104,12 +104,21 @@ final case class IntIssueConfig(
     csrIdx: Int = 0,
     timerIdx: Int = 1,
     invTLBIdx: Int = 0,
-    depth: Int = 7
+    depth: Int = 7,
+    // [stage3-①②] 双总线唤醒 + 写引擎广播合并决策开关:
+    // true=档 A(默认,新机制):aluWakeupBus(4 条目 FF)+memWakeupBus(1 条目 FF)
+    //   广播,PRF busys 清零与胞元唤醒统一读总线;
+    // false=档 B(回退/A/B 对账):5 口 clearBusys 组合豁免网 + 3 口 localTag,
+    //   行为 ≡ t26-stage2-int(28ffec15)
+    registeredWakeup: Boolean = true,
+    aluBusEntries: Int = 4, // INT0..2(ISS→RRD 沿采样) + MULDIV(EXE 拍打拍)
+    memBusEntries: Int = 1 // MEM 加载(M1:MEM1 锥打拍,MEM2 广播)
 ) extends IssueConfig {
   require(0 <= bruIdx && bruIdx < issueWidth)
   require(0 <= csrIdx && csrIdx < issueWidth)
   require(0 <= timerIdx && timerIdx < issueWidth)
   require(0 <= invTLBIdx && invTLBIdx < issueWidth)
+  require(aluBusEntries == 4 && memBusEntries == 1, "stage3: bus entries fixed at 4+1 (②.2 同拍多生产者)")
 }
 
 final case class MulDivConfig(

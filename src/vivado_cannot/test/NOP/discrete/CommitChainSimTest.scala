@@ -57,7 +57,7 @@ object CommitChainSim {
   def read32(mem: SparseMemory, addr: Long): Long =
     (0 until 4).map(i => (mem.read(addr + i) & 0xff).toLong << (8 * i)).reduce(_ | _)
 
-  def run(dut: MyCPU, maxCycles: Long): Stats = {
+  def run(dut: MyCPU, maxCycles: Long, wakeupSlack: Int = 1): Stats = {
     val cd = ClockDomain(clock = dut.io.aclk, reset = dut.io.aresetn, config = ClockDomainConfig(resetActiveLevel = LOW))
     val axi = dut.io.axi
 
@@ -164,7 +164,8 @@ object CommitChainSim {
       }
 
       // ---- [stage2-①] 漏唤醒不变量:胞元等拍(rRegs.valid=0)且其依赖 tag 的
-      // busys 已清 0,连续超 1 拍即判漏唤醒(wakeup tag 网/post-mux OR 失效) ----
+      // busys 已清 0,连续超 K 拍即判漏唤醒(wakeup tag 网/post-mux OR 失效)。
+      // [stage3-①] K=wakeupSlack:档 A 总线寄存引入额外 1 拍,K=2;档 B K=1 ----
       var nowDebt = Set.empty[(String, Int)]
       for ((name, q) <- iqs; i <- 0 until q.length) {
         if (q(i).valid.toBoolean) {
@@ -174,8 +175,8 @@ object CommitChainSim {
               val key = (name, tag)
               nowDebt += key
               val since = wakeupDebt.getOrElse(key, cycle)
-              assert(cycle - since <= 1,
-                s"cycle $cycle: missed wakeup in ${name}IQ slot$i rReg$j tag=$tag: rReady=0 while busys=0 for ${cycle - since} cycles")
+              assert(cycle - since <= wakeupSlack,
+                s"cycle $cycle: missed wakeup in ${name}IQ slot$i rReg$j tag=$tag: rReady=0 while busys=0 for ${cycle - since} cycles (K=$wakeupSlack)")
               wakeupDebt += key -> since
             }
           }
@@ -215,19 +216,31 @@ object CommitChainSim {
 
 /** scalatest 入口。 */
 class CommitChainSimTest extends AnyFunSuite {
-  test("stage1: RegisteredCommit mailbox directed program on full mycpu_top") {
+  private def runOnce(config: MyCPUConfig, wakeupSlack: Int, label: String): Unit = {
     sys.props("nop.sim.xpm.model") = "1"
-    val config = new MyCPUConfig()
     val compiled = SimConfig.compile(new MyCPU(config))
     compiled.doSim { dut =>
-      val stats = CommitChainSim.run(dut, maxCycles = 300000)
-      println(s"[CommitChainSim] cycles=${stats.cycles} retired=${stats.retired} " +
+      val stats = CommitChainSim.run(dut, maxCycles = 300000, wakeupSlack = wakeupSlack)
+      println(s"[CommitChainSim:$label] cycles=${stats.cycles} retired=${stats.retired} " +
         s"flushes=${stats.flushes} uncachedKicks=${stats.uncachedKicks} commitStores=${stats.commitStores}")
-      assert(stats.done, "program did not reach DONE within cycle budget")
-      assert(stats.flushes >= 5, s"expected several redirects, got ${stats.flushes}")
-      assert(stats.uncachedKicks >= 2, s"expected >=2 uncached kicks, got ${stats.uncachedKicks}")
-      assert(stats.retired >= 40, s"expected >=40 retired instructions, got ${stats.retired}")
+      assert(stats.done, s"$label: program did not reach DONE within cycle budget")
+      assert(stats.flushes >= 5, s"$label: expected several redirects, got ${stats.flushes}")
+      assert(stats.uncachedKicks >= 2, s"$label: expected >=2 uncached kicks, got ${stats.uncachedKicks}")
+      assert(stats.retired >= 40, s"$label: expected >=40 retired instructions, got ${stats.retired}")
     }
+  }
+
+  test("stage1: RegisteredCommit mailbox directed program on full mycpu_top") {
+    // [stage3-①] 默认档 A(registeredWakeup=true):检测器 K=2(总线寄存 +1 拍)
+    runOnce(new MyCPUConfig(), wakeupSlack = 2, "ON")
+  }
+
+  test("stage3: registeredWakeup switch OFF regression (=t26-stage2-int 28ffec15 behavior)") {
+    // 档 B 回退:5 口 clearBusys + 3 口 localTag 旧路径,检测器 K=1
+    val cfg = new MyCPUConfig().copy(
+      intIssue = IntIssueConfig(registeredWakeup = false)
+    )
+    runOnce(cfg, wakeupSlack = 1, "OFF")
   }
 }
 
