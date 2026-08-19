@@ -71,7 +71,7 @@ _start:
 	li.w	$a0, 0x2		/* argc = 2 */
 	la.abs	$a1, argv
 	la.abs	$a2, bootparam
-	li.w	$t3, 0x80000000		/* physical address -> DMW1 uncached alias */
+	li.w	$t3, 0x80000000		/* physical address -> DMW0 uncached alias */
 	or	$a1, $a1, $t3		/* argv */
 	or	$a2, $a2, $t3		/* bootparam */
 	li.w	$t3, 0xbc220000
@@ -81,8 +81,10 @@ _start:
 	li.w	$t3, 0xa0000000
 	or	$t2, $t2, $t3		/* continue through DMW0 before replacing DMW1 */
 	jirl	$zero, $t2, 0
-1:	li.w	$t3, 0x80000001
+	1:	li.w	$t3, 0xa0000011	/* DMW1: cached, physical segment 0 */
 	csrwr	$t3, 0x181
+	li.w	$t3, 0x80000001	/* DMW0: uncached, physical segment 0 */
+	csrwr	$t3, 0x180
 	li.w	$t2, KERNEL_ENTRY_ADDRESS
 	jirl	$zero, $t2, 0
 

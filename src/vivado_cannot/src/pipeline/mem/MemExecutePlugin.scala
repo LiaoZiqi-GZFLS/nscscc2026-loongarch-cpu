@@ -42,8 +42,9 @@ class MemExecutePlugin(config: MyCPUConfig) extends Plugin[MemPipeline] {
 
     pipeline plug new Area {
       // clear memory pipeline
+      val commitPlugin = pipeline.globalService(classOf[CommitPlugin])
       pipeline.stages.drop(1).foreach { s =>
-        s.arbitration.removeIt setWhen flush
+        s.arbitration.removeIt setWhen (commitPlugin.needFlush || flush)
       }
     }
 
@@ -69,8 +70,10 @@ class MemExecutePlugin(config: MyCPUConfig) extends Plugin[MemPipeline] {
       val issSlot = insert(ISSUE_SLOT)
       issSlot := IQ.queue(QUEUE_HEAD).payload
        val issValid = IQ.issueReq
-       when(issValid && IQ.queue(QUEUE_HEAD).uop.pc(19 downto 0) >= U(0x2bf88, 20 bits) &&
-         IQ.queue(QUEUE_HEAD).uop.pc(19 downto 0) <= U(0x2bf90, 20 bits)) {
+       when(issValid && ((IQ.queue(QUEUE_HEAD).uop.pc(19 downto 0) >= U(0x2bfb0, 20 bits) &&
+          IQ.queue(QUEUE_HEAD).uop.pc(19 downto 0) <= U(0x2bfc0, 20 bits)) ||
+          (IQ.queue(QUEUE_HEAD).uop.pc >= U(0x1c221000L, 32 bits) &&
+            IQ.queue(QUEUE_HEAD).uop.pc <= U(0x1c221100L, 32 bits)))) {
          report(L"[RAWDBG MEM-ISS] pc=${IQ.queue(QUEUE_HEAD).uop.pc} inst=${slot.uop.inst} r0=${slot.rRegs(0).payload} v0=${slot.rRegs(0).valid} r1=${slot.rRegs(1).payload} v1=${slot.rRegs(1).valid}")
        }
       // load address / cache operation / store address
@@ -100,8 +103,10 @@ class MemExecutePlugin(config: MyCPUConfig) extends Plugin[MemPipeline] {
       val addrOffset = issSlot.uop.immField.asSInt.resize(32 bits).asUInt
        insert(MEMORY_ADDRESS) := input(REG_READ_RSP)(0).asUInt + addrOffset
        insert(MEMORY_WRITE_DATA) := input(REG_READ_RSP)(1)
-       when(issSlot.uop.pc(19 downto 0) >= U(0x2bf88, 20 bits) &&
-         issSlot.uop.pc(19 downto 0) <= U(0x2bf90, 20 bits)) {
+        when((issSlot.uop.pc(19 downto 0) >= U(0x2bfb0, 20 bits) &&
+          issSlot.uop.pc(19 downto 0) <= U(0x2bfc0, 20 bits)) ||
+          (issSlot.uop.pc >= U(0x1c221000L, 32 bits) &&
+            issSlot.uop.pc <= U(0x1c221100L, 32 bits))) {
          report(L"[RAWDBG MEM-RRD] pc=${issSlot.uop.pc} inst=${issSlot.uop.inst} r0=${rrdReq(0)} d0=${rrdRsp(0)} r1=${rrdReq(1)} d1=${rrdRsp(1)} addr=${input(MEMORY_ADDRESS)} data=${input(MEMORY_WRITE_DATA)}")
        }
     }
@@ -113,11 +118,7 @@ class MemExecutePlugin(config: MyCPUConfig) extends Plugin[MemPipeline] {
       val isLDU = std.valid && !std.isStore
       val wRegValid = Mux(std.valid, std.payload.wReg.valid, issSlot.uop.doRegWrite)
       val wRegPayload = Mux(std.valid, std.payload.wReg.payload, issSlot.wReg)
-      // 推测唤醒，一个气泡
-      // 若推测失败（MEM2非hit），则暂停所有其余流水的RRD
-      clrBusy.valid := ((arbitration.isValid && (input(ADDRESS_CACHED) || issSlot.uop.isSC)) || isLDU) &&
-        arbitration.notStuck && wRegValid
-      clrBusy.payload := wRegPayload
+       // Loads are cleared from busy only by the WB stage, after data is ready.
     }
 
     pipeline.MEM2 plug new Area {
@@ -127,9 +128,7 @@ class MemExecutePlugin(config: MyCPUConfig) extends Plugin[MemPipeline] {
       val std = input(STD_SLOT)
       val isLDU = std.valid && !std.isStore
 
-      pipeline.globalService(classOf[SpeculativeWakeupHandler]).wakeupFailed setWhen (
-        arbitration.isStuck && output(WRITE_REG).valid
-      )
+       // Dependent instructions wait for the architectural writeback wakeup.
 //      clrBusy.valid := ((arbitration.isValid && (input(ADDRESS_CACHED) || issSlot.uop.isSC)) || isLDU) &&
 //        arbitration.notStuck && output(WRITE_REG).valid
 //      clrBusy.payload := output(WRITE_REG).payload
@@ -148,13 +147,18 @@ class MemExecutePlugin(config: MyCPUConfig) extends Plugin[MemPipeline] {
       val issSlot = input(ISSUE_SLOT)
       val std = input(STD_SLOT)
       val isLDU = std.valid && !std.isStore
-      wPort.valid := ((arbitration.isValid && (input(ADDRESS_CACHED) || issSlot.uop.isSC)) || isLDU) &&
-        arbitration.notStuck && !arbitration.removeIt && input(WRITE_REG).valid
-      wPort.addr := input(WRITE_REG).payload
-      wPort.data := input(MEMORY_READ_DATA)
-      when(wPort.valid && wPort.addr === 9 && wPort.data === B(2, 32 bits)) {
-        report(L"[RAWDBG PRF-WRITE9-MEM] pc=${issSlot.uop.pc} inst=${issSlot.uop.inst}")
-      }
+       val commitPlugin = pipeline.globalService(classOf[CommitPlugin])
+       wPort.valid := ((arbitration.isValid && (input(ADDRESS_CACHED) || issSlot.uop.isSC)) || isLDU) &&
+         arbitration.notStuck && !arbitration.removeIt && input(WRITE_REG).valid &&
+         !commitPlugin.needFlush && !flush
+       wPort.addr := input(WRITE_REG).payload
+       wPort.data := input(MEMORY_READ_DATA)
+       clrBusy.valid := wPort.valid
+       clrBusy.payload := wPort.addr
+       when(wPort.valid && issSlot.uop.pc >= U(0x1c221000L, 32 bits) &&
+         issSlot.uop.pc <= U(0x1c221100L, 32 bits)) {
+         report(L"[RAWDBG HANDLER-MEM-WB] pc=${issSlot.uop.pc} inst=${issSlot.uop.inst} w=${wPort.addr} data=${wPort.data} removeIt=${arbitration.removeIt} needFlush=${commitPlugin.needFlush} regFlush=${flush}")
+       }
 
       when(arbitration.isValid && issSlot.uop.isSC) {
         val excHandler = pipeline.globalService(classOf[ExceptionHandlerPlugin])
@@ -163,12 +167,13 @@ class MemExecutePlugin(config: MyCPUConfig) extends Plugin[MemPipeline] {
       }
 
       val ROB = pipeline.globalService(classOf[ROBFIFOPlugin])
-      robWrite.valid := arbitration.isValidNotStuck && !arbitration.removeIt
+      robWrite.valid := arbitration.isValidNotStuck && !arbitration.removeIt &&
+        !commitPlugin.needFlush && !flush
       robWrite.robIdx := input(ROB_IDX)
       robWrite.except.valid := robWrite.valid && input(EXC_SIGNALS.EXCEPTION_OCCURRED)
       robWrite.except.payload.code := input(EXC_SIGNALS.EXCEPTION_ECODE)
       robWrite.except.payload.subcode := input(EXC_SIGNALS.EXCEPTION_ESUBCODE)
-      robWrite.except.payload.badVA := input(MEMORY_ADDRESS)
+      robWrite.except.payload.badVA := input(EXC_SIGNALS.BAD_VADDR)
       robWrite.except.payload.isTLBRefill := input(IS_TLB_REFILL)
       robWrite.lsuUncached := !input(ADDRESS_CACHED)
       robWrite.intResult := wPort.data.asUInt

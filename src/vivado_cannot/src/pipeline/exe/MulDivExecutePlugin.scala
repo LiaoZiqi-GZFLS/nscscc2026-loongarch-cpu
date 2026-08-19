@@ -38,10 +38,10 @@ class MulDivExecutePlugin(val config: MyCPUConfig) extends Plugin[ExecutePipelin
   }
 
   override def build(pipeline: ExecutePipeline): Unit = {
-    val flush = pipeline.globalService(classOf[CommitPlugin]).regFlush
+    val commitPlugin = pipeline.globalService(classOf[CommitPlugin])
+    val flush = commitPlugin.regFlush
     pipeline plug new Area {
-      // pipeline.stages.last.arbitration.flushIt setWhen flush
-      pipeline.stages.drop(1).foreach(_.arbitration.removeIt setWhen flush)
+      pipeline.stages.drop(1).foreach(_.arbitration.removeIt setWhen (commitPlugin.needFlush || flush))
     }
 
     // ! Issue
@@ -193,11 +193,12 @@ class MulDivExecutePlugin(val config: MyCPUConfig) extends Plugin[ExecutePipelin
       val exeResult = input(EXE_RESULT)
       val robIdx = issSlot.robIdx
 
-      wPort.valid := arbitration.isValidNotStuck && issSlot.uop.doRegWrite
-      wPort.payload.addr := issSlot.wReg
-      wPort.payload.data := exeResult
+       val commitPlugin = pipeline.globalService(classOf[CommitPlugin])
+       wPort.valid := arbitration.isValidNotStuck && issSlot.uop.doRegWrite && !commitPlugin.needFlush && !flush
+       wPort.payload.addr := issSlot.wReg
+       wPort.payload.data := exeResult
 
-      robWrite.valid := arbitration.isValidNotStuck
+       robWrite.valid := arbitration.isValidNotStuck && !commitPlugin.needFlush && !flush
       robWrite.payload := robIdx
 
     }

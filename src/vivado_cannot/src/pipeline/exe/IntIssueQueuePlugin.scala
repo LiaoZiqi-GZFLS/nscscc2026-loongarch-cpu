@@ -93,8 +93,8 @@ class IntIssueQueuePlugin(config: MyCPUConfig)
       }
 
       // flush最高优先级
-      val flush = pipeline.globalService(classOf[CommitFlush]).regFlush
-      queueFlush setWhen flush
+       val commitFlush = pipeline.globalService(classOf[CommitFlush])
+       queueFlush setWhen (commitFlush.needFlush || commitFlush.regFlush)
     }
 
     Component.current.afterElaboration {

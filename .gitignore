@@ -6,6 +6,34 @@ vivado_*.backup.log
 
 # Vivado project workspace (generated, local paths)
 Loongarch/
+.Xil/
+*.jou
 
 # Raw hardware test logs
 logs/*.log
+logs/*.stdout
+logs/*.stderr
+
+# Python host-tool bytecode
+__pycache__/
+*.pyc
+
+# Local Jenkins CI workspace
+.ci-work/
+
+# SpinalHDL/SBT generated output
+src/vivado_cannot/build/
+src/vivado_cannot/project/target/
+src/vivado_cannot/target/
+target/
+
+# Local Linux build workspace and intermediate image files
+sw/linux/work/
+sw/linux/out/board-16m/*.o
+sw/linux/out/board-16m/*.elf
+sw/linux/out/board-16m/rom.vlog
+sw/linux/out/board-16m/load-sizes.txt
+sw/linux/out/board-16m/rootfs.cpio.gz
+sw/boot/*.o
+sw/boot/*.elf
+sw/boot/*.bin

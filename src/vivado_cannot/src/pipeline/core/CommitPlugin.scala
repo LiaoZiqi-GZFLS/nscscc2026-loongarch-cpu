@@ -144,6 +144,12 @@ class CommitPlugin(config: MyCPUConfig)
         val uop = port.info.uop
         val fire = port.fire
 
+        val heartbeat = Reg(UInt(16 bits)) init 0
+        heartbeat := heartbeat + 1
+        when(heartbeat.andR) {
+          report(L"[RAWDBG HEARTBEAT] pc=${uop.pc} valid=${port.valid} complete=${entry.state.complete} ready=${port.ready} fire=${fire} except=${entry.state.except.valid} needFlush=${needFlush} regFlush=${regFlush}")
+        }
+
         // 中断处理：中断被当作exception提交，则自然屏蔽所有指令性提交
         // exception分类在handler中进行，若本身就有exception，中断会被优先处理
         val intPending = pipeline.service(classOf[InterruptHandlerPlugin]).intPending
@@ -160,23 +166,23 @@ class CommitPlugin(config: MyCPUConfig)
         // 2. 异常
         // 3. 其它提交后需要flush流水线的指令
         val recoverState = fire && (hasExcept || mispredict || linearRecover)
-        when(fire && (hasExcept || mispredict || linearRecover) && uop.pc(19 downto 0) >= U(0x2bf88, 20 bits) &&
-          uop.pc(19 downto 0) <= U(0x2bf90, 20 bits)) {
+         when(fire && (hasExcept || mispredict || linearRecover) && uop.pc(19 downto 0) >= U(0x2bfb0, 20 bits) &&
+           uop.pc(19 downto 0) <= U(0x2bfc0, 20 bits)) {
           report(L"[RAWDBG COMMIT] pc=${uop.pc} inst=${uop.inst} except=${hasExcept} mispredict=${mispredict} linear=${linearRecover} badva=${entry.state.except.badVA}")
         }
-        // 如果不需要等delay slot，则立即flush
-        needFlush := recoverState
+         // 如果不需要等delay slot，则立即flush
+         needFlush := recoverState
         robFIFO.fifoIO.flush := needFlush // flush周期同时pop
 
         // mispredict仍然会提交分支指令和delay slot，所以要先更新ARF，再回滚PRF
         // flush的下一个周期不会pop，所以没有关系
-        recoverPRF := regFlush // regFlush 是 needFlush 延迟一个周期
+          recoverPRF := regFlush // regFlush 是 needFlush 延迟一个周期
 
         val jumpTarget = U(0, 32 bits)
 
-        // clear frontend pipelines
-        pipeline.fetchPipeline.stages.last.arbitration.flushIt setWhen needFlush
-        pipeline.decodePipeline.stages.last.arbitration.flushIt setWhen needFlush
+         // clear frontend pipelines
+         pipeline.fetchPipeline.stages.last.arbitration.flushIt setWhen needFlush
+         pipeline.decodePipeline.stages.last.arbitration.flushIt setWhen needFlush
 
         // exception永远从0口unique发出
         except.valid := fire && hasExcept
@@ -205,6 +211,12 @@ class CommitPlugin(config: MyCPUConfig)
             CSRWrite.valid := True
             CSRWrite.payload.data := entry.state.intResult.asBits
             CSRWrite.payload.addr := uop.inst(23 downto 10).asUInt
+            when(
+              CSRWrite.payload.addr === NOP.constants.LoongArch.CSRAddress.TLBELO0 ||
+                CSRWrite.payload.addr === NOP.constants.LoongArch.CSRAddress.TLBELO1
+            ) {
+              report(L"[RAWDBG TLBELO-COMMIT] pc=${uop.pc} inst=${uop.inst} csr=${CSRWrite.payload.addr} data=${entry.state.intResult}")
+            }
           }
 
           ertn := uop.isErtn

@@ -20,17 +20,19 @@ class AddressGenerationPlugin(config: MyCPUConfig) extends Plugin[MemPipeline] {
   val raisePPI = Bool()
   val raiseALE = False
   val raiseTLBR = Bool()
+  val badVaddrMemAddr = UInt(32 bits)
+  val badVaddrMem1 = UInt(32 bits)
 
   override def setup(pipeline: MemPipeline): Unit = {
     import NOP.constants.LoongArch.ExceptionCode
     val iExec = pipeline.service(classOf[ExceptionMuxPlugin[MemPipeline]])
 
-    iExec.addExceptionSource(pipeline.MEMADDR, ExceptionCode.ALE, raiseALE, priority = 130)
-    iExec.addExceptionSource(pipeline.MEM1, ExceptionCode.TLBR, raiseTLBR, priority = 120)
-    iExec.addExceptionSource(pipeline.MEM1, ExceptionCode.PIL, raisePIL, priority = 115)
-    iExec.addExceptionSource(pipeline.MEM1, ExceptionCode.PIS, raisePIS, priority = 110)
-    iExec.addExceptionSource(pipeline.MEM1, ExceptionCode.PPI, raisePPI, priority = 105)
-    iExec.addExceptionSource(pipeline.MEM1, ExceptionCode.PME, raisePME, priority = 100)
+    iExec.addExceptionSource(pipeline.MEMADDR, ExceptionCode.ALE, raiseALE, badVaddrMemAddr, priority = 130)
+    iExec.addExceptionSource(pipeline.MEM1, ExceptionCode.TLBR, raiseTLBR, badVaddrMem1, priority = 120)
+    iExec.addExceptionSource(pipeline.MEM1, ExceptionCode.PIL, raisePIL, badVaddrMem1, priority = 115)
+    iExec.addExceptionSource(pipeline.MEM1, ExceptionCode.PIS, raisePIS, badVaddrMem1, priority = 110)
+    iExec.addExceptionSource(pipeline.MEM1, ExceptionCode.PPI, raisePPI, badVaddrMem1, priority = 105)
+    iExec.addExceptionSource(pipeline.MEM1, ExceptionCode.PME, raisePME, badVaddrMem1, priority = 100)
 
   }
 
@@ -44,6 +46,7 @@ class AddressGenerationPlugin(config: MyCPUConfig) extends Plugin[MemPipeline] {
       val issSlot = input(ISSUE_SLOT)
       val uop = issSlot.uop
       val virtAddr = input(MEMORY_ADDRESS)
+      badVaddrMemAddr := virtAddr
       val accessType = uop.lsType
       val isLoad = uop.isLoad
       val excAsLoad = !uop.isStore
@@ -105,6 +108,7 @@ class AddressGenerationPlugin(config: MyCPUConfig) extends Plugin[MemPipeline] {
       val issSlot = input(ISSUE_SLOT)
       val uop = issSlot.uop
       val virtAddr = input(MEMORY_ADDRESS)
+      badVaddrMem1 := virtAddr
       val accessType = uop.lsType
       val isLoad = uop.isLoad
       val excAsLoad = !uop.isStore

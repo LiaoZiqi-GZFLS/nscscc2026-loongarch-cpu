@@ -119,8 +119,8 @@ class MemIssueQueuePlugin(config: MyCPUConfig)
     }
 
     // flush最高优先级
-    val flush = pipeline.globalService(classOf[CommitPlugin]).regFlush
-    queueFlush setWhen flush
+     val commitFlush = pipeline.globalService(classOf[CommitPlugin])
+     queueFlush setWhen (commitFlush.needFlush || commitFlush.regFlush)
 
   }
   Component.current.afterElaboration {

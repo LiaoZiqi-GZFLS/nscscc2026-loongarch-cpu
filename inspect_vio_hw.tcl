@@ -7,10 +7,10 @@ current_hw_target [lindex [get_hw_targets] 0]
 open_hw_target
 set dev [lindex [get_hw_devices xc7a200t*] 0]
 refresh_hw_device $dev
-set axi [lindex [get_hw_axis hw_axi_1] 0]
-if {$axi eq ""} { error "hw_axi_1 not found" }
-create_hw_axi_txn release_cpu_txn $axi -address 40000000 -data 00000000 -type write
-run_hw_axi release_cpu_txn
-delete_hw_axi_txn release_cpu_txn
-puts "CPU_RESET=released"
+set vio [lindex [get_hw_vios] 0]
+puts "VIO=$vio"
+puts "VIO_PROPERTIES=[list_property $vio]"
+foreach prop {OUTPUT_VALUE INPUT_VALUE PROBE_OUT0 PROBE_OUT1 PROBE_OUT2 PROBE_IN4} {
+  if {![catch {get_property $prop $vio} value]} { puts "VIO_$prop=$value" }
+}
 exit

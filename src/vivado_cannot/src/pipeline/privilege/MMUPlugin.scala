@@ -368,9 +368,7 @@ class MMUPlugin(config: MyCPUConfig) extends Plugin[MyCPUCore] {
     when(savedCSR.CRMD_DA && ~savedCSR.CRMD_PG) {
       // 直接地址翻译
       resultValid := True
-      // The board implements a 29-bit physical address space. Kernel DMW
-      // aliases must therefore remain usable while TLBR forces DA mode.
-      resultPhysAddr := U(0, 3 bits) @@ virtAddr(28 downto 0)
+      resultPhysAddr := virtAddr
       when(memOperation === MemOperationType.FETCH) {
         resultCached := savedCSR.CRMD_DATF(0)
       } otherwise {

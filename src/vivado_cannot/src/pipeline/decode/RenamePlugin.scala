@@ -117,8 +117,11 @@ class RenamePlugin(config: MyCPUConfig) extends Plugin[DecodePipeline] {
       for (j <- 0 until rfConfig.rPortsEachInst) {
         insert(RENAME_RECORDS)(i).rRegs(j) := regReads(i)(j).rsp
       }
-      when(valid && uop.pc(19 downto 0) >= U(0x2bf88, 20 bits) && uop.pc(19 downto 0) <= U(0x2bf90, 20 bits)) {
+       when(valid && uop.pc(19 downto 0) >= U(0x2bfb0, 20 bits) && uop.pc(19 downto 0) <= U(0x2bfc0, 20 bits)) {
         report(L"[RAWDBG RENAME] pc=${uop.pc} inst=${uop.inst} r0=${regReads(i)(0).rsp} r1=${regReads(i)(1).rsp} w=${regWrites(i).rsp} srat0=${sRAT(0)} srat1=${sRAT(1)}")
+      }
+      when(valid && uop.pc >= U(0x1c221000L, 32 bits) && uop.pc <= U(0x1c221100L, 32 bits)) {
+        report(L"[RAWDBG HANDLER-RENAME] pc=${uop.pc} inst=${uop.inst} r0=${regReads(i)(0).rsp} r1=${regReads(i)(1).rsp} w=${regWrites(i).rsp} prev=${regReads(i)(2).rsp}")
       }
       insert(RENAME_RECORDS)(i).wPrevReg := regReads(i)(2).rsp
       insert(RENAME_RECORDS)(i).wReg := regWrites(i).rsp
@@ -126,6 +129,7 @@ class RenamePlugin(config: MyCPUConfig) extends Plugin[DecodePipeline] {
     arbitration.haltItself setWhen noFreeRegs
 
     val arfCommit = pipeline.globalService(classOf[CommitPlugin])
+    arbitration.haltItself setWhen (arfCommit.needFlush || arfCommit.recoverPRF)
     // 提交时，修改aRAT并释放sRAT
     freeList.io.push.foreach(_.setIdle())
     for (i <- 0 until retireWidth; commit = arfCommit.arfCommits(i)) {
@@ -143,15 +147,11 @@ class RenamePlugin(config: MyCPUConfig) extends Plugin[DecodePipeline] {
       port.payload := commit.payload.prevAddr
       when(commit.valid) {
         aRAT(commit.payload.addr - 1) := commit.payload.prfAddr
-        when(commit.payload.addr === 13) {
-          report(L"[RAWDBG RAT-COMMIT] r13 prev=${commit.payload.prevAddr} next=${commit.payload.prfAddr} arat=${aRAT(12)} srat=${sRAT(12)}")
-        }
       }
     }
     freeList.io.push.drop(retireWidth).foreach(_.setIdle())
     // 分支预测恢复时，将aRAT拷贝进sRAT
     when(arfCommit.recoverPRF) {
-      report(L"[RAWDBG RAT-RECOVER] r13 arat=${aRAT(12)} srat=${sRAT(12)}")
       sRAT := aRAT
     }
     // 预测恢复时freeList也要恢复

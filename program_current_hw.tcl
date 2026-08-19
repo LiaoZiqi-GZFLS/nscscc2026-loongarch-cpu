@@ -1,5 +1,7 @@
 open_hw_manager
-connect_hw_server -url localhost:3121 -allow_non_jtag
+set hw_url "localhost:3121"
+if {[info exists ::env(HW_SERVER_URL)]} { set hw_url $::env(HW_SERVER_URL) }
+connect_hw_server -url $hw_url -allow_non_jtag
 refresh_hw_server [get_hw_servers]
 
 puts "SERVERS=[get_hw_servers]"
@@ -28,7 +30,9 @@ if {$dev eq ""} {
 }
 
 puts "PROGRAM_DEVICE=$dev"
-set_property PROGRAM.FILE /mnt/d/project/T2026143250012561/bit/sys_test/bit/sys_soc_top_100mhz.bit $dev
+set bitstream /tmp/opencode/chiplab-nscscc2026/fpga/nscscc-team/run_vivado/project/loongson.runs/impl_1/soc_top.bit
+if {[info exists ::env(BITSTREAM)]} { set bitstream $::env(BITSTREAM) }
+set_property PROGRAM.FILE $bitstream $dev
 program_hw_devices $dev
 refresh_hw_device $dev
 puts "PROGRAM_DONE=[get_property PROGRAM.FILE $dev]"

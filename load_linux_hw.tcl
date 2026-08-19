@@ -90,7 +90,9 @@ if {[scan $sizes "%x %x" kernel_file_size kernel_mem_size] != 2} {
 }
 
 open_hw_manager
-connect_hw_server -url localhost:3121 -allow_non_jtag
+set hw_url "localhost:3121"
+if {[info exists ::env(HW_SERVER_URL)]} { set hw_url $::env(HW_SERVER_URL) }
+connect_hw_server -url $hw_url -allow_non_jtag
 set_msg_config -id {Labtoolstcl 44-481} -suppress
 refresh_hw_server [get_hw_servers]
 set targets [get_hw_targets]

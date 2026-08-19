@@ -112,6 +112,7 @@ class DCachePlugin(config: MyCPUConfig) extends Plugin[MemPipeline] {
       // uncached
       val isLDU = std.valid && !std.isStore
       val isSTU = std.valid && std.isStore && !std.isCached
+      val handlerTrace = input(ISSUE_SLOT).uop.pc === U(0x1c22102cL, 32 bits)
 
       // 如果load发现uncached或者exception，那么跳过所有cache处理
       val reqValid = (arbitration.isValidOnEntry && isLoad && addrCached && noExcept) || isSTD
@@ -163,6 +164,9 @@ class DCachePlugin(config: MyCPUConfig) extends Plugin[MemPipeline] {
 
       // 存储当前被填充的word，避免MEM2重取
       val storedWord = Reg(BWord())
+      when(arbitration.isValidOnEntry && handlerTrace) {
+        report(L"[RAWDBG HANDLER-DCACHE] pc=${input(ISSUE_SLOT).uop.pc} va=${virtAddr} pa=${cachePhysAddr} cached=${addrCached} req=${reqValid} hit=${hit} stored=${storedWord}")
+      }
       dirtyBitsManager.io.writeCmd.setIdle()
 
       when(reqCommit && hit) {
@@ -455,6 +459,9 @@ class DCachePlugin(config: MyCPUConfig) extends Plugin[MemPipeline] {
           if (config.axiConfig.useQos) ar.payload.qos := 0 // no QoS scheme
           ar.payload.prot := 0 // secure and normal(non-priviledged)
           ar.valid := True
+          when(ar.valid && ar.ready && handlerTrace) {
+            report(L"[RAWDBG HANDLER-DCACHE-AR] pc=${input(ISSUE_SLOT).uop.pc} addr=${ar.payload.addr} hit=${hit} pa=${cachePhysAddr}")
+          }
           when(ar.ready) {
             rspId.clear()
             goto(readMem)
@@ -465,6 +472,9 @@ class DCachePlugin(config: MyCPUConfig) extends Plugin[MemPipeline] {
           arbitration.haltItself.set()
           val r = dBus.r
           r.ready := !lockCache
+          when(r.valid && r.ready && handlerTrace) {
+            report(L"[RAWDBG HANDLER-DCACHE-R] pc=${input(ISSUE_SLOT).uop.pc} data=${r.payload.data} last=${r.payload.last}")
+          }
           when(refillValid) {
             dataWs(replaceWay).valid := True
             dataWs(replaceWay).payload.address := idx @@ rspId
@@ -538,6 +548,9 @@ class DCachePlugin(config: MyCPUConfig) extends Plugin[MemPipeline] {
           arbitration.haltItself.set()
           val r = udBus.r
           r.ready.set()
+          when(r.valid && r.ready && handlerTrace) {
+            report(L"[RAWDBG HANDLER-DCACHE-UR] pc=${input(ISSUE_SLOT).uop.pc} data=${r.payload.data} last=${r.payload.last} pa=${cachePhysAddr}")
+          }
           when(r.valid && r.payload.last) {
             storedWord := r.payload.data
             goto(finishU)
