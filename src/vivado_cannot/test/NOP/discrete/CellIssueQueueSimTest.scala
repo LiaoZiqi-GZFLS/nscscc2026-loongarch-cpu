@@ -255,9 +255,10 @@ object CellQueueSim {
 class CellIssueQueueSimTest extends AnyFunSuite {
   val config = new MyCPUConfig()
 
-  test("stage2-1: cell queue-mode (depth=7 iw=3 dw=2 nFu=3) vs model contract") {
+  test("stage2-1: cell queue-mode (depth=10 iw=3 dw=2 nFu=3) vs model contract") {
+    // stage3-③: IntIQ 容量 7->10,对拍配置同步(IntIssueConfig.depth=10)
     for (seed <- Seq(7, 42, 2026))
-      CellQueueSim.runCfg(config, depth = 7, issueWidth = 3, decodeWidth = 2, nFu = 3, fifoMode = false, steps = 400, seed)
+      CellQueueSim.runCfg(config, depth = 10, issueWidth = 3, decodeWidth = 2, nFu = 3, fifoMode = false, steps = 400, seed)
   }
 
   test("stage2-1: cell queue-mode narrow (depth=3 iw=1 dw=1 nFu=1) vs model") {
