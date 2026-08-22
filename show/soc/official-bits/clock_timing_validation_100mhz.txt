@@ -1,0 +1,7 @@
+build_kind=perf
+requested_cpu_mhz=100.0
+actual_cpu_mhz=100.000000
+actual_sys_mhz=100.000000
+actual_ddr_mhz=200.000000
+setup_wns_ns=0.089000
+hold_wns_ns=0.050000

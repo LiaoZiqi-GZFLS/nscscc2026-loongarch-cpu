@@ -1,0 +1,37 @@
+# ============================================================
+# 第三幕演示脚本：ucore shell 功能演示
+# 格式：# 开头 = 主机解说词（只显示，不发送）
+#       @pause N      = 停顿 N 秒
+#       @expect TEXT [TIMEOUT] = 等待板端输出中出现 TEXT
+#       其他行 = 发送给 shell 的命令（发送后等待 "$" 提示符）
+# ============================================================
+# 现在进入的是 ucore 的用户态 shell —— 它是内核启动的第一个用户进程（pid=2）。
+# 接下来的每条命令都由主机自动输入，板端实时回显。
+@pause 1
+# 先看 shell 支持哪些内建命令 —— help 打印完整命令表。
+help
+# 查看当前工作目录，我们位于根目录 /。
+pwd
+# 列出根目录内容 —— 这就是 initrd 里的 SFS 文件系统。
+ls
+# 文件系统位于内存 initrd，可以像真实磁盘一样创建目录。
+mkdir demo
+cd demo
+# 用 write 命令把文本写入文件 —— 在 SFS 文件系统里创建新文件。
+write hello.txt Hello_NSCSCC2026!
+# cat 读回文件内容 —— 文件已持久化到内存文件系统。
+cat hello.txt
+@expect Hello_NSCSCC2026! 10
+# stat 显示文件元信息：大小、类型、inode 等。
+stat hello.txt
+# 文件复制与改名。
+cp hello.txt copy.txt
+mv copy.txt moved.txt
+# 再次列出目录，确认 moved.txt 存在。
+ls
+# 删除文件。
+rm moved.txt
+cd /
+# display 命令把 8 位十六进制数写到开发板数码管 —— 请看板子！现在应显示 C0DE2026。
+display C0DE2026
+# 数码管显示 C0DE2026。shell 功能演示完毕，接下来是 UART 文件传输。
