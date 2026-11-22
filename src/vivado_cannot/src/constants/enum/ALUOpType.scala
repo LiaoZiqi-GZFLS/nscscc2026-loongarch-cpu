@@ -9,5 +9,6 @@ object ALUOpType extends SpinalEnum {
   val SLL, SRL, SRA = newElement()
   val LU12I, PCADDI, PCADDU12I = newElement()
   val CPUCFG = newElement() // 恒返回 0
+    val BDOT_W=newElement()
 //   val CLO, CLZ = newElement()
 }

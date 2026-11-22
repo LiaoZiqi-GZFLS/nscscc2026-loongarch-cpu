@@ -33,6 +33,7 @@ object LoongArch {
   val SLL = MakeMaskedLiteral("00000000000101110" + Rk() + Rj() + Rd())
   val SRL = MakeMaskedLiteral("00000000000101111" + Rk() + Rj() + Rd())
   val SRA = MakeMaskedLiteral("00000000000110000" + Rk() + Rj() + Rd())
+    val BDOT_W = MakeMaskedLiteral("11111111111111111" + Rk() + Rj() + Rd())
 
   val SLLI = MakeMaskedLiteral("0 0 0 0 0 0 0 0 0 1 0 0 0 0 0 0 1" + Bits(5) + Rj() + Rd())
   val SRLI = MakeMaskedLiteral("0 0 0 0 0 0 0 0 0 1 0 0 0 1 0 0 1" + Bits(5) + Rj() + Rd())

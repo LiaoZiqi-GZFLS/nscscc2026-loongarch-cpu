@@ -383,7 +383,8 @@ class DecoderArray(config: MyCPUConfig, val popPorts: Vec[Stream[InstBufferEntry
       LoongArch.XOR -> (reg2R1WActions ++ Seq(aluOp -> ALUOpType.XOR)),
       LoongArch.SLL -> (reg2R1WActions ++ Seq(aluOp -> ALUOpType.SLL)),
       LoongArch.SRL -> (reg2R1WActions ++ Seq(aluOp -> ALUOpType.SRL)),
-      LoongArch.SRA -> (reg2R1WActions ++ Seq(aluOp -> ALUOpType.SRA))
+      LoongArch.SRA -> (reg2R1WActions ++ Seq(aluOp -> ALUOpType.SRA)),
+      LoongArch.BDOT_W->(reg2R1WActions ++ Seq(aluOp -> ALUOpType.BDOT_W))
     )
 
     // Integer Immediate
