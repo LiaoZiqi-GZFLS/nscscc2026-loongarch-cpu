@@ -1,0 +1,29 @@
+Copyright 1986-2022 Xilinx, Inc. All Rights Reserved. Copyright 2022-2023 Advanced Micro Devices, Inc. All Rights Reserved.
+----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+| Tool Version : Vivado v.2023.2 (win64) Build 4029153 Fri Oct 13 20:14:34 MDT 2023
+| Date         : Mon Aug 17 23:41:15 2026
+| Host         : DESKTOP-8OOL3GM running 64-bit major release  (build 9200)
+| Command      : report_design_analysis -logic_level_distribution -of_timing_paths [get_timing_paths -delay_type max -max_paths 2000 -filter {SLACK < 0}] -file D:/code/Vivado/Loongarch_workspace/analysis_round3/level_dist.rpt
+| Design       : soc_top
+| Device       : xc7a200t
+| Design State : Routed
+----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+
+Report Design Analysis
+
+Table of Contents
+-----------------
+1. Logic Level Distribution
+
+1. Logic Level Distribution
+---------------------------
+
++-----------------+-------------+---+-----+-----+-----+----+-----+----+-----+-----+-----+-----+-----+----+----+----+----+
+| End Point Clock | Requirement | 1 |  2  |  3  |  4  |  5 |  6  |  7 |  8  |  9  |  10 |  11 |  12 | 13 | 14 | 15 | 16 |
++-----------------+-------------+---+-----+-----+-----+----+-----+----+-----+-----+-----+-----+-----+----+----+----+----+
+| cpu_clk         | 5.000ns     | 1 | 141 | 162 | 143 | 31 | 135 | 16 | 120 | 118 | 239 | 158 | 672 | 16 | 21 | 26 |  1 |
++-----------------+-------------+---+-----+-----+-----+----+-----+----+-----+-----+-----+-----+-----+----+----+----+----+
+* Columns represent the logic levels per end point clock
+** Distribution is for top worst 2000 paths
+
+

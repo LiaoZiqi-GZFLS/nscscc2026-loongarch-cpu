@@ -1,0 +1,1729 @@
+Copyright 1986-2022 Xilinx, Inc. All Rights Reserved. Copyright 2022-2023 Advanced Micro Devices, Inc. All Rights Reserved.
+-----------------------------------------------------------------------------------------------------------------------------------------------
+| Tool Version : Vivado v.2023.2 (win64) Build 4029153 Fri Oct 13 20:14:34 MDT 2023
+| Date         : Tue Aug 18 03:58:00 2026
+| Host         : DESKTOP-8OOL3GM running 64-bit major release  (build 9200)
+| Command      : report_timing -delay_type max -max_paths 20 -sort_by slack -file D:/code/Vivado/Loongarch_workspace/analysis_p1/all_top20.rpt
+| Design       : soc_top
+| Device       : 7a200t-fbg676
+| Speed File   : -2  PRODUCTION 1.23 2018-06-13
+| Design State : Routed
+-----------------------------------------------------------------------------------------------------------------------------------------------
+
+Timing Report
+
+Slack (VIOLATED) :        -2.903ns  (required time - arrival time)
+  Source:                 u_cpu/u_nop_core/toplevel_cpu/RENAME_to_DISPATCH_DECODE_PACKET_0_payload_except_valid_reg/C
+                            (rising edge-triggered cell FDRE clocked by cpu_clk  {rise@0.000ns fall@2.500ns period=5.000ns})
+  Destination:            u_cpu/u_nop_core/toplevel_cpu/FetchBufferPlugin_bufferFIFO/io_pop_2_payload_pc_reg[24]/D
+                            (rising edge-triggered cell FDRE clocked by cpu_clk  {rise@0.000ns fall@2.500ns period=5.000ns})
+  Path Group:             cpu_clk
+  Path Type:              Setup (Max at Slow Process Corner)
+  Requirement:            5.000ns  (cpu_clk rise@5.000ns - cpu_clk rise@0.000ns)
+  Data Path Delay:        7.870ns  (logic 1.744ns (22.159%)  route 6.126ns (77.841%))
+  Logic Levels:           13  (LUT2=1 LUT4=2 LUT5=4 LUT6=6)
+  Clock Path Skew:        0.004ns (DCD - SCD + CPR)
+    Destination Clock Delay (DCD):    5.314ns = ( 10.314 - 5.000 ) 
+    Source Clock Delay      (SCD):    5.517ns
+    Clock Pessimism Removal (CPR):    0.207ns
+  Clock Uncertainty:      0.067ns  ((TSJ^2 + DJ^2)^1/2) / 2 + PE
+    Total System Jitter     (TSJ):    0.071ns
+    Discrete Jitter          (DJ):    0.113ns
+    Phase Error              (PE):    0.000ns
+
+    Location             Delay type                Incr(ns)  Path(ns)    Netlist Resource(s)
+  -------------------------------------------------------------------    -------------------
+                         (clock cpu_clk rise edge)    0.000     0.000 r  
+    AC19                                              0.000     0.000 r  clk (IN)
+                         net (fo=0)                   0.000     0.000    clk
+    AC19                 IBUF (Prop_ibuf_I_O)         1.416     1.416 r  clk_IBUF_inst/O
+                         net (fo=1, routed)           2.602     4.018    clk_IBUF
+    BUFGCTRL_X0Y0        BUFG (Prop_bufg_I_O)         0.081     4.099 r  clk_IBUF_BUFG_inst/O
+                         net (fo=2027, routed)        1.823     5.922    fpga_pll.u_clk_pll/inst/clk_in1
+    PLLE2_ADV_X1Y0       PLLE2_ADV (Prop_plle2_adv_CLKIN1_CLKOUT0)
+                                                     -4.192     1.730 r  fpga_pll.u_clk_pll/inst/plle2_adv_inst/CLKOUT0
+                         net (fo=1, routed)           2.288     4.018    fpga_pll.u_clk_pll/inst/cpu_clk_clk_pll
+    BUFGCTRL_X0Y2        BUFG (Prop_bufg_I_O)         0.081     4.099 r  fpga_pll.u_clk_pll/inst/clkout1_buf/O
+                         net (fo=24016, routed)       1.418     5.517    u_cpu/u_nop_core/toplevel_cpu/cpu_clk
+    SLICE_X107Y112       FDRE                                         r  u_cpu/u_nop_core/toplevel_cpu/RENAME_to_DISPATCH_DECODE_PACKET_0_payload_except_valid_reg/C
+  -------------------------------------------------------------------    -------------------
+    SLICE_X107Y112       FDRE (Prop_fdre_C_Q)         0.379     5.896 f  u_cpu/u_nop_core/toplevel_cpu/RENAME_to_DISPATCH_DECODE_PACKET_0_payload_except_valid_reg/Q
+                         net (fo=3, routed)           0.566     6.462    u_cpu/u_nop_core/toplevel_cpu/FetchBufferPlugin_bufferFIFO/RENAME_to_DISPATCH_DECODE_PACKET_0_payload_except_valid
+    SLICE_X107Y112       LUT5 (Prop_lut5_I4_O)        0.105     6.567 r  u_cpu/u_nop_core/toplevel_cpu/FetchBufferPlugin_bufferFIFO/MulDivIssueQueuePlugin_queue_2_payload_uop_doRegWrite_i_12/O
+                         net (fo=2, routed)           0.244     6.811    u_cpu/u_nop_core/toplevel_cpu/FetchBufferPlugin_bufferFIFO/MulDivIssueQueuePlugin_queue_2_payload_uop_doRegWrite_i_12_n_0
+    SLICE_X106Y113       LUT6 (Prop_lut6_I5_O)        0.105     6.916 f  u_cpu/u_nop_core/toplevel_cpu/FetchBufferPlugin_bufferFIFO/MulDivIssueQueuePlugin_queue_2_payload_uop_doRegWrite_i_7/O
+                         net (fo=7, routed)           0.361     7.278    u_cpu/u_nop_core/toplevel_cpu/FetchBufferPlugin_bufferFIFO/RENAME_to_DISPATCH_DECODE_PACKET_1_valid_reg
+    SLICE_X107Y111       LUT4 (Prop_lut4_I0_O)        0.105     7.383 r  u_cpu/u_nop_core/toplevel_cpu/FetchBufferPlugin_bufferFIFO/IntIssueQueuePlugin_queue_6_payload_uop_pc[31]_i_7/O
+                         net (fo=2, routed)           0.409     7.792    u_cpu/u_nop_core/toplevel_cpu/FetchBufferPlugin_bufferFIFO/MulDivIssueQueuePlugin_queue_1_valid_reg_0
+    SLICE_X106Y111       LUT6 (Prop_lut6_I5_O)        0.105     7.897 f  u_cpu/u_nop_core/toplevel_cpu/FetchBufferPlugin_bufferFIFO/RENAME_to_DISPATCH_DECODE_PACKET_0_payload_isStore_i_3/O
+                         net (fo=1, routed)           0.120     8.017    u_cpu/u_nop_core/toplevel_cpu/FetchBufferPlugin_bufferFIFO/RENAME_to_DISPATCH_DECODE_PACKET_0_payload_isStore_i_3_n_0
+    SLICE_X106Y111       LUT2 (Prop_lut2_I1_O)        0.105     8.122 f  u_cpu/u_nop_core/toplevel_cpu/FetchBufferPlugin_bufferFIFO/RENAME_to_DISPATCH_DECODE_PACKET_0_payload_isStore_i_2/O
+                         net (fo=479, routed)         0.622     8.743    u_cpu/u_nop_core/toplevel_cpu/RenamePlugin_freeList/DISPATCH_arbitration_isValid_reg_1
+    SLICE_X104Y110       LUT6 (Prop_lut6_I0_O)        0.105     8.848 f  u_cpu/u_nop_core/toplevel_cpu/RenamePlugin_freeList/_to__DECODE_FIELDS_0_payload_isStore_i_3/O
+                         net (fo=1549, routed)        0.279     9.127    u_cpu/u_nop_core/toplevel_cpu/RenamePlugin_freeList/RENAME_arbitration_isValid_reg_1[0]
+    SLICE_X104Y109       LUT6 (Prop_lut6_I4_O)        0.105     9.232 f  u_cpu/u_nop_core/toplevel_cpu/RenamePlugin_freeList/occupancy[1]_i_4/O
+                         net (fo=48, routed)          0.513     9.746    u_cpu/u_nop_core/toplevel_cpu/FetchBufferPlugin_bufferFIFO/ID_arbitration_isFiring
+    SLICE_X102Y107       LUT5 (Prop_lut5_I0_O)        0.105     9.851 r  u_cpu/u_nop_core/toplevel_cpu/FetchBufferPlugin_bufferFIFO/io_pop_1_payload_pc[31]_i_12/O
+                         net (fo=1, routed)           0.399    10.249    u_cpu/u_nop_core/toplevel_cpu/FetchBufferPlugin_bufferFIFO/io_pop_1_payload_pc[31]_i_12_n_0
+    SLICE_X103Y107       LUT6 (Prop_lut6_I1_O)        0.105    10.354 r  u_cpu/u_nop_core/toplevel_cpu/FetchBufferPlugin_bufferFIFO/io_pop_1_payload_pc[31]_i_8/O
+                         net (fo=2, routed)           1.091    11.445    u_cpu/u_nop_core/toplevel_cpu/FetchBufferPlugin_bufferFIFO/io_pop_1_payload_pc[31]_i_8_n_0
+    SLICE_X84Y89         LUT6 (Prop_lut6_I5_O)        0.105    11.550 r  u_cpu/u_nop_core/toplevel_cpu/FetchBufferPlugin_bufferFIFO/io_pop_2_payload_predRecover_predictCounter[0]_i_2/O
+                         net (fo=6, routed)           0.164    11.714    u_cpu/u_nop_core/toplevel_cpu/FetchBufferPlugin_bufferFIFO/io_pop_2_payload_predRecover_predictCounter[0]_i_2_n_0
+    SLICE_X84Y89         LUT5 (Prop_lut5_I4_O)        0.105    11.819 f  u_cpu/u_nop_core/toplevel_cpu/FetchBufferPlugin_bufferFIFO/io_pop_2_payload_pc[1]_i_2/O
+                         net (fo=95, routed)          1.015    12.834    u_cpu/u_nop_core/toplevel_cpu/FetchBufferPlugin_bufferFIFO/io_pop_2_payload_pc[1]_i_2_n_0
+    SLICE_X77Y85         LUT4 (Prop_lut4_I3_O)        0.105    12.939 r  u_cpu/u_nop_core/toplevel_cpu/FetchBufferPlugin_bufferFIFO/io_pop_2_payload_pc[24]_i_2/O
+                         net (fo=1, routed)           0.343    13.282    u_cpu/u_nop_core/toplevel_cpu/FetchBufferPlugin_bufferFIFO/io_pop_2_payload_pc[24]_i_2_n_0
+    SLICE_X77Y85         LUT5 (Prop_lut5_I2_O)        0.105    13.387 r  u_cpu/u_nop_core/toplevel_cpu/FetchBufferPlugin_bufferFIFO/io_pop_2_payload_pc[24]_i_1/O
+                         net (fo=1, routed)           0.000    13.387    u_cpu/u_nop_core/toplevel_cpu/FetchBufferPlugin_bufferFIFO/io_pop_2_payload_pc[24]_i_1_n_0
+    SLICE_X77Y85         FDRE                                         r  u_cpu/u_nop_core/toplevel_cpu/FetchBufferPlugin_bufferFIFO/io_pop_2_payload_pc_reg[24]/D
+  -------------------------------------------------------------------    -------------------
+
+                         (clock cpu_clk rise edge)    5.000     5.000 r  
+    AC19                                              0.000     5.000 r  clk (IN)
+                         net (fo=0)                   0.000     5.000    clk
+    AC19                 IBUF (Prop_ibuf_I_O)         1.350     6.350 r  clk_IBUF_inst/O
+                         net (fo=1, routed)           2.471     8.821    clk_IBUF
+    BUFGCTRL_X0Y0        BUFG (Prop_bufg_I_O)         0.077     8.898 r  clk_IBUF_BUFG_inst/O
+                         net (fo=2027, routed)        1.706    10.604    fpga_pll.u_clk_pll/inst/clk_in1
+    PLLE2_ADV_X1Y0       PLLE2_ADV (Prop_plle2_adv_CLKIN1_CLKOUT0)
+                                                     -3.960     6.644 r  fpga_pll.u_clk_pll/inst/plle2_adv_inst/CLKOUT0
+                         net (fo=1, routed)           2.177     8.821    fpga_pll.u_clk_pll/inst/cpu_clk_clk_pll
+    BUFGCTRL_X0Y2        BUFG (Prop_bufg_I_O)         0.077     8.898 r  fpga_pll.u_clk_pll/inst/clkout1_buf/O
+                         net (fo=24016, routed)       1.416    10.314    u_cpu/u_nop_core/toplevel_cpu/FetchBufferPlugin_bufferFIFO/cpu_clk
+    SLICE_X77Y85         FDRE                                         r  u_cpu/u_nop_core/toplevel_cpu/FetchBufferPlugin_bufferFIFO/io_pop_2_payload_pc_reg[24]/C
+                         clock pessimism              0.207    10.521    
+                         clock uncertainty           -0.067    10.454    
+    SLICE_X77Y85         FDRE (Setup_fdre_C_D)        0.030    10.484    u_cpu/u_nop_core/toplevel_cpu/FetchBufferPlugin_bufferFIFO/io_pop_2_payload_pc_reg[24]
+  -------------------------------------------------------------------
+                         required time                         10.484    
+                         arrival time                         -13.387    
+  -------------------------------------------------------------------
+                         slack                                 -2.903    
+
+Slack (VIOLATED) :        -2.857ns  (required time - arrival time)
+  Source:                 u_cpu/u_nop_core/toplevel_cpu/RENAME_to_DISPATCH_DECODE_PACKET_0_payload_except_valid_reg/C
+                            (rising edge-triggered cell FDRE clocked by cpu_clk  {rise@0.000ns fall@2.500ns period=5.000ns})
+  Destination:            u_cpu/u_nop_core/toplevel_cpu/FetchBufferPlugin_bufferFIFO/io_pop_2_payload_pc_reg[2]/D
+                            (rising edge-triggered cell FDRE clocked by cpu_clk  {rise@0.000ns fall@2.500ns period=5.000ns})
+  Path Group:             cpu_clk
+  Path Type:              Setup (Max at Slow Process Corner)
+  Requirement:            5.000ns  (cpu_clk rise@5.000ns - cpu_clk rise@0.000ns)
+  Data Path Delay:        7.813ns  (logic 1.534ns (19.633%)  route 6.279ns (80.367%))
+  Logic Levels:           11  (LUT2=1 LUT4=2 LUT5=3 LUT6=5)
+  Clock Path Skew:        -0.007ns (DCD - SCD + CPR)
+    Destination Clock Delay (DCD):    5.303ns = ( 10.303 - 5.000 ) 
+    Source Clock Delay      (SCD):    5.517ns
+    Clock Pessimism Removal (CPR):    0.207ns
+  Clock Uncertainty:      0.067ns  ((TSJ^2 + DJ^2)^1/2) / 2 + PE
+    Total System Jitter     (TSJ):    0.071ns
+    Discrete Jitter          (DJ):    0.113ns
+    Phase Error              (PE):    0.000ns
+
+    Location             Delay type                Incr(ns)  Path(ns)    Netlist Resource(s)
+  -------------------------------------------------------------------    -------------------
+                         (clock cpu_clk rise edge)    0.000     0.000 r  
+    AC19                                              0.000     0.000 r  clk (IN)
+                         net (fo=0)                   0.000     0.000    clk
+    AC19                 IBUF (Prop_ibuf_I_O)         1.416     1.416 r  clk_IBUF_inst/O
+                         net (fo=1, routed)           2.602     4.018    clk_IBUF
+    BUFGCTRL_X0Y0        BUFG (Prop_bufg_I_O)         0.081     4.099 r  clk_IBUF_BUFG_inst/O
+                         net (fo=2027, routed)        1.823     5.922    fpga_pll.u_clk_pll/inst/clk_in1
+    PLLE2_ADV_X1Y0       PLLE2_ADV (Prop_plle2_adv_CLKIN1_CLKOUT0)
+                                                     -4.192     1.730 r  fpga_pll.u_clk_pll/inst/plle2_adv_inst/CLKOUT0
+                         net (fo=1, routed)           2.288     4.018    fpga_pll.u_clk_pll/inst/cpu_clk_clk_pll
+    BUFGCTRL_X0Y2        BUFG (Prop_bufg_I_O)         0.081     4.099 r  fpga_pll.u_clk_pll/inst/clkout1_buf/O
+                         net (fo=24016, routed)       1.418     5.517    u_cpu/u_nop_core/toplevel_cpu/cpu_clk
+    SLICE_X107Y112       FDRE                                         r  u_cpu/u_nop_core/toplevel_cpu/RENAME_to_DISPATCH_DECODE_PACKET_0_payload_except_valid_reg/C
+  -------------------------------------------------------------------    -------------------
+    SLICE_X107Y112       FDRE (Prop_fdre_C_Q)         0.379     5.896 r  u_cpu/u_nop_core/toplevel_cpu/RENAME_to_DISPATCH_DECODE_PACKET_0_payload_except_valid_reg/Q
+                         net (fo=3, routed)           0.566     6.462    u_cpu/u_nop_core/toplevel_cpu/FetchBufferPlugin_bufferFIFO/RENAME_to_DISPATCH_DECODE_PACKET_0_payload_except_valid
+    SLICE_X107Y112       LUT5 (Prop_lut5_I4_O)        0.105     6.567 f  u_cpu/u_nop_core/toplevel_cpu/FetchBufferPlugin_bufferFIFO/MulDivIssueQueuePlugin_queue_2_payload_uop_doRegWrite_i_12/O
+                         net (fo=2, routed)           0.244     6.811    u_cpu/u_nop_core/toplevel_cpu/FetchBufferPlugin_bufferFIFO/MulDivIssueQueuePlugin_queue_2_payload_uop_doRegWrite_i_12_n_0
+    SLICE_X106Y113       LUT6 (Prop_lut6_I5_O)        0.105     6.916 r  u_cpu/u_nop_core/toplevel_cpu/FetchBufferPlugin_bufferFIFO/MulDivIssueQueuePlugin_queue_2_payload_uop_doRegWrite_i_7/O
+                         net (fo=7, routed)           0.361     7.278    u_cpu/u_nop_core/toplevel_cpu/FetchBufferPlugin_bufferFIFO/RENAME_to_DISPATCH_DECODE_PACKET_1_valid_reg
+    SLICE_X107Y111       LUT4 (Prop_lut4_I0_O)        0.105     7.383 f  u_cpu/u_nop_core/toplevel_cpu/FetchBufferPlugin_bufferFIFO/IntIssueQueuePlugin_queue_6_payload_uop_pc[31]_i_7/O
+                         net (fo=2, routed)           0.409     7.792    u_cpu/u_nop_core/toplevel_cpu/FetchBufferPlugin_bufferFIFO/MulDivIssueQueuePlugin_queue_1_valid_reg_0
+    SLICE_X106Y111       LUT6 (Prop_lut6_I5_O)        0.105     7.897 r  u_cpu/u_nop_core/toplevel_cpu/FetchBufferPlugin_bufferFIFO/RENAME_to_DISPATCH_DECODE_PACKET_0_payload_isStore_i_3/O
+                         net (fo=1, routed)           0.120     8.017    u_cpu/u_nop_core/toplevel_cpu/FetchBufferPlugin_bufferFIFO/RENAME_to_DISPATCH_DECODE_PACKET_0_payload_isStore_i_3_n_0
+    SLICE_X106Y111       LUT2 (Prop_lut2_I1_O)        0.105     8.122 r  u_cpu/u_nop_core/toplevel_cpu/FetchBufferPlugin_bufferFIFO/RENAME_to_DISPATCH_DECODE_PACKET_0_payload_isStore_i_2/O
+                         net (fo=479, routed)         0.622     8.743    u_cpu/u_nop_core/toplevel_cpu/RenamePlugin_freeList/DISPATCH_arbitration_isValid_reg_1
+    SLICE_X104Y110       LUT6 (Prop_lut6_I0_O)        0.105     8.848 r  u_cpu/u_nop_core/toplevel_cpu/RenamePlugin_freeList/_to__DECODE_FIELDS_0_payload_isStore_i_3/O
+                         net (fo=1549, routed)        0.279     9.127    u_cpu/u_nop_core/toplevel_cpu/RenamePlugin_freeList/RENAME_arbitration_isValid_reg_1[0]
+    SLICE_X104Y109       LUT6 (Prop_lut6_I4_O)        0.105     9.232 r  u_cpu/u_nop_core/toplevel_cpu/RenamePlugin_freeList/occupancy[1]_i_4/O
+                         net (fo=48, routed)          0.598     9.831    u_cpu/u_nop_core/toplevel_cpu/FetchBufferPlugin_bufferFIFO/ID_arbitration_isFiring
+    SLICE_X103Y103       LUT6 (Prop_lut6_I3_O)        0.105     9.936 f  u_cpu/u_nop_core/toplevel_cpu/FetchBufferPlugin_bufferFIFO/io_pop_0_payload_pc[31]_i_3/O
+                         net (fo=118, routed)         1.512    11.448    u_cpu/u_nop_core/toplevel_cpu/FetchBufferPlugin_bufferFIFO/io_pop_0_payload_pc[31]_i_3_n_0
+    SLICE_X82Y87         LUT5 (Prop_lut5_I4_O)        0.105    11.553 r  u_cpu/u_nop_core/toplevel_cpu/FetchBufferPlugin_bufferFIFO/io_pop_2_payload_pc[1]_i_4/O
+                         net (fo=116, routed)         1.221    12.773    u_cpu/u_nop_core/toplevel_cpu/FetchBufferPlugin_bufferFIFO/io_pop_2_payload_pc[1]_i_4_n_0
+    SLICE_X80Y79         LUT4 (Prop_lut4_I2_O)        0.105    12.878 r  u_cpu/u_nop_core/toplevel_cpu/FetchBufferPlugin_bufferFIFO/io_pop_2_payload_pc[2]_i_2/O
+                         net (fo=1, routed)           0.347    13.225    u_cpu/u_nop_core/toplevel_cpu/FetchBufferPlugin_bufferFIFO/io_pop_2_payload_pc[2]_i_2_n_0
+    SLICE_X79Y81         LUT5 (Prop_lut5_I2_O)        0.105    13.330 r  u_cpu/u_nop_core/toplevel_cpu/FetchBufferPlugin_bufferFIFO/io_pop_2_payload_pc[2]_i_1/O
+                         net (fo=1, routed)           0.000    13.330    u_cpu/u_nop_core/toplevel_cpu/FetchBufferPlugin_bufferFIFO/io_pop_2_payload_pc[2]_i_1_n_0
+    SLICE_X79Y81         FDRE                                         r  u_cpu/u_nop_core/toplevel_cpu/FetchBufferPlugin_bufferFIFO/io_pop_2_payload_pc_reg[2]/D
+  -------------------------------------------------------------------    -------------------
+
+                         (clock cpu_clk rise edge)    5.000     5.000 r  
+    AC19                                              0.000     5.000 r  clk (IN)
+                         net (fo=0)                   0.000     5.000    clk
+    AC19                 IBUF (Prop_ibuf_I_O)         1.350     6.350 r  clk_IBUF_inst/O
+                         net (fo=1, routed)           2.471     8.821    clk_IBUF
+    BUFGCTRL_X0Y0        BUFG (Prop_bufg_I_O)         0.077     8.898 r  clk_IBUF_BUFG_inst/O
+                         net (fo=2027, routed)        1.706    10.604    fpga_pll.u_clk_pll/inst/clk_in1
+    PLLE2_ADV_X1Y0       PLLE2_ADV (Prop_plle2_adv_CLKIN1_CLKOUT0)
+                                                     -3.960     6.644 r  fpga_pll.u_clk_pll/inst/plle2_adv_inst/CLKOUT0
+                         net (fo=1, routed)           2.177     8.821    fpga_pll.u_clk_pll/inst/cpu_clk_clk_pll
+    BUFGCTRL_X0Y2        BUFG (Prop_bufg_I_O)         0.077     8.898 r  fpga_pll.u_clk_pll/inst/clkout1_buf/O
+                         net (fo=24016, routed)       1.405    10.303    u_cpu/u_nop_core/toplevel_cpu/FetchBufferPlugin_bufferFIFO/cpu_clk
+    SLICE_X79Y81         FDRE                                         r  u_cpu/u_nop_core/toplevel_cpu/FetchBufferPlugin_bufferFIFO/io_pop_2_payload_pc_reg[2]/C
+                         clock pessimism              0.207    10.510    
+                         clock uncertainty           -0.067    10.443    
+    SLICE_X79Y81         FDRE (Setup_fdre_C_D)        0.030    10.473    u_cpu/u_nop_core/toplevel_cpu/FetchBufferPlugin_bufferFIFO/io_pop_2_payload_pc_reg[2]
+  -------------------------------------------------------------------
+                         required time                         10.473    
+                         arrival time                         -13.330    
+  -------------------------------------------------------------------
+                         slack                                 -2.857    
+
+Slack (VIOLATED) :        -2.837ns  (required time - arrival time)
+  Source:                 u_cpu/u_nop_core/toplevel_cpu/RENAME_to_DISPATCH_DECODE_PACKET_0_payload_except_valid_reg/C
+                            (rising edge-triggered cell FDRE clocked by cpu_clk  {rise@0.000ns fall@2.500ns period=5.000ns})
+  Destination:            u_cpu/u_nop_core/toplevel_cpu/FetchBufferPlugin_bufferFIFO/io_pop_2_payload_pc_reg[5]/D
+                            (rising edge-triggered cell FDRE clocked by cpu_clk  {rise@0.000ns fall@2.500ns period=5.000ns})
+  Path Group:             cpu_clk
+  Path Type:              Setup (Max at Slow Process Corner)
+  Requirement:            5.000ns  (cpu_clk rise@5.000ns - cpu_clk rise@0.000ns)
+  Data Path Delay:        7.792ns  (logic 1.534ns (19.687%)  route 6.258ns (80.313%))
+  Logic Levels:           11  (LUT2=1 LUT4=2 LUT5=3 LUT6=5)
+  Clock Path Skew:        -0.009ns (DCD - SCD + CPR)
+    Destination Clock Delay (DCD):    5.301ns = ( 10.301 - 5.000 ) 
+    Source Clock Delay      (SCD):    5.517ns
+    Clock Pessimism Removal (CPR):    0.207ns
+  Clock Uncertainty:      0.067ns  ((TSJ^2 + DJ^2)^1/2) / 2 + PE
+    Total System Jitter     (TSJ):    0.071ns
+    Discrete Jitter          (DJ):    0.113ns
+    Phase Error              (PE):    0.000ns
+
+    Location             Delay type                Incr(ns)  Path(ns)    Netlist Resource(s)
+  -------------------------------------------------------------------    -------------------
+                         (clock cpu_clk rise edge)    0.000     0.000 r  
+    AC19                                              0.000     0.000 r  clk (IN)
+                         net (fo=0)                   0.000     0.000    clk
+    AC19                 IBUF (Prop_ibuf_I_O)         1.416     1.416 r  clk_IBUF_inst/O
+                         net (fo=1, routed)           2.602     4.018    clk_IBUF
+    BUFGCTRL_X0Y0        BUFG (Prop_bufg_I_O)         0.081     4.099 r  clk_IBUF_BUFG_inst/O
+                         net (fo=2027, routed)        1.823     5.922    fpga_pll.u_clk_pll/inst/clk_in1
+    PLLE2_ADV_X1Y0       PLLE2_ADV (Prop_plle2_adv_CLKIN1_CLKOUT0)
+                                                     -4.192     1.730 r  fpga_pll.u_clk_pll/inst/plle2_adv_inst/CLKOUT0
+                         net (fo=1, routed)           2.288     4.018    fpga_pll.u_clk_pll/inst/cpu_clk_clk_pll
+    BUFGCTRL_X0Y2        BUFG (Prop_bufg_I_O)         0.081     4.099 r  fpga_pll.u_clk_pll/inst/clkout1_buf/O
+                         net (fo=24016, routed)       1.418     5.517    u_cpu/u_nop_core/toplevel_cpu/cpu_clk
+    SLICE_X107Y112       FDRE                                         r  u_cpu/u_nop_core/toplevel_cpu/RENAME_to_DISPATCH_DECODE_PACKET_0_payload_except_valid_reg/C
+  -------------------------------------------------------------------    -------------------
+    SLICE_X107Y112       FDRE (Prop_fdre_C_Q)         0.379     5.896 r  u_cpu/u_nop_core/toplevel_cpu/RENAME_to_DISPATCH_DECODE_PACKET_0_payload_except_valid_reg/Q
+                         net (fo=3, routed)           0.566     6.462    u_cpu/u_nop_core/toplevel_cpu/FetchBufferPlugin_bufferFIFO/RENAME_to_DISPATCH_DECODE_PACKET_0_payload_except_valid
+    SLICE_X107Y112       LUT5 (Prop_lut5_I4_O)        0.105     6.567 f  u_cpu/u_nop_core/toplevel_cpu/FetchBufferPlugin_bufferFIFO/MulDivIssueQueuePlugin_queue_2_payload_uop_doRegWrite_i_12/O
+                         net (fo=2, routed)           0.244     6.811    u_cpu/u_nop_core/toplevel_cpu/FetchBufferPlugin_bufferFIFO/MulDivIssueQueuePlugin_queue_2_payload_uop_doRegWrite_i_12_n_0
+    SLICE_X106Y113       LUT6 (Prop_lut6_I5_O)        0.105     6.916 r  u_cpu/u_nop_core/toplevel_cpu/FetchBufferPlugin_bufferFIFO/MulDivIssueQueuePlugin_queue_2_payload_uop_doRegWrite_i_7/O
+                         net (fo=7, routed)           0.361     7.278    u_cpu/u_nop_core/toplevel_cpu/FetchBufferPlugin_bufferFIFO/RENAME_to_DISPATCH_DECODE_PACKET_1_valid_reg
+    SLICE_X107Y111       LUT4 (Prop_lut4_I0_O)        0.105     7.383 f  u_cpu/u_nop_core/toplevel_cpu/FetchBufferPlugin_bufferFIFO/IntIssueQueuePlugin_queue_6_payload_uop_pc[31]_i_7/O
+                         net (fo=2, routed)           0.409     7.792    u_cpu/u_nop_core/toplevel_cpu/FetchBufferPlugin_bufferFIFO/MulDivIssueQueuePlugin_queue_1_valid_reg_0
+    SLICE_X106Y111       LUT6 (Prop_lut6_I5_O)        0.105     7.897 r  u_cpu/u_nop_core/toplevel_cpu/FetchBufferPlugin_bufferFIFO/RENAME_to_DISPATCH_DECODE_PACKET_0_payload_isStore_i_3/O
+                         net (fo=1, routed)           0.120     8.017    u_cpu/u_nop_core/toplevel_cpu/FetchBufferPlugin_bufferFIFO/RENAME_to_DISPATCH_DECODE_PACKET_0_payload_isStore_i_3_n_0
+    SLICE_X106Y111       LUT2 (Prop_lut2_I1_O)        0.105     8.122 r  u_cpu/u_nop_core/toplevel_cpu/FetchBufferPlugin_bufferFIFO/RENAME_to_DISPATCH_DECODE_PACKET_0_payload_isStore_i_2/O
+                         net (fo=479, routed)         0.622     8.743    u_cpu/u_nop_core/toplevel_cpu/RenamePlugin_freeList/DISPATCH_arbitration_isValid_reg_1
+    SLICE_X104Y110       LUT6 (Prop_lut6_I0_O)        0.105     8.848 r  u_cpu/u_nop_core/toplevel_cpu/RenamePlugin_freeList/_to__DECODE_FIELDS_0_payload_isStore_i_3/O
+                         net (fo=1549, routed)        0.279     9.127    u_cpu/u_nop_core/toplevel_cpu/RenamePlugin_freeList/RENAME_arbitration_isValid_reg_1[0]
+    SLICE_X104Y109       LUT6 (Prop_lut6_I4_O)        0.105     9.232 r  u_cpu/u_nop_core/toplevel_cpu/RenamePlugin_freeList/occupancy[1]_i_4/O
+                         net (fo=48, routed)          0.598     9.831    u_cpu/u_nop_core/toplevel_cpu/FetchBufferPlugin_bufferFIFO/ID_arbitration_isFiring
+    SLICE_X103Y103       LUT6 (Prop_lut6_I3_O)        0.105     9.936 f  u_cpu/u_nop_core/toplevel_cpu/FetchBufferPlugin_bufferFIFO/io_pop_0_payload_pc[31]_i_3/O
+                         net (fo=118, routed)         1.512    11.448    u_cpu/u_nop_core/toplevel_cpu/FetchBufferPlugin_bufferFIFO/io_pop_0_payload_pc[31]_i_3_n_0
+    SLICE_X82Y87         LUT5 (Prop_lut5_I4_O)        0.105    11.553 r  u_cpu/u_nop_core/toplevel_cpu/FetchBufferPlugin_bufferFIFO/io_pop_2_payload_pc[1]_i_4/O
+                         net (fo=116, routed)         1.233    12.785    u_cpu/u_nop_core/toplevel_cpu/FetchBufferPlugin_bufferFIFO/io_pop_2_payload_pc[1]_i_4_n_0
+    SLICE_X81Y79         LUT4 (Prop_lut4_I2_O)        0.105    12.890 r  u_cpu/u_nop_core/toplevel_cpu/FetchBufferPlugin_bufferFIFO/io_pop_2_payload_pc[5]_i_2/O
+                         net (fo=1, routed)           0.313    13.204    u_cpu/u_nop_core/toplevel_cpu/FetchBufferPlugin_bufferFIFO/io_pop_2_payload_pc[5]_i_2_n_0
+    SLICE_X81Y79         LUT5 (Prop_lut5_I2_O)        0.105    13.309 r  u_cpu/u_nop_core/toplevel_cpu/FetchBufferPlugin_bufferFIFO/io_pop_2_payload_pc[5]_i_1/O
+                         net (fo=1, routed)           0.000    13.309    u_cpu/u_nop_core/toplevel_cpu/FetchBufferPlugin_bufferFIFO/io_pop_2_payload_pc[5]_i_1_n_0
+    SLICE_X81Y79         FDRE                                         r  u_cpu/u_nop_core/toplevel_cpu/FetchBufferPlugin_bufferFIFO/io_pop_2_payload_pc_reg[5]/D
+  -------------------------------------------------------------------    -------------------
+
+                         (clock cpu_clk rise edge)    5.000     5.000 r  
+    AC19                                              0.000     5.000 r  clk (IN)
+                         net (fo=0)                   0.000     5.000    clk
+    AC19                 IBUF (Prop_ibuf_I_O)         1.350     6.350 r  clk_IBUF_inst/O
+                         net (fo=1, routed)           2.471     8.821    clk_IBUF
+    BUFGCTRL_X0Y0        BUFG (Prop_bufg_I_O)         0.077     8.898 r  clk_IBUF_BUFG_inst/O
+                         net (fo=2027, routed)        1.706    10.604    fpga_pll.u_clk_pll/inst/clk_in1
+    PLLE2_ADV_X1Y0       PLLE2_ADV (Prop_plle2_adv_CLKIN1_CLKOUT0)
+                                                     -3.960     6.644 r  fpga_pll.u_clk_pll/inst/plle2_adv_inst/CLKOUT0
+                         net (fo=1, routed)           2.177     8.821    fpga_pll.u_clk_pll/inst/cpu_clk_clk_pll
+    BUFGCTRL_X0Y2        BUFG (Prop_bufg_I_O)         0.077     8.898 r  fpga_pll.u_clk_pll/inst/clkout1_buf/O
+                         net (fo=24016, routed)       1.403    10.301    u_cpu/u_nop_core/toplevel_cpu/FetchBufferPlugin_bufferFIFO/cpu_clk
+    SLICE_X81Y79         FDRE                                         r  u_cpu/u_nop_core/toplevel_cpu/FetchBufferPlugin_bufferFIFO/io_pop_2_payload_pc_reg[5]/C
+                         clock pessimism              0.207    10.508    
+                         clock uncertainty           -0.067    10.441    
+    SLICE_X81Y79         FDRE (Setup_fdre_C_D)        0.030    10.471    u_cpu/u_nop_core/toplevel_cpu/FetchBufferPlugin_bufferFIFO/io_pop_2_payload_pc_reg[5]
+  -------------------------------------------------------------------
+                         required time                         10.471    
+                         arrival time                         -13.309    
+  -------------------------------------------------------------------
+                         slack                                 -2.837    
+
+Slack (VIOLATED) :        -2.832ns  (required time - arrival time)
+  Source:                 u_cpu/u_nop_core/toplevel_cpu/RENAME_to_DISPATCH_DECODE_PACKET_0_payload_except_valid_reg/C
+                            (rising edge-triggered cell FDRE clocked by cpu_clk  {rise@0.000ns fall@2.500ns period=5.000ns})
+  Destination:            u_cpu/u_nop_core/toplevel_cpu/FetchBufferPlugin_bufferFIFO/io_pop_2_payload_pc_reg[13]/D
+                            (rising edge-triggered cell FDRE clocked by cpu_clk  {rise@0.000ns fall@2.500ns period=5.000ns})
+  Path Group:             cpu_clk
+  Path Type:              Setup (Max at Slow Process Corner)
+  Requirement:            5.000ns  (cpu_clk rise@5.000ns - cpu_clk rise@0.000ns)
+  Data Path Delay:        7.788ns  (logic 1.534ns (19.697%)  route 6.254ns (80.303%))
+  Logic Levels:           11  (LUT2=1 LUT3=1 LUT4=1 LUT5=3 LUT6=5)
+  Clock Path Skew:        -0.008ns (DCD - SCD + CPR)
+    Destination Clock Delay (DCD):    5.302ns = ( 10.302 - 5.000 ) 
+    Source Clock Delay      (SCD):    5.517ns
+    Clock Pessimism Removal (CPR):    0.207ns
+  Clock Uncertainty:      0.067ns  ((TSJ^2 + DJ^2)^1/2) / 2 + PE
+    Total System Jitter     (TSJ):    0.071ns
+    Discrete Jitter          (DJ):    0.113ns
+    Phase Error              (PE):    0.000ns
+
+    Location             Delay type                Incr(ns)  Path(ns)    Netlist Resource(s)
+  -------------------------------------------------------------------    -------------------
+                         (clock cpu_clk rise edge)    0.000     0.000 r  
+    AC19                                              0.000     0.000 r  clk (IN)
+                         net (fo=0)                   0.000     0.000    clk
+    AC19                 IBUF (Prop_ibuf_I_O)         1.416     1.416 r  clk_IBUF_inst/O
+                         net (fo=1, routed)           2.602     4.018    clk_IBUF
+    BUFGCTRL_X0Y0        BUFG (Prop_bufg_I_O)         0.081     4.099 r  clk_IBUF_BUFG_inst/O
+                         net (fo=2027, routed)        1.823     5.922    fpga_pll.u_clk_pll/inst/clk_in1
+    PLLE2_ADV_X1Y0       PLLE2_ADV (Prop_plle2_adv_CLKIN1_CLKOUT0)
+                                                     -4.192     1.730 r  fpga_pll.u_clk_pll/inst/plle2_adv_inst/CLKOUT0
+                         net (fo=1, routed)           2.288     4.018    fpga_pll.u_clk_pll/inst/cpu_clk_clk_pll
+    BUFGCTRL_X0Y2        BUFG (Prop_bufg_I_O)         0.081     4.099 r  fpga_pll.u_clk_pll/inst/clkout1_buf/O
+                         net (fo=24016, routed)       1.418     5.517    u_cpu/u_nop_core/toplevel_cpu/cpu_clk
+    SLICE_X107Y112       FDRE                                         r  u_cpu/u_nop_core/toplevel_cpu/RENAME_to_DISPATCH_DECODE_PACKET_0_payload_except_valid_reg/C
+  -------------------------------------------------------------------    -------------------
+    SLICE_X107Y112       FDRE (Prop_fdre_C_Q)         0.379     5.896 r  u_cpu/u_nop_core/toplevel_cpu/RENAME_to_DISPATCH_DECODE_PACKET_0_payload_except_valid_reg/Q
+                         net (fo=3, routed)           0.566     6.462    u_cpu/u_nop_core/toplevel_cpu/FetchBufferPlugin_bufferFIFO/RENAME_to_DISPATCH_DECODE_PACKET_0_payload_except_valid
+    SLICE_X107Y112       LUT5 (Prop_lut5_I4_O)        0.105     6.567 f  u_cpu/u_nop_core/toplevel_cpu/FetchBufferPlugin_bufferFIFO/MulDivIssueQueuePlugin_queue_2_payload_uop_doRegWrite_i_12/O
+                         net (fo=2, routed)           0.244     6.811    u_cpu/u_nop_core/toplevel_cpu/FetchBufferPlugin_bufferFIFO/MulDivIssueQueuePlugin_queue_2_payload_uop_doRegWrite_i_12_n_0
+    SLICE_X106Y113       LUT6 (Prop_lut6_I5_O)        0.105     6.916 r  u_cpu/u_nop_core/toplevel_cpu/FetchBufferPlugin_bufferFIFO/MulDivIssueQueuePlugin_queue_2_payload_uop_doRegWrite_i_7/O
+                         net (fo=7, routed)           0.361     7.278    u_cpu/u_nop_core/toplevel_cpu/FetchBufferPlugin_bufferFIFO/RENAME_to_DISPATCH_DECODE_PACKET_1_valid_reg
+    SLICE_X107Y111       LUT4 (Prop_lut4_I0_O)        0.105     7.383 f  u_cpu/u_nop_core/toplevel_cpu/FetchBufferPlugin_bufferFIFO/IntIssueQueuePlugin_queue_6_payload_uop_pc[31]_i_7/O
+                         net (fo=2, routed)           0.409     7.792    u_cpu/u_nop_core/toplevel_cpu/FetchBufferPlugin_bufferFIFO/MulDivIssueQueuePlugin_queue_1_valid_reg_0
+    SLICE_X106Y111       LUT6 (Prop_lut6_I5_O)        0.105     7.897 r  u_cpu/u_nop_core/toplevel_cpu/FetchBufferPlugin_bufferFIFO/RENAME_to_DISPATCH_DECODE_PACKET_0_payload_isStore_i_3/O
+                         net (fo=1, routed)           0.120     8.017    u_cpu/u_nop_core/toplevel_cpu/FetchBufferPlugin_bufferFIFO/RENAME_to_DISPATCH_DECODE_PACKET_0_payload_isStore_i_3_n_0
+    SLICE_X106Y111       LUT2 (Prop_lut2_I1_O)        0.105     8.122 r  u_cpu/u_nop_core/toplevel_cpu/FetchBufferPlugin_bufferFIFO/RENAME_to_DISPATCH_DECODE_PACKET_0_payload_isStore_i_2/O
+                         net (fo=479, routed)         0.622     8.743    u_cpu/u_nop_core/toplevel_cpu/RenamePlugin_freeList/DISPATCH_arbitration_isValid_reg_1
+    SLICE_X104Y110       LUT6 (Prop_lut6_I0_O)        0.105     8.848 r  u_cpu/u_nop_core/toplevel_cpu/RenamePlugin_freeList/_to__DECODE_FIELDS_0_payload_isStore_i_3/O
+                         net (fo=1549, routed)        0.279     9.127    u_cpu/u_nop_core/toplevel_cpu/RenamePlugin_freeList/RENAME_arbitration_isValid_reg_1[0]
+    SLICE_X104Y109       LUT6 (Prop_lut6_I4_O)        0.105     9.232 r  u_cpu/u_nop_core/toplevel_cpu/RenamePlugin_freeList/occupancy[1]_i_4/O
+                         net (fo=48, routed)          0.598     9.831    u_cpu/u_nop_core/toplevel_cpu/FetchBufferPlugin_bufferFIFO/ID_arbitration_isFiring
+    SLICE_X103Y103       LUT6 (Prop_lut6_I3_O)        0.105     9.936 f  u_cpu/u_nop_core/toplevel_cpu/FetchBufferPlugin_bufferFIFO/io_pop_0_payload_pc[31]_i_3/O
+                         net (fo=118, routed)         1.512    11.448    u_cpu/u_nop_core/toplevel_cpu/FetchBufferPlugin_bufferFIFO/io_pop_0_payload_pc[31]_i_3_n_0
+    SLICE_X82Y87         LUT5 (Prop_lut5_I4_O)        0.105    11.553 r  u_cpu/u_nop_core/toplevel_cpu/FetchBufferPlugin_bufferFIFO/io_pop_2_payload_pc[1]_i_4/O
+                         net (fo=116, routed)         1.057    12.610    u_cpu/u_nop_core/toplevel_cpu/FetchBufferPlugin_bufferFIFO/io_pop_2_payload_pc[1]_i_4_n_0
+    SLICE_X79Y79         LUT3 (Prop_lut3_I1_O)        0.105    12.715 f  u_cpu/u_nop_core/toplevel_cpu/FetchBufferPlugin_bufferFIFO/io_pop_2_payload_pc[13]_i_2/O
+                         net (fo=1, routed)           0.485    13.199    u_cpu/u_nop_core/toplevel_cpu/FetchBufferPlugin_bufferFIFO/io_pop_2_payload_pc[13]_i_2_n_0
+    SLICE_X79Y80         LUT5 (Prop_lut5_I2_O)        0.105    13.304 r  u_cpu/u_nop_core/toplevel_cpu/FetchBufferPlugin_bufferFIFO/io_pop_2_payload_pc[13]_i_1/O
+                         net (fo=1, routed)           0.000    13.304    u_cpu/u_nop_core/toplevel_cpu/FetchBufferPlugin_bufferFIFO/io_pop_2_payload_pc[13]_i_1_n_0
+    SLICE_X79Y80         FDRE                                         r  u_cpu/u_nop_core/toplevel_cpu/FetchBufferPlugin_bufferFIFO/io_pop_2_payload_pc_reg[13]/D
+  -------------------------------------------------------------------    -------------------
+
+                         (clock cpu_clk rise edge)    5.000     5.000 r  
+    AC19                                              0.000     5.000 r  clk (IN)
+                         net (fo=0)                   0.000     5.000    clk
+    AC19                 IBUF (Prop_ibuf_I_O)         1.350     6.350 r  clk_IBUF_inst/O
+                         net (fo=1, routed)           2.471     8.821    clk_IBUF
+    BUFGCTRL_X0Y0        BUFG (Prop_bufg_I_O)         0.077     8.898 r  clk_IBUF_BUFG_inst/O
+                         net (fo=2027, routed)        1.706    10.604    fpga_pll.u_clk_pll/inst/clk_in1
+    PLLE2_ADV_X1Y0       PLLE2_ADV (Prop_plle2_adv_CLKIN1_CLKOUT0)
+                                                     -3.960     6.644 r  fpga_pll.u_clk_pll/inst/plle2_adv_inst/CLKOUT0
+                         net (fo=1, routed)           2.177     8.821    fpga_pll.u_clk_pll/inst/cpu_clk_clk_pll
+    BUFGCTRL_X0Y2        BUFG (Prop_bufg_I_O)         0.077     8.898 r  fpga_pll.u_clk_pll/inst/clkout1_buf/O
+                         net (fo=24016, routed)       1.404    10.302    u_cpu/u_nop_core/toplevel_cpu/FetchBufferPlugin_bufferFIFO/cpu_clk
+    SLICE_X79Y80         FDRE                                         r  u_cpu/u_nop_core/toplevel_cpu/FetchBufferPlugin_bufferFIFO/io_pop_2_payload_pc_reg[13]/C
+                         clock pessimism              0.207    10.509    
+                         clock uncertainty           -0.067    10.442    
+    SLICE_X79Y80         FDRE (Setup_fdre_C_D)        0.030    10.472    u_cpu/u_nop_core/toplevel_cpu/FetchBufferPlugin_bufferFIFO/io_pop_2_payload_pc_reg[13]
+  -------------------------------------------------------------------
+                         required time                         10.472    
+                         arrival time                         -13.304    
+  -------------------------------------------------------------------
+                         slack                                 -2.832    
+
+Slack (VIOLATED) :        -2.812ns  (required time - arrival time)
+  Source:                 u_cpu/u_nop_core/toplevel_cpu/RENAME_to_DISPATCH_DECODE_PACKET_0_payload_except_valid_reg/C
+                            (rising edge-triggered cell FDRE clocked by cpu_clk  {rise@0.000ns fall@2.500ns period=5.000ns})
+  Destination:            u_cpu/u_nop_core/toplevel_cpu/FetchBufferPlugin_bufferFIFO/io_pop_2_payload_pc_reg[11]/D
+                            (rising edge-triggered cell FDRE clocked by cpu_clk  {rise@0.000ns fall@2.500ns period=5.000ns})
+  Path Group:             cpu_clk
+  Path Type:              Setup (Max at Slow Process Corner)
+  Requirement:            5.000ns  (cpu_clk rise@5.000ns - cpu_clk rise@0.000ns)
+  Data Path Delay:        7.769ns  (logic 1.744ns (22.447%)  route 6.025ns (77.553%))
+  Logic Levels:           13  (LUT2=1 LUT3=1 LUT4=1 LUT5=4 LUT6=6)
+  Clock Path Skew:        -0.006ns (DCD - SCD + CPR)
+    Destination Clock Delay (DCD):    5.304ns = ( 10.304 - 5.000 ) 
+    Source Clock Delay      (SCD):    5.517ns
+    Clock Pessimism Removal (CPR):    0.207ns
+  Clock Uncertainty:      0.067ns  ((TSJ^2 + DJ^2)^1/2) / 2 + PE
+    Total System Jitter     (TSJ):    0.071ns
+    Discrete Jitter          (DJ):    0.113ns
+    Phase Error              (PE):    0.000ns
+
+    Location             Delay type                Incr(ns)  Path(ns)    Netlist Resource(s)
+  -------------------------------------------------------------------    -------------------
+                         (clock cpu_clk rise edge)    0.000     0.000 r  
+    AC19                                              0.000     0.000 r  clk (IN)
+                         net (fo=0)                   0.000     0.000    clk
+    AC19                 IBUF (Prop_ibuf_I_O)         1.416     1.416 r  clk_IBUF_inst/O
+                         net (fo=1, routed)           2.602     4.018    clk_IBUF
+    BUFGCTRL_X0Y0        BUFG (Prop_bufg_I_O)         0.081     4.099 r  clk_IBUF_BUFG_inst/O
+                         net (fo=2027, routed)        1.823     5.922    fpga_pll.u_clk_pll/inst/clk_in1
+    PLLE2_ADV_X1Y0       PLLE2_ADV (Prop_plle2_adv_CLKIN1_CLKOUT0)
+                                                     -4.192     1.730 r  fpga_pll.u_clk_pll/inst/plle2_adv_inst/CLKOUT0
+                         net (fo=1, routed)           2.288     4.018    fpga_pll.u_clk_pll/inst/cpu_clk_clk_pll
+    BUFGCTRL_X0Y2        BUFG (Prop_bufg_I_O)         0.081     4.099 r  fpga_pll.u_clk_pll/inst/clkout1_buf/O
+                         net (fo=24016, routed)       1.418     5.517    u_cpu/u_nop_core/toplevel_cpu/cpu_clk
+    SLICE_X107Y112       FDRE                                         r  u_cpu/u_nop_core/toplevel_cpu/RENAME_to_DISPATCH_DECODE_PACKET_0_payload_except_valid_reg/C
+  -------------------------------------------------------------------    -------------------
+    SLICE_X107Y112       FDRE (Prop_fdre_C_Q)         0.379     5.896 f  u_cpu/u_nop_core/toplevel_cpu/RENAME_to_DISPATCH_DECODE_PACKET_0_payload_except_valid_reg/Q
+                         net (fo=3, routed)           0.566     6.462    u_cpu/u_nop_core/toplevel_cpu/FetchBufferPlugin_bufferFIFO/RENAME_to_DISPATCH_DECODE_PACKET_0_payload_except_valid
+    SLICE_X107Y112       LUT5 (Prop_lut5_I4_O)        0.105     6.567 r  u_cpu/u_nop_core/toplevel_cpu/FetchBufferPlugin_bufferFIFO/MulDivIssueQueuePlugin_queue_2_payload_uop_doRegWrite_i_12/O
+                         net (fo=2, routed)           0.244     6.811    u_cpu/u_nop_core/toplevel_cpu/FetchBufferPlugin_bufferFIFO/MulDivIssueQueuePlugin_queue_2_payload_uop_doRegWrite_i_12_n_0
+    SLICE_X106Y113       LUT6 (Prop_lut6_I5_O)        0.105     6.916 f  u_cpu/u_nop_core/toplevel_cpu/FetchBufferPlugin_bufferFIFO/MulDivIssueQueuePlugin_queue_2_payload_uop_doRegWrite_i_7/O
+                         net (fo=7, routed)           0.361     7.278    u_cpu/u_nop_core/toplevel_cpu/FetchBufferPlugin_bufferFIFO/RENAME_to_DISPATCH_DECODE_PACKET_1_valid_reg
+    SLICE_X107Y111       LUT4 (Prop_lut4_I0_O)        0.105     7.383 r  u_cpu/u_nop_core/toplevel_cpu/FetchBufferPlugin_bufferFIFO/IntIssueQueuePlugin_queue_6_payload_uop_pc[31]_i_7/O
+                         net (fo=2, routed)           0.409     7.792    u_cpu/u_nop_core/toplevel_cpu/FetchBufferPlugin_bufferFIFO/MulDivIssueQueuePlugin_queue_1_valid_reg_0
+    SLICE_X106Y111       LUT6 (Prop_lut6_I5_O)        0.105     7.897 f  u_cpu/u_nop_core/toplevel_cpu/FetchBufferPlugin_bufferFIFO/RENAME_to_DISPATCH_DECODE_PACKET_0_payload_isStore_i_3/O
+                         net (fo=1, routed)           0.120     8.017    u_cpu/u_nop_core/toplevel_cpu/FetchBufferPlugin_bufferFIFO/RENAME_to_DISPATCH_DECODE_PACKET_0_payload_isStore_i_3_n_0
+    SLICE_X106Y111       LUT2 (Prop_lut2_I1_O)        0.105     8.122 f  u_cpu/u_nop_core/toplevel_cpu/FetchBufferPlugin_bufferFIFO/RENAME_to_DISPATCH_DECODE_PACKET_0_payload_isStore_i_2/O
+                         net (fo=479, routed)         0.622     8.743    u_cpu/u_nop_core/toplevel_cpu/RenamePlugin_freeList/DISPATCH_arbitration_isValid_reg_1
+    SLICE_X104Y110       LUT6 (Prop_lut6_I0_O)        0.105     8.848 f  u_cpu/u_nop_core/toplevel_cpu/RenamePlugin_freeList/_to__DECODE_FIELDS_0_payload_isStore_i_3/O
+                         net (fo=1549, routed)        0.279     9.127    u_cpu/u_nop_core/toplevel_cpu/RenamePlugin_freeList/RENAME_arbitration_isValid_reg_1[0]
+    SLICE_X104Y109       LUT6 (Prop_lut6_I4_O)        0.105     9.232 f  u_cpu/u_nop_core/toplevel_cpu/RenamePlugin_freeList/occupancy[1]_i_4/O
+                         net (fo=48, routed)          0.513     9.746    u_cpu/u_nop_core/toplevel_cpu/FetchBufferPlugin_bufferFIFO/ID_arbitration_isFiring
+    SLICE_X102Y107       LUT5 (Prop_lut5_I0_O)        0.105     9.851 r  u_cpu/u_nop_core/toplevel_cpu/FetchBufferPlugin_bufferFIFO/io_pop_1_payload_pc[31]_i_12/O
+                         net (fo=1, routed)           0.399    10.249    u_cpu/u_nop_core/toplevel_cpu/FetchBufferPlugin_bufferFIFO/io_pop_1_payload_pc[31]_i_12_n_0
+    SLICE_X103Y107       LUT6 (Prop_lut6_I1_O)        0.105    10.354 f  u_cpu/u_nop_core/toplevel_cpu/FetchBufferPlugin_bufferFIFO/io_pop_1_payload_pc[31]_i_8/O
+                         net (fo=2, routed)           1.091    11.445    u_cpu/u_nop_core/toplevel_cpu/FetchBufferPlugin_bufferFIFO/io_pop_1_payload_pc[31]_i_8_n_0
+    SLICE_X84Y89         LUT6 (Prop_lut6_I5_O)        0.105    11.550 f  u_cpu/u_nop_core/toplevel_cpu/FetchBufferPlugin_bufferFIFO/io_pop_2_payload_predRecover_predictCounter[0]_i_2/O
+                         net (fo=6, routed)           0.164    11.714    u_cpu/u_nop_core/toplevel_cpu/FetchBufferPlugin_bufferFIFO/io_pop_2_payload_predRecover_predictCounter[0]_i_2_n_0
+    SLICE_X84Y89         LUT5 (Prop_lut5_I4_O)        0.105    11.819 r  u_cpu/u_nop_core/toplevel_cpu/FetchBufferPlugin_bufferFIFO/io_pop_2_payload_pc[1]_i_2/O
+                         net (fo=95, routed)          0.903    12.723    u_cpu/u_nop_core/toplevel_cpu/FetchBufferPlugin_bufferFIFO/io_pop_2_payload_pc[1]_i_2_n_0
+    SLICE_X78Y82         LUT5 (Prop_lut5_I1_O)        0.105    12.828 r  u_cpu/u_nop_core/toplevel_cpu/FetchBufferPlugin_bufferFIFO/io_pop_2_payload_pc[11]_i_2/O
+                         net (fo=1, routed)           0.353    13.181    u_cpu/u_nop_core/toplevel_cpu/FetchBufferPlugin_bufferFIFO/io_pop_2_payload_pc[11]_i_2_n_0
+    SLICE_X78Y82         LUT3 (Prop_lut3_I2_O)        0.105    13.286 r  u_cpu/u_nop_core/toplevel_cpu/FetchBufferPlugin_bufferFIFO/io_pop_2_payload_pc[11]_i_1/O
+                         net (fo=1, routed)           0.000    13.286    u_cpu/u_nop_core/toplevel_cpu/FetchBufferPlugin_bufferFIFO/io_pop_2_payload_pc[11]_i_1_n_0
+    SLICE_X78Y82         FDRE                                         r  u_cpu/u_nop_core/toplevel_cpu/FetchBufferPlugin_bufferFIFO/io_pop_2_payload_pc_reg[11]/D
+  -------------------------------------------------------------------    -------------------
+
+                         (clock cpu_clk rise edge)    5.000     5.000 r  
+    AC19                                              0.000     5.000 r  clk (IN)
+                         net (fo=0)                   0.000     5.000    clk
+    AC19                 IBUF (Prop_ibuf_I_O)         1.350     6.350 r  clk_IBUF_inst/O
+                         net (fo=1, routed)           2.471     8.821    clk_IBUF
+    BUFGCTRL_X0Y0        BUFG (Prop_bufg_I_O)         0.077     8.898 r  clk_IBUF_BUFG_inst/O
+                         net (fo=2027, routed)        1.706    10.604    fpga_pll.u_clk_pll/inst/clk_in1
+    PLLE2_ADV_X1Y0       PLLE2_ADV (Prop_plle2_adv_CLKIN1_CLKOUT0)
+                                                     -3.960     6.644 r  fpga_pll.u_clk_pll/inst/plle2_adv_inst/CLKOUT0
+                         net (fo=1, routed)           2.177     8.821    fpga_pll.u_clk_pll/inst/cpu_clk_clk_pll
+    BUFGCTRL_X0Y2        BUFG (Prop_bufg_I_O)         0.077     8.898 r  fpga_pll.u_clk_pll/inst/clkout1_buf/O
+                         net (fo=24016, routed)       1.406    10.304    u_cpu/u_nop_core/toplevel_cpu/FetchBufferPlugin_bufferFIFO/cpu_clk
+    SLICE_X78Y82         FDRE                                         r  u_cpu/u_nop_core/toplevel_cpu/FetchBufferPlugin_bufferFIFO/io_pop_2_payload_pc_reg[11]/C
+                         clock pessimism              0.207    10.511    
+                         clock uncertainty           -0.067    10.444    
+    SLICE_X78Y82         FDRE (Setup_fdre_C_D)        0.030    10.474    u_cpu/u_nop_core/toplevel_cpu/FetchBufferPlugin_bufferFIFO/io_pop_2_payload_pc_reg[11]
+  -------------------------------------------------------------------
+                         required time                         10.474    
+                         arrival time                         -13.286    
+  -------------------------------------------------------------------
+                         slack                                 -2.812    
+
+Slack (VIOLATED) :        -2.769ns  (required time - arrival time)
+  Source:                 u_cpu/u_nop_core/toplevel_cpu/RENAME_to_DISPATCH_DECODE_PACKET_0_payload_except_valid_reg/C
+                            (rising edge-triggered cell FDRE clocked by cpu_clk  {rise@0.000ns fall@2.500ns period=5.000ns})
+  Destination:            u_cpu/u_nop_core/toplevel_cpu/FetchBufferPlugin_bufferFIFO/io_pop_2_payload_predRecover_ghr_reg[6]/D
+                            (rising edge-triggered cell FDRE clocked by cpu_clk  {rise@0.000ns fall@2.500ns period=5.000ns})
+  Path Group:             cpu_clk
+  Path Type:              Setup (Max at Slow Process Corner)
+  Requirement:            5.000ns  (cpu_clk rise@5.000ns - cpu_clk rise@0.000ns)
+  Data Path Delay:        7.774ns  (logic 1.639ns (21.083%)  route 6.135ns (78.917%))
+  Logic Levels:           12  (LUT2=1 LUT3=1 LUT4=2 LUT5=3 LUT6=5)
+  Clock Path Skew:        -0.005ns (DCD - SCD + CPR)
+    Destination Clock Delay (DCD):    5.305ns = ( 10.305 - 5.000 ) 
+    Source Clock Delay      (SCD):    5.517ns
+    Clock Pessimism Removal (CPR):    0.207ns
+  Clock Uncertainty:      0.067ns  ((TSJ^2 + DJ^2)^1/2) / 2 + PE
+    Total System Jitter     (TSJ):    0.071ns
+    Discrete Jitter          (DJ):    0.113ns
+    Phase Error              (PE):    0.000ns
+
+    Location             Delay type                Incr(ns)  Path(ns)    Netlist Resource(s)
+  -------------------------------------------------------------------    -------------------
+                         (clock cpu_clk rise edge)    0.000     0.000 r  
+    AC19                                              0.000     0.000 r  clk (IN)
+                         net (fo=0)                   0.000     0.000    clk
+    AC19                 IBUF (Prop_ibuf_I_O)         1.416     1.416 r  clk_IBUF_inst/O
+                         net (fo=1, routed)           2.602     4.018    clk_IBUF
+    BUFGCTRL_X0Y0        BUFG (Prop_bufg_I_O)         0.081     4.099 r  clk_IBUF_BUFG_inst/O
+                         net (fo=2027, routed)        1.823     5.922    fpga_pll.u_clk_pll/inst/clk_in1
+    PLLE2_ADV_X1Y0       PLLE2_ADV (Prop_plle2_adv_CLKIN1_CLKOUT0)
+                                                     -4.192     1.730 r  fpga_pll.u_clk_pll/inst/plle2_adv_inst/CLKOUT0
+                         net (fo=1, routed)           2.288     4.018    fpga_pll.u_clk_pll/inst/cpu_clk_clk_pll
+    BUFGCTRL_X0Y2        BUFG (Prop_bufg_I_O)         0.081     4.099 r  fpga_pll.u_clk_pll/inst/clkout1_buf/O
+                         net (fo=24016, routed)       1.418     5.517    u_cpu/u_nop_core/toplevel_cpu/cpu_clk
+    SLICE_X107Y112       FDRE                                         r  u_cpu/u_nop_core/toplevel_cpu/RENAME_to_DISPATCH_DECODE_PACKET_0_payload_except_valid_reg/C
+  -------------------------------------------------------------------    -------------------
+    SLICE_X107Y112       FDRE (Prop_fdre_C_Q)         0.379     5.896 r  u_cpu/u_nop_core/toplevel_cpu/RENAME_to_DISPATCH_DECODE_PACKET_0_payload_except_valid_reg/Q
+                         net (fo=3, routed)           0.566     6.462    u_cpu/u_nop_core/toplevel_cpu/FetchBufferPlugin_bufferFIFO/RENAME_to_DISPATCH_DECODE_PACKET_0_payload_except_valid
+    SLICE_X107Y112       LUT5 (Prop_lut5_I4_O)        0.105     6.567 f  u_cpu/u_nop_core/toplevel_cpu/FetchBufferPlugin_bufferFIFO/MulDivIssueQueuePlugin_queue_2_payload_uop_doRegWrite_i_12/O
+                         net (fo=2, routed)           0.244     6.811    u_cpu/u_nop_core/toplevel_cpu/FetchBufferPlugin_bufferFIFO/MulDivIssueQueuePlugin_queue_2_payload_uop_doRegWrite_i_12_n_0
+    SLICE_X106Y113       LUT6 (Prop_lut6_I5_O)        0.105     6.916 r  u_cpu/u_nop_core/toplevel_cpu/FetchBufferPlugin_bufferFIFO/MulDivIssueQueuePlugin_queue_2_payload_uop_doRegWrite_i_7/O
+                         net (fo=7, routed)           0.361     7.278    u_cpu/u_nop_core/toplevel_cpu/FetchBufferPlugin_bufferFIFO/RENAME_to_DISPATCH_DECODE_PACKET_1_valid_reg
+    SLICE_X107Y111       LUT4 (Prop_lut4_I0_O)        0.105     7.383 f  u_cpu/u_nop_core/toplevel_cpu/FetchBufferPlugin_bufferFIFO/IntIssueQueuePlugin_queue_6_payload_uop_pc[31]_i_7/O
+                         net (fo=2, routed)           0.409     7.792    u_cpu/u_nop_core/toplevel_cpu/FetchBufferPlugin_bufferFIFO/MulDivIssueQueuePlugin_queue_1_valid_reg_0
+    SLICE_X106Y111       LUT6 (Prop_lut6_I5_O)        0.105     7.897 r  u_cpu/u_nop_core/toplevel_cpu/FetchBufferPlugin_bufferFIFO/RENAME_to_DISPATCH_DECODE_PACKET_0_payload_isStore_i_3/O
+                         net (fo=1, routed)           0.120     8.017    u_cpu/u_nop_core/toplevel_cpu/FetchBufferPlugin_bufferFIFO/RENAME_to_DISPATCH_DECODE_PACKET_0_payload_isStore_i_3_n_0
+    SLICE_X106Y111       LUT2 (Prop_lut2_I1_O)        0.105     8.122 r  u_cpu/u_nop_core/toplevel_cpu/FetchBufferPlugin_bufferFIFO/RENAME_to_DISPATCH_DECODE_PACKET_0_payload_isStore_i_2/O
+                         net (fo=479, routed)         0.622     8.743    u_cpu/u_nop_core/toplevel_cpu/RenamePlugin_freeList/DISPATCH_arbitration_isValid_reg_1
+    SLICE_X104Y110       LUT6 (Prop_lut6_I0_O)        0.105     8.848 r  u_cpu/u_nop_core/toplevel_cpu/RenamePlugin_freeList/_to__DECODE_FIELDS_0_payload_isStore_i_3/O
+                         net (fo=1549, routed)        0.279     9.127    u_cpu/u_nop_core/toplevel_cpu/RenamePlugin_freeList/RENAME_arbitration_isValid_reg_1[0]
+    SLICE_X104Y109       LUT6 (Prop_lut6_I4_O)        0.105     9.232 r  u_cpu/u_nop_core/toplevel_cpu/RenamePlugin_freeList/occupancy[1]_i_4/O
+                         net (fo=48, routed)          1.155    10.388    u_cpu/u_nop_core/toplevel_cpu/FetchBufferPlugin_bufferFIFO/ID_arbitration_isFiring
+    SLICE_X92Y91         LUT5 (Prop_lut5_I1_O)        0.105    10.493 r  u_cpu/u_nop_core/toplevel_cpu/FetchBufferPlugin_bufferFIFO/io_pop_0_payload_pc[31]_i_6/O
+                         net (fo=247, routed)         1.282    11.774    u_cpu/u_nop_core/toplevel_cpu/FetchBufferPlugin_bufferFIFO/io_pop_0_payload_pc[31]_i_6_n_0
+    SLICE_X83Y81         LUT4 (Prop_lut4_I1_O)        0.105    11.879 f  u_cpu/u_nop_core/toplevel_cpu/FetchBufferPlugin_bufferFIFO/io_pop_2_payload_predRecover_ghr[6]_i_4/O
+                         net (fo=1, routed)           0.471    12.351    u_cpu/u_nop_core/toplevel_cpu/FetchBufferPlugin_bufferFIFO/io_pop_2_payload_predRecover_ghr[6]_i_4_n_0
+    SLICE_X80Y79         LUT5 (Prop_lut5_I4_O)        0.105    12.456 r  u_cpu/u_nop_core/toplevel_cpu/FetchBufferPlugin_bufferFIFO/io_pop_2_payload_predRecover_ghr[6]_i_3/O
+                         net (fo=1, routed)           0.272    12.728    u_cpu/u_nop_core/toplevel_cpu/FetchBufferPlugin_bufferFIFO/io_pop_2_payload_predRecover_ghr[6]_i_3_n_0
+    SLICE_X80Y80         LUT3 (Prop_lut3_I0_O)        0.105    12.833 r  u_cpu/u_nop_core/toplevel_cpu/FetchBufferPlugin_bufferFIFO/io_pop_2_payload_predRecover_ghr[6]_i_2/O
+                         net (fo=1, routed)           0.353    13.186    u_cpu/u_nop_core/toplevel_cpu/FetchBufferPlugin_bufferFIFO/io_pop_2_payload_predRecover_ghr[6]_i_2_n_0
+    SLICE_X80Y83         LUT6 (Prop_lut6_I1_O)        0.105    13.291 r  u_cpu/u_nop_core/toplevel_cpu/FetchBufferPlugin_bufferFIFO/io_pop_2_payload_predRecover_ghr[6]_i_1/O
+                         net (fo=1, routed)           0.000    13.291    u_cpu/u_nop_core/toplevel_cpu/FetchBufferPlugin_bufferFIFO/io_pop_2_payload_predRecover_ghr[6]_i_1_n_0
+    SLICE_X80Y83         FDRE                                         r  u_cpu/u_nop_core/toplevel_cpu/FetchBufferPlugin_bufferFIFO/io_pop_2_payload_predRecover_ghr_reg[6]/D
+  -------------------------------------------------------------------    -------------------
+
+                         (clock cpu_clk rise edge)    5.000     5.000 r  
+    AC19                                              0.000     5.000 r  clk (IN)
+                         net (fo=0)                   0.000     5.000    clk
+    AC19                 IBUF (Prop_ibuf_I_O)         1.350     6.350 r  clk_IBUF_inst/O
+                         net (fo=1, routed)           2.471     8.821    clk_IBUF
+    BUFGCTRL_X0Y0        BUFG (Prop_bufg_I_O)         0.077     8.898 r  clk_IBUF_BUFG_inst/O
+                         net (fo=2027, routed)        1.706    10.604    fpga_pll.u_clk_pll/inst/clk_in1
+    PLLE2_ADV_X1Y0       PLLE2_ADV (Prop_plle2_adv_CLKIN1_CLKOUT0)
+                                                     -3.960     6.644 r  fpga_pll.u_clk_pll/inst/plle2_adv_inst/CLKOUT0
+                         net (fo=1, routed)           2.177     8.821    fpga_pll.u_clk_pll/inst/cpu_clk_clk_pll
+    BUFGCTRL_X0Y2        BUFG (Prop_bufg_I_O)         0.077     8.898 r  fpga_pll.u_clk_pll/inst/clkout1_buf/O
+                         net (fo=24016, routed)       1.407    10.305    u_cpu/u_nop_core/toplevel_cpu/FetchBufferPlugin_bufferFIFO/cpu_clk
+    SLICE_X80Y83         FDRE                                         r  u_cpu/u_nop_core/toplevel_cpu/FetchBufferPlugin_bufferFIFO/io_pop_2_payload_predRecover_ghr_reg[6]/C
+                         clock pessimism              0.207    10.512    
+                         clock uncertainty           -0.067    10.445    
+    SLICE_X80Y83         FDRE (Setup_fdre_C_D)        0.076    10.521    u_cpu/u_nop_core/toplevel_cpu/FetchBufferPlugin_bufferFIFO/io_pop_2_payload_predRecover_ghr_reg[6]
+  -------------------------------------------------------------------
+                         required time                         10.521    
+                         arrival time                         -13.291    
+  -------------------------------------------------------------------
+                         slack                                 -2.769    
+
+Slack (VIOLATED) :        -2.757ns  (required time - arrival time)
+  Source:                 u_cpu/u_nop_core/toplevel_cpu/RENAME_to_DISPATCH_DECODE_PACKET_0_payload_except_valid_reg/C
+                            (rising edge-triggered cell FDRE clocked by cpu_clk  {rise@0.000ns fall@2.500ns period=5.000ns})
+  Destination:            u_cpu/u_nop_core/toplevel_cpu/FetchBufferPlugin_bufferFIFO/io_pop_2_payload_inst_reg[9]/D
+                            (rising edge-triggered cell FDRE clocked by cpu_clk  {rise@0.000ns fall@2.500ns period=5.000ns})
+  Path Group:             cpu_clk
+  Path Type:              Setup (Max at Slow Process Corner)
+  Requirement:            5.000ns  (cpu_clk rise@5.000ns - cpu_clk rise@0.000ns)
+  Data Path Delay:        7.720ns  (logic 1.639ns (21.231%)  route 6.081ns (78.769%))
+  Logic Levels:           12  (LUT2=1 LUT4=3 LUT5=4 LUT6=4)
+  Clock Path Skew:        -0.003ns (DCD - SCD + CPR)
+    Destination Clock Delay (DCD):    5.307ns = ( 10.307 - 5.000 ) 
+    Source Clock Delay      (SCD):    5.517ns
+    Clock Pessimism Removal (CPR):    0.207ns
+  Clock Uncertainty:      0.067ns  ((TSJ^2 + DJ^2)^1/2) / 2 + PE
+    Total System Jitter     (TSJ):    0.071ns
+    Discrete Jitter          (DJ):    0.113ns
+    Phase Error              (PE):    0.000ns
+
+    Location             Delay type                Incr(ns)  Path(ns)    Netlist Resource(s)
+  -------------------------------------------------------------------    -------------------
+                         (clock cpu_clk rise edge)    0.000     0.000 r  
+    AC19                                              0.000     0.000 r  clk (IN)
+                         net (fo=0)                   0.000     0.000    clk
+    AC19                 IBUF (Prop_ibuf_I_O)         1.416     1.416 r  clk_IBUF_inst/O
+                         net (fo=1, routed)           2.602     4.018    clk_IBUF
+    BUFGCTRL_X0Y0        BUFG (Prop_bufg_I_O)         0.081     4.099 r  clk_IBUF_BUFG_inst/O
+                         net (fo=2027, routed)        1.823     5.922    fpga_pll.u_clk_pll/inst/clk_in1
+    PLLE2_ADV_X1Y0       PLLE2_ADV (Prop_plle2_adv_CLKIN1_CLKOUT0)
+                                                     -4.192     1.730 r  fpga_pll.u_clk_pll/inst/plle2_adv_inst/CLKOUT0
+                         net (fo=1, routed)           2.288     4.018    fpga_pll.u_clk_pll/inst/cpu_clk_clk_pll
+    BUFGCTRL_X0Y2        BUFG (Prop_bufg_I_O)         0.081     4.099 r  fpga_pll.u_clk_pll/inst/clkout1_buf/O
+                         net (fo=24016, routed)       1.418     5.517    u_cpu/u_nop_core/toplevel_cpu/cpu_clk
+    SLICE_X107Y112       FDRE                                         r  u_cpu/u_nop_core/toplevel_cpu/RENAME_to_DISPATCH_DECODE_PACKET_0_payload_except_valid_reg/C
+  -------------------------------------------------------------------    -------------------
+    SLICE_X107Y112       FDRE (Prop_fdre_C_Q)         0.379     5.896 f  u_cpu/u_nop_core/toplevel_cpu/RENAME_to_DISPATCH_DECODE_PACKET_0_payload_except_valid_reg/Q
+                         net (fo=3, routed)           0.566     6.462    u_cpu/u_nop_core/toplevel_cpu/FetchBufferPlugin_bufferFIFO/RENAME_to_DISPATCH_DECODE_PACKET_0_payload_except_valid
+    SLICE_X107Y112       LUT5 (Prop_lut5_I4_O)        0.105     6.567 r  u_cpu/u_nop_core/toplevel_cpu/FetchBufferPlugin_bufferFIFO/MulDivIssueQueuePlugin_queue_2_payload_uop_doRegWrite_i_12/O
+                         net (fo=2, routed)           0.244     6.811    u_cpu/u_nop_core/toplevel_cpu/FetchBufferPlugin_bufferFIFO/MulDivIssueQueuePlugin_queue_2_payload_uop_doRegWrite_i_12_n_0
+    SLICE_X106Y113       LUT6 (Prop_lut6_I5_O)        0.105     6.916 f  u_cpu/u_nop_core/toplevel_cpu/FetchBufferPlugin_bufferFIFO/MulDivIssueQueuePlugin_queue_2_payload_uop_doRegWrite_i_7/O
+                         net (fo=7, routed)           0.361     7.278    u_cpu/u_nop_core/toplevel_cpu/FetchBufferPlugin_bufferFIFO/RENAME_to_DISPATCH_DECODE_PACKET_1_valid_reg
+    SLICE_X107Y111       LUT4 (Prop_lut4_I0_O)        0.105     7.383 r  u_cpu/u_nop_core/toplevel_cpu/FetchBufferPlugin_bufferFIFO/IntIssueQueuePlugin_queue_6_payload_uop_pc[31]_i_7/O
+                         net (fo=2, routed)           0.409     7.792    u_cpu/u_nop_core/toplevel_cpu/FetchBufferPlugin_bufferFIFO/MulDivIssueQueuePlugin_queue_1_valid_reg_0
+    SLICE_X106Y111       LUT6 (Prop_lut6_I5_O)        0.105     7.897 f  u_cpu/u_nop_core/toplevel_cpu/FetchBufferPlugin_bufferFIFO/RENAME_to_DISPATCH_DECODE_PACKET_0_payload_isStore_i_3/O
+                         net (fo=1, routed)           0.120     8.017    u_cpu/u_nop_core/toplevel_cpu/FetchBufferPlugin_bufferFIFO/RENAME_to_DISPATCH_DECODE_PACKET_0_payload_isStore_i_3_n_0
+    SLICE_X106Y111       LUT2 (Prop_lut2_I1_O)        0.105     8.122 f  u_cpu/u_nop_core/toplevel_cpu/FetchBufferPlugin_bufferFIFO/RENAME_to_DISPATCH_DECODE_PACKET_0_payload_isStore_i_2/O
+                         net (fo=479, routed)         0.622     8.743    u_cpu/u_nop_core/toplevel_cpu/RenamePlugin_freeList/DISPATCH_arbitration_isValid_reg_1
+    SLICE_X104Y110       LUT6 (Prop_lut6_I0_O)        0.105     8.848 f  u_cpu/u_nop_core/toplevel_cpu/RenamePlugin_freeList/_to__DECODE_FIELDS_0_payload_isStore_i_3/O
+                         net (fo=1549, routed)        0.279     9.127    u_cpu/u_nop_core/toplevel_cpu/RenamePlugin_freeList/RENAME_arbitration_isValid_reg_1[0]
+    SLICE_X104Y109       LUT6 (Prop_lut6_I4_O)        0.105     9.232 f  u_cpu/u_nop_core/toplevel_cpu/RenamePlugin_freeList/occupancy[1]_i_4/O
+                         net (fo=48, routed)          0.808    10.040    u_cpu/u_nop_core/toplevel_cpu/FetchBufferPlugin_bufferFIFO/ID_arbitration_isFiring
+    SLICE_X101Y104       LUT5 (Prop_lut5_I0_O)        0.105    10.145 f  u_cpu/u_nop_core/toplevel_cpu/FetchBufferPlugin_bufferFIFO/io_pop_0_payload_inst[30]_i_5/O
+                         net (fo=101, routed)         1.448    11.593    u_cpu/u_nop_core/toplevel_cpu/FetchBufferPlugin_bufferFIFO/io_pop_0_payload_inst[30]_i_5_n_0
+    SLICE_X80Y93         LUT4 (Prop_lut4_I2_O)        0.105    11.698 r  u_cpu/u_nop_core/toplevel_cpu/FetchBufferPlugin_bufferFIFO/io_pop_2_payload_inst[9]_i_5/O
+                         net (fo=1, routed)           0.228    11.926    u_cpu/u_nop_core/toplevel_cpu/FetchBufferPlugin_bufferFIFO/io_pop_2_payload_inst[9]_i_5_n_0
+    SLICE_X81Y93         LUT5 (Prop_lut5_I4_O)        0.105    12.031 r  u_cpu/u_nop_core/toplevel_cpu/FetchBufferPlugin_bufferFIFO/io_pop_2_payload_inst[9]_i_4/O
+                         net (fo=1, routed)           0.507    12.538    u_cpu/u_nop_core/toplevel_cpu/FetchBufferPlugin_bufferFIFO/io_pop_2_payload_inst[9]_i_4_n_0
+    SLICE_X78Y86         LUT4 (Prop_lut4_I0_O)        0.105    12.643 r  u_cpu/u_nop_core/toplevel_cpu/FetchBufferPlugin_bufferFIFO/io_pop_2_payload_inst[9]_i_3/O
+                         net (fo=1, routed)           0.488    13.131    u_cpu/u_nop_core/toplevel_cpu/FetchBufferPlugin_bufferFIFO/io_pop_2_payload_inst[9]_i_3_n_0
+    SLICE_X78Y86         LUT5 (Prop_lut5_I2_O)        0.105    13.236 r  u_cpu/u_nop_core/toplevel_cpu/FetchBufferPlugin_bufferFIFO/io_pop_2_payload_inst[9]_i_1/O
+                         net (fo=1, routed)           0.000    13.236    u_cpu/u_nop_core/toplevel_cpu/FetchBufferPlugin_bufferFIFO/io_pop_2_payload_inst[9]_i_1_n_0
+    SLICE_X78Y86         FDRE                                         r  u_cpu/u_nop_core/toplevel_cpu/FetchBufferPlugin_bufferFIFO/io_pop_2_payload_inst_reg[9]/D
+  -------------------------------------------------------------------    -------------------
+
+                         (clock cpu_clk rise edge)    5.000     5.000 r  
+    AC19                                              0.000     5.000 r  clk (IN)
+                         net (fo=0)                   0.000     5.000    clk
+    AC19                 IBUF (Prop_ibuf_I_O)         1.350     6.350 r  clk_IBUF_inst/O
+                         net (fo=1, routed)           2.471     8.821    clk_IBUF
+    BUFGCTRL_X0Y0        BUFG (Prop_bufg_I_O)         0.077     8.898 r  clk_IBUF_BUFG_inst/O
+                         net (fo=2027, routed)        1.706    10.604    fpga_pll.u_clk_pll/inst/clk_in1
+    PLLE2_ADV_X1Y0       PLLE2_ADV (Prop_plle2_adv_CLKIN1_CLKOUT0)
+                                                     -3.960     6.644 r  fpga_pll.u_clk_pll/inst/plle2_adv_inst/CLKOUT0
+                         net (fo=1, routed)           2.177     8.821    fpga_pll.u_clk_pll/inst/cpu_clk_clk_pll
+    BUFGCTRL_X0Y2        BUFG (Prop_bufg_I_O)         0.077     8.898 r  fpga_pll.u_clk_pll/inst/clkout1_buf/O
+                         net (fo=24016, routed)       1.409    10.307    u_cpu/u_nop_core/toplevel_cpu/FetchBufferPlugin_bufferFIFO/cpu_clk
+    SLICE_X78Y86         FDRE                                         r  u_cpu/u_nop_core/toplevel_cpu/FetchBufferPlugin_bufferFIFO/io_pop_2_payload_inst_reg[9]/C
+                         clock pessimism              0.207    10.514    
+                         clock uncertainty           -0.067    10.447    
+    SLICE_X78Y86         FDRE (Setup_fdre_C_D)        0.032    10.479    u_cpu/u_nop_core/toplevel_cpu/FetchBufferPlugin_bufferFIFO/io_pop_2_payload_inst_reg[9]
+  -------------------------------------------------------------------
+                         required time                         10.479    
+                         arrival time                         -13.236    
+  -------------------------------------------------------------------
+                         slack                                 -2.757    
+
+Slack (VIOLATED) :        -2.755ns  (required time - arrival time)
+  Source:                 u_cpu/u_nop_core/toplevel_cpu/RENAME_to_DISPATCH_DECODE_PACKET_0_payload_except_valid_reg/C
+                            (rising edge-triggered cell FDRE clocked by cpu_clk  {rise@0.000ns fall@2.500ns period=5.000ns})
+  Destination:            u_cpu/u_nop_core/toplevel_cpu/FetchBufferPlugin_bufferFIFO/io_pop_2_payload_pc_reg[14]/D
+                            (rising edge-triggered cell FDRE clocked by cpu_clk  {rise@0.000ns fall@2.500ns period=5.000ns})
+  Path Group:             cpu_clk
+  Path Type:              Setup (Max at Slow Process Corner)
+  Requirement:            5.000ns  (cpu_clk rise@5.000ns - cpu_clk rise@0.000ns)
+  Data Path Delay:        7.801ns  (logic 1.639ns (21.010%)  route 6.162ns (78.990%))
+  Logic Levels:           12  (LUT2=1 LUT3=1 LUT4=2 LUT5=4 LUT6=4)
+  Clock Path Skew:        0.006ns (DCD - SCD + CPR)
+    Destination Clock Delay (DCD):    5.316ns = ( 10.316 - 5.000 ) 
+    Source Clock Delay      (SCD):    5.517ns
+    Clock Pessimism Removal (CPR):    0.207ns
+  Clock Uncertainty:      0.067ns  ((TSJ^2 + DJ^2)^1/2) / 2 + PE
+    Total System Jitter     (TSJ):    0.071ns
+    Discrete Jitter          (DJ):    0.113ns
+    Phase Error              (PE):    0.000ns
+
+    Location             Delay type                Incr(ns)  Path(ns)    Netlist Resource(s)
+  -------------------------------------------------------------------    -------------------
+                         (clock cpu_clk rise edge)    0.000     0.000 r  
+    AC19                                              0.000     0.000 r  clk (IN)
+                         net (fo=0)                   0.000     0.000    clk
+    AC19                 IBUF (Prop_ibuf_I_O)         1.416     1.416 r  clk_IBUF_inst/O
+                         net (fo=1, routed)           2.602     4.018    clk_IBUF
+    BUFGCTRL_X0Y0        BUFG (Prop_bufg_I_O)         0.081     4.099 r  clk_IBUF_BUFG_inst/O
+                         net (fo=2027, routed)        1.823     5.922    fpga_pll.u_clk_pll/inst/clk_in1
+    PLLE2_ADV_X1Y0       PLLE2_ADV (Prop_plle2_adv_CLKIN1_CLKOUT0)
+                                                     -4.192     1.730 r  fpga_pll.u_clk_pll/inst/plle2_adv_inst/CLKOUT0
+                         net (fo=1, routed)           2.288     4.018    fpga_pll.u_clk_pll/inst/cpu_clk_clk_pll
+    BUFGCTRL_X0Y2        BUFG (Prop_bufg_I_O)         0.081     4.099 r  fpga_pll.u_clk_pll/inst/clkout1_buf/O
+                         net (fo=24016, routed)       1.418     5.517    u_cpu/u_nop_core/toplevel_cpu/cpu_clk
+    SLICE_X107Y112       FDRE                                         r  u_cpu/u_nop_core/toplevel_cpu/RENAME_to_DISPATCH_DECODE_PACKET_0_payload_except_valid_reg/C
+  -------------------------------------------------------------------    -------------------
+    SLICE_X107Y112       FDRE (Prop_fdre_C_Q)         0.379     5.896 r  u_cpu/u_nop_core/toplevel_cpu/RENAME_to_DISPATCH_DECODE_PACKET_0_payload_except_valid_reg/Q
+                         net (fo=3, routed)           0.566     6.462    u_cpu/u_nop_core/toplevel_cpu/FetchBufferPlugin_bufferFIFO/RENAME_to_DISPATCH_DECODE_PACKET_0_payload_except_valid
+    SLICE_X107Y112       LUT5 (Prop_lut5_I4_O)        0.105     6.567 f  u_cpu/u_nop_core/toplevel_cpu/FetchBufferPlugin_bufferFIFO/MulDivIssueQueuePlugin_queue_2_payload_uop_doRegWrite_i_12/O
+                         net (fo=2, routed)           0.244     6.811    u_cpu/u_nop_core/toplevel_cpu/FetchBufferPlugin_bufferFIFO/MulDivIssueQueuePlugin_queue_2_payload_uop_doRegWrite_i_12_n_0
+    SLICE_X106Y113       LUT6 (Prop_lut6_I5_O)        0.105     6.916 r  u_cpu/u_nop_core/toplevel_cpu/FetchBufferPlugin_bufferFIFO/MulDivIssueQueuePlugin_queue_2_payload_uop_doRegWrite_i_7/O
+                         net (fo=7, routed)           0.361     7.278    u_cpu/u_nop_core/toplevel_cpu/FetchBufferPlugin_bufferFIFO/RENAME_to_DISPATCH_DECODE_PACKET_1_valid_reg
+    SLICE_X107Y111       LUT4 (Prop_lut4_I0_O)        0.105     7.383 f  u_cpu/u_nop_core/toplevel_cpu/FetchBufferPlugin_bufferFIFO/IntIssueQueuePlugin_queue_6_payload_uop_pc[31]_i_7/O
+                         net (fo=2, routed)           0.409     7.792    u_cpu/u_nop_core/toplevel_cpu/FetchBufferPlugin_bufferFIFO/MulDivIssueQueuePlugin_queue_1_valid_reg_0
+    SLICE_X106Y111       LUT6 (Prop_lut6_I5_O)        0.105     7.897 r  u_cpu/u_nop_core/toplevel_cpu/FetchBufferPlugin_bufferFIFO/RENAME_to_DISPATCH_DECODE_PACKET_0_payload_isStore_i_3/O
+                         net (fo=1, routed)           0.120     8.017    u_cpu/u_nop_core/toplevel_cpu/FetchBufferPlugin_bufferFIFO/RENAME_to_DISPATCH_DECODE_PACKET_0_payload_isStore_i_3_n_0
+    SLICE_X106Y111       LUT2 (Prop_lut2_I1_O)        0.105     8.122 r  u_cpu/u_nop_core/toplevel_cpu/FetchBufferPlugin_bufferFIFO/RENAME_to_DISPATCH_DECODE_PACKET_0_payload_isStore_i_2/O
+                         net (fo=479, routed)         0.622     8.743    u_cpu/u_nop_core/toplevel_cpu/RenamePlugin_freeList/DISPATCH_arbitration_isValid_reg_1
+    SLICE_X104Y110       LUT6 (Prop_lut6_I0_O)        0.105     8.848 r  u_cpu/u_nop_core/toplevel_cpu/RenamePlugin_freeList/_to__DECODE_FIELDS_0_payload_isStore_i_3/O
+                         net (fo=1549, routed)        0.279     9.127    u_cpu/u_nop_core/toplevel_cpu/RenamePlugin_freeList/RENAME_arbitration_isValid_reg_1[0]
+    SLICE_X104Y109       LUT6 (Prop_lut6_I4_O)        0.105     9.232 r  u_cpu/u_nop_core/toplevel_cpu/RenamePlugin_freeList/occupancy[1]_i_4/O
+                         net (fo=48, routed)          0.996    10.228    u_cpu/u_nop_core/toplevel_cpu/FetchBufferPlugin_bufferFIFO/ID_arbitration_isFiring
+    SLICE_X97Y100        LUT5 (Prop_lut5_I0_O)        0.105    10.333 f  u_cpu/u_nop_core/toplevel_cpu/FetchBufferPlugin_bufferFIFO/io_pop_0_payload_pc[31]_i_9/O
+                         net (fo=245, routed)         1.326    11.659    u_cpu/u_nop_core/toplevel_cpu/FetchBufferPlugin_bufferFIFO/io_pop_0_payload_pc[31]_i_9_n_0
+    SLICE_X76Y86         LUT4 (Prop_lut4_I0_O)        0.105    11.764 r  u_cpu/u_nop_core/toplevel_cpu/FetchBufferPlugin_bufferFIFO/io_pop_2_payload_pc[14]_i_4/O
+                         net (fo=1, routed)           0.551    12.315    u_cpu/u_nop_core/toplevel_cpu/FetchBufferPlugin_bufferFIFO/io_pop_2_payload_pc[14]_i_4_n_0
+    SLICE_X76Y86         LUT5 (Prop_lut5_I4_O)        0.105    12.420 r  u_cpu/u_nop_core/toplevel_cpu/FetchBufferPlugin_bufferFIFO/io_pop_2_payload_pc[14]_i_3/O
+                         net (fo=1, routed)           0.361    12.780    u_cpu/u_nop_core/toplevel_cpu/FetchBufferPlugin_bufferFIFO/io_pop_2_payload_pc[14]_i_3_n_0
+    SLICE_X76Y86         LUT5 (Prop_lut5_I2_O)        0.105    12.885 r  u_cpu/u_nop_core/toplevel_cpu/FetchBufferPlugin_bufferFIFO/io_pop_2_payload_pc[14]_i_2/O
+                         net (fo=1, routed)           0.327    13.213    u_cpu/u_nop_core/toplevel_cpu/FetchBufferPlugin_bufferFIFO/io_pop_2_payload_pc[14]_i_2_n_0
+    SLICE_X76Y87         LUT3 (Prop_lut3_I2_O)        0.105    13.318 r  u_cpu/u_nop_core/toplevel_cpu/FetchBufferPlugin_bufferFIFO/io_pop_2_payload_pc[14]_i_1/O
+                         net (fo=1, routed)           0.000    13.318    u_cpu/u_nop_core/toplevel_cpu/FetchBufferPlugin_bufferFIFO/io_pop_2_payload_pc[14]_i_1_n_0
+    SLICE_X76Y87         FDRE                                         r  u_cpu/u_nop_core/toplevel_cpu/FetchBufferPlugin_bufferFIFO/io_pop_2_payload_pc_reg[14]/D
+  -------------------------------------------------------------------    -------------------
+
+                         (clock cpu_clk rise edge)    5.000     5.000 r  
+    AC19                                              0.000     5.000 r  clk (IN)
+                         net (fo=0)                   0.000     5.000    clk
+    AC19                 IBUF (Prop_ibuf_I_O)         1.350     6.350 r  clk_IBUF_inst/O
+                         net (fo=1, routed)           2.471     8.821    clk_IBUF
+    BUFGCTRL_X0Y0        BUFG (Prop_bufg_I_O)         0.077     8.898 r  clk_IBUF_BUFG_inst/O
+                         net (fo=2027, routed)        1.706    10.604    fpga_pll.u_clk_pll/inst/clk_in1
+    PLLE2_ADV_X1Y0       PLLE2_ADV (Prop_plle2_adv_CLKIN1_CLKOUT0)
+                                                     -3.960     6.644 r  fpga_pll.u_clk_pll/inst/plle2_adv_inst/CLKOUT0
+                         net (fo=1, routed)           2.177     8.821    fpga_pll.u_clk_pll/inst/cpu_clk_clk_pll
+    BUFGCTRL_X0Y2        BUFG (Prop_bufg_I_O)         0.077     8.898 r  fpga_pll.u_clk_pll/inst/clkout1_buf/O
+                         net (fo=24016, routed)       1.418    10.316    u_cpu/u_nop_core/toplevel_cpu/FetchBufferPlugin_bufferFIFO/cpu_clk
+    SLICE_X76Y87         FDRE                                         r  u_cpu/u_nop_core/toplevel_cpu/FetchBufferPlugin_bufferFIFO/io_pop_2_payload_pc_reg[14]/C
+                         clock pessimism              0.207    10.523    
+                         clock uncertainty           -0.067    10.456    
+    SLICE_X76Y87         FDRE (Setup_fdre_C_D)        0.106    10.562    u_cpu/u_nop_core/toplevel_cpu/FetchBufferPlugin_bufferFIFO/io_pop_2_payload_pc_reg[14]
+  -------------------------------------------------------------------
+                         required time                         10.562    
+                         arrival time                         -13.318    
+  -------------------------------------------------------------------
+                         slack                                 -2.755    
+
+Slack (VIOLATED) :        -2.752ns  (required time - arrival time)
+  Source:                 u_cpu/u_nop_core/toplevel_cpu/RENAME_to_DISPATCH_DECODE_PACKET_0_payload_except_valid_reg/C
+                            (rising edge-triggered cell FDRE clocked by cpu_clk  {rise@0.000ns fall@2.500ns period=5.000ns})
+  Destination:            u_cpu/u_nop_core/toplevel_cpu/FetchBufferPlugin_bufferFIFO/io_pop_2_payload_inst_reg[31]/D
+                            (rising edge-triggered cell FDRE clocked by cpu_clk  {rise@0.000ns fall@2.500ns period=5.000ns})
+  Path Group:             cpu_clk
+  Path Type:              Setup (Max at Slow Process Corner)
+  Requirement:            5.000ns  (cpu_clk rise@5.000ns - cpu_clk rise@0.000ns)
+  Data Path Delay:        7.759ns  (logic 1.744ns (22.478%)  route 6.015ns (77.522%))
+  Logic Levels:           13  (LUT2=1 LUT4=1 LUT5=5 LUT6=6)
+  Clock Path Skew:        -0.003ns (DCD - SCD + CPR)
+    Destination Clock Delay (DCD):    5.307ns = ( 10.307 - 5.000 ) 
+    Source Clock Delay      (SCD):    5.517ns
+    Clock Pessimism Removal (CPR):    0.207ns
+  Clock Uncertainty:      0.067ns  ((TSJ^2 + DJ^2)^1/2) / 2 + PE
+    Total System Jitter     (TSJ):    0.071ns
+    Discrete Jitter          (DJ):    0.113ns
+    Phase Error              (PE):    0.000ns
+
+    Location             Delay type                Incr(ns)  Path(ns)    Netlist Resource(s)
+  -------------------------------------------------------------------    -------------------
+                         (clock cpu_clk rise edge)    0.000     0.000 r  
+    AC19                                              0.000     0.000 r  clk (IN)
+                         net (fo=0)                   0.000     0.000    clk
+    AC19                 IBUF (Prop_ibuf_I_O)         1.416     1.416 r  clk_IBUF_inst/O
+                         net (fo=1, routed)           2.602     4.018    clk_IBUF
+    BUFGCTRL_X0Y0        BUFG (Prop_bufg_I_O)         0.081     4.099 r  clk_IBUF_BUFG_inst/O
+                         net (fo=2027, routed)        1.823     5.922    fpga_pll.u_clk_pll/inst/clk_in1
+    PLLE2_ADV_X1Y0       PLLE2_ADV (Prop_plle2_adv_CLKIN1_CLKOUT0)
+                                                     -4.192     1.730 r  fpga_pll.u_clk_pll/inst/plle2_adv_inst/CLKOUT0
+                         net (fo=1, routed)           2.288     4.018    fpga_pll.u_clk_pll/inst/cpu_clk_clk_pll
+    BUFGCTRL_X0Y2        BUFG (Prop_bufg_I_O)         0.081     4.099 r  fpga_pll.u_clk_pll/inst/clkout1_buf/O
+                         net (fo=24016, routed)       1.418     5.517    u_cpu/u_nop_core/toplevel_cpu/cpu_clk
+    SLICE_X107Y112       FDRE                                         r  u_cpu/u_nop_core/toplevel_cpu/RENAME_to_DISPATCH_DECODE_PACKET_0_payload_except_valid_reg/C
+  -------------------------------------------------------------------    -------------------
+    SLICE_X107Y112       FDRE (Prop_fdre_C_Q)         0.379     5.896 f  u_cpu/u_nop_core/toplevel_cpu/RENAME_to_DISPATCH_DECODE_PACKET_0_payload_except_valid_reg/Q
+                         net (fo=3, routed)           0.566     6.462    u_cpu/u_nop_core/toplevel_cpu/FetchBufferPlugin_bufferFIFO/RENAME_to_DISPATCH_DECODE_PACKET_0_payload_except_valid
+    SLICE_X107Y112       LUT5 (Prop_lut5_I4_O)        0.105     6.567 r  u_cpu/u_nop_core/toplevel_cpu/FetchBufferPlugin_bufferFIFO/MulDivIssueQueuePlugin_queue_2_payload_uop_doRegWrite_i_12/O
+                         net (fo=2, routed)           0.244     6.811    u_cpu/u_nop_core/toplevel_cpu/FetchBufferPlugin_bufferFIFO/MulDivIssueQueuePlugin_queue_2_payload_uop_doRegWrite_i_12_n_0
+    SLICE_X106Y113       LUT6 (Prop_lut6_I5_O)        0.105     6.916 f  u_cpu/u_nop_core/toplevel_cpu/FetchBufferPlugin_bufferFIFO/MulDivIssueQueuePlugin_queue_2_payload_uop_doRegWrite_i_7/O
+                         net (fo=7, routed)           0.361     7.278    u_cpu/u_nop_core/toplevel_cpu/FetchBufferPlugin_bufferFIFO/RENAME_to_DISPATCH_DECODE_PACKET_1_valid_reg
+    SLICE_X107Y111       LUT4 (Prop_lut4_I0_O)        0.105     7.383 r  u_cpu/u_nop_core/toplevel_cpu/FetchBufferPlugin_bufferFIFO/IntIssueQueuePlugin_queue_6_payload_uop_pc[31]_i_7/O
+                         net (fo=2, routed)           0.409     7.792    u_cpu/u_nop_core/toplevel_cpu/FetchBufferPlugin_bufferFIFO/MulDivIssueQueuePlugin_queue_1_valid_reg_0
+    SLICE_X106Y111       LUT6 (Prop_lut6_I5_O)        0.105     7.897 f  u_cpu/u_nop_core/toplevel_cpu/FetchBufferPlugin_bufferFIFO/RENAME_to_DISPATCH_DECODE_PACKET_0_payload_isStore_i_3/O
+                         net (fo=1, routed)           0.120     8.017    u_cpu/u_nop_core/toplevel_cpu/FetchBufferPlugin_bufferFIFO/RENAME_to_DISPATCH_DECODE_PACKET_0_payload_isStore_i_3_n_0
+    SLICE_X106Y111       LUT2 (Prop_lut2_I1_O)        0.105     8.122 f  u_cpu/u_nop_core/toplevel_cpu/FetchBufferPlugin_bufferFIFO/RENAME_to_DISPATCH_DECODE_PACKET_0_payload_isStore_i_2/O
+                         net (fo=479, routed)         0.622     8.743    u_cpu/u_nop_core/toplevel_cpu/RenamePlugin_freeList/DISPATCH_arbitration_isValid_reg_1
+    SLICE_X104Y110       LUT6 (Prop_lut6_I0_O)        0.105     8.848 f  u_cpu/u_nop_core/toplevel_cpu/RenamePlugin_freeList/_to__DECODE_FIELDS_0_payload_isStore_i_3/O
+                         net (fo=1549, routed)        0.279     9.127    u_cpu/u_nop_core/toplevel_cpu/RenamePlugin_freeList/RENAME_arbitration_isValid_reg_1[0]
+    SLICE_X104Y109       LUT6 (Prop_lut6_I4_O)        0.105     9.232 f  u_cpu/u_nop_core/toplevel_cpu/RenamePlugin_freeList/occupancy[1]_i_4/O
+                         net (fo=48, routed)          0.513     9.746    u_cpu/u_nop_core/toplevel_cpu/FetchBufferPlugin_bufferFIFO/ID_arbitration_isFiring
+    SLICE_X102Y107       LUT5 (Prop_lut5_I0_O)        0.105     9.851 r  u_cpu/u_nop_core/toplevel_cpu/FetchBufferPlugin_bufferFIFO/io_pop_1_payload_pc[31]_i_12/O
+                         net (fo=1, routed)           0.399    10.249    u_cpu/u_nop_core/toplevel_cpu/FetchBufferPlugin_bufferFIFO/io_pop_1_payload_pc[31]_i_12_n_0
+    SLICE_X103Y107       LUT6 (Prop_lut6_I1_O)        0.105    10.354 r  u_cpu/u_nop_core/toplevel_cpu/FetchBufferPlugin_bufferFIFO/io_pop_1_payload_pc[31]_i_8/O
+                         net (fo=2, routed)           1.091    11.445    u_cpu/u_nop_core/toplevel_cpu/FetchBufferPlugin_bufferFIFO/io_pop_1_payload_pc[31]_i_8_n_0
+    SLICE_X84Y89         LUT6 (Prop_lut6_I5_O)        0.105    11.550 r  u_cpu/u_nop_core/toplevel_cpu/FetchBufferPlugin_bufferFIFO/io_pop_2_payload_predRecover_predictCounter[0]_i_2/O
+                         net (fo=6, routed)           0.164    11.714    u_cpu/u_nop_core/toplevel_cpu/FetchBufferPlugin_bufferFIFO/io_pop_2_payload_predRecover_predictCounter[0]_i_2_n_0
+    SLICE_X84Y89         LUT5 (Prop_lut5_I4_O)        0.105    11.819 f  u_cpu/u_nop_core/toplevel_cpu/FetchBufferPlugin_bufferFIFO/io_pop_2_payload_pc[1]_i_2/O
+                         net (fo=95, routed)          0.831    12.650    u_cpu/u_nop_core/toplevel_cpu/FetchBufferPlugin_bufferFIFO/io_pop_2_payload_pc[1]_i_2_n_0
+    SLICE_X80Y88         LUT5 (Prop_lut5_I4_O)        0.105    12.755 r  u_cpu/u_nop_core/toplevel_cpu/FetchBufferPlugin_bufferFIFO/io_pop_2_payload_inst[31]_i_3_rewire/O
+                         net (fo=1, routed)           0.415    13.170    u_cpu/u_nop_core/toplevel_cpu/FetchBufferPlugin_bufferFIFO/io_pop_2_payload_inst[31]_i_3_n_0
+    SLICE_X80Y86         LUT5 (Prop_lut5_I2_O)        0.105    13.275 r  u_cpu/u_nop_core/toplevel_cpu/FetchBufferPlugin_bufferFIFO/io_pop_2_payload_inst[31]_i_1/O
+                         net (fo=1, routed)           0.000    13.275    u_cpu/u_nop_core/toplevel_cpu/FetchBufferPlugin_bufferFIFO/io_pop_2_payload_inst[31]_i_1_n_0
+    SLICE_X80Y86         FDRE                                         r  u_cpu/u_nop_core/toplevel_cpu/FetchBufferPlugin_bufferFIFO/io_pop_2_payload_inst_reg[31]/D
+  -------------------------------------------------------------------    -------------------
+
+                         (clock cpu_clk rise edge)    5.000     5.000 r  
+    AC19                                              0.000     5.000 r  clk (IN)
+                         net (fo=0)                   0.000     5.000    clk
+    AC19                 IBUF (Prop_ibuf_I_O)         1.350     6.350 r  clk_IBUF_inst/O
+                         net (fo=1, routed)           2.471     8.821    clk_IBUF
+    BUFGCTRL_X0Y0        BUFG (Prop_bufg_I_O)         0.077     8.898 r  clk_IBUF_BUFG_inst/O
+                         net (fo=2027, routed)        1.706    10.604    fpga_pll.u_clk_pll/inst/clk_in1
+    PLLE2_ADV_X1Y0       PLLE2_ADV (Prop_plle2_adv_CLKIN1_CLKOUT0)
+                                                     -3.960     6.644 r  fpga_pll.u_clk_pll/inst/plle2_adv_inst/CLKOUT0
+                         net (fo=1, routed)           2.177     8.821    fpga_pll.u_clk_pll/inst/cpu_clk_clk_pll
+    BUFGCTRL_X0Y2        BUFG (Prop_bufg_I_O)         0.077     8.898 r  fpga_pll.u_clk_pll/inst/clkout1_buf/O
+                         net (fo=24016, routed)       1.409    10.307    u_cpu/u_nop_core/toplevel_cpu/FetchBufferPlugin_bufferFIFO/cpu_clk
+    SLICE_X80Y86         FDRE                                         r  u_cpu/u_nop_core/toplevel_cpu/FetchBufferPlugin_bufferFIFO/io_pop_2_payload_inst_reg[31]/C
+                         clock pessimism              0.207    10.514    
+                         clock uncertainty           -0.067    10.447    
+    SLICE_X80Y86         FDRE (Setup_fdre_C_D)        0.076    10.523    u_cpu/u_nop_core/toplevel_cpu/FetchBufferPlugin_bufferFIFO/io_pop_2_payload_inst_reg[31]
+  -------------------------------------------------------------------
+                         required time                         10.523    
+                         arrival time                         -13.275    
+  -------------------------------------------------------------------
+                         slack                                 -2.752    
+
+Slack (VIOLATED) :        -2.743ns  (required time - arrival time)
+  Source:                 u_cpu/u_nop_core/toplevel_cpu/RENAME_to_DISPATCH_DECODE_PACKET_0_payload_except_valid_reg/C
+                            (rising edge-triggered cell FDRE clocked by cpu_clk  {rise@0.000ns fall@2.500ns period=5.000ns})
+  Destination:            u_cpu/u_nop_core/toplevel_cpu/FetchBufferPlugin_bufferFIFO/io_pop_2_payload_except_payload_code_reg[1]/R
+                            (rising edge-triggered cell FDRE clocked by cpu_clk  {rise@0.000ns fall@2.500ns period=5.000ns})
+  Path Group:             cpu_clk
+  Path Type:              Setup (Max at Slow Process Corner)
+  Requirement:            5.000ns  (cpu_clk rise@5.000ns - cpu_clk rise@0.000ns)
+  Data Path Delay:        7.325ns  (logic 1.534ns (20.943%)  route 5.791ns (79.057%))
+  Logic Levels:           11  (LUT2=3 LUT4=2 LUT5=1 LUT6=5)
+  Clock Path Skew:        0.000ns (DCD - SCD + CPR)
+    Destination Clock Delay (DCD):    5.310ns = ( 10.310 - 5.000 ) 
+    Source Clock Delay      (SCD):    5.517ns
+    Clock Pessimism Removal (CPR):    0.207ns
+  Clock Uncertainty:      0.067ns  ((TSJ^2 + DJ^2)^1/2) / 2 + PE
+    Total System Jitter     (TSJ):    0.071ns
+    Discrete Jitter          (DJ):    0.113ns
+    Phase Error              (PE):    0.000ns
+
+    Location             Delay type                Incr(ns)  Path(ns)    Netlist Resource(s)
+  -------------------------------------------------------------------    -------------------
+                         (clock cpu_clk rise edge)    0.000     0.000 r  
+    AC19                                              0.000     0.000 r  clk (IN)
+                         net (fo=0)                   0.000     0.000    clk
+    AC19                 IBUF (Prop_ibuf_I_O)         1.416     1.416 r  clk_IBUF_inst/O
+                         net (fo=1, routed)           2.602     4.018    clk_IBUF
+    BUFGCTRL_X0Y0        BUFG (Prop_bufg_I_O)         0.081     4.099 r  clk_IBUF_BUFG_inst/O
+                         net (fo=2027, routed)        1.823     5.922    fpga_pll.u_clk_pll/inst/clk_in1
+    PLLE2_ADV_X1Y0       PLLE2_ADV (Prop_plle2_adv_CLKIN1_CLKOUT0)
+                                                     -4.192     1.730 r  fpga_pll.u_clk_pll/inst/plle2_adv_inst/CLKOUT0
+                         net (fo=1, routed)           2.288     4.018    fpga_pll.u_clk_pll/inst/cpu_clk_clk_pll
+    BUFGCTRL_X0Y2        BUFG (Prop_bufg_I_O)         0.081     4.099 r  fpga_pll.u_clk_pll/inst/clkout1_buf/O
+                         net (fo=24016, routed)       1.418     5.517    u_cpu/u_nop_core/toplevel_cpu/cpu_clk
+    SLICE_X107Y112       FDRE                                         r  u_cpu/u_nop_core/toplevel_cpu/RENAME_to_DISPATCH_DECODE_PACKET_0_payload_except_valid_reg/C
+  -------------------------------------------------------------------    -------------------
+    SLICE_X107Y112       FDRE (Prop_fdre_C_Q)         0.379     5.896 r  u_cpu/u_nop_core/toplevel_cpu/RENAME_to_DISPATCH_DECODE_PACKET_0_payload_except_valid_reg/Q
+                         net (fo=3, routed)           0.566     6.462    u_cpu/u_nop_core/toplevel_cpu/FetchBufferPlugin_bufferFIFO/RENAME_to_DISPATCH_DECODE_PACKET_0_payload_except_valid
+    SLICE_X107Y112       LUT5 (Prop_lut5_I4_O)        0.105     6.567 f  u_cpu/u_nop_core/toplevel_cpu/FetchBufferPlugin_bufferFIFO/MulDivIssueQueuePlugin_queue_2_payload_uop_doRegWrite_i_12/O
+                         net (fo=2, routed)           0.244     6.811    u_cpu/u_nop_core/toplevel_cpu/FetchBufferPlugin_bufferFIFO/MulDivIssueQueuePlugin_queue_2_payload_uop_doRegWrite_i_12_n_0
+    SLICE_X106Y113       LUT6 (Prop_lut6_I5_O)        0.105     6.916 r  u_cpu/u_nop_core/toplevel_cpu/FetchBufferPlugin_bufferFIFO/MulDivIssueQueuePlugin_queue_2_payload_uop_doRegWrite_i_7/O
+                         net (fo=7, routed)           0.361     7.278    u_cpu/u_nop_core/toplevel_cpu/FetchBufferPlugin_bufferFIFO/RENAME_to_DISPATCH_DECODE_PACKET_1_valid_reg
+    SLICE_X107Y111       LUT4 (Prop_lut4_I0_O)        0.105     7.383 f  u_cpu/u_nop_core/toplevel_cpu/FetchBufferPlugin_bufferFIFO/IntIssueQueuePlugin_queue_6_payload_uop_pc[31]_i_7/O
+                         net (fo=2, routed)           0.409     7.792    u_cpu/u_nop_core/toplevel_cpu/FetchBufferPlugin_bufferFIFO/MulDivIssueQueuePlugin_queue_1_valid_reg_0
+    SLICE_X106Y111       LUT6 (Prop_lut6_I5_O)        0.105     7.897 r  u_cpu/u_nop_core/toplevel_cpu/FetchBufferPlugin_bufferFIFO/RENAME_to_DISPATCH_DECODE_PACKET_0_payload_isStore_i_3/O
+                         net (fo=1, routed)           0.120     8.017    u_cpu/u_nop_core/toplevel_cpu/FetchBufferPlugin_bufferFIFO/RENAME_to_DISPATCH_DECODE_PACKET_0_payload_isStore_i_3_n_0
+    SLICE_X106Y111       LUT2 (Prop_lut2_I1_O)        0.105     8.122 r  u_cpu/u_nop_core/toplevel_cpu/FetchBufferPlugin_bufferFIFO/RENAME_to_DISPATCH_DECODE_PACKET_0_payload_isStore_i_2/O
+                         net (fo=479, routed)         0.622     8.743    u_cpu/u_nop_core/toplevel_cpu/RenamePlugin_freeList/DISPATCH_arbitration_isValid_reg_1
+    SLICE_X104Y110       LUT6 (Prop_lut6_I0_O)        0.105     8.848 r  u_cpu/u_nop_core/toplevel_cpu/RenamePlugin_freeList/_to__DECODE_FIELDS_0_payload_isStore_i_3/O
+                         net (fo=1549, routed)        0.279     9.127    u_cpu/u_nop_core/toplevel_cpu/RenamePlugin_freeList/RENAME_arbitration_isValid_reg_1[0]
+    SLICE_X104Y109       LUT6 (Prop_lut6_I4_O)        0.105     9.232 r  u_cpu/u_nop_core/toplevel_cpu/RenamePlugin_freeList/occupancy[1]_i_4/O
+                         net (fo=48, routed)          0.577     9.809    u_cpu/u_nop_core/toplevel_cpu/FetchBufferPlugin_bufferFIFO/ID_arbitration_isFiring
+    SLICE_X103Y109       LUT6 (Prop_lut6_I3_O)        0.105     9.914 r  u_cpu/u_nop_core/toplevel_cpu/FetchBufferPlugin_bufferFIFO/io_pop_0_payload_pc[31]_i_4/O
+                         net (fo=117, routed)         1.130    11.044    u_cpu/u_nop_core/toplevel_cpu/FetchBufferPlugin_bufferFIFO/io_pop_0_payload_pc[31]_i_4_n_0
+    SLICE_X91Y91         LUT4 (Prop_lut4_I2_O)        0.105    11.149 f  u_cpu/u_nop_core/toplevel_cpu/FetchBufferPlugin_bufferFIFO/io_pop_1_payload_pc[31]_i_3/O
+                         net (fo=113, routed)         0.700    11.849    u_cpu/u_nop_core/toplevel_cpu/FetchBufferPlugin_bufferFIFO/io_pop_1_payload_pc[31]_i_3_n_0
+    SLICE_X83Y91         LUT2 (Prop_lut2_I1_O)        0.105    11.954 r  u_cpu/u_nop_core/toplevel_cpu/FetchBufferPlugin_bufferFIFO/io_pop_2_payload_pc[31]_i_3/O
+                         net (fo=109, routed)         0.470    12.424    u_cpu/u_nop_core/toplevel_cpu/FetchBufferPlugin_bufferFIFO/io_pop_2_payload_pc[31]_i_3_n_0
+    SLICE_X81Y90         LUT2 (Prop_lut2_I1_O)        0.105    12.529 r  u_cpu/u_nop_core/toplevel_cpu/FetchBufferPlugin_bufferFIFO/io_pop_2_payload_except_payload_code[5]_i_1/O
+                         net (fo=8, routed)           0.313    12.841    u_cpu/u_nop_core/toplevel_cpu/FetchBufferPlugin_bufferFIFO/io_pop_2_payload_except_payload_code[5]_i_1_n_0
+    SLICE_X81Y90         FDRE                                         r  u_cpu/u_nop_core/toplevel_cpu/FetchBufferPlugin_bufferFIFO/io_pop_2_payload_except_payload_code_reg[1]/R
+  -------------------------------------------------------------------    -------------------
+
+                         (clock cpu_clk rise edge)    5.000     5.000 r  
+    AC19                                              0.000     5.000 r  clk (IN)
+                         net (fo=0)                   0.000     5.000    clk
+    AC19                 IBUF (Prop_ibuf_I_O)         1.350     6.350 r  clk_IBUF_inst/O
+                         net (fo=1, routed)           2.471     8.821    clk_IBUF
+    BUFGCTRL_X0Y0        BUFG (Prop_bufg_I_O)         0.077     8.898 r  clk_IBUF_BUFG_inst/O
+                         net (fo=2027, routed)        1.706    10.604    fpga_pll.u_clk_pll/inst/clk_in1
+    PLLE2_ADV_X1Y0       PLLE2_ADV (Prop_plle2_adv_CLKIN1_CLKOUT0)
+                                                     -3.960     6.644 r  fpga_pll.u_clk_pll/inst/plle2_adv_inst/CLKOUT0
+                         net (fo=1, routed)           2.177     8.821    fpga_pll.u_clk_pll/inst/cpu_clk_clk_pll
+    BUFGCTRL_X0Y2        BUFG (Prop_bufg_I_O)         0.077     8.898 r  fpga_pll.u_clk_pll/inst/clkout1_buf/O
+                         net (fo=24016, routed)       1.412    10.310    u_cpu/u_nop_core/toplevel_cpu/FetchBufferPlugin_bufferFIFO/cpu_clk
+    SLICE_X81Y90         FDRE                                         r  u_cpu/u_nop_core/toplevel_cpu/FetchBufferPlugin_bufferFIFO/io_pop_2_payload_except_payload_code_reg[1]/C
+                         clock pessimism              0.207    10.517    
+                         clock uncertainty           -0.067    10.450    
+    SLICE_X81Y90         FDRE (Setup_fdre_C_R)       -0.352    10.098    u_cpu/u_nop_core/toplevel_cpu/FetchBufferPlugin_bufferFIFO/io_pop_2_payload_except_payload_code_reg[1]
+  -------------------------------------------------------------------
+                         required time                         10.098    
+                         arrival time                         -12.841    
+  -------------------------------------------------------------------
+                         slack                                 -2.743    
+
+Slack (VIOLATED) :        -2.741ns  (required time - arrival time)
+  Source:                 u_cpu/u_nop_core/toplevel_cpu/RENAME_to_DISPATCH_DECODE_PACKET_0_payload_except_valid_reg/C
+                            (rising edge-triggered cell FDRE clocked by cpu_clk  {rise@0.000ns fall@2.500ns period=5.000ns})
+  Destination:            u_cpu/u_nop_core/toplevel_cpu/FetchBufferPlugin_bufferFIFO/io_pop_2_payload_inst_reg[7]/D
+                            (rising edge-triggered cell FDRE clocked by cpu_clk  {rise@0.000ns fall@2.500ns period=5.000ns})
+  Path Group:             cpu_clk
+  Path Type:              Setup (Max at Slow Process Corner)
+  Requirement:            5.000ns  (cpu_clk rise@5.000ns - cpu_clk rise@0.000ns)
+  Data Path Delay:        7.705ns  (logic 1.534ns (19.909%)  route 6.171ns (80.091%))
+  Logic Levels:           11  (LUT2=1 LUT4=2 LUT5=3 LUT6=5)
+  Clock Path Skew:        -0.001ns (DCD - SCD + CPR)
+    Destination Clock Delay (DCD):    5.309ns = ( 10.309 - 5.000 ) 
+    Source Clock Delay      (SCD):    5.517ns
+    Clock Pessimism Removal (CPR):    0.207ns
+  Clock Uncertainty:      0.067ns  ((TSJ^2 + DJ^2)^1/2) / 2 + PE
+    Total System Jitter     (TSJ):    0.071ns
+    Discrete Jitter          (DJ):    0.113ns
+    Phase Error              (PE):    0.000ns
+
+    Location             Delay type                Incr(ns)  Path(ns)    Netlist Resource(s)
+  -------------------------------------------------------------------    -------------------
+                         (clock cpu_clk rise edge)    0.000     0.000 r  
+    AC19                                              0.000     0.000 r  clk (IN)
+                         net (fo=0)                   0.000     0.000    clk
+    AC19                 IBUF (Prop_ibuf_I_O)         1.416     1.416 r  clk_IBUF_inst/O
+                         net (fo=1, routed)           2.602     4.018    clk_IBUF
+    BUFGCTRL_X0Y0        BUFG (Prop_bufg_I_O)         0.081     4.099 r  clk_IBUF_BUFG_inst/O
+                         net (fo=2027, routed)        1.823     5.922    fpga_pll.u_clk_pll/inst/clk_in1
+    PLLE2_ADV_X1Y0       PLLE2_ADV (Prop_plle2_adv_CLKIN1_CLKOUT0)
+                                                     -4.192     1.730 r  fpga_pll.u_clk_pll/inst/plle2_adv_inst/CLKOUT0
+                         net (fo=1, routed)           2.288     4.018    fpga_pll.u_clk_pll/inst/cpu_clk_clk_pll
+    BUFGCTRL_X0Y2        BUFG (Prop_bufg_I_O)         0.081     4.099 r  fpga_pll.u_clk_pll/inst/clkout1_buf/O
+                         net (fo=24016, routed)       1.418     5.517    u_cpu/u_nop_core/toplevel_cpu/cpu_clk
+    SLICE_X107Y112       FDRE                                         r  u_cpu/u_nop_core/toplevel_cpu/RENAME_to_DISPATCH_DECODE_PACKET_0_payload_except_valid_reg/C
+  -------------------------------------------------------------------    -------------------
+    SLICE_X107Y112       FDRE (Prop_fdre_C_Q)         0.379     5.896 r  u_cpu/u_nop_core/toplevel_cpu/RENAME_to_DISPATCH_DECODE_PACKET_0_payload_except_valid_reg/Q
+                         net (fo=3, routed)           0.566     6.462    u_cpu/u_nop_core/toplevel_cpu/FetchBufferPlugin_bufferFIFO/RENAME_to_DISPATCH_DECODE_PACKET_0_payload_except_valid
+    SLICE_X107Y112       LUT5 (Prop_lut5_I4_O)        0.105     6.567 f  u_cpu/u_nop_core/toplevel_cpu/FetchBufferPlugin_bufferFIFO/MulDivIssueQueuePlugin_queue_2_payload_uop_doRegWrite_i_12/O
+                         net (fo=2, routed)           0.244     6.811    u_cpu/u_nop_core/toplevel_cpu/FetchBufferPlugin_bufferFIFO/MulDivIssueQueuePlugin_queue_2_payload_uop_doRegWrite_i_12_n_0
+    SLICE_X106Y113       LUT6 (Prop_lut6_I5_O)        0.105     6.916 r  u_cpu/u_nop_core/toplevel_cpu/FetchBufferPlugin_bufferFIFO/MulDivIssueQueuePlugin_queue_2_payload_uop_doRegWrite_i_7/O
+                         net (fo=7, routed)           0.361     7.278    u_cpu/u_nop_core/toplevel_cpu/FetchBufferPlugin_bufferFIFO/RENAME_to_DISPATCH_DECODE_PACKET_1_valid_reg
+    SLICE_X107Y111       LUT4 (Prop_lut4_I0_O)        0.105     7.383 f  u_cpu/u_nop_core/toplevel_cpu/FetchBufferPlugin_bufferFIFO/IntIssueQueuePlugin_queue_6_payload_uop_pc[31]_i_7/O
+                         net (fo=2, routed)           0.409     7.792    u_cpu/u_nop_core/toplevel_cpu/FetchBufferPlugin_bufferFIFO/MulDivIssueQueuePlugin_queue_1_valid_reg_0
+    SLICE_X106Y111       LUT6 (Prop_lut6_I5_O)        0.105     7.897 r  u_cpu/u_nop_core/toplevel_cpu/FetchBufferPlugin_bufferFIFO/RENAME_to_DISPATCH_DECODE_PACKET_0_payload_isStore_i_3/O
+                         net (fo=1, routed)           0.120     8.017    u_cpu/u_nop_core/toplevel_cpu/FetchBufferPlugin_bufferFIFO/RENAME_to_DISPATCH_DECODE_PACKET_0_payload_isStore_i_3_n_0
+    SLICE_X106Y111       LUT2 (Prop_lut2_I1_O)        0.105     8.122 r  u_cpu/u_nop_core/toplevel_cpu/FetchBufferPlugin_bufferFIFO/RENAME_to_DISPATCH_DECODE_PACKET_0_payload_isStore_i_2/O
+                         net (fo=479, routed)         0.622     8.743    u_cpu/u_nop_core/toplevel_cpu/RenamePlugin_freeList/DISPATCH_arbitration_isValid_reg_1
+    SLICE_X104Y110       LUT6 (Prop_lut6_I0_O)        0.105     8.848 r  u_cpu/u_nop_core/toplevel_cpu/RenamePlugin_freeList/_to__DECODE_FIELDS_0_payload_isStore_i_3/O
+                         net (fo=1549, routed)        0.279     9.127    u_cpu/u_nop_core/toplevel_cpu/RenamePlugin_freeList/RENAME_arbitration_isValid_reg_1[0]
+    SLICE_X104Y109       LUT6 (Prop_lut6_I4_O)        0.105     9.232 r  u_cpu/u_nop_core/toplevel_cpu/RenamePlugin_freeList/occupancy[1]_i_4/O
+                         net (fo=48, routed)          0.598     9.831    u_cpu/u_nop_core/toplevel_cpu/FetchBufferPlugin_bufferFIFO/ID_arbitration_isFiring
+    SLICE_X103Y103       LUT6 (Prop_lut6_I3_O)        0.105     9.936 f  u_cpu/u_nop_core/toplevel_cpu/FetchBufferPlugin_bufferFIFO/io_pop_0_payload_pc[31]_i_3/O
+                         net (fo=118, routed)         1.512    11.448    u_cpu/u_nop_core/toplevel_cpu/FetchBufferPlugin_bufferFIFO/io_pop_0_payload_pc[31]_i_3_n_0
+    SLICE_X82Y87         LUT5 (Prop_lut5_I4_O)        0.105    11.553 r  u_cpu/u_nop_core/toplevel_cpu/FetchBufferPlugin_bufferFIFO/io_pop_2_payload_pc[1]_i_4/O
+                         net (fo=116, routed)         1.092    12.645    u_cpu/u_nop_core/toplevel_cpu/FetchBufferPlugin_bufferFIFO/io_pop_2_payload_pc[1]_i_4_n_0
+    SLICE_X79Y90         LUT4 (Prop_lut4_I2_O)        0.105    12.750 r  u_cpu/u_nop_core/toplevel_cpu/FetchBufferPlugin_bufferFIFO/io_pop_2_payload_inst[7]_i_2/O
+                         net (fo=1, routed)           0.367    13.117    u_cpu/u_nop_core/toplevel_cpu/FetchBufferPlugin_bufferFIFO/io_pop_2_payload_inst[7]_i_2_n_0
+    SLICE_X79Y89         LUT5 (Prop_lut5_I2_O)        0.105    13.222 r  u_cpu/u_nop_core/toplevel_cpu/FetchBufferPlugin_bufferFIFO/io_pop_2_payload_inst[7]_i_1/O
+                         net (fo=1, routed)           0.000    13.222    u_cpu/u_nop_core/toplevel_cpu/FetchBufferPlugin_bufferFIFO/io_pop_2_payload_inst[7]_i_1_n_0
+    SLICE_X79Y89         FDRE                                         r  u_cpu/u_nop_core/toplevel_cpu/FetchBufferPlugin_bufferFIFO/io_pop_2_payload_inst_reg[7]/D
+  -------------------------------------------------------------------    -------------------
+
+                         (clock cpu_clk rise edge)    5.000     5.000 r  
+    AC19                                              0.000     5.000 r  clk (IN)
+                         net (fo=0)                   0.000     5.000    clk
+    AC19                 IBUF (Prop_ibuf_I_O)         1.350     6.350 r  clk_IBUF_inst/O
+                         net (fo=1, routed)           2.471     8.821    clk_IBUF
+    BUFGCTRL_X0Y0        BUFG (Prop_bufg_I_O)         0.077     8.898 r  clk_IBUF_BUFG_inst/O
+                         net (fo=2027, routed)        1.706    10.604    fpga_pll.u_clk_pll/inst/clk_in1
+    PLLE2_ADV_X1Y0       PLLE2_ADV (Prop_plle2_adv_CLKIN1_CLKOUT0)
+                                                     -3.960     6.644 r  fpga_pll.u_clk_pll/inst/plle2_adv_inst/CLKOUT0
+                         net (fo=1, routed)           2.177     8.821    fpga_pll.u_clk_pll/inst/cpu_clk_clk_pll
+    BUFGCTRL_X0Y2        BUFG (Prop_bufg_I_O)         0.077     8.898 r  fpga_pll.u_clk_pll/inst/clkout1_buf/O
+                         net (fo=24016, routed)       1.411    10.309    u_cpu/u_nop_core/toplevel_cpu/FetchBufferPlugin_bufferFIFO/cpu_clk
+    SLICE_X79Y89         FDRE                                         r  u_cpu/u_nop_core/toplevel_cpu/FetchBufferPlugin_bufferFIFO/io_pop_2_payload_inst_reg[7]/C
+                         clock pessimism              0.207    10.516    
+                         clock uncertainty           -0.067    10.449    
+    SLICE_X79Y89         FDRE (Setup_fdre_C_D)        0.032    10.481    u_cpu/u_nop_core/toplevel_cpu/FetchBufferPlugin_bufferFIFO/io_pop_2_payload_inst_reg[7]
+  -------------------------------------------------------------------
+                         required time                         10.481    
+                         arrival time                         -13.222    
+  -------------------------------------------------------------------
+                         slack                                 -2.741    
+
+Slack (VIOLATED) :        -2.736ns  (required time - arrival time)
+  Source:                 u_cpu/u_nop_core/toplevel_cpu/RENAME_to_DISPATCH_DECODE_PACKET_0_payload_except_valid_reg/C
+                            (rising edge-triggered cell FDRE clocked by cpu_clk  {rise@0.000ns fall@2.500ns period=5.000ns})
+  Destination:            u_cpu/u_nop_core/toplevel_cpu/FetchBufferPlugin_bufferFIFO/io_pop_2_payload_except_payload_code_reg[2]/R
+                            (rising edge-triggered cell FDRE clocked by cpu_clk  {rise@0.000ns fall@2.500ns period=5.000ns})
+  Path Group:             cpu_clk
+  Path Type:              Setup (Max at Slow Process Corner)
+  Requirement:            5.000ns  (cpu_clk rise@5.000ns - cpu_clk rise@0.000ns)
+  Data Path Delay:        7.312ns  (logic 1.534ns (20.978%)  route 5.778ns (79.022%))
+  Logic Levels:           11  (LUT2=3 LUT4=2 LUT5=1 LUT6=5)
+  Clock Path Skew:        -0.005ns (DCD - SCD + CPR)
+    Destination Clock Delay (DCD):    5.305ns = ( 10.305 - 5.000 ) 
+    Source Clock Delay      (SCD):    5.517ns
+    Clock Pessimism Removal (CPR):    0.207ns
+  Clock Uncertainty:      0.067ns  ((TSJ^2 + DJ^2)^1/2) / 2 + PE
+    Total System Jitter     (TSJ):    0.071ns
+    Discrete Jitter          (DJ):    0.113ns
+    Phase Error              (PE):    0.000ns
+
+    Location             Delay type                Incr(ns)  Path(ns)    Netlist Resource(s)
+  -------------------------------------------------------------------    -------------------
+                         (clock cpu_clk rise edge)    0.000     0.000 r  
+    AC19                                              0.000     0.000 r  clk (IN)
+                         net (fo=0)                   0.000     0.000    clk
+    AC19                 IBUF (Prop_ibuf_I_O)         1.416     1.416 r  clk_IBUF_inst/O
+                         net (fo=1, routed)           2.602     4.018    clk_IBUF
+    BUFGCTRL_X0Y0        BUFG (Prop_bufg_I_O)         0.081     4.099 r  clk_IBUF_BUFG_inst/O
+                         net (fo=2027, routed)        1.823     5.922    fpga_pll.u_clk_pll/inst/clk_in1
+    PLLE2_ADV_X1Y0       PLLE2_ADV (Prop_plle2_adv_CLKIN1_CLKOUT0)
+                                                     -4.192     1.730 r  fpga_pll.u_clk_pll/inst/plle2_adv_inst/CLKOUT0
+                         net (fo=1, routed)           2.288     4.018    fpga_pll.u_clk_pll/inst/cpu_clk_clk_pll
+    BUFGCTRL_X0Y2        BUFG (Prop_bufg_I_O)         0.081     4.099 r  fpga_pll.u_clk_pll/inst/clkout1_buf/O
+                         net (fo=24016, routed)       1.418     5.517    u_cpu/u_nop_core/toplevel_cpu/cpu_clk
+    SLICE_X107Y112       FDRE                                         r  u_cpu/u_nop_core/toplevel_cpu/RENAME_to_DISPATCH_DECODE_PACKET_0_payload_except_valid_reg/C
+  -------------------------------------------------------------------    -------------------
+    SLICE_X107Y112       FDRE (Prop_fdre_C_Q)         0.379     5.896 r  u_cpu/u_nop_core/toplevel_cpu/RENAME_to_DISPATCH_DECODE_PACKET_0_payload_except_valid_reg/Q
+                         net (fo=3, routed)           0.566     6.462    u_cpu/u_nop_core/toplevel_cpu/FetchBufferPlugin_bufferFIFO/RENAME_to_DISPATCH_DECODE_PACKET_0_payload_except_valid
+    SLICE_X107Y112       LUT5 (Prop_lut5_I4_O)        0.105     6.567 f  u_cpu/u_nop_core/toplevel_cpu/FetchBufferPlugin_bufferFIFO/MulDivIssueQueuePlugin_queue_2_payload_uop_doRegWrite_i_12/O
+                         net (fo=2, routed)           0.244     6.811    u_cpu/u_nop_core/toplevel_cpu/FetchBufferPlugin_bufferFIFO/MulDivIssueQueuePlugin_queue_2_payload_uop_doRegWrite_i_12_n_0
+    SLICE_X106Y113       LUT6 (Prop_lut6_I5_O)        0.105     6.916 r  u_cpu/u_nop_core/toplevel_cpu/FetchBufferPlugin_bufferFIFO/MulDivIssueQueuePlugin_queue_2_payload_uop_doRegWrite_i_7/O
+                         net (fo=7, routed)           0.361     7.278    u_cpu/u_nop_core/toplevel_cpu/FetchBufferPlugin_bufferFIFO/RENAME_to_DISPATCH_DECODE_PACKET_1_valid_reg
+    SLICE_X107Y111       LUT4 (Prop_lut4_I0_O)        0.105     7.383 f  u_cpu/u_nop_core/toplevel_cpu/FetchBufferPlugin_bufferFIFO/IntIssueQueuePlugin_queue_6_payload_uop_pc[31]_i_7/O
+                         net (fo=2, routed)           0.409     7.792    u_cpu/u_nop_core/toplevel_cpu/FetchBufferPlugin_bufferFIFO/MulDivIssueQueuePlugin_queue_1_valid_reg_0
+    SLICE_X106Y111       LUT6 (Prop_lut6_I5_O)        0.105     7.897 r  u_cpu/u_nop_core/toplevel_cpu/FetchBufferPlugin_bufferFIFO/RENAME_to_DISPATCH_DECODE_PACKET_0_payload_isStore_i_3/O
+                         net (fo=1, routed)           0.120     8.017    u_cpu/u_nop_core/toplevel_cpu/FetchBufferPlugin_bufferFIFO/RENAME_to_DISPATCH_DECODE_PACKET_0_payload_isStore_i_3_n_0
+    SLICE_X106Y111       LUT2 (Prop_lut2_I1_O)        0.105     8.122 r  u_cpu/u_nop_core/toplevel_cpu/FetchBufferPlugin_bufferFIFO/RENAME_to_DISPATCH_DECODE_PACKET_0_payload_isStore_i_2/O
+                         net (fo=479, routed)         0.622     8.743    u_cpu/u_nop_core/toplevel_cpu/RenamePlugin_freeList/DISPATCH_arbitration_isValid_reg_1
+    SLICE_X104Y110       LUT6 (Prop_lut6_I0_O)        0.105     8.848 r  u_cpu/u_nop_core/toplevel_cpu/RenamePlugin_freeList/_to__DECODE_FIELDS_0_payload_isStore_i_3/O
+                         net (fo=1549, routed)        0.279     9.127    u_cpu/u_nop_core/toplevel_cpu/RenamePlugin_freeList/RENAME_arbitration_isValid_reg_1[0]
+    SLICE_X104Y109       LUT6 (Prop_lut6_I4_O)        0.105     9.232 r  u_cpu/u_nop_core/toplevel_cpu/RenamePlugin_freeList/occupancy[1]_i_4/O
+                         net (fo=48, routed)          0.577     9.809    u_cpu/u_nop_core/toplevel_cpu/FetchBufferPlugin_bufferFIFO/ID_arbitration_isFiring
+    SLICE_X103Y109       LUT6 (Prop_lut6_I3_O)        0.105     9.914 r  u_cpu/u_nop_core/toplevel_cpu/FetchBufferPlugin_bufferFIFO/io_pop_0_payload_pc[31]_i_4/O
+                         net (fo=117, routed)         1.130    11.044    u_cpu/u_nop_core/toplevel_cpu/FetchBufferPlugin_bufferFIFO/io_pop_0_payload_pc[31]_i_4_n_0
+    SLICE_X91Y91         LUT4 (Prop_lut4_I2_O)        0.105    11.149 f  u_cpu/u_nop_core/toplevel_cpu/FetchBufferPlugin_bufferFIFO/io_pop_1_payload_pc[31]_i_3/O
+                         net (fo=113, routed)         0.700    11.849    u_cpu/u_nop_core/toplevel_cpu/FetchBufferPlugin_bufferFIFO/io_pop_1_payload_pc[31]_i_3_n_0
+    SLICE_X83Y91         LUT2 (Prop_lut2_I1_O)        0.105    11.954 r  u_cpu/u_nop_core/toplevel_cpu/FetchBufferPlugin_bufferFIFO/io_pop_2_payload_pc[31]_i_3/O
+                         net (fo=109, routed)         0.470    12.424    u_cpu/u_nop_core/toplevel_cpu/FetchBufferPlugin_bufferFIFO/io_pop_2_payload_pc[31]_i_3_n_0
+    SLICE_X81Y90         LUT2 (Prop_lut2_I1_O)        0.105    12.529 r  u_cpu/u_nop_core/toplevel_cpu/FetchBufferPlugin_bufferFIFO/io_pop_2_payload_except_payload_code[5]_i_1/O
+                         net (fo=8, routed)           0.301    12.829    u_cpu/u_nop_core/toplevel_cpu/FetchBufferPlugin_bufferFIFO/io_pop_2_payload_except_payload_code[5]_i_1_n_0
+    SLICE_X82Y90         FDRE                                         r  u_cpu/u_nop_core/toplevel_cpu/FetchBufferPlugin_bufferFIFO/io_pop_2_payload_except_payload_code_reg[2]/R
+  -------------------------------------------------------------------    -------------------
+
+                         (clock cpu_clk rise edge)    5.000     5.000 r  
+    AC19                                              0.000     5.000 r  clk (IN)
+                         net (fo=0)                   0.000     5.000    clk
+    AC19                 IBUF (Prop_ibuf_I_O)         1.350     6.350 r  clk_IBUF_inst/O
+                         net (fo=1, routed)           2.471     8.821    clk_IBUF
+    BUFGCTRL_X0Y0        BUFG (Prop_bufg_I_O)         0.077     8.898 r  clk_IBUF_BUFG_inst/O
+                         net (fo=2027, routed)        1.706    10.604    fpga_pll.u_clk_pll/inst/clk_in1
+    PLLE2_ADV_X1Y0       PLLE2_ADV (Prop_plle2_adv_CLKIN1_CLKOUT0)
+                                                     -3.960     6.644 r  fpga_pll.u_clk_pll/inst/plle2_adv_inst/CLKOUT0
+                         net (fo=1, routed)           2.177     8.821    fpga_pll.u_clk_pll/inst/cpu_clk_clk_pll
+    BUFGCTRL_X0Y2        BUFG (Prop_bufg_I_O)         0.077     8.898 r  fpga_pll.u_clk_pll/inst/clkout1_buf/O
+                         net (fo=24016, routed)       1.407    10.305    u_cpu/u_nop_core/toplevel_cpu/FetchBufferPlugin_bufferFIFO/cpu_clk
+    SLICE_X82Y90         FDRE                                         r  u_cpu/u_nop_core/toplevel_cpu/FetchBufferPlugin_bufferFIFO/io_pop_2_payload_except_payload_code_reg[2]/C
+                         clock pessimism              0.207    10.512    
+                         clock uncertainty           -0.067    10.445    
+    SLICE_X82Y90         FDRE (Setup_fdre_C_R)       -0.352    10.093    u_cpu/u_nop_core/toplevel_cpu/FetchBufferPlugin_bufferFIFO/io_pop_2_payload_except_payload_code_reg[2]
+  -------------------------------------------------------------------
+                         required time                         10.093    
+                         arrival time                         -12.829    
+  -------------------------------------------------------------------
+                         slack                                 -2.736    
+
+Slack (VIOLATED) :        -2.736ns  (required time - arrival time)
+  Source:                 u_cpu/u_nop_core/toplevel_cpu/RENAME_to_DISPATCH_DECODE_PACKET_0_payload_except_valid_reg/C
+                            (rising edge-triggered cell FDRE clocked by cpu_clk  {rise@0.000ns fall@2.500ns period=5.000ns})
+  Destination:            u_cpu/u_nop_core/toplevel_cpu/FetchBufferPlugin_bufferFIFO/io_pop_2_payload_except_payload_code_reg[5]/R
+                            (rising edge-triggered cell FDRE clocked by cpu_clk  {rise@0.000ns fall@2.500ns period=5.000ns})
+  Path Group:             cpu_clk
+  Path Type:              Setup (Max at Slow Process Corner)
+  Requirement:            5.000ns  (cpu_clk rise@5.000ns - cpu_clk rise@0.000ns)
+  Data Path Delay:        7.312ns  (logic 1.534ns (20.978%)  route 5.778ns (79.022%))
+  Logic Levels:           11  (LUT2=3 LUT4=2 LUT5=1 LUT6=5)
+  Clock Path Skew:        -0.005ns (DCD - SCD + CPR)
+    Destination Clock Delay (DCD):    5.305ns = ( 10.305 - 5.000 ) 
+    Source Clock Delay      (SCD):    5.517ns
+    Clock Pessimism Removal (CPR):    0.207ns
+  Clock Uncertainty:      0.067ns  ((TSJ^2 + DJ^2)^1/2) / 2 + PE
+    Total System Jitter     (TSJ):    0.071ns
+    Discrete Jitter          (DJ):    0.113ns
+    Phase Error              (PE):    0.000ns
+
+    Location             Delay type                Incr(ns)  Path(ns)    Netlist Resource(s)
+  -------------------------------------------------------------------    -------------------
+                         (clock cpu_clk rise edge)    0.000     0.000 r  
+    AC19                                              0.000     0.000 r  clk (IN)
+                         net (fo=0)                   0.000     0.000    clk
+    AC19                 IBUF (Prop_ibuf_I_O)         1.416     1.416 r  clk_IBUF_inst/O
+                         net (fo=1, routed)           2.602     4.018    clk_IBUF
+    BUFGCTRL_X0Y0        BUFG (Prop_bufg_I_O)         0.081     4.099 r  clk_IBUF_BUFG_inst/O
+                         net (fo=2027, routed)        1.823     5.922    fpga_pll.u_clk_pll/inst/clk_in1
+    PLLE2_ADV_X1Y0       PLLE2_ADV (Prop_plle2_adv_CLKIN1_CLKOUT0)
+                                                     -4.192     1.730 r  fpga_pll.u_clk_pll/inst/plle2_adv_inst/CLKOUT0
+                         net (fo=1, routed)           2.288     4.018    fpga_pll.u_clk_pll/inst/cpu_clk_clk_pll
+    BUFGCTRL_X0Y2        BUFG (Prop_bufg_I_O)         0.081     4.099 r  fpga_pll.u_clk_pll/inst/clkout1_buf/O
+                         net (fo=24016, routed)       1.418     5.517    u_cpu/u_nop_core/toplevel_cpu/cpu_clk
+    SLICE_X107Y112       FDRE                                         r  u_cpu/u_nop_core/toplevel_cpu/RENAME_to_DISPATCH_DECODE_PACKET_0_payload_except_valid_reg/C
+  -------------------------------------------------------------------    -------------------
+    SLICE_X107Y112       FDRE (Prop_fdre_C_Q)         0.379     5.896 r  u_cpu/u_nop_core/toplevel_cpu/RENAME_to_DISPATCH_DECODE_PACKET_0_payload_except_valid_reg/Q
+                         net (fo=3, routed)           0.566     6.462    u_cpu/u_nop_core/toplevel_cpu/FetchBufferPlugin_bufferFIFO/RENAME_to_DISPATCH_DECODE_PACKET_0_payload_except_valid
+    SLICE_X107Y112       LUT5 (Prop_lut5_I4_O)        0.105     6.567 f  u_cpu/u_nop_core/toplevel_cpu/FetchBufferPlugin_bufferFIFO/MulDivIssueQueuePlugin_queue_2_payload_uop_doRegWrite_i_12/O
+                         net (fo=2, routed)           0.244     6.811    u_cpu/u_nop_core/toplevel_cpu/FetchBufferPlugin_bufferFIFO/MulDivIssueQueuePlugin_queue_2_payload_uop_doRegWrite_i_12_n_0
+    SLICE_X106Y113       LUT6 (Prop_lut6_I5_O)        0.105     6.916 r  u_cpu/u_nop_core/toplevel_cpu/FetchBufferPlugin_bufferFIFO/MulDivIssueQueuePlugin_queue_2_payload_uop_doRegWrite_i_7/O
+                         net (fo=7, routed)           0.361     7.278    u_cpu/u_nop_core/toplevel_cpu/FetchBufferPlugin_bufferFIFO/RENAME_to_DISPATCH_DECODE_PACKET_1_valid_reg
+    SLICE_X107Y111       LUT4 (Prop_lut4_I0_O)        0.105     7.383 f  u_cpu/u_nop_core/toplevel_cpu/FetchBufferPlugin_bufferFIFO/IntIssueQueuePlugin_queue_6_payload_uop_pc[31]_i_7/O
+                         net (fo=2, routed)           0.409     7.792    u_cpu/u_nop_core/toplevel_cpu/FetchBufferPlugin_bufferFIFO/MulDivIssueQueuePlugin_queue_1_valid_reg_0
+    SLICE_X106Y111       LUT6 (Prop_lut6_I5_O)        0.105     7.897 r  u_cpu/u_nop_core/toplevel_cpu/FetchBufferPlugin_bufferFIFO/RENAME_to_DISPATCH_DECODE_PACKET_0_payload_isStore_i_3/O
+                         net (fo=1, routed)           0.120     8.017    u_cpu/u_nop_core/toplevel_cpu/FetchBufferPlugin_bufferFIFO/RENAME_to_DISPATCH_DECODE_PACKET_0_payload_isStore_i_3_n_0
+    SLICE_X106Y111       LUT2 (Prop_lut2_I1_O)        0.105     8.122 r  u_cpu/u_nop_core/toplevel_cpu/FetchBufferPlugin_bufferFIFO/RENAME_to_DISPATCH_DECODE_PACKET_0_payload_isStore_i_2/O
+                         net (fo=479, routed)         0.622     8.743    u_cpu/u_nop_core/toplevel_cpu/RenamePlugin_freeList/DISPATCH_arbitration_isValid_reg_1
+    SLICE_X104Y110       LUT6 (Prop_lut6_I0_O)        0.105     8.848 r  u_cpu/u_nop_core/toplevel_cpu/RenamePlugin_freeList/_to__DECODE_FIELDS_0_payload_isStore_i_3/O
+                         net (fo=1549, routed)        0.279     9.127    u_cpu/u_nop_core/toplevel_cpu/RenamePlugin_freeList/RENAME_arbitration_isValid_reg_1[0]
+    SLICE_X104Y109       LUT6 (Prop_lut6_I4_O)        0.105     9.232 r  u_cpu/u_nop_core/toplevel_cpu/RenamePlugin_freeList/occupancy[1]_i_4/O
+                         net (fo=48, routed)          0.577     9.809    u_cpu/u_nop_core/toplevel_cpu/FetchBufferPlugin_bufferFIFO/ID_arbitration_isFiring
+    SLICE_X103Y109       LUT6 (Prop_lut6_I3_O)        0.105     9.914 r  u_cpu/u_nop_core/toplevel_cpu/FetchBufferPlugin_bufferFIFO/io_pop_0_payload_pc[31]_i_4/O
+                         net (fo=117, routed)         1.130    11.044    u_cpu/u_nop_core/toplevel_cpu/FetchBufferPlugin_bufferFIFO/io_pop_0_payload_pc[31]_i_4_n_0
+    SLICE_X91Y91         LUT4 (Prop_lut4_I2_O)        0.105    11.149 f  u_cpu/u_nop_core/toplevel_cpu/FetchBufferPlugin_bufferFIFO/io_pop_1_payload_pc[31]_i_3/O
+                         net (fo=113, routed)         0.700    11.849    u_cpu/u_nop_core/toplevel_cpu/FetchBufferPlugin_bufferFIFO/io_pop_1_payload_pc[31]_i_3_n_0
+    SLICE_X83Y91         LUT2 (Prop_lut2_I1_O)        0.105    11.954 r  u_cpu/u_nop_core/toplevel_cpu/FetchBufferPlugin_bufferFIFO/io_pop_2_payload_pc[31]_i_3/O
+                         net (fo=109, routed)         0.470    12.424    u_cpu/u_nop_core/toplevel_cpu/FetchBufferPlugin_bufferFIFO/io_pop_2_payload_pc[31]_i_3_n_0
+    SLICE_X81Y90         LUT2 (Prop_lut2_I1_O)        0.105    12.529 r  u_cpu/u_nop_core/toplevel_cpu/FetchBufferPlugin_bufferFIFO/io_pop_2_payload_except_payload_code[5]_i_1/O
+                         net (fo=8, routed)           0.301    12.829    u_cpu/u_nop_core/toplevel_cpu/FetchBufferPlugin_bufferFIFO/io_pop_2_payload_except_payload_code[5]_i_1_n_0
+    SLICE_X82Y90         FDRE                                         r  u_cpu/u_nop_core/toplevel_cpu/FetchBufferPlugin_bufferFIFO/io_pop_2_payload_except_payload_code_reg[5]/R
+  -------------------------------------------------------------------    -------------------
+
+                         (clock cpu_clk rise edge)    5.000     5.000 r  
+    AC19                                              0.000     5.000 r  clk (IN)
+                         net (fo=0)                   0.000     5.000    clk
+    AC19                 IBUF (Prop_ibuf_I_O)         1.350     6.350 r  clk_IBUF_inst/O
+                         net (fo=1, routed)           2.471     8.821    clk_IBUF
+    BUFGCTRL_X0Y0        BUFG (Prop_bufg_I_O)         0.077     8.898 r  clk_IBUF_BUFG_inst/O
+                         net (fo=2027, routed)        1.706    10.604    fpga_pll.u_clk_pll/inst/clk_in1
+    PLLE2_ADV_X1Y0       PLLE2_ADV (Prop_plle2_adv_CLKIN1_CLKOUT0)
+                                                     -3.960     6.644 r  fpga_pll.u_clk_pll/inst/plle2_adv_inst/CLKOUT0
+                         net (fo=1, routed)           2.177     8.821    fpga_pll.u_clk_pll/inst/cpu_clk_clk_pll
+    BUFGCTRL_X0Y2        BUFG (Prop_bufg_I_O)         0.077     8.898 r  fpga_pll.u_clk_pll/inst/clkout1_buf/O
+                         net (fo=24016, routed)       1.407    10.305    u_cpu/u_nop_core/toplevel_cpu/FetchBufferPlugin_bufferFIFO/cpu_clk
+    SLICE_X82Y90         FDRE                                         r  u_cpu/u_nop_core/toplevel_cpu/FetchBufferPlugin_bufferFIFO/io_pop_2_payload_except_payload_code_reg[5]/C
+                         clock pessimism              0.207    10.512    
+                         clock uncertainty           -0.067    10.445    
+    SLICE_X82Y90         FDRE (Setup_fdre_C_R)       -0.352    10.093    u_cpu/u_nop_core/toplevel_cpu/FetchBufferPlugin_bufferFIFO/io_pop_2_payload_except_payload_code_reg[5]
+  -------------------------------------------------------------------
+                         required time                         10.093    
+                         arrival time                         -12.829    
+  -------------------------------------------------------------------
+                         slack                                 -2.736    
+
+Slack (VIOLATED) :        -2.734ns  (required time - arrival time)
+  Source:                 u_cpu/u_nop_core/toplevel_axiBuffer/fifo/xpm_fifo_base_inst/xpm_fifo_rst_inst/gen_rst_cc.fifo_wr_rst_cc_reg[2]_replica/C
+                            (rising edge-triggered cell FDSE clocked by cpu_clk  {rise@0.000ns fall@2.500ns period=5.000ns})
+  Destination:            u_cpu/u_nop_core/toplevel_cpu/IntIssueQueuePlugin_queue_3_payload_rRegs_1_valid_reg/D
+                            (rising edge-triggered cell FDRE clocked by cpu_clk  {rise@0.000ns fall@2.500ns period=5.000ns})
+  Path Group:             cpu_clk
+  Path Type:              Setup (Max at Slow Process Corner)
+  Requirement:            5.000ns  (cpu_clk rise@5.000ns - cpu_clk rise@0.000ns)
+  Data Path Delay:        7.644ns  (logic 1.693ns (22.150%)  route 5.951ns (77.850%))
+  Logic Levels:           12  (LUT2=1 LUT3=1 LUT5=3 LUT6=7)
+  Clock Path Skew:        -0.096ns (DCD - SCD + CPR)
+    Destination Clock Delay (DCD):    5.199ns = ( 10.199 - 5.000 ) 
+    Source Clock Delay      (SCD):    5.503ns
+    Clock Pessimism Removal (CPR):    0.207ns
+  Clock Uncertainty:      0.067ns  ((TSJ^2 + DJ^2)^1/2) / 2 + PE
+    Total System Jitter     (TSJ):    0.071ns
+    Discrete Jitter          (DJ):    0.113ns
+    Phase Error              (PE):    0.000ns
+
+    Location             Delay type                Incr(ns)  Path(ns)    Netlist Resource(s)
+  -------------------------------------------------------------------    -------------------
+                         (clock cpu_clk rise edge)    0.000     0.000 r  
+    AC19                                              0.000     0.000 r  clk (IN)
+                         net (fo=0)                   0.000     0.000    clk
+    AC19                 IBUF (Prop_ibuf_I_O)         1.416     1.416 r  clk_IBUF_inst/O
+                         net (fo=1, routed)           2.602     4.018    clk_IBUF
+    BUFGCTRL_X0Y0        BUFG (Prop_bufg_I_O)         0.081     4.099 r  clk_IBUF_BUFG_inst/O
+                         net (fo=2027, routed)        1.823     5.922    fpga_pll.u_clk_pll/inst/clk_in1
+    PLLE2_ADV_X1Y0       PLLE2_ADV (Prop_plle2_adv_CLKIN1_CLKOUT0)
+                                                     -4.192     1.730 r  fpga_pll.u_clk_pll/inst/plle2_adv_inst/CLKOUT0
+                         net (fo=1, routed)           2.288     4.018    fpga_pll.u_clk_pll/inst/cpu_clk_clk_pll
+    BUFGCTRL_X0Y2        BUFG (Prop_bufg_I_O)         0.081     4.099 r  fpga_pll.u_clk_pll/inst/clkout1_buf/O
+                         net (fo=24016, routed)       1.404     5.503    u_cpu/u_nop_core/toplevel_axiBuffer/fifo/xpm_fifo_base_inst/xpm_fifo_rst_inst/wr_clk
+    SLICE_X52Y134        FDSE                                         r  u_cpu/u_nop_core/toplevel_axiBuffer/fifo/xpm_fifo_base_inst/xpm_fifo_rst_inst/gen_rst_cc.fifo_wr_rst_cc_reg[2]_replica/C
+  -------------------------------------------------------------------    -------------------
+    SLICE_X52Y134        FDSE (Prop_fdse_C_Q)         0.433     5.936 r  u_cpu/u_nop_core/toplevel_axiBuffer/fifo/xpm_fifo_base_inst/xpm_fifo_rst_inst/gen_rst_cc.fifo_wr_rst_cc_reg[2]_replica/Q
+                         net (fo=1, routed)           0.333     6.269    u_cpu/u_nop_core/toplevel_axiBuffer/fifo/xpm_fifo_base_inst/xpm_fifo_rst_inst/Q[0]_repN
+    SLICE_X55Y134        LUT2 (Prop_lut2_I0_O)        0.105     6.374 r  u_cpu/u_nop_core/toplevel_axiBuffer/fifo/xpm_fifo_base_inst/xpm_fifo_rst_inst/wr_rst_busy_INST_0/O
+                         net (fo=3, routed)           0.136     6.510    u_cpu/u_nop_core/toplevel_axiBuffer/fifo_rd_rst_busy
+    SLICE_X55Y134        LUT6 (Prop_lut6_I0_O)        0.105     6.615 f  u_cpu/u_nop_core/toplevel_axiBuffer/fifo_i_72/O
+                         net (fo=5, routed)           0.252     6.867    u_cpu/u_nop_core/toplevel_axiBuffer/fifo_rd_en
+    SLICE_X54Y133        LUT5 (Prop_lut5_I0_O)        0.105     6.972 r  u_cpu/u_nop_core/toplevel_axiBuffer/fifo_i_1/O
+                         net (fo=81, routed)          0.294     7.267    u_cpu/u_nop_core/toplevel_cpu/DCachePlugin_dataRAMs_0/toplevel_axiBuffer_io_in_axi_aw_ready
+    SLICE_X56Y133        LUT3 (Prop_lut3_I2_O)        0.105     7.372 r  u_cpu/u_nop_core/toplevel_cpu/DCachePlugin_dataRAMs_0/MEM_MEM2_UncachedAccessPlugin_uncachedStoreFSM_regSTD_lsType[2]_i_2/O
+                         net (fo=2, routed)           0.244     7.616    u_cpu/u_nop_core/toplevel_cpu/DCachePlugin_dataRAMs_0/MEM_MEM2_UncachedAccessPlugin_uncachedStoreFSM_stateReg_reg[0]
+    SLICE_X57Y131        LUT5 (Prop_lut5_I0_O)        0.105     7.721 f  u_cpu/u_nop_core/toplevel_cpu/DCachePlugin_dataRAMs_0/mem_i_96__3/O
+                         net (fo=1, routed)           0.357     8.078    u_cpu/u_nop_core/toplevel_cpu/DCachePlugin_dataRAMs_0/mem_i_96__3_n_0
+    SLICE_X58Y130        LUT6 (Prop_lut6_I0_O)        0.105     8.183 r  u_cpu/u_nop_core/toplevel_cpu/DCachePlugin_dataRAMs_0/mem_i_89__3/O
+                         net (fo=347, routed)         0.355     8.538    u_cpu/u_nop_core/toplevel_cpu/when_Pipeline_l165_127
+    SLICE_X59Y129        LUT6 (Prop_lut6_I5_O)        0.105     8.643 r  u_cpu/u_nop_core/toplevel_cpu/MEM_ADDR_to_MEM_MEM1_TLB_LOOKUP_SNAPSHOT_hit_i_3/O
+                         net (fo=76, routed)          0.991     9.634    u_cpu/u_nop_core/toplevel_cpu/when_Pipeline_l165_108
+    SLICE_X76Y127        LUT6 (Prop_lut6_I0_O)        0.105     9.739 f  u_cpu/u_nop_core/toplevel_cpu/MemIssueQueuePlugin_queue_0_payload_rRegs_1_valid_i_8/O
+                         net (fo=41, routed)          0.490    10.229    u_cpu/u_nop_core/toplevel_cpu/MemIssueQueuePlugin_queue_0_payload_rRegs_1_valid_i_8_n_0
+    SLICE_X79Y125        LUT5 (Prop_lut5_I0_O)        0.105    10.334 f  u_cpu/u_nop_core/toplevel_cpu/IntIssueQueuePlugin_queue_3_payload_rRegs_1_valid_i_20/O
+                         net (fo=1, routed)           0.964    11.298    u_cpu/u_nop_core/toplevel_cpu/unsignedDivider_2/IntIssueQueuePlugin_queue_2_payload_rRegs_1_valid_i_2_2
+    SLICE_X103Y122       LUT6 (Prop_lut6_I4_O)        0.105    11.403 f  u_cpu/u_nop_core/toplevel_cpu/unsignedDivider_2/IntIssueQueuePlugin_queue_3_payload_rRegs_1_valid_i_8/O
+                         net (fo=3, routed)           0.999    12.402    u_cpu/u_nop_core/toplevel_cpu/unsignedDivider_2/IntIssueQueuePlugin_queue_3_payload_rRegs_1_valid_i_8_n_0
+    SLICE_X106Y121       LUT6 (Prop_lut6_I1_O)        0.105    12.507 r  u_cpu/u_nop_core/toplevel_cpu/unsignedDivider_2/IntIssueQueuePlugin_queue_3_payload_rRegs_1_valid_i_3/O
+                         net (fo=1, routed)           0.534    13.041    u_cpu/u_nop_core/toplevel_cpu/unsignedDivider_2/IntIssueQueuePlugin_queue_3_payload_rRegs_1_valid_i_3_n_0
+    SLICE_X104Y120       LUT6 (Prop_lut6_I1_O)        0.105    13.146 r  u_cpu/u_nop_core/toplevel_cpu/unsignedDivider_2/IntIssueQueuePlugin_queue_3_payload_rRegs_1_valid_i_1/O
+                         net (fo=1, routed)           0.000    13.146    u_cpu/u_nop_core/toplevel_cpu/unsignedDivider_2_n_103
+    SLICE_X104Y120       FDRE                                         r  u_cpu/u_nop_core/toplevel_cpu/IntIssueQueuePlugin_queue_3_payload_rRegs_1_valid_reg/D
+  -------------------------------------------------------------------    -------------------
+
+                         (clock cpu_clk rise edge)    5.000     5.000 r  
+    AC19                                              0.000     5.000 r  clk (IN)
+                         net (fo=0)                   0.000     5.000    clk
+    AC19                 IBUF (Prop_ibuf_I_O)         1.350     6.350 r  clk_IBUF_inst/O
+                         net (fo=1, routed)           2.471     8.821    clk_IBUF
+    BUFGCTRL_X0Y0        BUFG (Prop_bufg_I_O)         0.077     8.898 r  clk_IBUF_BUFG_inst/O
+                         net (fo=2027, routed)        1.706    10.604    fpga_pll.u_clk_pll/inst/clk_in1
+    PLLE2_ADV_X1Y0       PLLE2_ADV (Prop_plle2_adv_CLKIN1_CLKOUT0)
+                                                     -3.960     6.644 r  fpga_pll.u_clk_pll/inst/plle2_adv_inst/CLKOUT0
+                         net (fo=1, routed)           2.177     8.821    fpga_pll.u_clk_pll/inst/cpu_clk_clk_pll
+    BUFGCTRL_X0Y2        BUFG (Prop_bufg_I_O)         0.077     8.898 r  fpga_pll.u_clk_pll/inst/clkout1_buf/O
+                         net (fo=24016, routed)       1.302    10.199    u_cpu/u_nop_core/toplevel_cpu/cpu_clk
+    SLICE_X104Y120       FDRE                                         r  u_cpu/u_nop_core/toplevel_cpu/IntIssueQueuePlugin_queue_3_payload_rRegs_1_valid_reg/C
+                         clock pessimism              0.207    10.407    
+                         clock uncertainty           -0.067    10.340    
+    SLICE_X104Y120       FDRE (Setup_fdre_C_D)        0.072    10.412    u_cpu/u_nop_core/toplevel_cpu/IntIssueQueuePlugin_queue_3_payload_rRegs_1_valid_reg
+  -------------------------------------------------------------------
+                         required time                         10.412    
+                         arrival time                         -13.146    
+  -------------------------------------------------------------------
+                         slack                                 -2.734    
+
+Slack (VIOLATED) :        -2.728ns  (required time - arrival time)
+  Source:                 u_cpu/u_nop_core/toplevel_cpu/ROBFIFOPlugin_robStateBanks_2_1_except_valid_reg/C
+                            (rising edge-triggered cell FDRE clocked by cpu_clk  {rise@0.000ns fall@2.500ns period=5.000ns})
+  Destination:            u_cpu/u_nop_core/toplevel_cpu/ROBFIFOPlugin_robInfo/popPtr_reg[4]_rep/D
+                            (rising edge-triggered cell FDCE clocked by cpu_clk  {rise@0.000ns fall@2.500ns period=5.000ns})
+  Path Group:             cpu_clk
+  Path Type:              Setup (Max at Slow Process Corner)
+  Requirement:            5.000ns  (cpu_clk rise@5.000ns - cpu_clk rise@0.000ns)
+  Data Path Delay:        7.380ns  (logic 1.754ns (23.768%)  route 5.626ns (76.232%))
+  Logic Levels:           11  (LUT3=2 LUT4=1 LUT5=2 LUT6=5 MUXF7=1)
+  Clock Path Skew:        -0.254ns (DCD - SCD + CPR)
+    Destination Clock Delay (DCD):    5.209ns = ( 10.209 - 5.000 ) 
+    Source Clock Delay      (SCD):    5.671ns
+    Clock Pessimism Removal (CPR):    0.207ns
+  Clock Uncertainty:      0.067ns  ((TSJ^2 + DJ^2)^1/2) / 2 + PE
+    Total System Jitter     (TSJ):    0.071ns
+    Discrete Jitter          (DJ):    0.113ns
+    Phase Error              (PE):    0.000ns
+
+    Location             Delay type                Incr(ns)  Path(ns)    Netlist Resource(s)
+  -------------------------------------------------------------------    -------------------
+                         (clock cpu_clk rise edge)    0.000     0.000 r  
+    AC19                                              0.000     0.000 r  clk (IN)
+                         net (fo=0)                   0.000     0.000    clk
+    AC19                 IBUF (Prop_ibuf_I_O)         1.416     1.416 r  clk_IBUF_inst/O
+                         net (fo=1, routed)           2.602     4.018    clk_IBUF
+    BUFGCTRL_X0Y0        BUFG (Prop_bufg_I_O)         0.081     4.099 r  clk_IBUF_BUFG_inst/O
+                         net (fo=2027, routed)        1.823     5.922    fpga_pll.u_clk_pll/inst/clk_in1
+    PLLE2_ADV_X1Y0       PLLE2_ADV (Prop_plle2_adv_CLKIN1_CLKOUT0)
+                                                     -4.192     1.730 r  fpga_pll.u_clk_pll/inst/plle2_adv_inst/CLKOUT0
+                         net (fo=1, routed)           2.288     4.018    fpga_pll.u_clk_pll/inst/cpu_clk_clk_pll
+    BUFGCTRL_X0Y2        BUFG (Prop_bufg_I_O)         0.081     4.099 r  fpga_pll.u_clk_pll/inst/clkout1_buf/O
+                         net (fo=24016, routed)       1.572     5.671    u_cpu/u_nop_core/toplevel_cpu/cpu_clk
+    SLICE_X123Y94        FDRE                                         r  u_cpu/u_nop_core/toplevel_cpu/ROBFIFOPlugin_robStateBanks_2_1_except_valid_reg/C
+  -------------------------------------------------------------------    -------------------
+    SLICE_X123Y94        FDRE (Prop_fdre_C_Q)         0.379     6.050 f  u_cpu/u_nop_core/toplevel_cpu/ROBFIFOPlugin_robStateBanks_2_1_except_valid_reg/Q
+                         net (fo=3, routed)           0.843     6.893    u_cpu/u_nop_core/toplevel_cpu/ROBFIFOPlugin_robInfo/ROBFIFOPlugin_robStateBanks_2_1_except_valid
+    SLICE_X111Y96        LUT6 (Prop_lut6_I3_O)        0.105     6.998 f  u_cpu/u_nop_core/toplevel_cpu/ROBFIFOPlugin_robInfo/CommitPlugin_mbHasExcept_i_15/O
+                         net (fo=1, routed)           0.000     6.998    u_cpu/u_nop_core/toplevel_cpu/ROBFIFOPlugin_robInfo/CommitPlugin_mbHasExcept_i_15_n_0
+    SLICE_X111Y96        MUXF7 (Prop_muxf7_I0_O)      0.178     7.176 f  u_cpu/u_nop_core/toplevel_cpu/ROBFIFOPlugin_robInfo/CommitPlugin_mbHasExcept_reg_i_7/O
+                         net (fo=1, routed)           0.761     7.936    u_cpu/u_nop_core/toplevel_cpu/ROBFIFOPlugin_robInfo/_zz_ROBFIFOPlugin_fifoIO_pop_0_payload_state_except_valid_3
+    SLICE_X107Y100       LUT6 (Prop_lut6_I5_O)        0.252     8.188 f  u_cpu/u_nop_core/toplevel_cpu/ROBFIFOPlugin_robInfo/CommitPlugin_mbHasExcept_i_2/O
+                         net (fo=2, routed)           0.459     8.647    u_cpu/u_nop_core/toplevel_cpu/ROBFIFOPlugin_robInfo/CommitPlugin_mbHasExcept_i_2_n_0
+    SLICE_X102Y99        LUT3 (Prop_lut3_I0_O)        0.105     8.752 f  u_cpu/u_nop_core/toplevel_cpu/ROBFIFOPlugin_robInfo/CommitPlugin_mbHasExcept_i_1/O
+                         net (fo=2, routed)           0.545     9.297    u_cpu/u_nop_core/toplevel_cpu/ROBFIFOPlugin_robInfo/ram/CommitPlugin_hasExcept
+    SLICE_X102Y101       LUT6 (Prop_lut6_I0_O)        0.105     9.402 r  u_cpu/u_nop_core/toplevel_cpu/ROBFIFOPlugin_robInfo/ram/CommitPlugin_uncachedProcess_fsm_stateReg[0]_i_2/O
+                         net (fo=3, routed)           0.291     9.693    u_cpu/u_nop_core/toplevel_cpu/ROBFIFOPlugin_robInfo/ram/CommitPlugin_uncachedProcess_fsm_stateNext
+    SLICE_X100Y102       LUT6 (Prop_lut6_I0_O)        0.105     9.798 f  u_cpu/u_nop_core/toplevel_cpu/ROBFIFOPlugin_robInfo/ram/popCountReg[1]_i_3/O
+                         net (fo=9, routed)           0.501    10.300    u_cpu/u_nop_core/toplevel_cpu/ROBFIFOPlugin_robInfo/ram/popCountReg[1]_i_3_n_0
+    SLICE_X101Y99        LUT5 (Prop_lut5_I0_O)        0.105    10.405 f  u_cpu/u_nop_core/toplevel_cpu/ROBFIFOPlugin_robInfo/ram/CommitPlugin_mbValid_i_3/O
+                         net (fo=3, routed)           0.349    10.754    u_cpu/u_nop_core/toplevel_cpu/ROBFIFOPlugin_robInfo/ram/CommitPlugin_mbValid_i_3_n_0
+    SLICE_X100Y98        LUT6 (Prop_lut6_I0_O)        0.105    10.859 f  u_cpu/u_nop_core/toplevel_cpu/ROBFIFOPlugin_robInfo/ram/popCountReg[1]_i_4/O
+                         net (fo=6, routed)           0.248    11.107    u_cpu/u_nop_core/toplevel_cpu/ROBFIFOPlugin_robInfo/ram/io_pop_1_fire
+    SLICE_X100Y99        LUT3 (Prop_lut3_I2_O)        0.105    11.212 r  u_cpu/u_nop_core/toplevel_cpu/ROBFIFOPlugin_robInfo/ram/popCountReg[0]_i_1/O
+                         net (fo=20, routed)          0.666    11.878    u_cpu/u_nop_core/toplevel_cpu/ROBFIFOPlugin_robInfo/ram/occupancy_reg[2]_0
+    SLICE_X100Y98        LUT5 (Prop_lut5_I1_O)        0.105    11.983 r  u_cpu/u_nop_core/toplevel_cpu/ROBFIFOPlugin_robInfo/ram/popPtr[4]_i_2__0/O
+                         net (fo=3, routed)           0.354    12.338    u_cpu/u_nop_core/toplevel_cpu/ROBFIFOPlugin_robInfo/ram/popPtr[4]_i_2__0_n_0
+    SLICE_X103Y99        LUT4 (Prop_lut4_I2_O)        0.105    12.443 r  u_cpu/u_nop_core/toplevel_cpu/ROBFIFOPlugin_robInfo/ram/popPtr[4]_rep_i_1/O
+                         net (fo=1, routed)           0.608    13.051    u_cpu/u_nop_core/toplevel_cpu/ROBFIFOPlugin_robInfo/ram_n_22
+    SLICE_X104Y100       FDCE                                         r  u_cpu/u_nop_core/toplevel_cpu/ROBFIFOPlugin_robInfo/popPtr_reg[4]_rep/D
+  -------------------------------------------------------------------    -------------------
+
+                         (clock cpu_clk rise edge)    5.000     5.000 r  
+    AC19                                              0.000     5.000 r  clk (IN)
+                         net (fo=0)                   0.000     5.000    clk
+    AC19                 IBUF (Prop_ibuf_I_O)         1.350     6.350 r  clk_IBUF_inst/O
+                         net (fo=1, routed)           2.471     8.821    clk_IBUF
+    BUFGCTRL_X0Y0        BUFG (Prop_bufg_I_O)         0.077     8.898 r  clk_IBUF_BUFG_inst/O
+                         net (fo=2027, routed)        1.706    10.604    fpga_pll.u_clk_pll/inst/clk_in1
+    PLLE2_ADV_X1Y0       PLLE2_ADV (Prop_plle2_adv_CLKIN1_CLKOUT0)
+                                                     -3.960     6.644 r  fpga_pll.u_clk_pll/inst/plle2_adv_inst/CLKOUT0
+                         net (fo=1, routed)           2.177     8.821    fpga_pll.u_clk_pll/inst/cpu_clk_clk_pll
+    BUFGCTRL_X0Y2        BUFG (Prop_bufg_I_O)         0.077     8.898 r  fpga_pll.u_clk_pll/inst/clkout1_buf/O
+                         net (fo=24016, routed)       1.312    10.209    u_cpu/u_nop_core/toplevel_cpu/ROBFIFOPlugin_robInfo/cpu_clk
+    SLICE_X104Y100       FDCE                                         r  u_cpu/u_nop_core/toplevel_cpu/ROBFIFOPlugin_robInfo/popPtr_reg[4]_rep/C
+                         clock pessimism              0.207    10.417    
+                         clock uncertainty           -0.067    10.350    
+    SLICE_X104Y100       FDCE (Setup_fdce_C_D)       -0.027    10.323    u_cpu/u_nop_core/toplevel_cpu/ROBFIFOPlugin_robInfo/popPtr_reg[4]_rep
+  -------------------------------------------------------------------
+                         required time                         10.323    
+                         arrival time                         -13.051    
+  -------------------------------------------------------------------
+                         slack                                 -2.728    
+
+Slack (VIOLATED) :        -2.726ns  (required time - arrival time)
+  Source:                 u_cpu/u_nop_core/toplevel_cpu/RENAME_to_DISPATCH_DECODE_PACKET_0_payload_except_valid_reg/C
+                            (rising edge-triggered cell FDRE clocked by cpu_clk  {rise@0.000ns fall@2.500ns period=5.000ns})
+  Destination:            u_cpu/u_nop_core/toplevel_cpu/FetchBufferPlugin_bufferFIFO/io_pop_2_payload_pc_reg[7]/D
+                            (rising edge-triggered cell FDRE clocked by cpu_clk  {rise@0.000ns fall@2.500ns period=5.000ns})
+  Path Group:             cpu_clk
+  Path Type:              Setup (Max at Slow Process Corner)
+  Requirement:            5.000ns  (cpu_clk rise@5.000ns - cpu_clk rise@0.000ns)
+  Data Path Delay:        7.726ns  (logic 1.744ns (22.572%)  route 5.982ns (77.428%))
+  Logic Levels:           13  (LUT2=1 LUT3=1 LUT4=1 LUT5=3 LUT6=7)
+  Clock Path Skew:        -0.005ns (DCD - SCD + CPR)
+    Destination Clock Delay (DCD):    5.305ns = ( 10.305 - 5.000 ) 
+    Source Clock Delay      (SCD):    5.517ns
+    Clock Pessimism Removal (CPR):    0.207ns
+  Clock Uncertainty:      0.067ns  ((TSJ^2 + DJ^2)^1/2) / 2 + PE
+    Total System Jitter     (TSJ):    0.071ns
+    Discrete Jitter          (DJ):    0.113ns
+    Phase Error              (PE):    0.000ns
+
+    Location             Delay type                Incr(ns)  Path(ns)    Netlist Resource(s)
+  -------------------------------------------------------------------    -------------------
+                         (clock cpu_clk rise edge)    0.000     0.000 r  
+    AC19                                              0.000     0.000 r  clk (IN)
+                         net (fo=0)                   0.000     0.000    clk
+    AC19                 IBUF (Prop_ibuf_I_O)         1.416     1.416 r  clk_IBUF_inst/O
+                         net (fo=1, routed)           2.602     4.018    clk_IBUF
+    BUFGCTRL_X0Y0        BUFG (Prop_bufg_I_O)         0.081     4.099 r  clk_IBUF_BUFG_inst/O
+                         net (fo=2027, routed)        1.823     5.922    fpga_pll.u_clk_pll/inst/clk_in1
+    PLLE2_ADV_X1Y0       PLLE2_ADV (Prop_plle2_adv_CLKIN1_CLKOUT0)
+                                                     -4.192     1.730 r  fpga_pll.u_clk_pll/inst/plle2_adv_inst/CLKOUT0
+                         net (fo=1, routed)           2.288     4.018    fpga_pll.u_clk_pll/inst/cpu_clk_clk_pll
+    BUFGCTRL_X0Y2        BUFG (Prop_bufg_I_O)         0.081     4.099 r  fpga_pll.u_clk_pll/inst/clkout1_buf/O
+                         net (fo=24016, routed)       1.418     5.517    u_cpu/u_nop_core/toplevel_cpu/cpu_clk
+    SLICE_X107Y112       FDRE                                         r  u_cpu/u_nop_core/toplevel_cpu/RENAME_to_DISPATCH_DECODE_PACKET_0_payload_except_valid_reg/C
+  -------------------------------------------------------------------    -------------------
+    SLICE_X107Y112       FDRE (Prop_fdre_C_Q)         0.379     5.896 f  u_cpu/u_nop_core/toplevel_cpu/RENAME_to_DISPATCH_DECODE_PACKET_0_payload_except_valid_reg/Q
+                         net (fo=3, routed)           0.566     6.462    u_cpu/u_nop_core/toplevel_cpu/FetchBufferPlugin_bufferFIFO/RENAME_to_DISPATCH_DECODE_PACKET_0_payload_except_valid
+    SLICE_X107Y112       LUT5 (Prop_lut5_I4_O)        0.105     6.567 r  u_cpu/u_nop_core/toplevel_cpu/FetchBufferPlugin_bufferFIFO/MulDivIssueQueuePlugin_queue_2_payload_uop_doRegWrite_i_12/O
+                         net (fo=2, routed)           0.244     6.811    u_cpu/u_nop_core/toplevel_cpu/FetchBufferPlugin_bufferFIFO/MulDivIssueQueuePlugin_queue_2_payload_uop_doRegWrite_i_12_n_0
+    SLICE_X106Y113       LUT6 (Prop_lut6_I5_O)        0.105     6.916 f  u_cpu/u_nop_core/toplevel_cpu/FetchBufferPlugin_bufferFIFO/MulDivIssueQueuePlugin_queue_2_payload_uop_doRegWrite_i_7/O
+                         net (fo=7, routed)           0.361     7.278    u_cpu/u_nop_core/toplevel_cpu/FetchBufferPlugin_bufferFIFO/RENAME_to_DISPATCH_DECODE_PACKET_1_valid_reg
+    SLICE_X107Y111       LUT4 (Prop_lut4_I0_O)        0.105     7.383 r  u_cpu/u_nop_core/toplevel_cpu/FetchBufferPlugin_bufferFIFO/IntIssueQueuePlugin_queue_6_payload_uop_pc[31]_i_7/O
+                         net (fo=2, routed)           0.409     7.792    u_cpu/u_nop_core/toplevel_cpu/FetchBufferPlugin_bufferFIFO/MulDivIssueQueuePlugin_queue_1_valid_reg_0
+    SLICE_X106Y111       LUT6 (Prop_lut6_I5_O)        0.105     7.897 f  u_cpu/u_nop_core/toplevel_cpu/FetchBufferPlugin_bufferFIFO/RENAME_to_DISPATCH_DECODE_PACKET_0_payload_isStore_i_3/O
+                         net (fo=1, routed)           0.120     8.017    u_cpu/u_nop_core/toplevel_cpu/FetchBufferPlugin_bufferFIFO/RENAME_to_DISPATCH_DECODE_PACKET_0_payload_isStore_i_3_n_0
+    SLICE_X106Y111       LUT2 (Prop_lut2_I1_O)        0.105     8.122 f  u_cpu/u_nop_core/toplevel_cpu/FetchBufferPlugin_bufferFIFO/RENAME_to_DISPATCH_DECODE_PACKET_0_payload_isStore_i_2/O
+                         net (fo=479, routed)         0.622     8.743    u_cpu/u_nop_core/toplevel_cpu/RenamePlugin_freeList/DISPATCH_arbitration_isValid_reg_1
+    SLICE_X104Y110       LUT6 (Prop_lut6_I0_O)        0.105     8.848 f  u_cpu/u_nop_core/toplevel_cpu/RenamePlugin_freeList/_to__DECODE_FIELDS_0_payload_isStore_i_3/O
+                         net (fo=1549, routed)        0.279     9.127    u_cpu/u_nop_core/toplevel_cpu/RenamePlugin_freeList/RENAME_arbitration_isValid_reg_1[0]
+    SLICE_X104Y109       LUT6 (Prop_lut6_I4_O)        0.105     9.232 f  u_cpu/u_nop_core/toplevel_cpu/RenamePlugin_freeList/occupancy[1]_i_4/O
+                         net (fo=48, routed)          0.513     9.746    u_cpu/u_nop_core/toplevel_cpu/FetchBufferPlugin_bufferFIFO/ID_arbitration_isFiring
+    SLICE_X102Y107       LUT5 (Prop_lut5_I0_O)        0.105     9.851 r  u_cpu/u_nop_core/toplevel_cpu/FetchBufferPlugin_bufferFIFO/io_pop_1_payload_pc[31]_i_12/O
+                         net (fo=1, routed)           0.399    10.249    u_cpu/u_nop_core/toplevel_cpu/FetchBufferPlugin_bufferFIFO/io_pop_1_payload_pc[31]_i_12_n_0
+    SLICE_X103Y107       LUT6 (Prop_lut6_I1_O)        0.105    10.354 f  u_cpu/u_nop_core/toplevel_cpu/FetchBufferPlugin_bufferFIFO/io_pop_1_payload_pc[31]_i_8/O
+                         net (fo=2, routed)           1.091    11.445    u_cpu/u_nop_core/toplevel_cpu/FetchBufferPlugin_bufferFIFO/io_pop_1_payload_pc[31]_i_8_n_0
+    SLICE_X84Y89         LUT6 (Prop_lut6_I5_O)        0.105    11.550 f  u_cpu/u_nop_core/toplevel_cpu/FetchBufferPlugin_bufferFIFO/io_pop_2_payload_predRecover_predictCounter[0]_i_2/O
+                         net (fo=6, routed)           0.164    11.714    u_cpu/u_nop_core/toplevel_cpu/FetchBufferPlugin_bufferFIFO/io_pop_2_payload_predRecover_predictCounter[0]_i_2_n_0
+    SLICE_X84Y89         LUT5 (Prop_lut5_I4_O)        0.105    11.819 r  u_cpu/u_nop_core/toplevel_cpu/FetchBufferPlugin_bufferFIFO/io_pop_2_payload_pc[1]_i_2/O
+                         net (fo=95, routed)          0.977    12.797    u_cpu/u_nop_core/toplevel_cpu/FetchBufferPlugin_bufferFIFO/io_pop_2_payload_pc[1]_i_2_n_0
+    SLICE_X80Y83         LUT6 (Prop_lut6_I2_O)        0.105    12.902 r  u_cpu/u_nop_core/toplevel_cpu/FetchBufferPlugin_bufferFIFO/io_pop_2_payload_pc[7]_i_2_rewire/O
+                         net (fo=1, routed)           0.236    13.138    u_cpu/u_nop_core/toplevel_cpu/FetchBufferPlugin_bufferFIFO/io_pop_2_payload_pc[7]_i_2_n_0
+    SLICE_X80Y84         LUT3 (Prop_lut3_I2_O)        0.105    13.243 r  u_cpu/u_nop_core/toplevel_cpu/FetchBufferPlugin_bufferFIFO/io_pop_2_payload_pc[7]_i_1/O
+                         net (fo=1, routed)           0.000    13.243    u_cpu/u_nop_core/toplevel_cpu/FetchBufferPlugin_bufferFIFO/io_pop_2_payload_pc[7]_i_1_n_0
+    SLICE_X80Y84         FDRE                                         r  u_cpu/u_nop_core/toplevel_cpu/FetchBufferPlugin_bufferFIFO/io_pop_2_payload_pc_reg[7]/D
+  -------------------------------------------------------------------    -------------------
+
+                         (clock cpu_clk rise edge)    5.000     5.000 r  
+    AC19                                              0.000     5.000 r  clk (IN)
+                         net (fo=0)                   0.000     5.000    clk
+    AC19                 IBUF (Prop_ibuf_I_O)         1.350     6.350 r  clk_IBUF_inst/O
+                         net (fo=1, routed)           2.471     8.821    clk_IBUF
+    BUFGCTRL_X0Y0        BUFG (Prop_bufg_I_O)         0.077     8.898 r  clk_IBUF_BUFG_inst/O
+                         net (fo=2027, routed)        1.706    10.604    fpga_pll.u_clk_pll/inst/clk_in1
+    PLLE2_ADV_X1Y0       PLLE2_ADV (Prop_plle2_adv_CLKIN1_CLKOUT0)
+                                                     -3.960     6.644 r  fpga_pll.u_clk_pll/inst/plle2_adv_inst/CLKOUT0
+                         net (fo=1, routed)           2.177     8.821    fpga_pll.u_clk_pll/inst/cpu_clk_clk_pll
+    BUFGCTRL_X0Y2        BUFG (Prop_bufg_I_O)         0.077     8.898 r  fpga_pll.u_clk_pll/inst/clkout1_buf/O
+                         net (fo=24016, routed)       1.407    10.305    u_cpu/u_nop_core/toplevel_cpu/FetchBufferPlugin_bufferFIFO/cpu_clk
+    SLICE_X80Y84         FDRE                                         r  u_cpu/u_nop_core/toplevel_cpu/FetchBufferPlugin_bufferFIFO/io_pop_2_payload_pc_reg[7]/C
+                         clock pessimism              0.207    10.512    
+                         clock uncertainty           -0.067    10.445    
+    SLICE_X80Y84         FDRE (Setup_fdre_C_D)        0.072    10.517    u_cpu/u_nop_core/toplevel_cpu/FetchBufferPlugin_bufferFIFO/io_pop_2_payload_pc_reg[7]
+  -------------------------------------------------------------------
+                         required time                         10.517    
+                         arrival time                         -13.243    
+  -------------------------------------------------------------------
+                         slack                                 -2.726    
+
+Slack (VIOLATED) :        -2.724ns  (required time - arrival time)
+  Source:                 u_cpu/u_nop_core/toplevel_cpu/IF2_to_IF3_PC_PHYSICAL_reg[12]/C
+                            (rising edge-triggered cell FDRE clocked by cpu_clk  {rise@0.000ns fall@2.500ns period=5.000ns})
+  Destination:            u_cpu/u_nop_core/toplevel_cpu/GlobalPredictorBTBPlugin_predictor/pht/rams_1/mem/xpm_memory_base_inst/gen_wr_a.gen_word_narrow.mem_reg/ADDRBWRADDR[11]
+                            (rising edge-triggered cell RAMB18E1 clocked by cpu_clk  {rise@0.000ns fall@2.500ns period=5.000ns})
+  Path Group:             cpu_clk
+  Path Type:              Setup (Max at Slow Process Corner)
+  Requirement:            5.000ns  (cpu_clk rise@5.000ns - cpu_clk rise@0.000ns)
+  Data Path Delay:        7.003ns  (logic 2.692ns (38.441%)  route 4.311ns (61.559%))
+  Logic Levels:           12  (CARRY4=5 LUT2=1 LUT4=1 LUT5=2 LUT6=3)
+  Clock Path Skew:        -0.016ns (DCD - SCD + CPR)
+    Destination Clock Delay (DCD):    5.361ns = ( 10.361 - 5.000 ) 
+    Source Clock Delay      (SCD):    5.652ns
+    Clock Pessimism Removal (CPR):    0.274ns
+  Clock Uncertainty:      0.067ns  ((TSJ^2 + DJ^2)^1/2) / 2 + PE
+    Total System Jitter     (TSJ):    0.071ns
+    Discrete Jitter          (DJ):    0.113ns
+    Phase Error              (PE):    0.000ns
+
+    Location             Delay type                Incr(ns)  Path(ns)    Netlist Resource(s)
+  -------------------------------------------------------------------    -------------------
+                         (clock cpu_clk rise edge)    0.000     0.000 r  
+    AC19                                              0.000     0.000 r  clk (IN)
+                         net (fo=0)                   0.000     0.000    clk
+    AC19                 IBUF (Prop_ibuf_I_O)         1.416     1.416 r  clk_IBUF_inst/O
+                         net (fo=1, routed)           2.602     4.018    clk_IBUF
+    BUFGCTRL_X0Y0        BUFG (Prop_bufg_I_O)         0.081     4.099 r  clk_IBUF_BUFG_inst/O
+                         net (fo=2027, routed)        1.823     5.922    fpga_pll.u_clk_pll/inst/clk_in1
+    PLLE2_ADV_X1Y0       PLLE2_ADV (Prop_plle2_adv_CLKIN1_CLKOUT0)
+                                                     -4.192     1.730 r  fpga_pll.u_clk_pll/inst/plle2_adv_inst/CLKOUT0
+                         net (fo=1, routed)           2.288     4.018    fpga_pll.u_clk_pll/inst/cpu_clk_clk_pll
+    BUFGCTRL_X0Y2        BUFG (Prop_bufg_I_O)         0.081     4.099 r  fpga_pll.u_clk_pll/inst/clkout1_buf/O
+                         net (fo=24016, routed)       1.553     5.652    u_cpu/u_nop_core/toplevel_cpu/cpu_clk
+    SLICE_X44Y88         FDRE                                         r  u_cpu/u_nop_core/toplevel_cpu/IF2_to_IF3_PC_PHYSICAL_reg[12]/C
+  -------------------------------------------------------------------    -------------------
+    SLICE_X44Y88         FDRE (Prop_fdre_C_Q)         0.433     6.085 r  u_cpu/u_nop_core/toplevel_cpu/IF2_to_IF3_PC_PHYSICAL_reg[12]/Q
+                         net (fo=5, routed)           0.812     6.897    u_cpu/u_nop_core/toplevel_cpu/FetchBufferPlugin_bufferFIFO/mem_i_46_1[0]
+    SLICE_X43Y87         LUT6 (Prop_lut6_I1_O)        0.105     7.002 r  u_cpu/u_nop_core/toplevel_cpu/FetchBufferPlugin_bufferFIFO/mem_i_60/O
+                         net (fo=1, routed)           0.000     7.002    u_cpu/u_nop_core/toplevel_cpu/FetchBufferPlugin_bufferFIFO/mem_i_60_n_0
+    SLICE_X43Y87         CARRY4 (Prop_carry4_S[0]_CO[3])
+                                                      0.440     7.442 r  u_cpu/u_nop_core/toplevel_cpu/FetchBufferPlugin_bufferFIFO/mem_i_49/CO[3]
+                         net (fo=1, routed)           0.000     7.442    u_cpu/u_nop_core/toplevel_cpu/FetchBufferPlugin_bufferFIFO/mem_i_49_n_0
+    SLICE_X43Y88         CARRY4 (Prop_carry4_CI_CO[2])
+                                                      0.190     7.632 f  u_cpu/u_nop_core/toplevel_cpu/FetchBufferPlugin_bufferFIFO/mem_i_46/CO[2]
+                         net (fo=4, routed)           0.468     8.100    u_cpu/u_nop_core/toplevel_cpu/FetchBufferPlugin_bufferFIFO/IF2_to_IF3_ICACHE_INFO_tags_0_reg[18][0]
+    SLICE_X45Y85         LUT4 (Prop_lut4_I2_O)        0.261     8.361 f  u_cpu/u_nop_core/toplevel_cpu/FetchBufferPlugin_bufferFIFO/mem_i_43/O
+                         net (fo=144, routed)         0.272     8.633    u_cpu/u_nop_core/toplevel_cpu/FetchBufferPlugin_bufferFIFO/IF3_ICachePlugin_hit
+    SLICE_X45Y85         LUT6 (Prop_lut6_I2_O)        0.105     8.738 f  u_cpu/u_nop_core/toplevel_cpu/FetchBufferPlugin_bufferFIFO/when_Pipeline_l165_14_inferred__0_i_1/O
+                         net (fo=246, routed)         0.331     9.069    u_cpu/u_nop_core/toplevel_cpu/FetchBufferPlugin_bufferFIFO/when_Pipeline_l165_14
+    SLICE_X44Y84         LUT5 (Prop_lut5_I1_O)        0.105     9.174 r  u_cpu/u_nop_core/toplevel_cpu/FetchBufferPlugin_bufferFIFO/IF2_to_IF3_PREDICT_ADDR[31]_i_2/O
+                         net (fo=30, routed)          0.625     9.799    u_cpu/u_nop_core/toplevel_cpu/FetchBufferPlugin_bufferFIFO/IF2_to_IF3_PREDICT_ADDR[31]_i_2_n_0
+    SLICE_X49Y78         LUT5 (Prop_lut5_I1_O)        0.105     9.904 r  u_cpu/u_nop_core/toplevel_cpu/FetchBufferPlugin_bufferFIFO/IF2_to_IF3_PREDICT_ADDR[3]_i_1/O
+                         net (fo=2, routed)           0.122    10.026    u_cpu/u_nop_core/toplevel_cpu/FetchBufferPlugin_bufferFIFO/IF1_to_IF2_PREDICT_JUMP_PAYLOAD_target_reg[29][1]
+    SLICE_X49Y78         LUT6 (Prop_lut6_I2_O)        0.105    10.131 r  u_cpu/u_nop_core/toplevel_cpu/FetchBufferPlugin_bufferFIFO/readLogic_regAddr[1]_i_1/O
+                         net (fo=42, routed)          1.015    11.146    u_cpu/u_nop_core/toplevel_cpu/FetchBufferPlugin_bufferFIFO/GlobalPredictorBTBPlugin_index[1]
+    SLICE_X61Y79         LUT2 (Prop_lut2_I1_O)        0.105    11.251 r  u_cpu/u_nop_core/toplevel_cpu/FetchBufferPlugin_bufferFIFO/mem_i_25__15/O
+                         net (fo=1, routed)           0.000    11.251    u_cpu/u_nop_core/toplevel_cpu/FetchBufferPlugin_bufferFIFO/mem_i_25__15_n_0
+    SLICE_X61Y79         CARRY4 (Prop_carry4_S[0]_CO[3])
+                                                      0.440    11.691 r  u_cpu/u_nop_core/toplevel_cpu/FetchBufferPlugin_bufferFIFO/mem_i_11__7/CO[3]
+                         net (fo=1, routed)           0.000    11.691    u_cpu/u_nop_core/toplevel_cpu/FetchBufferPlugin_bufferFIFO/mem_i_11__7_n_0
+    SLICE_X61Y80         CARRY4 (Prop_carry4_CI_CO[3])
+                                                      0.098    11.789 r  u_cpu/u_nop_core/toplevel_cpu/FetchBufferPlugin_bufferFIFO/mem_i_10__7/CO[3]
+                         net (fo=1, routed)           0.000    11.789    u_cpu/u_nop_core/toplevel_cpu/FetchBufferPlugin_bufferFIFO/mem_i_10__7_n_0
+    SLICE_X61Y81         CARRY4 (Prop_carry4_CI_O[2])
+                                                      0.200    11.989 r  u_cpu/u_nop_core/toplevel_cpu/FetchBufferPlugin_bufferFIFO/mem_i_9__7/O[2]
+                         net (fo=1, routed)           0.665    12.655    u_cpu/u_nop_core/toplevel_cpu/GlobalPredictorBTBPlugin_predictor/pht/rams_1/mem/xpm_memory_base_inst/addrb[10]
+    RAMB18_X3Y33         RAMB18E1                                     r  u_cpu/u_nop_core/toplevel_cpu/GlobalPredictorBTBPlugin_predictor/pht/rams_1/mem/xpm_memory_base_inst/gen_wr_a.gen_word_narrow.mem_reg/ADDRBWRADDR[11]
+  -------------------------------------------------------------------    -------------------
+
+                         (clock cpu_clk rise edge)    5.000     5.000 r  
+    AC19                                              0.000     5.000 r  clk (IN)
+                         net (fo=0)                   0.000     5.000    clk
+    AC19                 IBUF (Prop_ibuf_I_O)         1.350     6.350 r  clk_IBUF_inst/O
+                         net (fo=1, routed)           2.471     8.821    clk_IBUF
+    BUFGCTRL_X0Y0        BUFG (Prop_bufg_I_O)         0.077     8.898 r  clk_IBUF_BUFG_inst/O
+                         net (fo=2027, routed)        1.706    10.604    fpga_pll.u_clk_pll/inst/clk_in1
+    PLLE2_ADV_X1Y0       PLLE2_ADV (Prop_plle2_adv_CLKIN1_CLKOUT0)
+                                                     -3.960     6.644 r  fpga_pll.u_clk_pll/inst/plle2_adv_inst/CLKOUT0
+                         net (fo=1, routed)           2.177     8.821    fpga_pll.u_clk_pll/inst/cpu_clk_clk_pll
+    BUFGCTRL_X0Y2        BUFG (Prop_bufg_I_O)         0.077     8.898 r  fpga_pll.u_clk_pll/inst/clkout1_buf/O
+                         net (fo=24016, routed)       1.464    10.361    u_cpu/u_nop_core/toplevel_cpu/GlobalPredictorBTBPlugin_predictor/pht/rams_1/mem/xpm_memory_base_inst/clka
+    RAMB18_X3Y33         RAMB18E1                                     r  u_cpu/u_nop_core/toplevel_cpu/GlobalPredictorBTBPlugin_predictor/pht/rams_1/mem/xpm_memory_base_inst/gen_wr_a.gen_word_narrow.mem_reg/CLKBWRCLK
+                         clock pessimism              0.274    10.636    
+                         clock uncertainty           -0.067    10.569    
+    RAMB18_X3Y33         RAMB18E1 (Setup_ramb18e1_CLKBWRCLK_ADDRBWRADDR[11])
+                                                     -0.638     9.931    u_cpu/u_nop_core/toplevel_cpu/GlobalPredictorBTBPlugin_predictor/pht/rams_1/mem/xpm_memory_base_inst/gen_wr_a.gen_word_narrow.mem_reg
+  -------------------------------------------------------------------
+                         required time                          9.931    
+                         arrival time                         -12.655    
+  -------------------------------------------------------------------
+                         slack                                 -2.724    
+
+Slack (VIOLATED) :        -2.717ns  (required time - arrival time)
+  Source:                 u_cpu/u_nop_core/toplevel_cpu/RENAME_to_DISPATCH_DECODE_PACKET_0_payload_except_valid_reg/C
+                            (rising edge-triggered cell FDRE clocked by cpu_clk  {rise@0.000ns fall@2.500ns period=5.000ns})
+  Destination:            u_cpu/u_nop_core/toplevel_cpu/FetchBufferPlugin_bufferFIFO/io_pop_2_payload_except_payload_code_reg[0]/R
+                            (rising edge-triggered cell FDRE clocked by cpu_clk  {rise@0.000ns fall@2.500ns period=5.000ns})
+  Path Group:             cpu_clk
+  Path Type:              Setup (Max at Slow Process Corner)
+  Requirement:            5.000ns  (cpu_clk rise@5.000ns - cpu_clk rise@0.000ns)
+  Data Path Delay:        7.297ns  (logic 1.534ns (21.022%)  route 5.763ns (78.978%))
+  Logic Levels:           11  (LUT2=3 LUT4=2 LUT5=1 LUT6=5)
+  Clock Path Skew:        -0.001ns (DCD - SCD + CPR)
+    Destination Clock Delay (DCD):    5.309ns = ( 10.309 - 5.000 ) 
+    Source Clock Delay      (SCD):    5.517ns
+    Clock Pessimism Removal (CPR):    0.207ns
+  Clock Uncertainty:      0.067ns  ((TSJ^2 + DJ^2)^1/2) / 2 + PE
+    Total System Jitter     (TSJ):    0.071ns
+    Discrete Jitter          (DJ):    0.113ns
+    Phase Error              (PE):    0.000ns
+
+    Location             Delay type                Incr(ns)  Path(ns)    Netlist Resource(s)
+  -------------------------------------------------------------------    -------------------
+                         (clock cpu_clk rise edge)    0.000     0.000 r  
+    AC19                                              0.000     0.000 r  clk (IN)
+                         net (fo=0)                   0.000     0.000    clk
+    AC19                 IBUF (Prop_ibuf_I_O)         1.416     1.416 r  clk_IBUF_inst/O
+                         net (fo=1, routed)           2.602     4.018    clk_IBUF
+    BUFGCTRL_X0Y0        BUFG (Prop_bufg_I_O)         0.081     4.099 r  clk_IBUF_BUFG_inst/O
+                         net (fo=2027, routed)        1.823     5.922    fpga_pll.u_clk_pll/inst/clk_in1
+    PLLE2_ADV_X1Y0       PLLE2_ADV (Prop_plle2_adv_CLKIN1_CLKOUT0)
+                                                     -4.192     1.730 r  fpga_pll.u_clk_pll/inst/plle2_adv_inst/CLKOUT0
+                         net (fo=1, routed)           2.288     4.018    fpga_pll.u_clk_pll/inst/cpu_clk_clk_pll
+    BUFGCTRL_X0Y2        BUFG (Prop_bufg_I_O)         0.081     4.099 r  fpga_pll.u_clk_pll/inst/clkout1_buf/O
+                         net (fo=24016, routed)       1.418     5.517    u_cpu/u_nop_core/toplevel_cpu/cpu_clk
+    SLICE_X107Y112       FDRE                                         r  u_cpu/u_nop_core/toplevel_cpu/RENAME_to_DISPATCH_DECODE_PACKET_0_payload_except_valid_reg/C
+  -------------------------------------------------------------------    -------------------
+    SLICE_X107Y112       FDRE (Prop_fdre_C_Q)         0.379     5.896 r  u_cpu/u_nop_core/toplevel_cpu/RENAME_to_DISPATCH_DECODE_PACKET_0_payload_except_valid_reg/Q
+                         net (fo=3, routed)           0.566     6.462    u_cpu/u_nop_core/toplevel_cpu/FetchBufferPlugin_bufferFIFO/RENAME_to_DISPATCH_DECODE_PACKET_0_payload_except_valid
+    SLICE_X107Y112       LUT5 (Prop_lut5_I4_O)        0.105     6.567 f  u_cpu/u_nop_core/toplevel_cpu/FetchBufferPlugin_bufferFIFO/MulDivIssueQueuePlugin_queue_2_payload_uop_doRegWrite_i_12/O
+                         net (fo=2, routed)           0.244     6.811    u_cpu/u_nop_core/toplevel_cpu/FetchBufferPlugin_bufferFIFO/MulDivIssueQueuePlugin_queue_2_payload_uop_doRegWrite_i_12_n_0
+    SLICE_X106Y113       LUT6 (Prop_lut6_I5_O)        0.105     6.916 r  u_cpu/u_nop_core/toplevel_cpu/FetchBufferPlugin_bufferFIFO/MulDivIssueQueuePlugin_queue_2_payload_uop_doRegWrite_i_7/O
+                         net (fo=7, routed)           0.361     7.278    u_cpu/u_nop_core/toplevel_cpu/FetchBufferPlugin_bufferFIFO/RENAME_to_DISPATCH_DECODE_PACKET_1_valid_reg
+    SLICE_X107Y111       LUT4 (Prop_lut4_I0_O)        0.105     7.383 f  u_cpu/u_nop_core/toplevel_cpu/FetchBufferPlugin_bufferFIFO/IntIssueQueuePlugin_queue_6_payload_uop_pc[31]_i_7/O
+                         net (fo=2, routed)           0.409     7.792    u_cpu/u_nop_core/toplevel_cpu/FetchBufferPlugin_bufferFIFO/MulDivIssueQueuePlugin_queue_1_valid_reg_0
+    SLICE_X106Y111       LUT6 (Prop_lut6_I5_O)        0.105     7.897 r  u_cpu/u_nop_core/toplevel_cpu/FetchBufferPlugin_bufferFIFO/RENAME_to_DISPATCH_DECODE_PACKET_0_payload_isStore_i_3/O
+                         net (fo=1, routed)           0.120     8.017    u_cpu/u_nop_core/toplevel_cpu/FetchBufferPlugin_bufferFIFO/RENAME_to_DISPATCH_DECODE_PACKET_0_payload_isStore_i_3_n_0
+    SLICE_X106Y111       LUT2 (Prop_lut2_I1_O)        0.105     8.122 r  u_cpu/u_nop_core/toplevel_cpu/FetchBufferPlugin_bufferFIFO/RENAME_to_DISPATCH_DECODE_PACKET_0_payload_isStore_i_2/O
+                         net (fo=479, routed)         0.622     8.743    u_cpu/u_nop_core/toplevel_cpu/RenamePlugin_freeList/DISPATCH_arbitration_isValid_reg_1
+    SLICE_X104Y110       LUT6 (Prop_lut6_I0_O)        0.105     8.848 r  u_cpu/u_nop_core/toplevel_cpu/RenamePlugin_freeList/_to__DECODE_FIELDS_0_payload_isStore_i_3/O
+                         net (fo=1549, routed)        0.279     9.127    u_cpu/u_nop_core/toplevel_cpu/RenamePlugin_freeList/RENAME_arbitration_isValid_reg_1[0]
+    SLICE_X104Y109       LUT6 (Prop_lut6_I4_O)        0.105     9.232 r  u_cpu/u_nop_core/toplevel_cpu/RenamePlugin_freeList/occupancy[1]_i_4/O
+                         net (fo=48, routed)          0.577     9.809    u_cpu/u_nop_core/toplevel_cpu/FetchBufferPlugin_bufferFIFO/ID_arbitration_isFiring
+    SLICE_X103Y109       LUT6 (Prop_lut6_I3_O)        0.105     9.914 r  u_cpu/u_nop_core/toplevel_cpu/FetchBufferPlugin_bufferFIFO/io_pop_0_payload_pc[31]_i_4/O
+                         net (fo=117, routed)         1.130    11.044    u_cpu/u_nop_core/toplevel_cpu/FetchBufferPlugin_bufferFIFO/io_pop_0_payload_pc[31]_i_4_n_0
+    SLICE_X91Y91         LUT4 (Prop_lut4_I2_O)        0.105    11.149 f  u_cpu/u_nop_core/toplevel_cpu/FetchBufferPlugin_bufferFIFO/io_pop_1_payload_pc[31]_i_3/O
+                         net (fo=113, routed)         0.700    11.849    u_cpu/u_nop_core/toplevel_cpu/FetchBufferPlugin_bufferFIFO/io_pop_1_payload_pc[31]_i_3_n_0
+    SLICE_X83Y91         LUT2 (Prop_lut2_I1_O)        0.105    11.954 r  u_cpu/u_nop_core/toplevel_cpu/FetchBufferPlugin_bufferFIFO/io_pop_2_payload_pc[31]_i_3/O
+                         net (fo=109, routed)         0.470    12.424    u_cpu/u_nop_core/toplevel_cpu/FetchBufferPlugin_bufferFIFO/io_pop_2_payload_pc[31]_i_3_n_0
+    SLICE_X81Y90         LUT2 (Prop_lut2_I1_O)        0.105    12.529 r  u_cpu/u_nop_core/toplevel_cpu/FetchBufferPlugin_bufferFIFO/io_pop_2_payload_except_payload_code[5]_i_1/O
+                         net (fo=8, routed)           0.285    12.814    u_cpu/u_nop_core/toplevel_cpu/FetchBufferPlugin_bufferFIFO/io_pop_2_payload_except_payload_code[5]_i_1_n_0
+    SLICE_X81Y89         FDRE                                         r  u_cpu/u_nop_core/toplevel_cpu/FetchBufferPlugin_bufferFIFO/io_pop_2_payload_except_payload_code_reg[0]/R
+  -------------------------------------------------------------------    -------------------
+
+                         (clock cpu_clk rise edge)    5.000     5.000 r  
+    AC19                                              0.000     5.000 r  clk (IN)
+                         net (fo=0)                   0.000     5.000    clk
+    AC19                 IBUF (Prop_ibuf_I_O)         1.350     6.350 r  clk_IBUF_inst/O
+                         net (fo=1, routed)           2.471     8.821    clk_IBUF
+    BUFGCTRL_X0Y0        BUFG (Prop_bufg_I_O)         0.077     8.898 r  clk_IBUF_BUFG_inst/O
+                         net (fo=2027, routed)        1.706    10.604    fpga_pll.u_clk_pll/inst/clk_in1
+    PLLE2_ADV_X1Y0       PLLE2_ADV (Prop_plle2_adv_CLKIN1_CLKOUT0)
+                                                     -3.960     6.644 r  fpga_pll.u_clk_pll/inst/plle2_adv_inst/CLKOUT0
+                         net (fo=1, routed)           2.177     8.821    fpga_pll.u_clk_pll/inst/cpu_clk_clk_pll
+    BUFGCTRL_X0Y2        BUFG (Prop_bufg_I_O)         0.077     8.898 r  fpga_pll.u_clk_pll/inst/clkout1_buf/O
+                         net (fo=24016, routed)       1.411    10.309    u_cpu/u_nop_core/toplevel_cpu/FetchBufferPlugin_bufferFIFO/cpu_clk
+    SLICE_X81Y89         FDRE                                         r  u_cpu/u_nop_core/toplevel_cpu/FetchBufferPlugin_bufferFIFO/io_pop_2_payload_except_payload_code_reg[0]/C
+                         clock pessimism              0.207    10.516    
+                         clock uncertainty           -0.067    10.449    
+    SLICE_X81Y89         FDRE (Setup_fdre_C_R)       -0.352    10.097    u_cpu/u_nop_core/toplevel_cpu/FetchBufferPlugin_bufferFIFO/io_pop_2_payload_except_payload_code_reg[0]
+  -------------------------------------------------------------------
+                         required time                         10.097    
+                         arrival time                         -12.814    
+  -------------------------------------------------------------------
+                         slack                                 -2.717    
+
+Slack (VIOLATED) :        -2.717ns  (required time - arrival time)
+  Source:                 u_cpu/u_nop_core/toplevel_cpu/RENAME_to_DISPATCH_DECODE_PACKET_0_payload_except_valid_reg/C
+                            (rising edge-triggered cell FDRE clocked by cpu_clk  {rise@0.000ns fall@2.500ns period=5.000ns})
+  Destination:            u_cpu/u_nop_core/toplevel_cpu/FetchBufferPlugin_bufferFIFO/io_pop_2_payload_except_payload_code_reg[3]/R
+                            (rising edge-triggered cell FDRE clocked by cpu_clk  {rise@0.000ns fall@2.500ns period=5.000ns})
+  Path Group:             cpu_clk
+  Path Type:              Setup (Max at Slow Process Corner)
+  Requirement:            5.000ns  (cpu_clk rise@5.000ns - cpu_clk rise@0.000ns)
+  Data Path Delay:        7.297ns  (logic 1.534ns (21.022%)  route 5.763ns (78.978%))
+  Logic Levels:           11  (LUT2=3 LUT4=2 LUT5=1 LUT6=5)
+  Clock Path Skew:        -0.001ns (DCD - SCD + CPR)
+    Destination Clock Delay (DCD):    5.309ns = ( 10.309 - 5.000 ) 
+    Source Clock Delay      (SCD):    5.517ns
+    Clock Pessimism Removal (CPR):    0.207ns
+  Clock Uncertainty:      0.067ns  ((TSJ^2 + DJ^2)^1/2) / 2 + PE
+    Total System Jitter     (TSJ):    0.071ns
+    Discrete Jitter          (DJ):    0.113ns
+    Phase Error              (PE):    0.000ns
+
+    Location             Delay type                Incr(ns)  Path(ns)    Netlist Resource(s)
+  -------------------------------------------------------------------    -------------------
+                         (clock cpu_clk rise edge)    0.000     0.000 r  
+    AC19                                              0.000     0.000 r  clk (IN)
+                         net (fo=0)                   0.000     0.000    clk
+    AC19                 IBUF (Prop_ibuf_I_O)         1.416     1.416 r  clk_IBUF_inst/O
+                         net (fo=1, routed)           2.602     4.018    clk_IBUF
+    BUFGCTRL_X0Y0        BUFG (Prop_bufg_I_O)         0.081     4.099 r  clk_IBUF_BUFG_inst/O
+                         net (fo=2027, routed)        1.823     5.922    fpga_pll.u_clk_pll/inst/clk_in1
+    PLLE2_ADV_X1Y0       PLLE2_ADV (Prop_plle2_adv_CLKIN1_CLKOUT0)
+                                                     -4.192     1.730 r  fpga_pll.u_clk_pll/inst/plle2_adv_inst/CLKOUT0
+                         net (fo=1, routed)           2.288     4.018    fpga_pll.u_clk_pll/inst/cpu_clk_clk_pll
+    BUFGCTRL_X0Y2        BUFG (Prop_bufg_I_O)         0.081     4.099 r  fpga_pll.u_clk_pll/inst/clkout1_buf/O
+                         net (fo=24016, routed)       1.418     5.517    u_cpu/u_nop_core/toplevel_cpu/cpu_clk
+    SLICE_X107Y112       FDRE                                         r  u_cpu/u_nop_core/toplevel_cpu/RENAME_to_DISPATCH_DECODE_PACKET_0_payload_except_valid_reg/C
+  -------------------------------------------------------------------    -------------------
+    SLICE_X107Y112       FDRE (Prop_fdre_C_Q)         0.379     5.896 r  u_cpu/u_nop_core/toplevel_cpu/RENAME_to_DISPATCH_DECODE_PACKET_0_payload_except_valid_reg/Q
+                         net (fo=3, routed)           0.566     6.462    u_cpu/u_nop_core/toplevel_cpu/FetchBufferPlugin_bufferFIFO/RENAME_to_DISPATCH_DECODE_PACKET_0_payload_except_valid
+    SLICE_X107Y112       LUT5 (Prop_lut5_I4_O)        0.105     6.567 f  u_cpu/u_nop_core/toplevel_cpu/FetchBufferPlugin_bufferFIFO/MulDivIssueQueuePlugin_queue_2_payload_uop_doRegWrite_i_12/O
+                         net (fo=2, routed)           0.244     6.811    u_cpu/u_nop_core/toplevel_cpu/FetchBufferPlugin_bufferFIFO/MulDivIssueQueuePlugin_queue_2_payload_uop_doRegWrite_i_12_n_0
+    SLICE_X106Y113       LUT6 (Prop_lut6_I5_O)        0.105     6.916 r  u_cpu/u_nop_core/toplevel_cpu/FetchBufferPlugin_bufferFIFO/MulDivIssueQueuePlugin_queue_2_payload_uop_doRegWrite_i_7/O
+                         net (fo=7, routed)           0.361     7.278    u_cpu/u_nop_core/toplevel_cpu/FetchBufferPlugin_bufferFIFO/RENAME_to_DISPATCH_DECODE_PACKET_1_valid_reg
+    SLICE_X107Y111       LUT4 (Prop_lut4_I0_O)        0.105     7.383 f  u_cpu/u_nop_core/toplevel_cpu/FetchBufferPlugin_bufferFIFO/IntIssueQueuePlugin_queue_6_payload_uop_pc[31]_i_7/O
+                         net (fo=2, routed)           0.409     7.792    u_cpu/u_nop_core/toplevel_cpu/FetchBufferPlugin_bufferFIFO/MulDivIssueQueuePlugin_queue_1_valid_reg_0
+    SLICE_X106Y111       LUT6 (Prop_lut6_I5_O)        0.105     7.897 r  u_cpu/u_nop_core/toplevel_cpu/FetchBufferPlugin_bufferFIFO/RENAME_to_DISPATCH_DECODE_PACKET_0_payload_isStore_i_3/O
+                         net (fo=1, routed)           0.120     8.017    u_cpu/u_nop_core/toplevel_cpu/FetchBufferPlugin_bufferFIFO/RENAME_to_DISPATCH_DECODE_PACKET_0_payload_isStore_i_3_n_0
+    SLICE_X106Y111       LUT2 (Prop_lut2_I1_O)        0.105     8.122 r  u_cpu/u_nop_core/toplevel_cpu/FetchBufferPlugin_bufferFIFO/RENAME_to_DISPATCH_DECODE_PACKET_0_payload_isStore_i_2/O
+                         net (fo=479, routed)         0.622     8.743    u_cpu/u_nop_core/toplevel_cpu/RenamePlugin_freeList/DISPATCH_arbitration_isValid_reg_1
+    SLICE_X104Y110       LUT6 (Prop_lut6_I0_O)        0.105     8.848 r  u_cpu/u_nop_core/toplevel_cpu/RenamePlugin_freeList/_to__DECODE_FIELDS_0_payload_isStore_i_3/O
+                         net (fo=1549, routed)        0.279     9.127    u_cpu/u_nop_core/toplevel_cpu/RenamePlugin_freeList/RENAME_arbitration_isValid_reg_1[0]
+    SLICE_X104Y109       LUT6 (Prop_lut6_I4_O)        0.105     9.232 r  u_cpu/u_nop_core/toplevel_cpu/RenamePlugin_freeList/occupancy[1]_i_4/O
+                         net (fo=48, routed)          0.577     9.809    u_cpu/u_nop_core/toplevel_cpu/FetchBufferPlugin_bufferFIFO/ID_arbitration_isFiring
+    SLICE_X103Y109       LUT6 (Prop_lut6_I3_O)        0.105     9.914 r  u_cpu/u_nop_core/toplevel_cpu/FetchBufferPlugin_bufferFIFO/io_pop_0_payload_pc[31]_i_4/O
+                         net (fo=117, routed)         1.130    11.044    u_cpu/u_nop_core/toplevel_cpu/FetchBufferPlugin_bufferFIFO/io_pop_0_payload_pc[31]_i_4_n_0
+    SLICE_X91Y91         LUT4 (Prop_lut4_I2_O)        0.105    11.149 f  u_cpu/u_nop_core/toplevel_cpu/FetchBufferPlugin_bufferFIFO/io_pop_1_payload_pc[31]_i_3/O
+                         net (fo=113, routed)         0.700    11.849    u_cpu/u_nop_core/toplevel_cpu/FetchBufferPlugin_bufferFIFO/io_pop_1_payload_pc[31]_i_3_n_0
+    SLICE_X83Y91         LUT2 (Prop_lut2_I1_O)        0.105    11.954 r  u_cpu/u_nop_core/toplevel_cpu/FetchBufferPlugin_bufferFIFO/io_pop_2_payload_pc[31]_i_3/O
+                         net (fo=109, routed)         0.470    12.424    u_cpu/u_nop_core/toplevel_cpu/FetchBufferPlugin_bufferFIFO/io_pop_2_payload_pc[31]_i_3_n_0
+    SLICE_X81Y90         LUT2 (Prop_lut2_I1_O)        0.105    12.529 r  u_cpu/u_nop_core/toplevel_cpu/FetchBufferPlugin_bufferFIFO/io_pop_2_payload_except_payload_code[5]_i_1/O
+                         net (fo=8, routed)           0.285    12.814    u_cpu/u_nop_core/toplevel_cpu/FetchBufferPlugin_bufferFIFO/io_pop_2_payload_except_payload_code[5]_i_1_n_0
+    SLICE_X81Y89         FDRE                                         r  u_cpu/u_nop_core/toplevel_cpu/FetchBufferPlugin_bufferFIFO/io_pop_2_payload_except_payload_code_reg[3]/R
+  -------------------------------------------------------------------    -------------------
+
+                         (clock cpu_clk rise edge)    5.000     5.000 r  
+    AC19                                              0.000     5.000 r  clk (IN)
+                         net (fo=0)                   0.000     5.000    clk
+    AC19                 IBUF (Prop_ibuf_I_O)         1.350     6.350 r  clk_IBUF_inst/O
+                         net (fo=1, routed)           2.471     8.821    clk_IBUF
+    BUFGCTRL_X0Y0        BUFG (Prop_bufg_I_O)         0.077     8.898 r  clk_IBUF_BUFG_inst/O
+                         net (fo=2027, routed)        1.706    10.604    fpga_pll.u_clk_pll/inst/clk_in1
+    PLLE2_ADV_X1Y0       PLLE2_ADV (Prop_plle2_adv_CLKIN1_CLKOUT0)
+                                                     -3.960     6.644 r  fpga_pll.u_clk_pll/inst/plle2_adv_inst/CLKOUT0
+                         net (fo=1, routed)           2.177     8.821    fpga_pll.u_clk_pll/inst/cpu_clk_clk_pll
+    BUFGCTRL_X0Y2        BUFG (Prop_bufg_I_O)         0.077     8.898 r  fpga_pll.u_clk_pll/inst/clkout1_buf/O
+                         net (fo=24016, routed)       1.411    10.309    u_cpu/u_nop_core/toplevel_cpu/FetchBufferPlugin_bufferFIFO/cpu_clk
+    SLICE_X81Y89         FDRE                                         r  u_cpu/u_nop_core/toplevel_cpu/FetchBufferPlugin_bufferFIFO/io_pop_2_payload_except_payload_code_reg[3]/C
+                         clock pessimism              0.207    10.516    
+                         clock uncertainty           -0.067    10.449    
+    SLICE_X81Y89         FDRE (Setup_fdre_C_R)       -0.352    10.097    u_cpu/u_nop_core/toplevel_cpu/FetchBufferPlugin_bufferFIFO/io_pop_2_payload_except_payload_code_reg[3]
+  -------------------------------------------------------------------
+                         required time                         10.097    
+                         arrival time                         -12.814    
+  -------------------------------------------------------------------
+                         slack                                 -2.717    
+
+Slack (VIOLATED) :        -2.717ns  (required time - arrival time)
+  Source:                 u_cpu/u_nop_core/toplevel_cpu/RENAME_to_DISPATCH_DECODE_PACKET_0_payload_except_valid_reg/C
+                            (rising edge-triggered cell FDRE clocked by cpu_clk  {rise@0.000ns fall@2.500ns period=5.000ns})
+  Destination:            u_cpu/u_nop_core/toplevel_cpu/FetchBufferPlugin_bufferFIFO/io_pop_2_payload_except_payload_code_reg[4]/R
+                            (rising edge-triggered cell FDRE clocked by cpu_clk  {rise@0.000ns fall@2.500ns period=5.000ns})
+  Path Group:             cpu_clk
+  Path Type:              Setup (Max at Slow Process Corner)
+  Requirement:            5.000ns  (cpu_clk rise@5.000ns - cpu_clk rise@0.000ns)
+  Data Path Delay:        7.297ns  (logic 1.534ns (21.022%)  route 5.763ns (78.978%))
+  Logic Levels:           11  (LUT2=3 LUT4=2 LUT5=1 LUT6=5)
+  Clock Path Skew:        -0.001ns (DCD - SCD + CPR)
+    Destination Clock Delay (DCD):    5.309ns = ( 10.309 - 5.000 ) 
+    Source Clock Delay      (SCD):    5.517ns
+    Clock Pessimism Removal (CPR):    0.207ns
+  Clock Uncertainty:      0.067ns  ((TSJ^2 + DJ^2)^1/2) / 2 + PE
+    Total System Jitter     (TSJ):    0.071ns
+    Discrete Jitter          (DJ):    0.113ns
+    Phase Error              (PE):    0.000ns
+
+    Location             Delay type                Incr(ns)  Path(ns)    Netlist Resource(s)
+  -------------------------------------------------------------------    -------------------
+                         (clock cpu_clk rise edge)    0.000     0.000 r  
+    AC19                                              0.000     0.000 r  clk (IN)
+                         net (fo=0)                   0.000     0.000    clk
+    AC19                 IBUF (Prop_ibuf_I_O)         1.416     1.416 r  clk_IBUF_inst/O
+                         net (fo=1, routed)           2.602     4.018    clk_IBUF
+    BUFGCTRL_X0Y0        BUFG (Prop_bufg_I_O)         0.081     4.099 r  clk_IBUF_BUFG_inst/O
+                         net (fo=2027, routed)        1.823     5.922    fpga_pll.u_clk_pll/inst/clk_in1
+    PLLE2_ADV_X1Y0       PLLE2_ADV (Prop_plle2_adv_CLKIN1_CLKOUT0)
+                                                     -4.192     1.730 r  fpga_pll.u_clk_pll/inst/plle2_adv_inst/CLKOUT0
+                         net (fo=1, routed)           2.288     4.018    fpga_pll.u_clk_pll/inst/cpu_clk_clk_pll
+    BUFGCTRL_X0Y2        BUFG (Prop_bufg_I_O)         0.081     4.099 r  fpga_pll.u_clk_pll/inst/clkout1_buf/O
+                         net (fo=24016, routed)       1.418     5.517    u_cpu/u_nop_core/toplevel_cpu/cpu_clk
+    SLICE_X107Y112       FDRE                                         r  u_cpu/u_nop_core/toplevel_cpu/RENAME_to_DISPATCH_DECODE_PACKET_0_payload_except_valid_reg/C
+  -------------------------------------------------------------------    -------------------
+    SLICE_X107Y112       FDRE (Prop_fdre_C_Q)         0.379     5.896 r  u_cpu/u_nop_core/toplevel_cpu/RENAME_to_DISPATCH_DECODE_PACKET_0_payload_except_valid_reg/Q
+                         net (fo=3, routed)           0.566     6.462    u_cpu/u_nop_core/toplevel_cpu/FetchBufferPlugin_bufferFIFO/RENAME_to_DISPATCH_DECODE_PACKET_0_payload_except_valid
+    SLICE_X107Y112       LUT5 (Prop_lut5_I4_O)        0.105     6.567 f  u_cpu/u_nop_core/toplevel_cpu/FetchBufferPlugin_bufferFIFO/MulDivIssueQueuePlugin_queue_2_payload_uop_doRegWrite_i_12/O
+                         net (fo=2, routed)           0.244     6.811    u_cpu/u_nop_core/toplevel_cpu/FetchBufferPlugin_bufferFIFO/MulDivIssueQueuePlugin_queue_2_payload_uop_doRegWrite_i_12_n_0
+    SLICE_X106Y113       LUT6 (Prop_lut6_I5_O)        0.105     6.916 r  u_cpu/u_nop_core/toplevel_cpu/FetchBufferPlugin_bufferFIFO/MulDivIssueQueuePlugin_queue_2_payload_uop_doRegWrite_i_7/O
+                         net (fo=7, routed)           0.361     7.278    u_cpu/u_nop_core/toplevel_cpu/FetchBufferPlugin_bufferFIFO/RENAME_to_DISPATCH_DECODE_PACKET_1_valid_reg
+    SLICE_X107Y111       LUT4 (Prop_lut4_I0_O)        0.105     7.383 f  u_cpu/u_nop_core/toplevel_cpu/FetchBufferPlugin_bufferFIFO/IntIssueQueuePlugin_queue_6_payload_uop_pc[31]_i_7/O
+                         net (fo=2, routed)           0.409     7.792    u_cpu/u_nop_core/toplevel_cpu/FetchBufferPlugin_bufferFIFO/MulDivIssueQueuePlugin_queue_1_valid_reg_0
+    SLICE_X106Y111       LUT6 (Prop_lut6_I5_O)        0.105     7.897 r  u_cpu/u_nop_core/toplevel_cpu/FetchBufferPlugin_bufferFIFO/RENAME_to_DISPATCH_DECODE_PACKET_0_payload_isStore_i_3/O
+                         net (fo=1, routed)           0.120     8.017    u_cpu/u_nop_core/toplevel_cpu/FetchBufferPlugin_bufferFIFO/RENAME_to_DISPATCH_DECODE_PACKET_0_payload_isStore_i_3_n_0
+    SLICE_X106Y111       LUT2 (Prop_lut2_I1_O)        0.105     8.122 r  u_cpu/u_nop_core/toplevel_cpu/FetchBufferPlugin_bufferFIFO/RENAME_to_DISPATCH_DECODE_PACKET_0_payload_isStore_i_2/O
+                         net (fo=479, routed)         0.622     8.743    u_cpu/u_nop_core/toplevel_cpu/RenamePlugin_freeList/DISPATCH_arbitration_isValid_reg_1
+    SLICE_X104Y110       LUT6 (Prop_lut6_I0_O)        0.105     8.848 r  u_cpu/u_nop_core/toplevel_cpu/RenamePlugin_freeList/_to__DECODE_FIELDS_0_payload_isStore_i_3/O
+                         net (fo=1549, routed)        0.279     9.127    u_cpu/u_nop_core/toplevel_cpu/RenamePlugin_freeList/RENAME_arbitration_isValid_reg_1[0]
+    SLICE_X104Y109       LUT6 (Prop_lut6_I4_O)        0.105     9.232 r  u_cpu/u_nop_core/toplevel_cpu/RenamePlugin_freeList/occupancy[1]_i_4/O
+                         net (fo=48, routed)          0.577     9.809    u_cpu/u_nop_core/toplevel_cpu/FetchBufferPlugin_bufferFIFO/ID_arbitration_isFiring
+    SLICE_X103Y109       LUT6 (Prop_lut6_I3_O)        0.105     9.914 r  u_cpu/u_nop_core/toplevel_cpu/FetchBufferPlugin_bufferFIFO/io_pop_0_payload_pc[31]_i_4/O
+                         net (fo=117, routed)         1.130    11.044    u_cpu/u_nop_core/toplevel_cpu/FetchBufferPlugin_bufferFIFO/io_pop_0_payload_pc[31]_i_4_n_0
+    SLICE_X91Y91         LUT4 (Prop_lut4_I2_O)        0.105    11.149 f  u_cpu/u_nop_core/toplevel_cpu/FetchBufferPlugin_bufferFIFO/io_pop_1_payload_pc[31]_i_3/O
+                         net (fo=113, routed)         0.700    11.849    u_cpu/u_nop_core/toplevel_cpu/FetchBufferPlugin_bufferFIFO/io_pop_1_payload_pc[31]_i_3_n_0
+    SLICE_X83Y91         LUT2 (Prop_lut2_I1_O)        0.105    11.954 r  u_cpu/u_nop_core/toplevel_cpu/FetchBufferPlugin_bufferFIFO/io_pop_2_payload_pc[31]_i_3/O
+                         net (fo=109, routed)         0.470    12.424    u_cpu/u_nop_core/toplevel_cpu/FetchBufferPlugin_bufferFIFO/io_pop_2_payload_pc[31]_i_3_n_0
+    SLICE_X81Y90         LUT2 (Prop_lut2_I1_O)        0.105    12.529 r  u_cpu/u_nop_core/toplevel_cpu/FetchBufferPlugin_bufferFIFO/io_pop_2_payload_except_payload_code[5]_i_1/O
+                         net (fo=8, routed)           0.285    12.814    u_cpu/u_nop_core/toplevel_cpu/FetchBufferPlugin_bufferFIFO/io_pop_2_payload_except_payload_code[5]_i_1_n_0
+    SLICE_X81Y89         FDRE                                         r  u_cpu/u_nop_core/toplevel_cpu/FetchBufferPlugin_bufferFIFO/io_pop_2_payload_except_payload_code_reg[4]/R
+  -------------------------------------------------------------------    -------------------
+
+                         (clock cpu_clk rise edge)    5.000     5.000 r  
+    AC19                                              0.000     5.000 r  clk (IN)
+                         net (fo=0)                   0.000     5.000    clk
+    AC19                 IBUF (Prop_ibuf_I_O)         1.350     6.350 r  clk_IBUF_inst/O
+                         net (fo=1, routed)           2.471     8.821    clk_IBUF
+    BUFGCTRL_X0Y0        BUFG (Prop_bufg_I_O)         0.077     8.898 r  clk_IBUF_BUFG_inst/O
+                         net (fo=2027, routed)        1.706    10.604    fpga_pll.u_clk_pll/inst/clk_in1
+    PLLE2_ADV_X1Y0       PLLE2_ADV (Prop_plle2_adv_CLKIN1_CLKOUT0)
+                                                     -3.960     6.644 r  fpga_pll.u_clk_pll/inst/plle2_adv_inst/CLKOUT0
+                         net (fo=1, routed)           2.177     8.821    fpga_pll.u_clk_pll/inst/cpu_clk_clk_pll
+    BUFGCTRL_X0Y2        BUFG (Prop_bufg_I_O)         0.077     8.898 r  fpga_pll.u_clk_pll/inst/clkout1_buf/O
+                         net (fo=24016, routed)       1.411    10.309    u_cpu/u_nop_core/toplevel_cpu/FetchBufferPlugin_bufferFIFO/cpu_clk
+    SLICE_X81Y89         FDRE                                         r  u_cpu/u_nop_core/toplevel_cpu/FetchBufferPlugin_bufferFIFO/io_pop_2_payload_except_payload_code_reg[4]/C
+                         clock pessimism              0.207    10.516    
+                         clock uncertainty           -0.067    10.449    
+    SLICE_X81Y89         FDRE (Setup_fdre_C_R)       -0.352    10.097    u_cpu/u_nop_core/toplevel_cpu/FetchBufferPlugin_bufferFIFO/io_pop_2_payload_except_payload_code_reg[4]
+  -------------------------------------------------------------------
+                         required time                         10.097    
+                         arrival time                         -12.814    
+  -------------------------------------------------------------------
+                         slack                                 -2.717    
+
+
+
+

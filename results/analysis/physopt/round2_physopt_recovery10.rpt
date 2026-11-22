@@ -1,0 +1,657 @@
+Copyright 1986-2022 Xilinx, Inc. All Rights Reserved. Copyright 2022-2023 Advanced Micro Devices, Inc. All Rights Reserved.
+-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+| Tool Version : Vivado v.2023.2 (win64) Build 4029153 Fri Oct 13 20:14:34 MDT 2023
+| Date         : Mon Aug 17 13:27:00 2026
+| Host         : DESKTOP-8OOL3GM running 64-bit major release  (build 9200)
+| Command      : report_timing -to [get_pins -hierarchical -filter IS_CLEAR] -max_paths 10 -slack_lesser_than 0 -sort_by slack -file D:/code/Vivado/Loongarch_workspace/analysis_physopt/round2_physopt_recovery10.rpt
+| Design       : soc_top
+| Device       : 7a200t-fbg676
+| Speed File   : -2  PRODUCTION 1.23 2018-06-13
+| Design State : Physopt postPlace
+-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+
+Timing Report
+
+Slack (VIOLATED) :        -0.112ns  (required time - arrival time)
+  Source:                 fpga_pll.u_rst_cpu/delay_reg[1]_replica_6/C
+                            (rising edge-triggered cell FDCE clocked by cpu_clk  {rise@0.000ns fall@2.500ns period=5.000ns})
+  Destination:            u_cpu/u_nop_core/toplevel_cpu/PhysRegFilePlugin_regs_19_reg[26]/CLR
+                            (recovery check against rising-edge clock cpu_clk  {rise@0.000ns fall@2.500ns period=5.000ns})
+  Path Group:             **async_default**
+  Path Type:              Recovery (Max at Slow Process Corner)
+  Requirement:            5.000ns  (cpu_clk rise@5.000ns - cpu_clk rise@0.000ns)
+  Data Path Delay:        4.582ns  (logic 0.484ns (10.563%)  route 4.098ns (89.437%))
+  Logic Levels:           1  (LUT1=1)
+  Clock Path Skew:        -0.132ns (DCD - SCD + CPR)
+    Destination Clock Delay (DCD):    5.257ns = ( 10.257 - 5.000 ) 
+    Source Clock Delay      (SCD):    5.589ns
+    Clock Pessimism Removal (CPR):    0.200ns
+  Clock Uncertainty:      0.067ns  ((TSJ^2 + DJ^2)^1/2) / 2 + PE
+    Total System Jitter     (TSJ):    0.071ns
+    Discrete Jitter          (DJ):    0.113ns
+    Phase Error              (PE):    0.000ns
+
+    Location             Delay type                Incr(ns)  Path(ns)    Netlist Resource(s)
+  -------------------------------------------------------------------    -------------------
+                         (clock cpu_clk rise edge)    0.000     0.000 r  
+    AC19                                              0.000     0.000 r  clk (IN)
+                         net (fo=0)                   0.000     0.000    clk
+    AC19                 IBUF (Prop_ibuf_I_O)         1.416     1.416 r  clk_IBUF_inst/O
+                         net (fo=1, estimated)        2.602     4.018    clk_IBUF
+    BUFGCTRL_X0Y0        BUFG (Prop_bufg_I_O)         0.081     4.099 r  clk_IBUF_BUFG_inst/O
+                         net (fo=2027, estimated)     1.856     5.955    fpga_pll.u_clk_pll/inst/clk_in1
+    PLLE2_ADV_X1Y0       PLLE2_ADV (Prop_plle2_adv_CLKIN1_CLKOUT0)
+                                                     -4.225     1.730 r  fpga_pll.u_clk_pll/inst/plle2_adv_inst/CLKOUT0
+                         net (fo=1, estimated)        2.288     4.018    fpga_pll.u_clk_pll/inst/cpu_clk_clk_pll
+    BUFGCTRL_X0Y2        BUFG (Prop_bufg_I_O)         0.081     4.099 r  fpga_pll.u_clk_pll/inst/clkout1_buf/O
+                         net (fo=23142, estimated)    1.490     5.589    fpga_pll.u_rst_cpu/cpu_clk
+    SLICE_X23Y133        FDCE                                         r  fpga_pll.u_rst_cpu/delay_reg[1]_replica_6/C
+  -------------------------------------------------------------------    -------------------
+    SLICE_X23Y133        FDCE (Prop_fdce_C_Q)         0.379     5.968 r  fpga_pll.u_rst_cpu/delay_reg[1]_replica_6/Q
+                         net (fo=2, estimated)        0.266     6.234    fpga_pll.u_rst_cpu/Q[0]_repN_6
+    SLICE_X20Y133        LUT1 (Prop_lut1_I0_O)        0.105     6.339 f  fpga_pll.u_rst_cpu/PhysRegFilePlugin_regs_31[31]_i_3/O
+                         net (fo=6902, estimated)     3.832    10.171    u_cpu/u_nop_core/toplevel_cpu/waitRsp_reg
+    SLICE_X145Y189       FDCE                                         f  u_cpu/u_nop_core/toplevel_cpu/PhysRegFilePlugin_regs_19_reg[26]/CLR
+  -------------------------------------------------------------------    -------------------
+
+                         (clock cpu_clk rise edge)    5.000     5.000 r  
+    AC19                                              0.000     5.000 r  clk (IN)
+                         net (fo=0)                   0.000     5.000    clk
+    AC19                 IBUF (Prop_ibuf_I_O)         1.350     6.350 r  clk_IBUF_inst/O
+                         net (fo=1, estimated)        2.472     8.822    clk_IBUF
+    BUFGCTRL_X0Y0        BUFG (Prop_bufg_I_O)         0.077     8.899 r  clk_IBUF_BUFG_inst/O
+                         net (fo=2027, estimated)     1.734    10.633    fpga_pll.u_clk_pll/inst/clk_in1
+    PLLE2_ADV_X1Y0       PLLE2_ADV (Prop_plle2_adv_CLKIN1_CLKOUT0)
+                                                     -3.985     6.648 r  fpga_pll.u_clk_pll/inst/plle2_adv_inst/CLKOUT0
+                         net (fo=1, estimated)        2.174     8.822    fpga_pll.u_clk_pll/inst/cpu_clk_clk_pll
+    BUFGCTRL_X0Y2        BUFG (Prop_bufg_I_O)         0.077     8.899 r  fpga_pll.u_clk_pll/inst/clkout1_buf/O
+                         net (fo=23142, estimated)    1.358    10.257    u_cpu/u_nop_core/toplevel_cpu/cpu_clk
+    SLICE_X145Y189       FDCE                                         r  u_cpu/u_nop_core/toplevel_cpu/PhysRegFilePlugin_regs_19_reg[26]/C
+                         clock pessimism              0.200    10.457    
+                         clock uncertainty           -0.067    10.390    
+    SLICE_X145Y189       FDCE (Recov_fdce_C_CLR)     -0.331    10.059    u_cpu/u_nop_core/toplevel_cpu/PhysRegFilePlugin_regs_19_reg[26]
+  -------------------------------------------------------------------
+                         required time                         10.059    
+                         arrival time                         -10.171    
+  -------------------------------------------------------------------
+                         slack                                 -0.112    
+
+Slack (VIOLATED) :        -0.101ns  (required time - arrival time)
+  Source:                 fpga_pll.u_rst_cpu/delay_reg[1]_replica_6/C
+                            (rising edge-triggered cell FDCE clocked by cpu_clk  {rise@0.000ns fall@2.500ns period=5.000ns})
+  Destination:            u_cpu/u_nop_core/toplevel_cpu/PhysRegFilePlugin_regs_19_reg[15]/CLR
+                            (recovery check against rising-edge clock cpu_clk  {rise@0.000ns fall@2.500ns period=5.000ns})
+  Path Group:             **async_default**
+  Path Type:              Recovery (Max at Slow Process Corner)
+  Requirement:            5.000ns  (cpu_clk rise@5.000ns - cpu_clk rise@0.000ns)
+  Data Path Delay:        4.640ns  (logic 0.484ns (10.431%)  route 4.156ns (89.569%))
+  Logic Levels:           1  (LUT1=1)
+  Clock Path Skew:        -0.136ns (DCD - SCD + CPR)
+    Destination Clock Delay (DCD):    5.253ns = ( 10.253 - 5.000 ) 
+    Source Clock Delay      (SCD):    5.589ns
+    Clock Pessimism Removal (CPR):    0.200ns
+  Clock Uncertainty:      0.067ns  ((TSJ^2 + DJ^2)^1/2) / 2 + PE
+    Total System Jitter     (TSJ):    0.071ns
+    Discrete Jitter          (DJ):    0.113ns
+    Phase Error              (PE):    0.000ns
+
+    Location             Delay type                Incr(ns)  Path(ns)    Netlist Resource(s)
+  -------------------------------------------------------------------    -------------------
+                         (clock cpu_clk rise edge)    0.000     0.000 r  
+    AC19                                              0.000     0.000 r  clk (IN)
+                         net (fo=0)                   0.000     0.000    clk
+    AC19                 IBUF (Prop_ibuf_I_O)         1.416     1.416 r  clk_IBUF_inst/O
+                         net (fo=1, estimated)        2.602     4.018    clk_IBUF
+    BUFGCTRL_X0Y0        BUFG (Prop_bufg_I_O)         0.081     4.099 r  clk_IBUF_BUFG_inst/O
+                         net (fo=2027, estimated)     1.856     5.955    fpga_pll.u_clk_pll/inst/clk_in1
+    PLLE2_ADV_X1Y0       PLLE2_ADV (Prop_plle2_adv_CLKIN1_CLKOUT0)
+                                                     -4.225     1.730 r  fpga_pll.u_clk_pll/inst/plle2_adv_inst/CLKOUT0
+                         net (fo=1, estimated)        2.288     4.018    fpga_pll.u_clk_pll/inst/cpu_clk_clk_pll
+    BUFGCTRL_X0Y2        BUFG (Prop_bufg_I_O)         0.081     4.099 r  fpga_pll.u_clk_pll/inst/clkout1_buf/O
+                         net (fo=23142, estimated)    1.490     5.589    fpga_pll.u_rst_cpu/cpu_clk
+    SLICE_X23Y133        FDCE                                         r  fpga_pll.u_rst_cpu/delay_reg[1]_replica_6/C
+  -------------------------------------------------------------------    -------------------
+    SLICE_X23Y133        FDCE (Prop_fdce_C_Q)         0.379     5.968 r  fpga_pll.u_rst_cpu/delay_reg[1]_replica_6/Q
+                         net (fo=2, estimated)        0.266     6.234    fpga_pll.u_rst_cpu/Q[0]_repN_6
+    SLICE_X20Y133        LUT1 (Prop_lut1_I0_O)        0.105     6.339 f  fpga_pll.u_rst_cpu/PhysRegFilePlugin_regs_31[31]_i_3/O
+                         net (fo=6902, estimated)     3.890    10.229    u_cpu/u_nop_core/toplevel_cpu/waitRsp_reg
+    SLICE_X144Y184       FDCE                                         f  u_cpu/u_nop_core/toplevel_cpu/PhysRegFilePlugin_regs_19_reg[15]/CLR
+  -------------------------------------------------------------------    -------------------
+
+                         (clock cpu_clk rise edge)    5.000     5.000 r  
+    AC19                                              0.000     5.000 r  clk (IN)
+                         net (fo=0)                   0.000     5.000    clk
+    AC19                 IBUF (Prop_ibuf_I_O)         1.350     6.350 r  clk_IBUF_inst/O
+                         net (fo=1, estimated)        2.472     8.822    clk_IBUF
+    BUFGCTRL_X0Y0        BUFG (Prop_bufg_I_O)         0.077     8.899 r  clk_IBUF_BUFG_inst/O
+                         net (fo=2027, estimated)     1.734    10.633    fpga_pll.u_clk_pll/inst/clk_in1
+    PLLE2_ADV_X1Y0       PLLE2_ADV (Prop_plle2_adv_CLKIN1_CLKOUT0)
+                                                     -3.985     6.648 r  fpga_pll.u_clk_pll/inst/plle2_adv_inst/CLKOUT0
+                         net (fo=1, estimated)        2.174     8.822    fpga_pll.u_clk_pll/inst/cpu_clk_clk_pll
+    BUFGCTRL_X0Y2        BUFG (Prop_bufg_I_O)         0.077     8.899 r  fpga_pll.u_clk_pll/inst/clkout1_buf/O
+                         net (fo=23142, estimated)    1.354    10.253    u_cpu/u_nop_core/toplevel_cpu/cpu_clk
+    SLICE_X144Y184       FDCE                                         r  u_cpu/u_nop_core/toplevel_cpu/PhysRegFilePlugin_regs_19_reg[15]/C
+                         clock pessimism              0.200    10.453    
+                         clock uncertainty           -0.067    10.386    
+    SLICE_X144Y184       FDCE (Recov_fdce_C_CLR)     -0.258    10.128    u_cpu/u_nop_core/toplevel_cpu/PhysRegFilePlugin_regs_19_reg[15]
+  -------------------------------------------------------------------
+                         required time                         10.128    
+                         arrival time                         -10.229    
+  -------------------------------------------------------------------
+                         slack                                 -0.101    
+
+Slack (VIOLATED) :        -0.100ns  (required time - arrival time)
+  Source:                 fpga_pll.u_rst_cpu/delay_reg[1]_replica_6/C
+                            (rising edge-triggered cell FDCE clocked by cpu_clk  {rise@0.000ns fall@2.500ns period=5.000ns})
+  Destination:            u_cpu/u_nop_core/toplevel_cpu/PhysRegFilePlugin_regs_19_reg[20]/CLR
+                            (recovery check against rising-edge clock cpu_clk  {rise@0.000ns fall@2.500ns period=5.000ns})
+  Path Group:             **async_default**
+  Path Type:              Recovery (Max at Slow Process Corner)
+  Requirement:            5.000ns  (cpu_clk rise@5.000ns - cpu_clk rise@0.000ns)
+  Data Path Delay:        4.567ns  (logic 0.484ns (10.598%)  route 4.083ns (89.402%))
+  Logic Levels:           1  (LUT1=1)
+  Clock Path Skew:        -0.135ns (DCD - SCD + CPR)
+    Destination Clock Delay (DCD):    5.254ns = ( 10.254 - 5.000 ) 
+    Source Clock Delay      (SCD):    5.589ns
+    Clock Pessimism Removal (CPR):    0.200ns
+  Clock Uncertainty:      0.067ns  ((TSJ^2 + DJ^2)^1/2) / 2 + PE
+    Total System Jitter     (TSJ):    0.071ns
+    Discrete Jitter          (DJ):    0.113ns
+    Phase Error              (PE):    0.000ns
+
+    Location             Delay type                Incr(ns)  Path(ns)    Netlist Resource(s)
+  -------------------------------------------------------------------    -------------------
+                         (clock cpu_clk rise edge)    0.000     0.000 r  
+    AC19                                              0.000     0.000 r  clk (IN)
+                         net (fo=0)                   0.000     0.000    clk
+    AC19                 IBUF (Prop_ibuf_I_O)         1.416     1.416 r  clk_IBUF_inst/O
+                         net (fo=1, estimated)        2.602     4.018    clk_IBUF
+    BUFGCTRL_X0Y0        BUFG (Prop_bufg_I_O)         0.081     4.099 r  clk_IBUF_BUFG_inst/O
+                         net (fo=2027, estimated)     1.856     5.955    fpga_pll.u_clk_pll/inst/clk_in1
+    PLLE2_ADV_X1Y0       PLLE2_ADV (Prop_plle2_adv_CLKIN1_CLKOUT0)
+                                                     -4.225     1.730 r  fpga_pll.u_clk_pll/inst/plle2_adv_inst/CLKOUT0
+                         net (fo=1, estimated)        2.288     4.018    fpga_pll.u_clk_pll/inst/cpu_clk_clk_pll
+    BUFGCTRL_X0Y2        BUFG (Prop_bufg_I_O)         0.081     4.099 r  fpga_pll.u_clk_pll/inst/clkout1_buf/O
+                         net (fo=23142, estimated)    1.490     5.589    fpga_pll.u_rst_cpu/cpu_clk
+    SLICE_X23Y133        FDCE                                         r  fpga_pll.u_rst_cpu/delay_reg[1]_replica_6/C
+  -------------------------------------------------------------------    -------------------
+    SLICE_X23Y133        FDCE (Prop_fdce_C_Q)         0.379     5.968 r  fpga_pll.u_rst_cpu/delay_reg[1]_replica_6/Q
+                         net (fo=2, estimated)        0.266     6.234    fpga_pll.u_rst_cpu/Q[0]_repN_6
+    SLICE_X20Y133        LUT1 (Prop_lut1_I0_O)        0.105     6.339 f  fpga_pll.u_rst_cpu/PhysRegFilePlugin_regs_31[31]_i_3/O
+                         net (fo=6902, estimated)     3.817    10.156    u_cpu/u_nop_core/toplevel_cpu/waitRsp_reg
+    SLICE_X145Y185       FDCE                                         f  u_cpu/u_nop_core/toplevel_cpu/PhysRegFilePlugin_regs_19_reg[20]/CLR
+  -------------------------------------------------------------------    -------------------
+
+                         (clock cpu_clk rise edge)    5.000     5.000 r  
+    AC19                                              0.000     5.000 r  clk (IN)
+                         net (fo=0)                   0.000     5.000    clk
+    AC19                 IBUF (Prop_ibuf_I_O)         1.350     6.350 r  clk_IBUF_inst/O
+                         net (fo=1, estimated)        2.472     8.822    clk_IBUF
+    BUFGCTRL_X0Y0        BUFG (Prop_bufg_I_O)         0.077     8.899 r  clk_IBUF_BUFG_inst/O
+                         net (fo=2027, estimated)     1.734    10.633    fpga_pll.u_clk_pll/inst/clk_in1
+    PLLE2_ADV_X1Y0       PLLE2_ADV (Prop_plle2_adv_CLKIN1_CLKOUT0)
+                                                     -3.985     6.648 r  fpga_pll.u_clk_pll/inst/plle2_adv_inst/CLKOUT0
+                         net (fo=1, estimated)        2.174     8.822    fpga_pll.u_clk_pll/inst/cpu_clk_clk_pll
+    BUFGCTRL_X0Y2        BUFG (Prop_bufg_I_O)         0.077     8.899 r  fpga_pll.u_clk_pll/inst/clkout1_buf/O
+                         net (fo=23142, estimated)    1.355    10.254    u_cpu/u_nop_core/toplevel_cpu/cpu_clk
+    SLICE_X145Y185       FDCE                                         r  u_cpu/u_nop_core/toplevel_cpu/PhysRegFilePlugin_regs_19_reg[20]/C
+                         clock pessimism              0.200    10.454    
+                         clock uncertainty           -0.067    10.387    
+    SLICE_X145Y185       FDCE (Recov_fdce_C_CLR)     -0.331    10.056    u_cpu/u_nop_core/toplevel_cpu/PhysRegFilePlugin_regs_19_reg[20]
+  -------------------------------------------------------------------
+                         required time                         10.056    
+                         arrival time                         -10.156    
+  -------------------------------------------------------------------
+                         slack                                 -0.100    
+
+Slack (VIOLATED) :        -0.073ns  (required time - arrival time)
+  Source:                 fpga_pll.u_rst_cpu/delay_reg[1]_replica_6/C
+                            (rising edge-triggered cell FDCE clocked by cpu_clk  {rise@0.000ns fall@2.500ns period=5.000ns})
+  Destination:            u_cpu/u_nop_core/toplevel_cpu/PhysRegFilePlugin_regs_19_reg[30]/CLR
+                            (recovery check against rising-edge clock cpu_clk  {rise@0.000ns fall@2.500ns period=5.000ns})
+  Path Group:             **async_default**
+  Path Type:              Recovery (Max at Slow Process Corner)
+  Requirement:            5.000ns  (cpu_clk rise@5.000ns - cpu_clk rise@0.000ns)
+  Data Path Delay:        4.540ns  (logic 0.484ns (10.661%)  route 4.056ns (89.339%))
+  Logic Levels:           1  (LUT1=1)
+  Clock Path Skew:        -0.135ns (DCD - SCD + CPR)
+    Destination Clock Delay (DCD):    5.254ns = ( 10.254 - 5.000 ) 
+    Source Clock Delay      (SCD):    5.589ns
+    Clock Pessimism Removal (CPR):    0.200ns
+  Clock Uncertainty:      0.067ns  ((TSJ^2 + DJ^2)^1/2) / 2 + PE
+    Total System Jitter     (TSJ):    0.071ns
+    Discrete Jitter          (DJ):    0.113ns
+    Phase Error              (PE):    0.000ns
+
+    Location             Delay type                Incr(ns)  Path(ns)    Netlist Resource(s)
+  -------------------------------------------------------------------    -------------------
+                         (clock cpu_clk rise edge)    0.000     0.000 r  
+    AC19                                              0.000     0.000 r  clk (IN)
+                         net (fo=0)                   0.000     0.000    clk
+    AC19                 IBUF (Prop_ibuf_I_O)         1.416     1.416 r  clk_IBUF_inst/O
+                         net (fo=1, estimated)        2.602     4.018    clk_IBUF
+    BUFGCTRL_X0Y0        BUFG (Prop_bufg_I_O)         0.081     4.099 r  clk_IBUF_BUFG_inst/O
+                         net (fo=2027, estimated)     1.856     5.955    fpga_pll.u_clk_pll/inst/clk_in1
+    PLLE2_ADV_X1Y0       PLLE2_ADV (Prop_plle2_adv_CLKIN1_CLKOUT0)
+                                                     -4.225     1.730 r  fpga_pll.u_clk_pll/inst/plle2_adv_inst/CLKOUT0
+                         net (fo=1, estimated)        2.288     4.018    fpga_pll.u_clk_pll/inst/cpu_clk_clk_pll
+    BUFGCTRL_X0Y2        BUFG (Prop_bufg_I_O)         0.081     4.099 r  fpga_pll.u_clk_pll/inst/clkout1_buf/O
+                         net (fo=23142, estimated)    1.490     5.589    fpga_pll.u_rst_cpu/cpu_clk
+    SLICE_X23Y133        FDCE                                         r  fpga_pll.u_rst_cpu/delay_reg[1]_replica_6/C
+  -------------------------------------------------------------------    -------------------
+    SLICE_X23Y133        FDCE (Prop_fdce_C_Q)         0.379     5.968 r  fpga_pll.u_rst_cpu/delay_reg[1]_replica_6/Q
+                         net (fo=2, estimated)        0.266     6.234    fpga_pll.u_rst_cpu/Q[0]_repN_6
+    SLICE_X20Y133        LUT1 (Prop_lut1_I0_O)        0.105     6.339 f  fpga_pll.u_rst_cpu/PhysRegFilePlugin_regs_31[31]_i_3/O
+                         net (fo=6902, estimated)     3.790    10.129    u_cpu/u_nop_core/toplevel_cpu/waitRsp_reg
+    SLICE_X143Y186       FDCE                                         f  u_cpu/u_nop_core/toplevel_cpu/PhysRegFilePlugin_regs_19_reg[30]/CLR
+  -------------------------------------------------------------------    -------------------
+
+                         (clock cpu_clk rise edge)    5.000     5.000 r  
+    AC19                                              0.000     5.000 r  clk (IN)
+                         net (fo=0)                   0.000     5.000    clk
+    AC19                 IBUF (Prop_ibuf_I_O)         1.350     6.350 r  clk_IBUF_inst/O
+                         net (fo=1, estimated)        2.472     8.822    clk_IBUF
+    BUFGCTRL_X0Y0        BUFG (Prop_bufg_I_O)         0.077     8.899 r  clk_IBUF_BUFG_inst/O
+                         net (fo=2027, estimated)     1.734    10.633    fpga_pll.u_clk_pll/inst/clk_in1
+    PLLE2_ADV_X1Y0       PLLE2_ADV (Prop_plle2_adv_CLKIN1_CLKOUT0)
+                                                     -3.985     6.648 r  fpga_pll.u_clk_pll/inst/plle2_adv_inst/CLKOUT0
+                         net (fo=1, estimated)        2.174     8.822    fpga_pll.u_clk_pll/inst/cpu_clk_clk_pll
+    BUFGCTRL_X0Y2        BUFG (Prop_bufg_I_O)         0.077     8.899 r  fpga_pll.u_clk_pll/inst/clkout1_buf/O
+                         net (fo=23142, estimated)    1.355    10.254    u_cpu/u_nop_core/toplevel_cpu/cpu_clk
+    SLICE_X143Y186       FDCE                                         r  u_cpu/u_nop_core/toplevel_cpu/PhysRegFilePlugin_regs_19_reg[30]/C
+                         clock pessimism              0.200    10.454    
+                         clock uncertainty           -0.067    10.387    
+    SLICE_X143Y186       FDCE (Recov_fdce_C_CLR)     -0.331    10.056    u_cpu/u_nop_core/toplevel_cpu/PhysRegFilePlugin_regs_19_reg[30]
+  -------------------------------------------------------------------
+                         required time                         10.056    
+                         arrival time                         -10.129    
+  -------------------------------------------------------------------
+                         slack                                 -0.073    
+
+Slack (VIOLATED) :        -0.055ns  (required time - arrival time)
+  Source:                 fpga_pll.u_rst_cpu/delay_reg[1]_replica_6/C
+                            (rising edge-triggered cell FDCE clocked by cpu_clk  {rise@0.000ns fall@2.500ns period=5.000ns})
+  Destination:            u_cpu/u_nop_core/toplevel_cpu/PhysRegFilePlugin_regs_19_reg[21]/CLR
+                            (recovery check against rising-edge clock cpu_clk  {rise@0.000ns fall@2.500ns period=5.000ns})
+  Path Group:             **async_default**
+  Path Type:              Recovery (Max at Slow Process Corner)
+  Requirement:            5.000ns  (cpu_clk rise@5.000ns - cpu_clk rise@0.000ns)
+  Data Path Delay:        4.518ns  (logic 0.484ns (10.713%)  route 4.034ns (89.287%))
+  Logic Levels:           1  (LUT1=1)
+  Clock Path Skew:        -0.139ns (DCD - SCD + CPR)
+    Destination Clock Delay (DCD):    5.250ns = ( 10.250 - 5.000 ) 
+    Source Clock Delay      (SCD):    5.589ns
+    Clock Pessimism Removal (CPR):    0.200ns
+  Clock Uncertainty:      0.067ns  ((TSJ^2 + DJ^2)^1/2) / 2 + PE
+    Total System Jitter     (TSJ):    0.071ns
+    Discrete Jitter          (DJ):    0.113ns
+    Phase Error              (PE):    0.000ns
+
+    Location             Delay type                Incr(ns)  Path(ns)    Netlist Resource(s)
+  -------------------------------------------------------------------    -------------------
+                         (clock cpu_clk rise edge)    0.000     0.000 r  
+    AC19                                              0.000     0.000 r  clk (IN)
+                         net (fo=0)                   0.000     0.000    clk
+    AC19                 IBUF (Prop_ibuf_I_O)         1.416     1.416 r  clk_IBUF_inst/O
+                         net (fo=1, estimated)        2.602     4.018    clk_IBUF
+    BUFGCTRL_X0Y0        BUFG (Prop_bufg_I_O)         0.081     4.099 r  clk_IBUF_BUFG_inst/O
+                         net (fo=2027, estimated)     1.856     5.955    fpga_pll.u_clk_pll/inst/clk_in1
+    PLLE2_ADV_X1Y0       PLLE2_ADV (Prop_plle2_adv_CLKIN1_CLKOUT0)
+                                                     -4.225     1.730 r  fpga_pll.u_clk_pll/inst/plle2_adv_inst/CLKOUT0
+                         net (fo=1, estimated)        2.288     4.018    fpga_pll.u_clk_pll/inst/cpu_clk_clk_pll
+    BUFGCTRL_X0Y2        BUFG (Prop_bufg_I_O)         0.081     4.099 r  fpga_pll.u_clk_pll/inst/clkout1_buf/O
+                         net (fo=23142, estimated)    1.490     5.589    fpga_pll.u_rst_cpu/cpu_clk
+    SLICE_X23Y133        FDCE                                         r  fpga_pll.u_rst_cpu/delay_reg[1]_replica_6/C
+  -------------------------------------------------------------------    -------------------
+    SLICE_X23Y133        FDCE (Prop_fdce_C_Q)         0.379     5.968 r  fpga_pll.u_rst_cpu/delay_reg[1]_replica_6/Q
+                         net (fo=2, estimated)        0.266     6.234    fpga_pll.u_rst_cpu/Q[0]_repN_6
+    SLICE_X20Y133        LUT1 (Prop_lut1_I0_O)        0.105     6.339 f  fpga_pll.u_rst_cpu/PhysRegFilePlugin_regs_31[31]_i_3/O
+                         net (fo=6902, estimated)     3.768    10.107    u_cpu/u_nop_core/toplevel_cpu/waitRsp_reg
+    SLICE_X145Y180       FDCE                                         f  u_cpu/u_nop_core/toplevel_cpu/PhysRegFilePlugin_regs_19_reg[21]/CLR
+  -------------------------------------------------------------------    -------------------
+
+                         (clock cpu_clk rise edge)    5.000     5.000 r  
+    AC19                                              0.000     5.000 r  clk (IN)
+                         net (fo=0)                   0.000     5.000    clk
+    AC19                 IBUF (Prop_ibuf_I_O)         1.350     6.350 r  clk_IBUF_inst/O
+                         net (fo=1, estimated)        2.472     8.822    clk_IBUF
+    BUFGCTRL_X0Y0        BUFG (Prop_bufg_I_O)         0.077     8.899 r  clk_IBUF_BUFG_inst/O
+                         net (fo=2027, estimated)     1.734    10.633    fpga_pll.u_clk_pll/inst/clk_in1
+    PLLE2_ADV_X1Y0       PLLE2_ADV (Prop_plle2_adv_CLKIN1_CLKOUT0)
+                                                     -3.985     6.648 r  fpga_pll.u_clk_pll/inst/plle2_adv_inst/CLKOUT0
+                         net (fo=1, estimated)        2.174     8.822    fpga_pll.u_clk_pll/inst/cpu_clk_clk_pll
+    BUFGCTRL_X0Y2        BUFG (Prop_bufg_I_O)         0.077     8.899 r  fpga_pll.u_clk_pll/inst/clkout1_buf/O
+                         net (fo=23142, estimated)    1.351    10.250    u_cpu/u_nop_core/toplevel_cpu/cpu_clk
+    SLICE_X145Y180       FDCE                                         r  u_cpu/u_nop_core/toplevel_cpu/PhysRegFilePlugin_regs_19_reg[21]/C
+                         clock pessimism              0.200    10.450    
+                         clock uncertainty           -0.067    10.383    
+    SLICE_X145Y180       FDCE (Recov_fdce_C_CLR)     -0.331    10.052    u_cpu/u_nop_core/toplevel_cpu/PhysRegFilePlugin_regs_19_reg[21]
+  -------------------------------------------------------------------
+                         required time                         10.052    
+                         arrival time                         -10.107    
+  -------------------------------------------------------------------
+                         slack                                 -0.055    
+
+Slack (VIOLATED) :        -0.054ns  (required time - arrival time)
+  Source:                 fpga_pll.u_rst_cpu/delay_reg[1]_replica_6/C
+                            (rising edge-triggered cell FDCE clocked by cpu_clk  {rise@0.000ns fall@2.500ns period=5.000ns})
+  Destination:            u_cpu/u_nop_core/toplevel_cpu/PhysRegFilePlugin_regs_22_reg[27]/CLR
+                            (recovery check against rising-edge clock cpu_clk  {rise@0.000ns fall@2.500ns period=5.000ns})
+  Path Group:             **async_default**
+  Path Type:              Recovery (Max at Slow Process Corner)
+  Requirement:            5.000ns  (cpu_clk rise@5.000ns - cpu_clk rise@0.000ns)
+  Data Path Delay:        4.591ns  (logic 0.484ns (10.542%)  route 4.107ns (89.458%))
+  Logic Levels:           1  (LUT1=1)
+  Clock Path Skew:        -0.138ns (DCD - SCD + CPR)
+    Destination Clock Delay (DCD):    5.251ns = ( 10.251 - 5.000 ) 
+    Source Clock Delay      (SCD):    5.589ns
+    Clock Pessimism Removal (CPR):    0.200ns
+  Clock Uncertainty:      0.067ns  ((TSJ^2 + DJ^2)^1/2) / 2 + PE
+    Total System Jitter     (TSJ):    0.071ns
+    Discrete Jitter          (DJ):    0.113ns
+    Phase Error              (PE):    0.000ns
+
+    Location             Delay type                Incr(ns)  Path(ns)    Netlist Resource(s)
+  -------------------------------------------------------------------    -------------------
+                         (clock cpu_clk rise edge)    0.000     0.000 r  
+    AC19                                              0.000     0.000 r  clk (IN)
+                         net (fo=0)                   0.000     0.000    clk
+    AC19                 IBUF (Prop_ibuf_I_O)         1.416     1.416 r  clk_IBUF_inst/O
+                         net (fo=1, estimated)        2.602     4.018    clk_IBUF
+    BUFGCTRL_X0Y0        BUFG (Prop_bufg_I_O)         0.081     4.099 r  clk_IBUF_BUFG_inst/O
+                         net (fo=2027, estimated)     1.856     5.955    fpga_pll.u_clk_pll/inst/clk_in1
+    PLLE2_ADV_X1Y0       PLLE2_ADV (Prop_plle2_adv_CLKIN1_CLKOUT0)
+                                                     -4.225     1.730 r  fpga_pll.u_clk_pll/inst/plle2_adv_inst/CLKOUT0
+                         net (fo=1, estimated)        2.288     4.018    fpga_pll.u_clk_pll/inst/cpu_clk_clk_pll
+    BUFGCTRL_X0Y2        BUFG (Prop_bufg_I_O)         0.081     4.099 r  fpga_pll.u_clk_pll/inst/clkout1_buf/O
+                         net (fo=23142, estimated)    1.490     5.589    fpga_pll.u_rst_cpu/cpu_clk
+    SLICE_X23Y133        FDCE                                         r  fpga_pll.u_rst_cpu/delay_reg[1]_replica_6/C
+  -------------------------------------------------------------------    -------------------
+    SLICE_X23Y133        FDCE (Prop_fdce_C_Q)         0.379     5.968 r  fpga_pll.u_rst_cpu/delay_reg[1]_replica_6/Q
+                         net (fo=2, estimated)        0.266     6.234    fpga_pll.u_rst_cpu/Q[0]_repN_6
+    SLICE_X20Y133        LUT1 (Prop_lut1_I0_O)        0.105     6.339 f  fpga_pll.u_rst_cpu/PhysRegFilePlugin_regs_31[31]_i_3/O
+                         net (fo=6902, estimated)     3.841    10.180    u_cpu/u_nop_core/toplevel_cpu/waitRsp_reg
+    SLICE_X152Y179       FDCE                                         f  u_cpu/u_nop_core/toplevel_cpu/PhysRegFilePlugin_regs_22_reg[27]/CLR
+  -------------------------------------------------------------------    -------------------
+
+                         (clock cpu_clk rise edge)    5.000     5.000 r  
+    AC19                                              0.000     5.000 r  clk (IN)
+                         net (fo=0)                   0.000     5.000    clk
+    AC19                 IBUF (Prop_ibuf_I_O)         1.350     6.350 r  clk_IBUF_inst/O
+                         net (fo=1, estimated)        2.472     8.822    clk_IBUF
+    BUFGCTRL_X0Y0        BUFG (Prop_bufg_I_O)         0.077     8.899 r  clk_IBUF_BUFG_inst/O
+                         net (fo=2027, estimated)     1.734    10.633    fpga_pll.u_clk_pll/inst/clk_in1
+    PLLE2_ADV_X1Y0       PLLE2_ADV (Prop_plle2_adv_CLKIN1_CLKOUT0)
+                                                     -3.985     6.648 r  fpga_pll.u_clk_pll/inst/plle2_adv_inst/CLKOUT0
+                         net (fo=1, estimated)        2.174     8.822    fpga_pll.u_clk_pll/inst/cpu_clk_clk_pll
+    BUFGCTRL_X0Y2        BUFG (Prop_bufg_I_O)         0.077     8.899 r  fpga_pll.u_clk_pll/inst/clkout1_buf/O
+                         net (fo=23142, estimated)    1.352    10.251    u_cpu/u_nop_core/toplevel_cpu/cpu_clk
+    SLICE_X152Y179       FDCE                                         r  u_cpu/u_nop_core/toplevel_cpu/PhysRegFilePlugin_regs_22_reg[27]/C
+                         clock pessimism              0.200    10.451    
+                         clock uncertainty           -0.067    10.384    
+    SLICE_X152Y179       FDCE (Recov_fdce_C_CLR)     -0.258    10.126    u_cpu/u_nop_core/toplevel_cpu/PhysRegFilePlugin_regs_22_reg[27]
+  -------------------------------------------------------------------
+                         required time                         10.126    
+                         arrival time                         -10.180    
+  -------------------------------------------------------------------
+                         slack                                 -0.054    
+
+Slack (VIOLATED) :        -0.054ns  (required time - arrival time)
+  Source:                 fpga_pll.u_rst_cpu/delay_reg[1]_replica_6/C
+                            (rising edge-triggered cell FDCE clocked by cpu_clk  {rise@0.000ns fall@2.500ns period=5.000ns})
+  Destination:            u_cpu/u_nop_core/toplevel_cpu/PhysRegFilePlugin_regs_41_reg[18]/CLR
+                            (recovery check against rising-edge clock cpu_clk  {rise@0.000ns fall@2.500ns period=5.000ns})
+  Path Group:             **async_default**
+  Path Type:              Recovery (Max at Slow Process Corner)
+  Requirement:            5.000ns  (cpu_clk rise@5.000ns - cpu_clk rise@0.000ns)
+  Data Path Delay:        4.519ns  (logic 0.484ns (10.710%)  route 4.035ns (89.290%))
+  Logic Levels:           1  (LUT1=1)
+  Clock Path Skew:        -0.137ns (DCD - SCD + CPR)
+    Destination Clock Delay (DCD):    5.252ns = ( 10.252 - 5.000 ) 
+    Source Clock Delay      (SCD):    5.589ns
+    Clock Pessimism Removal (CPR):    0.200ns
+  Clock Uncertainty:      0.067ns  ((TSJ^2 + DJ^2)^1/2) / 2 + PE
+    Total System Jitter     (TSJ):    0.071ns
+    Discrete Jitter          (DJ):    0.113ns
+    Phase Error              (PE):    0.000ns
+
+    Location             Delay type                Incr(ns)  Path(ns)    Netlist Resource(s)
+  -------------------------------------------------------------------    -------------------
+                         (clock cpu_clk rise edge)    0.000     0.000 r  
+    AC19                                              0.000     0.000 r  clk (IN)
+                         net (fo=0)                   0.000     0.000    clk
+    AC19                 IBUF (Prop_ibuf_I_O)         1.416     1.416 r  clk_IBUF_inst/O
+                         net (fo=1, estimated)        2.602     4.018    clk_IBUF
+    BUFGCTRL_X0Y0        BUFG (Prop_bufg_I_O)         0.081     4.099 r  clk_IBUF_BUFG_inst/O
+                         net (fo=2027, estimated)     1.856     5.955    fpga_pll.u_clk_pll/inst/clk_in1
+    PLLE2_ADV_X1Y0       PLLE2_ADV (Prop_plle2_adv_CLKIN1_CLKOUT0)
+                                                     -4.225     1.730 r  fpga_pll.u_clk_pll/inst/plle2_adv_inst/CLKOUT0
+                         net (fo=1, estimated)        2.288     4.018    fpga_pll.u_clk_pll/inst/cpu_clk_clk_pll
+    BUFGCTRL_X0Y2        BUFG (Prop_bufg_I_O)         0.081     4.099 r  fpga_pll.u_clk_pll/inst/clkout1_buf/O
+                         net (fo=23142, estimated)    1.490     5.589    fpga_pll.u_rst_cpu/cpu_clk
+    SLICE_X23Y133        FDCE                                         r  fpga_pll.u_rst_cpu/delay_reg[1]_replica_6/C
+  -------------------------------------------------------------------    -------------------
+    SLICE_X23Y133        FDCE (Prop_fdce_C_Q)         0.379     5.968 r  fpga_pll.u_rst_cpu/delay_reg[1]_replica_6/Q
+                         net (fo=2, estimated)        0.266     6.234    fpga_pll.u_rst_cpu/Q[0]_repN_6
+    SLICE_X20Y133        LUT1 (Prop_lut1_I0_O)        0.105     6.339 f  fpga_pll.u_rst_cpu/PhysRegFilePlugin_regs_31[31]_i_3/O
+                         net (fo=6902, estimated)     3.769    10.108    u_cpu/u_nop_core/toplevel_cpu/waitRsp_reg
+    SLICE_X145Y182       FDCE                                         f  u_cpu/u_nop_core/toplevel_cpu/PhysRegFilePlugin_regs_41_reg[18]/CLR
+  -------------------------------------------------------------------    -------------------
+
+                         (clock cpu_clk rise edge)    5.000     5.000 r  
+    AC19                                              0.000     5.000 r  clk (IN)
+                         net (fo=0)                   0.000     5.000    clk
+    AC19                 IBUF (Prop_ibuf_I_O)         1.350     6.350 r  clk_IBUF_inst/O
+                         net (fo=1, estimated)        2.472     8.822    clk_IBUF
+    BUFGCTRL_X0Y0        BUFG (Prop_bufg_I_O)         0.077     8.899 r  clk_IBUF_BUFG_inst/O
+                         net (fo=2027, estimated)     1.734    10.633    fpga_pll.u_clk_pll/inst/clk_in1
+    PLLE2_ADV_X1Y0       PLLE2_ADV (Prop_plle2_adv_CLKIN1_CLKOUT0)
+                                                     -3.985     6.648 r  fpga_pll.u_clk_pll/inst/plle2_adv_inst/CLKOUT0
+                         net (fo=1, estimated)        2.174     8.822    fpga_pll.u_clk_pll/inst/cpu_clk_clk_pll
+    BUFGCTRL_X0Y2        BUFG (Prop_bufg_I_O)         0.077     8.899 r  fpga_pll.u_clk_pll/inst/clkout1_buf/O
+                         net (fo=23142, estimated)    1.353    10.252    u_cpu/u_nop_core/toplevel_cpu/cpu_clk
+    SLICE_X145Y182       FDCE                                         r  u_cpu/u_nop_core/toplevel_cpu/PhysRegFilePlugin_regs_41_reg[18]/C
+                         clock pessimism              0.200    10.452    
+                         clock uncertainty           -0.067    10.385    
+    SLICE_X145Y182       FDCE (Recov_fdce_C_CLR)     -0.331    10.054    u_cpu/u_nop_core/toplevel_cpu/PhysRegFilePlugin_regs_41_reg[18]
+  -------------------------------------------------------------------
+                         required time                         10.054    
+                         arrival time                         -10.108    
+  -------------------------------------------------------------------
+                         slack                                 -0.054    
+
+Slack (VIOLATED) :        -0.049ns  (required time - arrival time)
+  Source:                 fpga_pll.u_rst_cpu/delay_reg[1]_replica_6/C
+                            (rising edge-triggered cell FDCE clocked by cpu_clk  {rise@0.000ns fall@2.500ns period=5.000ns})
+  Destination:            u_cpu/u_nop_core/toplevel_cpu/PhysRegFilePlugin_regs_19_reg[23]/CLR
+                            (recovery check against rising-edge clock cpu_clk  {rise@0.000ns fall@2.500ns period=5.000ns})
+  Path Group:             **async_default**
+  Path Type:              Recovery (Max at Slow Process Corner)
+  Requirement:            5.000ns  (cpu_clk rise@5.000ns - cpu_clk rise@0.000ns)
+  Data Path Delay:        4.538ns  (logic 0.484ns (10.665%)  route 4.054ns (89.335%))
+  Logic Levels:           1  (LUT1=1)
+  Clock Path Skew:        -0.186ns (DCD - SCD + CPR)
+    Destination Clock Delay (DCD):    5.203ns = ( 10.203 - 5.000 ) 
+    Source Clock Delay      (SCD):    5.589ns
+    Clock Pessimism Removal (CPR):    0.200ns
+  Clock Uncertainty:      0.067ns  ((TSJ^2 + DJ^2)^1/2) / 2 + PE
+    Total System Jitter     (TSJ):    0.071ns
+    Discrete Jitter          (DJ):    0.113ns
+    Phase Error              (PE):    0.000ns
+
+    Location             Delay type                Incr(ns)  Path(ns)    Netlist Resource(s)
+  -------------------------------------------------------------------    -------------------
+                         (clock cpu_clk rise edge)    0.000     0.000 r  
+    AC19                                              0.000     0.000 r  clk (IN)
+                         net (fo=0)                   0.000     0.000    clk
+    AC19                 IBUF (Prop_ibuf_I_O)         1.416     1.416 r  clk_IBUF_inst/O
+                         net (fo=1, estimated)        2.602     4.018    clk_IBUF
+    BUFGCTRL_X0Y0        BUFG (Prop_bufg_I_O)         0.081     4.099 r  clk_IBUF_BUFG_inst/O
+                         net (fo=2027, estimated)     1.856     5.955    fpga_pll.u_clk_pll/inst/clk_in1
+    PLLE2_ADV_X1Y0       PLLE2_ADV (Prop_plle2_adv_CLKIN1_CLKOUT0)
+                                                     -4.225     1.730 r  fpga_pll.u_clk_pll/inst/plle2_adv_inst/CLKOUT0
+                         net (fo=1, estimated)        2.288     4.018    fpga_pll.u_clk_pll/inst/cpu_clk_clk_pll
+    BUFGCTRL_X0Y2        BUFG (Prop_bufg_I_O)         0.081     4.099 r  fpga_pll.u_clk_pll/inst/clkout1_buf/O
+                         net (fo=23142, estimated)    1.490     5.589    fpga_pll.u_rst_cpu/cpu_clk
+    SLICE_X23Y133        FDCE                                         r  fpga_pll.u_rst_cpu/delay_reg[1]_replica_6/C
+  -------------------------------------------------------------------    -------------------
+    SLICE_X23Y133        FDCE (Prop_fdce_C_Q)         0.379     5.968 r  fpga_pll.u_rst_cpu/delay_reg[1]_replica_6/Q
+                         net (fo=2, estimated)        0.266     6.234    fpga_pll.u_rst_cpu/Q[0]_repN_6
+    SLICE_X20Y133        LUT1 (Prop_lut1_I0_O)        0.105     6.339 f  fpga_pll.u_rst_cpu/PhysRegFilePlugin_regs_31[31]_i_3/O
+                         net (fo=6902, estimated)     3.788    10.127    u_cpu/u_nop_core/toplevel_cpu/waitRsp_reg
+    SLICE_X136Y190       FDCE                                         f  u_cpu/u_nop_core/toplevel_cpu/PhysRegFilePlugin_regs_19_reg[23]/CLR
+  -------------------------------------------------------------------    -------------------
+
+                         (clock cpu_clk rise edge)    5.000     5.000 r  
+    AC19                                              0.000     5.000 r  clk (IN)
+                         net (fo=0)                   0.000     5.000    clk
+    AC19                 IBUF (Prop_ibuf_I_O)         1.350     6.350 r  clk_IBUF_inst/O
+                         net (fo=1, estimated)        2.472     8.822    clk_IBUF
+    BUFGCTRL_X0Y0        BUFG (Prop_bufg_I_O)         0.077     8.899 r  clk_IBUF_BUFG_inst/O
+                         net (fo=2027, estimated)     1.734    10.633    fpga_pll.u_clk_pll/inst/clk_in1
+    PLLE2_ADV_X1Y0       PLLE2_ADV (Prop_plle2_adv_CLKIN1_CLKOUT0)
+                                                     -3.985     6.648 r  fpga_pll.u_clk_pll/inst/plle2_adv_inst/CLKOUT0
+                         net (fo=1, estimated)        2.174     8.822    fpga_pll.u_clk_pll/inst/cpu_clk_clk_pll
+    BUFGCTRL_X0Y2        BUFG (Prop_bufg_I_O)         0.077     8.899 r  fpga_pll.u_clk_pll/inst/clkout1_buf/O
+                         net (fo=23142, estimated)    1.304    10.203    u_cpu/u_nop_core/toplevel_cpu/cpu_clk
+    SLICE_X136Y190       FDCE                                         r  u_cpu/u_nop_core/toplevel_cpu/PhysRegFilePlugin_regs_19_reg[23]/C
+                         clock pessimism              0.200    10.403    
+                         clock uncertainty           -0.067    10.336    
+    SLICE_X136Y190       FDCE (Recov_fdce_C_CLR)     -0.258    10.078    u_cpu/u_nop_core/toplevel_cpu/PhysRegFilePlugin_regs_19_reg[23]
+  -------------------------------------------------------------------
+                         required time                         10.078    
+                         arrival time                         -10.127    
+  -------------------------------------------------------------------
+                         slack                                 -0.049    
+
+Slack (VIOLATED) :        -0.046ns  (required time - arrival time)
+  Source:                 fpga_pll.u_rst_cpu/delay_reg[1]_replica_6/C
+                            (rising edge-triggered cell FDCE clocked by cpu_clk  {rise@0.000ns fall@2.500ns period=5.000ns})
+  Destination:            u_cpu/u_nop_core/toplevel_cpu/PhysRegFilePlugin_regs_22_reg[30]/CLR
+                            (recovery check against rising-edge clock cpu_clk  {rise@0.000ns fall@2.500ns period=5.000ns})
+  Path Group:             **async_default**
+  Path Type:              Recovery (Max at Slow Process Corner)
+  Requirement:            5.000ns  (cpu_clk rise@5.000ns - cpu_clk rise@0.000ns)
+  Data Path Delay:        4.509ns  (logic 0.484ns (10.734%)  route 4.025ns (89.266%))
+  Logic Levels:           1  (LUT1=1)
+  Clock Path Skew:        -0.139ns (DCD - SCD + CPR)
+    Destination Clock Delay (DCD):    5.250ns = ( 10.250 - 5.000 ) 
+    Source Clock Delay      (SCD):    5.589ns
+    Clock Pessimism Removal (CPR):    0.200ns
+  Clock Uncertainty:      0.067ns  ((TSJ^2 + DJ^2)^1/2) / 2 + PE
+    Total System Jitter     (TSJ):    0.071ns
+    Discrete Jitter          (DJ):    0.113ns
+    Phase Error              (PE):    0.000ns
+
+    Location             Delay type                Incr(ns)  Path(ns)    Netlist Resource(s)
+  -------------------------------------------------------------------    -------------------
+                         (clock cpu_clk rise edge)    0.000     0.000 r  
+    AC19                                              0.000     0.000 r  clk (IN)
+                         net (fo=0)                   0.000     0.000    clk
+    AC19                 IBUF (Prop_ibuf_I_O)         1.416     1.416 r  clk_IBUF_inst/O
+                         net (fo=1, estimated)        2.602     4.018    clk_IBUF
+    BUFGCTRL_X0Y0        BUFG (Prop_bufg_I_O)         0.081     4.099 r  clk_IBUF_BUFG_inst/O
+                         net (fo=2027, estimated)     1.856     5.955    fpga_pll.u_clk_pll/inst/clk_in1
+    PLLE2_ADV_X1Y0       PLLE2_ADV (Prop_plle2_adv_CLKIN1_CLKOUT0)
+                                                     -4.225     1.730 r  fpga_pll.u_clk_pll/inst/plle2_adv_inst/CLKOUT0
+                         net (fo=1, estimated)        2.288     4.018    fpga_pll.u_clk_pll/inst/cpu_clk_clk_pll
+    BUFGCTRL_X0Y2        BUFG (Prop_bufg_I_O)         0.081     4.099 r  fpga_pll.u_clk_pll/inst/clkout1_buf/O
+                         net (fo=23142, estimated)    1.490     5.589    fpga_pll.u_rst_cpu/cpu_clk
+    SLICE_X23Y133        FDCE                                         r  fpga_pll.u_rst_cpu/delay_reg[1]_replica_6/C
+  -------------------------------------------------------------------    -------------------
+    SLICE_X23Y133        FDCE (Prop_fdce_C_Q)         0.379     5.968 r  fpga_pll.u_rst_cpu/delay_reg[1]_replica_6/Q
+                         net (fo=2, estimated)        0.266     6.234    fpga_pll.u_rst_cpu/Q[0]_repN_6
+    SLICE_X20Y133        LUT1 (Prop_lut1_I0_O)        0.105     6.339 f  fpga_pll.u_rst_cpu/PhysRegFilePlugin_regs_31[31]_i_3/O
+                         net (fo=6902, estimated)     3.759    10.098    u_cpu/u_nop_core/toplevel_cpu/waitRsp_reg
+    SLICE_X147Y180       FDCE                                         f  u_cpu/u_nop_core/toplevel_cpu/PhysRegFilePlugin_regs_22_reg[30]/CLR
+  -------------------------------------------------------------------    -------------------
+
+                         (clock cpu_clk rise edge)    5.000     5.000 r  
+    AC19                                              0.000     5.000 r  clk (IN)
+                         net (fo=0)                   0.000     5.000    clk
+    AC19                 IBUF (Prop_ibuf_I_O)         1.350     6.350 r  clk_IBUF_inst/O
+                         net (fo=1, estimated)        2.472     8.822    clk_IBUF
+    BUFGCTRL_X0Y0        BUFG (Prop_bufg_I_O)         0.077     8.899 r  clk_IBUF_BUFG_inst/O
+                         net (fo=2027, estimated)     1.734    10.633    fpga_pll.u_clk_pll/inst/clk_in1
+    PLLE2_ADV_X1Y0       PLLE2_ADV (Prop_plle2_adv_CLKIN1_CLKOUT0)
+                                                     -3.985     6.648 r  fpga_pll.u_clk_pll/inst/plle2_adv_inst/CLKOUT0
+                         net (fo=1, estimated)        2.174     8.822    fpga_pll.u_clk_pll/inst/cpu_clk_clk_pll
+    BUFGCTRL_X0Y2        BUFG (Prop_bufg_I_O)         0.077     8.899 r  fpga_pll.u_clk_pll/inst/clkout1_buf/O
+                         net (fo=23142, estimated)    1.351    10.250    u_cpu/u_nop_core/toplevel_cpu/cpu_clk
+    SLICE_X147Y180       FDCE                                         r  u_cpu/u_nop_core/toplevel_cpu/PhysRegFilePlugin_regs_22_reg[30]/C
+                         clock pessimism              0.200    10.450    
+                         clock uncertainty           -0.067    10.383    
+    SLICE_X147Y180       FDCE (Recov_fdce_C_CLR)     -0.331    10.052    u_cpu/u_nop_core/toplevel_cpu/PhysRegFilePlugin_regs_22_reg[30]
+  -------------------------------------------------------------------
+                         required time                         10.052    
+                         arrival time                         -10.098    
+  -------------------------------------------------------------------
+                         slack                                 -0.046    
+
+Slack (VIOLATED) :        -0.046ns  (required time - arrival time)
+  Source:                 fpga_pll.u_rst_cpu/delay_reg[1]_replica_6/C
+                            (rising edge-triggered cell FDCE clocked by cpu_clk  {rise@0.000ns fall@2.500ns period=5.000ns})
+  Destination:            u_cpu/u_nop_core/toplevel_cpu/PhysRegFilePlugin_regs_30_reg[14]/CLR
+                            (recovery check against rising-edge clock cpu_clk  {rise@0.000ns fall@2.500ns period=5.000ns})
+  Path Group:             **async_default**
+  Path Type:              Recovery (Max at Slow Process Corner)
+  Requirement:            5.000ns  (cpu_clk rise@5.000ns - cpu_clk rise@0.000ns)
+  Data Path Delay:        4.454ns  (logic 0.484ns (10.867%)  route 3.970ns (89.133%))
+  Logic Levels:           1  (LUT1=1)
+  Clock Path Skew:        -0.194ns (DCD - SCD + CPR)
+    Destination Clock Delay (DCD):    5.195ns = ( 10.195 - 5.000 ) 
+    Source Clock Delay      (SCD):    5.589ns
+    Clock Pessimism Removal (CPR):    0.200ns
+  Clock Uncertainty:      0.067ns  ((TSJ^2 + DJ^2)^1/2) / 2 + PE
+    Total System Jitter     (TSJ):    0.071ns
+    Discrete Jitter          (DJ):    0.113ns
+    Phase Error              (PE):    0.000ns
+
+    Location             Delay type                Incr(ns)  Path(ns)    Netlist Resource(s)
+  -------------------------------------------------------------------    -------------------
+                         (clock cpu_clk rise edge)    0.000     0.000 r  
+    AC19                                              0.000     0.000 r  clk (IN)
+                         net (fo=0)                   0.000     0.000    clk
+    AC19                 IBUF (Prop_ibuf_I_O)         1.416     1.416 r  clk_IBUF_inst/O
+                         net (fo=1, estimated)        2.602     4.018    clk_IBUF
+    BUFGCTRL_X0Y0        BUFG (Prop_bufg_I_O)         0.081     4.099 r  clk_IBUF_BUFG_inst/O
+                         net (fo=2027, estimated)     1.856     5.955    fpga_pll.u_clk_pll/inst/clk_in1
+    PLLE2_ADV_X1Y0       PLLE2_ADV (Prop_plle2_adv_CLKIN1_CLKOUT0)
+                                                     -4.225     1.730 r  fpga_pll.u_clk_pll/inst/plle2_adv_inst/CLKOUT0
+                         net (fo=1, estimated)        2.288     4.018    fpga_pll.u_clk_pll/inst/cpu_clk_clk_pll
+    BUFGCTRL_X0Y2        BUFG (Prop_bufg_I_O)         0.081     4.099 r  fpga_pll.u_clk_pll/inst/clkout1_buf/O
+                         net (fo=23142, estimated)    1.490     5.589    fpga_pll.u_rst_cpu/cpu_clk
+    SLICE_X23Y133        FDCE                                         r  fpga_pll.u_rst_cpu/delay_reg[1]_replica_6/C
+  -------------------------------------------------------------------    -------------------
+    SLICE_X23Y133        FDCE (Prop_fdce_C_Q)         0.379     5.968 r  fpga_pll.u_rst_cpu/delay_reg[1]_replica_6/Q
+                         net (fo=2, estimated)        0.266     6.234    fpga_pll.u_rst_cpu/Q[0]_repN_6
+    SLICE_X20Y133        LUT1 (Prop_lut1_I0_O)        0.105     6.339 f  fpga_pll.u_rst_cpu/PhysRegFilePlugin_regs_31[31]_i_3/O
+                         net (fo=6902, estimated)     3.704    10.043    u_cpu/u_nop_core/toplevel_cpu/waitRsp_reg
+    SLICE_X137Y180       FDCE                                         f  u_cpu/u_nop_core/toplevel_cpu/PhysRegFilePlugin_regs_30_reg[14]/CLR
+  -------------------------------------------------------------------    -------------------
+
+                         (clock cpu_clk rise edge)    5.000     5.000 r  
+    AC19                                              0.000     5.000 r  clk (IN)
+                         net (fo=0)                   0.000     5.000    clk
+    AC19                 IBUF (Prop_ibuf_I_O)         1.350     6.350 r  clk_IBUF_inst/O
+                         net (fo=1, estimated)        2.472     8.822    clk_IBUF
+    BUFGCTRL_X0Y0        BUFG (Prop_bufg_I_O)         0.077     8.899 r  clk_IBUF_BUFG_inst/O
+                         net (fo=2027, estimated)     1.734    10.633    fpga_pll.u_clk_pll/inst/clk_in1
+    PLLE2_ADV_X1Y0       PLLE2_ADV (Prop_plle2_adv_CLKIN1_CLKOUT0)
+                                                     -3.985     6.648 r  fpga_pll.u_clk_pll/inst/plle2_adv_inst/CLKOUT0
+                         net (fo=1, estimated)        2.174     8.822    fpga_pll.u_clk_pll/inst/cpu_clk_clk_pll
+    BUFGCTRL_X0Y2        BUFG (Prop_bufg_I_O)         0.077     8.899 r  fpga_pll.u_clk_pll/inst/clkout1_buf/O
+                         net (fo=23142, estimated)    1.296    10.195    u_cpu/u_nop_core/toplevel_cpu/cpu_clk
+    SLICE_X137Y180       FDCE                                         r  u_cpu/u_nop_core/toplevel_cpu/PhysRegFilePlugin_regs_30_reg[14]/C
+                         clock pessimism              0.200    10.395    
+                         clock uncertainty           -0.067    10.328    
+    SLICE_X137Y180       FDCE (Recov_fdce_C_CLR)     -0.331     9.997    u_cpu/u_nop_core/toplevel_cpu/PhysRegFilePlugin_regs_30_reg[14]
+  -------------------------------------------------------------------
+                         required time                          9.997    
+                         arrival time                         -10.043    
+  -------------------------------------------------------------------
+                         slack                                 -0.046    
+
+
+
+

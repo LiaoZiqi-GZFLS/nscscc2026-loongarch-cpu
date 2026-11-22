@@ -1,0 +1,39 @@
+#-----------------------------------------------------------
+# Vivado v2023.2 (64-bit)
+# SW Build 4029153 on Fri Oct 13 20:14:34 MDT 2023
+# IP Build 4028589 on Sat Oct 14 00:45:43 MDT 2023
+# SharedData Build 4025554 on Tue Oct 10 17:18:54 MDT 2023
+# Start of session at: Mon Aug 17 10:51:38 2026
+# Process ID: 38612
+# Current directory: D:/code/Vivado/Loongarch_workspace
+# Command line: vivado.exe -mode batch -source D:\code\Vivado\Loongarch_workspace\analysis_physopt\xdc_test.tcl -log D:\code\Vivado\Loongarch_workspace\analysis_physopt\xdc_test.log
+# Log file: D:/code/Vivado/Loongarch_workspace/analysis_physopt/xdc_test.log
+# Journal file: D:/code/Vivado/Loongarch_workspace\vivado.jou
+# Running On: DESKTOP-8OOL3GM, OS: Windows, CPU Frequency: 3793 MHz, CPU Physical cores: 16, Host memory: 23400 MB
+#-----------------------------------------------------------
+Sourcing tcl script 'C:/Xilinx/Vivado/2023.2/scripts/Vivado_init.tcl'
+vivado-mcp: port 9999 busy, exiting (not sliding to another port)
+source {D:\code\Vivado\Loongarch_workspace\analysis_physopt\xdc_test.tcl}
+# set tmpdir "D:/code/Vivado/Loongarch_workspace/analysis_physopt/xdc_test"
+# file mkdir $tmpdir
+# set fd [open "$tmpdir/dummy.v" w]
+# puts $fd "module dummy(input a, output b); assign b = a; endmodule"
+# close $fd
+# set fd [open "$tmpdir/team.xdc" w]
+# puts $fd "set_property MAX_FANOUT 100 \[get_nets a\]"
+# close $fd
+# create_project -in_memory -part xc7a200tfbg676-2
+create_project: Time (s): cpu = 00:00:07 ; elapsed = 00:00:07 . Memory (MB): peak = 485.582 ; gain = 182.191
+# add_files -scan_for_includes $tmpdir
+WARNING: [Vivado 12-818] No files matched '*'
+# set xdcfiles [get_files -filter {FILE_TYPE == XDC}]
+# puts "XDC files found: $xdcfiles"
+XDC files found: 
+# if {[llength $xdcfiles] > 0} {
+#   foreach f $xdcfiles {
+#     puts "$f  USED_IN_SYNTHESIS=[get_property USED_IN_SYNTHESIS $f] USED_IN_IMPLEMENTATION=[get_property USED_IN_IMPLEMENTATION $f]"
+#   }
+# }
+# puts "XDC_TEST_DONE"
+XDC_TEST_DONE
+INFO: [Common 17-206] Exiting Vivado at Mon Aug 17 10:51:49 2026...

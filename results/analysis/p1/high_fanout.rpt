@@ -1,0 +1,41 @@
+Copyright 1986-2022 Xilinx, Inc. All Rights Reserved. Copyright 2022-2023 Advanced Micro Devices, Inc. All Rights Reserved.
+---------------------------------------------------------------------------------------------------------------------------------------------
+| Tool Version : Vivado v.2023.2 (win64) Build 4029153 Fri Oct 13 20:14:34 MDT 2023
+| Date         : Tue Aug 18 03:58:23 2026
+| Host         : DESKTOP-8OOL3GM running 64-bit major release  (build 9200)
+| Command      : report_high_fanout_nets -max_nets 20 -file D:/code/Vivado/Loongarch_workspace/analysis_p1/high_fanout.rpt
+| Design       : soc_top
+| Device       : xc7a200t
+---------------------------------------------------------------------------------------------------------------------------------------------
+
+High Fan-out Nets Information
+
+1. Summary
+----------
+
++-------------------------------------------------------------------------------------------------------------------------------+--------+-------------+
+| Net Name                                                                                                                      | Fanout | Driver Type |
++-------------------------------------------------------------------------------------------------------------------------------+--------+-------------+
+| fpga_pll.u_rst_cpu/mem_rstb                                                                                                   |   4063 | LUT1        |
+| u_cpu/u_nop_core/toplevel_cpu/RenamePlugin_freeList/RENAME_arbitration_isValid_reg_1[0]                                       |   1549 | LUT6        |
+| u_cpu/u_nop_core/toplevel_cpu/IF1_ProgramCounterPlugin_pcOffset[2]                                                            |    604 | FDCE        |
+| u_cpu/u_nop_core/toplevel_cpu/_zz_MEM_ISS_to_MEM_RRD_STD_SLOT_valid                                                           |    578 | LUT6        |
+| u_cpu/u_nop_core/toplevel_cpu/when_Pipeline_l165_107                                                                          |    555 | LUT6        |
+| u_confreg/buf_id[3]_i_1_n_0                                                                                                   |    548 | LUT1        |
+| u_cpu/u_nop_core/toplevel_cpu/FetchBufferPlugin_bufferFIFO/DISPATCH_arbitration_isValid_reg                                   |    479 | LUT2        |
+| ddr3.u_axi_wrap_ddr/mig_axi/u_mig_axi_32_mig/u_memc_ui_top_axi/u_ui_top/ui_wr_data0/occupied_counter.app_wdf_rdy_r_reg_0      |    437 | FDRE        |
+| fpga_pll.u_rst_cpu/mem_rstb_repN_4                                                                                            |    433 | LUT1        |
+| fpga_pll.u_rst_cpu/mem_rstb_repN_3                                                                                            |    431 | LUT1        |
+| fpga_pll.u_rst_cpu/mem_rstb_repN_7                                                                                            |    409 | LUT1        |
+| fpga_pll.u_rst_sys/prst                                                                                                       |    378 | LUT1        |
+| fpga_pll.u_rst_cpu/mem_rstb_repN_1                                                                                            |    375 | LUT1        |
+| u_cpu/u_nop_core/toplevel_cpu/when_Pipeline_l165_70                                                                           |    365 | LUT1        |
+| fpga_pll.u_rst_cpu/mem_rstb_repN_6                                                                                            |    349 | LUT1        |
+| u_cpu/u_nop_core/toplevel_cpu/DCachePlugin_dataRAMs_0/when_Pipeline_l165_127                                                  |    347 | LUT6        |
+| u_cpu/u_nop_core/toplevel_cpu/IF1_ProgramCounterPlugin_pcOffset[3]                                                            |    345 | FDCE        |
+| u_axi_crossbar_2x3/inst/gen_samd.crossbar_samd/addr_arbiter_ar/SR[0]                                                          |    303 | LUT1        |
+| u_jtag_axi_wrap/u_jtag_axi/inst/jtag_axi_engine_u/rd_cmd_fifo_i/inst_fifo_gen/gconvfifo.rf/grf.rf/gntv_or_sync_fifo.mem/SR[0] |    298 | LUT3        |
+| ddr3.u_axi_wrap_ddr/mig_axi/u_mig_axi_32_mig/u_memc_ui_top_axi/u_axi_mc/axi_mc_w_channel_0/wready_d3                          |    297 | FDRE        |
++-------------------------------------------------------------------------------------------------------------------------------+--------+-------------+
+
+

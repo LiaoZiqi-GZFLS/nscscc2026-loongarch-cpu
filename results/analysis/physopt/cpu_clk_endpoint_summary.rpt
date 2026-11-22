@@ -1,0 +1,219 @@
+Copyright 1986-2022 Xilinx, Inc. All Rights Reserved. Copyright 2022-2023 Advanced Micro Devices, Inc. All Rights Reserved.
+-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+| Tool Version : Vivado v.2023.2 (win64) Build 4029153 Fri Oct 13 20:14:34 MDT 2023
+| Date         : Mon Aug 17 09:44:32 2026
+| Host         : DESKTOP-8OOL3GM running 64-bit major release  (build 9200)
+| Command      : report_timing -from [get_clocks cpu_clk] -to [get_clocks cpu_clk] -max_paths 100 -sort_by slack -path_type end -file D:/code/Vivado/Loongarch_workspace/analysis_physopt/cpu_clk_endpoint_summary.rpt
+| Design       : soc_top
+| Device       : 7a200t-fbg676
+| Speed File   : -2  PRODUCTION 1.23 2018-06-13
+| Design State : Physopt postPlace
+-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+
+Timing Report
+
+Endpoint                       Path Delay(ns)  Requirement(ns)  Clock Skew(ns)  Slack(ns)     
+----------------------------------------------------------------------------------------------
+u_cpu/u_nop_core/toplevel_cpu/ROBFIFOPlugin_fifoIO_pop_0_payload_state_intResult_reg[21]/D
+                               10.311          5.000            -0.122          -5.470        
+u_cpu/u_nop_core/toplevel_cpu/ROBFIFOPlugin_fifoIO_pop_0_payload_state_intResult_reg[7]/D
+                               10.311          5.000            -0.125          -5.470        
+u_cpu/u_nop_core/toplevel_cpu/ROBFIFOPlugin_fifoIO_pop_0_payload_state_intResult_reg[27]/D
+                               10.317          5.000            -0.117          -5.469        
+u_cpu/u_nop_core/toplevel_cpu/ROBFIFOPlugin_fifoIO_pop_0_payload_state_except_payload_badVA_reg[20]/D
+                               10.302          5.000            -0.128          -5.467        
+u_cpu/u_nop_core/toplevel_cpu/IntIssueQueuePlugin_queue_0_payload_rRegs_0_valid_reg/D
+                               10.501          5.000            0.068           -5.467        
+u_cpu/u_nop_core/toplevel_cpu/ROBFIFOPlugin_fifoIO_pop_0_payload_state_intResult_reg[26]/D
+                               10.302          5.000            -0.127          -5.466        
+u_cpu/u_nop_core/toplevel_cpu/ROBFIFOPlugin_fifoIO_pop_0_payload_state_except_payload_badVA_reg[8]/D
+                               10.294          5.000            -0.133          -5.462        
+u_cpu/u_nop_core/toplevel_cpu/ROBFIFOPlugin_fifoIO_pop_0_payload_state_intResult_reg[25]/D
+                               10.309          5.000            -0.118          -5.461        
+u_cpu/u_nop_core/toplevel_cpu/ROBFIFOPlugin_fifoIO_pop_0_payload_state_intResult_reg[23]/D
+                               10.300          5.000            -0.121          -5.458        
+u_cpu/u_nop_core/toplevel_cpu/ROBFIFOPlugin_fifoIO_pop_0_payload_state_intResult_reg[28]/D
+                               10.306          5.000            -0.118          -5.458        
+u_cpu/u_nop_core/toplevel_cpu/ROBFIFOPlugin_fifoIO_pop_0_payload_state_except_payload_code_reg[4]/D
+                               10.306          5.000            -0.113          -5.456        
+u_cpu/u_nop_core/toplevel_cpu/ROBFIFOPlugin_fifoIO_pop_0_payload_state_intResult_reg[15]/D
+                               10.300          5.000            -0.121          -5.455        
+u_cpu/u_nop_core/toplevel_cpu/ROBFIFOPlugin_fifoIO_pop_0_payload_state_intResult_reg[20]/D
+                               10.303          5.000            -0.117          -5.454        
+u_cpu/u_nop_core/toplevel_cpu/IntIssueQueuePlugin_queue_2_payload_rRegs_0_valid_reg/D
+                               10.484          5.000            0.068           -5.451        
+u_cpu/u_nop_core/toplevel_cpu/ROBFIFOPlugin_fifoIO_pop_0_payload_state_except_payload_code_reg[1]/D
+                               10.296          5.000            -0.115          -5.448        
+u_cpu/u_nop_core/toplevel_cpu/ROBFIFOPlugin_fifoIO_pop_0_payload_state_intResult_reg[18]/D
+                               10.287          5.000            -0.123          -5.445        
+u_cpu/u_nop_core/toplevel_cpu/ROBFIFOPlugin_fifoIO_pop_0_payload_state_intResult_reg[11]/D
+                               10.279          5.000            -0.125          -5.441        
+u_cpu/u_nop_core/toplevel_cpu/ROBFIFOPlugin_fifoIO_pop_0_payload_state_intResult_reg[24]/D
+                               10.280          5.000            -0.126          -5.440        
+u_cpu/u_nop_core/toplevel_cpu/ROBFIFOPlugin_fifoIO_pop_1_payload_state_complete_reg/D
+                               10.415          5.000            -0.031          -5.437        
+u_cpu/u_nop_core/toplevel_cpu/IntIssueQueuePlugin_queue_3_payload_rRegs_0_valid_reg/D
+                               10.510          5.000            0.068           -5.437        
+u_cpu/u_nop_core/toplevel_cpu/ROBFIFOPlugin_fifoIO_pop_0_payload_state_intResult_reg[30]/D
+                               10.272          5.000            -0.127          -5.434        
+u_cpu/u_nop_core/toplevel_cpu/ROBFIFOPlugin_fifoIO_pop_0_payload_state_except_valid_reg/D
+                               10.321          5.000            -0.116          -5.432        
+u_cpu/u_nop_core/toplevel_cpu/ROBFIFOPlugin_fifoIO_pop_0_payload_state_intResult_reg[14]/D
+                               10.267          5.000            -0.127          -5.431        
+u_cpu/u_nop_core/toplevel_cpu/ROBFIFOPlugin_fifoIO_pop_0_payload_state_actualTaken_reg/D
+                               10.277          5.000            -0.117          -5.431        
+u_cpu/u_nop_core/toplevel_cpu/ROBFIFOPlugin_fifoIO_pop_0_payload_state_except_payload_code_reg[0]/D
+                               10.279          5.000            -0.112          -5.428        
+u_cpu/u_nop_core/toplevel_cpu/ROBFIFOPlugin_fifoIO_pop_0_payload_state_mispredict_reg/D
+                               10.362          5.000            -0.028          -5.427        
+u_cpu/u_nop_core/toplevel_cpu/ROBFIFOPlugin_fifoIO_pop_0_payload_state_intResult_reg[4]/D
+                               10.312          5.000            -0.123          -5.426        
+u_cpu/u_nop_core/toplevel_cpu/ROBFIFOPlugin_fifoIO_pop_0_payload_state_intResult_reg[13]/D
+                               10.309          5.000            -0.125          -5.425        
+u_cpu/u_nop_core/toplevel_cpu/ROBFIFOPlugin_fifoIO_pop_0_payload_state_except_payload_code_reg[2]/D
+                               10.276          5.000            -0.112          -5.423        
+u_cpu/u_nop_core/toplevel_cpu/ROBFIFOPlugin_fifoIO_pop_0_payload_state_except_payload_badVA_reg[17]/D
+                               10.249          5.000            -0.134          -5.420        
+u_cpu/u_nop_core/toplevel_cpu/ROBFIFOPlugin_fifoIO_pop_0_payload_state_intResult_reg[10]/D
+                               10.260          5.000            -0.125          -5.420        
+u_cpu/u_nop_core/toplevel_cpu/IntIssueQueuePlugin_queue_3_payload_rRegs_1_valid_reg/D
+                               10.450          5.000            0.069           -5.418        
+u_cpu/u_nop_core/toplevel_cpu/ROBFIFOPlugin_fifoIO_pop_0_payload_state_intResult_reg[2]/D
+                               10.300          5.000            -0.123          -5.416        
+u_cpu/u_nop_core/toplevel_cpu/ROBFIFOPlugin_fifoIO_pop_0_payload_state_except_payload_badVA_reg[11]/D
+                               10.242          5.000            -0.132          -5.411        
+u_cpu/u_nop_core/toplevel_cpu/ROBFIFOPlugin_fifoIO_pop_0_payload_state_except_payload_badVA_reg[24]/D
+                               10.237          5.000            -0.133          -5.407        
+u_cpu/u_nop_core/toplevel_cpu/ROBFIFOPlugin_fifoIO_pop_0_payload_state_except_payload_badVA_reg[10]/D
+                               10.233          5.000            -0.131          -5.401        
+u_cpu/u_nop_core/toplevel_cpu/ROBFIFOPlugin_fifoIO_pop_0_payload_state_intResult_reg[8]/D
+                               10.238          5.000            -0.126          -5.401        
+u_cpu/u_nop_core/toplevel_cpu/ROBFIFOPlugin_fifoIO_pop_0_payload_state_complete_reg/D
+                               10.253          5.000            -0.113          -5.400        
+u_cpu/u_nop_core/toplevel_cpu/IntIssueQueuePlugin_queue_4_payload_rRegs_0_valid_reg/D
+                               10.427          5.000            0.068           -5.396        
+u_cpu/u_nop_core/toplevel_cpu/ROBFIFOPlugin_fifoIO_pop_0_payload_state_except_payload_badVA_reg[13]/D
+                               10.227          5.000            -0.125          -5.389        
+u_cpu/u_nop_core/toplevel_cpu/ICachePlugin_dataRAMs_0/mem/xpm_memory_base_inst/gen_wr_a.gen_byte_narrow.for_mem_cols[1].mem_reg_6/ADDRARDADDR[8]
+                               10.136          5.000            0.305           -5.388        
+u_cpu/u_nop_core/toplevel_cpu/ROBFIFOPlugin_fifoIO_pop_0_payload_state_except_payload_badVA_reg[12]/D
+                               10.264          5.000            -0.128          -5.387        
+u_cpu/u_nop_core/toplevel_cpu/IntIssueQueuePlugin_queue_2_payload_rRegs_1_valid_reg/D
+                               10.460          5.000            0.069           -5.386        
+u_cpu/u_nop_core/toplevel_cpu/ROBFIFOPlugin_fifoIO_pop_0_payload_state_except_payload_isTLBRefill_reg/D
+                               10.228          5.000            -0.116          -5.381        
+u_cpu/u_nop_core/toplevel_cpu/ROBFIFOPlugin_fifoIO_pop_0_payload_state_intResult_reg[0]/D
+                               10.217          5.000            -0.126          -5.378        
+u_cpu/u_nop_core/toplevel_cpu/ICachePlugin_dataRAMs_0/mem/xpm_memory_base_inst/gen_wr_a.gen_byte_narrow.for_mem_cols[1].mem_reg_2/ADDRARDADDR[6]
+                               10.120          5.000            0.302           -5.375        
+u_cpu/u_nop_core/toplevel_cpu/ROBFIFOPlugin_fifoIO_pop_0_payload_state_except_payload_code_reg[3]/D
+                               10.226          5.000            -0.112          -5.375        
+u_cpu/u_nop_core/toplevel_cpu/RenamePlugin_freeList/dataVec_3_reg[0]/CE
+                               10.175          5.000            0.038           -5.372        
+u_cpu/u_nop_core/toplevel_cpu/RenamePlugin_freeList/dataVec_3_reg[4]/CE
+                               10.175          5.000            0.038           -5.372        
+u_cpu/u_nop_core/toplevel_cpu/RenamePlugin_freeList/dataVec_3_reg[5]/CE
+                               10.175          5.000            0.038           -5.372        
+u_cpu/u_nop_core/toplevel_cpu/ROBFIFOPlugin_fifoIO_pop_0_payload_state_intResult_reg[31]/D
+                               10.218          5.000            -0.118          -5.371        
+u_cpu/u_nop_core/toplevel_cpu/MEM_ADDR_to_MEM_MEM1_TLB_LOOKUP_SNAPSHOT_entry_PS_reg[1]/D
+                               10.257          5.000            -0.030          -5.366        
+u_cpu/u_nop_core/toplevel_cpu/ROBFIFOPlugin_fifoIO_pop_0_payload_state_intResult_reg[6]/D
+                               10.205          5.000            -0.124          -5.364        
+u_cpu/u_nop_core/toplevel_cpu/GlobalPredictorBTBPlugin_predictor/pht/rams_2/mem/xpm_memory_base_inst/gen_wr_a.gen_word_narrow.mem_reg/ADDRBWRADDR[10]
+                               9.726           5.000            0.060           -5.363        
+u_cpu/u_nop_core/toplevel_cpu/MMUPlugin_TLBIDX_INDEX_reg[0]/CE
+                               10.153          5.000            0.032           -5.356        
+u_cpu/u_nop_core/toplevel_cpu/MMUPlugin_TLBIDX_INDEX_reg[0]_rep/CE
+                               10.153          5.000            0.032           -5.356        
+u_cpu/u_nop_core/toplevel_cpu/MMUPlugin_TLBIDX_INDEX_reg[0]_rep__0/CE
+                               10.153          5.000            0.032           -5.356        
+u_cpu/u_nop_core/toplevel_cpu/MMUPlugin_TLBIDX_INDEX_reg[2]/CE
+                               10.153          5.000            0.032           -5.356        
+u_cpu/u_nop_core/toplevel_cpu/ROBFIFOPlugin_fifoIO_pop_0_payload_state_except_payload_badVA_reg[1]/D
+                               10.187          5.000            -0.134          -5.356        
+u_cpu/u_nop_core/toplevel_cpu/ROBFIFOPlugin_fifoIO_pop_0_payload_state_except_payload_badVA_reg[18]/D
+                               10.187          5.000            -0.131          -5.355        
+u_cpu/u_nop_core/toplevel_cpu/ROBFIFOPlugin_fifoIO_pop_0_payload_state_intResult_reg[5]/D
+                               10.194          5.000            -0.124          -5.355        
+u_cpu/u_nop_core/toplevel_cpu/ICachePlugin_dataRAMs_1/mem/xpm_memory_base_inst/gen_wr_a.gen_byte_narrow.for_mem_cols[1].mem_reg_1/ADDRARDADDR[8]
+                               10.088          5.000            0.295           -5.350        
+u_cpu/u_nop_core/toplevel_cpu/ROBFIFOPlugin_fifoIO_pop_0_payload_state_intResult_reg[3]/D
+                               10.184          5.000            -0.127          -5.345        
+u_cpu/u_nop_core/toplevel_cpu/ROBFIFOPlugin_fifoIO_pop_0_payload_state_intResult_reg[1]/D
+                               10.184          5.000            -0.126          -5.344        
+u_cpu/u_nop_core/toplevel_cpu/ROBFIFOPlugin_fifoIO_pop_0_payload_state_intResult_reg[19]/D
+                               10.181          5.000            -0.126          -5.342        
+u_cpu/u_nop_core/toplevel_cpu/ICachePlugin_dataRAMs_0/mem/xpm_memory_base_inst/gen_wr_a.gen_byte_narrow.for_mem_cols[1].mem_reg_6/ADDRARDADDR[6]
+                               10.080          5.000            0.305           -5.332        
+u_cpu/u_nop_core/toplevel_cpu/ROBFIFOPlugin_fifoIO_pop_0_payload_state_intResult_reg[29]/D
+                               10.170          5.000            -0.124          -5.329        
+u_cpu/u_nop_core/toplevel_cpu/MMUPlugin_TLBTable_0_E_reg/D
+                               10.358          5.000            0.027           -5.326        
+u_cpu/u_nop_core/toplevel_cpu/ICachePlugin_dataRAMs_0/mem/xpm_memory_base_inst/gen_wr_a.gen_byte_narrow.for_mem_cols[1].mem_reg_0/ADDRARDADDR[9]
+                               9.971           5.000            0.218           -5.310        
+u_cpu/u_nop_core/toplevel_cpu/ROBFIFOPlugin_fifoIO_pop_2_payload_state_except_valid_reg/D
+                               10.228          5.000            -0.042          -5.304        
+u_cpu/u_nop_core/toplevel_cpu/MMUPlugin_TLBTable_1_E_reg/D
+                               10.370          5.000            0.107           -5.300        
+u_cpu/u_nop_core/toplevel_cpu/GlobalPredictorBTBPlugin_predictor/pht/rams_2/mem/xpm_memory_base_inst/gen_wr_a.gen_word_narrow.mem_reg/ADDRBWRADDR[12]
+                               9.656           5.000            0.060           -5.298        
+u_cpu/u_nop_core/toplevel_cpu/ROBFIFOPlugin_fifoIO_pop_0_payload_state_except_payload_badVA_reg[9]/D
+                               10.133          5.000            -0.130          -5.298        
+u_cpu/u_nop_core/toplevel_cpu/ROBFIFOPlugin_fifoIO_pop_0_payload_state_except_payload_badVA_reg[27]/D
+                               10.127          5.000            -0.132          -5.296        
+u_cpu/u_nop_core/toplevel_cpu/ROBFIFOPlugin_fifoIO_pop_0_payload_state_except_payload_badVA_reg[19]/D
+                               10.124          5.000            -0.134          -5.295        
+u_cpu/u_nop_core/toplevel_cpu/IntIssueQueuePlugin_queue_1_payload_rRegs_1_valid_reg/D
+                               10.326          5.000            0.069           -5.294        
+u_cpu/u_nop_core/toplevel_cpu/ROBFIFOPlugin_fifoIO_pop_0_payload_state_except_payload_badVA_reg[23]/D
+                               10.129          5.000            -0.125          -5.289        
+u_cpu/u_nop_core/toplevel_cpu/IntIssueQueuePlugin_queue_1_payload_rRegs_0_valid_reg/D
+                               10.321          5.000            0.068           -5.288        
+u_cpu/u_nop_core/toplevel_cpu/ROBFIFOPlugin_fifoIO_pop_0_payload_state_intResult_reg[16]/D
+                               10.131          5.000            -0.122          -5.288        
+u_cpu/u_nop_core/toplevel_cpu/GlobalPredictorBTBPlugin_predictor/pht/rams_2/mem/xpm_memory_base_inst/gen_wr_a.gen_word_narrow.mem_reg/ADDRBWRADDR[11]
+                               9.650           5.000            0.060           -5.286        
+u_cpu/u_nop_core/toplevel_cpu/ROBFIFOPlugin_fifoIO_pop_0_payload_state_except_payload_badVA_reg[14]/D
+                               10.119          5.000            -0.130          -5.286        
+u_cpu/u_nop_core/toplevel_cpu/ICachePlugin_dataRAMs_1/mem/xpm_memory_base_inst/gen_wr_a.gen_byte_narrow.for_mem_cols[1].mem_reg_3/ADDRARDADDR[6]
+                               10.023          5.000            0.297           -5.283        
+u_cpu/u_nop_core/toplevel_cpu/ROBFIFOPlugin_fifoIO_pop_0_payload_state_intResult_reg[17]/D
+                               10.118          5.000            -0.126          -5.278        
+u_cpu/u_nop_core/toplevel_cpu/ROBFIFOPlugin_fifoIO_pop_0_payload_state_intResult_reg[9]/D
+                               10.162          5.000            -0.123          -5.276        
+u_cpu/u_nop_core/toplevel_cpu/RenamePlugin_freeList/dataVec_3_reg[2]/CE
+                               10.080          5.000            0.039           -5.276        
+u_cpu/u_nop_core/toplevel_cpu/RenamePlugin_freeList/dataVec_3_reg[3]/CE
+                               10.080          5.000            0.039           -5.276        
+u_cpu/u_nop_core/toplevel_cpu/ICachePlugin_dataRAMs_0/mem/xpm_memory_base_inst/gen_wr_a.gen_byte_narrow.for_mem_cols[1].mem_reg_2/ADDRARDADDR[8]
+                               10.019          5.000            0.302           -5.274        
+u_cpu/u_nop_core/toplevel_cpu/ROBFIFOPlugin_fifoIO_pop_0_payload_state_except_payload_badVA_reg[31]/D
+                               10.111          5.000            -0.128          -5.274        
+u_cpu/u_nop_core/toplevel_cpu/ROBFIFOPlugin_fifoIO_pop_2_payload_state_complete_reg/D
+                               10.188          5.000            -0.045          -5.270        
+u_cpu/u_nop_core/toplevel_cpu/IntIssueQueuePlugin_queue_0_payload_rRegs_1_valid_reg/D
+                               10.343          5.000            0.069           -5.269        
+u_cpu/u_nop_core/toplevel_cpu/ICachePlugin_dataRAMs_1/mem/xpm_memory_base_inst/gen_wr_a.gen_byte_narrow.for_mem_cols[1].mem_reg_1/ADDRARDADDR[11]
+                               10.001          5.000            0.295           -5.263        
+u_cpu/u_nop_core/toplevel_cpu/RenamePlugin_freeList/dataVec_7_reg[3]/CE
+                               10.066          5.000            0.041           -5.260        
+u_cpu/u_nop_core/toplevel_cpu/RenamePlugin_freeList/dataVec_7_reg[4]/CE
+                               10.066          5.000            0.041           -5.260        
+u_cpu/u_nop_core/toplevel_cpu/ROBFIFOPlugin_fifoIO_pop_0_payload_state_intResult_reg[22]/D
+                               10.098          5.000            -0.127          -5.260        
+u_cpu/u_nop_core/toplevel_cpu/ROBFIFOPlugin_fifoIO_pop_0_payload_state_intResult_reg[12]/D
+                               10.143          5.000            -0.123          -5.259        
+u_cpu/u_nop_core/toplevel_cpu/ROBFIFOPlugin_fifoIO_pop_0_payload_state_except_payload_badVA_reg[29]/D
+                               10.089          5.000            -0.134          -5.258        
+u_cpu/u_nop_core/toplevel_cpu/RenamePlugin_freeList/dataVec_23_reg[4]/CE
+                               10.065          5.000            0.042           -5.258        
+u_cpu/u_nop_core/toplevel_cpu/ICachePlugin_dataRAMs_0/mem/xpm_memory_base_inst/gen_wr_a.gen_byte_narrow.for_mem_cols[1].mem_reg_0/ADDRARDADDR[6]
+                               9.917           5.000            0.218           -5.256        
+u_cpu/u_nop_core/toplevel_cpu/ROBFIFOPlugin_fifoIO_pop_0_payload_state_except_payload_badVA_reg[7]/D
+                               10.093          5.000            -0.128          -5.256        
+u_cpu/u_nop_core/toplevel_cpu/ROBFIFOPlugin_fifoIO_pop_0_payload_state_except_payload_badVA_reg[26]/D
+                               10.087          5.000            -0.131          -5.253        
+
+
+

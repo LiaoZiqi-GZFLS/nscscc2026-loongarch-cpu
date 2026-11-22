@@ -1,0 +1,103 @@
+package NOP.pipeline.fetch
+
+import spinal.core._
+import spinal.lib._
+
+import NOP.pipeline.fetch._
+import NOP.pipeline.core._
+import NOP.pipeline._
+import NOP.builder._
+import NOP.utils._
+import NOP._
+
+final case class InstBufferEntry(config: FrontendConfig) extends Bundle {
+  val pc = UWord()
+  val inst = BWord()
+  // 优化宽度，前端exception不需要bad va，永远是pc
+  val except = Flow(ExceptionPayloadBundle(false))
+  val predInfo = BranchPredictInfoBundle()
+  val predRecover = PredictRecoverBundle(config)
+}
+
+class FetchBufferPlugin(config: MyCPUConfig) extends Plugin[FetchPipeline] {
+  private val frontend = config.frontend
+  private val icache = config.frontend.icache
+  val bufferFIFO =
+    // round-4:pop 负载整拍寄存(MultiPortFIFOVecOutReg),切断
+    // popPtr→pop数据mux→译码的 15 级链(round-3 top60 中 41 条路径的源头)。
+    // OutReg 的读前推(popPtr+popCount+i)与组合 valid 保证对消费端
+    // (译码)协议不变:valid/payload 同拍对应同一表项。
+    new MultiPortFIFOVecOutReg(
+      InstBufferEntry(config.frontend),
+      frontend.fetchBufferDepth,
+      frontend.fetchWidth,
+      config.decode.decodeWidth,
+      dataInit = { _ =>
+        val z = InstBufferEntry(config.frontend)
+        z.assignFromBits(B(0, widthOf(z) bits))
+        z
+      }, // round-14:X-sweep 缓冲条目复位清零
+      useOccupancyCounter = true,
+      // round-16: specReadPop 重新启用(round-15 曾因功能挂死回退) -
+      // 根因是投机读索引 popCount(2bit)+i 溢出截断(见 MultiPortFIFOVec
+      // round-16 修复),与投机读结构本身无关。恢复以切断
+      // 仲裁链→popCount→读地址 的深度。
+      specReadPop = true
+    ) {
+      val flush = in(Bool)
+      when(flush) {
+        pushPtr := 0
+        popPtr := 0
+        isRisingOccupancy := False
+        occupancy := 0
+        // io.push.foreach(_.setBlocked())
+      }
+      pushPtr.asOutput()
+      popPtr.asOutput()
+    }
+  def popPorts = bufferFIFO.io.pop
+  override def build(pipeline: FetchPipeline): Unit = pipeline.IF3 plug new Area {
+
+    val flush = pipeline.globalService(classOf[CommitPlugin]).needFlush
+    // round-12(EXE 提前重定向):squash 拍同样清空 FB——否则重定向后旧流
+    // 顺序取指残留会继续流进译码/派发,占住被 squash 的 ROB 区(其生产者
+    // 已被冲刷,永不完结),提交卡死在死项上(实测 58/58 0 点死锁根因)。
+    // round-13:valid 是 6 拍 hold——FB 清空必须用上升沿脉冲,否则 hold 期内
+    // 到达的新流前几拍被反复清掉(取指流出现空洞→功能点错误)。
+    val earlyRedir = pipeline.globalService(classOf[ROBFIFOPlugin]).earlyRedirect
+    val earlyRedirRising = earlyRedir.valid && !RegNext(earlyRedir.valid, init = False)
+    bufferFIFO.flush := flush || earlyRedirRising // clear when need flush
+
+    import pipeline.IF3._
+    import pipeline.signals._
+    // data有效当且仅当不超过cache line
+    val pcWordOffset = input(PC)(icache.wordOffsetRange)
+    val isStall = False
+    val fetchPacket = input(pipeline.signals.FETCH_PACKET)
+    for (i <- 0 until frontend.fetchWidth) {
+      val p = bufferFIFO.io.push(i)
+      val fetchWord = fetchPacket.insts(i)
+      val fetchWordValid = fetchWord.valid && input(pipeline.signals.INSTRUCTION_MASK)(i)
+      // 把前端异常挂给第一条指令，后面的指令没有异常，减少fan out
+      if (i == 0)
+        p.payload.except := fetchPacket.except
+      else
+        p.payload.except.setIdle()
+      p.payload.pc := fetchPacket.pc + i * 4 // Note: i*4 is a constant
+      p.payload.inst := fetchWord.payload
+
+      // //info needed for modify btb and ras
+      p.predInfo.predictBranch := input(pipeline.signals.BRANCH_MASK)(i)
+      p.predInfo.predictTaken := input(pipeline.signals.TAKEN_MASK)(i)
+      p.predInfo.predictAddr := input(PREDICT_ADDR)
+      p.predRecover.recoverTop := input(pipeline.signals.RECOVER_TOP)
+      p.predRecover.predictCounter := input(pipeline.signals.PRED_COUNTER)(i)
+      p.predRecover.ghr := input(PRIVATE_BRANCH_HISTORY)(i)
+
+      // 任何fetch出的word不能进buffer，整个stall住
+      isStall setWhen (arbitration.isValid && fetchWordValid && !p.ready)
+      p.valid := arbitration.isValidNotStuck && fetchWordValid
+    }
+    arbitration.haltItself setWhen isStall
+  }
+}

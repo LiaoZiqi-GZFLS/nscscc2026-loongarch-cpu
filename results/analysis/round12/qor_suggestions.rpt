@@ -1,0 +1,80 @@
+Copyright 1986-2022 Xilinx, Inc. All Rights Reserved. Copyright 2022-2023 Advanced Micro Devices, Inc. All Rights Reserved.
+---------------------------------------------------------------------------------------------------------------------------------------------
+| Tool Version : Vivado v.2023.2 (win64) Build 4029153 Fri Oct 13 20:14:34 MDT 2023
+| Date         : Tue Aug 18 02:34:00 2026
+| Host         : DESKTOP-8OOL3GM running 64-bit major release  (build 9200)
+| Command      : report_qor_suggestions -file D:/code/Vivado/Loongarch_workspace/analysis_round3/qor_suggestions.rpt
+| Design       : soc_top
+| Device       : xc7a200t
+| Design State : Routed
+| ML Models    : v2021.2.0
+---------------------------------------------------------------------------------------------------------------------------------------------
+
+Report QoR Suggestions
+
+Table of Contents
+-----------------
+1. QoR Suggestions Report Summary
+2. ML Strategies
+3. QoR Suggestions - Timing
+4. QoR Suggestions - XDC
+
+1. QoR Suggestions Report Summary
+---------------------------------
+
++-----------------+---------------+-----------+--------------+----------------+-----------+-------------+----------------------+------------------------------------------------------------------------------------------+-------------+
+|       Name      |       Id      |   Status  | Generated At | Applicable For | Automatic |    Scope    | Incremental Friendly |                                        Description                                       |    Source   |
++-----------------+---------------+-----------+--------------+----------------+-----------+-------------+----------------------+------------------------------------------------------------------------------------------+-------------+
+| RQS_TIMING-59-1 | RQS_TIMING-59 | Generated | route_design | place_design   | Yes       | GLOBALSCOPE | No                   | Replicate the nets driven by LUTs in setup critical paths can improve timing             | Current Run |
+| RQS_XDC-1-1     | RQS_XDC-1     | Generated | route_design | synth_design   | No        | GLOBALSCOPE | No                   | Paths above Max Net/LUT budgeting. Review paths and either reduce logic delays, add      | Current Run |
+|                 |               |           |              |                |           |             |                      | pipelining or increase path requirements.                                                |             |
++-----------------+---------------+-----------+--------------+----------------+-----------+-------------+----------------------+------------------------------------------------------------------------------------------+-------------+
+* By default the number of failing paths is limited to 100. Use the -max_paths options to override.
+
+
+2. ML Strategies
+----------------
+
++---+----+---------+---------+
+| # | Id | Command | Options |
++---+----+---------+---------+
+
+
+3. QoR Suggestions - Timing
+---------------------------
+
++-----------------+-------------+--------------+--------+--------+-------+--------+--------+----------------+-------+--------+--------------+-------------------+---------------------------------------------------------------------------------------------+------------------------------------------------------------------------------------------------------------+
+|       Name      | No of Paths | Logic Levels | Routes |  Slack |  Req. |  Skew  | Fanout | Datapath Delay | Cell% | Route% | Source Clock | Destination Clock |                                          Startpoint                                         |                                                  Endpoint                                                  |
++-----------------+-------------+--------------+--------+--------+-------+--------+--------+----------------+-------+--------+--------------+-------------------+---------------------------------------------------------------------------------------------+------------------------------------------------------------------------------------------------------------+
+| RQS_TIMING-59-1 | 19          | 10           | 11     | -3.170 | 5.000 | 0.043  | -      | 8.179          | 17.50 | 82.50  | cpu_clk      | cpu_clk           | u_cpu/u_nop_core/toplevel_cpu/MEM_MEM1_to_MEM_MEM2_ADDRESS_CACHED_reg/C                     | u_cpu/u_nop_core/toplevel_cpu/IntIssueQueuePlugin_queue_0_payload_rRegs_1_valid_reg/D                      |
+|                 | 19          | 11           | 12     | -3.109 | 5.000 | -0.264 | -      | 7.746          | 27.60 | 72.40  | cpu_clk      | cpu_clk           | u_cpu/u_nop_core/toplevel_cpu/IF2_to_IF3_ICACHE_INFO_tags_0_reg[2]/C                        | u_cpu/u_nop_core/toplevel_cpu/FetchBufferPlugin_bufferFIFO/dataVec_4_inst_reg[30]/D                        |
+|                 | 19          | 10           | 11     | -3.123 | 5.000 | -0.084 | -      | 8.004          | 17.90 | 82.10  | cpu_clk      | cpu_clk           | u_cpu/u_nop_core/toplevel_cpu/RENAME_to_DISPATCH_DECODE_PACKET_0_payload_except_valid_reg/C | u_cpu/u_nop_core/toplevel_cpu/FetchBufferPlugin_bufferFIFO/io_pop_0_payload_pc_reg[9]/D                    |
+|                 | 19          | 11           | 12     | -3.108 | 5.000 | -0.084 | -      | 7.989          | 19.20 | 80.80  | cpu_clk      | cpu_clk           | u_cpu/u_nop_core/toplevel_cpu/RENAME_to_DISPATCH_DECODE_PACKET_0_payload_except_valid_reg/C | u_cpu/u_nop_core/toplevel_cpu/FetchBufferPlugin_bufferFIFO/io_pop_0_payload_pc_reg[13]/D                   |
+|                 | 19          | 10           | 11     | -3.115 | 5.000 | -0.084 | -      | 7.997          | 17.90 | 82.10  | cpu_clk      | cpu_clk           | u_cpu/u_nop_core/toplevel_cpu/RENAME_to_DISPATCH_DECODE_PACKET_0_payload_except_valid_reg/C | u_cpu/u_nop_core/toplevel_cpu/FetchBufferPlugin_bufferFIFO/io_pop_0_payload_predInfo_predictAddr_reg[6]/D  |
+|                 | 19          | 10           | 11     | -3.118 | 5.000 | -0.089 | -      | 7.993          | 17.90 | 82.10  | cpu_clk      | cpu_clk           | u_cpu/u_nop_core/toplevel_cpu/RENAME_to_DISPATCH_DECODE_PACKET_0_payload_except_valid_reg/C | u_cpu/u_nop_core/toplevel_cpu/FetchBufferPlugin_bufferFIFO/io_pop_1_payload_pc_reg[24]/D                   |
+|                 | 19          | 10           | 11     | -3.116 | 5.000 | -0.041 | -      | 7.585          | 26.80 | 73.20  | cpu_clk      | cpu_clk           | u_cpu/u_nop_core/toplevel_cpu/IF2_to_IF3_ICACHE_INFO_tags_0_reg[2]/C                        | u_cpu/u_nop_core/toplevel_cpu/FetchBufferPlugin_bufferFIFO/dataVec_0_except_valid_reg/R                    |
+|                 | 19          | 10           | 11     | -3.111 | 5.000 | -0.084 | -      | 8.036          | 17.80 | 82.20  | cpu_clk      | cpu_clk           | u_cpu/u_nop_core/toplevel_cpu/RENAME_to_DISPATCH_DECODE_PACKET_0_payload_except_valid_reg/C | u_cpu/u_nop_core/toplevel_cpu/FetchBufferPlugin_bufferFIFO/io_pop_1_payload_inst_reg[3]/D                  |
+|                 | 19          | 10           | 11     | -3.128 | 5.000 | -0.089 | -      | 8.004          | 17.90 | 82.10  | cpu_clk      | cpu_clk           | u_cpu/u_nop_core/toplevel_cpu/RENAME_to_DISPATCH_DECODE_PACKET_0_payload_except_valid_reg/C | u_cpu/u_nop_core/toplevel_cpu/FetchBufferPlugin_bufferFIFO/io_pop_2_payload_predInfo_predictAddr_reg[31]/D |
+|                 | 19          | 11           | 12     | -3.121 | 5.000 | -0.084 | -      | 8.042          | 19.10 | 80.90  | cpu_clk      | cpu_clk           | u_cpu/u_nop_core/toplevel_cpu/RENAME_to_DISPATCH_DECODE_PACKET_0_payload_except_valid_reg/C | u_cpu/u_nop_core/toplevel_cpu/FetchBufferPlugin_bufferFIFO/io_pop_2_payload_inst_reg[17]/D                 |
+|                 | 19          | 11           | 12     | -3.177 | 5.000 | -0.084 | -      | 8.058          | 19.00 | 81.00  | cpu_clk      | cpu_clk           | u_cpu/u_nop_core/toplevel_cpu/RENAME_to_DISPATCH_DECODE_PACKET_0_payload_except_valid_reg/C | u_cpu/u_nop_core/toplevel_cpu/FetchBufferPlugin_bufferFIFO/io_pop_2_payload_pc_reg[13]/D                   |
+|                 | 19          | 11           | 12     | -3.121 | 5.000 | -0.087 | -      | 8.043          | 19.10 | 80.90  | cpu_clk      | cpu_clk           | u_cpu/u_nop_core/toplevel_cpu/RENAME_to_DISPATCH_DECODE_PACKET_0_payload_except_valid_reg/C | u_cpu/u_nop_core/toplevel_cpu/FetchBufferPlugin_bufferFIFO/io_pop_2_payload_pc_reg[24]/D                   |
+|                 | 19          | 10           | 11     | -3.176 | 5.000 | -0.084 | -      | 8.058          | 17.70 | 82.30  | cpu_clk      | cpu_clk           | u_cpu/u_nop_core/toplevel_cpu/RENAME_to_DISPATCH_DECODE_PACKET_0_payload_except_valid_reg/C | u_cpu/u_nop_core/toplevel_cpu/FetchBufferPlugin_bufferFIFO/io_pop_2_payload_inst_reg[15]/D                 |
+|                 | 19          | 11           | 12     | -3.144 | 5.000 | -0.256 | -      | 7.804          | 27.40 | 72.60  | cpu_clk      | cpu_clk           | u_cpu/u_nop_core/toplevel_cpu/IF2_to_IF3_ICACHE_INFO_tags_0_reg[2]/C                        | u_cpu/u_nop_core/toplevel_cpu/FetchBufferPlugin_bufferFIFO/dataVec_7_inst_reg[0]/D                         |
+|                 | 19          | 10           | 11     | -3.170 | 5.000 | 0.043  | -      | 8.179          | 17.50 | 82.50  | cpu_clk      | cpu_clk           | u_cpu/u_nop_core/toplevel_cpu/MEM_MEM1_to_MEM_MEM2_ADDRESS_CACHED_reg/C                     | u_cpu/u_nop_core/toplevel_cpu/IntIssueQueuePlugin_queue_0_payload_rRegs_1_valid_reg/D                      |
+|                 | 19          | 14           | 15     | -3.315 | 5.000 | 0.035  | -      | 8.313          | 26.30 | 73.70  | cpu_clk      | cpu_clk           | u_cpu/u_nop_core/toplevel_cpu/ROBFIFOPlugin_robInfo/pushPtrReg_reg[1]/C                     | u_cpu/u_nop_core/toplevel_cpu/MMUPlugin_TLBTable_8_E_reg/D                                                 |
+|                 | 19          | 14           | 15     | -3.214 | 5.000 | -0.038 | -      | 8.181          | 26.90 | 73.10  | cpu_clk      | cpu_clk           | u_cpu/u_nop_core/toplevel_cpu/ROBFIFOPlugin_robInfo/pushPtrReg_reg[1]/C                     | u_cpu/u_nop_core/toplevel_cpu/MMUPlugin_TLBTable_6_E_reg/D                                                 |
+|                 | 19          | 11           | 12     | -3.108 | 5.000 | -0.084 | -      | 7.989          | 19.20 | 80.80  | cpu_clk      | cpu_clk           | u_cpu/u_nop_core/toplevel_cpu/RENAME_to_DISPATCH_DECODE_PACKET_0_payload_except_valid_reg/C | u_cpu/u_nop_core/toplevel_cpu/FetchBufferPlugin_bufferFIFO/io_pop_0_payload_pc_reg[13]/D                   |
+|                 | 19          | 12           | 13     | -3.192 | 5.000 | -0.095 | -      | 8.103          | 20.20 | 79.80  | cpu_clk      | cpu_clk           | u_cpu/u_nop_core/toplevel_cpu/RENAME_to_DISPATCH_DECODE_PACKET_0_payload_except_valid_reg/C | u_cpu/u_nop_core/toplevel_cpu/RenamePlugin_freeList/io_pop_0_payload_reg[5]/D                              |
++-----------------+-------------+--------------+--------+--------+-------+--------+--------+----------------+-------+--------+--------------+-------------------+---------------------------------------------------------------------------------------------+------------------------------------------------------------------------------------------------------------+
+
+
+4. QoR Suggestions - XDC
+------------------------
+
++-------------+-------------+--------------+--------+--------+-------+--------+----------------+-------+--------+--------------+-------------------+---------------------------------------------------------------------------------------------+--------------------------------------------------------------------------------------------------------------+---------------------------+---------------------------+-----------------+-----------------+
+|     Name    | No of Paths | Logic Levels | Routes |  Slack |  Req. |  Skew  | Datapath Delay | Cell% | Route% | Source Clock | Destination Clock |                                          Startpoint                                         |                                                   Endpoint                                                   | Path budget for Net check | Path budget for Lut check | Net check slack | LUT check slack |
++-------------+-------------+--------------+--------+--------+-------+--------+----------------+-------+--------+--------------+-------------------+---------------------------------------------------------------------------------------------+--------------------------------------------------------------------------------------------------------------+---------------------------+---------------------------+-----------------+-----------------+
+| RQS_XDC-1-1 | 39          | 11           | 12     | -3.444 | 5.000 | -0.086 | 8.248          | 18.60 | 81.40  | cpu_clk      | cpu_clk           | u_cpu/u_nop_core/toplevel_cpu/RENAME_to_DISPATCH_DECODE_PACKET_0_payload_except_valid_reg/C | u_cpu/u_nop_core/toplevel_cpu/FetchBufferPlugin_bufferFIFO/io_pop_2_payload_except_payload_isTLBRefill_reg/D | 9                         | 9                         | -0.581          | -0.697          |
++-------------+-------------+--------------+--------+--------+-------+--------+----------------+-------+--------+--------------+-------------------+---------------------------------------------------------------------------------------------+--------------------------------------------------------------------------------------------------------------+---------------------------+---------------------------+-----------------+-----------------+
+
+

@@ -1,0 +1,104 @@
+#-----------------------------------------------------------
+# Vivado v2023.2 (64-bit)
+# SW Build 4029153 on Fri Oct 13 20:14:34 MDT 2023
+# IP Build 4028589 on Sat Oct 14 00:45:43 MDT 2023
+# SharedData Build 4025554 on Tue Oct 10 17:18:54 MDT 2023
+# Start of session at: Mon Aug 17 09:43:32 2026
+# Process ID: 60636
+# Current directory: D:/code/Vivado/Loongarch_workspace
+# Command line: vivado.exe -mode batch -source D:\code\Vivado\Loongarch_workspace\analysis_physopt\run_analysis.tcl -journal D:\code\Vivado\Loongarch_workspace\analysis_physopt\analysis.jou -log D:\code\Vivado\Loongarch_workspace\analysis_physopt\analysis.log
+# Log file: D:/code/Vivado/Loongarch_workspace/analysis_physopt/analysis.log
+# Journal file: D:\code\Vivado\Loongarch_workspace\analysis_physopt\analysis.jou
+# Running On: DESKTOP-8OOL3GM, OS: Windows, CPU Frequency: 3793 MHz, CPU Physical cores: 16, Host memory: 23400 MB
+#-----------------------------------------------------------
+Sourcing tcl script 'C:/Xilinx/Vivado/2023.2/scripts/Vivado_init.tcl'
+vivado-mcp server ready on port 9999
+source {D:\code\Vivado\Loongarch_workspace\analysis_physopt\run_analysis.tcl}
+# set outdir "D:/code/Vivado/Loongarch_workspace/analysis_physopt"
+# file mkdir $outdir
+# open_checkpoint {D:/code/Vivado/Loongarch_workspace/chiplab/fpga/nscscc-team/run_vivado/project/loongson.runs/impl_1/soc_top_physopt.dcp}
+Command: open_checkpoint D:/code/Vivado/Loongarch_workspace/chiplab/fpga/nscscc-team/run_vivado/project/loongson.runs/impl_1/soc_top_physopt.dcp
+
+Starting open_checkpoint Task
+
+Time (s): cpu = 00:00:00 ; elapsed = 00:00:00.047 . Memory (MB): peak = 318.055 ; gain = 7.918
+INFO: [Device 21-403] Loading part xc7a200tfbg676-2
+Netlist sorting complete. Time (s): cpu = 00:00:02 ; elapsed = 00:00:01 . Memory (MB): peak = 1097.680 ; gain = 0.000
+INFO: [Netlist 29-17] Analyzing 8085 Unisim elements for replacement
+INFO: [Netlist 29-28] Unisim Transformation completed in 0 CPU seconds
+INFO: [Project 1-479] Netlist was created with Vivado 2023.2
+INFO: [Project 1-570] Preparing netlist for logic optimization
+Read ShapeDB Complete: Time (s): cpu = 00:00:00 ; elapsed = 00:00:00.187 . Memory (MB): peak = 1289.953 ; gain = 0.000
+INFO: [Timing 38-478] Restoring timing data from binary archive.
+INFO: [Timing 38-479] Binary timing data restore complete.
+INFO: [Project 1-856] Restoring constraints from binary archive.
+INFO: [Project 1-853] Binary constraint restore complete.
+INFO: [Designutils 20-5722] Start Reading Physical Databases.
+Reading placement.
+Read Netlist Cache: Time (s): cpu = 00:00:01 ; elapsed = 00:00:00.178 . Memory (MB): peak = 2049.633 ; gain = 0.000
+Reading placer database...
+Read Device Cache: Time (s): cpu = 00:00:00 ; elapsed = 00:00:00.010 . Memory (MB): peak = 2049.633 ; gain = 0.000
+Read PlaceDB: Time (s): cpu = 00:00:03 ; elapsed = 00:00:04 . Memory (MB): peak = 2157.203 ; gain = 107.570
+Read PulsedLatchDB: Time (s): cpu = 00:00:00 ; elapsed = 00:00:00 . Memory (MB): peak = 2157.203 ; gain = 0.000
+Reading routing.
+Read RouteStorage: Time (s): cpu = 00:00:00 ; elapsed = 00:00:00.008 . Memory (MB): peak = 2157.203 ; gain = 0.000
+Read Physdb Files: Time (s): cpu = 00:00:04 ; elapsed = 00:00:04 . Memory (MB): peak = 2157.203 ; gain = 107.570
+Restored from archive | CPU: 5.000000 secs | Memory: 0.000000 MB |
+Finished XDEF File Restore: Time (s): cpu = 00:00:04 ; elapsed = 00:00:04 . Memory (MB): peak = 2157.203 ; gain = 107.570
+Netlist sorting complete. Time (s): cpu = 00:00:00 ; elapsed = 00:00:00.039 . Memory (MB): peak = 2157.203 ; gain = 0.000
+INFO: [Project 1-111] Unisim Transformation Summary:
+  A total of 455 instances were transformed.
+  IOBUF => IOBUF (IBUF, OBUFT): 18 instances
+  IOBUFDS_DIFF_OUT_INTERMDISABLE => IOBUFDS_DIFF_OUT_INTERMDISABLE (IBUFDS_INTERMDISABLE_INT(x2), INV, OBUFTDS(x2)): 2 instances
+  LUT6_2 => LUT6_2 (LUT5, LUT6): 15 instances
+  OBUFDS => OBUFDS_DUAL_BUF (INV, OBUFDS(x2)): 1 instance 
+  RAM32M => RAM32M (RAMD32(x6), RAMS32(x2)): 340 instances
+  RAM32X1D => RAM32X1D (RAMD32(x2)): 26 instances
+  RAM64M => RAM64M (RAMD64E(x4)): 44 instances
+  SRLC32E => SRL16E: 9 instances
+
+INFO: [Project 1-604] Checkpoint was created with Vivado v2023.2 (64-bit) build 4029153
+open_checkpoint: Time (s): cpu = 00:00:35 ; elapsed = 00:00:39 . Memory (MB): peak = 2157.203 ; gain = 1856.668
+# puts "=== clocks ==="
+=== clocks ===
+# puts [get_clocks -filter {NAME =~ *cpu*}]
+cpu_clk
+# if {[catch {report_timing -from [get_clocks cpu_clk] -to [get_clocks cpu_clk] -max_paths 100 -sort_by slack -file $outdir/cpu_clk_setup_top100.rpt} e]} {
+#     puts "ERR cpu_clk top100: $e"
+# }
+INFO: [Timing 38-91] UpdateTimingParams: Speed grade: -2, Delay Type: max.
+INFO: [Timing 38-191] Multithreading enabled for timing update using a maximum of 2 CPUs
+INFO: [Timing 38-78] ReportTimingParams: -from_pins  -to_pins  -max_paths 100 -nworst 1 -delay_type max -sort_by slack.
+report_timing: Time (s): cpu = 00:00:30 ; elapsed = 00:00:17 . Memory (MB): peak = 2800.465 ; gain = 643.262
+# if {[catch {report_timing -max_paths 100 -slack_lesser_than 0 -sort_by slack -file $outdir/all_setup_violations_top100.rpt} e]} {
+#     puts "ERR all setup: $e"
+# }
+INFO: [Timing 38-91] UpdateTimingParams: Speed grade: -2, Delay Type: max.
+INFO: [Timing 38-191] Multithreading enabled for timing update using a maximum of 2 CPUs
+INFO: [Timing 38-78] ReportTimingParams: -max_paths 100 -nworst 1 -delay_type max -sort_by slack.
+# if {[catch {report_timing -from [get_clocks cpu_clk] -to [get_clocks cpu_clk] -max_paths 50 -sort_by slack -path_type recovery -file $outdir/cpu_clk_recovery_top50.rpt} e]} {
+#     puts "ERR recovery: $e"
+# }
+ERR recovery: ERROR: [Vivado 12-603] '-path_type' recovery not recognized.
+
+# if {[catch {report_timing -from [get_clocks cpu_clk] -to [get_clocks cpu_clk] -max_paths 100 -sort_by slack -path_type end -file $outdir/cpu_clk_endpoint_summary.rpt} e]} {
+#     puts "ERR endpoint summary: $e"
+# }
+INFO: [Timing 38-91] UpdateTimingParams: Speed grade: -2, Delay Type: max.
+INFO: [Timing 38-191] Multithreading enabled for timing update using a maximum of 2 CPUs
+INFO: [Timing 38-78] ReportTimingParams: -from_pins  -to_pins  -max_paths 100 -nworst 1 -delay_type max -sort_by slack.
+# if {[catch {report_design_analysis -logic_level_distribution -file $outdir/logic_level_distribution.rpt} e]} {
+#     puts "ERR logic level distribution: $e"
+# }
+# if {[catch {report_qor_suggestions -file $outdir/qor_suggestions.rpt} e]} {
+#     puts "ERR qor: $e"
+# }
+Command: report_qor_suggestions -file D:/code/Vivado/Loongarch_workspace/analysis_physopt/qor_suggestions.rpt
+INFO: [Designutils 20-5453] device: MONO
+Congestion Prediction Time (s): cpu = 00:00:02 ; elapsed = 00:00:02 . Memory (MB): peak = 3165.672 ; gain = 0.000
+INFO: [Implflow 47-1309] PredResultString: 1:48.77:51.23
+report_qor_suggestions completed successfully
+report_qor_suggestions: Time (s): cpu = 00:01:06 ; elapsed = 00:00:54 . Memory (MB): peak = 3165.672 ; gain = 356.355
+# puts "ANALYSIS_DONE"
+ANALYSIS_DONE
+INFO: [Common 17-206] Exiting Vivado at Mon Aug 17 09:45:28 2026...

@@ -1,0 +1,82 @@
+Copyright 1986-2022 Xilinx, Inc. All Rights Reserved. Copyright 2022-2023 Advanced Micro Devices, Inc. All Rights Reserved.
+---------------------------------------------------------------------------------------------------------------------------------------------
+| Tool Version : Vivado v.2023.2 (win64) Build 4029153 Fri Oct 13 20:14:34 MDT 2023
+| Date         : Tue Aug 18 01:24:26 2026
+| Host         : DESKTOP-8OOL3GM running 64-bit major release  (build 9200)
+| Command      : report_qor_suggestions -file D:/code/Vivado/Loongarch_workspace/analysis_round3/qor_suggestions.rpt
+| Design       : soc_top
+| Device       : xc7a200t
+| Design State : Routed
+| ML Models    : v2021.2.0
+---------------------------------------------------------------------------------------------------------------------------------------------
+
+Report QoR Suggestions
+
+Table of Contents
+-----------------
+1. QoR Suggestions Report Summary
+2. ML Strategies
+3. QoR Suggestions - Timing
+4. QoR Suggestions - XDC
+
+1. QoR Suggestions Report Summary
+---------------------------------
+
++------------------+----------------+-----------+--------------+----------------+-----------+-------------+----------------------+------------------------------------------------------------------------------------------+-------------+
+|       Name       |       Id       |   Status  | Generated At | Applicable For | Automatic |    Scope    | Incremental Friendly |                                        Description                                       |    Source   |
++------------------+----------------+-----------+--------------+----------------+-----------+-------------+----------------------+------------------------------------------------------------------------------------------+-------------+
+| RQS_TIMING-201-1 | RQS_TIMING-201 | Generated | route_design | synth_design   | No        | GLOBALSCOPE | No                   | BRAMs should be pipelined for better timing. Refer to UG 906 Appendix B for information  | Current Run |
+|                  |                |           |              |                |           |             |                      | on how to fix this check.                                                                |             |
+| RQS_TIMING-59-1  | RQS_TIMING-59  | Generated | route_design | place_design   | Yes       | GLOBALSCOPE | No                   | Replicate the nets driven by LUTs in setup critical paths can improve timing             | Current Run |
+| RQS_XDC-1-1      | RQS_XDC-1      | Generated | route_design | synth_design   | No        | GLOBALSCOPE | No                   | Paths above Max Net/LUT budgeting. Review paths and either reduce logic delays, add      | Current Run |
+|                  |                |           |              |                |           |             |                      | pipelining or increase path requirements.                                                |             |
++------------------+----------------+-----------+--------------+----------------+-----------+-------------+----------------------+------------------------------------------------------------------------------------------+-------------+
+* By default the number of failing paths is limited to 100. Use the -max_paths options to override.
+
+
+2. ML Strategies
+----------------
+
++---+----+---------+---------+
+| # | Id | Command | Options |
++---+----+---------+---------+
+
+
+3. QoR Suggestions - Timing
+---------------------------
+
++-----------------+-------------+--------------+--------+--------+-------+--------+--------+----------------+-------+--------+--------------+-------------------+---------------------------------------------------------------------------------------------+-------------------------------------------------------------------------------------------------------------------------------------------------------+
+|       Name      | No of Paths | Logic Levels | Routes |  Slack |  Req. |  Skew  | Fanout | Datapath Delay | Cell% | Route% | Source Clock | Destination Clock |                                          Startpoint                                         |                                                                        Endpoint                                                                       |
++-----------------+-------------+--------------+--------+--------+-------+--------+--------+----------------+-------+--------+--------------+-------------------+---------------------------------------------------------------------------------------------+-------------------------------------------------------------------------------------------------------------------------------------------------------+
+| RQS_TIMING-59-1 | 12          | 13           | 13     | -3.252 | 5.000 | -0.111 | -      | 8.150          | 25.40 | 74.60  | cpu_clk      | cpu_clk           | u_cpu/u_nop_core/toplevel_cpu/ROBFIFOPlugin_robInfo/pushPtrReg_reg[0]/C                     | u_cpu/u_nop_core/toplevel_cpu/FetchBufferPlugin_bufferFIFO/io_pop_1_payload_pc_reg[14]/D                                                              |
+|                 | 12          | 13           | 13     | -3.201 | 5.000 | -0.115 | -      | 8.051          | 25.70 | 74.30  | cpu_clk      | cpu_clk           | u_cpu/u_nop_core/toplevel_cpu/ROBFIFOPlugin_robInfo/pushPtrReg_reg[0]/C                     | u_cpu/u_nop_core/toplevel_cpu/FetchBufferPlugin_bufferFIFO/io_pop_1_payload_pc_reg[5]/D                                                               |
+|                 | 12          | 13           | 13     | -3.276 | 5.000 | -0.124 | -      | 8.117          | 25.50 | 74.50  | cpu_clk      | cpu_clk           | u_cpu/u_nop_core/toplevel_cpu/ROBFIFOPlugin_robInfo/pushPtrReg_reg[0]/C                     | u_cpu/u_nop_core/toplevel_cpu/FetchBufferPlugin_bufferFIFO/io_pop_1_payload_inst_reg[17]/D                                                            |
+|                 | 12          | 13           | 13     | -3.211 | 5.000 | -0.127 | -      | 8.050          | 25.70 | 74.30  | cpu_clk      | cpu_clk           | u_cpu/u_nop_core/toplevel_cpu/ROBFIFOPlugin_robInfo/pushPtrReg_reg[0]/C                     | u_cpu/u_nop_core/toplevel_cpu/FetchBufferPlugin_bufferFIFO/io_pop_2_payload_pc_reg[2]/D                                                               |
+|                 | 12          | 13           | 13     | -3.273 | 5.000 | -0.108 | -      | 8.129          | 25.40 | 74.60  | cpu_clk      | cpu_clk           | u_cpu/u_nop_core/toplevel_cpu/ROBFIFOPlugin_robInfo/pushPtrReg_reg[0]/C                     | u_cpu/u_nop_core/toplevel_cpu/FetchBufferPlugin_bufferFIFO/io_pop_2_payload_pc_reg[14]/D                                                              |
+|                 | 12          | 9            | 10     | -3.236 | 5.000 | -0.035 | -      | 8.193          | 22.20 | 77.80  | cpu_clk      | cpu_clk           | u_cpu/u_nop_core/toplevel_cpu/MEM_ISS_to_MEM_RRD_ISSUE_SLOT_rRegs_0_payload_reg[0]_rep__3/C | u_cpu/u_nop_core/toplevel_cpu/MEM_RRD_to_MEM_ADDR_MEMORY_ADDRESS_reg[29]/D                                                                            |
+|                 | 12          | 12           | 12     | -3.198 | 5.000 | 0.008  | -      | 7.504          | 31.00 | 69.00  | cpu_clk      | cpu_clk           | u_cpu/u_nop_core/toplevel_cpu/ROBFIFOPlugin_robInfo/pushPtrReg_reg[0]/C                     | u_cpu/u_nop_core/toplevel_cpu/GlobalPredictorBTBPlugin_predictor/pht/rams_0/mem/xpm_memory_base_inst/gen_wr_a.gen_word_narrow.mem_reg/ADDRBWRADDR[12] |
+|                 | 12          | 13           | 13     | -3.256 | 5.000 | 0.044  | -      | 8.265          | 32.00 | 68.00  | cpu_clk      | cpu_clk           | u_cpu/u_nop_core/toplevel_cpu/ROBFIFOPlugin_robInfo/pushPtrReg_reg[0]/C                     | u_cpu/u_nop_core/toplevel_cpu/MMUPlugin_TLBTable_5_E_reg/D                                                                                            |
+|                 | 12          | 10           | 10     | -3.198 | 5.000 | 0.059  | -      | 8.054          | 22.00 | 78.00  | cpu_clk      | cpu_clk           | u_cpu/u_nop_core/toplevel_cpu/ROBFIFOPlugin_robInfo/pushPtrReg_reg[0]/C                     | u_cpu/u_nop_core/toplevel_cpu/RenamePlugin_freeList/dataVec_31_reg[5]/CE                                                                              |
+|                 | 12          | 12           | 12     | -3.200 | 5.000 | -0.119 | -      | 8.044          | 24.40 | 75.60  | cpu_clk      | cpu_clk           | u_cpu/u_nop_core/toplevel_cpu/ROBFIFOPlugin_robInfo/pushPtrReg_reg[1]/C                     | u_cpu/u_nop_core/toplevel_cpu/ROBFIFOPlugin_fifoIO_pop_0_payload_state_intResult_reg[6]/D                                                             |
+|                 | 12          | 10           | 10     | -3.237 | 5.000 | 0.140  | -      | 8.342          | 19.80 | 80.20  | cpu_clk      | cpu_clk           | u_cpu/u_nop_core/toplevel_cpu/RENAME_to_DISPATCH_DECODE_PACKET_0_payload_except_valid_reg/C | u_cpu/u_nop_core/toplevel_cpu/RenamePlugin_freeList/io_pop_2_payload_reg[2]/D                                                                         |
+|                 | 12          | 10           | 10     | -3.222 | 5.000 | 0.143  | -      | 8.329          | 19.80 | 80.20  | cpu_clk      | cpu_clk           | u_cpu/u_nop_core/toplevel_cpu/RENAME_to_DISPATCH_DECODE_PACKET_0_payload_except_valid_reg/C | u_cpu/u_nop_core/toplevel_cpu/RenamePlugin_freeList/io_pop_0_payload_reg[3]/D                                                                         |
++-----------------+-------------+--------------+--------+--------+-------+--------+--------+----------------+-------+--------+--------------+-------------------+---------------------------------------------------------------------------------------------+-------------------------------------------------------------------------------------------------------------------------------------------------------+
+
+
++------------------+---------------------------------------------------------------------------------------------------------------------------------------+-----------------------------------------------------------------------+
+|       Name       |                                                              Object Name                                                              |                                  File                                 |
++------------------+---------------------------------------------------------------------------------------------------------------------------------------+-----------------------------------------------------------------------+
+| RQS_TIMING-201-1 | u_cpu/u_nop_core/toplevel_cpu/GlobalPredictorBTBPlugin_predictor/pht/rams_0/mem/xpm_memory_base_inst/gen_wr_a.gen_word_narrow.mem_reg | C:/Xilinx/Vivado/2023.2/data/ip/xpm/xpm_memory/hdl/xpm_memory.sv:1419 |
++------------------+---------------------------------------------------------------------------------------------------------------------------------------+-----------------------------------------------------------------------+
+
+
+4. QoR Suggestions - XDC
+------------------------
+
++-------------+-------------+--------------+--------+--------+-------+-------+----------------+-------+--------+--------------+-------------------+-------------------------------------------------------------------------+--------------------------------------------------------------------------+---------------------------+---------------------------+-----------------+-----------------+
+|     Name    | No of Paths | Logic Levels | Routes |  Slack |  Req. |  Skew | Datapath Delay | Cell% | Route% | Source Clock | Destination Clock |                                Startpoint                               |                                 Endpoint                                 | Path budget for Net check | Path budget for Lut check | Net check slack | LUT check slack |
++-------------+-------------+--------------+--------+--------+-------+-------+----------------+-------+--------+--------------+-------------------+-------------------------------------------------------------------------+--------------------------------------------------------------------------+---------------------------+---------------------------+-----------------+-----------------+
+| RQS_XDC-1-1 | 33          | 10           | 10     | -3.350 | 5.000 | 0.059 | 8.174          | 21.60 | 78.40  | cpu_clk      | cpu_clk           | u_cpu/u_nop_core/toplevel_cpu/ROBFIFOPlugin_robInfo/pushPtrReg_reg[0]/C | u_cpu/u_nop_core/toplevel_cpu/RenamePlugin_freeList/dataVec_24_reg[4]/CE | 9                         | 9                         | -0.445          | -0.176          |
++-------------+-------------+--------------+--------+--------+-------+-------+----------------+-------+--------+--------------+-------------------+-------------------------------------------------------------------------+--------------------------------------------------------------------------+---------------------------+---------------------------+-----------------+-----------------+
+
+

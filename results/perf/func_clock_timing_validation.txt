@@ -1,0 +1,7 @@
+build_kind=func
+requested_cpu_mhz=
+actual_cpu_mhz=32.726797
+actual_sys_mhz=100.000000
+actual_ddr_mhz=200.000000
+setup_wns_ns=0.978000
+hold_wns_ns=0.053000

@@ -1,0 +1,25 @@
+#-----------------------------------------------------------
+# Vivado v2023.2 (64-bit)
+# SW Build 4029153 on Fri Oct 13 20:14:34 MDT 2023
+# IP Build 4028589 on Sat Oct 14 00:45:43 MDT 2023
+# SharedData Build 4025554 on Tue Oct 10 17:18:54 MDT 2023
+# Start of session at: Mon Aug 17 09:47:41 2026
+# Process ID: 43880
+# Current directory: D:/code/Vivado/Loongarch_workspace
+# Command line: vivado.exe -mode batch -source D:\code\Vivado\Loongarch_workspace\analysis_physopt\run_analysis2.tcl -journal D:\code\Vivado\Loongarch_workspace\analysis_physopt\analysis2.jou -log D:\code\Vivado\Loongarch_workspace\analysis_physopt\analysis2.log
+# Log file: D:/code/Vivado/Loongarch_workspace/analysis_physopt/analysis2.log
+# Journal file: D:\code\Vivado\Loongarch_workspace\analysis_physopt\analysis2.jou
+# Running On: DESKTOP-8OOL3GM, OS: Windows, CPU Frequency: 3793 MHz, CPU Physical cores: 16, Host memory: 23400 MB
+#-----------------------------------------------------------
+Sourcing tcl script 'C:/Xilinx/Vivado/2023.2/scripts/Vivado_init.tcl'
+vivado-mcp: port 9999 busy, exiting (not sliding to another port)
+source {D:\code\Vivado\Loongarch_workspace\analysis_physopt\run_analysis2.tcl}
+# set outdir "D:/code/Vivado/Loongarch_workspace/analysis_physopt"
+# open_checkpoint {D:/code/Vivado/Loongarch_workspace/chiplab/fpga/nscscc-team/run_vivado/project/loongson.runs/impl_1/soc_top_physopt.dcp}
+Command: open_checkpoint D:/code/Vivado/Loongarch_workspace/chiplab/fpga/nscscc-team/run_vivado/project/loongson.runs/impl_1/soc_top_physopt.dcp
+
+Starting open_checkpoint Task
+
+Time (s): cpu = 00:00:00 ; elapsed = 00:00:00.031 . Memory (MB): peak = 317.914 ; gain = 7.680
+ERROR: [Common 17-69] Command failed: File 'D:/code/Vivado/Loongarch_workspace/chiplab/fpga/nscscc-team/run_vivado/project/loongson.runs/impl_1/soc_top_physopt.dcp' does not exist
+INFO: [Common 17-206] Exiting Vivado at Mon Aug 17 09:47:43 2026...
