@@ -126,11 +126,24 @@ abstract class CompressedQueue[T <: IssueSlot](
     // P5(级数压缩):远程唤醒由"逐口 when 优先级链"改为并行 OR 树。
     // 所有口写的都是常量 True,优先级链与 OR 语义等价;比较(7 位)
     // 与 OR 树全部并行,每个 (槽,源) 从约 5-6 级降到 3-4 级。
+    // round-14: 唤醒脉冲延展到 2 拍。原因: 派发侧的 busy 读不再做
+    // 同拍清 busy 旁路(PhysRegFilePlugin 已删), 同拍入队的指令会错过
+    // 当拍的一次性唤醒脉冲。把 clearBusy 的 valid/payload 寄存一拍,
+    // 当前拍与原脉冲的延迟副本 **并行** 参与比较(不能合并成单个
+    // OR+Mux: 连续两拍有不同清 bus 事件时, 合并形式会用新事件覆盖
+    // 上一拍的延展副本, 恰好丢掉同拍入队指令需要的那次唤醒)。
+    // 对单写者物理寄存器而言不存在错误唤醒(新入队条目的 rTag 不可能
+    // 等于仍在途生产者的物理号), 语义安全, 代价为唤醒晚 1 拍可见。
     val ports = prf.clearBusys
+    val stretchedPorts = ports.flatMap { p =>
+      val v = RegNext(p.valid) init (False)
+      val d = RegNext(p.payload)
+      Seq((p.valid, p.payload), (v, d))
+    }
     for (i <- 0 until depth) {
       for (j <- 0 until rPorts) {
-        val waken = ports
-          .map(p => p.valid && p.payload === queue(i).payload.rRegs(j).payload)
+        val waken = stretchedPorts
+          .map { case (v, d) => v && d === queue(i).payload.rRegs(j).payload }
           .reduceBalancedTree(_ || _)
         when(waken) {
           queue(i).payload.rRegs(j).valid := True

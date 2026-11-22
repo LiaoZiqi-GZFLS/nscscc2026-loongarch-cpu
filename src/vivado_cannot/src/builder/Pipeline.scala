@@ -203,7 +203,11 @@ trait Pipeline {
     if (stages.nonEmpty) {
       // stage 0 特殊
       val stage = stages(0)
-      stage.arbitration.isValid.setAsReg() init True
+      // round-18: isValid/isValidOnEntry 是各级所有负载寄存器 CE 的公共
+      // 驱动(r12: RENAME isValid fo=1545,布线主导)。max_fanout 提示综合器
+      // 按消费组复制驱动 FF,纯提示、不改语义(round-13 曾加过,ba34d1c
+      // 随 X-sweep 一起回退,现恢复)。
+      stage.arbitration.isValid.setAsReg().addAttribute("max_fanout", "250") init True
       stage.arbitration.isValidOnEntry := True
       // 立即记录removeIt
       stage.arbitration.isValid clearWhen (stage.arbitration.removeIt)
@@ -215,8 +219,8 @@ trait Pipeline {
       val stageBefore = stages(stageIndex - 1)
       val stage = stages(stageIndex)
 
-      stage.arbitration.isValid.setAsReg() init (False)
-      stage.arbitration.isValidOnEntry.setAsReg() init (False)
+      stage.arbitration.isValid.setAsReg().addAttribute("max_fanout", "250") init (False)
+      stage.arbitration.isValidOnEntry.setAsReg().addAttribute("max_fanout", "250") init (False)
 
       when(!stage.arbitration.isStuck || stage.arbitration.removeIt) {
         stage.arbitration.isValid := False

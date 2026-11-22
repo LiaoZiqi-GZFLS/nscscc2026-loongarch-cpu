@@ -100,12 +100,11 @@ class PhysRegFilePlugin(config: RegFileConfig) extends Plugin[MyCPUCore] {
       when(writeOH.orR) { r._2 := MuxOH(writeOH, bypassWritePorts.map(_.hw.payload.data)) }
     }
 
-    // Bypassing Logic for readBusys
-    readBusys.foreach { r =>
-      // busy需要被前传，这样write back就会唤醒正在进入IQ的指令
-      val writeOH = clearBusys.map { p => p.valid && p.payload === r._1 }
-      when(writeOH.orR) { r._2 := False }
-    }
+    // round-14: 删除 readBusys 的同拍清 busy 旁路(设计文档 §4.5)。
+    // 旁路使派发的 rRegs.valid 依赖 WB 写使能(对 LSU 而言 = TLB 命中/
+    // uncached FSM/axiBuffer 状态), 构成 MEM→IQ 的跨模块组合链(150MHz
+    // 构建 top 路径 -1.830ns)。同拍入队的指令改由 CompressedQueue 的
+    // 2 拍延展唤醒脉冲捕获(代价恰 1 拍)。
 
   }
 }
