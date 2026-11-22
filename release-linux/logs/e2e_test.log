@@ -1,0 +1,10 @@
+[14:32:16] === T26 Linux 演示启动器 ===
+[14:32:16] 参数: --all=True port=COM3 baud=115200 timeout=40s 日志=release/logs/e2e_test.log
+[14:32:16] hw_server 已在运行 (localhost:3121)
+[14:32:16] === 运行 00_probe_state.tcl ===
+[14:32:16] === 00_probe_state.tcl 完成 (退出码 3221225781) ===
+[14:32:16] 板子状态: UNKNOWN
+[14:32:16] 烧写比特流 + 加载内核镜像 ...
+[14:32:16] === 运行 01d_program_load_clean.tcl ===
+[14:32:16] === 01d_program_load_clean.tcl 完成 (退出码 3221225781) ===
+[14:32:16] !! 镜像装载失败,检查 JTAG 线后重试

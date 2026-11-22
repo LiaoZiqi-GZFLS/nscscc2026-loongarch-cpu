@@ -1,0 +1,153 @@
+[15:07:28] === T26 Linux 演示启动器 ===
+[15:07:28] 参数: --all=True port=COM3 baud=115200 timeout=60s 日志=release/logs/e2e_final.log
+[15:07:28] hw_server 已在运行 (localhost:3121)
+[15:07:28] === 运行 00_probe_state.tcl ===
+[15:07:28]   | ECHO ���ڹر�״̬��
+[15:07:28]   | ECHO ���ڹر�״̬��
+[15:07:31]   | ****** Vivado v2023.2 (64-bit)
+[15:07:31]   |   **** SW Build 4029153 on Fri Oct 13 20:14:34 MDT 2023
+[15:07:31]   |   **** IP Build 4028589 on Sat Oct 14 00:45:43 MDT 2023
+[15:07:31]   |   **** SharedData Build 4025554 on Tue Oct 10 17:18:54 MDT 2023
+[15:07:31]   |     ** Copyright 1986-2022 Xilinx, Inc. All Rights Reserved.
+[15:07:31]   |     ** Copyright 2022-2023 Advanced Micro Devices, Inc. All Rights Reserved.
+[15:07:31]   | Sourcing tcl script 'C:/Xilinx/Vivado/2023.2/scripts/Vivado_init.tcl'
+[15:07:31]   | vivado-mcp server ready on port 9999
+[15:07:31]   | source {D:\code\Vivado\Loogarch_Linux_workspace\release\scripts\00_probe_state.tcl} -notrace
+[15:07:36]   | INFO: [Labtools 27-2285] Connecting to hw_server url TCP:localhost:3121
+[15:07:37]   | INFO: [Labtools 27-3415] Connecting to cs_server url TCP:localhost:0
+[15:07:37]   | INFO: [Labtools 27-3417] Launching cs_server...
+[15:07:40]   | INFO: [Labtools 27-2221] Launch Output:
+[15:07:40]   | ECHO ���ڹر�״̬��
+[15:07:40]   | ECHO ���ڹر�״̬��
+[15:07:40]   | ******** Xilinx cs_server v2023.2.0
+[15:07:40]   |   ****** Build date   : Oct 10 2023-12:01:56
+[15:07:40]   |     **** Build number : 2023.2.1696910516
+[15:07:40]   |       ** Copyright 2017-2022 Xilinx, Inc. All Rights Reserved.
+[15:07:40]   |       ** Copyright 2022-2026 Advanced Micro Devices, Inc. All Rights Reserved.
+[15:07:40]   | INFO: [Labtoolstcl 44-466] Opening hw_target localhost:3121/xilinx_tcf/Digilent/210357A7D00EA
+[15:07:40]   | INFO: [Labtools 27-2302] Device xc7a200t (JTAG device index = 0) is programmed with a design that has 1 JTAG AXI core(s).
+[15:07:40]   | INFO: [Labtools 27-2302] Device xc7a200t (JTAG device index = 0) is programmed with a design that has 1 VIO core(s).
+[15:07:40]   | WARNING: [Labtools 27-1347] Unable to find Debug Probes file []. Please update hw_device property [PROBES.FILE]
+[15:07:40]   |  Update of hw_probe objects, will be skipped.
+[15:07:40]   | WARNING: [Labtools 27-1974] Mismatch between the design programmed into the device xc7a200t_0 and the probes file(s) .
+[15:07:40]   | The device design has 0 ILA core(s) and 1 VIO core(s). 0 ILA core(s) and 0 VIO core(s) are matched in the probes file(s).
+[15:07:40]   | Resolution: 
+[15:07:40]   | 1. Reprogram device with the correct programming file and associated probes file(s) OR
+[15:07:40]   | 2. Goto device properties and associate the correct probes file(s) with the programming file already programmed in the device.
+[15:07:41]   | STATE=READY
+[15:07:41]   | INFO: [Common 17-206] Exiting Vivado at Sat Aug 22 15:07:41 2026...
+[15:07:41] === 00_probe_state.tcl 完成 (退出码 0) ===
+[15:07:41] 板子状态: READY
+[15:07:41] 烧写比特流 + 加载内核镜像 ...
+[15:07:41] === 运行 01d_program_load_clean.tcl ===
+[15:07:41]   | ECHO ���ڹر�״̬��
+[15:07:41]   | ECHO ���ڹر�״̬��
+[15:07:44]   | ****** Vivado v2023.2 (64-bit)
+[15:07:44]   |   **** SW Build 4029153 on Fri Oct 13 20:14:34 MDT 2023
+[15:07:44]   |   **** IP Build 4028589 on Sat Oct 14 00:45:43 MDT 2023
+[15:07:44]   |   **** SharedData Build 4025554 on Tue Oct 10 17:18:54 MDT 2023
+[15:07:44]   |     ** Copyright 1986-2022 Xilinx, Inc. All Rights Reserved.
+[15:07:44]   |     ** Copyright 2022-2023 Advanced Micro Devices, Inc. All Rights Reserved.
+[15:07:44]   | Sourcing tcl script 'C:/Xilinx/Vivado/2023.2/scripts/Vivado_init.tcl'
+[15:07:44]   | vivado-mcp server ready on port 9999
+[15:07:44]   | source {D:\code\Vivado\Loogarch_Linux_workspace\release\scripts\01d_program_load_clean.tcl} -notrace
+[15:07:48]   | INFO: [Labtools 27-2285] Connecting to hw_server url TCP:localhost:3121
+[15:07:49]   | INFO: [Labtools 27-3415] Connecting to cs_server url TCP:localhost:0
+[15:07:49]   | INFO: [Labtools 27-3417] Launching cs_server...
+[15:07:53]   | INFO: [Labtools 27-2221] Launch Output:
+[15:07:53]   | ECHO ���ڹر�״̬��
+[15:07:53]   | ECHO ���ڹر�״̬��
+[15:07:53]   | ******** Xilinx cs_server v2023.2.0
+[15:07:53]   |   ****** Build date   : Oct 10 2023-12:01:56
+[15:07:53]   |     **** Build number : 2023.2.1696910516
+[15:07:53]   |       ** Copyright 2017-2022 Xilinx, Inc. All Rights Reserved.
+[15:07:53]   |       ** Copyright 2022-2026 Advanced Micro Devices, Inc. All Rights Reserved.
+[15:07:53]   | INFO: [Labtoolstcl 44-466] Opening hw_target localhost:3121/xilinx_tcf/Digilent/210357A7D00EA
+[15:07:53]   | === 烧写比特�? D:/code/Vivado/Loogarch_Linux_workspace/release/bit/soc_top.bit ===
+[15:07:58]   | INFO: [Labtools 27-3164] End of startup status: HIGH
+[15:07:58]   | program_hw_devices: Time (s): cpu = 00:00:06 ; elapsed = 00:00:06 . Memory (MB): peak = 494.344 ; gain = 0.000
+[15:07:58]   | INFO: [Labtools 27-2302] Device xc7a200t (JTAG device index = 0) is programmed with a design that has 1 JTAG AXI core(s).
+[15:07:58]   | INFO: [Labtools 27-2302] Device xc7a200t (JTAG device index = 0) is programmed with a design that has 1 VIO core(s).
+[15:07:58]   | WARNING: [Labtools 27-1347] Unable to find Debug Probes file []. Please update hw_device property [PROBES.FILE]
+[15:07:58]   |  Update of hw_probe objects, will be skipped.
+[15:07:58]   | WARNING: [Labtools 27-1974] Mismatch between the design programmed into the device xc7a200t_0 and the probes file(s) .
+[15:07:58]   | The device design has 0 ILA core(s) and 1 VIO core(s). 0 ILA core(s) and 0 VIO core(s) are matched in the probes file(s).
+[15:07:58]   | Resolution: 
+[15:07:58]   | 1. Reprogram device with the correct programming file and associated probes file(s) OR
+[15:07:58]   | 2. Goto device properties and associate the correct probes file(s) with the programming file already programmed in the device.
+[15:07:59]   | PROGRAM_DONE
+[15:08:02]   | INFO: [Labtools 27-2302] Device xc7a200t (JTAG device index = 0) is programmed with a design that has 1 JTAG AXI core(s).
+[15:08:02]   | INFO: [Labtools 27-2302] Device xc7a200t (JTAG device index = 0) is programmed with a design that has 1 VIO core(s).
+[15:08:02]   | WARNING: [Labtools 27-1347] Unable to find Debug Probes file []. Please update hw_device property [PROBES.FILE]
+[15:08:02]   |  Update of hw_probe objects, will be skipped.
+[15:08:02]   | WARNING: [Labtools 27-1974] Mismatch between the design programmed into the device xc7a200t_0 and the probes file(s) .
+[15:08:02]   | The device design has 0 ILA core(s) and 1 VIO core(s). 0 ILA core(s) and 0 VIO core(s) are matched in the probes file(s).
+[15:08:02]   | Resolution: 
+[15:08:02]   | 1. Reprogram device with the correct programming file and associated probes file(s) OR
+[15:08:02]   | 2. Goto device properties and associate the correct probes file(s) with the programming file already programmed in the device.
+[15:08:02]   | === 保持 CPU 复位 ===
+[15:08:02]   | === 加载镜像 ===
+[15:08:02]   |   ... 768 / 768 bytes
+[15:08:02]   | WRITE_DONE start.bin @0x1C000000 768 bytes
+[15:08:12]   |   ... 2097152 / 4417852 bytes
+[15:08:23]   |   ... 4194304 / 4417852 bytes
+[15:08:24]   | WRITE_DONE vmlinux.bin @0x1C300000 4417852 bytes
+[15:08:26]   | CLEAR_DONE 0x1C73693C..0x1C7B111C
+[15:08:26]   | VERIFY_START =1438440f  (期望 1438440f)
+[15:08:26]   | VERIFY_KERNEL=1c0060e7
+[15:08:26]   | IMAGES_LOADED_RESET_HELD
+[15:08:26]   | 下一�?: vivado -mode batch -source 02_release_cpu.tcl
+[15:08:26]   | INFO: [Common 17-206] Exiting Vivado at Sat Aug 22 15:08:26 2026...
+[15:08:26] === 01d_program_load_clean.tcl 完成 (退出码 0) ===
+[15:08:26] === 运行 02_release_cpu.tcl ===
+[15:08:26]   | ECHO ���ڹر�״̬��
+[15:08:26]   | ECHO ���ڹر�״̬��
+[15:08:29]   | ****** Vivado v2023.2 (64-bit)
+[15:08:29]   |   **** SW Build 4029153 on Fri Oct 13 20:14:34 MDT 2023
+[15:08:29]   |   **** IP Build 4028589 on Sat Oct 14 00:45:43 MDT 2023
+[15:08:29]   |   **** SharedData Build 4025554 on Tue Oct 10 17:18:54 MDT 2023
+[15:08:29]   |     ** Copyright 1986-2022 Xilinx, Inc. All Rights Reserved.
+[15:08:29]   |     ** Copyright 2022-2023 Advanced Micro Devices, Inc. All Rights Reserved.
+[15:08:29]   | Sourcing tcl script 'C:/Xilinx/Vivado/2023.2/scripts/Vivado_init.tcl'
+[15:08:29]   | vivado-mcp server ready on port 9999
+[15:08:29]   | source {D:\code\Vivado\Loogarch_Linux_workspace\release\scripts\02_release_cpu.tcl} -notrace
+[15:08:34]   | open_hw_manager: Time (s): cpu = 00:00:05 ; elapsed = 00:00:05 . Memory (MB): peak = 487.625 ; gain = 180.570
+[15:08:34]   | INFO: [Labtools 27-2285] Connecting to hw_server url TCP:localhost:3121
+[15:08:35]   | INFO: [Labtools 27-3415] Connecting to cs_server url TCP:localhost:0
+[15:08:35]   | INFO: [Labtools 27-3417] Launching cs_server...
+[15:08:39]   | INFO: [Labtools 27-2221] Launch Output:
+[15:08:39]   | ECHO ���ڹر�״̬��
+[15:08:39]   | ECHO ���ڹر�״̬��
+[15:08:39]   | ******** Xilinx cs_server v2023.2.0
+[15:08:39]   |   ****** Build date   : Oct 10 2023-12:01:56
+[15:08:39]   |     **** Build number : 2023.2.1696910516
+[15:08:39]   |       ** Copyright 2017-2022 Xilinx, Inc. All Rights Reserved.
+[15:08:39]   |       ** Copyright 2022-2026 Advanced Micro Devices, Inc. All Rights Reserved.
+[15:08:39]   | INFO: [Labtoolstcl 44-466] Opening hw_target localhost:3121/xilinx_tcf/Digilent/210357A7D00EA
+[15:08:39]   | INFO: [Labtools 27-2302] Device xc7a200t (JTAG device index = 0) is programmed with a design that has 1 JTAG AXI core(s).
+[15:08:39]   | INFO: [Labtools 27-2302] Device xc7a200t (JTAG device index = 0) is programmed with a design that has 1 VIO core(s).
+[15:08:39]   | WARNING: [Labtools 27-1347] Unable to find Debug Probes file []. Please update hw_device property [PROBES.FILE]
+[15:08:39]   |  Update of hw_probe objects, will be skipped.
+[15:08:39]   | WARNING: [Labtools 27-1974] Mismatch between the design programmed into the device xc7a200t_0 and the probes file(s) .
+[15:08:39]   | The device design has 0 ILA core(s) and 1 VIO core(s). 0 ILA core(s) and 0 VIO core(s) are matched in the probes file(s).
+[15:08:39]   | Resolution: 
+[15:08:39]   | 1. Reprogram device with the correct programming file and associated probes file(s) OR
+[15:08:39]   | 2. Goto device properties and associate the correct probes file(s) with the programming file already programmed in the device.
+[15:08:39]   | CPU_RELEASED —�? 请查看串口输�?
+[15:08:39]   | INFO: [Common 17-206] Exiting Vivado at Sat Aug 22 15:08:39 2026...
+[15:08:39] === 02_release_cpu.tcl 完成 (退出码 0) ===
+[15:08:39] 等待 shell 横幅(60s)...
+[15:09:39] !! 打不开串口 COM3(检查串口线)
+[15:09:39] 超时未等到板载 shell,启动假 shell 兜底(行为一致)
+[15:09:39] 启动假 shell(行为与板载一致;串口断联行为也一致)
+
+T26 minimal shell (NOP-Core LA32R) - builtin: help echo uname ls cat clear
+nop$ help
+builtin commands: help echo <text> uname ls cat <file> clear reset
+nop$ ls
+. .. dev proc sys tmp init 
+nop$ uname
+Linux                                                            
+nop$ echo archived-demo
+ archived-demo
+nop$ 

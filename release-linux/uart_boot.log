@@ -1,0 +1,16 @@
+
+===== capture start Sat Aug 22 12:54:34 2026 =====
+
+<<< sent '' at t=10.0 >>>
+
+<<< sent 'help' at t=50.1 >>>
+
+<<< sent 'ls' at t=65.0 >>>
+
+<<< sent 'uname' at t=80.1 >>>
+
+<<< sent 'echo hello-from-t26' at t=95.0 >>>
+
+<<< sent 'help' at t=110.1 >>>
+
+<<< sent 'ls' at t=125.2 >>>

@@ -27,6 +27,9 @@ The public mirror `LiaoZiqi-GZFLS/nscscc2026-loongarch-cpu` was already archived
 - `discrete-o3/` — the isolated discrete out-of-order design workspace (`src/`, `docs/设计文档.md`, `WORKLOG.md`). The folder had no git repository.
 - `chiplab/` — uncommitted team changes to the gitee chiplab: PLL 100 MHz, UART IRQ wiring, func/perf switch, VIO debug core (IP files), route/impl helper TCLs. Branch tip `fix/ddr-ci-ready-stable-clock-config` @ 68c20a5 is on gitee; the diff and VIO assets here are not.
 - `release/` — BDOT.W.pdf (custom instruction spec, never in git), chiplab_custom.zip (chiplab with bdot-w-test feature, 39 MB), T26 Linux demo package, shell patch/probe files.
+- `release-linux/` — Linux bring-up deliverable that lived outside the ucore repo: `soc_top.bit` / `soc_top_irq.bit`, five vmlinux/start.bin variants, UART run logs, scripts, 决赛答辩-工作历程.pdf.
+- `discrete-o3-loongarch/` — the second, different discrete-OoO working copy (under Loongarch_workspace) with its own WORKLOG/docs.
+- `docs/study/` — team-authored exam/defense prep handouts (docx/pdf).
 
 ## Deliberately not archived (reproducible or re-downloadable)
 

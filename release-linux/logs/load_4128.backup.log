@@ -1,0 +1,70 @@
+#-----------------------------------------------------------
+# Vivado v2023.2 (64-bit)
+# SW Build 4029153 on Fri Oct 13 20:14:34 MDT 2023
+# IP Build 4028589 on Sat Oct 14 00:45:43 MDT 2023
+# SharedData Build 4025554 on Tue Oct 10 17:18:54 MDT 2023
+# Start of session at: Sat Aug 22 15:15:00 2026
+# Process ID: 4128
+# Current directory: D:/code/Vivado/Loogarch_Linux_workspace/release/scripts
+# Command line: vivado.exe -mode batch -source D:\code\Vivado\Loogarch_Linux_workspace\release\scripts\01d_program_load_clean.tcl -log D:\code\Vivado\Loogarch_Linux_workspace\release\logs\load.log -nojournal -notrace
+# Log file: D:/code/Vivado/Loogarch_Linux_workspace/release/logs/load.log
+# Journal file: 
+# Running On: DESKTOP-LZQ-MINI, OS: Windows, CPU Frequency: 3793 MHz, CPU Physical cores: 16, Host memory: 23400 MB
+#-----------------------------------------------------------
+Sourcing tcl script 'C:/Xilinx/Vivado/2023.2/scripts/Vivado_init.tcl'
+vivado-mcp server ready on port 9999
+source {D:\code\Vivado\Loogarch_Linux_workspace\release\scripts\01d_program_load_clean.tcl} -notrace
+INFO: [Labtools 27-2285] Connecting to hw_server url TCP:localhost:3121
+INFO: [Labtools 27-3415] Connecting to cs_server url TCP:localhost:0
+INFO: [Labtools 27-3417] Launching cs_server...
+INFO: [Labtools 27-2221] Launch Output:
+ECHO ¥¶”⁄πÿ±’◊¥Ã¨°£
+ECHO ¥¶”⁄πÿ±’◊¥Ã¨°£
+
+
+******** Xilinx cs_server v2023.2.0
+  ****** Build date   : Oct 10 2023-12:01:56
+    **** Build number : 2023.2.1696910516
+      ** Copyright 2017-2022 Xilinx, Inc. All Rights Reserved.
+      ** Copyright 2022-2026 Advanced Micro Devices, Inc. All Rights Reserved.
+
+
+
+connect_hw_server: Time (s): cpu = 00:00:00 ; elapsed = 00:00:05 . Memory (MB): peak = 490.113 ; gain = 2.934
+INFO: [Labtoolstcl 44-466] Opening hw_target localhost:3121/xilinx_tcf/Digilent/210357A7D00EA
+=== ÁÉßÂÜôÊØîÁâπÊµ? D:/code/Vivado/Loogarch_Linux_workspace/release/bit/soc_top.bit ===
+INFO: [Labtools 27-3164] End of startup status: HIGH
+program_hw_devices: Time (s): cpu = 00:00:06 ; elapsed = 00:00:06 . Memory (MB): peak = 493.402 ; gain = 0.000
+INFO: [Labtools 27-2302] Device xc7a200t (JTAG device index = 0) is programmed with a design that has 1 JTAG AXI core(s).
+INFO: [Labtools 27-2302] Device xc7a200t (JTAG device index = 0) is programmed with a design that has 1 VIO core(s).
+WARNING: [Labtools 27-1347] Unable to find Debug Probes file []. Please update hw_device property [PROBES.FILE]
+ Update of hw_probe objects, will be skipped.
+WARNING: [Labtools 27-1974] Mismatch between the design programmed into the device xc7a200t_0 and the probes file(s) .
+The device design has 0 ILA core(s) and 1 VIO core(s). 0 ILA core(s) and 0 VIO core(s) are matched in the probes file(s).
+Resolution: 
+1. Reprogram device with the correct programming file and associated probes file(s) OR
+2. Goto device properties and associate the correct probes file(s) with the programming file already programmed in the device.
+PROGRAM_DONE
+INFO: [Labtools 27-2302] Device xc7a200t (JTAG device index = 0) is programmed with a design that has 1 JTAG AXI core(s).
+INFO: [Labtools 27-2302] Device xc7a200t (JTAG device index = 0) is programmed with a design that has 1 VIO core(s).
+WARNING: [Labtools 27-1347] Unable to find Debug Probes file []. Please update hw_device property [PROBES.FILE]
+ Update of hw_probe objects, will be skipped.
+WARNING: [Labtools 27-1974] Mismatch between the design programmed into the device xc7a200t_0 and the probes file(s) .
+The device design has 0 ILA core(s) and 1 VIO core(s). 0 ILA core(s) and 0 VIO core(s) are matched in the probes file(s).
+Resolution: 
+1. Reprogram device with the correct programming file and associated probes file(s) OR
+2. Goto device properties and associate the correct probes file(s) with the programming file already programmed in the device.
+=== ‰øùÊåÅ CPU Â§ç‰Ωç ===
+=== Âä†ËΩΩÈïúÂÉè ===
+  ... 768 / 768 bytes
+WRITE_DONE start.bin @0x1C000000 768 bytes
+  ... 2097152 / 4417852 bytes
+  ... 4194304 / 4417852 bytes
+WRITE_DONE vmlinux.bin @0x1C300000 4417852 bytes
+CLEAR_DONE 0x1C73693C..0x1C7B111C
+VERIFY_START =1438440f  (ÊúüÊúõ 1438440f)
+VERIFY_KERNEL=1c0060e7
+
+IMAGES_LOADED_RESET_HELD
+‰∏ã‰∏ÄÊ≠?: vivado -mode batch -source 02_release_cpu.tcl
+INFO: [Common 17-206] Exiting Vivado at Sat Aug 22 15:15:40 2026...

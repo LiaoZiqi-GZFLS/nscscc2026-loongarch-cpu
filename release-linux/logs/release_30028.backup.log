@@ -1,0 +1,19 @@
+#-----------------------------------------------------------
+# Vivado v2023.2 (64-bit)
+# SW Build 4029153 on Fri Oct 13 20:14:34 MDT 2023
+# IP Build 4028589 on Sat Oct 14 00:45:43 MDT 2023
+# SharedData Build 4025554 on Tue Oct 10 17:18:54 MDT 2023
+# Start of session at: Sat Aug 22 14:34:20 2026
+# Process ID: 30028
+# Current directory: D:/code/Vivado/Loogarch_Linux_workspace
+# Command line: vivado.exe -mode batch -source D:\code\Vivado\Loogarch_Linux_workspace\release\scripts\02_release_cpu.tcl -log D:\code\Vivado\Loogarch_Linux_workspace\release\logs\release.log -nojournal -notrace
+# Log file: D:/code/Vivado/Loogarch_Linux_workspace/release/logs/release.log
+# Journal file: 
+# Running On: DESKTOP-LZQ-MINI, OS: Windows, CPU Frequency: 3793 MHz, CPU Physical cores: 16, Host memory: 23400 MB
+#-----------------------------------------------------------
+Sourcing tcl script 'C:/Xilinx/Vivado/2023.2/scripts/Vivado_init.tcl'
+vivado-mcp: port 9999 busy, exiting (not sliding to another port)
+source {D:\code\Vivado\Loogarch_Linux_workspace\release\scripts\02_release_cpu.tcl} -notrace
+INFO: [Labtools 27-2285] Connecting to hw_server url TCP:localhost:3121
+INFO: [Labtools 27-3415] Connecting to cs_server url TCP:localhost:0
+INFO: [Labtools 27-3417] Launching cs_server...

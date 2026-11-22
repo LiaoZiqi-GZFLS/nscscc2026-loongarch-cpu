@@ -1,0 +1,16 @@
+
+===== capture start Sat Aug 22 15:13:00 2026 =====
+
+<<< sent '' at t=5.1 >>>
+
+nop$ 
+<<< sent 'help' at t=10.1 >>>
+help
+
+builtin commands: help echo <text> uname ls cat <file> clear reset
+nop$ 
+<<< sent 'ls' at t=20.0 >>>
+ls
+
+. .. dev proc sys tmp init 
+nop$ 
