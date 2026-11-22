@@ -1,0 +1,463 @@
+rm -rf dep
+rm -rf boot/loader.o boot/loader boot/loader.bin
+rm -rf obj
+DEP kern/fs/devs/dev_stdout.c
+DEP kern/fs/devs/dev_stdin.c
+DEP kern/fs/devs/dev_disk0.c
+DEP kern/fs/devs/dev.c
+DEP kern/fs/sfs/sfs_lock.c
+DEP kern/fs/sfs/sfs_io.c
+DEP kern/fs/sfs/sfs_inode.c
+DEP kern/fs/sfs/sfs_fs.c
+DEP kern/fs/sfs/sfs.c
+DEP kern/fs/sfs/bitmap.c
+DEP kern/fs/vfs/vfspath.c
+DEP kern/fs/vfs/vfslookup.c
+DEP kern/fs/vfs/vfsfile.c
+DEP kern/fs/vfs/vfsdev.c
+DEP kern/fs/vfs/vfs.c
+DEP kern/fs/vfs/inode.c
+DEP kern/fs/sysfile.c
+DEP kern/fs/iobuf.c
+DEP kern/fs/fs.c
+DEP kern/fs/file.c
+DEP kern/syscall/syscall.c
+DEP kern/schedule/sched.c
+DEP kern/schedule/default_sched.c
+DEP kern/process/proc.c
+DEP kern/sync/wait.c
+DEP kern/sync/sem.c
+DEP kern/sync/monitor.c
+DEP kern/sync/check_sync.c
+DEP kern/debug/panic.c
+DEP kern/debug/kmonitor.c
+DEP kern/debug/kdebug.c
+DEP kern/mm/vmm.c
+DEP kern/mm/pmm.c
+DEP kern/mm/la32_tlb.c
+DEP kern/mm/kmalloc.c
+DEP kern/mm/default_pmm.c
+DEP kern/trap/trap.c
+DEP kern/libs/string.c
+DEP kern/libs/stdio.c
+DEP kern/libs/readline.c
+DEP kern/libs/rb_tree.c
+DEP kern/libs/rand.c
+DEP kern/libs/printfmt.c
+DEP kern/libs/hash.c
+DEP kern/driver/ramdisk.c
+DEP kern/driver/picirq.c
+DEP kern/driver/intr.c
+DEP kern/driver/ide.c
+DEP kern/driver/console.c
+DEP kern/driver/clock.c
+DEP kern/init/init.c
+In file included from kern/mm/memlayout.h:44,
+                 from kern/mm/pmm.h:6,
+                 from kern/init/init.c:7:
+kern/sync/sync.h: In function ‘lock’:
+kern/sync/sync.h:27:9: warning: implicit declaration of function ‘schedule’ [-Wimplicit-function-declaration]
+         schedule();
+         ^~~~~~~~
+In file included from kern/init/init.c:10:
+kern/schedule/sched.h: At top level:
+kern/schedule/sched.h:64:6: warning: conflicting types for ‘schedule’
+ void schedule(void);
+      ^~~~~~~~
+In file included from kern/mm/memlayout.h:44,
+                 from kern/mm/pmm.h:6,
+                 from kern/init/init.c:7:
+kern/sync/sync.h:27:9: note: previous implicit declaration of ‘schedule’ was here
+         schedule();
+         ^~~~~~~~
+kern/init/init.c: In function ‘kern_init’:
+kern/init/init.c:29:5: warning: implicit declaration of function ‘tlb_invalidate_all’ [-Wimplicit-function-declaration]
+     tlb_invalidate_all();
+     ^~~~~~~~~~~~~~~~~~
+kern/init/init.c:34:5: warning: implicit declaration of function ‘cons_init’; did you mean ‘fs_init’? [-Wimplicit-function-declaration]
+     cons_init();                // init the console
+     ^~~~~~~~~
+     fs_init
+kern/init/init.c:35:5: warning: implicit declaration of function ‘clock_init’; did you mean ‘lock_init’? [-Wimplicit-function-declaration]
+     clock_init();               // init clock interrupt
+     ^~~~~~~~~~
+     lock_init
+kern/init/init.c:38:5: warning: implicit declaration of function ‘kprintf’ [-Wimplicit-function-declaration]
+     kprintf(message);
+     ^~~~~~~
+kern/init/init.c:66:5: warning: implicit declaration of function ‘check_initrd’; did you mean ‘sched_init’? [-Wimplicit-function-declaration]
+     check_initrd();
+     ^~~~~~~~~~~~
+     sched_init
+kern/driver/clock.c: In function ‘clock_int_handler’:
+kern/driver/clock.c:32:3: warning: implicit declaration of function ‘run_timer_list’ [-Wimplicit-function-declaration]
+   run_timer_list();
+   ^~~~~~~~~~~~~~
+kern/driver/console.c: In function ‘serial_int_handler’:
+kern/driver/console.c:113:13: warning: implicit declaration of function ‘cons_getc’ [-Wimplicit-function-declaration]
+     int c = cons_getc();
+             ^~~~~~~~~
+In file included from kern/mm/memlayout.h:44,
+                 from kern/driver/ide.c:9:
+kern/sync/sync.h: In function ‘lock’:
+kern/sync/sync.h:27:9: warning: implicit declaration of function ‘schedule’ [-Wimplicit-function-declaration]
+         schedule();
+         ^~~~~~~~
+In file included from kern/mm/memlayout.h:44,
+                 from kern/driver/ramdisk.c:22:
+kern/sync/sync.h: In function ‘lock’:
+kern/sync/sync.h:27:9: warning: implicit declaration of function ‘schedule’ [-Wimplicit-function-declaration]
+         schedule();
+         ^~~~~~~~
+kern/libs/printfmt.c: In function ‘vprintfmt’:
+kern/libs/printfmt.c:212:17: warning: implicit declaration of function ‘printfmt’; did you mean ‘vprintfmt’? [-Wimplicit-function-declaration]
+                 printfmt(putch, fd, putdat, "error %d", err);
+                 ^~~~~~~~
+                 vprintfmt
+kern/libs/printfmt.c: At top level:
+kern/libs/printfmt.c:290:1: warning: conflicting types for ‘printfmt’
+ printfmt(void (*putch)(int, void*, int), int fd, void *putdat, const char *fmt, ...) {
+ ^~~~~~~~
+kern/libs/printfmt.c:212:17: note: previous implicit declaration of ‘printfmt’ was here
+                 printfmt(putch, fd, putdat, "error %d", err);
+                 ^~~~~~~~
+kern/libs/printfmt.c: In function ‘snprintf’:
+kern/libs/printfmt.c:329:11: warning: implicit declaration of function ‘vsnprintf’; did you mean ‘snprintf’? [-Wimplicit-function-declaration]
+     cnt = vsnprintf(str, size, fmt, ap);
+           ^~~~~~~~~
+           snprintf
+kern/libs/stdio.c: In function ‘vkprintf’:
+kern/libs/stdio.c:52:5: warning: implicit declaration of function ‘vprintfmt’; did you mean ‘kprintf’? [-Wimplicit-function-declaration]
+     vprintfmt((void*)cputch, NO_FD, &cnt, fmt, ap);
+     ^~~~~~~~~
+     kprintf
+kern/libs/string.c: In function ‘strdup’:
+kern/libs/string.c:374:16: warning: implicit declaration of function ‘kmalloc’ [-Wimplicit-function-declaration]
+     if ((dst = kmalloc(len + 1)) != NULL) {
+                ^~~~~~~
+kern/libs/string.c:374:14: warning: assignment to ‘char *’ from ‘int’ makes pointer from integer without a cast [-Wint-conversion]
+     if ((dst = kmalloc(len + 1)) != NULL) {
+              ^
+kern/libs/string.c: In function ‘stradd’:
+kern/libs/string.c:385:20: warning: assignment to ‘char *’ from ‘int’ makes pointer from integer without a cast [-Wint-conversion]
+     if ((ret = dst = kmalloc(len1 + len2 + 1)) != NULL) {
+                    ^
+In file included from kern/mm/memlayout.h:44,
+                 from kern/mm/pmm.h:6,
+                 from kern/trap/trap.c:9:
+kern/sync/sync.h: In function ‘lock’:
+kern/sync/sync.h:27:9: warning: implicit declaration of function ‘schedule’ [-Wimplicit-function-declaration]
+         schedule();
+         ^~~~~~~~
+kern/trap/trap.c: In function ‘interrupt_handler’:
+kern/trap/trap.c:64:10: warning: type defaults to ‘int’ in declaration of ‘clock_int_handler’ [-Wimplicit-int]
+   extern clock_int_handler(void*);
+          ^~~~~~~~~~~~~~~~~
+kern/trap/trap.c:65:10: warning: type defaults to ‘int’ in declaration of ‘serial_int_handler’ [-Wimplicit-int]
+   extern serial_int_handler(void*);
+          ^~~~~~~~~~~~~~~~~~
+kern/trap/trap.c: In function ‘pgfault_handler’:
+kern/trap/trap.c:115:10: warning: implicit declaration of function ‘do_pgfault’; did you mean ‘do_wait’? [-Wimplicit-function-declaration]
+   return do_pgfault(mm, error_code, addr);
+          ^~~~~~~~~~
+          do_wait
+kern/trap/trap.c: In function ‘trap_dispatch’:
+kern/trap/trap.c:203:7: warning: implicit declaration of function ‘syscall’ [-Wimplicit-function-declaration]
+       syscall();
+       ^~~~~~~
+In file included from kern/mm/memlayout.h:44,
+                 from kern/mm/pmm.h:6,
+                 from kern/mm/default_pmm.c:1:
+kern/sync/sync.h: In function ‘lock’:
+kern/sync/sync.h:27:9: warning: implicit declaration of function ‘schedule’ [-Wimplicit-function-declaration]
+         schedule();
+         ^~~~~~~~
+In file included from kern/mm/memlayout.h:44,
+                 from kern/mm/kmalloc.c:3:
+kern/sync/sync.h: In function ‘lock’:
+kern/sync/sync.h:27:9: warning: implicit declaration of function ‘schedule’ [-Wimplicit-function-declaration]
+         schedule();
+         ^~~~~~~~
+In file included from kern/mm/memlayout.h:44,
+                 from kern/include/glue_pgmap.h:5,
+                 from kern/include/loongarch_tlb.h:5,
+                 from kern/mm/la32_tlb.c:1:
+kern/sync/sync.h: In function ‘lock’:
+kern/sync/sync.h:27:9: warning: implicit declaration of function ‘schedule’ [-Wimplicit-function-declaration]
+         schedule();
+         ^~~~~~~~
+kern/mm/la32_tlb.c: In function ‘tlb_invalidate’:
+kern/mm/la32_tlb.c:8:3: warning: implicit declaration of function ‘tlb_invalidate_all’; did you mean ‘tlb_invalidate’? [-Wimplicit-function-declaration]
+   tlb_invalidate_all();
+   ^~~~~~~~~~~~~~~~~~
+   tlb_invalidate
+kern/mm/la32_tlb.c: At top level:
+kern/mm/la32_tlb.c:11:6: warning: conflicting types for ‘tlb_invalidate_all’
+ void tlb_invalidate_all(){
+      ^~~~~~~~~~~~~~~~~~
+kern/mm/la32_tlb.c:8:3: note: previous implicit declaration of ‘tlb_invalidate_all’ was here
+   tlb_invalidate_all();
+   ^~~~~~~~~~~~~~~~~~
+In file included from kern/mm/memlayout.h:44,
+                 from kern/mm/pmm.c:6:
+kern/sync/sync.h: In function ‘lock’:
+kern/sync/sync.h:27:9: warning: implicit declaration of function ‘schedule’ [-Wimplicit-function-declaration]
+         schedule();
+         ^~~~~~~~
+kern/mm/pmm.c: In function ‘pmm_init’:
+kern/mm/pmm.c:203:4: warning: implicit declaration of function ‘kmalloc_init’; did you mean ‘lock_init’? [-Wimplicit-function-declaration]
+    kmalloc_init();
+    ^~~~~~~~~~~~
+    lock_init
+kern/mm/pmm.c: In function ‘page_remove_pte’:
+kern/mm/pmm.c:305:3: warning: implicit declaration of function ‘tlb_invalidate_all’ [-Wimplicit-function-declaration]
+   tlb_invalidate_all();
+   ^~~~~~~~~~~~~~~~~~
+kern/mm/pmm.c: In function ‘page_insert’:
+kern/mm/pmm.c:367:5: warning: implicit declaration of function ‘tlb_invalidate’ [-Wimplicit-function-declaration]
+     tlb_invalidate(pgdir, la);
+     ^~~~~~~~~~~~~~
+In file included from kern/mm/memlayout.h:44,
+                 from kern/mm/vmm.h:6,
+                 from kern/mm/vmm.c:2:
+kern/sync/sync.h: In function ‘lock’:
+kern/sync/sync.h:27:9: warning: implicit declaration of function ‘schedule’ [-Wimplicit-function-declaration]
+         schedule();
+         ^~~~~~~~
+kern/debug/kmonitor.c: In function ‘monitor’:
+kern/debug/kmonitor.c:90:9: warning: implicit declaration of function ‘print_trapframe’; did you mean ‘print_stackframe’? [-Wimplicit-function-declaration]
+         print_trapframe(tf);
+         ^~~~~~~~~~~~~~~
+         print_stackframe
+In file included from kern/mm/memlayout.h:44,
+                 from kern/process/proc.h:7,
+                 from kern/sync/check_sync.c:2:
+kern/sync/sync.h: In function ‘lock’:
+kern/sync/sync.h:27:9: warning: implicit declaration of function ‘schedule’ [-Wimplicit-function-declaration]
+         schedule();
+         ^~~~~~~~
+kern/sync/check_sync.c: In function ‘phi_test_sema’:
+kern/sync/check_sync.c:86:6: warning: type of ‘i’ defaults to ‘int’ [-Wimplicit-int]
+ void phi_test_sema(i) /* i：哲学家号码从0到N-1 */
+      ^~~~~~~~~~~~~
+kern/sync/check_sync.c: In function ‘phi_test_condvar’:
+kern/sync/check_sync.c:172:6: warning: type of ‘i’ defaults to ‘int’ [-Wimplicit-int]
+ void phi_test_condvar (i) {
+      ^~~~~~~~~~~~~~~~
+In file included from kern/mm/memlayout.h:44,
+                 from kern/process/proc.h:7,
+                 from kern/sync/sem.c:6:
+kern/sync/sync.h: In function ‘lock’:
+kern/sync/sync.h:27:9: warning: implicit declaration of function ‘schedule’ [-Wimplicit-function-declaration]
+         schedule();
+         ^~~~~~~~
+In file included from kern/sync/wait.c:3:
+kern/sync/sync.h: In function ‘lock’:
+kern/sync/sync.h:27:9: warning: implicit declaration of function ‘schedule’ [-Wimplicit-function-declaration]
+         schedule();
+         ^~~~~~~~
+kern/sync/wait.c: In function ‘wakeup_wait’:
+kern/sync/wait.c:86:5: warning: implicit declaration of function ‘wakeup_proc’; did you mean ‘wakeup_first’? [-Wimplicit-function-declaration]
+     wakeup_proc(wait->proc);
+     ^~~~~~~~~~~
+     wakeup_first
+In file included from kern/mm/memlayout.h:44,
+                 from kern/process/proc.h:7,
+                 from kern/process/proc.c:1:
+kern/sync/sync.h: In function ‘lock’:
+kern/sync/sync.h:27:9: warning: implicit declaration of function ‘schedule’ [-Wimplicit-function-declaration]
+         schedule();
+         ^~~~~~~~
+In file included from kern/process/proc.c:7:
+kern/schedule/sched.h: At top level:
+kern/schedule/sched.h:64:6: warning: conflicting types for ‘schedule’
+ void schedule(void);
+      ^~~~~~~~
+In file included from kern/mm/memlayout.h:44,
+                 from kern/process/proc.h:7,
+                 from kern/process/proc.c:1:
+kern/sync/sync.h:27:9: note: previous implicit declaration of ‘schedule’ was here
+         schedule();
+         ^~~~~~~~
+kern/process/proc.c: In function ‘proc_run’:
+kern/process/proc.c:237:13: warning: implicit declaration of function ‘lcr3’ [-Wimplicit-function-declaration]
+             lcr3(next->cr3);
+             ^~~~
+kern/process/proc.c:238:13: warning: implicit declaration of function ‘tlb_invalidate_all’ [-Wimplicit-function-declaration]
+             tlb_invalidate_all();
+             ^~~~~~~~~~~~~~~~~~
+kern/process/proc.c: In function ‘load_icode’:
+kern/process/proc.c:804:20: warning: implicit declaration of function ‘mm_map’; did you mean ‘mm_unmap’? [-Wimplicit-function-declaration]
+         if ((ret = mm_map(mm, ph->p_va, ph->p_memsz, vm_flags, NULL)) != 0) {
+                    ^~~~~~
+                    mm_unmap
+kern/process/proc.c: In function ‘copy_kargv’:
+kern/process/proc.c:923:14: warning: implicit declaration of function ‘copy_string’; did you mean ‘copy_range’? [-Wimplicit-function-declaration]
+         if (!copy_string(mm, buffer, argv[i], EXEC_MAX_ARG_LEN + 1)) {
+              ^~~~~~~~~~~
+              copy_range
+kern/process/proc.c: In function ‘do_execve’:
+kern/process/proc.c:992:9: warning: implicit declaration of function ‘snprintf’ [-Wimplicit-function-declaration]
+         snprintf(local_name, sizeof(local_name), "<null> %d", current->pid);
+         ^~~~~~~~
+kern/process/proc.c:992:9: note: ‘snprintf’ is defined in header ‘<stdio.h>’; did you forget to ‘#include <stdio.h>’?
+kern/process/proc.c:19:1:
++#include <stdio.h>
+ #include <loongarch.h>
+kern/process/proc.c:992:9:
+         snprintf(local_name, sizeof(local_name), "<null> %d", current->pid);
+         ^~~~~~~~
+In file included from kern/mm/memlayout.h:44,
+                 from kern/process/proc.h:7,
+                 from kern/schedule/default_sched.c:3:
+kern/sync/sync.h: In function ‘lock’:
+kern/sync/sync.h:27:9: warning: implicit declaration of function ‘schedule’ [-Wimplicit-function-declaration]
+         schedule();
+         ^~~~~~~~
+In file included from kern/schedule/default_sched.h:4,
+                 from kern/schedule/default_sched.c:5:
+kern/schedule/sched.h: At top level:
+kern/schedule/sched.h:64:6: warning: conflicting types for ‘schedule’
+ void schedule(void);
+      ^~~~~~~~
+In file included from kern/mm/memlayout.h:44,
+                 from kern/process/proc.h:7,
+                 from kern/schedule/default_sched.c:3:
+kern/sync/sync.h:27:9: note: previous implicit declaration of ‘schedule’ was here
+         schedule();
+         ^~~~~~~~
+In file included from kern/schedule/sched.c:2:
+kern/sync/sync.h: In function ‘lock’:
+kern/sync/sync.h:27:9: warning: implicit declaration of function ‘schedule’ [-Wimplicit-function-declaration]
+         schedule();
+         ^~~~~~~~
+In file included from kern/schedule/sched.c:4:
+kern/schedule/sched.h: At top level:
+kern/schedule/sched.h:64:6: warning: conflicting types for ‘schedule’
+ void schedule(void);
+      ^~~~~~~~
+In file included from kern/schedule/sched.c:2:
+kern/sync/sync.h:27:9: note: previous implicit declaration of ‘schedule’ was here
+         schedule();
+         ^~~~~~~~
+In file included from kern/mm/memlayout.h:44,
+                 from kern/process/proc.h:7,
+                 from kern/syscall/syscall.c:2:
+kern/sync/sync.h: In function ‘lock’:
+kern/sync/sync.h:27:9: warning: implicit declaration of function ‘schedule’ [-Wimplicit-function-declaration]
+         schedule();
+         ^~~~~~~~
+kern/syscall/syscall.c: In function ‘syscall’:
+kern/syscall/syscall.c:217:3: warning: implicit declaration of function ‘print_trapframe’ [-Wimplicit-function-declaration]
+   print_trapframe(tf);
+   ^~~~~~~~~~~~~~~
+In file included from kern/mm/memlayout.h:44,
+                 from kern/process/proc.h:7,
+                 from kern/fs/file.c:4:
+kern/sync/sync.h: In function ‘lock’:
+kern/sync/sync.h:27:9: warning: implicit declaration of function ‘schedule’ [-Wimplicit-function-declaration]
+         schedule();
+         ^~~~~~~~
+In file included from kern/mm/memlayout.h:44,
+                 from kern/process/proc.h:7,
+                 from kern/fs/file.h:6,
+                 from kern/fs/fs.c:6:
+kern/sync/sync.h: In function ‘lock’:
+kern/sync/sync.h:27:9: warning: implicit declaration of function ‘schedule’ [-Wimplicit-function-declaration]
+         schedule();
+         ^~~~~~~~
+In file included from kern/mm/memlayout.h:44,
+                 from kern/mm/vmm.h:6,
+                 from kern/fs/sysfile.c:3:
+kern/sync/sync.h: In function ‘lock’:
+kern/sync/sync.h:27:9: warning: implicit declaration of function ‘schedule’ [-Wimplicit-function-declaration]
+         schedule();
+         ^~~~~~~~
+kern/fs/sysfile.c: In function ‘copy_path’:
+kern/fs/sysfile.c:26:10: warning: implicit declaration of function ‘copy_string’ [-Wimplicit-function-declaration]
+     if (!copy_string(mm, buffer, from, FS_MAX_FPATH_LEN + 1)) {
+          ^~~~~~~~~~~
+kern/fs/vfs/vfsdev.c: In function ‘vfs_do_add’:
+kern/fs/vfs/vfsdev.c:130:22: warning: implicit declaration of function ‘strdup’; did you mean ‘strcmp’? [-Wimplicit-function-declaration]
+     if ((s_devname = strdup(devname)) == NULL) {
+                      ^~~~~~
+                      strcmp
+kern/fs/vfs/vfsdev.c:130:20: warning: assignment to ‘char *’ from ‘int’ makes pointer from integer without a cast [-Wint-conversion]
+     if ((s_devname = strdup(devname)) == NULL) {
+                    ^
+In file included from kern/mm/memlayout.h:44,
+                 from kern/process/proc.h:7,
+                 from kern/fs/vfs/vfspath.c:7:
+kern/sync/sync.h: In function ‘lock’:
+kern/sync/sync.h:27:9: warning: implicit declaration of function ‘schedule’ [-Wimplicit-function-declaration]
+         schedule();
+         ^~~~~~~~
+In file included from kern/fs/devs/dev_stdin.c:4:
+kern/sync/sync.h: In function ‘lock’:
+kern/sync/sync.h:27:9: warning: implicit declaration of function ‘schedule’ [-Wimplicit-function-declaration]
+         schedule();
+         ^~~~~~~~
+In file included from kern/fs/devs/dev_stdin.c:6:
+kern/schedule/sched.h: At top level:
+kern/schedule/sched.h:64:6: warning: conflicting types for ‘schedule’
+ void schedule(void);
+      ^~~~~~~~
+In file included from kern/fs/devs/dev_stdin.c:4:
+kern/sync/sync.h:27:9: note: previous implicit declaration of ‘schedule’ was here
+         schedule();
+         ^~~~~~~~
+user/sh.c: In function ‘runcmd’:
+user/sh.c:212:9: warning: implicit declaration of function ‘snprintf’ [-Wimplicit-function-declaration]
+         snprintf(argv0, sizeof(argv0), "/%s", argv[0]);
+         ^~~~~~~~
+user/sh.c:212:9: note: ‘snprintf’ is defined in header ‘<stdio.h>’; did you forget to ‘#include <stdio.h>’?
+user/sh.c:7:1:
++#include <stdio.h>
+ #include <unistd.h>
+user/sh.c:212:9:
+         snprintf(argv0, sizeof(argv0), "/%s", argv[0]);
+         ^~~~~~~~
+user/libs/printfmt.c: In function ‘vprintfmt’:
+user/libs/printfmt.c:212:17: warning: implicit declaration of function ‘printfmt’; did you mean ‘vprintfmt’? [-Wimplicit-function-declaration]
+                 printfmt(putch, fd, putdat, "error %d", err);
+                 ^~~~~~~~
+                 vprintfmt
+user/libs/printfmt.c: At top level:
+user/libs/printfmt.c:290:1: warning: conflicting types for ‘printfmt’
+ printfmt(void (*putch)(int, void*, int), int fd, void *putdat, const char *fmt, ...) {
+ ^~~~~~~~
+user/libs/printfmt.c:212:17: note: previous implicit declaration of ‘printfmt’ was here
+                 printfmt(putch, fd, putdat, "error %d", err);
+                 ^~~~~~~~
+user/libs/printfmt.c: In function ‘snprintf’:
+user/libs/printfmt.c:329:11: warning: implicit declaration of function ‘vsnprintf’; did you mean ‘snprintf’? [-Wimplicit-function-declaration]
+     cnt = vsnprintf(str, size, fmt, ap);
+           ^~~~~~~~~
+           snprintf
+user/libs/stdio.c: In function ‘cputch’:
+user/libs/stdio.c:14:5: warning: implicit declaration of function ‘sys_putc’; did you mean ‘SYS_putc’? [-Wimplicit-function-declaration]
+     sys_putc(c);
+     ^~~~~~~~
+     SYS_putc
+user/libs/stdio.c: In function ‘vcprintf’:
+user/libs/stdio.c:31:5: warning: implicit declaration of function ‘vprintfmt’; did you mean ‘cprintf’? [-Wimplicit-function-declaration]
+     vprintfmt(cputch, NO_FD, &cnt, fmt, ap);
+     ^~~~~~~~~
+     cprintf
+user/libs/stdio.c: In function ‘fputch’:
+user/libs/stdio.c:108:5: warning: implicit declaration of function ‘write’ [-Wimplicit-function-declaration]
+     write(fd, &c, sizeof(char));
+     ^~~~~
+700+0 records in
+700+0 records out
+358400 bytes (358 kB, 350 KiB) copied, 0.000472857 s, 758 MB/s
+create obj/initrd.img (obj/rootfs) successfully.
+==== verify ====
+  Class:                             ELF32
+  Type:                              EXEC (Executable file)
+  Machine:                           LoongArch
+  Entry point address:               0xbc000000
+AM atomic instructions in image: 0 (must be 0, LA32R has no AM*)
+FP instructions in image:        0 (must be 0, LA32R has no FPU)
+-rwxr-xr-x 1 cjy cjy 760448 Aug 18 09:55 out/ucore.bin
+-rw-r--r-- 1 cjy cjy 782680 Aug 18 09:55 out/ucore.elf

@@ -45,6 +45,77 @@
 
 ## Chiplab JTAG 功能测试上板
 
+### WSL 通过 USBIP 直接连接开发板（已验证）
+
+此模式不使用 Windows Vivado 或 Windows `hw_server`。Windows 只通过 `usbipd`
+将 USB 设备转发到 WSL：`0403:6010` 是 FT2232 JTAG 复合设备，`0403:6001`
+是独立 UART。`/dev/ttyUSB*` 只能用于 UART，不能替代 JTAG 烧写。
+
+在 Windows PowerShell 中关闭可能占用 JTAG 的程序，并按 `usbipd wsl list` 显示
+的实际 BUSID 重新转发设备：
+
+```powershell
+Stop-Process -Name vivado -Force -ErrorAction SilentlyContinue
+Stop-Process -Name hw_server -Force -ErrorAction SilentlyContinue
+usbipd wsl detach --busid 2-2
+usbipd wsl detach --busid 2-3
+usbipd wsl attach --busid 2-2
+usbipd wsl attach --busid 2-3
+```
+
+WSL 中执行 `lsusb`，必须同时看到 `0403:6010` 和 `0403:6001`。首次使用时安装
+Vivado Linux cable driver：
+
+```shell
+sudo /tools/Xilinx/Vivado/2023.2/data/xicom/cable_drivers/lin64/install_script/install_drivers/install_drivers
+```
+
+USBIP 重新 attach 后，检查 `0403:6010` 的总线和设备号。例如 `lsusb` 显示
+`Bus 001 Device 008: ID 0403:6010`，则放开对应原始 USB 节点以及 UART 节点权限：
+
+```shell
+sudo chmod 666 /dev/bus/usb/001/008
+sudo chmod 666 /dev/ttyUSB0 /dev/ttyUSB1 /dev/ttyUSB2
+```
+
+总线和设备号会在重新 attach 后变化，不能固定照抄 `001/008`。如果节点仍为
+`root:root 0600`，普通用户运行的 `hw_server` 无法通过 libusb 发现 JTAG target。
+
+若默认 `3121` 报 `Address already in use`，可使用已验证的备用端口 `3122`：
+
+```shell
+sudo /tools/Xilinx/Vivado/2023.2/bin/hw_server -d -s tcp::3122
+```
+
+保持该终端运行，在另一终端验证：
+
+```shell
+vivado -mode tcl
+```
+
+```tcl
+open_hw_manager
+connect_hw_server -url localhost:3122 -allow_non_jtag
+refresh_hw_server [get_hw_servers]
+set targets [get_hw_targets -quiet]
+puts "TARGET_COUNT=[llength $targets]"
+current_hw_target [lindex $targets 0]
+open_hw_target
+puts "DEVICES=[get_hw_devices -quiet]"
+```
+
+只有输出 `TARGET_COUNT=1` 且设备包含 `xc7a200t_0` 后才执行烧录：
+
+```shell
+HW_SERVER_URL=localhost:3122 FUNC_TIMEOUT=120 sh ./chiplab_func_board.sh
+```
+
+2026-08-19 实板验证结果为 Digilent target `210357A7D00EA`、设备
+`xc7a200t_0`，最终输出 `CHIPLAB_FUNC_PASS`。本地非默认端口会被脚本按现有服务
+处理，因此必须先手动启动该端口的 `hw_server`。
+
+### Windows 原生 hw_server
+
 如果 JTAG 由 Windows 原生 `hw_server` 管理，可在 WSL 中指定远程服务：
 
 ```shell

@@ -1,0 +1,15 @@
+=== 灌入 ucore.bin@0x1C000000 并释放 CPU 2026-08-22 15:31:33.183268 ===
+vivado -mode batch -source D:\code\Vivado\Loogarch_Linux_workspace\T2026143250012561-ucore-stable\sw\ucore\demo\load_demo.tcl
+ECHO ���ڹر�״̬��
+ECHO ���ڹر�״̬��
+
+****** Vivado v2023.2 (64-bit)
+  **** SW Build 4029153 on Fri Oct 13 20:14:34 MDT 2023
+  **** IP Build 4028589 on Sat Oct 14 00:45:43 MDT 2023
+  **** SharedData Build 4025554 on Tue Oct 10 17:18:54 MDT 2023
+    ** Copyright 1986-2022 Xilinx, Inc. All Rights Reserved.
+    ** Copyright 2022-2023 Advanced Micro Devices, Inc. All Rights Reserved.
+
+Sourcing tcl script 'C:/Xilinx/Vivado/2023.2/scripts/Vivado_init.tcl'
+vivado-mcp server ready on port 9999
+source {D:\code\Vivado\Loogarch_Linux_workspace\T2026143250012561-ucore-stable\sw\ucore\demo\load_demo.tcl} -notrace

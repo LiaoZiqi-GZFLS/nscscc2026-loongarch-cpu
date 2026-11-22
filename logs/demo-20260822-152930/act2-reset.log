@@ -1,0 +1,58 @@
+=== 保持 CPU 复位 2026-08-22 15:31:13.199849 ===
+vivado -mode batch -source D:\code\Vivado\Loogarch_Linux_workspace\T2026143250012561-ucore-stable\sw\ucore\demo\load_demo.tcl
+ECHO ���ڹر�״̬��
+ECHO ���ڹر�״̬��
+
+****** Vivado v2023.2 (64-bit)
+  **** SW Build 4029153 on Fri Oct 13 20:14:34 MDT 2023
+  **** IP Build 4028589 on Sat Oct 14 00:45:43 MDT 2023
+  **** SharedData Build 4025554 on Tue Oct 10 17:18:54 MDT 2023
+    ** Copyright 1986-2022 Xilinx, Inc. All Rights Reserved.
+    ** Copyright 2022-2023 Advanced Micro Devices, Inc. All Rights Reserved.
+
+Sourcing tcl script 'C:/Xilinx/Vivado/2023.2/scripts/Vivado_init.tcl'
+vivado-mcp server ready on port 9999
+source {D:\code\Vivado\Loogarch_Linux_workspace\T2026143250012561-ucore-stable\sw\ucore\demo\load_demo.tcl} -notrace
+open_hw_manager: Time (s): cpu = 00:00:05 ; elapsed = 00:00:06 . Memory (MB): peak = 488.273 ; gain = 183.445
+INFO: [Labtools 27-2285] Connecting to hw_server url TCP:localhost:3121
+INFO: [Labtools 27-2222] Launching hw_server...
+INFO: [Labtools 27-2221] Launch Output:
+ECHO ���ڹر�״̬��
+ECHO ���ڹر�״̬��
+
+****** Xilinx hw_server v2023.2
+  **** Build date : Oct 13 2023 at 21:31:40
+    ** Copyright 1986-2022 Xilinx, Inc. All Rights Reserved.
+
+
+
+
+INFO: [Labtools 27-3415] Connecting to cs_server url TCP:localhost:0
+INFO: [Labtools 27-3417] Launching cs_server...
+INFO: [Labtools 27-2221] Launch Output:
+ECHO ���ڹر�״̬��
+ECHO ���ڹر�״̬��
+
+
+******** Xilinx cs_server v2023.2.0
+  ****** Build date   : Oct 10 2023-12:01:56
+    **** Build number : 2023.2.1696910516
+      ** Copyright 2017-2022 Xilinx, Inc. All Rights Reserved.
+      ** Copyright 2022-2026 Advanced Micro Devices, Inc. All Rights Reserved.
+
+
+
+connect_hw_server: Time (s): cpu = 00:00:00 ; elapsed = 00:00:10 . Memory (MB): peak = 492.207 ; gain = 3.934
+INFO: [Labtoolstcl 44-466] Opening hw_target localhost:3121/xilinx_tcf/Digilent/210357A7D00EA
+INFO: [Labtools 27-2302] Device xc7a200t (JTAG device index = 0) is programmed with a design that has 1 JTAG AXI core(s).
+INFO: [Labtools 27-2302] Device xc7a200t (JTAG device index = 0) is programmed with a design that has 1 VIO core(s).
+WARNING: [Labtools 27-1347] Unable to find Debug Probes file []. Please update hw_device property [PROBES.FILE]
+ Update of hw_probe objects, will be skipped.
+WARNING: [Labtools 27-1974] Mismatch between the design programmed into the device xc7a200t_0 and the probes file(s) .
+The device design has 0 ILA core(s) and 1 VIO core(s). 0 ILA core(s) and 0 VIO core(s) are matched in the probes file(s).
+Resolution: 
+1. Reprogram device with the correct programming file and associated probes file(s) OR
+2. Goto device properties and associate the correct probes file(s) with the programming file already programmed in the device.
+INFO: [Labtoolstcl 44-481] WRITE DATA is: 00000000
+DEMO_RESET_HELD
+INFO: [Common 17-206] Exiting Vivado at Sat Aug 22 15:31:32 2026...

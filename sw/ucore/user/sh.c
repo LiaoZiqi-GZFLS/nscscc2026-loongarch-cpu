@@ -204,6 +204,11 @@ xget(const char *path) {
         char *line = protocol_readline();
         char *args[3];
         int argc = line == NULL ? 0 : split_words(line, args, 3);
+        if (line != NULL && strcmp(line, "XCANCEL") == 0) {
+            close(fd);
+            printf("XCANCELLED\n");
+            return 0;
+        }
         uint32_t ack;
         if (argc != 2 || strcmp(args[0], "ACK") != 0 || parse_uint(args[1], &ack, 10) || ack != seq) {
             ret = -E_INVAL;
@@ -319,6 +324,11 @@ run_builtin(char *command, int *handled) {
             ? xput(argv[1], size, crc) : -E_INVAL;
     }
     if (strcmp(argv[0], "xget") == 0) return argc == 2 ? xget(argv[1]) : -E_INVAL;
+    if (strcmp(argv[0], "XCANCEL") == 0) {
+        if (argc != 1) return -E_INVAL;
+        printf("XCANCELLED\n");
+        return 0;
+    }
     if (strcmp(argv[0], "help") == 0) {
         printf("builtins: cd pwd ls cat mkdir rm mv cp write stat display xput xget help\n");
         return 0;
@@ -364,7 +374,7 @@ readline(const char *prompt) {
     if (prompt != NULL) {
         printf("%s", prompt);
     }
-    int ret, i = 0;
+    int ret, i = 0, escape = 0;
     while (1) {
         char c;
         if ((ret = read(0, &c, sizeof(char))) < 0) {
@@ -378,12 +388,25 @@ readline(const char *prompt) {
             return NULL;
         }
 
-        if (c == 3) {
+        if (escape != 0) {
+            if (escape == 1 && c == '[') {
+                escape = 2;
+            }
+            else if (escape == 1 || (c >= '@' && c <= '~')) {
+                escape = 0;
+            }
+            continue;
+        }
+
+        if (c == 27) {
+            escape = 1;
+        }
+        else if (c == 3) {
             return NULL;
         }
         else if ( (c == '\b' || c == 127)) {
             if (i > 0) {
-                putc('\b');
+                printf("\b \b");
                 i --;
             }
         }

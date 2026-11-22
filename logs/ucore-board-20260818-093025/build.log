@@ -1,0 +1,13 @@
+700+0 records in
+700+0 records out
+358400 bytes (358 kB, 350 KiB) copied, 0.000626062 s, 572 MB/s
+create obj/initrd.img (obj/rootfs) successfully.
+==== verify ====
+  Class:                             ELF32
+  Type:                              EXEC (Executable file)
+  Machine:                           LoongArch
+  Entry point address:               0xbc000000
+AM atomic instructions in image: 0 (must be 0, LA32R has no AM*)
+FP instructions in image:        0 (must be 0, LA32R has no FPU)
+-rwxr-xr-x 1 cjy cjy 788192 Aug 18 09:30 out/ucore.bin
+-rw-r--r-- 1 cjy cjy 808908 Aug 18 09:30 out/ucore.elf

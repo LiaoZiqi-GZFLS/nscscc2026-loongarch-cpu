@@ -1,0 +1,45 @@
+
+****** Vivado v2023.2 (64-bit)
+  **** SW Build 4029153 on Fri Oct 13 20:13:54 MDT 2023
+  **** IP Build 4028589 on Sat Oct 14 00:45:43 MDT 2023
+  **** SharedData Build 4025554 on Tue Oct 10 17:18:54 MDT 2023
+    ** Copyright 1986-2022 Xilinx, Inc. All Rights Reserved.
+    ** Copyright 2022-2023 Advanced Micro Devices, Inc. All Rights Reserved.
+
+source /home/cjy/T2026143250012561-ucore-stable/program_current_hw.tcl
+# proc env_or {name default} {
+#   if {[info exists ::env($name)] && $::env($name) ne ""} { return $::env($name) }
+#   return $default
+# }
+# open_hw_manager
+# connect_hw_server -url [env_or HW_SERVER_URL localhost:3121] -allow_non_jtag
+INFO: [Labtools 27-2285] Connecting to hw_server url TCP:localhost:3121
+INFO: [Labtools 27-3415] Connecting to cs_server url TCP:localhost:0
+INFO: [Labtools 27-3417] Launching cs_server...
+INFO: [Labtools 27-2221] Launch Output:
+
+
+******** Xilinx cs_server v2023.2.0
+  ****** Build date   : Oct 10 2023-12:01:56
+    **** Build number : 2023.2.1696910516
+      ** Copyright 2017-2022 Xilinx, Inc. All Rights Reserved.
+      ** Copyright 2022-2026 Advanced Micro Devices, Inc. All Rights Reserved.
+
+
+
+# refresh_hw_server [get_hw_servers]
+WARNING: [Labtoolstcl 44-27] No hardware targets exist on the server [localhost:3121]
+Check to make sure the cable targets connected to this machine are properly connected
+and powered up, then use the refresh_hw_server command to re-register the hardware targets.
+# puts "SERVERS=[get_hw_servers]"
+SERVERS=localhost:3121
+ERROR: [Labtoolstcl 44-199] No matching targets found on connected servers: localhost
+Resolution: If needed connect the desired target to a server and use command refresh_hw_server. Then rerun the get_hw_targets command.
+ERROR: [Common 17-39] 'get_hw_targets' failed due to earlier errors.
+
+    while executing
+"get_hw_targets"
+    invoked from within
+"set targets [get_hw_targets]"
+    (file "/home/cjy/T2026143250012561-ucore-stable/program_current_hw.tcl" line 11)
+INFO: [Common 17-206] Exiting Vivado at Wed Aug 19 14:35:16 2026...

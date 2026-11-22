@@ -1,0 +1,33 @@
+++setup timer interrupts
+(THU.CST) os is loading ...
+
+Special kernel symbols:
+  entry  0xBC000134 (phys)
+  etext	0xBC022000 (phys)
+  edata	0xBC0C06E0 (phys)
+  end	0xBC0C39C0 (phys)
+Kernel executable memory footprint: 647KB
+memory management: default_pmm_manager
+memory map:
+    [A0000000, BD000000]
+
+freemem start at: BC0E4000
+free pages: 00000F1C
+## 00000020
+check_alloc_page() succeeded!
+check_pgdir() succeeded!
+check_boot_pgdir() succeeded!
+check_slab() succeeded!
+kmalloc_init() succeeded!
+check_vma_struct() succeeded!
+check_pgfault() succeeded!
+check_vmm() succeeded.
+sched class: stride_scheduler
+proc_init succeeded
+Initrd: 0xbc060200 - 0xbc0b79ff, size: 0x00057800, magic: 0x2f8dbe2a
+ramdisk_init(): initrd found, magic: 0x2f8dbe2a, 0x000002bc secs
+sfs: mount: 'simple file system' (71/16/87)
+vfs: mount disk0.
+kernel_execve: pid = 2, name = "sh".
+user sh is running!!!
+$ 

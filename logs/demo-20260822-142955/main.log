@@ -1,0 +1,13 @@
+[14:29:55] [36m[1m========================================================================[0m
+[14:29:55] [36m[1mNSCSCC2026 决赛演示：bootloader + ucore[0m
+[14:29:55] [36m[1m========================================================================[0m
+[14:29:55] 日志目录: D:\code\Vivado\Loogarch_Linux_workspace\T2026143250012561-ucore-stable\logs\demo-20260822-142955（全部输出完整保留）
+[14:29:55] 参数: acts=ucore port=COM9 hw_server=localhost:3121 program=False load=False scripted=False transfer=False
+[14:29:55] [36m[1m========================================================================[0m
+[14:29:55] [36m[1m预检：镜像 / 工具链 / hw_server / 串口[0m
+[14:29:55] [36m[1m========================================================================[0m
+[14:29:55] [2m[demo] bitstream: D:\code\Vivado\Loogarch_Linux_workspace\T2026143250012561-ucore-stable\bit\sys_test\bit\sys_soc_top_100mhz.bit[0m
+[14:29:55] [2m[demo] ucore.bin: D:\code\Vivado\Loogarch_Linux_workspace\T2026143250012561-ucore-stable\sw\ucore\out\ucore.bin[0m
+[14:29:57] [2m[demo] hw_server 已在运行 (localhost:3121)[0m
+[14:29:57] [2m[demo] 串口: COM9 @ 115200 8N1[0m
+[14:29:57] [31m[1m❌ 打不开串口 COM9: could not open port 'COM9': FileNotFoundError(2, '系统找不到指定的文件。', None, 2)[0m

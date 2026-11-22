@@ -112,6 +112,50 @@ nscscc-team SoC 的版本。上游版本、commit 与逐处改动清单见
 
 ## 自动构建与上板稳定性测试
 
+### WSL USBIP 直连（已验证）
+
+不使用 Windows `hw_server` 时，先按仓库根目录 `Readme.md` 的步骤将
+`0403:6010`（JTAG）和 `0403:6001`（独立 UART）转发到 WSL、安装 cable
+driver，并修复 `/dev/bus/usb/...` 与 `/dev/ttyUSB*` 权限。注意
+`/dev/ttyUSB*` 只负责串口，bitstream 和 uCore 镜像仍通过 Vivado JTAG 下载。
+
+默认端口 `3121` 若被 WSL/Windows localhost 转发层残留占用，使用 `3122`：
+
+```shell
+sudo /tools/Xilinx/Vivado/2023.2/bin/hw_server -d -s tcp::3122
+```
+
+保持服务运行，在另一个 WSL 终端执行一次冷启动验收：
+
+```shell
+HW_SERVER_URL=localhost:3122 \
+UART=/dev/ttyUSB2 \
+PROGRAM_BIT=each \
+ROUNDS=1 \
+BOOT_TIMEOUT=45 \
+sh ./board_stability.sh
+```
+
+2026-08-19 已在真板验证该命令，结果为 `round 1: PASS` 和
+`board stability: 1/1 passed`。对应日志位于仓库根目录
+`logs/ucore-board-<时间>/`。
+
+不要仅按编号猜测 UART。USBIP 重新 attach 后编号可能变化，应通过 VID:PID 找出
+独立的 `0403:6001` 设备：
+
+```shell
+for port in /dev/ttyUSB*; do
+    [ -e "$port" ] || continue
+    printf '%s: ' "$port"
+    udevadm info -q property -n "$port" | grep -E 'ID_VENDOR_ID|ID_MODEL_ID'
+done
+```
+
+本次实板枚举为 `/dev/ttyUSB2`。`/dev/ttyUSB0` 和 `/dev/ttyUSB1` 来自
+`0403:6010` 的两个 FT2232 接口，不应在本次连接中作为独立 UART 使用。
+
+### Windows 原生 hw_server
+
 默认脚本在本机启动 `hw_server`。如果 JTAG 由 Windows 原生 `hw_server` 管理，
 在 WSL 中使用其地址：
 
@@ -137,6 +181,12 @@ UART=/dev/ttyUSB0 ROUNDS=3 sh ./board_stability.sh
 4. 抽查镜像首部、中部和尾部，然后释放 CPU 并采集 115200 8N1 串口日志。
 5. 要求日志同时出现 `check_boot_pgdir() succeeded` 和 `user sh is running`。
 
+构建输出、Vivado 连接/烧录/镜像校验以及 UART 启动内容会实时显示在终端，同时
+保留到 `logs/ucore-board-<时间>/`。Vivado 的大量 JTAG AXI `WRITE DATA` 仅写入
+完整日志，终端只显示关键状态，避免十六进制下载内容淹没 UART 输出。未显式设置
+`HW_SERVER_URL` 时，脚本复用或启动已验证的本地 `3122`。如需其他端口，必须通过
+`HW_SERVER_URL=host:port` 显式指定。
+
 每轮 Vivado 和 UART 原始日志保存在 `logs/ucore-board-<时间>/`。常用参数：
 
 ```shell
@@ -149,6 +199,14 @@ PROGRAM_BIT=0 UART=/dev/ttyUSB0 ROUNDS=1 sh ./board_stability.sh
 # 调整单轮启动等待时间
 UART=/dev/ttyUSB0 ROUNDS=10 BOOT_TIMEOUT=45 sh ./board_stability.sh
 ```
+
+## 决赛一键演示（bootloader + ucore）
+
+决赛展示用的一键脚本、演示载荷与完整演示文档位于
+[demo/](demo/)：`python demo/demo.py` 一键完成烧写 bit → bootloader
+展示（ELF 加载 + fw_arg 协议）→ ucore 启动 → shell 功能演示 → UART 文件传输
+往返 → 交互 shell；全部输出完整实时打印并落盘到 `logs/demo-<时间>/`。
+详见 [demo/DEMO.md](demo/DEMO.md)。
 
 ## UART 文件管理与传输
 
@@ -190,6 +248,92 @@ cmp ./local.bin ./downloaded.bin
 传输协议使用 128 字节分块、十六进制编码、逐块 CRC32、整文件 CRC32 和逐块
 ACK，适配当前无 UART 中断、由 100Hz 时钟中断轮询接收的硬件。传输期间不要再
 打开其他串口终端，避免两个进程同时读取 `/dev/ttyUSB0`。
+
+下载工具遇到超时或数据校验失败时会发送 `XCANCEL`，板端返回 `XCANCELLED` 后
+关闭未完成的文件并回到 shell。若直接强制终止主机进程或拔掉 USB，取消帧无法送达，
+此时需要重新启动 uCore 后再传输。
+
+### UART shell 测试方法
+
+一键完成自动识别 UART、启动本地 `hw_server`、烧写 bitstream、下载并启动 uCore、
+检查启动日志，最后进入交互式 shell：
+
+```shell
+sh ./uart_shell.sh
+```
+
+默认使用 `localhost:3122`、自动寻找 `0403:6001` 对应的 tty，并执行一轮冷启动
+验收。常用覆盖参数：
+
+```shell
+# 使用指定 UART
+UART=/dev/ttyUSB2 sh ./uart_shell.sh
+
+# 复用已经启动的 hw_server
+HW_SERVER_URL=localhost:3122 sh ./uart_shell.sh
+
+# bitstream 已烧写时跳过重新烧写，但仍通过 JTAG 下载 uCore
+PROGRAM_BIT=0 sh ./uart_shell.sh
+```
+
+脚本需要 `picocom`；如果未安装，会在 uCore 启动验收通过后给出安装命令。退出
+shell 使用 `Ctrl-A` 后按 `Ctrl-X`。如果脚本自行启动了 `hw_server`，退出时会将其
+关闭；预先存在的 `hw_server` 不受影响。
+
+完整自动验收优先使用上面的 `board_stability.sh`。该脚本会烧写 bitstream、下载
+uCore、释放 CPU、采集 UART，并检查以下启动标志：
+
+```text
+check_boot_pgdir() succeeded
+user sh is running
+```
+
+如果 uCore 已经启动，只测试交互式 shell，可使用系统已有的串口工具。例如：
+
+```shell
+sudo apt-get install picocom
+picocom -b 115200 --databits 8 --parity n --stopbits 1 \
+    --imap delbs /dev/ttyUSB2
+```
+
+进入 `$` 提示符后执行一组无破坏性的 shell 测试：
+
+```text
+help
+pwd
+mkdir uart-test
+cd uart-test
+write hello.txt hello from uart
+cat hello.txt
+stat hello.txt
+cp hello.txt copy.txt
+mv copy.txt moved.txt
+ls
+rm moved.txt
+cd /
+display C0DE2026
+```
+
+shell 支持 Backspace 删除当前行末字符，并会忽略方向键和 Delete 键产生的 ANSI
+控制序列；当前不实现光标移动和命令历史，因此建议用 Backspace 修改输入，不要
+依赖方向键编辑命令。
+
+退出 `picocom` 使用 `Ctrl-A` 后按 `Ctrl-X`。运行文件传输工具前必须先退出所有
+串口终端，否则多个进程会竞争读取同一个 UART。
+
+只验证 UART 文件传输时，在 `sw/ucore` 目录执行：
+
+```shell
+dd if=/dev/urandom of=/tmp/ucore-uart-test.bin bs=300 count=1 status=none
+python3 tools/ucore_uart.py --port /dev/ttyUSB2 put \
+    /tmp/ucore-uart-test.bin /uart-test.bin
+python3 tools/ucore_uart.py --port /dev/ttyUSB2 get \
+    /uart-test.bin /tmp/ucore-uart-test.download.bin
+cmp /tmp/ucore-uart-test.bin /tmp/ucore-uart-test.download.bin
+```
+
+`cmp` 无输出且退出码为 0 表示上传和下载内容完全一致。可用 `echo $?` 查看上一条
+命令的退出码。
 
 ## 数码管显示
 
