@@ -1,0 +1,21 @@
+# 功能测试 xsim 仿真驱动
+# 用法（cwd = chiplab/fpga/nscscc-team/run_vivado）：
+#   vivado -mode batch -source run_func_sim.tcl
+# 判读：日志出现 "----PASS!!!" 为全部通过；单项通过打印
+#   "----[<time>] Number 8'dNN Functional Test Point PASS!!!"
+
+if {![file exists project/loongson.xpr]} {
+  puts "Project not found, creating..."
+  source create_project.tcl
+}
+open_project project/loongson.xpr
+
+# 与官方 run_func_test.tcl 一致：镜像放到 fpga/nscscc-team/inst_data.bin
+file copy -force ../../../../software/examples/nscscc_func/obj/main.bin ../inst_data.bin
+
+# 跑到测试台 $finish 为止（默认 1000ns 太短）
+set_property -name {xsim.simulate.runtime} -value {-all} -objects [get_filesets sim_1]
+
+launch_simulation
+close_sim
+exit
